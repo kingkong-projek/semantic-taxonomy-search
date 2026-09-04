@@ -1,5 +1,5 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "last_updated": "2026-09-04",
   "target_taxonomy_version": 31,
   "status_semantics": {
@@ -20,7 +20,7 @@
       "dimensions": ["preferred_label", "definition", "definition_distinct_from_label", "alternative_labels", "hidden_labels"],
       "source": "JobTech Taxonomy v31",
       "evidence": ["docs/findings/native-text-coverage-v31.md", "research/coverage/v31/native-text-aggregate.json"],
-      "notes": "Definition field is non-empty in measured active v31; distinction from preferred label is the meaningful first text-coverage metric."
+      "notes": "Definitions are rich for many occupation-name concepts, sparse for skill, and almost entirely label copies for job-title/keyword."
     },
     {
       "id": "taxonomy-common-relations",
@@ -32,7 +32,7 @@
       "source": "v31 concepts-and-common-relations immutable distribution",
       "source_sha256": "634fd9d848a172747e54e3e487160a912ae6c0fcb8219c50998767c8c9aacbcc",
       "evidence": ["docs/findings/common-relations-coverage-v31.md"],
-      "notes": "2,122 unresolved target IDs occur only on backward `replaces` edges to concepts absent from active snapshot; high-value SSYK/job-title/keyword/ESCO counts are unaffected."
+      "notes": "Typed graph baseline. Historical `replaces` targets outside the active snapshot are kept separate from active semantic coverage."
     },
     {
       "id": "taxonomy-special-occupation-skill-relations",
@@ -40,19 +40,33 @@
       "provenance_class": "curated_relation",
       "target_types": ["occupation-name", "skill"],
       "join_key": "taxonomy concept id",
-      "dimensions": ["essential", "optional"],
+      "dimensions": ["native essential", "native optional"],
       "source": "JobTech Taxonomy specialised relations/API",
-      "notes": "Common-relations snapshot does not expose these specialised relation fields. KV fields with similar names are a separate published read model and must not be substituted for native relation semantics without provenance verification."
+      "notes": "KV fields with similar names are a separate published read model and cannot substitute for native relation semantics without source verification."
     },
     {
       "id": "taxonomy-search-concepts",
-      "status": "probe_required",
+      "status": "measured",
       "provenance_class": "curated_relation",
-      "target_types": ["occupation-name", "skill", "job-title", "keyword", "other referenced taxonomy types"],
+      "target_types": ["keyword", "occupation-name", "skill", "education-field", "employment-type"],
       "join_key": "taxonomy concept id",
-      "dimensions": ["search concept text", "typed reference relations"],
-      "source": "Sökbegrepp med relation till andra begrepp",
-      "notes": "Must be measured separately; common `keyword` relation coverage is not a substitute for the dedicated search-concept dataset."
+      "dimensions": ["keyword text", "typed related target"],
+      "source": "https://data.jobtechdev.se/taxonomy/version/31/query/keyword-concepts-with-relations/keyword-concepts-with-relations.json",
+      "source_sha256": "91bb2d3649f6cf061475b64c63966d0a9818ca012e9d040ea054626229189c85",
+      "evidence": ["docs/findings/taxonomy-special-relations-v31.md", "research/coverage/v31/taxonomy-special-relations-aggregate.json"],
+      "notes": "Only 34/1,484 keywords target occupation-name and 5 target skill; 1,443 edges target SUN education fields. Supplemental YV/KV recall source, not a broad synonym bank."
+    },
+    {
+      "id": "taxonomy-substitutability",
+      "status": "measured",
+      "provenance_class": "curated_relation",
+      "target_types": ["occupation-name"],
+      "join_key": "taxonomy occupation-name concept id",
+      "dimensions": ["substitutes", "substituted_by", "substitutability_percentage_25_or_75"],
+      "source": "https://data.jobtechdev.se/taxonomy/version/31/query/substitutability-relations-between-occupations/substitutability-relations-between-occupations.json",
+      "source_sha256": "8761f938505ab9f276b8054d235c9a574bf2da1ff56c3761d9ce836f6fc93c60",
+      "evidence": ["docs/findings/taxonomy-special-relations-v31.md", "research/coverage/v31/taxonomy-special-relations-aggregate.json"],
+      "notes": "4,394 directed edges in each inverse field; 1,977 at 25 and 2,417 at 75. Useful YV context/hard-negative evidence; not synonymy or automatic career suitability."
     },
     {
       "id": "yrkesvaljaren",
@@ -60,54 +74,60 @@
       "provenance_class": "behavioral",
       "target_types": ["occupation-name", "job-title"],
       "join_key": "taxonomy concept id plus occupation_name_id context for job-title rows",
-      "dimensions": ["weight_present", "weight", "active concept coverage", "job-title occupation parent multiplicity"],
+      "dimensions": ["weight", "active concept coverage", "job-title occupation parent multiplicity"],
       "source": "https://data.arbetsformedlingen.se/yrke/yrkesvaljaren/v1/yrkesvaljaren-t31.json",
       "source_sha256": "1036f9525416fac4ce475c1c1d3909b9e2849ebcf7094ffd38104955e4c2ee49",
-      "evidence": ["docs/findings/selector-coverage-v31.md", "research/coverage/v31/selector-aggregate.json"],
-      "notes": "100% occupation-name coverage and 97.905% active job-title coverage. 541 job-title IDs have multiple occupation parents (max 3). Weights are behavioural priors, not concept meaning."
-    },
-    {
-      "id": "relevant-skills",
-      "status": "probe_required",
-      "provenance_class": "derived_af",
-      "target_types": ["occupation-name", "skill"],
-      "join_key": "taxonomy concept id",
-      "dimensions": ["occupation_covered", "suggested_skill_count", "weight_or_score if present"],
-      "source": "https://data.arbetsformedlingen.se/yrke/relevanta-kompetenser",
-      "notes": "Public file area is resolved, but exact current v31 file naming/schema still needs discovery. Derived via taxonomy↔ESCO mappings; relevance is not canonical/mandatory skill semantics."
+      "evidence": ["docs/findings/selector-coverage-v31.md", "docs/findings/selector-residual-gaps-v31.md", "research/coverage/v31/selector-aggregate.json", "research/coverage/v31/selector-residual-gaps.json"],
+      "notes": "100% occupation-name coverage and 97.905% active job-title coverage. 541 job-title IDs have multiple occupation parents. 205 active titles remain outside YV and are a dedicated research/eval population."
     },
     {
       "id": "skill-selector",
-      "status": "partially_measured",
+      "status": "measured",
       "provenance_class": "derived_af",
       "target_types": ["skill"],
       "context_types": ["occupation-name", "ssyk-level-4"],
       "join_key": "skill taxonomy id within typed context record",
-      "dimensions": ["context coverage", "regulated_skills", "essential_skills", "optional_skills", "calculated_skills", "layer provenance", "transferable_skills special container"],
+      "dimensions": ["regulated_skills", "essential_skills", "optional_skills", "calculated_skills", "transferable_skills"],
       "source": "https://data.arbetsformedlingen.se/kompetens/kompetensvaljaren/v1/kompetensvaljaren-t31.json",
       "source_sha256": "da83f26bf316971caa407364d8feae6f791203bff5758e674cace3d919e4b524",
-      "evidence": ["docs/findings/selector-coverage-v31.md", "research/coverage/v31/selector-aggregate.json"],
-      "notes": "All 2,105 occupation-name and all 400 SSYK4 contexts are present. Four occupation-context skill layers reference only active skill IDs and together cover 4,647/6,752 active skills (68.824%). `transferable_skills` is a separate non-context entry still to inventory. Layer names must retain distinct semantics."
+      "evidence": ["docs/findings/selector-coverage-v31.md", "docs/findings/selector-residual-gaps-v31.md", "research/coverage/v31/selector-aggregate.json", "research/coverage/v31/selector-residual-gaps.json"],
+      "notes": "All occupation-name and SSYK4 contexts are present. Ordinary layers cover 4,647 active skills; transferable_skills is 27 valid active skill IDs, 13 additional beyond the ordinary union. Layer provenance remains distinct."
     },
     {
-      "id": "kv-transferable-skills",
-      "status": "probe_required",
+      "id": "relevant-skills",
+      "status": "measured",
       "provenance_class": "derived_af",
-      "target_types": ["skill"],
-      "join_key": "to be measured",
-      "dimensions": ["schema", "skill ids", "coverage", "intended retrieval semantics"],
-      "source": "Kompetensväljaren v31 data.transferable_skills",
-      "notes": "Detected as a special top-level non-context container. Must not be interpreted as an unknown taxonomy concept."
+      "target_types": ["occupation-name", "skill"],
+      "join_key": "taxonomy concept id",
+      "dimensions": ["occupation coverage", "skill list", "relevance_points", "delta vs KV"],
+      "source": "https://data.arbetsformedlingen.se/yrke/relevanta-kompetenser/v1/relevanta-kompetenser-t31.json.zst",
+      "source_sha256": "e66679cdb48af23700734bcf26d8d6531d842cbdad2cba80c67baa71ceb3a897",
+      "evidence": ["docs/findings/derived-af-semantic-coverage-v31.md", "research/coverage/v31/derived-af-aggregate.json"],
+      "notes": "100% occupation coverage, 4,685 unique active skills (69.387%). Adds 404 skills beyond ordinary KV; Relevanta+KV union covers 5,051 skills (74.807%). Relevance scores are derived and lists appear bounded at max 30."
     },
     {
-      "id": "curated-occupation-kinship",
-      "status": "documented",
-      "provenance_class": "curated_relation",
+      "id": "ad-keyword-corpus",
+      "status": "measured",
+      "provenance_class": "corpus_derived",
+      "target_types": ["occupation-name", "ssyk-level-4"],
+      "join_key": "taxonomy context id",
+      "dimensions": ["number_of_ads", "keyword", "weighted_frequency", "TFIDF", "BM25", "RCA"],
+      "source": "https://data.arbetsformedlingen.se/yrke/narliggande-yrken/v1/t31/relevans-nyckelord.json.zst",
+      "source_sha256": "2fb4be00e42a89dca97f23547942b128820fe3b794ff5e25ac0f872978fe5b00",
+      "evidence": ["docs/findings/derived-af-semantic-coverage-v31.md", "research/coverage/v31/derived-af-aggregate.json"],
+      "notes": "1,051 occupation contexts (49.929%), 384 SSYK4 (96%), 11,085 distinct employer-language terms from 7.37M ads. Covers 198/469 occupation-name concepts whose canonical definition is only the label. Corpus evidence, not canonical definitions."
+    },
+    {
+      "id": "nearby-occupations",
+      "status": "measured",
+      "provenance_class": "derived_af",
       "target_types": ["occupation-name"],
       "join_key": "taxonomy occupation-name concept id",
-      "dimensions": ["source_occupation_covered", "target_occupation_covered", "kinship_level_75_or_25"],
-      "source": "Släktskap mellan yrkesbenämningar",
-      "notes": "Created/updated with labour-market actors. High=large work-task similarity; low=some similar tasks and some training likely needed. Preserve 75/25 semantics."
+      "dimensions": ["source coverage", "similar occupation IDs", "published filtered similarity view"],
+      "source": "https://data.arbetsformedlingen.se/yrke/narliggande-yrken/v1/t31/narliggande-yrken.json",
+      "source_sha256": "1f476198bea046c88d18fc8a09c80fbb88107bcb046644b95ffdc441db679396",
+      "evidence": ["docs/findings/derived-af-semantic-coverage-v31.md", "research/coverage/v31/derived-af-aggregate.json"],
+      "notes": "1,050 source occupations (49.881%), 10,218 similarity edges. Discovery/diversification evidence, not synonymy or career-suitability authority."
     },
     {
       "id": "occupational-information",
@@ -117,17 +137,17 @@
       "join_key": "to be verified",
       "dimensions": ["occupational_information_present", "description_fields", "forecast/barometer fields kept separate"],
       "source": "Yrkesinformation interimslösning",
-      "notes": "Official DCAT metadata currently points to the Närliggande yrken file area, so distribution identity is anomalous and must be resolved before extracting coverage."
+      "notes": "Official DCAT metadata currently points to the Närliggande yrken file area. Distribution identity must be resolved before coverage is accepted."
     },
     {
       "id": "historical-job-ads",
-      "status": "documented",
+      "status": "partially_measured",
       "provenance_class": "corpus_derived",
       "target_types": ["occupation-name", "skill", "job-title"],
       "join_key": "structured taxonomy annotations where present; reliability must be measured",
-      "dimensions": ["ad_count", "recent_ad_count", "usable_text_count", "title_vocabulary", "task/tool language"],
+      "dimensions": ["ad_count", "usable text", "title/task/tool language", "annotation reliability"],
       "source": "Historical Platsbanken ads",
-      "notes": "Real employer language but noisy. Structured annotations can be missing/wrong and must not automatically become ground truth."
+      "notes": "The derived ad-keyword publication proves large occupation-linked employer-language coverage, but raw ad-level join/provenance and skill/title annotation reliability remain to be measured separately."
     },
     {
       "id": "jobad-enrichments",
@@ -135,9 +155,9 @@
       "provenance_class": "corpus_derived",
       "target_types": ["occupation-name", "skill", "job-title"],
       "join_key": "ad/taxonomy annotations",
-      "dimensions": ["enrichment_signal_present", "extracted_skill_or_title_signal"],
+      "dimensions": ["enrichment signal", "human vs model-derived provenance"],
       "source": "JobAd Enrichments / enriched job ads",
-      "notes": "Must distinguish human-entered from model-derived fields per source/version."
+      "notes": "Must distinguish human-entered and model-derived fields per source/version."
     },
     {
       "id": "jobsearch-trends",
@@ -145,19 +165,9 @@
       "provenance_class": "behavioral",
       "target_types": ["query language; taxonomy join may be indirect"],
       "join_key": "to be determined",
-      "dimensions": ["query_frequency", "recency", "query_category", "taxonomy_joinability"],
-      "source": "JobSearch Trends",
-      "notes": "Daily popular-search files are valuable for language drift and benchmark queries. May not be a direct per-concept coverage adapter."
-    },
-    {
-      "id": "nearby-occupations",
-      "status": "probe_required",
-      "provenance_class": "derived_af",
-      "target_types": ["occupation-name"],
-      "join_key": "taxonomy occupation-name concept id",
-      "dimensions": ["source_coverage", "neighbour_count", "similarity score/semantics", "corpus-derived keywords if published"],
-      "source": "https://data.arbetsformedlingen.se/yrke/narliggande-yrken",
-      "notes": "Public file area is resolved but exact v31 file naming/schema still needs discovery. Advertisement-derived similarity is discovery evidence, not semantic equivalence or career-transition authority."
+      "dimensions": ["query_frequency", "recency", "taxonomy_joinability"],
+      "source": "JobSearch Trends / Platsbanken search language",
+      "notes": "Potentially valuable for real user vocabulary and drift; not yet established as direct query→canonical-ID labels."
     },
     {
       "id": "deprecated-concept-compatibility",
