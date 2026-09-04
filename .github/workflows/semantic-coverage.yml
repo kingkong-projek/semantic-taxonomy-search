@@ -1,0 +1,44 @@
+name: Semantic coverage inventory
+
+on:
+  workflow_dispatch:
+    inputs:
+      taxonomy_version:
+        description: Taxonomy version to inventory
+        required: true
+        default: "31"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/semantic_coverage_inventory.py"
+      - ".github/workflows/semantic-coverage.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run inventory
+        env:
+          TAXONOMY_VERSION: ${{ github.event.inputs.taxonomy_version || '31' }}
+        run: |
+          python scripts/semantic_coverage_inventory.py \
+            --version "$TAXONOMY_VERSION" \
+            --output-dir "artifacts/semantic-coverage-v${TAXONOMY_VERSION}"
+      - name: Show aggregate report
+        env:
+          TAXONOMY_VERSION: ${{ github.event.inputs.taxonomy_version || '31' }}
+        run: cat "artifacts/semantic-coverage-v${TAXONOMY_VERSION}/summary.md"
+      - name: Upload frozen inventory
+        uses: actions/upload-artifact@v4
+        with:
+          name: semantic-coverage-v${{ github.event.inputs.taxonomy_version || '31' }}
+          path: artifacts/semantic-coverage-v${{ github.event.inputs.taxonomy_version || '31' }}/
+          if-no-files-found: error
