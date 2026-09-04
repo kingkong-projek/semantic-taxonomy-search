@@ -1,0 +1,39 @@
+name: Native occupation-skill coverage
+
+on:
+  workflow_dispatch:
+    inputs:
+      taxonomy_version:
+        description: Taxonomy version to measure
+        required: true
+        default: "31"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/native_occupation_skill_coverage.py"
+      - ".github/workflows/native-occupation-skill-coverage.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  measure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Measure native essential/optional occupation-skill relations
+        env:
+          TAXONOMY_VERSION: ${{ github.event.inputs.taxonomy_version || '31' }}
+        run: |
+          python scripts/native_occupation_skill_coverage.py \
+            --version "$TAXONOMY_VERSION" \
+            --output-dir "artifacts/native-occupation-skill-v${TAXONOMY_VERSION}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: native-occupation-skill-v${{ github.event.inputs.taxonomy_version || '31' }}
+          path: artifacts/native-occupation-skill-v${{ github.event.inputs.taxonomy_version || '31' }}/
+          if-no-files-found: error
