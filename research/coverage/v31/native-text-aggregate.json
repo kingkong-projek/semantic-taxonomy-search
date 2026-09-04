@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 31,
+  "measured_at": "2026-09-04T09:55:32Z",
+  "workflow_run_id": 33860719240,
+  "extractor_commit": "422e0ae77e5476424ca1efcbb15f94bb8da88316",
+  "scope": "active concepts returned by REST main/concepts for four target types",
+  "relation_coverage_valid": false,
+  "relation_coverage_invalid_reason": "GraphQL relation extraction failed with HTTP 400; zero relation counters from this run are not observations",
+  "by_type": {
+    "occupation-name": {
+      "total": 2105,
+      "definition_nonempty": 2105,
+      "definition_distinct_from_preferred_label": 1636,
+      "definition_same_as_preferred_label": 469,
+      "with_alternative_labels": 197,
+      "with_hidden_labels": 0,
+      "quality_level_present": 1717,
+      "quality_level_distribution": {"1": 767, "2": 197, "3": 753}
+    },
+    "skill": {
+      "total": 6752,
+      "definition_nonempty": 6752,
+      "definition_distinct_from_preferred_label": 1654,
+      "definition_same_as_preferred_label": 5098,
+      "with_alternative_labels": 819,
+      "with_hidden_labels": 7,
+      "quality_level_present": 611,
+      "quality_level_distribution": {"1": 308, "2": 80, "3": 223}
+    },
+    "job-title": {
+      "total": 9785,
+      "definition_nonempty": 9785,
+      "definition_distinct_from_preferred_label": 6,
+      "definition_same_as_preferred_label": 9779,
+      "with_alternative_labels": 0,
+      "with_hidden_labels": 0,
+      "quality_level_present": 148,
+      "quality_level_distribution": {"1": 4, "2": 8, "3": 136}
+    },
+    "keyword": {
+      "total": 1484,
+      "definition_nonempty": 1484,
+      "definition_distinct_from_preferred_label": 0,
+      "definition_same_as_preferred_label": 1484,
+      "with_alternative_labels": 1,
+      "with_hidden_labels": 0,
+      "quality_level_present": 2,
+      "quality_level_distribution": {"3": 2}
+    }
+  }
+}
