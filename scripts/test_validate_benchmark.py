@@ -13,6 +13,10 @@ def evidence(provenance: str = "canonical", role: str = "destination_ground_trut
     return {"source": "fixture", "provenance": provenance, "role": role}
 
 
+def yv_admission() -> dict:
+    return evidence("behavioral", "product_admission")
+
+
 def base_case() -> dict:
     return {
         "id": "yv.exact.fixture",
@@ -32,7 +36,7 @@ def base_case() -> dict:
         ],
         "acceptable": [],
         "must_not": [],
-        "source_evidence": [evidence()],
+        "source_evidence": [evidence(), yv_admission()],
         "adjudication": {
             "status": "AUTO_HIGH_CONFIDENCE",
             "reviewer_count": 0,
@@ -52,6 +56,16 @@ class BenchmarkContractTest(unittest.TestCase):
     def test_exact_yv_job_title_requires_context_and_is_valid(self) -> None:
         self.assert_valid(base_case())
 
+    def test_scored_yv_case_requires_product_admission(self) -> None:
+        case = base_case()
+        case["source_evidence"] = [evidence()]
+        self.assert_invalid_with(case, "requires explicit behavioral product_admission evidence")
+
+    def test_product_admission_preserves_behavioral_provenance(self) -> None:
+        case = base_case()
+        case["source_evidence"][-1] = evidence("canonical", "product_admission")
+        self.assert_invalid_with(case, "product_admission must preserve")
+
     def test_job_title_without_occupation_context_fails(self) -> None:
         case = base_case()
         del case["must"][0]["occupation_name_id"]
@@ -61,15 +75,17 @@ class BenchmarkContractTest(unittest.TestCase):
         case = base_case()
         case.update({"id": "kv.fixture", "product": "KV"})
         case["must"] = [{"kind": "occupation-name", "concept_id": "occ_fixture"}]
+        case["source_evidence"] = [evidence()]
         self.assert_invalid_with(case, "KV may contain only skill")
 
-    def test_kv_skill_is_valid(self) -> None:
+    def test_kv_skill_is_valid_without_yv_admission(self) -> None:
         case = base_case()
         case.update({
             "id": "kv.skill.fixture",
             "product": "KV",
             "query": "Testkompetens",
             "strata": ["exact_preferred_label"],
+            "source_evidence": [evidence()],
         })
         case["must"] = [{"kind": "skill", "concept_id": "skill_fixture"}]
         self.assert_valid(case)
@@ -81,7 +97,7 @@ class BenchmarkContractTest(unittest.TestCase):
             "query_origin": "manual",
             "expected_intent": "AMBIGUOUS",
             "adjudication": {"status": "HUMAN_DOUBLE", "reviewer_count": 2, "agreement": "AGREED"},
-            "source_evidence": [evidence("human_judgment")],
+            "source_evidence": [evidence("human_judgment"), yv_admission()],
         })
         self.assert_invalid_with(case, "at least two positive identities")
         case["acceptable"] = [
@@ -96,7 +112,7 @@ class BenchmarkContractTest(unittest.TestCase):
             "query_origin": "manual",
             "expected_intent": "AMBIGUOUS",
             "adjudication": {"status": "HUMAN_DOUBLE", "reviewer_count": 2, "agreement": "AGREED"},
-            "source_evidence": [evidence("human_judgment")],
+            "source_evidence": [evidence("human_judgment"), yv_admission()],
         })
         case["must"] = [
             {"kind": "job-title", "concept_id": "same_job", "occupation_name_id": "occ_a"},
@@ -120,7 +136,7 @@ class BenchmarkContractTest(unittest.TestCase):
 
     def test_model_enrichment_cannot_be_ground_truth(self) -> None:
         case = base_case()
-        case["source_evidence"] = [evidence("model_derived")]
+        case["source_evidence"] = [evidence("model_derived"), yv_admission()]
         self.assert_invalid_with(case, "cannot be destination ground truth")
 
     def test_observed_query_cannot_be_auto_labelled(self) -> None:
@@ -132,8 +148,9 @@ class BenchmarkContractTest(unittest.TestCase):
         case = base_case()
         case["query_origin"] = "manual"
         case["adjudication"] = {"status": "HUMAN_SINGLE", "reviewer_count": 1, "agreement": "AGREED"}
+        case["source_evidence"] = [evidence(), yv_admission()]
         self.assert_invalid_with(case, "explicit human_judgment")
-        case["source_evidence"] = [evidence("human_judgment")]
+        case["source_evidence"] = [evidence("human_judgment"), yv_admission()]
         self.assert_valid(case)
 
     def test_positive_and_negative_sets_are_disjoint(self) -> None:
@@ -148,7 +165,7 @@ class BenchmarkContractTest(unittest.TestCase):
             "query_origin": "manual",
             "expected_intent": "AMBIGUOUS",
             "top_k": 1,
-            "source_evidence": [evidence("human_judgment")],
+            "source_evidence": [evidence("human_judgment"), yv_admission()],
             "adjudication": {"status": "HUMAN_DOUBLE", "reviewer_count": 2, "agreement": "AGREED"},
         })
         case["must"] = [
