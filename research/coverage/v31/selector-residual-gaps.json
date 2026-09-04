@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 31,
+  "accepted_run_commit": "9ee0dba01d1ba72d1584259780afaef63cce556e",
+  "taxonomy_snapshot_sha256": "634fd9d848a172747e54e3e487160a912ae6c0fcb8219c50998767c8c9aacbcc",
+  "yv_missing_job_titles": {
+    "count": 205,
+    "new_in_v31": 0,
+    "existed_in_v30": 205,
+    "absent_from_yv_v30_too": 204,
+    "present_in_yv_v30_but_absent_in_v31": 1,
+    "all_have_occupation_parent": true,
+    "parent_count_distribution": {
+      "1": 84,
+      "2": 9,
+      "4": 46,
+      "5": 13,
+      "6": 14,
+      "7": 5,
+      "8": 4,
+      "9": 4,
+      "10": 3,
+      "11": 1,
+      "12": 4,
+      "13": 1,
+      "15": 2,
+      "17": 2,
+      "18": 9,
+      "19": 1,
+      "25": 2,
+      "38": 1
+    },
+    "examples_broad": [
+      {"preferred_label": "Jurist", "occupation_parent_count": 38},
+      {"preferred_label": "Sjuksyster", "occupation_parent_count": 25},
+      {"preferred_label": "Säljare", "occupation_parent_count": 25},
+      {"preferred_label": "Specialistsjuksköterska", "occupation_parent_count": 19},
+      {"preferred_label": "Projektledare", "occupation_parent_count": 17}
+    ],
+    "distinct_definition_count": 0
+  },
+  "kv_transferable_skills": {
+    "container_type": "dictionary",
+    "entries": 27,
+    "active_skill_ids": 27,
+    "already_in_ordinary_kv_layers": 14,
+    "additional_active_skill_ids": 13,
+    "unresolved_id_like_values": 0
+  },
+  "guardrails": [
+    "Do not infer the cause of YV exclusion from parent multiplicity alone.",
+    "Do not automatically add every active taxonomy job-title to YV semantic results.",
+    "Keep transferable_skills as a separate provenance signal."
+  ]
+}
