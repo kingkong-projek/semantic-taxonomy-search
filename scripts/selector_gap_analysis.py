@@ -19,7 +19,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any, Iterable
 
-USER_AGENT = "semantic-taxonomy-search-selector-gaps/0.1"
+USER_AGENT = "semantic-taxonomy-search-selector-gaps/0.2"
 
 
 def now_utc() -> str:
@@ -38,6 +38,19 @@ def taxonomy_url(version: str) -> str:
         "https://data.jobtechdev.se/taxonomy/version/"
         f"{version}/query/concepts-and-common-relations/concepts-and-common-relations.json"
     )
+
+
+def relation_ids(concept: dict[str, Any], field: str) -> list[str]:
+    value = concept.get(field)
+    if not isinstance(value, list):
+        return []
+    result: list[str] = []
+    for item in value:
+        if isinstance(item, dict) and item.get("id"):
+            result.append(str(item["id"]))
+        elif isinstance(item, str):
+            result.append(item)
+    return result
 
 
 def walk_strings(value: Any, path: tuple[str, ...] = ()) -> Iterable[tuple[tuple[str, ...], str]]:
@@ -107,8 +120,7 @@ def main() -> int:
     parent_count = Counter()
     for cid in missing:
         concept = by31[cid]
-        related_ids = [str(v) for v in (concept.get("related") or [])]
-        occupation_parents = [rid for rid in related_ids if by31.get(rid, {}).get("type") == "occupation-name"]
+        occupation_parents = [rid for rid in relation_ids(concept, "related") if by31.get(rid, {}).get("type") == "occupation-name"]
         parent_count[len(occupation_parents)] += 1
         missing_rows.append({
             "id": cid,
@@ -122,8 +134,6 @@ def main() -> int:
     new_in_v31 = [r for r in missing_rows if not r["existed_in_v30"]]
     existed_v30 = [r for r in missing_rows if r["existed_in_v30"]]
 
-    # Compare previous YV publication when available to distinguish taxonomy-new
-    # from long-standing titles that remain excluded by selector methodology.
     yv30_url = f"https://data.arbetsformedlingen.se/yrke/yrkesvaljaren/v1/yrkesvaljaren-t{previous}.json"
     yv30_body, yv30_doc = fetch_json(yv30_url)
     yv30_rows = yv30_doc.get("data")
@@ -159,7 +169,6 @@ def main() -> int:
         if len(string_paths) < 100:
             string_paths.append({"path": list(path), "value": value, "classification": classification})
 
-    # Skill ids already used by ordinary KV layers.
     ordinary_kv_skill_ids: set[str] = set()
     for key, record in kv_data.items():
         if key == "transferable_skills" or not isinstance(record, dict):
@@ -172,7 +181,7 @@ def main() -> int:
     transferable_only = referenced_active_skills - ordinary_kv_skill_ids
 
     aggregate = {
-        "schema_version": 1,
+        "schema_version": 2,
         "taxonomy_version": version,
         "generated_at": now_utc(),
         "sources": {
