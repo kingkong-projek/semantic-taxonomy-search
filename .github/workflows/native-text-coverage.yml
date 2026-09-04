@@ -1,0 +1,41 @@
+name: Native taxonomy text coverage
+
+on:
+  workflow_dispatch:
+    inputs:
+      taxonomy_version:
+        description: Taxonomy version to inventory
+        required: true
+        default: "31"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/semantic_coverage_inventory.py"
+      - ".github/workflows/native-text-coverage.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  text-inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Measure canonical text fields
+        env:
+          TAXONOMY_VERSION: ${{ github.event.inputs.taxonomy_version || '31' }}
+        run: |
+          python scripts/semantic_coverage_inventory.py \
+            --version "$TAXONOMY_VERSION" \
+            --skip-graphql \
+            --output-dir "artifacts/native-text-coverage-v${TAXONOMY_VERSION}"
+      - name: Upload inventory
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-text-coverage-v${{ github.event.inputs.taxonomy_version || '31' }}
+          path: artifacts/native-text-coverage-v${{ github.event.inputs.taxonomy_version || '31' }}/
+          if-no-files-found: error
