@@ -1,0 +1,24 @@
+name: Discover unresolved semantic sources
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/discover_unresolved_sources.py"
+      - ".github/workflows/discover-unresolved-sources.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Crawl allow-listed public sources
+        run: python scripts/discover_unresolved_sources.py
