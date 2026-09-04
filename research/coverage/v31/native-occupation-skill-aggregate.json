@@ -1,0 +1,100 @@
+{
+  "comparison_to_kv": {
+    "essential_native_vs_kv_essential": {
+      "exact_equal": false,
+      "intersection_edges": 151,
+      "jaccard": 0.524306,
+      "left_edges": 288,
+      "left_only_edges": 137,
+      "right_edges": 151,
+      "right_only_edges": 0
+    },
+    "native_essential_vs_kv_essential_plus_regulated": {
+      "exact_equal": true,
+      "intersection_edges": 288,
+      "jaccard": 1.0,
+      "left_edges": 288,
+      "left_only_edges": 0,
+      "right_edges": 288,
+      "right_only_edges": 0
+    },
+    "native_nonregulated_essential_vs_kv_essential": {
+      "exact_equal": true,
+      "intersection_edges": 151,
+      "jaccard": 1.0,
+      "left_edges": 151,
+      "left_only_edges": 0,
+      "right_edges": 151,
+      "right_only_edges": 0
+    },
+    "native_regulated_essential_vs_kv_regulated": {
+      "exact_equal": true,
+      "intersection_edges": 137,
+      "jaccard": 1.0,
+      "left_edges": 137,
+      "left_only_edges": 0,
+      "right_edges": 137,
+      "right_only_edges": 0
+    },
+    "optional_native_vs_kv_optional": {
+      "exact_equal": true,
+      "intersection_edges": 2727,
+      "jaccard": 1.0,
+      "left_edges": 2727,
+      "left_only_edges": 0,
+      "right_edges": 2727,
+      "right_only_edges": 0
+    }
+  },
+  "generated_at": "2026-09-04T11:09:14+00:00",
+  "kv_invalid_occurrences": 0,
+  "native": {
+    "active_occupation_universe": 2105,
+    "fields": {
+      "essential": {
+        "active_skill_coverage_pct": 1.303,
+        "edge_count": 288,
+        "source_coverage_pct": 6.698,
+        "sources_nonempty": 141,
+        "unique_skill_ids": 88
+      },
+      "optional": {
+        "active_skill_coverage_pct": 21.668,
+        "edge_count": 2727,
+        "source_coverage_pct": 37.815,
+        "sources_nonempty": 796,
+        "unique_skill_ids": 1463
+      }
+    },
+    "invalid_relation_occurrences": 0,
+    "occupation_sources": 2105,
+    "regulated_collection": {
+      "essential_edges_using_regulated_skill": 137,
+      "id": "4P8B_LtK_JgE",
+      "invalid_target_ids": 0,
+      "nonregulated_essential_edges": 151,
+      "preferred_label": "Reglerande behörigheter",
+      "related_active_skill_ids": 33
+    }
+  },
+  "schema_version": 3,
+  "sources": {
+    "kompetensvaljaren": {
+      "bytes": 4309972,
+      "declared_taxonomy_version": "31",
+      "sha256": "da83f26bf316971caa407364d8feae6f791203bff5758e674cace3d919e4b524",
+      "url": "https://data.arbetsformedlingen.se/kompetens/kompetensvaljaren/v1/kompetensvaljaren-t31.json"
+    },
+    "taxonomy_graphql": {
+      "explicit_version": "31",
+      "response_bytes": 641349,
+      "response_sha256": "1ca3648ba39be23b96248bb1c10632485241e2d91c0dde2e96551caa0aa898df"
+    },
+    "taxonomy_snapshot": {
+      "bytes": 35137556,
+      "sha256": "634fd9d848a172747e54e3e487160a912ae6c0fcb8219c50998767c8c9aacbcc",
+      "url": "https://data.jobtechdev.se/taxonomy/version/31/query/concepts-and-common-relations/concepts-and-common-relations.json"
+    }
+  },
+  "taxonomy_version": "31"
+}
