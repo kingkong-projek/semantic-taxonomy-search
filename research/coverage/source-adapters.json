@@ -1,5 +1,5 @@
 {
-  "schema_version": 4,
+  "schema_version": 5,
   "last_updated": "2026-09-04",
   "target_taxonomy_version": 31,
   "status_semantics": {
@@ -76,11 +76,23 @@
       "provenance_class": "behavioral",
       "target_types": ["occupation-name", "job-title"],
       "join_key": "taxonomy concept id plus occupation_name_id context for job-title rows",
-      "dimensions": ["weight", "active concept coverage", "job-title occupation parent multiplicity"],
+      "dimensions": ["weight", "active concept coverage", "job-title occupation parent multiplicity", "generator admission policy"],
       "source": "https://data.arbetsformedlingen.se/yrke/yrkesvaljaren/v1/yrkesvaljaren-t31.json",
       "source_sha256": "1036f9525416fac4ce475c1c1d3909b9e2849ebcf7094ffd38104955e4c2ee49",
-      "evidence": ["docs/findings/selector-coverage-v31.md", "docs/findings/selector-residual-gaps-v31.md", "research/coverage/v31/selector-aggregate.json", "research/coverage/v31/selector-residual-gaps.json"],
-      "notes": "100% occupation-name coverage and 97.905% active job-title coverage. 541 job-title IDs have multiple occupation parents. 205 active titles remain outside YV and are a dedicated research/eval population."
+      "evidence": ["docs/findings/selector-coverage-v31.md", "docs/findings/selector-residual-gaps-v31.md", "docs/findings/yv-generator-exclusion-policy-v31.md", "docs/findings/yv-observed-query-language-v31.md", "research/coverage/v31/selector-aggregate.json", "research/coverage/v31/selector-residual-gaps.json", "research/coverage/v31/yv-generator-policy-aggregate.json", "research/coverage/v31/yv-query-language-aggregate.json"],
+      "notes": "100% occupation-name coverage and 97.905% active job-title coverage. 541 job-title IDs have multiple occupation parents. The 205 absent active titles are fully explained by generator policy: 104 have more than three occupation-name contexts and 101 are redundant-label cases. Excluded titles may be retrieval vocabulary but are not selectable YV identities."
+    },
+    {
+      "id": "yv-observed-query-language",
+      "status": "measured",
+      "provenance_class": "behavioral",
+      "target_types": ["query-language", "occupation-name", "job-title"],
+      "join_key": "exact normalized query string to known YV/admission-policy label only; no selected-ID join exists",
+      "dimensions": ["query_frequency", "date_range", "exact admitted-label binding", "exact excluded-title binding", "unbound language"],
+      "source": "Yrkesväljaren generator snapshot data/sokningar-platsbanken.json.zip at generator commit 6dd9e4737d7db3cb2709f8082808b88e5c89ed6e",
+      "source_sha256": "01a2550473091b06fdaaf450015eeea13b301471f1c78f5fb0dc8d3499645ae2",
+      "evidence": ["docs/findings/yv-observed-query-language-v31.md", "research/coverage/v31/yv-query-language-aggregate.json"],
+      "notes": "115,553 distinct terms and 3.136B aggregate searches for 2022-05-04 through 2026-08-16. 11.153% of total volume exactly matches generator-excluded job-title vocabulary and 67.377% is not exactly bound to admitted/excluded YV labels. This is query+frequency evidence, not query→selected canonical ID ground truth."
     },
     {
       "id": "skill-selector",
@@ -133,43 +145,46 @@
     },
     {
       "id": "occupational-information",
-      "status": "blocked",
+      "status": "partially_measured",
       "provenance_class": "derived_af",
       "target_types": ["occupation-name", "ssyk-level-4"],
-      "join_key": "to be verified",
-      "dimensions": ["occupational_information_present", "description_fields", "forecast/barometer fields kept separate"],
-      "source": "Yrkesinformation interimslösning",
-      "notes": "Official DCAT metadata currently points to the Närliggande yrken file area. Distribution identity must be resolved before coverage is accepted."
+      "join_key": "legacy Hitta yrken numeric ID/slug; canonical v31 join still to be established",
+      "dimensions": ["distribution_identity", "legacy occupation inventory", "description/content fields", "canonical_joinability"],
+      "source": "https://data.arbetsformedlingen.se/yrke/yrkesinformation/yrkesinformation-interimslosning.json",
+      "source_sha256": "3d52bfec15041898786460374736eba31c5d79ef205182265288b60cf2819c51",
+      "notes": "Distribution identity is resolved. The portal exposes its download through a custom `af-href` attribute, which caused the earlier false anomaly. The 9.94 MB JSON has metadata title Yrkesinformation interimslösning, version 1.0, created_at 2026-04-15, source_date 2026-02-24 and legacy Hitta yrken numeric IDs/slugs. Semantic text must not inherit a v31 taxonomy identity until canonical joinability is independently validated."
     },
     {
       "id": "historical-job-ads",
       "status": "partially_measured",
       "provenance_class": "corpus_derived",
       "target_types": ["occupation-name", "skill", "job-title"],
-      "join_key": "structured taxonomy annotations where present; reliability must be measured",
-      "dimensions": ["ad_count", "usable text", "title/task/tool language", "annotation reliability"],
-      "source": "Historical Platsbanken ads",
-      "notes": "The derived ad-keyword publication proves large occupation-linked employer-language coverage, but raw ad-level join/provenance and skill/title annotation reliability remain to be measured separately."
+      "join_key": "structured taxonomy annotations where present; taxonomy version and field provenance required",
+      "dimensions": ["ad_count", "usable text", "structured occupation", "structured requirements", "enrichment provenance"],
+      "source": "Historical Platsbanken ads / Historical Ads API and files",
+      "evidence": ["docs/findings/job-ad-source-boundaries-2026-09-04.md", "docs/findings/derived-af-semantic-coverage-v31.md"],
+      "notes": "The raw corpus has more than seven million ads since 2006 and enriched files/API exist from 2016 onward. Gate 1 uses the already measured occupation-linked ad-keyword publication as the bounded corpus coverage layer. Full raw-ad ETL is deferred to bounded Gate-2 samples because enriched skill annotations can be model-derived and historical IDs require version resolution."
     },
     {
       "id": "jobad-enrichments",
       "status": "documented",
       "provenance_class": "corpus_derived",
       "target_types": ["occupation-name", "skill", "job-title"],
-      "join_key": "ad/taxonomy annotations",
-      "dimensions": ["enrichment signal", "human vs model-derived provenance"],
-      "source": "JobAd Enrichments / enriched job ads",
-      "notes": "Must distinguish human-entered and model-derived fields per source/version."
+      "join_key": "ad/text document plus model-returned taxonomy annotations",
+      "dimensions": ["model-derived enrichment signal", "separation from employer-entered structured fields"],
+      "source": "JobAd Enrichments / enrichtextdocuments",
+      "evidence": ["docs/findings/job-ad-source-boundaries-2026-09-04.md"],
+      "notes": "JobAd Enrichments explicitly extracts labour-market data automatically from ad text. Its outputs are useful retrieval features/pseudo-labels, but must not be evaluation ground truth for the same semantic mapping task."
     },
     {
       "id": "jobsearch-trends",
       "status": "documented",
       "provenance_class": "behavioral",
-      "target_types": ["query language; taxonomy join may be indirect"],
-      "join_key": "to be determined",
+      "target_types": ["query-language"],
+      "join_key": "query string and frequency; direct selected-ID join not established",
       "dimensions": ["query_frequency", "recency", "taxonomy_joinability"],
-      "source": "JobSearch Trends / Platsbanken search language",
-      "notes": "Potentially valuable for real user vocabulary and drift; not yet established as direct query→canonical-ID labels."
+      "source": "Public JobSearch Trends / Platsbanken search-language distributions",
+      "notes": "The YV generator-bound query snapshot is measured separately as yv-observed-query-language. Do not generalize that measurement to every public JobSearch Trends daily distribution until lineage/version equivalence is verified."
     },
     {
       "id": "deprecated-concept-compatibility",
