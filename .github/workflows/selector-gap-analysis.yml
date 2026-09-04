@@ -1,0 +1,34 @@
+name: YV and KV residual gap analysis
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/selector_gap_analysis.py"
+      - ".github/workflows/selector-gap-analysis.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  analyse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Analyse residual gaps
+        run: |
+          python scripts/selector_gap_analysis.py \
+            --version 31 \
+            --previous-version 30 \
+            --output-dir artifacts/selector-gaps-v31
+      - name: Upload analysis
+        uses: actions/upload-artifact@v4
+        with:
+          name: selector-gaps-v31
+          path: artifacts/selector-gaps-v31/
+          if-no-files-found: error
