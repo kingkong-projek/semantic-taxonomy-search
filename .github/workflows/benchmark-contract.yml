@@ -1,0 +1,47 @@
+name: Benchmark contract
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "research/benchmark/**"
+      - "scripts/validate_benchmark.py"
+      - "scripts/test_validate_benchmark.py"
+      - "scripts/build_benchmark_seed.py"
+      - ".github/workflows/benchmark-contract.yml"
+  pull_request:
+    paths:
+      - "research/benchmark/**"
+      - "scripts/validate_benchmark.py"
+      - "scripts/test_validate_benchmark.py"
+      - "scripts/build_benchmark_seed.py"
+      - ".github/workflows/benchmark-contract.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Parse benchmark JSON Schema
+        run: python -m json.tool research/benchmark/schema/benchmark-case.schema.json >/dev/null
+      - name: Run semantic contract tests
+        working-directory: scripts
+        run: python -m unittest -v test_validate_benchmark.py
+      - name: Validate committed benchmark cases
+        shell: bash
+        run: |
+          shopt -s nullglob
+          files=(research/benchmark/cases/*.jsonl)
+          if ((${#files[@]})); then
+            python scripts/validate_benchmark.py "${files[@]}"
+          else
+            echo "No committed scored benchmark cases yet; contract tests only."
+          fi
