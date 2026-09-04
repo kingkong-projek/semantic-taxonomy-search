@@ -24,7 +24,7 @@ PROVENANCE = {
     "canonical", "canonical_history", "curated_relation", "derived_af",
     "behavioral", "corpus_derived", "model_derived", "synthetic", "human_judgment",
 }
-EVIDENCE_ROLES = {"query_origin", "destination_ground_truth", "context_only", "hard_negative"}
+EVIDENCE_ROLES = {"query_origin", "destination_ground_truth", "product_admission", "context_only", "hard_negative"}
 GROUND_TRUTH_PROVENANCE = {"canonical", "curated_relation", "human_judgment"}
 REQUIRED = {
     "id", "taxonomy_version", "product", "query", "query_language", "query_origin",
@@ -80,6 +80,10 @@ def validate_evidence(evidence: Any, path: str, errors: list[str]) -> None:
         errors.append(
             f"{path}: {provenance!r} cannot be destination ground truth; "
             "use canonical/curated_relation or explicit human_judgment"
+        )
+    if role == "product_admission" and provenance != "behavioral":
+        errors.append(
+            f"{path}: product_admission must preserve the published product/read-model provenance as behavioral"
         )
 
 
@@ -197,6 +201,12 @@ def validate_case(case: Any) -> list[str]:
         and item.get("provenance") in {"canonical", "curated_relation"}
         for item in evidence
     )
+    has_product_admission = any(
+        isinstance(item, dict)
+        and item.get("role") == "product_admission"
+        and item.get("provenance") == "behavioral"
+        for item in evidence
+    )
 
     if status in {"HUMAN_SINGLE", "HUMAN_DOUBLE"} and not has_human_truth:
         errors.append(f"{status} requires explicit human_judgment destination_ground_truth evidence")
@@ -207,6 +217,8 @@ def validate_case(case: Any) -> list[str]:
             errors.append("AUTO_HIGH_CONFIDENCE requires canonical/curated destination_ground_truth evidence")
     if status != "PENDING" and intent != "NO_MATCH" and not (has_human_truth or has_source_truth):
         errors.append("scored positive case requires auditable destination_ground_truth evidence")
+    if product == "YV" and status != "PENDING" and positive_count > 0 and not has_product_admission:
+        errors.append("scored positive YV case requires explicit behavioral product_admission evidence")
 
     return errors
 
