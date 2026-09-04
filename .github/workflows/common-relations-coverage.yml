@@ -1,0 +1,33 @@
+name: Common relation coverage
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/common_relations_coverage.py"
+      - ".github/workflows/common-relations-coverage.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Measure typed common relations
+        run: |
+          python scripts/common_relations_coverage.py \
+            --version 31 \
+            --output-dir artifacts/common-relations-v31
+      - name: Upload inventory
+        uses: actions/upload-artifact@v4
+        with:
+          name: common-relations-v31
+          path: artifacts/common-relations-v31/
+          if-no-files-found: error
