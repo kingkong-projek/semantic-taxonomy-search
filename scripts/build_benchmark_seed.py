@@ -18,7 +18,7 @@ import urllib.request
 from pathlib import Path
 from typing import Any
 
-UA = "semantic-taxonomy-search-benchmark-seed/0.1"
+UA = "semantic-taxonomy-search-benchmark-seed/0.2"
 
 
 def now_utc() -> str:
@@ -109,12 +109,27 @@ def curated_evidence(version: str, note: str) -> dict[str, str]:
     }
 
 
+def yv_admission_evidence(version: str) -> dict[str, str]:
+    return {
+        "source": f"Published Yrkesväljaren v{version}",
+        "provenance": "behavioral",
+        "role": "product_admission",
+        "note": "Exact row/context is admitted by the published YV read model; weight is not semantic ground truth.",
+    }
+
+
 def make_case(
     *, case_id: str, version: int, product: str, query: str, query_origin: str,
     strata: list[str], identities: list[dict[str, Any]], evidence: list[dict[str, Any]],
 ) -> dict[str, Any]:
     unique = {identity_key(identity): identity for identity in identities}
     ordered = [unique[key] for key in sorted(unique)]
+    if not ordered:
+        raise RuntimeError(f"cannot auto-build benchmark case {case_id}: no destination identities")
+    if len(ordered) > 100:
+        raise RuntimeError(
+            f"cannot auto-build benchmark case {case_id}: {len(ordered)} exact identities exceed benchmark top_k limit; send to review instead"
+        )
     intent = "SINGLE" if len(ordered) == 1 else "AMBIGUOUS"
     return {
         "id": case_id,
@@ -186,6 +201,7 @@ def main() -> int:
     yv_by_query: dict[str, list[dict[str, Any]]] = collections.defaultdict(list)
     yv_query_surface: dict[str, set[str]] = collections.defaultdict(set)
     published_job_ids: set[str] = set()
+    job_parents_by_id: dict[str, set[str]] = collections.defaultdict(set)
 
     for row in yv_rows:
         if not isinstance(row, dict) or not row.get("id"):
@@ -209,6 +225,7 @@ def main() -> int:
             if parent_concept is None or parent_concept.get("type") != "occupation-name":
                 raise RuntimeError(f"YV job-title {cid} has invalid occupation parent")
             published_job_ids.add(cid)
+            job_parents_by_id[cid].add(parent)
             identity = {
                 "kind": "job-title",
                 "concept_id": cid,
@@ -227,12 +244,13 @@ def main() -> int:
         identities = yv_by_query[key]
         query = sorted(yv_query_surface[key], key=lambda value: (len(value), value))[0]
         strata = ["exact_preferred_label"]
-        if any(identity["kind"] == "job-title" for identity in identities):
+        job_ids = {identity["concept_id"] for identity in identities if identity["kind"] == "job-title"}
+        if job_ids:
             strata.append("yv_exact_job_title")
-        if len({identity.get("occupation_name_id") for identity in identities if identity["kind"] == "job-title"}) > 1:
+        if any(len(job_parents_by_id[job_id]) > 1 for job_id in job_ids):
             strata.append("yv_multi_parent_title")
-        evidence = [canonical_evidence(version_str)]
-        if any(identity["kind"] == "job-title" for identity in identities):
+        evidence = [canonical_evidence(version_str), yv_admission_evidence(version_str)]
+        if job_ids:
             evidence.append(curated_evidence(version_str, "job-title identity retains exact occupation-name context"))
         yv_cases.append(make_case(
             case_id=f"yv.exact.{index:05d}",
@@ -337,7 +355,7 @@ def main() -> int:
                 handle.write(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n")
 
     manifest = {
-        "schema_version": 1,
+        "schema_version": 2,
         "taxonomy_version": version,
         "generated_at": now_utc(),
         "sources": {
@@ -353,7 +371,7 @@ def main() -> int:
             "yv_generator_excluded_titles": len(excluded_review),
         },
         "authority_boundary": (
-            "only canonical preferred/alternative-label cases are auto-scored; YV excluded titles remain a separate human-review candidate population"
+            "only canonical preferred/alternative-label cases are auto-scored; YV scored identities additionally require explicit published-YV product admission; YV excluded titles remain a separate human-review candidate population"
         ),
     }
     (out / "manifest.json").write_text(
