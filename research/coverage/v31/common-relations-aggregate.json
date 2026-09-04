@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 31,
+  "measured_at": "2026-09-04T10:02:38Z",
+  "workflow_run_id": 33861288432,
+  "source": {
+    "dataset": "concepts-and-common-relations",
+    "url": "https://data.jobtechdev.se/taxonomy/version/31/query/concepts-and-common-relations/concepts-and-common-relations.json",
+    "sha256": "634fd9d848a172747e54e3e487160a912ae6c0fcb8219c50998767c8c9aacbcc",
+    "bytes": 35137556,
+    "all_concepts": 43695,
+    "unique_ids": 43695
+  },
+  "target_type_totals": {
+    "occupation-name": 2105,
+    "skill": 6752,
+    "job-title": 9785,
+    "keyword": 1484
+  },
+  "occupation-name": {
+    "related_job-title": {"concepts_with_any": 1583, "coverage_pct": 75.2, "edges": 11198},
+    "related_keyword": {"concepts_with_any": 130, "coverage_pct": 6.2, "edges": 151},
+    "broader_ssyk-level-4": {"concepts_with_any": 2105, "coverage_pct": 100.0, "edges": 2105},
+    "broader_isco-level-4": {"concepts_with_any": 2105, "coverage_pct": 100.0, "edges": 2107},
+    "exact_match_esco-occupation": {"concepts_with_any": 982, "coverage_pct": 46.7, "edges": 1177},
+    "broad_match_esco-occupation": {"concepts_with_any": 595, "coverage_pct": 28.3, "edges": 616},
+    "narrow_match_esco-occupation": {"concepts_with_any": 487, "coverage_pct": 23.1, "edges": 1404},
+    "close_match_esco-occupation": {"concepts_with_any": 553, "coverage_pct": 26.3, "edges": 626},
+    "substituted_by_occupation-name": {"concepts_with_any": 993, "coverage_pct": 47.2, "edges": 4394},
+    "substitutes_occupation-name": {"concepts_with_any": 968, "coverage_pct": 46.0, "edges": 4394}
+  },
+  "skill": {
+    "broader_skill-headline": {"concepts_with_any": 6752, "coverage_pct": 100.0, "edges": 6752},
+    "related_ssyk-level-4": {"concepts_with_any": 6734, "coverage_pct": 99.7, "edges": 17884},
+    "exact_match_esco-skill": {"concepts_with_any": 1251, "coverage_pct": 18.5, "edges": 1363},
+    "broad_match_esco-skill": {"concepts_with_any": 4017, "coverage_pct": 59.5, "edges": 4913},
+    "narrow_match_esco-skill": {"concepts_with_any": 2495, "coverage_pct": 37.0, "edges": 11302},
+    "close_match_esco-skill": {"concepts_with_any": 1283, "coverage_pct": 19.0, "edges": 2211}
+  },
+  "job-title": {
+    "related_occupation-name": {"concepts_with_any": 9785, "coverage_pct": 100.0, "edges": 11198}
+  },
+  "keyword": {
+    "related_occupation-name": {"concepts_with_any": 34, "coverage_pct": 2.3, "edges": 151},
+    "related_skill": {"concepts_with_any": 5, "coverage_pct": 0.3, "edges": 8}
+  },
+  "unresolved_targets": {
+    "unique_target_ids": 2122,
+    "interpretation": "All unresolved active-snapshot targets occur on backward `replaces` relations to concepts absent from the active snapshot; measured high-value SSYK/job-title/keyword/ESCO coverage is unaffected.",
+    "replaces_edges": {
+      "occupation-name": {"source_concepts": 966, "unresolved_edges": 2443},
+      "skill": {"source_concepts": 56, "unresolved_edges": 79},
+      "job-title": {"source_concepts": 30, "unresolved_edges": 37}
+    }
+  },
+  "unknown_not_zero": [
+    "specialised occupation-name -> skill essential relations",
+    "specialised occupation-name -> skill optional relations"
+  ]
+}
