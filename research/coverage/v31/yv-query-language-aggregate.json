@@ -1,0 +1,92 @@
+{
+  "admitted_exact_multi_context": {
+    "all_multirow_matches_same_job_title_id": true,
+    "distinct_queries": 240,
+    "query_volume": 35949704,
+    "query_volume_share_pct": 1.146,
+    "share_of_admitted_exact_volume_pct": 5.339,
+    "top_queries": [
+      {"count": 12330700, "query": "chaufför", "unique_ids": 1, "yv_rows": 3},
+      {"count": 5100388, "query": "gymnasielärare", "unique_ids": 1, "yv_rows": 2},
+      {"count": 3453970, "query": "butiksmedarbetare", "unique_ids": 1, "yv_rows": 3},
+      {"count": 2160417, "query": "serveringspersonal", "unique_ids": 1, "yv_rows": 2},
+      {"count": 1890727, "query": "musiklärare", "unique_ids": 1, "yv_rows": 3}
+    ]
+  },
+  "exact_text_binding": {
+    "admitted_exact": {
+      "distinct_term_share_pct": 3.618,
+      "distinct_terms": 4181,
+      "query_volume": 673338841,
+      "query_volume_share_pct": 21.47,
+      "top_terms": [
+        {"count": 60755456, "query": "personlig assistent"},
+        {"count": 40983550, "query": "städare"},
+        {"count": 38679003, "query": "kundtjänstmedarbetare"},
+        {"count": 32084303, "query": "fältsäljare"},
+        {"count": 30355584, "query": "lokalvårdare"}
+      ]
+    },
+    "excluded_redundant_exact": {
+      "distinct_term_share_pct": 0.072,
+      "distinct_terms": 83,
+      "query_volume": 265510870,
+      "query_volume_share_pct": 8.466,
+      "top_terms": [
+        {"count": 58994102, "query": "undersköterska"},
+        {"count": 55275922, "query": "butikssäljare"},
+        {"count": 52465935, "query": "sjuksköterska"},
+        {"count": 42198933, "query": "kock"},
+        {"count": 40208930, "query": "projektledare"}
+      ]
+    },
+    "excluded_too_many_exact": {
+      "distinct_term_share_pct": 0.05,
+      "distinct_terms": 58,
+      "query_volume": 84249412,
+      "query_volume_share_pct": 2.686,
+      "top_terms": [
+        {"count": 41047237, "query": "säljare"},
+        {"count": 25557308, "query": "grundlärare"},
+        {"count": 3283699, "query": "jurist"},
+        {"count": 2475234, "query": "lastbilsförare"},
+        {"count": 2148491, "query": "lagermedarbetare"}
+      ]
+    },
+    "unbound": {
+      "distinct_term_share_pct": 96.26,
+      "distinct_terms": 111231,
+      "query_volume": 2113037483,
+      "query_volume_share_pct": 67.377,
+      "top_terms": [
+        {"count": 55702222, "query": "lärare"},
+        {"count": 43141330, "query": "lagerarbetare"},
+        {"count": 42863214, "query": "försäljare"},
+        {"count": 38636494, "query": "systemutvecklare"},
+        {"count": 37123678, "query": "civilingenjör"},
+        {"count": 27782097, "query": "stockholms län"},
+        {"count": 26631897, "query": "ämneslärare"},
+        {"count": 24377288, "query": "sjuksköterskor"},
+        {"count": 21091885, "query": "programmerare"},
+        {"count": 20924369, "query": "göteborg"}
+      ]
+    }
+  },
+  "excluded_yv_title_vocabulary": {
+    "distinct_observed_excluded_labels": 141,
+    "query_volume": 349760282,
+    "query_volume_share_pct": 11.153,
+    "share_of_all_exact_yv_or_excluded_label_volume_pct": 34.186
+  },
+  "generator_source_commit": "6dd9e4737d7db3cb2709f8082808b88e5c89ed6e",
+  "query_corpus": {
+    "distinct_terms": 115553,
+    "end_date": "2026-08-16",
+    "semantics": "query string plus aggregated frequency; no selected canonical taxonomy ID",
+    "start_date": "2022-05-04",
+    "total_query_volume": 3136136606,
+    "zip_sha256": "01a2550473091b06fdaaf450015eeea13b301471f1c78f5fb0dc8d3499645ae2"
+  },
+  "schema_version": 1,
+  "taxonomy_version": "31"
+}
