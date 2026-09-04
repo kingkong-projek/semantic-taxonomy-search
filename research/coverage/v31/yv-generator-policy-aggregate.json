@@ -1,0 +1,78 @@
+{
+  "exclusion_policy": {
+    "exactly_equals_missing_active_population": true,
+    "redundant_label": {
+      "parent_count_distribution": {
+        "1": 84,
+        "2": 9,
+        "5": 2,
+        "7": 1,
+        "8": 1,
+        "9": 1,
+        "17": 1,
+        "18": 2
+      },
+      "predicate": "job-title preferred label is a case-insensitive substring of every mapped occupation-name preferred label",
+      "titles": 101
+    },
+    "too_many_parents": {
+      "parent_count_distribution": {
+        "4": 46,
+        "5": 11,
+        "6": 14,
+        "7": 4,
+        "8": 3,
+        "9": 3,
+        "10": 3,
+        "11": 1,
+        "12": 4,
+        "13": 1,
+        "15": 2,
+        "17": 1,
+        "18": 7,
+        "19": 1,
+        "25": 2,
+        "38": 1
+      },
+      "threshold": ">3 occupation-name relations",
+      "titles": 104
+    },
+    "total_diagnostic_titles": 205
+  },
+  "generated_at": "2026-09-04T11:14:51+00:00",
+  "generator_source": {
+    "commit": "6dd9e4737d7db3cb2709f8082808b88e5c89ed6e",
+    "policy_file": "utils/create_weighted_occupational_data.py",
+    "policy_file_sha256": "8774ed63930c1364417b4fb405c6e5003009d113b5f5d54fa40364d450644542",
+    "remote": "https://gitlab.com/arbetsformedlingen/taxonomy-dev/backend/yrkesvaljaren.git",
+    "required_policy_fragments_present": true
+  },
+  "previous_taxonomy_version": "30",
+  "published_output": {
+    "active_job_title_universe": 9785,
+    "bytes": 3492189,
+    "generator_repo_output_exact_byte_match": true,
+    "missing_active_job_title_ids": 205,
+    "published_unique_job_title_ids": 9580,
+    "sha256": "1036f9525416fac4ce475c1c1d3909b9e2849ebcf7094ffd38104955e4c2ee49"
+  },
+  "schema_version": 1,
+  "taxonomy_snapshot": {
+    "sha256": "634fd9d848a172747e54e3e487160a912ae6c0fcb8219c50998767c8c9aacbcc"
+  },
+  "taxonomy_version": "31",
+  "v30_to_v31": {
+    "active_v31_titles_present_in_v30_but_absent_v31": 1,
+    "dropouts": [
+      {
+        "id": "c57D_hnj_zGv",
+        "preferred_label": "Präst",
+        "previous_occupation_name_id": "udVE_5Hy_qGb",
+        "previous_occupation_name_preferred_label": "Stiftsadjunkt",
+        "v31_exclusion_reason": "redundant_label",
+        "v31_mapped_occupation_labels": ["Präst, Svenska kyrkan"]
+      }
+    ],
+    "previous_sha256": "053c1674ff74ce33b1eae806f2b6120fcc873ead4c543fdce71692b62cf382ee"
+  }
+}
