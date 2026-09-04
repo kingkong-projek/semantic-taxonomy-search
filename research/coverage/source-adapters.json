@@ -1,5 +1,5 @@
 {
-  "schema_version": 3,
+  "schema_version": 4,
   "last_updated": "2026-09-04",
   "target_taxonomy_version": 31,
   "status_semantics": {
@@ -36,13 +36,15 @@
     },
     {
       "id": "taxonomy-special-occupation-skill-relations",
-      "status": "probe_required",
+      "status": "measured",
       "provenance_class": "curated_relation",
       "target_types": ["occupation-name", "skill"],
-      "join_key": "taxonomy concept id",
-      "dimensions": ["native essential", "native optional"],
-      "source": "JobTech Taxonomy specialised relations/API",
-      "notes": "KV fields with similar names are a separate published read model and cannot substitute for native relation semantics without source verification."
+      "join_key": "directed occupation-name ID + skill ID",
+      "dimensions": ["native essential", "native optional", "regulated essential partition"],
+      "source": "JobTech Taxonomy GraphQL pinned to v31 plus immutable v31 validation snapshot",
+      "source_sha256": "1ca3648ba39be23b96248bb1c10632485241e2d91c0dde2e96551caa0aa898df",
+      "evidence": ["docs/findings/native-occupation-skill-relations-v31.md", "research/coverage/v31/native-occupation-skill-aggregate.json"],
+      "notes": "Native optional is exactly KV optional_skills (2,727 directed pairs). Native essential is exactly the union of KV essential_skills (151 non-regulated pairs) and KV regulated_skills (137 pairs whose skill belongs to canonical collection Reglerande behörigheter). Do not double-count native and KV projections as independent evidence."
     },
     {
       "id": "taxonomy-search-concepts",
@@ -90,8 +92,8 @@
       "dimensions": ["regulated_skills", "essential_skills", "optional_skills", "calculated_skills", "transferable_skills"],
       "source": "https://data.arbetsformedlingen.se/kompetens/kompetensvaljaren/v1/kompetensvaljaren-t31.json",
       "source_sha256": "da83f26bf316971caa407364d8feae6f791203bff5758e674cace3d919e4b524",
-      "evidence": ["docs/findings/selector-coverage-v31.md", "docs/findings/selector-residual-gaps-v31.md", "research/coverage/v31/selector-aggregate.json", "research/coverage/v31/selector-residual-gaps.json"],
-      "notes": "All occupation-name and SSYK4 contexts are present. Ordinary layers cover 4,647 active skills; transferable_skills is 27 valid active skill IDs, 13 additional beyond the ordinary union. Layer provenance remains distinct."
+      "evidence": ["docs/findings/selector-coverage-v31.md", "docs/findings/selector-residual-gaps-v31.md", "docs/findings/native-occupation-skill-relations-v31.md", "research/coverage/v31/selector-aggregate.json", "research/coverage/v31/selector-residual-gaps.json", "research/coverage/v31/native-occupation-skill-aggregate.json"],
+      "notes": "All occupation-name and SSYK4 contexts are present. KV optional_skills is an exact projection of native optional. KV essential_skills and regulated_skills are exact disjoint partitions of native essential. calculated_skills remains separate derived evidence. transferable_skills has 27 active IDs, 13 additional beyond ordinary layers."
     },
     {
       "id": "relevant-skills",
