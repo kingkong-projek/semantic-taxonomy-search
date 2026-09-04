@@ -1,17 +1,13 @@
 #!/usr/bin/env python3
 """Measure native v31 occupation-name -> skill relations and compare to KV.
 
-The Taxonomy documentation defines `essential` and `optional` relations directly
-between occupation-name and skill concepts.  These must be measured independently
-before we decide whether similarly named Kompetensväljaren layers are the same
-source semantics or merely analogous derived fields.
+Taxonomy documents `essential` and `optional` as native curated relation types.
+Kompetensväljaren publishes `essential_skills`, `optional_skills` and a separate
+`regulated_skills` layer. This extractor establishes their exact relation rather
+than treating similar field names as equivalent by assumption.
 
-This extractor queries the published GraphQL API with an explicit immutable
-Taxonomy version, validates every returned identity against the v31 common
-snapshot, and compares directed relation pairs with the published KV v31 read
-model.  It also tests whether KV `regulated_skills` is exactly the subset of
-native essential relations whose skill belongs to the `Reglerade behörigheter`
-skill collection.
+All API calls are pinned to an explicit published taxonomy version and returned
+identities are validated against the immutable common v31 snapshot.
 """
 
 from __future__ import annotations
@@ -26,7 +22,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
 
-USER_AGENT = "semantic-taxonomy-search-native-occ-skill/0.1"
+USER_AGENT = "semantic-taxonomy-search-native-occ-skill/0.2"
 GRAPHQL_URL = "https://taxonomy.api.jobtechdev.se/v1/taxonomy/graphql"
 REGULATED_COLLECTION_LABEL = "Reglerade behörigheter"
 
@@ -35,14 +31,10 @@ def now_utc() -> str:
     return dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat()
 
 
-def fetch_bytes(url: str, accept: str = "application/json", timeout: int = 180) -> bytes:
-    req = urllib.request.Request(url, headers={"Accept": accept, "User-Agent": USER_AGENT})
-    with urllib.request.urlopen(req, timeout=timeout) as response:
-        return response.read()
-
-
 def fetch_json(url: str, timeout: int = 180) -> tuple[bytes, Any]:
-    body = fetch_bytes(url, timeout=timeout)
+    req = urllib.request.Request(url, headers={"Accept": "application/json", "User-Agent": USER_AGENT})
+    with urllib.request.urlopen(req, timeout=timeout) as response:
+        body = response.read()
     return body, json.loads(body)
 
 
@@ -58,6 +50,19 @@ def graphql(query: str, timeout: int = 180) -> tuple[bytes, Any, str]:
 
 def pct(n: int, d: int) -> float | None:
     return None if not d else round(100.0 * n / d, 3)
+
+
+def compare_pairs(left: set[tuple[str, str]], right: set[tuple[str, str]]) -> dict[str, Any]:
+    union = left | right
+    return {
+        "left_edges": len(left),
+        "right_edges": len(right),
+        "intersection_edges": len(left & right),
+        "left_only_edges": len(left - right),
+        "right_only_edges": len(right - left),
+        "jaccard": round(len(left & right) / len(union), 6) if union else 1.0,
+        "exact_equal": left == right,
+    }
 
 
 def main() -> int:
@@ -94,32 +99,29 @@ def main() -> int:
         ids_by_type[ctype].add(cid)
 
     query = f'''query NativeOccupationSkills {{
-      concepts(type: "occupation-name", version: "{version}", limit: 10000) {{
+      occupations: concepts(type: "occupation-name", version: "{version}", limit: 10000) {{
         id
         preferred_label
         type
-        essential(type: "skill") {{
-          id
-          preferred_label
-          type
-          related(type: "skill-collection") {{
-            id
-            preferred_label
-            type
-          }}
-        }}
-        optional(type: "skill") {{
-          id
-          preferred_label
-          type
-        }}
+        essential(type: "skill") {{ id preferred_label type }}
+        optional(type: "skill") {{ id preferred_label type }}
+      }}
+      skill_collections: concepts(type: "skill-collection", version: "{version}", limit: 1000) {{
+        id
+        preferred_label
+        type
+        related(type: "skill") {{ id preferred_label type }}
       }}
     }}'''
 
     gql_body, gql_doc, gql_url = graphql(query)
-    gql_concepts = gql_doc.get("data", {}).get("concepts")
-    if not isinstance(gql_concepts, list):
-        raise RuntimeError("GraphQL response missing data.concepts")
+    gql_data = gql_doc.get("data")
+    if not isinstance(gql_data, dict):
+        raise RuntimeError("GraphQL response missing data object")
+    gql_concepts = gql_data.get("occupations")
+    skill_collections = gql_data.get("skill_collections")
+    if not isinstance(gql_concepts, list) or not isinstance(skill_collections, list):
+        raise RuntimeError("GraphQL response missing occupations or skill_collections")
 
     active_occupations = ids_by_type.get("occupation-name", set())
     active_skills = ids_by_type.get("skill", set())
@@ -135,8 +137,6 @@ def main() -> int:
     native_skill_ids: dict[str, set[str]] = {field: set() for field in relation_fields}
     native_nonempty = Counter()
     invalid_native: list[dict[str, str]] = []
-    regulated_native_pairs: set[tuple[str, str]] = set()
-    regulated_collection_ids: set[str] = set()
 
     for occupation in gql_concepts:
         if not isinstance(occupation, dict):
@@ -164,17 +164,36 @@ def main() -> int:
                         "target_id": sid,
                         "reason": "target is not active skill",
                     })
-                if field == "essential":
-                    collections = skill.get("related") or []
-                    if not isinstance(collections, list):
-                        raise RuntimeError(f"essential skill related field is not list for {sid}")
-                    for collection in collections:
-                        if not isinstance(collection, dict):
-                            continue
-                        if collection.get("preferred_label") == REGULATED_COLLECTION_LABEL:
-                            regulated_native_pairs.add((oid, sid))
-                            if collection.get("id"):
-                                regulated_collection_ids.add(str(collection["id"]))
+
+    regulated_collections = [
+        collection for collection in skill_collections
+        if isinstance(collection, dict) and collection.get("preferred_label") == REGULATED_COLLECTION_LABEL
+    ]
+    if len(regulated_collections) != 1:
+        labels = sorted(str(c.get("preferred_label")) for c in skill_collections if isinstance(c, dict))
+        raise RuntimeError(
+            f"expected exactly one {REGULATED_COLLECTION_LABEL!r} skill collection, got {len(regulated_collections)}; "
+            f"available labels={labels}"
+        )
+    regulated_collection = regulated_collections[0]
+    regulated_skill_ids: set[str] = set()
+    invalid_collection_targets: list[str] = []
+    related_skills = regulated_collection.get("related") or []
+    if not isinstance(related_skills, list):
+        raise RuntimeError("regulated skill collection related field is not a list")
+    for skill in related_skills:
+        if not isinstance(skill, dict) or not skill.get("id"):
+            continue
+        sid = str(skill["id"])
+        regulated_skill_ids.add(sid)
+        canonical = by_id.get(sid)
+        if canonical is None or canonical.get("type") != "skill" or skill.get("type") != "skill":
+            invalid_collection_targets.append(sid)
+
+    regulated_native_pairs = {
+        pair for pair in native_pairs["essential"] if pair[1] in regulated_skill_ids
+    }
+    nonregulated_native_essential_pairs = native_pairs["essential"] - regulated_native_pairs
 
     # KV comparison: only occupation-name context records are valid here.
     kv_data = kv_doc.get("data")
@@ -209,30 +228,20 @@ def main() -> int:
                 if sid not in active_skills:
                     invalid_kv.append({"source_id": oid, "field": kv_field, "target_id": sid, "reason": "non-active skill"})
 
-    comparison: dict[str, Any] = {}
-    for field in relation_fields:
-        native = native_pairs[field]
-        kv = kv_pairs[field]
-        comparison[field] = {
-            "native_edges": len(native),
-            "kv_edges": len(kv),
-            "intersection_edges": len(native & kv),
-            "native_only_edges": len(native - kv),
-            "kv_only_edges": len(kv - native),
-            "jaccard": round(len(native & kv) / len(native | kv), 6) if (native | kv) else 1.0,
-        }
-
-    regulated_comparison = {
-        "native_regulated_essential_edges": len(regulated_native_pairs),
-        "kv_regulated_edges": len(kv_pairs["regulated"]),
-        "intersection_edges": len(regulated_native_pairs & kv_pairs["regulated"]),
-        "native_only_edges": len(regulated_native_pairs - kv_pairs["regulated"]),
-        "kv_only_edges": len(kv_pairs["regulated"] - regulated_native_pairs),
-        "collection_ids": sorted(regulated_collection_ids),
+    comparison = {
+        "optional_native_vs_kv_optional": compare_pairs(native_pairs["optional"], kv_pairs["optional"]),
+        "essential_native_vs_kv_essential": compare_pairs(native_pairs["essential"], kv_pairs["essential"]),
+        "native_regulated_essential_vs_kv_regulated": compare_pairs(regulated_native_pairs, kv_pairs["regulated"]),
+        "native_nonregulated_essential_vs_kv_essential": compare_pairs(
+            nonregulated_native_essential_pairs, kv_pairs["essential"]
+        ),
+        "native_essential_vs_kv_essential_plus_regulated": compare_pairs(
+            native_pairs["essential"], kv_pairs["essential"] | kv_pairs["regulated"]
+        ),
     }
 
     aggregate = {
-        "schema_version": 1,
+        "schema_version": 2,
         "taxonomy_version": version,
         "generated_at": now_utc(),
         "sources": {
@@ -268,27 +277,36 @@ def main() -> int:
                 }
                 for field in relation_fields
             },
+            "regulated_collection": {
+                "id": regulated_collection.get("id"),
+                "preferred_label": regulated_collection.get("preferred_label"),
+                "related_active_skill_ids": len(regulated_skill_ids & active_skills),
+                "invalid_target_ids": len(invalid_collection_targets),
+                "essential_edges_using_regulated_skill": len(regulated_native_pairs),
+                "nonregulated_essential_edges": len(nonregulated_native_essential_pairs),
+            },
         },
         "kv_invalid_occurrences": len(invalid_kv),
         "comparison_to_kv": comparison,
-        "regulated_subset_comparison": regulated_comparison,
     }
 
     (out / "aggregate.json").write_text(
-        json.dumps(aggregate, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
-        encoding="utf-8",
+        json.dumps(aggregate, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8"
     )
     (out / "anomalies.json").write_text(
         json.dumps(
             {
                 "invalid_native": invalid_native,
+                "invalid_regulated_collection_targets": invalid_collection_targets,
                 "invalid_kv": invalid_kv,
-                "essential_native_only": sorted([list(x) for x in native_pairs["essential"] - kv_pairs["essential"]]),
-                "essential_kv_only": sorted([list(x) for x in kv_pairs["essential"] - native_pairs["essential"]]),
-                "optional_native_only": sorted([list(x) for x in native_pairs["optional"] - kv_pairs["optional"]]),
-                "optional_kv_only": sorted([list(x) for x in kv_pairs["optional"] - native_pairs["optional"]]),
-                "regulated_native_only": sorted([list(x) for x in regulated_native_pairs - kv_pairs["regulated"]]),
-                "regulated_kv_only": sorted([list(x) for x in kv_pairs["regulated"] - regulated_native_pairs]),
+                "native_essential_not_in_kv_union": sorted(
+                    [list(x) for x in native_pairs["essential"] - (kv_pairs["essential"] | kv_pairs["regulated"])]
+                ),
+                "kv_essential_regulated_not_native": sorted(
+                    [list(x) for x in (kv_pairs["essential"] | kv_pairs["regulated"]) - native_pairs["essential"]]
+                ),
+                "native_optional_not_kv": sorted([list(x) for x in native_pairs["optional"] - kv_pairs["optional"]]),
+                "kv_optional_not_native": sorted([list(x) for x in kv_pairs["optional"] - native_pairs["optional"]]),
             },
             ensure_ascii=False,
             indent=2,
@@ -311,33 +329,32 @@ def main() -> int:
             f"| `{field}` | {row['sources_nonempty']:,} | {row['source_coverage_pct']}% | "
             f"{row['edge_count']:,} | {row['unique_skill_ids']:,} | {row['active_skill_coverage_pct']}% |"
         )
+
     lines += [
         "",
-        "## Exact directed-pair comparison to Kompetensväljaren",
+        "## KV relationship",
         "",
-        "| Field | native | KV | intersection | native-only | KV-only | Jaccard |",
-        "|---|---:|---:|---:|---:|---:|---:|",
+        f"Regulated collection `{regulated_collection.get('preferred_label')}` ({regulated_collection.get('id')}) "
+        f"contains **{len(regulated_skill_ids):,}** active skill IDs.",
+        f"Native essential edges using one of those skills: **{len(regulated_native_pairs):,}**.",
+        "",
+        "| Comparison | left | right | intersection | left-only | right-only | exact |",
+        "|---|---:|---:|---:|---:|---:|---|",
     ]
-    for field in relation_fields:
-        row = comparison[field]
+    for name, row in comparison.items():
         lines.append(
-            f"| `{field}` | {row['native_edges']:,} | {row['kv_edges']:,} | {row['intersection_edges']:,} | "
-            f"{row['native_only_edges']:,} | {row['kv_only_edges']:,} | {row['jaccard']} |"
+            f"| `{name}` | {row['left_edges']:,} | {row['right_edges']:,} | {row['intersection_edges']:,} | "
+            f"{row['left_only_edges']:,} | {row['right_only_edges']:,} | {row['exact_equal']} |"
         )
+
     lines += [
-        "",
-        "## Regulated subset",
-        "",
-        f"Native essential edges whose skill is in `{REGULATED_COLLECTION_LABEL}`: **{regulated_comparison['native_regulated_essential_edges']:,}**.",
-        f"KV regulated edges: **{regulated_comparison['kv_regulated_edges']:,}**.",
-        f"Intersection: **{regulated_comparison['intersection_edges']:,}**; native-only: **{regulated_comparison['native_only_edges']:,}**; KV-only: **{regulated_comparison['kv_only_edges']:,}**.",
         "",
         "## Guardrails",
         "",
-        "- `essential` and `optional` are native curated relation types, not generic relevance scores.",
-        "- Similar KV field names are treated as a hypothesis until directed-pair equality is measured.",
-        "- `regulated_skills` is tested as a subset hypothesis, not assumed from naming.",
-        "- GraphQL is pinned to the explicit Taxonomy version and every identity is validated against the immutable v31 snapshot.",
+        "- Native `essential` / `optional` are curated taxonomy relation types, not relevance scores.",
+        "- KV equivalence or partitioning is accepted only when exact directed-pair equality is measured.",
+        "- `regulated_skills` remains a separately named KV provenance layer even if it partitions native `essential`.",
+        "- GraphQL is pinned to the explicit taxonomy version and identities are validated against the immutable snapshot.",
         "",
     ]
     summary = "\n".join(lines)
