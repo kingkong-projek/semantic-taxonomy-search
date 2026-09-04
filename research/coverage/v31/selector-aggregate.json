@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 31,
+  "measured_at": "2026-09-04",
+  "taxonomy_snapshot_sha256": "634fd9d848a172747e54e3e487160a912ae6c0fcb8219c50998767c8c9aacbcc",
+  "yrkesvaljaren": {
+    "source": "https://data.arbetsformedlingen.se/yrke/yrkesvaljaren/v1/yrkesvaljaren-t31.json",
+    "source_sha256": "1036f9525416fac4ce475c1c1d3909b9e2849ebcf7094ffd38104955e4c2ee49",
+    "rows": 12330,
+    "occupation_name": {
+      "active_taxonomy": 2105,
+      "unique_ids": 2105,
+      "row_occurrences": 2105,
+      "coverage_pct": 100.0,
+      "missing_active": 0
+    },
+    "job_title": {
+      "active_taxonomy": 9785,
+      "unique_ids": 9580,
+      "row_occurrences": 10225,
+      "coverage_pct": 97.905,
+      "missing_active": 205,
+      "multi_parent_unique_ids": 541,
+      "max_occupation_parents": 3
+    },
+    "id_validation": {
+      "unknown_ids": 0,
+      "wrong_types": 0,
+      "bad_occupation_parent_refs": 0
+    }
+  },
+  "kompetensvaljaren": {
+    "source": "https://data.arbetsformedlingen.se/kompetens/kompetensvaljaren/v1/kompetensvaljaren-t31.json",
+    "source_sha256": "da83f26bf316971caa407364d8feae6f791203bff5758e674cace3d919e4b524",
+    "context_records": {
+      "occupation-name": {
+        "records": 2105,
+        "active_taxonomy": 2105,
+        "coverage_pct": 100.0
+      },
+      "ssyk-level-4": {
+        "records": 400,
+        "active_taxonomy": 400,
+        "coverage_pct": 100.0
+      }
+    },
+    "special_non_context_entries": [
+      "transferable_skills"
+    ],
+    "skill_layers": {
+      "regulated_skills": {
+        "edges": 137,
+        "unique_skills": 33,
+        "active_skill_coverage_pct": 0.489,
+        "occupation_contexts_nonempty": 109
+      },
+      "essential_skills": {
+        "edges": 151,
+        "unique_skills": 55,
+        "active_skill_coverage_pct": 0.815,
+        "occupation_contexts_nonempty": 132
+      },
+      "optional_skills": {
+        "edges": 2727,
+        "unique_skills": 1463,
+        "active_skill_coverage_pct": 21.668,
+        "occupation_contexts_nonempty": 796
+      },
+      "calculated_skills": {
+        "edges": 31637,
+        "unique_skills": 4104,
+        "active_skill_coverage_pct": 60.782,
+        "occupation_contexts_nonempty": 2097
+      }
+    },
+    "union_unique_skills": 4647,
+    "union_active_skill_coverage_pct": 68.824,
+    "skill_id_validation": {
+      "unknown_skill_refs": 0,
+      "wrong_skill_types": 0,
+      "bad_ssyk_refs": 0
+    }
+  },
+  "guardrails": [
+    "YV job-title identity must retain its occupation-name context.",
+    "YV weights are behavioural priors, not semantic truth.",
+    "KV SSYK4 contexts are not occupation-name identities.",
+    "KV regulated, essential, optional and calculated layers retain distinct provenance.",
+    "transferable_skills is a special non-context container and requires a separate inventory."
+  ]
+}
