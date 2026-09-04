@@ -3,199 +3,132 @@
 **Status:** active research  
 **Target taxonomy snapshot:** v31 unless an experiment explicitly says otherwise  
 **Last updated:** 2026-09-04  
-**Authority:** this file is the single source of truth for scope, current conclusions, research gates and experiment order. Findings and generated inventories provide evidence; when they change our conclusions, this file must be updated.
+**Authority:** this file is the single source of truth for product scope, current conclusions, research gates and experiment order. Findings and generated inventories provide evidence; when evidence changes a conclusion, this file must change too.
 
-## 1. Problem
+## 1. Product problem
 
-Yrkesväljaren and Kompetensväljaren need to let a person reach the correct canonical taxonomy concept even when the person does not know the canonical label.
+We are building semantic search for **both Yrkesväljaren (YV) and Kompetensväljaren (KV)**.
 
-Examples:
+The common user problem is that a person often knows what they do or can do, but does not know the canonical taxonomy wording.
 
-- exact title: `förskollärare`
-- spelling/compound variation
-- colloquial title or abbreviation
-- English/international title
-- task description: `jag leder projektering av större byggprojekt och samordnar konsulter`
-- competence description: `programmera cnc-maskiner och skriva g-kod`
-- long work description containing several tasks
-- ambiguous labels where the same or similar wording points to different canonical identities
+The products have **different canonical destination spaces**:
 
-The output must remain exact taxonomy identities. Semantic retrieval is allowed to discover and rank candidates; it is not allowed to invent, merge or mutate canonical concepts.
+### YV
 
-## 2. Product hypothesis
+Free text / description must map to exact YV identities:
 
-Do **not** replace the fast existing picker with a chatbot.
+- `occupation-name`
+- `job-title` **with its occupation-name context preserved**
 
-Keep the current lexical picker as the privileged fast path. Add a second interaction when ordinary title search is insufficient:
+A visible title string is not a globally unique occupation identity.
+
+### KV
+
+Free text / description must map to exact active:
+
+- `skill`
+
+Occupation-name, SSYK and other concepts may provide context/evidence for KV retrieval but are not interchangeable with the returned skill identity.
+
+### Shared rule
+
+Semantic retrieval may discover, expand, rank and explain candidates. It may **never invent, merge or mutate canonical taxonomy identities**.
+
+## 2. Product UX hypothesis
+
+Do not replace either picker with a chatbot.
+
+Keep the current fast lexical picker as the privileged path. Add an explicit semantic fallback such as:
 
 ```text
-[Vad arbetar du som?                    ]
-
-Förskollärare
-Förskolechef
-Lärare i förskola
-...
-
-────────────────────
-Hittar du inte yrket?
-Beskriv vad du arbetar med
+Hittar du inte det du söker?
+[Beskriv yrket]
 ```
 
-A description returns a small set of canonical candidates:
+for YV and correspondingly:
 
 ```text
-"Jag leder projektering av större
-byggprojekt och samordnar konsulter"
+Hittar du inte kompetensen?
+[Beskriv kompetensen / vad du kan göra]
+```
+
+for KV.
+
+Example YV flow:
+
+```text
+"Jag leder projektering av större byggprojekt
+ och samordnar konsulter"
 
 Vi tror att du menar:
-
 ○ Projektledare, bygg och anläggning
 ○ Projekteringsledare
-○ Byggprojektledare
-
-[Inget av dessa]
+○ ...
+○ Inget av dessa
 ```
 
-`Inget av dessa` is a first-class outcome. Low confidence must not be disguised as certainty.
+Example KV flow:
+
+```text
+"Jag programmerar styrda fräsar och skriver g-kod"
+
+Vi tror att du menar:
+○ CNC-programmering
+○ CNC-teknik
+○ ...
+○ Inget av dessa
+```
+
+`Inget av dessa` / abstention is a first-class successful outcome. A vector search always has a nearest neighbour; the product is not allowed to turn that mathematical fact into false certainty.
+
+A later feedback path may offer `Skicka in förslag`, but an all-rejected suggestion must become curation/evaluation data — never an automatically created taxonomy fact.
 
 ## 3. Architectural hypothesis
 
-The retrieval problem is larger than "put embeddings on autocomplete".
-
-Candidate architecture:
+The problem is larger than "put embeddings on autocomplete".
 
 ```text
 user text
   ↓
 query interpretation
   ├─ lexical retrieval
-  ├─ curated semantic retrieval
-  ├─ taxonomy graph retrieval
-  ├─ empirical/corpus retrieval
+  ├─ curated semantic text retrieval
+  ├─ typed taxonomy graph retrieval
+  ├─ AF-derived contextual retrieval
+  ├─ corpus / observed-language retrieval
   └─ optional vector retrieval
           ↓
       candidate union
           ↓
- deterministic/constrained fusion
+ constrained deterministic fusion
           ↓
  optional reranking
           ↓
- exact taxonomy IDs + match evidence
+ typed canonical candidates + provenance
 ```
 
-The strongest current principle is:
+The retrieval infrastructure may be shared, but every request has an explicit target space:
+
+```text
+YV -> occupation/job-title-in-occupation-context
+KV -> skill
+```
+
+Cross-entity bridges may generate evidence. They may not collapse target spaces.
+
+Current strongest data principle:
 
 > **Use existing semantics before manufacturing semantics.**
 
-A related deployment principle remains valuable:
+Deployment principle:
 
-> **Compile semantics when possible; serve semantics only where central iteration is worth the operational boundary.**
+> **Compile semantics when practical; serve semantics where central iteration materially improves the product.**
 
-The runtime form is not decided yet. A central Semantic Mapping API is a serious candidate because ranking/model/index improvements could then reach all consumers without republishing every web component. This must be compared against local/versioned assets for latency, availability, privacy, reproducibility and operational cost.
+Local/static versus API is a deployment decision, not a religion and not the same decision as relevance architecture.
 
-## 4. Current measured state — taxonomy v31
+## 4. Evidence / provenance classes
 
-This section supersedes earlier assumptions based only on documentation or single API examples.
-
-### 4.1 Native text coverage
-
-Measured over the active concepts returned for v31:
-
-| Type | Concepts | Definition distinct from preferred label | Label-copy definition | With alternative labels |
-|---|---:|---:|---:|---:|
-| `occupation-name` | 2,105 | 1,636 (77.7%) | 469 (22.3%) | 197 (9.4%) |
-| `skill` | 6,752 | 1,654 (24.5%) | 5,098 (75.5%) | 819 (12.1%) |
-| `job-title` | 9,785 | 6 (0.1%) | 9,779 (99.9%) | 0 |
-| `keyword` | 1,484 | 0 | 1,484 (100%) | 1 |
-
-Consequences:
-
-1. **`occupation-name` has a surprisingly rich semantic text layer.** Roughly three quarters have a definition that is genuinely different from the preferred label.
-2. **`job-title` is almost entirely vocabulary + graph, not descriptive text.** Even the six distinct rows are an upper bound on rich descriptions; some are spelling/normalisation corrections.
-3. **`skill` is text-sparse relative to occupations.** Its retrieval representation must lean more heavily on graph/context/ESCO/derived data.
-4. **`keyword` is not a description corpus.** Its value is its wording and typed relations.
-
-Detailed measured finding: [`findings/native-text-coverage-v31.md`](findings/native-text-coverage-v31.md).
-
-### 4.2 Common typed graph coverage
-
-The immutable v31 `concepts-and-common-relations` snapshot has SHA-256:
-
-`634fd9d848a172747e54e3e487160a912ae6c0fcb8219c50998767c8c9aacbcc`
-
-It contains 43,695 unique active concept IDs and exactly the same target populations as the independently paged REST extraction.
-
-High-value measured relations:
-
-#### `occupation-name`
-
-- `related → job-title`: 1,583 / 2,105 (75.2%), 11,198 edges
-- `related → keyword`: 130 / 2,105 (6.2%), 151 edges
-- `broader → ssyk-level-4`: 2,105 / 2,105 (100%), 2,105 edges
-- `broader → isco-level-4`: 2,105 / 2,105 (100%), 2,107 edges
-- `exact_match → esco-occupation`: 982 (46.7%)
-- `broad_match → esco-occupation`: 595 (28.3%)
-- `narrow_match → esco-occupation`: 487 (23.1%)
-- `close_match → esco-occupation`: 553 (26.3%)
-
-#### `skill`
-
-- `broader → skill-headline`: 6,752 / 6,752 (100%)
-- `related → ssyk-level-4`: 6,734 / 6,752 (99.7%), 17,884 edges
-- `exact_match → esco-skill`: 1,251 (18.5%)
-- `broad_match → esco-skill`: 4,017 (59.5%)
-- `narrow_match → esco-skill`: 2,495 (37.0%)
-- `close_match → esco-skill`: 1,283 (19.0%)
-
-#### `job-title`
-
-All 9,785 active job titles have at least one `related → occupation-name` edge; there are 11,198 such edges. This directly proves that a title can be related to more than one occupation and reinforces the identity-preservation requirement.
-
-Detailed measured finding: [`findings/common-relations-coverage-v31.md`](findings/common-relations-coverage-v31.md).
-
-### 4.3 Documentation/data drift is itself evidence
-
-The current occupation-name documentation says most occupation-name concepts lack real definitions and that `definition` is generally the preferred label. The measured active v31 snapshot shows **77.7% distinct definitions**. Therefore documentation is useful for intended semantics/governance, but the immutable versioned dataset is the authority for actual coverage statistics.
-
-Likewise, documentation says `quality-level` is unique to `occupation-name`, while the v31 REST representation exposes it on 611 skills, 148 job titles and 2 keywords as well. Until semantics are verified, `quality-level` outside occupation-name is recorded but **must not be used as a ranking/authority feature**.
-
-### 4.4 Unknown must stay unknown
-
-The first GraphQL relation experiment failed because the generated query passed taxonomy version as a string. Its printed relation zeros were invalid and have been superseded by the immutable common-relations extraction.
-
-The common-relations distribution does **not** expose all specialised relations. In particular, documented `essential` / `optional` occupation→skill relations remain **unknown**, not zero, until a separate adapter measures them.
-
-## 5. Important semantic distinctions
-
-### 5.1 `occupation-name` vs `job-title`
-
-A `job-title` is a separate concept with narrower/different scope; it is **not** merely an alternative label for the related `occupation-name`.
-
-`alternative-labels` are intended for obvious synonyms/abbreviations. Keywords can be broader domains. These distinctions must survive retrieval and explanation.
-
-Consequence: the matcher must never flatten all related strings into a synonym bag.
-
-### 5.2 Ambiguous title identities
-
-If an identical or near-identical title maps to multiple occupations, all exact canonical identities must remain distinct. Semantic context may rerank/disambiguate them, but may not arbitrarily collapse them.
-
-A better invariant than "exact label is always one top-1 result" is:
-
-> all exact canonical matches dominate non-exact semantic matches, while duplicate-title identities remain separately visible until disambiguated.
-
-### 5.3 Skills and ESCO mappings
-
-Taxonomy skill concepts are broader/fewer than ESCO skills. The taxonomy contains curated SKOS mapping relations to ESCO (`exact`, `broad`, `narrow`, `close`). These mappings are potentially strong semantic enrichment but must retain relation type; `broad-match` must never become synonymy.
-
-The v31 measurements reinforce this: ESCO mappings are widespread, especially for skills, but mapping types overlap and must never be summed into a generic synonym score.
-
-Sources:
-- https://arbetsformedlingen.gitlab.io/taxonomy-dev/projects/jobtech-taxonomy/about/esco-skill.html
-- https://arbetsformedlingen.gitlab.io/taxonomy-dev/projects/jobtech-taxonomy/about/esco-occupation.html
-
-## 6. Evidence/provenance classes
-
-Every semantic signal should have an explicit provenance class. Working vocabulary:
+Every signal that can affect retrieval should retain a provenance class.
 
 ```text
 canonical
@@ -206,13 +139,14 @@ corpus_derived
 synthetic
 ```
 
-Candidate generation may use all classes. Claims about taxonomy meaning require much stricter authority.
+Conceptually:
 
 ```text
                          TRUST / AUTHORITY
                                 ▲
                                 │
-           canonical taxonomy + curated relations
+             canonical taxonomy concepts/text
+                 curated typed relations
                                 │
                     derived AF datasets
                                 │
@@ -224,434 +158,585 @@ Candidate generation may use all classes. Claims about taxonomy meaning require 
                            RECALL ONLY
 ```
 
-Generated paraphrases, if they are ever used, are retrieval aids and never taxonomy facts.
+This is not a claim that higher layers are always better retrieval features. It is an authority boundary: a generated phrase, ad co-occurrence or calculated similarity must never silently become a canonical synonym or requirement.
+
+## 5. Current measured state — taxonomy v31
+
+### 5.1 Canonical/native text
+
+Measured against the immutable active v31 snapshot:
+
+| Type | Concepts | definition differs from preferred label | label-copy definition | with alternative labels |
+|---|---:|---:|---:|---:|
+| `occupation-name` | 2,105 | **1,636 (77.7%)** | 469 | 197 |
+| `skill` | 6,752 | **1,654 (24.5%)** | 5,098 | 819 |
+| `job-title` | 9,785 | **6 (0.1%)** | 9,779 | 0 |
+| `keyword` | 1,484 | 0 | 1,484 | 1 |
+
+Consequences:
+
+- occupation-name has much richer curated descriptive text than earlier documentation suggested;
+- skill is substantially more text-sparse and needs more graph/context support;
+- job-title is essentially vocabulary + relation/context, not a description corpus;
+- keyword value is wording + typed relation, not definition text.
+
+Finding: [`findings/native-text-coverage-v31.md`](findings/native-text-coverage-v31.md)
+
+### 5.2 Immutable common graph
+
+Snapshot SHA-256:
+
+`634fd9d848a172747e54e3e487160a912ae6c0fcb8219c50998767c8c9aacbcc`
+
+It contains 43,695 unique active concepts.
+
+High-value coverage:
+
+#### occupation-name
+
+- related → job-title: 1,583 / 2,105 (75.2%), 11,198 edges
+- related → keyword: 130 / 2,105 (6.2%)
+- broader → SSYK4: 100%
+- broader → ISCO4: 100%
+- ESCO occupation mappings are substantial and split across exact/broad/narrow/close
+
+#### skill
+
+- broader → skill-headline: 100%
+- related → SSYK4: 6,734 / 6,752 (99.7%), 17,884 edges
+- ESCO skill mappings are substantial and split across exact/broad/narrow/close
+
+#### job-title
+
+All 9,785 active job-title concepts have at least one occupation-name relation in the common graph.
+
+Finding: [`findings/common-relations-coverage-v31.md`](findings/common-relations-coverage-v31.md)
+
+### 5.3 Published Yrkesväljaren v31
+
+Source SHA-256:
+
+`1036f9525416fac4ce475c1c1d3909b9e2849ebcf7094ffd38104955e4c2ee49`
+
+Measured file: 12,330 rows.
+
+| Type | active taxonomy | unique YV IDs | row occurrences | coverage |
+|---|---:|---:|---:|---:|
+| occupation-name | 2,105 | 2,105 | 2,105 | **100%** |
+| job-title | 9,785 | 9,580 | 10,225 | **97.905%** |
+
+Critical measured result:
+
+> **541 unique job-title IDs are related to multiple occupation-name contexts in YV; maximum observed parents = 3.**
+
+This directly quantifies the original title ambiguity problem. A semantic YV result cannot be represented merely as `preferred_label -> one occupation`.
+
+No unknown YV IDs, wrong concept types or invalid occupation parent references were observed.
+
+YV weights are behavioural/search-frequency priors. They are not concept meaning.
+
+### 5.4 Published Kompetensväljaren v31
+
+Source SHA-256:
+
+`da83f26bf316971caa407364d8feae6f791203bff5758e674cace3d919e4b524`
+
+The read model has two typed context spaces:
+
+- all **2,105 / 2,105 occupation-name** contexts;
+- all **400 / 400 SSYK4** contexts.
+
+It also contains a special non-context entry `transferable_skills`, which remains to be inventoried separately.
+
+Four skill layers are currently measured on occupation contexts:
+
+| Layer | edges | unique active skills | active skill coverage | occupation contexts non-empty |
+|---|---:|---:|---:|---:|
+| regulated | 137 | 33 | 0.489% | 109 |
+| essential | 151 | 55 | 0.815% | 132 |
+| optional | 2,727 | 1,463 | 21.668% | 796 |
+| calculated | 31,637 | 4,104 | 60.782% | 2,097 |
+
+Union of all four layers:
+
+**4,647 / 6,752 active skills = 68.824%**.
+
+Every referenced skill ID resolves to an active `skill` concept.
+
+The four layers overlap and have different semantics/provenance. They must never be flattened into one generic "related skill" authority level.
+
+Finding: [`findings/selector-coverage-v31.md`](findings/selector-coverage-v31.md)
+
+Machine aggregate: [`../research/coverage/v31/selector-aggregate.json`](../research/coverage/v31/selector-aggregate.json)
+
+## 6. Important semantic distinctions
+
+### 6.1 YV occupation-name vs job-title
+
+`job-title` is a separate identity, not an alternative label for occupation-name.
+
+A single job-title may belong to several occupations. The published YV data proves this for 541 active YV titles.
+
+Hard invariant:
+
+> all exact canonical matches dominate non-exact semantic candidates, while ambiguous job-title identities remain separately scoped by occupation until the user/context disambiguates them.
+
+### 6.2 KV skill vs occupation/SSYK context
+
+KV returns skills. Occupation-name and SSYK are contextual evidence/routing spaces.
+
+Hard invariant:
+
+> an occupation or SSYK hit may cause skill candidates to be retrieved, but can never itself masquerade as a skill result.
+
+### 6.3 Relation type matters
+
+Never flatten:
+
+- exact / broad / narrow / close ESCO mappings;
+- regulated / essential / optional / calculated KV layers;
+- job-title → occupation relations;
+- keyword/search-concept relations;
+- curated kinship;
+- statistical similarity;
+- ad co-occurrence.
+
+The fact that two concepts are related does not imply synonymy and does not automatically imply symmetric retrieval strength.
+
+### 6.4 UNKNOWN is not zero
+
+A failed adapter, absent source or unresolved schema is `UNKNOWN`.
+
+We already discarded an early GraphQL experiment because an extraction failure produced misleading zero relation counts. All accepted coverage now comes from reproducible versioned sources or explicitly documented adapters.
 
 ## 7. Known data landscape
 
-The current research has identified at least these useful sources:
-
-| Source | What it says | Candidate use | Authority caveat |
+| Source | What it can tell us | Search use | Authority caveat |
 |---|---|---|---|
-| Taxonomy concepts | canonical identity, labels, real definitions where present | identity + retrieval | coverage varies strongly by type |
-| Alternative labels | explicit synonym/abbreviation cases | lexical/semantic retrieval | stronger than generic related terms |
-| Job-title relations | narrower/different job-title concepts | candidate expansion + disambiguation | not synonyms; 100% of job titles link to occupation-name in v31 |
-| Keyword relations/search concepts | broader/common search language | recall | may be broader than occupation; common-edge coverage is sparse |
-| SSYK hierarchy | occupational context | routing, disambiguation, graph evidence | group membership, not semantic equivalence |
-| Curated occupation relations/substitutability | related occupations | candidate expansion/hard negatives | relation semantics must be preserved |
-| Essential/optional skill relations | occupation↔skill | cross-entity bridge | not measured yet in v31 common snapshot |
-| ESCO mappings | manually curated cross-taxonomy mappings | enrichment, hard negatives, descriptions later | exact/broad/narrow/close are different |
-| Yrkesväljaren dataset | popularity weights for occupation-name/job-title | prior/ranking | not meaning |
-| Platsbanken search history | real user search language/behaviour | evaluation, query corpus, ranking | not automatically labelled query→ID pairs |
-| Historical ads | real employer language/tasks | corpus-derived retrieval | noisy; occupation fields can be missing/wrong |
-| JobAd enrichments | extracted structured expressions | candidate enrichment | model-derived, not canonical truth |
-| Relevanta kompetenser | occupation→skill suggestions derived through ESCO | candidate expansion | derived; documented noise/granularity limits |
-| Kompetensväljaren | weighted skills in occupation context | ranking/context | derived/read-model semantics |
-| Närliggande yrken | ad-derived occupational similarity | discovery/diversification | explicitly not proof of suitable career transition |
-| Curated släktskap mellan yrkesbenämningar | editorial/curated occupational similarity | hard negatives/context | relation strength must retain source meaning |
-| JobSearch Trends/current search signals | recent language/popularity | drift detection | popularity ≠ meaning |
-| Yrkesinformation | descriptive occupational information | possible enrichment | source/version coverage must be measured |
+| Canonical taxonomy text | labels, real definitions where present | direct retrieval / embeddings | strongest concept-text authority |
+| Alternative/hidden labels | explicit wording variants | lexical/semantic retrieval | stronger than generic related terms |
+| Job-title relations | YV-specific title context | YV retrieval/disambiguation | never flatten parent context |
+| Dedicated search concepts | user-facing search vocabulary | recall | not yet measured |
+| SSYK hierarchy | occupational domain context | routing/context/hard negatives | membership ≠ equivalence |
+| Skill-headline | broad skill grouping | KV context/diversification | grouping ≠ synonymy |
+| ESCO mappings | cross-taxonomy semantics | enrichment/hard negatives | relation types differ |
+| Yrkesväljaren | huge-search-corpus-derived weights | YV priors | popularity ≠ meaning |
+| Kompetensväljaren | typed occupation→skill context layers | YV evidence + KV retrieval context | layers differ in provenance |
+| Relevanta kompetenser | derived occupation→skill relevance | cross-entity candidate expansion | derived/noisy; not yet measured |
+| Curated occupation kinship | task-level occupational similarity | YV expansion/hard negatives | preserve 75/25 semantics |
+| Närliggande yrken | ad-derived similarity | YV discovery/context | statistical similarity ≠ equivalence |
+| Historical ads | real employer language/tasks/tools | corpus retrieval/eval language | noisy labels/annotations |
+| JobAd enrichments | extracted expressions | candidate enrichment | model-derived fields need provenance |
+| Search logs / trends | real user vocabulary and drift | benchmark/ranking | frequency is not a labelled semantic mapping |
+| Yrkesinformation | additional occupational text | possible YV enrichment | distribution metadata currently anomalous |
+| Synthetic LLM phrases | manufactured paraphrases | last-resort recall | never taxonomy fact |
 
-Current Yrkesväljaren methodology reports 2,603,440,552 retained Platsbanken searches over the stated source interval after low-frequency filtering. The dataset assigns weights to `occupation-name` and `job-title`, and occupations inherit searches from related job titles. Treat this as very strong behavioural evidence, but not as two billion labelled semantic mappings.
+The current YV methodology reports about 2.603 billion retained Platsbanken searches after filtering. This is extremely valuable behavioural/language evidence, but it must not be described as billions of labelled `query -> canonical ID` examples unless the source actually contains that join.
 
-Sources:
-- https://gitlab.com/arbetsformedlingen/taxonomy-dev/backend/yrkesvaljaren
-- https://gitlab.com/arbetsformedlingen/taxonomy-dev/backend/yrkesvaljaren/-/blob/main/Metodbeskrivning.md
+Canonical adapter status: [`../research/coverage/source-adapters.json`](../research/coverage/source-adapters.json)
 
-Note: the current methodology page contains a date statement (`2026-12-15`) that is later than this document's update date. Treat that particular date as a source anomaly until verified; the source interval and reported count are still recorded as source claims, not inferred facts.
+## 8. Synthetic data policy
 
-## 8. Why synthetic phrases are now late, not early
+Do **not** begin by generating N phrases per concept.
 
-Previous idea: generate 50–200 realistic Swedish queries/paraphrases per concept with a strong LLM and compile them into static search assets.
+Real data is asymmetric. Some concepts have strong definitions, some have many titles, some have dense graph context, some have abundant ads, and some are long-tail.
 
-Current position: **do not do this as the baseline**.
+Therefore we measure semantic coverage, not a quota such as "50 phrases per concept".
 
-First use and measure:
+Synthetic phrases are permitted only as an experimental later layer after real/curated/observed sources have been ablated.
 
-1. canonical labels
-2. real definitions where distinct from labels
-3. alternative/hidden labels
-4. job-title/keyword/search-term relations
-5. taxonomy graph
-6. ESCO mappings
-7. AF-derived datasets
-8. observed user/ad language
+If used they must be:
 
-Only add synthetic language if a controlled ablation proves incremental recall on concrete misses.
+```text
+generated
+-> provenance-tagged
+-> validated
+-> deduplicated
+-> adversarially tested
+-> versioned
+```
 
-This avoids semantic sludge, fabricated synonymy and a large unreviewable generated corpus.
-
-The v31 inventory makes this ordering stronger, not weaker: occupation-name already has rich text for 77.7% of active concepts, and text-sparse skills are densely connected to SSYK/ESCO context.
+They never become canonical synonyms merely because retrieval performance improved.
 
 ## 9. Research Gate 1 — Semantic Coverage Inventory
 
-**Goal:** establish exactly what semantic material exists for every target concept in taxonomy v31.
+**Goal:** know exactly which semantic material exists for every canonical YV/KV target and relevant context concept in v31.
 
-Primary entity spaces:
+Primary destination spaces:
 
-- `occupation-name`
-- `skill`
+- YV: occupation-name + job-title-in-occupation-context
+- KV: skill
 
-Supporting spaces that must also be inventoried because they can carry retrieval language/context:
+Supporting/context spaces:
 
-- `job-title`
-- `keyword` / search concepts
-- SSYK groups
-- ESCO occupation/skill mappings
-- deprecated concepts only in a separate compatibility/history layer
+- SSYK4 and other hierarchy concepts
+- keyword/search concepts
+- ESCO occupation/skill
+- curated/derived occupation↔skill data
+- deprecated concepts only in a separate compatibility layer
 
-For each target concept capture at least:
+Per concept/context capture dimensions separately; do not make one opaque coverage score.
 
-```text
-id
-type
-preferred_label
-deprecated/current scope
+### Gate 1 completed measurements
 
-text coverage:
-  definition_nonempty
-  definition_distinct_from_label
-  definition_length
-  alternative_label_count
-  hidden_label_count
-  quality_level_observed
-  quality_level_semantics_verified
+- [x] active v31 canonical text for occupation-name, skill, job-title, keyword
+- [x] immutable common typed relation graph
+- [x] SSYK/ISCO hierarchy coverage
+- [x] ESCO mapping coverage split by mapping type
+- [x] YV v31 per-concept weight coverage
+- [x] YV job-title parent multiplicity / ambiguity
+- [x] KV v31 occupation-name context coverage
+- [x] KV v31 SSYK4 context coverage
+- [x] KV regulated/essential/optional/calculated skill-layer coverage
+- [x] source adapter registry and immutable hashes for accepted sources
 
-taxonomy graph coverage:
-  job_title_count
-  keyword/search_concept_count
-  ssyk_parent_count
-  essential_skill_count | UNKNOWN until adapter exists
-  optional_skill_count | UNKNOWN until adapter exists
-  curated_related_count
-  esco_mapping_count by mapping relation
+### Gate 1 remaining
 
-external/derived coverage:
-  yrkesvaljaren_weight_present
-  relevant_skills_present
-  competence_selector_context_present
-  curated_occupation_kinship_present
-  historical_ad_count / usable corpus signal
-  jobad_enrichment_signal
-  occupational_information_present
-  observed-search-language signal
+- [ ] KV `transferable_skills` special container
+- [ ] explain/characterise the 205 active job-title IDs absent from YV
+- [ ] specialised native occupation↔skill relations independently of KV read model
+- [ ] dedicated search-concept dataset
+- [ ] Relevanta kompetenser v31/current distribution and per-ID coverage
+- [ ] curated Släktskap mellan yrkesbenämningar
+- [ ] Närliggande yrken and any published corpus-derived keywords
+- [ ] resolve Yrkesinformation distribution metadata anomaly
+- [ ] historical/current advertisement coverage by trustworthy canonical join
+- [ ] JobAd enrichment provenance/coverage
+- [ ] real query/search-language datasets and exact join semantics
+- [ ] deprecated/replacement compatibility layer
+- [ ] unified per-target coverage matrix and lowest-coverage strata
 
-research metadata:
-  taxonomy_version
-  source_snapshot/version/hash
-  extraction_timestamp
-  join_key
-  provenance_class
-  warnings
-```
+Gate 1 is **not complete** until these are either measured, explicitly blocked, or explicitly scoped out with rationale.
 
-Do not compress these into one "coverage score" initially. Missing dimensions mean different things.
+## 10. Research Gate 2 — judged relevance benchmark
 
-### Gate 1 measured so far
+Create separate but structurally compatible YV and KV benchmark suites.
 
-- [x] active v31 canonical text fields for occupation-name, skill, job-title and keyword
-- [x] immutable v31 common relation graph, typed by target concept type
-- [x] SSYK4/ISCO4 common hierarchy coverage
-- [x] ESCO occupation/skill common mapping coverage split by exact/broad/narrow/close
-- [x] active job-title → occupation-name and occupation-name → job-title coverage
-- [ ] specialised native occupation→skill `essential` / `optional` relations
-- [ ] separate search-concept distribution and its relation semantics
-- [ ] Yrkesväljaren per-concept weight coverage
-- [ ] Relevanta kompetenser per-concept coverage
-- [ ] Kompetensväljaren per-concept/context coverage
-- [ ] curated släktskap mellan yrkesbenämningar
-- [ ] Yrkesinformation coverage
-- [ ] historical/current advertisement corpus coverage by canonical identity
-- [ ] JobAd enrichment signal and provenance
-- [ ] JobSearch Trends / observed query-language coverage and usable join semantics
-- [ ] deprecated/replaced concept compatibility layer, separate from active retrieval corpus
+Initial target: roughly 1,000–3,000 judged queries overall, expanded as strata expose weaknesses.
 
-Canonical machine-readable adapter status lives in [`../research/coverage/source-adapters.json`](../research/coverage/source-adapters.json) once created/updated.
+### Shared strata
 
-### Gate 1 outputs
-
-- machine-readable per-concept JSONL/CSV
-- aggregate JSON
-- human-readable Markdown summaries
-- lists of lowest-coverage concepts by entity type
-- data-source coverage matrix
-- explicit extraction errors/source anomalies
-- immutable source URL/hash/version wherever possible
-
-### Gate 1 decision
-
-After the inventory we decide which evidence sources are actually worth integrating into retrieval experiments. We do not choose a model before this gate.
-
-Gate 1 is **not complete** yet.
-
-## 10. Research Gate 2 — evaluation set
-
-Create a Swedish relevance benchmark before tuning retrieval.
-
-Initial target: 1,000–3,000 judged queries, stratified rather than randomly averaged.
-
-Required strata:
-
-- exact preferred labels
-- alternative labels
-- job titles
-- spelling errors
+- exact preferred label
+- alternative label/synonym
+- spelling error
 - Swedish compounds
+- abbreviation
+- English/international wording
 - colloquial language
-- abbreviations
-- English/international titles
-- task phrases
-- tool/method phrases
-- broad intent (`jobba med data`)
-- long work descriptions
+- task descriptions
+- tools/method descriptions
+- long natural-language descriptions
 - rare/long-tail concepts
-- ambiguous duplicate/near-duplicate titles
-- hard negatives/confusable siblings
-- competence descriptions
-- heterogeneous skill subtypes (technology/software/certificate/qualification/etc.)
-- cross-entity queries
-- deliberate no-match/abstention cases
+- hard negatives / confusable siblings
+- broad/underspecified intent
+- deliberate no-valid-match / abstention
 
-Potential sources for queries, in decreasing authority for "real language": observed product/search data where permitted, historical ads, expert-written cases, and synthetic queries only for gaps.
+### Mandatory YV strata
 
-## 11. Research Gate 3 — A→H ablation
+- exact job-title
+- **multi-parent job-title ambiguity** using the measured 541-title population
+- descriptions that should map through skills/tasks to occupations
+- same/similar title in different occupational contexts
 
-Run the same benchmark through increasingly enriched systems:
+### Mandatory KV strata
+
+- skill descriptions without canonical terminology
+- software/tool/certificate/qualification/experience-style skill subtypes
+- occupation phrase → relevant skills
+- descriptions where a nearby skill is semantically related but should be MUST_NOT
+
+A judged case should support more than one acceptable answer when reality is genuinely ambiguous:
 
 ```text
-A  labels only
-B  A + real/distinct curated definitions
-C  B + alternative/hidden labels + job-title/keyword/search relations
-D  C + taxonomy graph + curated occupation/skill relations + ESCO mappings
-E  D + Yrkesväljaren behavioural weights
-F  E + historical ad vocabulary/enrichments
-G  F + other useful AF-derived datasets
-H  G + synthetic LLM-generated semantic data
+query
+MUST
+ACCEPTABLE
+MUST_NOT
+expected_intent: SINGLE | AMBIGUOUS | NO_MATCH
 ```
 
-The exact layers may be split further after Gate 1 if sources have materially different semantics. In particular, `job-title`, search concepts, ESCO and curated occupation similarity should be independently ablated rather than hidden inside a single opaque C/D result if they materially affect quality.
+## 11. Research Gate 3 — controlled ablation
 
-Measure incremental gain at every layer. If H adds negligible value or raises false-positive/confusion risk, do not ship H.
+Run YV and KV separately against the same methodological layers. Do not force a source into one product merely for symmetry.
+
+```text
+A  canonical labels only
+B  A + real/distinct canonical definitions
+C  B + alternative/hidden labels + title/search vocabulary
+D  C + typed taxonomy graph + ESCO context
+E  D + published selector evidence (YV priors / KV typed context layers)
+F  E + other AF-derived curated/statistical datasets
+G  F + real ad/query language corpora
+H  G + vector retrieval / neural reranking over trusted representations
+I  H + synthetic LLM-generated enrichment, only for measured residual gaps
+```
+
+Important change from the earliest plan: **embeddings/vector retrieval are tested before synthetic text generation**. Embedding existing trusted/observed material changes retrieval representation; synthetic phrases manufacture new text claims and therefore deserve a later, stricter gate.
+
+Every layer must report incremental gain and regressions per stratum.
+
+If I adds negligible value or increases false-confidence/hard-negative errors, do not ship it.
 
 ## 12. Evaluation metrics
 
 At minimum:
 
-- Recall@K: was the correct canonical identity retrieved?
-- MRR / nDCG@K: was it ranked usefully?
-- Top-1 precision where a single answer is justified
+- Recall@K
+- MRR / nDCG@K
+- top-1 precision where one answer is justified
 - exact-label preservation
-- ambiguous-label recall: all relevant exact identities remain available
-- hard-negative error rate
+- YV ambiguous-title recall/context preservation
+- KV skill-identity precision
+- hard-negative violation rate
 - false-confident mapping rate
-- abstention quality
+- abstention precision/recall
 - no-result rate
 - long-tail recall
-- per-stratum metrics; never only overall average
-- semantic lane incremental gain over lexical baseline
-- latency, cold-start, payload and memory
+- per-stratum metrics, never only one global average
+- incremental gain by evidence layer
 - explanation/provenance coverage
-- broad-query result diversity
+- latency
+- cold-start
+- payload/model/index size
+- browser/server memory where relevant
+- result diversity for broad queries
 
 ## 13. Retrieval lanes to test
 
-Do not make one undifferentiated `semantic_score`.
+Do not construct one mystical `semantic_score`.
 
 Candidate lanes:
 
-0. exact/alternative label
+0. exact/explicit labels
 1. prefix/token/fuzzy
-2. curated semantic text (real definitions/search terms)
-3. taxonomy graph bridge
-4. corpus-derived text retrieval
-5. vector semantic retrieval
-6. optional cross-encoder reranker
+2. curated semantic text
+3. typed graph/context expansion
+4. AF-derived evidence
+5. corpus-derived text
+6. vector similarity
+7. optional cross-encoder reranker
 
-Heterogeneous rankings should be fused with a deterministic method such as constrained rank fusion/RRF, with explicit lexical dominance rules where warranted. Do not sum incomparable raw scores blindly.
+Heterogeneous rankings should use explicit constrained fusion/rank fusion rather than arbitrary addition of incomparable raw scores.
+
+Exact lexical evidence gets explicit dominance guarantees where appropriate.
 
 ## 14. Embeddings hypothesis
 
-Embeddings remain plausible, but are now an experiment rather than the architecture.
+Embeddings remain plausible and likely useful for description-style queries, but they are an experiment, not the architecture.
 
-If tested:
+Test:
 
-- precompute concept/document vectors per taxonomy release
-- compare one-vector-per-concept against multi-view representations
-- possible views: label, definition/tasks, tools/methods, graph context, observed query language
-- do not give text-sparse job-title/keyword concepts synthetic descriptions merely to make embedding input symmetrical
-- query encoder may run centrally or locally; deployment decision is separate from relevance quality
-- use hard-negative mining from taxonomy siblings/near-labels/ESCO mappings
-- benchmark a small multilingual encoder before large models
-- rerank only top-K if a cross-encoder adds measurable value
+- small multilingual encoders first;
+- one-vector vs multi-view concept representations;
+- separate views for label, definition/tasks, graph context, occupation context, observed language;
+- hard-negative mining from near taxonomy concepts;
+- precomputed concept/document vectors per taxonomy release;
+- optional top-K cross-encoder reranking only if measured value justifies latency/cost.
+
+Do not invent synthetic descriptions merely to make text-sparse concepts look symmetrical.
 
 ## 15. Cross-entity bridge
 
-A strong non-traditional idea is to exploit the graph rather than only embed final labels.
+The graph/context can make the search much stronger than direct query→final-label embeddings.
 
-Example occupation search:
+YV example:
 
 ```text
 "svetsa rostfria rör"
-  → skill candidates: TIG-svetsning, rörsvetsning
-  → known occupation↔skill relations
-  → occupation candidates
+  -> TIG-svetsning / Rörsvetsning skill evidence
+  -> typed occupation contexts
+  -> YV occupation candidates
 ```
 
-Example competence search:
+KV example:
 
 ```text
 "undersköterska"
-  → occupation candidate
-  → known skill relations / Relevanta kompetenser
-  → competence candidates
+  -> occupation context
+  -> typed skill layers / other relevant-skill evidence
+  -> KV skill candidates
 ```
 
-The bridge must preserve relation provenance. `related`, `optional`, `essential`, `broad-match` etc. are not interchangeable.
+The bridge is evidence generation, not identity conversion.
 
-The measured v31 graph makes this hypothesis more plausible for skills: 99.7% have at least one SSYK4 relation and ESCO mapping coverage is substantial even where native definition text is sparse.
-
-## 16. Semantic diversification
+## 16. Diversification and disambiguation
 
 Broad queries should not return ten near-duplicates.
 
-For a query such as `jobba med data`, test result diversification across meaningful interpretations, for example analysis, software development, databases and data science. Diversification may use taxonomy branches or retrieval clusters, but must not fabricate taxonomy categories.
+YV may diversify across occupational interpretations. KV may diversify across skill interpretations/subtypes.
 
-## 17. Anti-search / disambiguation
+Hard negatives can also power an "anti-search" interaction:
 
-Hard negatives can power a useful UX after retrieval:
+> Menade du X snarare än Y?
 
-> You selected Redovisning. Did you perhaps mean Bokföring, Revision or Ekonomistyrning?
+This should be based on measured confusability, not decorative suggestions.
 
-This is valuable because the product goal is not merely high recall; it is selection of the right canonical identity.
+## 17. Hard invariants
 
-## 18. Hard invariants
+Regardless of implementation:
 
-Regardless of model:
+- semantic retrieval never invents taxonomy IDs;
+- YV and KV destination spaces never collapse;
+- job-title identity retains occupation context;
+- exact duplicate/ambiguous YV identities remain separately available until disambiguated;
+- occupation/SSYK context cannot masquerade as a KV skill result;
+- relation and evidence provenance survives candidate generation;
+- generated phrases never become canonical synonyms;
+- failed/unmeasured source = UNKNOWN, not zero;
+- wrong taxonomy version fails closed;
+- same taxonomy version + matcher version + query is reproducible;
+- semantic service unavailable must not silently corrupt lexical baseline;
+- duplicate enrichment is idempotent;
+- explanations may only cite evidence actually present in the retrieval trace;
+- low confidence can and should abstain.
 
-- semantic retrieval never invents taxonomy IDs
-- entity spaces (`occupation-name`, `job-title`, `skill`, etc.) never collapse identities
-- exact duplicate-title identities remain distinct
-- all exact canonical matches dominate non-exact semantic candidates unless an explicit documented policy says otherwise
-- semantic index unavailable/corrupt → lexical baseline still works
-- stale/wrong taxonomy-version semantic artifacts fail closed
-- same taxonomy version + matcher version + query → reproducible ranking
-- generated phrases never become canonical synonyms
-- graph relations keep their relation type/provenance
-- absence in a source that was not successfully extracted is `UNKNOWN`, never zero
-- unresolved/deprecated relation targets are not silently dropped into active semantic equivalence
-- unrelated semantic artifact changes should not perturb unrelated exact matches
-- duplicate enrichment data should be idempotent
-- low-confidence description mapping supports abstention
-- explanations may only claim evidence actually present in the retrieval trace
+These should become property/metamorphic tests as implementation starts.
 
-These are candidates for property-based/metamorphic tests as implementation matures.
+## 18. Deployment research — local-first vs API
 
-## 19. Deployment research: local assets vs central API
+There is no ideological opposition to a server/API.
 
-Do not conflate relevance architecture with deployment architecture.
+The current static/local distribution has major advantages:
 
-### Local/versioned assets advantages
+- host apps receive versioned data;
+- no runtime server dependency for ordinary picker use;
+- excellent availability and privacy characteristics;
+- deterministic local snapshot behaviour.
 
-- instant/no per-query network dependency
-- privacy
-- deterministic snapshot
-- robust embedding in host products
+A central semantic API has a different major advantage:
 
-### Central Semantic Mapping API advantages
+> ranking/index/model/calibration improvements can reach every host immediately without waiting for package upgrades.
 
-- new index/ranking/model/calibration deployed once
-- consumers improve without republishing component code
-- easier observation/evaluation/rollback
-- heavier models possible
+That may be extremely valuable for a new semantic feature that will improve rapidly.
 
-### If central API is used
+Current strongest deployment hypothesis:
 
-Return at least:
+```text
+existing local lexical picker
+        ↓
+strong lexical result? -> return locally
+        ↓ no / user chooses "describe"
+optional central semantic service
+        ↓
+versioned canonical candidates + provenance
+        ↓
+client validates/displays exact taxonomy identities
+```
+
+API outage should preferably degrade the semantic enhancement, not make YV/KV unusable.
+
+Possible shared request contract:
+
+```json
+{
+  "taxonomy_version": 31,
+  "target_space": "YV | KV",
+  "query": "...",
+  "limit": 10
+}
+```
+
+Response must include at least:
 
 ```json
 {
   "taxonomy_version": 31,
   "matcher_version": "...",
+  "target_space": "YV | KV",
   "candidates": []
 }
 ```
 
-Support canary, rollback, reproducibility and explicit failure behavior. Local lexical search should remain usable when the semantic service is unavailable unless a future product explicitly chooses otherwise.
+YV candidate identity needs enough scope to preserve job-title→occupation context. KV candidates are exact skill IDs.
 
-## 20. Current component context
+The API decision is not final until relevance gain, latency, privacy, availability, payload size and operational iteration speed are measured.
 
-Yrkesväljaren's current component searches locally in-browser against loaded taxonomy data. Its lexical behavior prioritizes direct/exact/prefix/token matches and falls back to fuzzy matching. That behavior is the baseline to freeze and benchmark, not something semantic search is allowed to casually replace.
+## 19. Work sequence
 
-The current component/data distribution already separates runtime code from taxonomic data: latest data can be obtained automatically, while a consumer can pin a versioned data package. Therefore a future API primarily solves **semantic matcher/model iteration**, not simply taxonomy-data freshness.
+### Now — finish Gate 1
 
-## 21. Work sequence
+- [x] establish repo/docs as SSOT
+- [x] native text inventory
+- [x] common typed graph inventory
+- [x] YV published read-model inventory
+- [x] quantify YV title ambiguity
+- [x] KV context/layer inventory
+- [x] adapter registry
+- [ ] KV transferable-skills inventory
+- [ ] YV missing-job-title analysis
+- [ ] Relevanta kompetenser adapter
+- [ ] dedicated search-concept adapter
+- [ ] specialised native occupation↔skill adapter
+- [ ] curated occupation-kinship adapter
+- [ ] Närliggande yrken adapter
+- [ ] resolve Yrkesinformation anomaly
+- [ ] ads/enrichments/query-language adapters
+- [ ] unified v31 semantic coverage matrix
 
-### Now — Gate 1
+### Next — Gate 2
 
-- [x] Establish repository as SSOT.
-- [x] Record current hypotheses and evidence hierarchy.
-- [x] Measure active v31 native text coverage.
-- [x] Measure immutable v31 common typed relations.
-- [x] Freeze current valid aggregate findings and source hashes in repo.
-- [x] Identify and quarantine the failed GraphQL relation extraction; its zeros are invalid.
-- [ ] Build/maintain the source-adapter registry and unified per-concept join schema.
-- [ ] Measure specialised native occupation→skill relations.
-- [ ] Measure separate search-concept distribution.
-- [ ] Add Yrkesväljaren adapter.
-- [ ] Add Relevanta kompetenser adapter.
-- [ ] Add Kompetensväljaren adapter.
-- [ ] Add curated occupational-kinship adapter.
-- [ ] Add Yrkesinformation adapter.
-- [ ] Add advertisement/enrichment/query-language coverage adapters where the join semantics are reliable.
-- [ ] Produce unified v31 coverage matrix and identify the actual lowest-coverage concept strata.
+- [ ] benchmark schema
+- [ ] high-confidence judged seed cases
+- [ ] automatic strata construction where source truth permits
+- [ ] mandatory 541-title ambiguity corpus/sample
+- [ ] no-match and hard-negative corpus
 
-### Next — Gates 2–3
+### Then — Gate 3
 
-- [ ] Build judged benchmark/evaluation schema.
-- [ ] Import/author first high-confidence evaluation cases.
-- [ ] Implement A–D baselines without embeddings.
-- [ ] Add E–G sources only where coverage/provenance is understood.
-- [ ] Run vector retrieval in shadow evaluation.
-- [ ] Decide whether embeddings add sufficient incremental recall.
-- [ ] Only then test synthetic LLM enrichment (H).
+- [ ] A–D non-neural baseline
+- [ ] E–G evidence layers one at a time
+- [ ] H vector retrieval/reranking in shadow evaluation
+- [ ] central API vs local compiled deployment benchmark
+- [ ] I synthetic enrichment only if residual gaps justify it
 
-### Later
+### Product prototype after evidence
 
-- [ ] Evaluate central API vs local compiled artifacts using measured latency/operational requirements.
-- [ ] Prototype description-search UX and `none of these` flow.
-- [ ] Instrument privacy-reviewed query→candidate→selection feedback if permitted.
-- [ ] Hard-negative mining/calibration/reranking only after benchmark evidence.
+- [ ] YV `Beskriv yrket` UX
+- [ ] KV `Beskriv kompetensen` UX
+- [ ] `Inget av dessa` + feedback flow
+- [ ] privacy-reviewed query→candidate→selection telemetry if permitted
+- [ ] canary/rollback/versioned semantic API if API wins deployment evaluation
 
-## 22. Open research questions
+## 20. Open research questions
 
-Resolved or partially resolved questions stay here with their measured answer so history is visible.
+Resolved questions remain listed with their answer when useful.
 
-1. **What fraction of v31 `occupation-name` definitions are distinct from labels?** 1,636 / 2,105 = **77.7%**. Whether every distinct definition is equally useful is still open.
-2. **What about `skill` and `job-title`?** Skill: 1,654 / 6,752 = **24.5%**. Job-title: 6 / 9,785 = **0.1% upper bound** on rich descriptions.
-3. **How complete are alternative/hidden labels?** Measured native counts exist; coverage is sparse. Need evaluate retrieval value, not only presence.
-4. **How many occupation names have related job titles?** 1,583 / 2,105 = **75.2%**. All 9,785 job titles relate to at least one occupation-name.
-5. How many occupation names have specialised `essential`/`optional` skill relations directly in taxonomy? **Open; common distribution does not expose them.**
-6. **What is ESCO mapping coverage?** Common v31 mapping coverage is measured separately by exact/broad/narrow/close; overlap means no single summed synonym percentage is valid.
-7. How much semantic language is recoverable from ESCO without losing Swedish taxonomy scope?
-8. What exact concept coverage exists in Yrkesväljaren, Relevanta kompetenser, Kompetensväljaren and occupational-information datasets?
-9. Can historical-ad text be joined to exact occupation identities reliably enough for retrieval training/evaluation?
-10. Do observed search logs contain useful query→selection labels, or only query frequency?
-11. How much improvement comes from curated graph/text alone before embeddings?
-12. Which query strata actually need embeddings?
-13. Can a small multilingual model distinguish Swedish hard negatives better than graph-aware lexical retrieval?
-14. When should the system abstain instead of returning a candidate?
-15. Which data may legally/privacy-wise be retained for future product feedback loops?
-16. What exactly does observed `quality-level` mean on non-occupation concept types in v31?
-17. Which deprecated concepts should remain searchable solely for compatibility/migration and how should they map forward without polluting active identity?
+1. occupation-name real definition coverage? **77.7%**.
+2. skill real definition coverage? **24.5%**.
+3. job-title real definition coverage? **~0.1% upper bound**.
+4. occupation-name with job-title common relation? **75.2%**.
+5. YV occupation-name coverage? **100%**.
+6. YV job-title coverage? **97.905%; 205 active titles absent** — reason still open.
+7. How common is one YV title across occupations? **541 job-title IDs, max 3 parents**.
+8. KV occupation context coverage? **100% of 2,105 active occupation-name**.
+9. KV SSYK4 context coverage? **100% of 400 active SSYK4**.
+10. KV four-layer union skill coverage? **68.824% of active skills**.
+11. What exactly is KV `transferable_skills` and how should it affect search?
+12. What extra coverage/semantics does Relevanta kompetenser add beyond KV?
+13. What is the dedicated search-concept coverage for YV and KV targets?
+14. How much semantic language does ESCO add without scope drift?
+15. How reliably can historical ads be joined to canonical YV/KV identities?
+16. Do search logs contain true query→selection labels or only query frequency?
+17. Which query strata actually need embeddings?
+18. What abstention calibration is safe enough for description search?
+19. Does a central API materially outperform local compiled semantics in relevance/iteration without unacceptable latency/availability/privacy cost?
+20. Which user feedback/telemetry may legally and appropriately be retained?
+21. What does observed `quality-level` mean on non-occupation types?
+22. How should deprecated concepts support old language without polluting active identity?
 
-## 23. Research discipline
+## 21. Research discipline
 
-Every important conclusion should be labelled mentally as one of:
+Every important statement should be treated as one of:
 
-- **measured** — produced by a reproducible inventory/evaluation
-- **documented** — stated by an authoritative source
-- **inferred** — reasonable deduction from measured/documented facts
-- **hypothesis** — requires experiment
+- **measured** — reproduced by an inventory/evaluation;
+- **documented** — stated by an authoritative source;
+- **inferred** — deduction from measured/documented facts;
+- **hypothesis** — requires experiment.
 
-Do not promote hypotheses to architecture merely because they sound plausible.
+Do not promote an attractive hypothesis to architecture because it sounds plausible.
 
-When new evidence changes a conclusion, update this file and record why. The repo should tell a new researcher both **what we currently believe** and **what evidence would falsify it**.
+Do not silently turn unavailable data into zero.
+
+Do not hide source semantics inside a generic score.
+
+When evidence changes a conclusion, update this file. A new researcher should be able to read the repo and know both **what we currently believe** and **what would falsify it**.
