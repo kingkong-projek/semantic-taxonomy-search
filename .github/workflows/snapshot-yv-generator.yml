@@ -1,31 +1,40 @@
-name: Snapshot YV generator source
+name: YV generator exclusion policy
 
 on:
   workflow_dispatch:
   push:
     branches: [main]
     paths:
+      - "scripts/analyze_yv_generator_policy.py"
       - ".github/workflows/snapshot-yv-generator.yml"
 
 permissions:
   contents: read
 
 jobs:
-  snapshot:
+  analyze:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
       - name: Clone public Yrkesväljaren generator
         run: |
           git clone --depth 1 https://gitlab.com/arbetsformedlingen/taxonomy-dev/backend/yrkesvaljaren.git /tmp/yv-generator
           git -C /tmp/yv-generator rev-parse HEAD | tee /tmp/yv-generator/SOURCE_COMMIT.txt
           git -C /tmp/yv-generator remote get-url origin | tee /tmp/yv-generator/SOURCE_REMOTE.txt
           rm -rf /tmp/yv-generator/.git
-          echo "--- files ---"
-          find /tmp/yv-generator -maxdepth 3 -type f | sort
+      - name: Validate exclusion policy against published v31
+        run: |
+          python scripts/analyze_yv_generator_policy.py \
+            --source-dir /tmp/yv-generator \
+            --version 31 \
+            --previous-version 30 \
+            --output-dir artifacts/yv-generator-policy-v31
       - uses: actions/upload-artifact@v4
         with:
-          name: yv-generator-source
-          path: /tmp/yv-generator/
+          name: yv-generator-policy-v31
+          path: artifacts/yv-generator-policy-v31/
           if-no-files-found: error
