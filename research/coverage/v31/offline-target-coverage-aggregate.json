@@ -1,0 +1,83 @@
+{
+  "accepted_source_hashes": {
+    "kv_sha256": "da83f26bf316971caa407364d8feae6f791203bff5758e674cace3d919e4b524",
+    "taxonomy_common_sha256": "634fd9d848a172747e54e3e487160a912ae6c0fcb8219c50998767c8c9aacbcc",
+    "taxonomy_version": "31",
+    "yv_sha256": "1036f9525416fac4ce475c1c1d3909b9e2849ebcf7094ffd38104955e4c2ee49"
+  },
+  "artifact_provenance": {
+    "common_relations": {
+      "archive_sha256": "da1d3c2b453107563fd64596939696271d5595400eb7d44333d9aed0d10e1519",
+      "artifact_id": 9932211469,
+      "name": "common-relations-v31",
+      "run_id": 33861288432
+    },
+    "native_text": {
+      "archive_sha256": "610fd64a48ef0fa07ad28c2fb2deba4260ab4bd6a27e950a25c2f8903093c08b",
+      "artifact_id": 9932067713,
+      "name": "semantic-coverage-v31",
+      "run_id": 33860719240
+    },
+    "selector": {
+      "archive_sha256": "75ae45406daa9f21d385940d2323106374caf5e0642c843534346c0ea902e7fa",
+      "artifact_id": 9933045595,
+      "name": "selector-coverage-v31",
+      "run_id": 33863555154
+    },
+    "selector_gaps": {
+      "archive_sha256": "441f8a7d7a04b03c0453727e4a1ec59e2ad6d123d3433aa523ea0b7a53dbd29e",
+      "artifact_id": 9933248443,
+      "name": "selector-gaps-v31",
+      "run_id": 33864077660
+    }
+  },
+  "generated_at": "2026-09-04T18:30:20+00:00",
+  "known_source_boundaries": {
+    "common_relations": "authoritative per-ID typed common-relation counts from immutable v31 snapshot",
+    "derived_af_per_target": "UNKNOWN",
+    "native_text": "canonical text only; GraphQL relation columns in this historical artifact are invalid and ignored",
+    "reason_derived_af_unknown": "accepted historical derived-AF artifact retained aggregate coverage only; absence must not become false per-ID",
+    "selector": "per-context aggregate/count evidence plus explicit admitted multi-parent job-title contexts",
+    "selector_gaps": "explicit 205 excluded job-title IDs/parents and 27 transferable skill IDs"
+  },
+  "kv_skill_strata": {
+    "canonical_and_common_context_poor": 1,
+    "canonical_text_poor": 4414,
+    "no_esco_mapping": 784,
+    "no_ssyk4_context": 18
+  },
+  "schema_version": 1,
+  "semantics": {
+    "aggregate_to_per_id_imputation": false,
+    "invalid_native_text_graphql_relations_used": false,
+    "matrix_kind": "offline partial per-target diagnostic coverage",
+    "ranking_score": false,
+    "tri_state": [
+      "KNOWN_TRUE",
+      "KNOWN_FALSE",
+      "UNKNOWN"
+    ]
+  },
+  "taxonomy_version": "31",
+  "universes": {
+    "active_job_title_concepts": 9785,
+    "kv_skill_targets": 6752,
+    "yv_admitted_job_title_ids": 9580,
+    "yv_admitted_multi_context_ids_with_contexts_preserved": 541,
+    "yv_admitted_single_context_ids_with_parent_id_unknown_offline": 9039,
+    "yv_excluded_job_title_ids": 205,
+    "yv_excluded_retrieval_routing_context_rows": 973,
+    "yv_known_admitted_job_title_context_rows": 1186,
+    "yv_occupation_targets": 2105
+  },
+  "yv_job_title_strata": {
+    "admitted_multi_context": 541,
+    "admitted_single_context_id_missing_from_offline_artifacts": 9039,
+    "definition_is_label_copy": 9779,
+    "retrieval_only_excluded_by_yv": 205
+  },
+  "yv_occupation_strata": {
+    "canonical_text_poor": 411,
+    "needs_derived_language_resolution": 469
+  }
+}
