@@ -1,29 +1,47 @@
-name: Probe occupational-information distribution
+name: Occupational-information coverage
 
 on:
   workflow_dispatch:
+    inputs:
+      taxonomy_version:
+        description: Taxonomy version to compare against
+        required: true
+        default: "31"
   push:
     branches: [main]
     paths:
       - "scripts/probe_occupational_information.py"
+      - "scripts/occupational_information_coverage.py"
       - ".github/workflows/probe-occupational-information.yml"
 
 permissions:
   contents: read
 
 jobs:
-  probe:
+  measure:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Discover explicitly published distribution
+      - name: Discover published distribution
         run: python scripts/probe_occupational_information.py | tee occupational-information-probe.json
+      - name: Measure content and canonical joinability
+        env:
+          TAXONOMY_VERSION: ${{ github.event.inputs.taxonomy_version || '31' }}
+        run: |
+          python scripts/occupational_information_coverage.py \
+            --version "$TAXONOMY_VERSION" \
+            --output-dir "artifacts/occupational-information-v${TAXONOMY_VERSION}"
       - uses: actions/upload-artifact@v4
         with:
           name: occupational-information-probe
           path: occupational-information-probe.json
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        with:
+          name: occupational-information-v${{ github.event.inputs.taxonomy_version || '31' }}
+          path: artifacts/occupational-information-v${{ github.event.inputs.taxonomy_version || '31' }}/
           if-no-files-found: error
