@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 31,
+  "accepted_workflow_run": 33864929163,
+  "taxonomy_snapshot_sha256": "634fd9d848a172747e54e3e487160a912ae6c0fcb8219c50998767c8c9aacbcc",
+  "keyword_concepts": {
+    "source_sha256": "91bb2d3649f6cf061475b64c63966d0a9818ca012e9d040ea054626229189c85",
+    "concepts": 1484,
+    "active_keyword_coverage_pct": 100.0,
+    "total_related_edges": 1611,
+    "target_type_edges": {
+      "sun-education-field-4": 1443,
+      "occupation-name": 151,
+      "employment-type": 9,
+      "skill": 8,
+      "job-title": 0
+    },
+    "direct_yv_kv_targets": {
+      "occupation-name": {"source_keywords": 34, "source_keyword_pct": 2.291, "unique_targets": 130, "target_space_coverage_pct": 6.176},
+      "skill": {"source_keywords": 5, "source_keyword_pct": 0.337, "unique_targets": 7, "target_space_coverage_pct": 0.104},
+      "job-title": {"source_keywords": 0, "source_keyword_pct": 0.0, "unique_targets": 0, "target_space_coverage_pct": 0.0}
+    },
+    "unknown_keyword_ids": 0,
+    "unknown_relation_targets": 0
+  },
+  "substitutability": {
+    "source_sha256": "8761f938505ab9f276b8054d235c9a574bf2da1ff56c3761d9ce836f6fc93c60",
+    "source_concepts": 2105,
+    "active_occupation_coverage_pct": 100.0,
+    "substituted_by": {"sources_nonempty": 993, "source_coverage_pct": 47.173, "edges": 4394, "strength_25": 1977, "strength_75": 2417},
+    "substitutes": {"sources_nonempty": 968, "source_coverage_pct": 45.986, "edges": 4394, "strength_25": 1977, "strength_75": 2417},
+    "reverse_edge_overlap": 4394,
+    "invalid_relation_occurrences": 0
+  }
+}
