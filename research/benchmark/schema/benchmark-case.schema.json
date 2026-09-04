@@ -143,7 +143,7 @@
             "human_judgment"
           ]
         },
-        "role": {"enum": ["query_origin", "destination_ground_truth", "context_only", "hard_negative"]},
+        "role": {"enum": ["query_origin", "destination_ground_truth", "product_admission", "context_only", "hard_negative"]},
         "ref": {"type": "string"},
         "note": {"type": "string"}
       }
