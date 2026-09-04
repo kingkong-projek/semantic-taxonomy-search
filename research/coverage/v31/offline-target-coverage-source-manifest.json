@@ -1,0 +1,41 @@
+{
+  "accepted_source_hashes": {
+    "kv_sha256": "da83f26bf316971caa407364d8feae6f791203bff5758e674cace3d919e4b524",
+    "taxonomy_common_sha256": "634fd9d848a172747e54e3e487160a912ae6c0fcb8219c50998767c8c9aacbcc",
+    "taxonomy_version": "31",
+    "yv_sha256": "1036f9525416fac4ce475c1c1d3909b9e2849ebcf7094ffd38104955e4c2ee49"
+  },
+  "artifacts": {
+    "common_relations": {
+      "archive_sha256": "da1d3c2b453107563fd64596939696271d5595400eb7d44333d9aed0d10e1519",
+      "artifact_id": 9932211469,
+      "name": "common-relations-v31",
+      "run_id": 33861288432
+    },
+    "native_text": {
+      "archive_sha256": "610fd64a48ef0fa07ad28c2fb2deba4260ab4bd6a27e950a25c2f8903093c08b",
+      "artifact_id": 9932067713,
+      "name": "semantic-coverage-v31",
+      "run_id": 33860719240
+    },
+    "selector": {
+      "archive_sha256": "75ae45406daa9f21d385940d2323106374caf5e0642c843534346c0ea902e7fa",
+      "artifact_id": 9933045595,
+      "name": "selector-coverage-v31",
+      "run_id": 33863555154
+    },
+    "selector_gaps": {
+      "archive_sha256": "441f8a7d7a04b03c0453727e4a1ec59e2ad6d123d3433aa523ea0b7a53dbd29e",
+      "artifact_id": 9933248443,
+      "name": "selector-gaps-v31",
+      "run_id": 33864077660
+    }
+  },
+  "generated_at": "2026-09-04T18:30:20+00:00",
+  "schema_version": 1,
+  "warnings": [
+    "Historical native-text GraphQL relation extraction failed; only native text fields are consumed from that artifact.",
+    "Derived-AF aggregate coverage is not materialized per ID in this offline matrix.",
+    "Admitted single-context YV job-title parent IDs are not present in accepted offline artifacts and remain UNKNOWN here."
+  ]
+}
