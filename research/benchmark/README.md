@@ -41,7 +41,9 @@ or a job title **in an exact occupation context**:
 
 A bare job-title ID is deliberately invalid. The same job-title ID under two occupation-name IDs counts as two distinct benchmark identities.
 
-An active taxonomy job-title excluded by the measured YV generator policy may be query/retrieval evidence but cannot occur in `MUST`, `ACCEPTABLE` or `MUST_NOT` as though it were a selectable YV identity unless the identity itself is a published YV row/context.
+YV also has a product-admission boundary in addition to canonical taxonomy identity. A scored positive YV case therefore requires explicit `product_admission` evidence from the published YV read model. Canonical identity alone is insufficient.
+
+An active taxonomy job-title excluded by the measured YV generator policy may be query/retrieval evidence but cannot occur in `MUST`, `ACCEPTABLE` or `MUST_NOT` as though it were a selectable YV identity unless the exact identity/context is a published YV row.
 
 ### KV
 
@@ -117,11 +119,18 @@ canonical_history
 
 Those sources may still be high-value `query_origin`, `context_only` or `hard_negative` evidence.
 
-This prevents circular evaluation such as testing semantic extraction against labels produced by JobAd Enrichments itself.
+`product_admission` is intentionally a different role from destination ground truth. For YV it records that the exact occupation or job-title-in-occupation-context is present in the published YV read model. Its provenance remains `behavioral`, because the YV data also carries search-frequency-derived weighting and generator methodology. The role does **not** turn YV weight into semantic truth.
+
+This separation prevents two opposite errors:
+
+1. accepting any canonical job-title as a YV destination even when YV intentionally excludes it; or
+2. promoting YV behavioral weight/admission into canonical concept meaning.
+
+It also prevents circular evaluation such as testing semantic extraction against labels produced by JobAd Enrichments itself.
 
 ## Adjudication
 
-`AUTO_HIGH_CONFIDENCE` is restricted to canonical preferred/alternative-label cases whose destination follows from canonical/curated evidence. It is not a shortcut for auto-labeling observed queries.
+`AUTO_HIGH_CONFIDENCE` is restricted to canonical preferred/alternative-label cases whose destination follows from canonical/curated evidence. For YV, the same case must also carry explicit published-YV `product_admission` evidence. It is not a shortcut for auto-labeling observed queries.
 
 `HUMAN_SINGLE` requires at least one reviewer and explicit `human_judgment` ground-truth evidence.
 
