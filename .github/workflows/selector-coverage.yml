@@ -1,0 +1,44 @@
+name: YV and KV selector coverage
+
+on:
+  workflow_dispatch:
+    inputs:
+      taxonomy_version:
+        description: Taxonomy version to measure
+        required: true
+        default: "31"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/selector_coverage.py"
+      - ".github/workflows/selector-coverage.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Measure selectors
+        env:
+          TAXONOMY_VERSION: ${{ github.event.inputs.taxonomy_version || '31' }}
+        run: |
+          python scripts/selector_coverage.py \
+            --version "$TAXONOMY_VERSION" \
+            --output-dir "artifacts/selector-coverage-v${TAXONOMY_VERSION}"
+      - name: Show summary
+        env:
+          TAXONOMY_VERSION: ${{ github.event.inputs.taxonomy_version || '31' }}
+        run: cat "artifacts/selector-coverage-v${TAXONOMY_VERSION}/summary.md"
+      - name: Upload inventory
+        uses: actions/upload-artifact@v4
+        with:
+          name: selector-coverage-v${{ github.event.inputs.taxonomy_version || '31' }}
+          path: artifacts/selector-coverage-v${{ github.event.inputs.taxonomy_version || '31' }}/
+          if-no-files-found: error
