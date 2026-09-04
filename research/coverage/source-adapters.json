@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "last_updated": "2026-09-04",
   "target_taxonomy_version": 31,
   "status_semantics": {
@@ -19,11 +19,8 @@
       "join_key": "taxonomy concept id",
       "dimensions": ["preferred_label", "definition", "definition_distinct_from_label", "alternative_labels", "hidden_labels"],
       "source": "JobTech Taxonomy v31",
-      "evidence": [
-        "docs/findings/native-text-coverage-v31.md",
-        "research/coverage/v31/native-text-aggregate.json"
-      ],
-      "notes": "Definition field is always non-empty in measured active v31; distinction from preferred label is the meaningful first coverage metric."
+      "evidence": ["docs/findings/native-text-coverage-v31.md", "research/coverage/v31/native-text-aggregate.json"],
+      "notes": "Definition field is non-empty in measured active v31; distinction from preferred label is the meaningful first text-coverage metric."
     },
     {
       "id": "taxonomy-common-relations",
@@ -45,7 +42,7 @@
       "join_key": "taxonomy concept id",
       "dimensions": ["essential", "optional"],
       "source": "JobTech Taxonomy specialised relations/API",
-      "notes": "Documented relation semantics exist, but the common-relations distribution does not expose these fields. Absence is UNKNOWN, not zero."
+      "notes": "Common-relations snapshot does not expose these specialised relation fields. KV fields with similar names are a separate published read model and must not be substituted for native relation semantics without provenance verification."
     },
     {
       "id": "taxonomy-search-concepts",
@@ -59,33 +56,48 @@
     },
     {
       "id": "yrkesvaljaren",
-      "status": "documented",
+      "status": "measured",
       "provenance_class": "behavioral",
       "target_types": ["occupation-name", "job-title"],
-      "join_key": "taxonomy concept id",
-      "dimensions": ["weight_present", "weight", "source search-frequency semantics"],
-      "source": "Yrkesväljaren / occupation-suggester",
-      "notes": "Weights derive from large Platsbanken search corpus. Ranking/prior evidence, not concept meaning or generic query→ID labels. Exact current distribution/schema still to probe."
+      "join_key": "taxonomy concept id plus occupation_name_id context for job-title rows",
+      "dimensions": ["weight_present", "weight", "active concept coverage", "job-title occupation parent multiplicity"],
+      "source": "https://data.arbetsformedlingen.se/yrke/yrkesvaljaren/v1/yrkesvaljaren-t31.json",
+      "source_sha256": "1036f9525416fac4ce475c1c1d3909b9e2849ebcf7094ffd38104955e4c2ee49",
+      "evidence": ["docs/findings/selector-coverage-v31.md", "research/coverage/v31/selector-aggregate.json"],
+      "notes": "100% occupation-name coverage and 97.905% active job-title coverage. 541 job-title IDs have multiple occupation parents (max 3). Weights are behavioural priors, not concept meaning."
     },
     {
       "id": "relevant-skills",
-      "status": "documented",
+      "status": "probe_required",
       "provenance_class": "derived_af",
       "target_types": ["occupation-name", "skill"],
       "join_key": "taxonomy concept id",
       "dimensions": ["occupation_covered", "suggested_skill_count", "weight_or_score if present"],
-      "source": "Relevanta kompetenser",
-      "notes": "Derived via taxonomy↔ESCO mappings; relation is relevance, not canonical/mandatory skill semantics. Exact current distribution/schema still to probe."
+      "source": "https://data.arbetsformedlingen.se/yrke/relevanta-kompetenser",
+      "notes": "Public file area is resolved, but exact current v31 file naming/schema still needs discovery. Derived via taxonomy↔ESCO mappings; relevance is not canonical/mandatory skill semantics."
     },
     {
       "id": "skill-selector",
-      "status": "documented",
+      "status": "partially_measured",
       "provenance_class": "derived_af",
-      "target_types": ["occupation-name", "skill", "ssyk-level-3", "ssyk-level-4"],
-      "join_key": "taxonomy concept id / SSYK context as defined by source",
-      "dimensions": ["occupation_context_present", "skill_present", "weight", "context/shard coverage"],
-      "source": "Kompetensväljaren / skill-selector",
-      "notes": "Documented purpose combines taxonomy relations, Relevanta kompetenser, Närliggande yrken and SCB-derived signals. Must inventory exact published read-model semantics before treating weights as evidence."
+      "target_types": ["skill"],
+      "context_types": ["occupation-name", "ssyk-level-4"],
+      "join_key": "skill taxonomy id within typed context record",
+      "dimensions": ["context coverage", "regulated_skills", "essential_skills", "optional_skills", "calculated_skills", "layer provenance", "transferable_skills special container"],
+      "source": "https://data.arbetsformedlingen.se/kompetens/kompetensvaljaren/v1/kompetensvaljaren-t31.json",
+      "source_sha256": "da83f26bf316971caa407364d8feae6f791203bff5758e674cace3d919e4b524",
+      "evidence": ["docs/findings/selector-coverage-v31.md", "research/coverage/v31/selector-aggregate.json"],
+      "notes": "All 2,105 occupation-name and all 400 SSYK4 contexts are present. Four occupation-context skill layers reference only active skill IDs and together cover 4,647/6,752 active skills (68.824%). `transferable_skills` is a separate non-context entry still to inventory. Layer names must retain distinct semantics."
+    },
+    {
+      "id": "kv-transferable-skills",
+      "status": "probe_required",
+      "provenance_class": "derived_af",
+      "target_types": ["skill"],
+      "join_key": "to be measured",
+      "dimensions": ["schema", "skill ids", "coverage", "intended retrieval semantics"],
+      "source": "Kompetensväljaren v31 data.transferable_skills",
+      "notes": "Detected as a special top-level non-context container. Must not be interpreted as an unknown taxonomy concept."
     },
     {
       "id": "curated-occupation-kinship",
@@ -99,13 +111,13 @@
     },
     {
       "id": "occupational-information",
-      "status": "documented",
+      "status": "blocked",
       "provenance_class": "derived_af",
       "target_types": ["occupation-name", "ssyk-level-4"],
       "join_key": "to be verified",
       "dimensions": ["occupational_information_present", "description_fields", "forecast/barometer fields kept separate"],
       "source": "Yrkesinformation interimslösning",
-      "notes": "Stable public JSON, half-yearly, maintained during 2026 until replacement backend. Exact ID coverage/schema still to probe."
+      "notes": "Official DCAT metadata currently points to the Närliggande yrken file area, so distribution identity is anomalous and must be resolved before extracting coverage."
     },
     {
       "id": "historical-job-ads",
@@ -139,13 +151,13 @@
     },
     {
       "id": "nearby-occupations",
-      "status": "documented",
+      "status": "probe_required",
       "provenance_class": "derived_af",
       "target_types": ["occupation-name"],
       "join_key": "taxonomy occupation-name concept id",
-      "dimensions": ["source_coverage", "neighbour_count", "similarity score/semantics"],
-      "source": "Närliggande yrken",
-      "notes": "Advertisement-derived similarity for discovery; explicitly not authority for suitable career transition or semantic equivalence."
+      "dimensions": ["source_coverage", "neighbour_count", "similarity score/semantics", "corpus-derived keywords if published"],
+      "source": "https://data.arbetsformedlingen.se/yrke/narliggande-yrken",
+      "notes": "Public file area is resolved but exact v31 file naming/schema still needs discovery. Advertisement-derived similarity is discovery evidence, not semantic equivalence or career-transition authority."
     },
     {
       "id": "deprecated-concept-compatibility",
@@ -155,7 +167,7 @@
       "join_key": "taxonomy concept id",
       "dimensions": ["deprecated", "replaced_by", "replaces", "forward_mapping"],
       "source": "Taxonomy version/history",
-      "notes": "Keep separate from active retrieval corpus. Needed to explain unresolved `replaces` targets and possibly support old labels without polluting active identity."
+      "notes": "Keep separate from active retrieval corpus. Needed to support old language/IDs without polluting active identity."
     }
   ]
 }
