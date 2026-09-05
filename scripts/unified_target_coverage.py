@@ -507,8 +507,8 @@ def main() -> int:
         },
         "gap_strata": stratum_summary,
         "pending_not_composed": [
-            "Yrkesinformation legacy-to-v31 semantic text attachment until canonical join is resolved",
-            "deprecated historical vocabulary until replacement-graph measurement succeeds",
+            "Yrkesinformation text is canonically attachable only for records with exactly one explicit active v31 occupation ID; ambiguous/unkeyed records remain blocked",
+            "deprecated historical vocabulary is measured separately and remains outside the active target matrix by design",
             "observed YV query frequency as a per-target signal except where separately and safely joined",
         ],
     }
