@@ -1,0 +1,33 @@
+name: Capture Yrkesvaljaren source
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/capture-yv-source.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 10
+    steps:
+      - name: Clone public Yrkesvaljaren repository
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf "$RUNNER_TEMP/yrkesvaljaren-source"
+          git clone --depth 1 https://gitlab.com/arbetsformedlingen/taxonomy-dev/backend/yrkesvaljaren.git "$RUNNER_TEMP/yrkesvaljaren-source"
+          git -C "$RUNNER_TEMP/yrkesvaljaren-source" rev-parse HEAD | tee "$RUNNER_TEMP/SOURCE_COMMIT.txt"
+          git -C "$RUNNER_TEMP/yrkesvaljaren-source" remote get-url origin | tee "$RUNNER_TEMP/SOURCE_REMOTE.txt"
+          rm -rf "$RUNNER_TEMP/yrkesvaljaren-source/.git"
+          tar -C "$RUNNER_TEMP" -czf "$RUNNER_TEMP/yrkesvaljaren-main.tar.gz" yrkesvaljaren-source SOURCE_COMMIT.txt SOURCE_REMOTE.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: yrkesvaljaren-main-source
+          path: ${{ runner.temp }}/yrkesvaljaren-main.tar.gz
+          if-no-files-found: error
+          retention-days: 1
