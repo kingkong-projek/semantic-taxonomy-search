@@ -11,6 +11,7 @@ on:
     branches: [main]
     paths:
       - "scripts/build_benchmark_seed.py"
+      - "scripts/verify_yv_excluded_review_candidates.py"
       - "scripts/validate_benchmark.py"
       - "research/benchmark/schema/**"
       - "research/coverage/source-adapters.json"
@@ -35,6 +36,26 @@ jobs:
           python scripts/build_benchmark_seed.py \
             --version "$TAXONOMY_VERSION" \
             --output-dir "artifacts/benchmark-seed-v${TAXONOMY_VERSION}"
+      - name: Bind excluded-title reasons to pinned YV generator policy
+        env:
+          TAXONOMY_VERSION: ${{ github.event.inputs.taxonomy_version || '31' }}
+          YV_GENERATOR_COMMIT: 6dd9e4737d7db3cb2709f8082808b88e5c89ed6e
+        run: |
+          rm -rf /tmp/yv-generator
+          git init -q /tmp/yv-generator
+          git -C /tmp/yv-generator remote add origin https://gitlab.com/arbetsformedlingen/taxonomy-dev/backend/yrkesvaljaren.git
+          git -C /tmp/yv-generator fetch -q --depth 1 origin "$YV_GENERATOR_COMMIT"
+          git -C /tmp/yv-generator checkout -q --detach FETCH_HEAD
+          test "$(git -C /tmp/yv-generator rev-parse HEAD)" = "$YV_GENERATOR_COMMIT"
+          printf '%s\n' "$YV_GENERATOR_COMMIT" > /tmp/yv-generator/SOURCE_COMMIT.txt
+          python scripts/verify_yv_excluded_review_candidates.py \
+            --source-dir /tmp/yv-generator \
+            --version "$TAXONOMY_VERSION" \
+            --input "artifacts/benchmark-seed-v${TAXONOMY_VERSION}/yv-excluded-title-review-candidates.jsonl" \
+            --output "artifacts/benchmark-seed-v${TAXONOMY_VERSION}/yv-excluded-title-review-candidates.verified.jsonl" \
+            --manifest "artifacts/benchmark-seed-v${TAXONOMY_VERSION}/yv-excluded-title-review-manifest.json"
+          mv "artifacts/benchmark-seed-v${TAXONOMY_VERSION}/yv-excluded-title-review-candidates.verified.jsonl" \
+             "artifacts/benchmark-seed-v${TAXONOMY_VERSION}/yv-excluded-title-review-candidates.jsonl"
       - name: Validate auto-scored seed cases
         env:
           TAXONOMY_VERSION: ${{ github.event.inputs.taxonomy_version || '31' }}
@@ -42,6 +63,8 @@ jobs:
           python scripts/validate_benchmark.py \
             "artifacts/benchmark-seed-v${TAXONOMY_VERSION}/yv-exact-labels.jsonl" \
             "artifacts/benchmark-seed-v${TAXONOMY_VERSION}/kv-canonical-labels.jsonl"
+          python -m json.tool \
+            "artifacts/benchmark-seed-v${TAXONOMY_VERSION}/yv-excluded-title-review-manifest.json" >/dev/null
       - uses: actions/upload-artifact@v4
         with:
           name: benchmark-seed-v${{ github.event.inputs.taxonomy_version || '31' }}
