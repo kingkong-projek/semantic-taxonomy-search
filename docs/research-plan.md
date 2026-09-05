@@ -179,9 +179,9 @@ An excluded title may be a high-value route/disambiguation term, but it cannot s
 
 Evidence: `docs/findings/yv-generator-exclusion-policy-v31.md` and `research/coverage/v31/yv-generator-policy-aggregate.json`.
 
-### 5.5 Observed YV query language
+### 5.5 Observed YV query language — generator-bound cumulative snapshot
 
-The generator-bound Platsbanken query snapshot contains:
+The generator-bound cumulative Platsbanken query snapshot contains:
 
 - **115,553 distinct terms**;
 - **3,136,136,606 aggregate searches**;
@@ -214,6 +214,36 @@ observed query
 The 67.377% unbound volume is excellent language/evaluation material but cannot be auto-labelled without additional evidence.
 
 Evidence: `docs/findings/yv-observed-query-language-v31.md` and `research/coverage/v31/yv-query-language-aggregate.json`.
+
+### 5.5.1 Raw public JobSearch Trends
+
+The complete Yrkesväljaren source and its upstream `job-ads/search-trends` generator are now audited end-to-end.
+
+The committed `data/sokningar-platsbanken.json.zip` is **not the raw public search source**. `update_search_terms.py` reads only `q_approved` from public daily JobSearch Trends files, retains terms with at least 10 searches on a day, sums over time, performs small whitespace/hyphen normalization and then removes cumulative terms below 100.
+
+The public source is materially richer:
+
+- **1,256 dated ZIP files** were present in the current listing, from **2022-05-04 through 2026-09-04**;
+- that interval contains 1,585 calendar days, so **329 dates currently have no published ZIP**; absence is `UNKNOWN`, not zero;
+- the first sampled daily file contains **15,425** distinct `q_approved` values;
+- the 2026-09-04 sample contains **100,342** distinct `q_approved` values;
+- public files also contain independent daily counters for several structured JobSearch parameters such as occupation group/field/name and geography.
+
+Upstream source semantics are decisive: JobSearch Trends summarizes `/search` request logs by parameter and explicitly does **not** publish complete parameter combinations. `q_approved` is free text that passed a whitelist/stemming privacy filter intended to remove PII. It does **not** mean semantically approved, taxonomy-mapped or selected by a user.
+
+Therefore:
+
+```text
+raw daily JobSearch Trends
+  = behavioral language + time/frequency + independent parameter marginals
+  != query -> selected canonical identity ground truth
+```
+
+The current public field whitelist does not expose structured `skill` counts. Same-day free text and taxonomy-ID counters may never be paired as if they came from the same request.
+
+Raw JobSearch Trends is now a first-class Gate-2 source for recency, trend, long-tail and benchmark sampling. The cumulative generator snapshot remains the reproducible evidence source for current YV weighting/admission analysis.
+
+Evidence: `docs/findings/yrkesvaljaren-jobsearch-trends-source-audit-2026-09-06.md` and `research/coverage/jobsearch-trends-source-probe-2026-09-06.json`.
 
 ### 5.6 Published Kompetensväljaren v31
 
@@ -480,7 +510,7 @@ canonical taxonomy text/identity
 → YV/KV product read models and admission semantics
 → Relevanta kompetenser
 → real employer/ad language + measured AF similarity
-→ real query/search language with explicit join semantics
+→ raw + cumulative real query/search language with date/source provenance and explicit non-join semantics
 → embeddings/reranking over trusted representations
 → synthetic LLM text only for measured residual gaps
 ```
@@ -528,7 +558,7 @@ Goal: know which semantic material exists for every canonical YV/KV target and r
 - [x] deprecated→active compatibility policy and full measurement completed
 - [x] unified hash-verified per-target coverage matrix completed and lowest-coverage strata identified
 
-Generic public JobSearch Trends beyond the exact generator-bound snapshot remain **not a Gate-1 blocker**. Their lineage can be sampled later if the measured YV snapshot is insufficient.
+Raw public JobSearch Trends lineage is now audited end-to-end. It does not reopen Gate 1 because it does not change the canonical target universe or provide query→selection ground truth, but it is a first-class Gate-2 behavioral source and must be sampled with date/source provenance.
 
 **Gate 1 is closed.** Every originally required item is measured, explicitly bounded or deliberately blocked with an authority-preserving rationale. Work now moves to Gate 2; new source discoveries do not reopen Gate 1 unless they invalidate an accepted source boundary or target universe.
 
@@ -560,6 +590,7 @@ Mandatory YV strata:
 - 205-title excluded-YV retrieval-vocabulary population, split by >3-context vs redundant-label policy;
 - high-frequency excluded-title terms from observed query data;
 - unbound observed query-language samples with **manual judgments**, not auto-labels;
+- raw daily JobSearch Trends recency/long-tail samples, with `q_approved` treated only as privacy-filtered behavioral wording;
 - task/skill description→occupation;
 - same/similar title in different occupational contexts;
 - substitutability 25/75 neighbours as hard-negative/context material.
@@ -694,6 +725,8 @@ The bridge is evidence generation, not identity conversion.
 - native/KV duplicate projections are not double-counted as independent evidence;
 - provenance survives candidate generation/fusion;
 - observed query frequency is not query→selection ground truth;
+- JobSearch Trends `q_approved` means privacy-filtered public free text, not semantic approval or a selected target;
+- public JobSearch Trends fields are independent daily aggregate marginals and must never be interpreted as same-request co-occurrence;
 - model-derived ad enrichment is not human ground truth;
 - generated text never becomes canonical authority;
 - failed/unmeasured source = UNKNOWN, not zero;
@@ -765,6 +798,8 @@ After the repository transfer, GitHub-hosted jobs were failing before their firs
 ### Now — Gate 2
 
 - [x] benchmark schema and semantic validator contract
+- [ ] bounded raw JobSearch Trends date-range adapter + exact dated-file manifest + recency/long-tail strata
+- [ ] targeted source-gap inventory against measured weak strata: AF catalog first, ESCO through existing typed mappings, Sveriges dataportal as discovery index; admit a source only with explicit join/provenance semantics
 - [ ] high-confidence judged seed cases
 - [ ] automatic strata construction only where source truth permits
 - [ ] 541-title ambiguity corpus/sample
@@ -801,7 +836,7 @@ Resolved answers remain listed when useful.
 6. Multi-context YV title identity? **541 IDs, max 3 published YV parents**.
 7. Why 205 titles are absent? **104 >3-context + 101 redundant-label; exact 205/205 closure**.
 8. v30→v31 dropout? **`Präst`, due changed context causing redundancy rule**.
-9. Observed YV search corpus direct selected-ID labels? **No; query + frequency only**.
+9. Observed search data direct selected-ID labels? **No. The YV cumulative snapshot is query + frequency; raw daily JobSearch Trends adds time and independent structured-parameter counts, but explicitly omits complete request combinations and therefore still has no query→selected-ID join.**
 10. Excluded-title search importance? **349.76M searches = 11.153% of measured query volume**.
 11. Unbound observed query volume? **67.377%**.
 12. KV ordinary four-layer union? **4,647 skills = 68.824%**.
@@ -823,6 +858,9 @@ Resolved answers remain listed when useful.
 28. Does central API materially outperform compiled local semantics after operational costs?
 29. What is the intended product role of KV transferable skills?
 30. What does observed `quality-level` mean on non-occupation types, and does it affect retrieval enough to justify a Gate-1 adapter?
+31. How much vocabulary and recency signal is lost by the YV `>=10/day` and `>=100 cumulative` filters, and which raw-date windows are most useful for Gate-2 sampling?
+32. How much incremental Swedish semantic text do mapped ESCO v1.2.1 concepts add specifically to the 244 weak YV occupations and 1,410 critical-sparse KV skills?
+33. How much of the critical-sparse KV population is covered by AF's manually mapped labour-market-training learning outcomes and other explicitly curated domain sources?
 
 ## 20. Research discipline
 
