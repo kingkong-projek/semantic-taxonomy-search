@@ -1,0 +1,42 @@
+name: Unified target semantic coverage
+
+on:
+  workflow_dispatch:
+    inputs:
+      taxonomy_version:
+        description: Taxonomy target version
+        required: true
+        default: "31"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/unified_target_coverage.py"
+      - "research/coverage/source-adapters.json"
+      - ".github/workflows/unified-target-coverage.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  measure:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pinned decompressor
+        run: python -m pip install --disable-pip-version-check zstandard==0.23.0
+      - name: Compose per-target semantic coverage
+        env:
+          TAXONOMY_VERSION: ${{ github.event.inputs.taxonomy_version || '31' }}
+        run: |
+          python scripts/unified_target_coverage.py \
+            --version "$TAXONOMY_VERSION" \
+            --output-dir "artifacts/unified-target-coverage-v${TAXONOMY_VERSION}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: unified-target-coverage-v${{ github.event.inputs.taxonomy_version || '31' }}
+          path: artifacts/unified-target-coverage-v${{ github.event.inputs.taxonomy_version || '31' }}/
+          if-no-files-found: error
