@@ -1,0 +1,49 @@
+name: Benchmark seed
+
+on:
+  workflow_dispatch:
+    inputs:
+      taxonomy_version:
+        description: Taxonomy target version
+        required: true
+        default: "31"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/build_benchmark_seed.py"
+      - "scripts/validate_benchmark.py"
+      - "research/benchmark/schema/**"
+      - "research/coverage/source-adapters.json"
+      - ".github/workflows/benchmark-seed.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build provenance-safe benchmark seed
+        env:
+          TAXONOMY_VERSION: ${{ github.event.inputs.taxonomy_version || '31' }}
+        run: |
+          python scripts/build_benchmark_seed.py \
+            --version "$TAXONOMY_VERSION" \
+            --output-dir "artifacts/benchmark-seed-v${TAXONOMY_VERSION}"
+      - name: Validate auto-scored seed cases
+        env:
+          TAXONOMY_VERSION: ${{ github.event.inputs.taxonomy_version || '31' }}
+        run: |
+          python scripts/validate_benchmark.py \
+            "artifacts/benchmark-seed-v${TAXONOMY_VERSION}/yv-exact-labels.jsonl" \
+            "artifacts/benchmark-seed-v${TAXONOMY_VERSION}/kv-canonical-labels.jsonl"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-seed-v${{ github.event.inputs.taxonomy_version || '31' }}
+          path: artifacts/benchmark-seed-v${{ github.event.inputs.taxonomy_version || '31' }}/
+          if-no-files-found: error
