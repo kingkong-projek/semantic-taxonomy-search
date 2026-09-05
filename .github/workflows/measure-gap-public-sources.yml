@@ -1,0 +1,219 @@
+name: Measure gap-directed public sources
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/measure-gap-public-sources.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  measure:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pinned decompressor
+        run: python -m pip install --disable-pip-version-check zstandard==0.23.0
+      - name: Rebuild accepted v31 target matrix
+        run: |
+          python scripts/unified_target_coverage.py \
+            --version 31 \
+            --output-dir /tmp/unified-v31
+      - name: Measure curated gap sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib
+          import json
+          import urllib.request
+          from collections import Counter, defaultdict
+          from pathlib import Path
+
+          UA = "semantic-taxonomy-search-gap-source-audit/0.1"
+
+          def fetch(url):
+              req = urllib.request.Request(url, headers={"Accept":"*/*", "User-Agent":UA})
+              with urllib.request.urlopen(req, timeout=180) as r:
+                  return r.read()
+
+          def normtext(v):
+              return " ".join(str(v or "").split()).strip()
+
+          def walk(obj):
+              yield obj
+              if isinstance(obj, dict):
+                  for v in obj.values():
+                      yield from walk(v)
+              elif isinstance(obj, list):
+                  for v in obj:
+                      yield from walk(v)
+
+          kv_rows = []
+          with open('/tmp/unified-v31/kv-skills.jsonl', encoding='utf-8') as f:
+              for line in f:
+                  kv_rows.append(json.loads(line))
+          yv_rows = []
+          with open('/tmp/unified-v31/yv-occupations.jsonl', encoding='utf-8') as f:
+              for line in f:
+                  yv_rows.append(json.loads(line))
+
+          active_skills = {r['concept_id'] for r in kv_rows}
+          skill_tags = {r['concept_id']: set(r.get('gap_tags', [])) for r in kv_rows}
+          yv_tags = {r['concept_id']: set(r.get('gap_tags', [])) for r in yv_rows}
+
+          # -------------------------------------------------- labour-market training mapping
+          training_url = 'https://data.arbetsformedlingen.se/utbildningar/mappings/mapping_labour-market-training.json'
+          training_wire = fetch(training_url)
+          training_doc = json.loads(training_wire)
+
+          concept_ids = []
+          module_like = []
+          key_frequency = Counter()
+          for node in walk(training_doc):
+              if isinstance(node, dict):
+                  key_frequency.update(node.keys())
+                  ids_here = []
+                  for child in walk(node):
+                      if isinstance(child, dict) and child.get('koncept_id'):
+                          ids_here.append(str(child['koncept_id']))
+                  if ids_here:
+                      # Keep only the smallest likely module records, identified by module-ish keys.
+                      keys = {str(k).casefold() for k in node}
+                      if any('modul' in k for k in keys):
+                          text_fields = {
+                              str(k): normtext(v)
+                              for k, v in node.items()
+                              if isinstance(v, str) and ('beskriv' in str(k).casefold() or 'modul' in str(k).casefold() or 'lär' in str(k).casefold())
+                          }
+                          module_like.append({'ids': sorted(set(ids_here)), 'texts': text_fields})
+                  if node.get('koncept_id'):
+                      concept_ids.append(str(node['koncept_id']))
+
+          unique_training_ids = set(concept_ids)
+          active_training_ids = unique_training_ids & active_skills
+          inactive_training_ids = unique_training_ids - active_skills
+
+          tag_names = [
+              'skill_critical_sparse',
+              'skill_no_yvkv_relevance_context',
+              'skill_canonical_text_poor',
+              'skill_text_poor_derived_only',
+              'skill_no_ssyk_context',
+          ]
+          training_by_tag = {}
+          esco_by_tag = {}
+          for tag in tag_names:
+              ids = {r['concept_id'] for r in kv_rows if tag in r.get('gap_tags', [])}
+              mapped_training = ids & active_training_ids
+              esco = {r['concept_id'] for r in kv_rows if tag in r.get('gap_tags', []) and r.get('direct', {}).get('esco_mapping_count', 0) > 0}
+              training_by_tag[tag] = {
+                  'targets': len(ids),
+                  'training_mapped': len(mapped_training),
+                  'training_mapped_share': round(len(mapped_training)/len(ids), 6) if ids else None,
+              }
+              esco_by_tag[tag] = {
+                  'targets': len(ids),
+                  'has_esco_mapping': len(esco),
+                  'has_esco_mapping_share': round(len(esco)/len(ids), 6) if ids else None,
+              }
+
+          yv_esco_by_tag = {}
+          for tag in ['text_poor_without_observed_language','canonical_text_poor','no_observed_ad_language','no_skill_context','sparse_occupation_context']:
+              rows = [r for r in yv_rows if tag in r.get('gap_tags', [])]
+              esco = [r for r in rows if r.get('direct', {}).get('taxonomy_esco_mapping_count', 0) > 0]
+              yv_esco_by_tag[tag] = {
+                  'targets': len(rows),
+                  'has_esco_mapping': len(esco),
+                  'has_esco_mapping_share': round(len(esco)/len(rows), 6) if rows else None,
+              }
+
+          # -------------------------------------------------------- Handelsradet v31 probe
+          retail_candidates = [
+              'https://data.jobtechdev.se/taxonomy/version/31/query/swedish-retail-and-wholesale-council-skills/swedish-retail-and-wholesale-council-skills.json',
+              'https://data.jobtechdev.se/taxonomy/version/31/query/swedish-retail-and-wholesale-council-skills.json',
+          ]
+          retail = {'status':'not_found', 'attempted_urls': retail_candidates}
+          for url in retail_candidates:
+              try:
+                  wire = fetch(url)
+                  doc = json.loads(wire)
+              except Exception as e:
+                  continue
+              concepts = doc.get('data', {}).get('concepts') if isinstance(doc, dict) else None
+              if not isinstance(concepts, list):
+                  continue
+              related_occ = set()
+              related_ssyk = set()
+              real_defs = 0
+              for c in concepts:
+                  if not isinstance(c, dict):
+                      continue
+                  label = normtext(c.get('preferred_label')).casefold()
+                  definition = normtext(c.get('definition')).casefold()
+                  if definition and definition != label:
+                      real_defs += 1
+                  for rel in c.get('related') or []:
+                      if not isinstance(rel, dict) or not rel.get('id'):
+                          continue
+                      if rel.get('type') == 'occupation-name':
+                          related_occ.add(str(rel['id']))
+                      elif rel.get('type') == 'ssyk-level-4':
+                          related_ssyk.add(str(rel['id']))
+              weak_yv = {r['concept_id'] for r in yv_rows if 'text_poor_without_observed_language' in r.get('gap_tags', [])}
+              retail = {
+                  'status':'measured',
+                  'url':url,
+                  'sha256':hashlib.sha256(wire).hexdigest(),
+                  'bytes':len(wire),
+                  'concepts':len(concepts),
+                  'concepts_with_real_definition':real_defs,
+                  'related_unique_occupation_names':len(related_occ),
+                  'related_unique_ssyk4':len(related_ssyk),
+                  'weak_yv_244_directly_related':len(weak_yv & related_occ),
+              }
+              break
+
+          report = {
+              'schema_version': 1,
+              'taxonomy_version': 31,
+              'labour_market_training_mapping': {
+                  'source': training_url,
+                  'sha256': hashlib.sha256(training_wire).hexdigest(),
+                  'bytes': len(training_wire),
+                  'top_level_type': type(training_doc).__name__,
+                  'top_level_keys': sorted(training_doc.keys()) if isinstance(training_doc, dict) else None,
+                  'koncept_id_occurrences': len(concept_ids),
+                  'unique_concept_ids': len(unique_training_ids),
+                  'unique_active_v31_skill_ids': len(active_training_ids),
+                  'unique_not_active_v31_skill_ids': len(inactive_training_ids),
+                  'module_like_records_detected': len(module_like),
+                  'gap_overlap': training_by_tag,
+                  'most_common_keys': key_frequency.most_common(40),
+                  'sample_inactive_ids': sorted(inactive_training_ids)[:30],
+              },
+              'esco_mapping_opportunity': {
+                  'note': 'Counts only existing typed AF-v31 -> ESCO mappings. Swedish ESCO text itself is not yet ingested or assumed equivalent.',
+                  'kv_gap_overlap': esco_by_tag,
+                  'yv_gap_overlap': yv_esco_by_tag,
+              },
+              'swedish_retail_and_wholesale_council': retail,
+          }
+          out = Path('/tmp/gap-public-sources')
+          out.mkdir(parents=True, exist_ok=True)
+          (out/'aggregate.json').write_text(json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True)+'\n', encoding='utf-8')
+          print(json.dumps(report, ensure_ascii=False, indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gap-public-sources-v31
+          path: /tmp/gap-public-sources/
+          if-no-files-found: error
+          retention-days: 7
