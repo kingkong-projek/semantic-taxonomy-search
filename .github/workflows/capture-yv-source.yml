@@ -15,15 +15,16 @@ jobs:
     runs-on: [self-hosted, Linux, X64]
     timeout-minutes: 10
     steps:
-      - name: Clone public Yrkesvaljaren repository
+      - name: Clone public source repositories
         shell: bash
         run: |
           set -euo pipefail
-          rm -rf "$RUNNER_TEMP/yrkesvaljaren-source"
+          rm -rf "$RUNNER_TEMP/yrkesvaljaren-source" "$RUNNER_TEMP/search-trends-source"
           git clone --depth 1 https://gitlab.com/arbetsformedlingen/taxonomy-dev/backend/yrkesvaljaren.git "$RUNNER_TEMP/yrkesvaljaren-source"
-          git -C "$RUNNER_TEMP/yrkesvaljaren-source" rev-parse HEAD | tee "$RUNNER_TEMP/SOURCE_COMMIT.txt"
-          git -C "$RUNNER_TEMP/yrkesvaljaren-source" remote get-url origin | tee "$RUNNER_TEMP/SOURCE_REMOTE.txt"
-          rm -rf "$RUNNER_TEMP/yrkesvaljaren-source/.git"
+          git clone --depth 1 https://gitlab.com/arbetsformedlingen/job-ads/search-trends.git "$RUNNER_TEMP/search-trends-source"
+          git -C "$RUNNER_TEMP/yrkesvaljaren-source" rev-parse HEAD | tee "$RUNNER_TEMP/YV_SOURCE_COMMIT.txt"
+          git -C "$RUNNER_TEMP/search-trends-source" rev-parse HEAD | tee "$RUNNER_TEMP/SEARCH_TRENDS_SOURCE_COMMIT.txt"
+          rm -rf "$RUNNER_TEMP/yrkesvaljaren-source/.git" "$RUNNER_TEMP/search-trends-source/.git"
 
       - name: Probe raw JobSearch Trends distribution
         shell: bash
@@ -61,7 +62,7 @@ jobs:
                   if not json_names:
                       raise RuntimeError(f"No JSON in {url}")
                   doc = json.loads(z.read(json_names[0]))
-              sample = {
+              samples.append({
                   "date": date,
                   "url": url,
                   "zip_bytes": len(payload),
@@ -75,8 +76,7 @@ jobs:
                       }
                       for k, v in doc.items()
                   },
-              }
-              samples.append(sample)
+              })
 
           report = {
               "source": base,
@@ -97,11 +97,14 @@ jobs:
         run: |
           set -euo pipefail
           cp /tmp/jobsearch-trends-probe.json "$RUNNER_TEMP/jobsearch-trends-probe.json"
-          tar -C "$RUNNER_TEMP" -czf "$RUNNER_TEMP/yrkesvaljaren-main.tar.gz" yrkesvaljaren-source SOURCE_COMMIT.txt SOURCE_REMOTE.txt jobsearch-trends-probe.json
+          tar -C "$RUNNER_TEMP" -czf "$RUNNER_TEMP/yrkesvaljaren-audit.tar.gz" \
+            yrkesvaljaren-source search-trends-source \
+            YV_SOURCE_COMMIT.txt SEARCH_TRENDS_SOURCE_COMMIT.txt \
+            jobsearch-trends-probe.json
 
       - uses: actions/upload-artifact@v4
         with:
-          name: yrkesvaljaren-main-source
-          path: ${{ runner.temp }}/yrkesvaljaren-main.tar.gz
+          name: yrkesvaljaren-audit-source
+          path: ${{ runner.temp }}/yrkesvaljaren-audit.tar.gz
           if-no-files-found: error
           retention-days: 1
