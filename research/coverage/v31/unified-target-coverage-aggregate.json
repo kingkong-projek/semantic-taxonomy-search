@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": "31",
+  "measured_at": "2026-09-05T22:15:25Z",
+  "workflow_run_id": 33995365668,
+  "artifact_id": 9977882211,
+  "artifact_digest": "sha256:0a7db315164144d60958dfbdf3a6910be52e32506c0e1b7ca3b677c8815eebcf",
+  "matrix_semantics": "diagnostic dimensions and explicit overlapping gap strata; no composite semantic score",
+  "target_counts": {
+    "yv_occupation_name": 2105,
+    "yv_job_title_context_rows": 10225,
+    "yv_unique_published_job_title_ids": 9580,
+    "yv_retrieval_only_excluded_active_job_titles": 205,
+    "kv_active_skills": 6752
+  },
+  "gap_strata": {
+    "canonical_text_poor": 411,
+    "job_title_multi_parent": 1186,
+    "job_title_no_own_semantic_text": 10219,
+    "no_observed_ad_language": 1054,
+    "no_skill_context": 6,
+    "skill_canonical_text_poor": 4407,
+    "skill_critical_sparse": 1410,
+    "skill_no_ssyk_context": 18,
+    "skill_no_yvkv_relevance_context": 1701,
+    "skill_text_poor_derived_only": 2945,
+    "skill_transferable": 27,
+    "sparse_occupation_context": 263,
+    "text_poor_without_observed_language": 244
+  },
+  "source_hashes": {
+    "taxonomy-common-relations": "634fd9d848a172747e54e3e487160a912ae6c0fcb8219c50998767c8c9aacbcc",
+    "yrkesvaljaren": "1036f9525416fac4ce475c1c1d3909b9e2849ebcf7094ffd38104955e4c2ee49",
+    "skill-selector": "da83f26bf316971caa407364d8feae6f791203bff5758e674cace3d919e4b524",
+    "relevant-skills": "e66679cdb48af23700734bcf26d8d6531d842cbdad2cba80c67baa71ceb3a897",
+    "ad-keyword-corpus": "2fb4be00e42a89dca97f23547942b128820fe3b794ff5e25ac0f872978fe5b00",
+    "nearby-occupations": "1f476198bea046c88d18fc8a09c80fbb88107bcb046644b95ffdc441db679396"
+  },
+  "authority_boundaries": [
+    "direct canonical text remains separate from inherited occupation/context evidence",
+    "KV curated/native evidence remains separate from calculated and Relevanta evidence",
+    "YV-excluded active job titles remain retrieval-only vocabulary",
+    "accepted source hashes are checked and drift fails closed"
+  ]
+}

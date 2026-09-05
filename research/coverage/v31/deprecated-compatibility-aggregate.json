@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": "31",
+  "measured_at": "2026-09-05T22:12:48Z",
+  "workflow_run_id": 33995216353,
+  "artifact_id": 9977844140,
+  "artifact_digest": "sha256:f03c1a94d1b271264326703cc9808b4c6b852a00aa219a4b0c3e5a83efdb24ac",
+  "active_concepts_by_type": {
+    "occupation-name": 2105,
+    "job-title": 9785,
+    "skill": 6752,
+    "keyword": 1484
+  },
+  "deprecated_concepts_by_type": {
+    "occupation-name": 2007,
+    "job-title": 563,
+    "skill": 296,
+    "keyword": 165
+  },
+  "deprecated_total": 3031,
+  "legacy_retrieval_labels_by_type": {
+    "occupation-name": 2313,
+    "job-title": 569,
+    "skill": 330,
+    "keyword": 165
+  },
+  "resolution_state_counts": {
+    "UNIQUE_ACTIVE_TARGET": 1845,
+    "MULTIPLE_ACTIVE_TARGETS": 277,
+    "NO_ACTIVE_TARGET": 909
+  },
+  "resolution_state_by_type": {
+    "occupation-name": {"UNIQUE_ACTIVE_TARGET": 1729, "MULTIPLE_ACTIVE_TARGETS": 277, "NO_ACTIVE_TARGET": 1},
+    "job-title": {"UNIQUE_ACTIVE_TARGET": 37, "NO_ACTIVE_TARGET": 526},
+    "skill": {"UNIQUE_ACTIVE_TARGET": 79, "NO_ACTIVE_TARGET": 217},
+    "keyword": {"NO_ACTIVE_TARGET": 165}
+  },
+  "max_chain_depth_distribution": {"0": 909, "1": 2122},
+  "direct_target_type_mismatches": 0,
+  "unknown_direct_targets": 0,
+  "yv_product_resolution": {
+    "unique_occ_admitted": 1729,
+    "unique_job_admitted": 29,
+    "unique_job_excluded": 8
+  },
+  "kv_product_resolution": {"unique_active_skill": 79},
+  "source_hashes": {
+    "taxonomy_common": "634fd9d848a172747e54e3e487160a912ae6c0fcb8219c50998767c8c9aacbcc",
+    "yrkesvaljaren": "1036f9525416fac4ce475c1c1d3909b9e2849ebcf7094ffd38104955e4c2ee49"
+  },
+  "authority_boundary": "replaced_by is canonical migration/history evidence, not synonymy; deprecated labels remain retrieval-only and product admission is applied after active-target resolution"
+}

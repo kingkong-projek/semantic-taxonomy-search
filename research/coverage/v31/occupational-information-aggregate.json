@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": "31",
+  "measured_at": "2026-09-05T22:15:51Z",
+  "workflow_run_id": 33995395508,
+  "artifact_id": 9977890222,
+  "artifact_digest": "sha256:9e892f78ded3bd79899e3d2e1dbdd25c3397b7c10c667abb459325f63d2ac353",
+  "source": {
+    "title": "Yrkesinformation interimslösning",
+    "version": "1.0",
+    "created_at": "2026-04-15",
+    "source_date": "2026-02-24",
+    "data_expires": "2026-12-31",
+    "records": 324,
+    "rich_records_ge_200_text_chars": 324,
+    "sha256": "3d52bfec15041898786460374736eba31c5d79ef205182265288b60cf2819c51"
+  },
+  "taxonomy_snapshot_sha256": "634fd9d848a172747e54e3e487160a912ae6c0fcb8219c50998767c8c9aacbcc",
+  "canonical_joinability": {
+    "active_occupation_universe": 2105,
+    "explicit_active_occupation_id_unique": 85,
+    "explicit_active_occupation_id_ambiguous": 34,
+    "no_unique_explicit_active_occupation_id": 239,
+    "no_explicit_active_occupation_id": 205,
+    "exact_preferred_label_unique_candidate": 171,
+    "exact_any_taxonomy_label_unique_candidate": 178,
+    "no_exact_taxonomy_label_candidate": 146
+  },
+  "gate1_decision": "Canonical semantic-text attachment is allowed only for the 85 records with exactly one explicit active v31 occupation-name ID. The 34 records with multiple explicit active occupation IDs and the 205 with none remain blocked from canonical attachment. Exact label equality is retrieval candidate evidence only and cannot resolve those records.",
+  "authority_boundary": "Only explicit active taxonomy IDs embedded in the source record are authoritative joins; label similarity or equality is insufficient on its own."
+}
