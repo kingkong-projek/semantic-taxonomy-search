@@ -31,6 +31,7 @@ jobs:
         run: |
           set -euo pipefail
           python3 - <<'PY'
+          import datetime as dt
           import io
           import json
           import re
@@ -52,6 +53,31 @@ jobs:
           if not dated:
               raise RuntimeError("No dated .zip links discovered on JobSearch Trends file surface")
 
+          date_objs = [dt.date.fromisoformat(d) for d, _ in dated]
+          present = set(date_objs)
+          cursor = date_objs[0]
+          all_dates = []
+          while cursor <= date_objs[-1]:
+              all_dates.append(cursor)
+              cursor += dt.timedelta(days=1)
+          missing = [d for d in all_dates if d not in present]
+
+          # Compress missing dates to contiguous ranges.
+          ranges = []
+          if missing:
+              start = prev = missing[0]
+              for d in missing[1:]:
+                  if d == prev + dt.timedelta(days=1):
+                      prev = d
+                  else:
+                      ranges.append((start.isoformat(), prev.isoformat(), (prev-start).days+1))
+                      start = prev = d
+              ranges.append((start.isoformat(), prev.isoformat(), (prev-start).days+1))
+
+          yv_end = dt.date(2026, 8, 16)
+          dates_through_yv = [d for d in date_objs if d <= yv_end]
+          expected_through_yv = (yv_end - date_objs[0]).days + 1
+
           samples = []
           for date, url in (dated[0], dated[-1]):
               with urllib.request.urlopen(url, timeout=120) as r:
@@ -62,18 +88,27 @@ jobs:
                   if not json_names:
                       raise RuntimeError(f"No JSON in {url}")
                   doc = json.loads(z.read(json_names[0]))
+              q = doc.get("q_approved") or []
+              q_counts = [int(x[1]) for x in q]
               samples.append({
                   "date": date,
                   "url": url,
                   "zip_bytes": len(payload),
                   "zip_members": names,
                   "top_level_keys": sorted(doc.keys()),
+                  "q_approved": {
+                      "distinct_values": len(q),
+                      "sum_occurrences": sum(q_counts),
+                      "min_count": min(q_counts) if q_counts else None,
+                      "max_count": max(q_counts) if q_counts else None,
+                      "values_count_1": sum(c == 1 for c in q_counts),
+                      "values_below_10": sum(c < 10 for c in q_counts),
+                      "occurrences_below_10": sum(c for c in q_counts if c < 10),
+                      "top5": q[:5],
+                      "tail5": q[-5:],
+                  },
                   "field_shapes": {
-                      k: {
-                          "type": type(v).__name__,
-                          "length": len(v) if hasattr(v, "__len__") else None,
-                          "sample": v[:5] if isinstance(v, list) else v if isinstance(v, (str, int, float, bool)) or v is None else None,
-                      }
+                      k: {"type": type(v).__name__, "length": len(v) if hasattr(v, "__len__") else None}
                       for k, v in doc.items()
                   },
               })
@@ -83,8 +118,14 @@ jobs:
               "number_of_dated_zip_links": len(dated),
               "first_date": dated[0][0],
               "last_date": dated[-1][0],
-              "first_url": dated[0][1],
-              "last_url": dated[-1][1],
+              "calendar_days_in_span": len(all_dates),
+              "missing_calendar_days": len(missing),
+              "missing_ranges": ranges,
+              "through_yv_snapshot_end_2026_08_16": {
+                  "published_daily_files": len(dates_through_yv),
+                  "calendar_days": expected_through_yv,
+                  "missing_calendar_days": expected_through_yv - len(dates_through_yv),
+              },
               "samples": samples,
           }
           with open("/tmp/jobsearch-trends-probe.json", "w", encoding="utf-8") as f:
