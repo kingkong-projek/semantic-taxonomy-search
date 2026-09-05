@@ -24,7 +24,81 @@ jobs:
           git -C "$RUNNER_TEMP/yrkesvaljaren-source" rev-parse HEAD | tee "$RUNNER_TEMP/SOURCE_COMMIT.txt"
           git -C "$RUNNER_TEMP/yrkesvaljaren-source" remote get-url origin | tee "$RUNNER_TEMP/SOURCE_REMOTE.txt"
           rm -rf "$RUNNER_TEMP/yrkesvaljaren-source/.git"
-          tar -C "$RUNNER_TEMP" -czf "$RUNNER_TEMP/yrkesvaljaren-main.tar.gz" yrkesvaljaren-source SOURCE_COMMIT.txt SOURCE_REMOTE.txt
+
+      - name: Probe raw JobSearch Trends distribution
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import io
+          import json
+          import re
+          import urllib.request
+          import zipfile
+          from urllib.parse import urljoin
+
+          base = "https://data.arbetsformedlingen.se/annonser/search-trends"
+          with urllib.request.urlopen(base, timeout=60) as r:
+              html = r.read().decode("utf-8", errors="replace")
+
+          links = re.findall(r'href=["\']([^"\']+\.zip)["\']', html, flags=re.I)
+          dated = []
+          for link in links:
+              m = re.search(r"\d{4}-\d{2}-\d{2}", link)
+              if m:
+                  dated.append((m.group(), urljoin(base, link)))
+          dated = sorted(set(dated))
+          if not dated:
+              raise RuntimeError("No dated .zip links discovered on JobSearch Trends file surface")
+
+          samples = []
+          for date, url in (dated[0], dated[-1]):
+              with urllib.request.urlopen(url, timeout=120) as r:
+                  payload = r.read()
+              with zipfile.ZipFile(io.BytesIO(payload)) as z:
+                  names = z.namelist()
+                  json_names = [n for n in names if n.endswith(".json")]
+                  if not json_names:
+                      raise RuntimeError(f"No JSON in {url}")
+                  doc = json.loads(z.read(json_names[0]))
+              sample = {
+                  "date": date,
+                  "url": url,
+                  "zip_bytes": len(payload),
+                  "zip_members": names,
+                  "top_level_keys": sorted(doc.keys()),
+                  "field_shapes": {
+                      k: {
+                          "type": type(v).__name__,
+                          "length": len(v) if hasattr(v, "__len__") else None,
+                          "sample": v[:5] if isinstance(v, list) else v if isinstance(v, (str, int, float, bool)) or v is None else None,
+                      }
+                      for k, v in doc.items()
+                  },
+              }
+              samples.append(sample)
+
+          report = {
+              "source": base,
+              "number_of_dated_zip_links": len(dated),
+              "first_date": dated[0][0],
+              "last_date": dated[-1][0],
+              "first_url": dated[0][1],
+              "last_url": dated[-1][1],
+              "samples": samples,
+          }
+          with open("/tmp/jobsearch-trends-probe.json", "w", encoding="utf-8") as f:
+              json.dump(report, f, ensure_ascii=False, indent=2)
+          print(json.dumps(report, ensure_ascii=False, indent=2))
+          PY
+
+      - name: Package source snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp /tmp/jobsearch-trends-probe.json "$RUNNER_TEMP/jobsearch-trends-probe.json"
+          tar -C "$RUNNER_TEMP" -czf "$RUNNER_TEMP/yrkesvaljaren-main.tar.gz" yrkesvaljaren-source SOURCE_COMMIT.txt SOURCE_REMOTE.txt jobsearch-trends-probe.json
+
       - uses: actions/upload-artifact@v4
         with:
           name: yrkesvaljaren-main-source
