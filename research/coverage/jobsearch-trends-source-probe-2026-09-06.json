@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "measured_at": "2026-09-06",
+  "yrkesvaljaren_source": {
+    "remote": "https://gitlab.com/arbetsformedlingen/taxonomy-dev/backend/yrkesvaljaren.git",
+    "commit": "6dd9e4737d7db3cb2709f8082808b88e5c89ed6e",
+    "files_at_head": 33,
+    "python_lines_main_and_utils": 487,
+    "committed_search_aggregate": {
+      "path": "data/sokningar-platsbanken.json.zip",
+      "sha256": "01a2550473091b06fdaaf450015eeea13b301471f1c78f5fb0dc8d3499645ae2",
+      "start_date": "2022-05-04",
+      "end_date": "2026-08-16",
+      "distinct_terms": 115553,
+      "retained_search_count": 3136136606,
+      "daily_minimum_count_in_update": 10,
+      "cumulative_minimum_count_after_update": 100,
+      "normalization": [
+        "replace space-hyphen with hyphen",
+        "replace hyphen-space with hyphen",
+        "collapse repeated spaces",
+        "strip"
+      ],
+      "source_field_used": "q_approved"
+    }
+  },
+  "jobsearch_trends_source": {
+    "remote": "https://gitlab.com/arbetsformedlingen/job-ads/search-trends.git",
+    "commit": "7f3d919a876550678341ff43fecb98f42b98896b",
+    "public_distribution": "https://data.arbetsformedlingen.se/annonser/search-trends",
+    "dated_zip_links": 1256,
+    "first_date": "2022-05-04",
+    "last_date": "2026-09-04",
+    "calendar_days_in_span": 1585,
+    "dates_without_a_published_zip_in_current_listing": 329,
+    "public_semantics": {
+      "unit": "daily aggregate counts of request parameters, not individual public request rows",
+      "q_approved": "free-text q values after a whitelist/stemming privacy filter intended to remove PII; lower-cased/cleaned",
+      "complete_parameter_combinations_public": false,
+      "query_to_selected_taxonomy_identity_join": false,
+      "public_structured_skill_field": false,
+      "public_fields_are_independent_daily_marginals": true
+    },
+    "sample_files": [
+      {
+        "date": "2022-05-04",
+        "url": "https://data.arbetsformedlingen.se/annonser/search-trends/jobsearch-daily-2022-05-04.zip",
+        "zip_bytes": 506282,
+        "q_approved_distinct": 15425,
+        "occupation_name_values": 499,
+        "occupation_group_values": 628,
+        "top_q_approved": [
+          ["stockholms län", 5394],
+          ["haninge", 4821],
+          ["ekonomiskt bistånd", 3798],
+          ["nynäshamn", 3699],
+          ["försäkringskassan", 3591]
+        ]
+      },
+      {
+        "date": "2026-09-04",
+        "url": "https://data.arbetsformedlingen.se/annonser/search-trends/jobsearch-daily-2026-09-04.zip",
+        "zip_bytes": 2796158,
+        "q_approved_distinct": 100342,
+        "occupation_name_values": 1,
+        "occupation_group_values": 628,
+        "top_q_approved": [
+          ["personlig assistent", 27274],
+          ["undersköterska", 25597],
+          ["stockholms län", 22829],
+          ["lärare", 22601],
+          ["göteborg", 22576]
+        ]
+      }
+    ]
+  },
+  "implications": [
+    "The committed Yrkesvaljaren search file is a derived cumulative subset of the public daily JobSearch Trends source, not the raw source.",
+    "Raw public daily files preserve time and lower-frequency q_approved terms that Yrkesvaljaren discards, so they should become a first-class Gate-2 behavioral source.",
+    "q_approved means privacy-approved free text, not semantically approved or mapped intent.",
+    "Public daily fields are split marginals, so same-day q and taxonomy-id counts must never be treated as query-target co-occurrence.",
+    "The public field list omits structured skill and language parameters even though internal documentation describes them.",
+    "Yrkesvaljaren update_search_terms only adds files outside the previous min/max date range, so a file published later for a missing date inside that interval would not be backfilled.",
+    "Yrkesvaljaren concept weights are exact preferred-label behavioral priors; job-title counts are inherited by every related occupation-name and are not semantic ground truth."
+  ]
+}
