@@ -7,7 +7,9 @@
 
 ## 1. Product problem
 
-We are building a **reusable semantic retrieval capability for occupations and skills/competences** in services where a user must identify or select taxonomy concepts without knowing the taxonomy's exact wording. The project is concretely motivated by reports from users of Yrkesväljaren (YV) and Kompetensväljaren (KV) who cannot find the occupation or competence they are looking for with the current selector wording.
+The observed product problem is deliberately broader than a semantic-fallback residual: **users report that they sometimes cannot find the occupation or competence they are looking for**. We do not yet know which failure mechanisms dominate. The failure may occur in wording/lexical matching, ranking, title-vs-occupation modelling, product admission/exclusion, ambiguity/context handling, interaction behaviour, integration/hand-off, missing vocabulary, or genuinely semantic description search.
+
+We are therefore investigating a **reusable findability/retrieval capability for occupations and skills/competences**, with semantic retrieval as one candidate capability rather than the assumed diagnosis. YV and KV are the first concrete products in which the findability problem is measured.
 
 YV and KV are current **reference profiles and the first product problem to solve**, not the scope boundary of the retrieval core. JobSearch/Platsbanken and other AF datasets are evidence sources, not the target product.
 
@@ -39,9 +41,11 @@ Description mode explicitly includes ordinary first-person/task language such as
 
 The core result remains an exact canonical occupation/skill identity with provenance; the consumer then enforces its admission profile. `Inget av dessa` / abstention is a first-class successful outcome. A nearest neighbour is not proof that a valid match exists.
 
-### 2.1 Fallback-first product objective vs replacement potential
+### 2.1 Findability-first product objective
 
-The **primary v0 product question is incremental fallback value**, not whether a research matcher can replace a working selector.
+The **primary v0 product question is end-to-end findability**: for a user trying to locate the right occupation or competence, does the product surface the intended valid identity in a small usable result set? Semantic fallback is one possible intervention and its incremental value remains useful to measure, but it must not redefine the original problem as only the subset of queries left after ordinary lookup fails.
+
+Evaluation must therefore distinguish failure mechanism before choosing a fix: ordinary lexical reachability, ranking, title/occupation routing, ambiguity/context, product admission, integration/hand-off, and description-style semantic retrieval. The smallest intervention that fixes a material measured findability failure wins.
 
 The pinned current implementation baseline is `kingkong-projek/yrkesvaljaren@0eba98e3a91079a43c1eaf6da09dfabe11e5bc8b`:
 
@@ -57,7 +61,7 @@ Canonical label, alternative-label, typo and ordinary substring cases remain ess
 
 Evidence: `docs/findings/current-selector-baseline-2026-09-06.md`.
 
-**Product-first gate before semantic expansion:** real YV/KV users report that they sometimes cannot find the occupation or competence they need. Before attributing a residual to missing semantic intelligence, audit the ordinary selectors against their published data, interaction paths and integration contracts. Fix cheap native reachability/identity/vocabulary problems first; description-semantic fallback is evaluated on the residual that remains.
+**Product-first gate before semantic expansion:** real YV/KV users report that they sometimes cannot find the occupation or competence they need. Treat that report as the phenomenon to explain, not as evidence for a predetermined residual or semantic diagnosis. Audit the complete findability path against published data, interaction paths and integration contracts; classify observed failures by mechanism; then fix the cheapest material cause. Description-semantic fallback is evaluated as one capability within that broader findability problem, not as the definition of the problem.
 
 The first YV audit materially narrowed the problem. Ordinary multi-context dropdown lookup is healthy (**541/541** exact multi-context titles expose all intended context rows). Two narrow context-preservation defects were verified and patched in `kingkong-projek/yrkesvaljaren@81a7cb5e7d52e2c5a0d343011774a2f4dbcf6991` (PR #34): rich `setSelection()` now preserves the selected `related` occupation context, and a bare ambiguous exact title no longer silently auto-selects the first context on blur. Normal YV search/ranking was not changed.
 
