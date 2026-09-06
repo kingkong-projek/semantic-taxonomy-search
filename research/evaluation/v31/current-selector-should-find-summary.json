@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 31,
+  "status": "measured",
+  "track": "1-current-yv-kv-findability",
+  "source_workflow_run_id": 34040671906,
+  "selector_contract": {
+    "yv_search_utils_blob": "711769d019d01539b958776467e42dbafa46d9c1",
+    "yv_constants_blob": "e9a412778d77de1aef82da94e36559619f5d607c",
+    "fuse_js_version": "7.5.0",
+    "yv_fuzzy_dedupe_key_at_measurement": "job-title id"
+  },
+  "probe_population": {
+    "all_cases": 3590,
+    "yv_cases": 2222,
+    "kv_cases": 1368,
+    "yv_cases_with_observed_exact_query_before_collision_filter": 797,
+    "yv_context_qualified_observed_cases": 43,
+    "yv_context_qualified_observed_volume": 719510,
+    "yv_observed_query_volume_before_collision_filter": 171725482
+  },
+  "yv": {
+    "strict_noncollision_cases": 1346,
+    "preferred_label_collision_cases_excluded_from_primary_metric": 876,
+    "unweighted_discovery_at_5_pct": 57.727,
+    "no_result_pct": 0.223,
+    "observed_exact_query_cases": 444,
+    "observed_exact_query_volume": 150300906,
+    "observed_volume_discovery_at_5_pct": 97.38,
+    "target_occurrence_proxy_weighted_discovery_at_5_pct": 69.361,
+    "canonical_alternative_label": {
+      "cases": 357,
+      "hit5": 318,
+      "discovery_at_5_pct": 89.076,
+      "observed_volume": 95842570,
+      "observed_hit5_volume": 94479709,
+      "observed_miss_volume": 1362861,
+      "observed_volume_discovery_at_5_pct": 98.578,
+      "authority": "canonical vocabulary; strongest should-find evidence"
+    },
+    "deprecated_unique_replacement_label": {
+      "cases": 1066,
+      "hit5": 521,
+      "discovery_at_5_pct": 48.874,
+      "observed_volume": 60841727,
+      "observed_hit5_volume": 57679834,
+      "observed_miss_volume": 3161893,
+      "observed_volume_discovery_at_5_pct": 94.803,
+      "authority": "migration/history route evidence only; not synonym ground truth"
+    },
+    "observed_multi_context_title_plus_unique_parent_tokens": {
+      "cases": 43,
+      "hit5": 35,
+      "discovery_at_5_pct": 81.395,
+      "observed_volume": 719510,
+      "observed_hit5_volume": 705856,
+      "observed_miss_volume": 13654,
+      "observed_volume_discovery_at_5_pct": 98.102,
+      "authority": "narrowly inferred context intent from tokens unique among sibling parents; not click/selection ground truth"
+    },
+    "fuzzy_multi_context_structural_stress": {
+      "eligible_titles": 539,
+      "all_contexts_preserved": 0,
+      "one_context_only": 539,
+      "all_contexts_preserved_pct": 0,
+      "authority": "synthetic one-edit typo stress over real published multi-context rows; proves product behavior, not traffic incidence"
+    },
+    "high_signal_examples": [
+      {
+        "query": "Miljöstrateg",
+        "target": "Miljö- och klimatstrateg",
+        "provenance": "canonical_alternative_label",
+        "observed_query_count": 295372,
+        "observed_top_result": "Arbetsmiljöstrateg"
+      },
+      {
+        "query": "PT",
+        "target": "Personlig tränare",
+        "provenance": "canonical_alternative_label",
+        "observed_query_count": 92663,
+        "observed_top_results": ["PTP-psykolog", "Receptionist", "Receptarie", "Hotellreceptionist", "Optiker"]
+      },
+      {
+        "query": "Flygvärdinna",
+        "target": "Kabinpersonal",
+        "provenance": ["canonical_alternative_label", "deprecated_unique_replacement_label"],
+        "observed_query_count": 107475,
+        "observed_top_results": ["Frukostvärdinna", "Konferensvärdinna", "Bingovärdinna"]
+      },
+      {
+        "query": "Nagelteknolog",
+        "target": "Nagelterapeut",
+        "provenance": ["canonical_alternative_label", "deprecated_unique_replacement_label"],
+        "observed_query_count": 67634,
+        "observed_top_results": ["Språkteknolog", "Chief Technology Officer/CTO/Teknologichef", "Anestesiolog"]
+      }
+    ]
+  },
+  "kv": {
+    "strict_noncollision_cases": 1358,
+    "preferred_label_collision_cases_excluded_from_primary_metric": 10,
+    "unweighted_discovery_at_5_pct": 78.13,
+    "no_result_pct": 17.894,
+    "target_occurrence_proxy_weighted_discovery_at_5_pct": 49.074,
+    "canonical_alternative_label": {
+      "cases": 1269,
+      "hit5": 1052,
+      "misses": 217,
+      "discovery_at_5_pct": 82.9,
+      "authority": "canonical vocabulary; strongest current-KV should-find evidence"
+    },
+    "canonical_hidden_label": {
+      "cases": 9,
+      "hit5": 4,
+      "misses": 5,
+      "discovery_at_5_pct": 44.444,
+      "authority": "canonical hidden vocabulary; may require product-policy review before display/search use"
+    },
+    "deprecated_unique_replacement_label": {
+      "cases": 88,
+      "hit5": 8,
+      "misses": 80,
+      "discovery_at_5_pct": 9.091,
+      "authority": "migration/history route evidence only; not synonym ground truth"
+    },
+    "high_signal_examples": [
+      {
+        "query": "Microsoft Office",
+        "target": "MS Office",
+        "provenance": "canonical_alternative_label",
+        "target_occurrence_proxy": 1730,
+        "observed_behavior": "no results"
+      },
+      {
+        "query": "Officepaketet",
+        "target": "MS Office",
+        "provenance": "canonical_alternative_label",
+        "target_occurrence_proxy": 1730,
+        "observed_behavior": "no results"
+      },
+      {
+        "query": "Kundvård",
+        "target": "Customer Relationship Management/CRM",
+        "provenance": "canonical_alternative_label",
+        "target_occurrence_proxy": 673,
+        "observed_top_results": ["Diplomerad ekologisk hudvårdsterapeut", "Ekologisk hudvård", "Examen, ekologisk hudvårdsterapeut", "Handvård/Manikyr", "Hudvård"]
+      },
+      {
+        "query": "Javascript-kompetens",
+        "target": "JavaScript, programmeringsspråk",
+        "provenance": "canonical_alternative_label",
+        "target_occurrence_proxy": 563,
+        "observed_behavior": "no results"
+      },
+      {
+        "query": "Legitimation som sjukgymnast",
+        "target": "Legitimation som fysioterapeut",
+        "provenance": ["canonical_alternative_label", "deprecated_unique_replacement_label"],
+        "target_occurrence_proxy": 889,
+        "observed_behavior": "no results"
+      }
+    ]
+  },
+  "decision": {
+    "track_1": "continue current YV/KV end-to-end findability investigation and fixes to completion",
+    "track_2": "pause free-text/description fallback research until track 1 failure mechanisms are classified and the cheapest material fixes are measured",
+    "priority": [
+      "patch verified YV fuzzy multi-context row collapse",
+      "measure and fix canonical alternative-label reachability before adding semantic retrieval",
+      "replay frozen persona journeys against exact current YV/KV UI behavior",
+      "verify YV-to-KV context coherence in real integration paths where accessible",
+      "cluster failures by demand, recognisability, ambiguity, ranking and recovery cost"
+    ]
+  }
+}
