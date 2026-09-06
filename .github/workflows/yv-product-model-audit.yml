@@ -17,13 +17,27 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Fetch pinned YV sources
+      - name: Fetch pinned public YV data and generator
         shell: bash
         run: |
           set -euo pipefail
-          rm -rf /tmp/yv-product /tmp/yv-generator yv-product-model-audit
-          git clone --quiet https://github.com/kingkong-projek/yrkesvaljaren.git /tmp/yv-product
-          test "$(git -C /tmp/yv-product rev-parse HEAD)" = "0eba98e3a91079a43c1eaf6da09dfabe11e5bc8b"
+          rm -rf /tmp/yv-generator /tmp/yv-t31.json /tmp/yv-runtime-latest.json yv-product-model-audit
+          mkdir -p yv-product-model-audit/generator
+
+          curl -fsSL --retry 3 \
+            https://data.arbetsformedlingen.se/yrke/yrkesvaljaren/v1/yrkesvaljaren-t31.json \
+            -o /tmp/yv-t31.json
+          echo '1036f9525416fac4ce475c1c1d3909b9e2849ebcf7094ffd38104955e4c2ee49  /tmp/yv-t31.json' | sha256sum -c -
+
+          # Runtime latest is diagnostic only. The immutable t31 distribution above is authoritative for this audit.
+          if curl -fsSL --retry 2 \
+            https://d3hng02m5bee8m.cloudfront.net/yrkesvaljaren/latest.json \
+            -o /tmp/yv-runtime-latest.json; then
+            echo 'runtime latest fetched'
+          else
+            rm -f /tmp/yv-runtime-latest.json
+            echo 'runtime latest unavailable; continuing with immutable t31 source'
+          fi
 
           git init -q /tmp/yv-generator
           git -C /tmp/yv-generator remote add origin https://gitlab.com/arbetsformedlingen/taxonomy-dev/backend/yrkesvaljaren.git
@@ -31,120 +45,182 @@ jobs:
           git -C /tmp/yv-generator checkout -q FETCH_HEAD
           test "$(git -C /tmp/yv-generator rev-parse HEAD)" = "6dd9e4737d7db3cb2709f8082808b88e5c89ed6e"
 
-      - name: Aggregate actual latest.json identity model
+      - name: Aggregate YV identity and display model
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p yv-product-model-audit/generator
           python3 - <<'PY'
           import collections, hashlib, json
           from pathlib import Path
 
-          src = Path('/tmp/yv-product/data/latest.json')
-          raw = src.read_bytes()
-          doc = json.loads(raw)
-          rows = doc['data'] if isinstance(doc, dict) and isinstance(doc.get('data'), list) else doc
-          assert isinstance(rows, list)
+          def load_rows(path):
+              raw = Path(path).read_bytes()
+              doc = json.loads(raw)
+              if isinstance(doc, dict) and isinstance(doc.get('data'), list):
+                  rows = doc['data']
+              elif isinstance(doc, list):
+                  rows = doc
+              else:
+                  raise RuntimeError(f'unsupported YV shape in {path}: {type(doc).__name__}')
+              return raw, doc, rows
 
-          by_type = collections.Counter(str(r.get('type')) for r in rows)
-          ids_by_type = collections.defaultdict(set)
-          rows_by_type_id = collections.defaultdict(lambda: collections.defaultdict(list))
-          for r in rows:
-              t = str(r.get('type'))
-              i = str(r.get('id'))
-              ids_by_type[t].add(i)
-              rows_by_type_id[t][i].append(r)
+          def summarize(path, source_name):
+              raw, doc, rows = load_rows(path)
+              by_type = collections.Counter(str(r.get('type')) for r in rows)
+              jt = [r for r in rows if r.get('type') == 'job-title']
+              occ = [r for r in rows if r.get('type') == 'occupation-name']
 
-          jt = [r for r in rows if r.get('type') == 'job-title']
-          occ = [r for r in rows if r.get('type') == 'occupation-name']
+              jt_by_id = collections.defaultdict(list)
+              jt_by_label = collections.defaultdict(list)
+              occ_by_id = collections.defaultdict(list)
+              occ_by_label = collections.defaultdict(list)
+              for r in jt:
+                  jt_by_id[str(r.get('id'))].append(r)
+                  jt_by_label[(r.get('preferred_label') or '').strip()].append(r)
+              for r in occ:
+                  occ_by_id[str(r.get('id'))].append(r)
+                  occ_by_label[(r.get('preferred_label') or '').strip()].append(r)
 
-          jt_by_id = collections.defaultdict(list)
-          jt_by_label = collections.defaultdict(list)
-          for r in jt:
-              jt_by_id[r.get('id')].append(r)
-              jt_by_label[(r.get('preferred_label') or '').strip()].append(r)
+              def parent_pairs(rs):
+                  return sorted({
+                      (r.get('occupation_name_id'), r.get('occupation_name_preferred_label'))
+                      for r in rs
+                  }, key=lambda p: (str(p[1]), str(p[0])))
 
-          def parents(rs):
-              return sorted({(r.get('occupation_name_id'), r.get('occupation_name_preferred_label')) for r in rs})
-
-          multirow_ids = {i: rs for i, rs in jt_by_id.items() if len(rs) > 1}
-          multiparent_ids = {i: rs for i, rs in jt_by_id.items() if len({r.get('occupation_name_id') for r in rs}) > 1}
-          label_multi_ids = {l: rs for l, rs in jt_by_label.items() if len({r.get('id') for r in rs}) > 1}
-          label_multi_parents = {l: rs for l, rs in jt_by_label.items() if len({r.get('occupation_name_id') for r in rs}) > 1}
-
-          def example_for_id(i, rs):
-              return {
-                  'job_title_id': i,
-                  'preferred_labels': sorted({r.get('preferred_label') for r in rs}),
-                  'row_count': len(rs),
-                  'parents': [{'occupation_name_id': p[0], 'occupation_name_preferred_label': p[1]} for p in parents(rs)],
-                  'weights': sorted({r.get('weight') for r in rs if r.get('weight') is not None}, reverse=True),
+              multirow_ids = {i: rs for i, rs in jt_by_id.items() if len(rs) > 1}
+              multiparent_ids = {
+                  i: rs for i, rs in jt_by_id.items()
+                  if len({r.get('occupation_name_id') for r in rs}) > 1
+              }
+              label_multi_ids = {
+                  l: rs for l, rs in jt_by_label.items()
+                  if len({r.get('id') for r in rs}) > 1
+              }
+              label_multi_parents = {
+                  l: rs for l, rs in jt_by_label.items()
+                  if len({r.get('occupation_name_id') for r in rs}) > 1
               }
 
-          def example_for_label(l, rs):
-              return {
-                  'preferred_label': l,
-                  'row_count': len(rs),
-                  'job_title_ids': sorted({r.get('id') for r in rs}),
-                  'parents': [{'occupation_name_id': p[0], 'occupation_name_preferred_label': p[1]} for p in parents(rs)],
-                  'weights': sorted({r.get('weight') for r in rs if r.get('weight') is not None}, reverse=True),
+              exact_identity_dupes = 0
+              for rs in jt_by_id.values():
+                  c = collections.Counter(
+                      (r.get('occupation_name_id'), r.get('preferred_label')) for r in rs
+                  )
+                  exact_identity_dupes += sum(n - 1 for n in c.values() if n > 1)
+
+              occ_ids = set(occ_by_id)
+              jt_ids = set(jt_by_id)
+              parent_ids = {
+                  str(r.get('occupation_name_id')) for r in jt if r.get('occupation_name_id')
               }
 
-          multiparent_examples = sorted(
-              [example_for_id(i, rs) for i, rs in multiparent_ids.items()],
-              key=lambda x: (-max(x['weights'] or [0]), -x['row_count'], str(x['preferred_labels']))
-          )[:100]
-          label_ambiguity_examples = sorted(
-              [example_for_label(l, rs) for l, rs in label_multi_parents.items()],
-              key=lambda x: (-max(x['weights'] or [0]), -x['row_count'], x['preferred_label'])
-          )[:100]
+              def id_example(i, rs):
+                  return {
+                      'job_title_id': i,
+                      'preferred_labels': sorted({r.get('preferred_label') for r in rs}),
+                      'row_count': len(rs),
+                      'parents': [
+                          {'occupation_name_id': p[0], 'occupation_name_preferred_label': p[1]}
+                          for p in parent_pairs(rs)
+                      ],
+                      'weights': sorted({r.get('weight') for r in rs if isinstance(r.get('weight'), (int, float))}, reverse=True),
+                  }
 
-          duplicate_exact_identity_rows = 0
-          for i, rs in jt_by_id.items():
-              c = collections.Counter((r.get('occupation_name_id'), r.get('preferred_label')) for r in rs)
-              duplicate_exact_identity_rows += sum(n - 1 for n in c.values() if n > 1)
+              def label_example(label, rs):
+                  return {
+                      'preferred_label': label,
+                      'row_count': len(rs),
+                      'job_title_ids': sorted({r.get('id') for r in rs}),
+                      'parents': [
+                          {'occupation_name_id': p[0], 'occupation_name_preferred_label': p[1]}
+                          for p in parent_pairs(rs)
+                      ],
+                      'weights': sorted({r.get('weight') for r in rs if isinstance(r.get('weight'), (int, float))}, reverse=True),
+                  }
 
-          occ_ids = {r.get('id') for r in occ}
-          jt_ids = {r.get('id') for r in jt}
-          parent_ids = {r.get('occupation_name_id') for r in jt if r.get('occupation_name_id')}
+              multiparent_examples = sorted(
+                  [id_example(i, rs) for i, rs in multiparent_ids.items()],
+                  key=lambda x: (-max(x['weights'] or [0]), -x['row_count'], str(x['preferred_labels']))
+              )[:150]
+              ambiguous_label_examples = sorted(
+                  [label_example(l, rs) for l, rs in label_multi_parents.items()],
+                  key=lambda x: (-max(x['weights'] or [0]), -x['row_count'], x['preferred_label'])
+              )[:150]
 
-          output = {
-              'source': {
-                  'repo': 'kingkong-projek/yrkesvaljaren',
-                  'commit': '0eba98e3a91079a43c1eaf6da09dfabe11e5bc8b',
-                  'path': 'data/latest.json',
+              # Display identities are what the current UI actually distinguishes visually.
+              display_rows = []
+              for r in jt:
+                  parent = r.get('occupation_name_preferred_label')
+                  display = f"{r.get('preferred_label')} ({parent})" if parent else r.get('preferred_label')
+                  display_rows.append((r.get('id'), r.get('occupation_name_id'), display))
+              display_counter = collections.Counter(display_rows)
+
+              return {
+                  'source_name': source_name,
                   'sha256': hashlib.sha256(raw).hexdigest(),
+                  'bytes': len(raw),
                   'metadata': doc.get('metadata') if isinstance(doc, dict) else None,
-              },
-              'rows': {
-                  'total': len(rows),
-                  'by_type': dict(sorted(by_type.items())),
-                  'unique_ids_by_type': {k: len(v) for k, v in sorted(ids_by_type.items())},
-              },
-              'job_title_identity': {
-                  'rows': len(jt),
-                  'unique_ids': len(jt_ids),
-                  'ids_with_multiple_rows': len(multirow_ids),
-                  'ids_with_multiple_occupation_parents': len(multiparent_ids),
-                  'max_rows_for_one_id': max((len(v) for v in jt_by_id.values()), default=0),
-                  'rows_missing_occupation_name_id': sum(not r.get('occupation_name_id') for r in jt),
-                  'duplicate_exact_id_parent_label_rows_beyond_first': duplicate_exact_identity_rows,
-                  'unique_preferred_labels': len(jt_by_label),
-                  'preferred_labels_mapping_to_multiple_job_title_ids': len(label_multi_ids),
-                  'preferred_labels_mapping_to_multiple_occupation_parents': len(label_multi_parents),
-                  'occupation_parent_ids_referenced': len(parent_ids),
-                  'referenced_parent_ids_missing_as_occupation_name_rows': len(parent_ids - occ_ids),
-                  'job_title_ids_colliding_with_occupation_name_ids': len(jt_ids & occ_ids),
-              },
-              'examples': {
-                  'multi_parent_same_job_title_id_top100': multiparent_examples,
-                  'same_label_multiple_parents_top100': label_ambiguity_examples,
-              },
+                  'rows': {
+                      'total': len(rows),
+                      'by_type': dict(sorted(by_type.items())),
+                      'occupation_name_rows': len(occ),
+                      'occupation_name_unique_ids': len(occ_ids),
+                      'occupation_name_unique_labels': len(occ_by_label),
+                      'job_title_rows': len(jt),
+                      'job_title_unique_ids': len(jt_ids),
+                      'job_title_unique_labels': len(jt_by_label),
+                  },
+                  'job_title_identity': {
+                      'ids_with_multiple_rows': len(multirow_ids),
+                      'ids_with_multiple_occupation_parents': len(multiparent_ids),
+                      'extra_rows_beyond_one_per_job_title_id': len(jt) - len(jt_ids),
+                      'max_rows_for_one_id': max((len(v) for v in jt_by_id.values()), default=0),
+                      'rows_missing_occupation_name_id': sum(not r.get('occupation_name_id') for r in jt),
+                      'rows_missing_occupation_name_preferred_label': sum(not r.get('occupation_name_preferred_label') for r in jt),
+                      'duplicate_exact_id_parent_label_rows_beyond_first': exact_identity_dupes,
+                      'preferred_labels_mapping_to_multiple_job_title_ids': len(label_multi_ids),
+                      'preferred_labels_mapping_to_multiple_occupation_parents': len(label_multi_parents),
+                      'occupation_parent_ids_referenced': len(parent_ids),
+                      'referenced_parent_ids_missing_as_occupation_name_rows': len(parent_ids - occ_ids),
+                      'job_title_ids_colliding_with_occupation_name_ids': len(jt_ids & occ_ids),
+                      'distinct_visual_job_title_rows': len(set(display_rows)),
+                      'duplicate_visual_job_title_rows_beyond_first': sum(n - 1 for n in display_counter.values() if n > 1),
+                  },
+                  'weights': {
+                      'job_title_rows_with_weight': sum(isinstance(r.get('weight'), (int, float)) for r in jt),
+                      'occupation_rows_with_weight': sum(isinstance(r.get('weight'), (int, float)) for r in occ),
+                      'same_job_title_id_has_multiple_weight_values': sum(
+                          len({r.get('weight') for r in rs}) > 1 for rs in jt_by_id.values()
+                      ),
+                  },
+                  'examples': {
+                      'same_job_title_id_multiple_parents_top150': multiparent_examples,
+                      'same_preferred_label_multiple_parents_top150': ambiguous_label_examples,
+                  },
+              }
+
+          official = summarize('/tmp/yv-t31.json', 'immutable-public-t31')
+          result = {
+              'schema_version': 1,
+              'taxonomy_version': 31,
+              'official_t31': official,
+              'runtime_latest': None,
           }
-          out = Path('yv-product-model-audit/latest-json-aggregate.json')
-          out.write_text(json.dumps(output, ensure_ascii=False, indent=2, sort_keys=True) + '\n', encoding='utf-8')
-          print(json.dumps(output['rows'], ensure_ascii=False, indent=2))
-          print(json.dumps(output['job_title_identity'], ensure_ascii=False, indent=2))
+          runtime = Path('/tmp/yv-runtime-latest.json')
+          if runtime.exists():
+              result['runtime_latest'] = summarize(runtime, 'cloudfront-runtime-latest')
+              result['runtime_equals_official_t31_bytes'] = runtime.read_bytes() == Path('/tmp/yv-t31.json').read_bytes()
+
+          Path('yv-product-model-audit/product-model.json').write_text(
+              json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True) + '\n',
+              encoding='utf-8'
+          )
+          print(json.dumps(official['rows'], ensure_ascii=False, indent=2))
+          print(json.dumps(official['job_title_identity'], ensure_ascii=False, indent=2))
+          print(json.dumps(official['weights'], ensure_ascii=False, indent=2))
+          if result['runtime_latest']:
+              print('runtime_latest_sha256', result['runtime_latest']['sha256'])
+              print('runtime_equals_official_t31_bytes', result['runtime_equals_official_t31_bytes'])
           PY
 
           cp /tmp/yv-generator/main.py yv-product-model-audit/generator/
@@ -155,7 +231,6 @@ jobs:
           cp /tmp/yv-generator/utils/update_search_terms.py yv-product-model-audit/generator/
           cp /tmp/yv-generator/utils/download_data.py yv-product-model-audit/generator/
           cp /tmp/yv-generator/utils/queries.py yv-product-model-audit/generator/
-          git -C /tmp/yv-product rev-parse HEAD > yv-product-model-audit/product-commit.txt
           git -C /tmp/yv-generator rev-parse HEAD > yv-product-model-audit/generator-commit.txt
 
       - uses: actions/upload-artifact@v4
