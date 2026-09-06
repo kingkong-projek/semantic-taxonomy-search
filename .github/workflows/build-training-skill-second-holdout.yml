@@ -1,0 +1,33 @@
+name: Build second blind skill-description holdout
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/build_training_skill_second_holdout.py
+      - research/benchmark/v31/training-skill-validation/**
+      - research/benchmark/v31/training-skill-fresh-holdout/**
+      - research/coverage/v31/pareto-demand-aggregate.json
+      - .github/workflows/build-training-skill-second-holdout.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build source-attested holdout without retrieval
+        run: python scripts/build_training_skill_second_holdout.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: training-skill-second-holdout-v31
+          path: artifacts/training-skill-second-holdout-v31/
+          if-no-files-found: error
+          retention-days: 30
