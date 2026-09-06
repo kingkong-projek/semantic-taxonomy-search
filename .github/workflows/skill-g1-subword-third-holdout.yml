@@ -1,0 +1,31 @@
+name: Validate KV subword lane on third holdout
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/evaluate_skill_g1_subword_third_holdout.py
+      - research/benchmark/v31/training-skill-third-holdout/**
+      - .github/workflows/skill-g1-subword-third-holdout.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate fixed 4-gram lane
+        run: python scripts/evaluate_skill_g1_subword_third_holdout.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: skill-g1-subword-third-holdout-v31
+          path: artifacts/skill-g1-subword-third-holdout-v31.json
+          if-no-files-found: error
+          retention-days: 30
