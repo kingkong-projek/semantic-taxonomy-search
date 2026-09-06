@@ -1,0 +1,78 @@
+name: Current selector failure audit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/audit_current_selector_failure_modes.py
+      - research/coverage/source-adapters.json
+      - research/coverage/v31/yv-query-language-aggregate.json
+      - .github/workflows/current-selector-failure-audit.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Checkout pinned YV generator
+        env:
+          SOURCE_COMMIT: 6dd9e4737d7db3cb2709f8082808b88e5c89ed6e
+        run: |
+          rm -rf /tmp/yv-generator
+          git init -q /tmp/yv-generator
+          git -C /tmp/yv-generator remote add origin https://gitlab.com/arbetsformedlingen/taxonomy-dev/backend/yrkesvaljaren.git
+          git -C /tmp/yv-generator fetch -q --depth 1 origin "$SOURCE_COMMIT"
+          git -C /tmp/yv-generator checkout -q --detach FETCH_HEAD
+          test "$(git -C /tmp/yv-generator rev-parse HEAD)" = "$SOURCE_COMMIT"
+          printf '%s\n' "$SOURCE_COMMIT" > /tmp/yv-generator/SOURCE_COMMIT.txt
+
+      - name: Checkout pinned selector frontend
+        env:
+          SOURCE_COMMIT: 0eba98e3a91079a43c1eaf6da09dfabe11e5bc8b
+        run: |
+          rm -rf /tmp/yv-frontend
+          git init -q /tmp/yv-frontend
+          git -C /tmp/yv-frontend remote add origin https://gitlab.com/arbetsformedlingen/taxonomy-dev/frontend/yrkesvaljaren.git
+          git -C /tmp/yv-frontend fetch -q --depth 1 origin "$SOURCE_COMMIT"
+          git -C /tmp/yv-frontend checkout -q --detach FETCH_HEAD
+          test "$(git -C /tmp/yv-frontend rev-parse HEAD)" = "$SOURCE_COMMIT"
+          printf '%s\n' "$SOURCE_COMMIT" > /tmp/yv-frontend/SOURCE_COMMIT.txt
+
+      - name: Audit current selector failure modes
+        run: |
+          python scripts/audit_current_selector_failure_modes.py \
+            --version 31 \
+            --generator-dir /tmp/yv-generator \
+            --frontend-dir /tmp/yv-frontend \
+            --output-dir artifacts/current-selector-failure-audit-v31
+
+      - name: Sanity-check audit
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('artifacts/current-selector-failure-audit-v31/aggregate.json')
+          x=json.loads(p.read_text(encoding='utf-8'))
+          assert x['YV']['published_rows']['occupation_name_rows'] == 2105
+          assert x['YV']['published_rows']['unique_job_title_ids'] == 9580
+          assert x['YV']['multi_parent_title_behavior']['job_title_ids'] == 541
+          assert x['YV']['multi_parent_title_behavior']['context_rows'] == 1186
+          assert x['KV']['runtime_skill_catalog'] == 6752
+          print('current-selector failure audit validated')
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: current-selector-failure-audit-v31
+          path: artifacts/current-selector-failure-audit-v31/
+          if-no-files-found: error
+          retention-days: 30
