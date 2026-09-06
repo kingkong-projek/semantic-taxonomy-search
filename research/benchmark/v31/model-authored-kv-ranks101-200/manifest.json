@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 31,
+  "product": "KV",
+  "case_count": 100,
+  "target_rank_start": 101,
+  "target_rank_end": 200,
+  "coverage": "exactly one model-authored natural-language description for each frozen P80 skill rank 101-200",
+  "evidence_class": "synthetic_model_authored_prefrozen",
+  "author_model": "GPT-5.6 Sol",
+  "query_freeze_commit": "1e2a811d2830acb2f29ba05bce28806a46ec099b",
+  "teacher_freeze_commit": "7e256c137223e60bede01b921e1ed8b7987e6c19",
+  "blinding_contract": "The 300 teacher phrases were frozen first. These 100 queries were authored and frozen afterward but before any retrieval evaluation on this target slice. Neither side may be edited from retrieval results.",
+  "non_overlap_contract": "Target identities are ranks 101-200 and therefore disjoint from model-authored-kv-100 ranks 1-100. Validation must additionally assert no exact normalized query overlap with earlier benchmark queries and no exact query/teacher-phrase overlap.",
+  "ground_truth_policy": "Target identities are real AF v31 skills, while the model-authored query-to-target semantic relation remains synthetic evidence and must not be presented as observed user truth.",
+  "evaluation_policy": {
+    "primary_metric": "Hit@5",
+    "report": ["hits/N", "percentage", "95% Wilson interval", "evidence class"],
+    "weighted_metrics": false,
+    "no_posthoc_cleaning": "Raw score remains frozen even if later adjudication marks a case ambiguous; corrections are reported separately."
+  },
+  "architecture_boundary": "frontend-only deterministic student; no API, embeddings or runtime model inference"
+}
