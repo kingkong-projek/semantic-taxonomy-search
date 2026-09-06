@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "status": "prefrozen synthetic validation; not user evidence and not production promotion",
+  "evidence_class": "synthetic_model_teacher_prefrozen_validation",
+  "target_slice": "P80 skill ranks 101-200",
+  "blinding": {
+    "teacher_freeze_commit": "7e256c137223e60bede01b921e1ed8b7987e6c19",
+    "query_freeze_commit": "1e2a811d2830acb2f29ba05bce28806a46ec099b",
+    "teacher_was_frozen_before_query_authoring": true,
+    "retrieval_first_ran_after_both_freezes": true,
+    "target_overlap_with_prior_top100": 0,
+    "exact_query_overlap_with_prior_top100": 0,
+    "exact_teacher_query_overlap": 0,
+    "new_cases": 100,
+    "teacher_phrases": 300,
+    "direct_full_label_mentions": 1
+  },
+  "new_ranks101_200": {
+    "baseline_C0_top1_G1_4slot": {
+      "hit_at_5": {"hits": 25, "n": 100, "pct": 25.0, "wilson95_pct": [17.5, 34.3]},
+      "hit_at_10": {"hits": 39, "n": 100, "pct": 39.0, "wilson95_pct": [30.0, 48.8]},
+      "top1": {"hits": 13, "n": 100, "pct": 13.0, "wilson95_pct": [7.8, 21.0]}
+    },
+    "teacher_lane_T2": {
+      "hit_at_5": {"hits": 96, "n": 100, "pct": 96.0, "wilson95_pct": [90.2, 98.4]},
+      "hit_at_10": {"hits": 96, "n": 100, "pct": 96.0, "wilson95_pct": [90.2, 98.4]},
+      "top1": {"hits": 83, "n": 100, "pct": 83.0, "wilson95_pct": [74.5, 89.1]}
+    },
+    "C0_top1_T2_4slot": {
+      "hit_at_5": {"hits": 96, "n": 100, "pct": 96.0, "wilson95_pct": [90.2, 98.4]},
+      "hit_at_10": {"hits": 96, "n": 100, "pct": 96.0, "wilson95_pct": [90.2, 98.4]},
+      "top1": {"hits": 13, "n": 100, "pct": 13.0, "wilson95_pct": [7.8, 21.0]}
+    },
+    "hit5_rescues_vs_validated_G1_fusion": 71,
+    "hit5_regressions_vs_validated_G1_fusion": 0,
+    "remaining_hit5_misses": [
+      {"id":"kv.model-authored-101-200.110","target":"Försäljning, erfarenhet","teacher_fusion_rank":11},
+      {"id":"kv.model-authored-101-200.130","target":"Utbildningsbevis, VVS-montör","teacher_fusion_rank":null},
+      {"id":"kv.model-authored-101-200.132","target":"HVB-verksamhet, behandlingserfarenhet","teacher_fusion_rank":55},
+      {"id":"kv.model-authored-101-200.160","target":"Gymnasielärarexamen","teacher_fusion_rank":null}
+    ]
+  },
+  "prior_top100_cross_target_regression": {
+    "validated_G1_fusion_hit_at_5": {"hits": 53, "n": 100, "pct": 53.0, "wilson95_pct": [43.3, 62.5]},
+    "new_teacher_fusion_hit_at_5": {"hits": 47, "n": 100, "pct": 47.0, "wilson95_pct": [37.5, 56.7]},
+    "rescues": 0,
+    "regressions": 6,
+    "regression_cases": [
+      {"id":"kv.model-authored.019","target":"B-truckar","baseline_rank":4,"teacher_rank":7},
+      {"id":"kv.model-authored.026","target":"Förskollärarlegitimation","baseline_rank":3,"teacher_rank":6},
+      {"id":"kv.model-authored.036","target":"Legitimation som läkare","baseline_rank":4,"teacher_rank":6},
+      {"id":"kv.model-authored.052","target":"Marknadsföring/Marknadskommunikation","baseline_rank":5,"teacher_rank":7},
+      {"id":"kv.model-authored.053","target":"Mjukvaruutveckling","baseline_rank":5,"teacher_rank":7},
+      {"id":"kv.model-authored.057","target":"Omvårdnad","baseline_rank":4,"teacher_rank":39}
+    ]
+  },
+  "canonical_regression": {
+    "cases": 617,
+    "top1": {"hits": 617, "n": 617, "pct": 100.0, "wilson95_pct": [99.4, 100.0]},
+    "hit_at_5": {"hits": 617, "n": 617, "pct": 100.0, "wilson95_pct": [99.4, 100.0]}
+  },
+  "decision": {
+    "teacher_student_capacity": "strong enough to continue investigating",
+    "naive_global_teacher_replacement": "rejected because it introduces cross-target Hit@5 regressions",
+    "next_smallest_test": "keep validated G1 as a protected lane and test a bounded three-lane fusion that gives teacher candidates only some of the remaining four slots",
+    "production_status": "not promoted; synthetic teacher text remains research evidence"
+  },
+  "artifact": {
+    "workflow_run_id": 34065100343,
+    "artifact_id": 9998681227,
+    "zip_sha256": "51f84002fc78a915caca9a05fda77eafd1271aff1e408636aded67d633089575"
+  }
+}
