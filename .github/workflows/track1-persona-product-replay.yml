@@ -7,6 +7,7 @@ on:
       - research/personas/v31/journeys.jsonl
       - scripts/replay_track1_personas.mjs
       - scripts/fix_track1_persona_replay_once.py
+      - scripts/fix_track1_persona_kv_prioritized_once.py
       - .github/workflows/track1-persona-product-replay.yml
   workflow_dispatch: {}
 
@@ -24,8 +25,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Apply deterministic harness fix
-        run: python3 scripts/fix_track1_persona_replay_once.py
+      - name: Apply deterministic harness fixes
+        run: |
+          python3 scripts/fix_track1_persona_replay_once.py
+          python3 scripts/fix_track1_persona_kv_prioritized_once.py
       - name: Install pinned Fuse dependency
         run: |
           printf '{"private":true,"type":"module"}\n' > scripts/package.json
@@ -49,16 +52,20 @@ jobs:
           assert set(x['description_journeys_skipped'])=={'J12','J13','J14','J20'}
           assert x['included_journeys']==20
           assert not any('DESCRIPTION' in r['product'] for r in x['results'])
-          print('Track 1 boundary preserved; description journeys were not replayed')
+          by_id={r['id']:r for r in x['results']}
+          for jid in ('J21','J23'):
+              assert any(path['kv_context_valid'] for path in by_id[jid]['paths'])
+              assert any(path['kv_top5'] and path['kv_top5'][0]['preferred_label']!='Truckvana' for path in by_id[jid]['paths'])
+          print('Track 1 boundary and context replay guards passed')
           PY
-      - name: Persist harness fix if needed
+      - name: Persist harness fixes if needed
         run: |
           if ! git diff --quiet -- scripts/replay_track1_personas.mjs; then
             git config user.name semantic-taxonomy-search-bot
             git config user.email semantic-taxonomy-search-bot@users.noreply.github.com
             git add scripts/replay_track1_personas.mjs
             git diff --cached --check
-            git commit -m 'fix(research): correct track1 persona replay harness'
+            git commit -m 'fix(research): correct track1 persona KV context replay'
             git push origin HEAD:main
           fi
       - uses: actions/upload-artifact@v4
