@@ -7,6 +7,7 @@ on:
     paths:
       - 'research/benchmark/v31/model-authored-kv-100/**'
       - 'scripts/evaluate_model_authored_kv_100.py'
+      - 'scripts/build_model_authored_kv_100_review_context.py'
       - '.github/workflows/model-authored-kv-100.yml'
 
 jobs:
@@ -20,9 +21,13 @@ jobs:
           python-version: '3.12'
       - name: Evaluate synthetic KV descriptions
         run: python scripts/evaluate_model_authored_kv_100.py
+      - name: Build canonical adjudication context
+        run: python scripts/build_model_authored_kv_100_review_context.py
       - uses: actions/upload-artifact@v4
         with:
           name: model-authored-kv-100-v31
-          path: artifacts/model-authored-kv-100-v31.json
+          path: |
+            artifacts/model-authored-kv-100-v31.json
+            artifacts/model-authored-kv-100-review-context-v31.json
           if-no-files-found: error
           retention-days: 30
