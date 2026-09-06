@@ -1,0 +1,46 @@
+name: Sync generic semantic scope SSOT
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/sync_generic_scope_ssot.py
+      - .github/workflows/sync-generic-scope-ssot.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Guarded SSOT scope update
+        run: python scripts/sync_generic_scope_ssot.py
+      - name: Validate scope invariants
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('docs/research-plan.md').read_text(encoding='utf-8')
+          assert 'target_space": "occupation | skill"' in p
+          assert 'YV and KV are current **reference profiles**' in p
+          assert 'product: YV | KV` for frozen-fixture compatibility' in p
+          assert 'We are building semantic search for **both Yrkesväljaren (YV) and Kompetensväljaren (KV)**.' not in p
+          assert 'target_space": "YV | KV"' not in p
+          print('generic scope invariants validated')
+          PY
+      - name: Commit SSOT
+        run: |
+          set -euo pipefail
+          git config user.name "kingkongola"
+          git config user.email "adambergman90@gmail.com"
+          git add docs/research-plan.md
+          git commit -m "docs: make occupation and skill retrieval core product-agnostic"
+          git push origin HEAD:main
