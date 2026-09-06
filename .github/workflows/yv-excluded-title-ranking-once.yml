@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - .github/workflows/yv-excluded-title-ranking-once.yml
+      - scripts/analyze_yv_excluded_title_ranking.mjs
+      - scripts/build_yv_excluded_title_population.py
 
 permissions:
   contents: read
