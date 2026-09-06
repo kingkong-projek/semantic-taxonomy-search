@@ -6,6 +6,8 @@ on:
     paths:
       - scripts/compile_skill_g1_student_runtime.py
       - scripts/benchmark_skill_g1_student_runtime.mjs
+      - scripts/merge_skill_g1_student_index.py
+      - scripts/benchmark_skill_g1_dual_runtime.mjs
       - scripts/evaluate_skill_training_language_enrichment.py
       - scripts/evaluate_skill_training_language_fusion.py
       - research/benchmark/v31/training-skill-fresh-holdout/**
@@ -34,8 +36,12 @@ jobs:
           node-version: "22"
       - name: Compile validated C0 + G1 postings assets
         run: python scripts/compile_skill_g1_student_runtime.py
-      - name: Verify dependency-free JS parity and benchmark host cost
+      - name: Verify separate-lane JS parity and benchmark host cost
         run: node scripts/benchmark_skill_g1_student_runtime.mjs --rounds 25
+      - name: Merge lanes into one dual-score postings asset
+        run: python scripts/merge_skill_g1_student_index.py
+      - name: Verify merged dual-lane JS parity and benchmark host cost
+        run: node scripts/benchmark_skill_g1_dual_runtime.mjs
       - uses: actions/upload-artifact@v4
         with:
           name: skill-g1-student-runtime-v31
