@@ -1,0 +1,55 @@
+name: Track 1 persona vocabulary boundary once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/track1-persona-vocabulary-boundary-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  classify:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Classify frozen exploratory terms without semantic similarity
+        run: |
+          rm -f artifacts/track1-persona-vocabulary-boundary-v31.json
+          python3 scripts/classify_track1_persona_terms.py \
+            --version 31 \
+            --output artifacts/track1-persona-vocabulary-boundary-v31.json
+      - name: Guard track boundary
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('artifacts/track1-persona-vocabulary-boundary-v31.json').read_text())
+          assert x['track']=='1-current-yv-kv-findability'
+          assert x['taxonomy_version']==31
+          assert len(x['cases'])==7
+          allowed={'TRACK1_AUTHORITATIVE_EXACT_SURFACE','TRACK1_LEXICAL_COMPOSITION_CANDIDATE','TRACK2_MEANING_INFERENCE_CANDIDATE'}
+          assert all(c['boundary_class'] in allowed for c in x['cases'])
+          print(json.dumps([(c['id'],c['query'],c['boundary_class'],len(c['exact_authoritative_surfaces']),len(c['contained_authoritative_surfaces'])) for c in x['cases']],ensure_ascii=False,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: track1-persona-vocabulary-boundary-v31
+          path: artifacts/track1-persona-vocabulary-boundary-v31.json
+          if-no-files-found: error
+          retention-days: 30
+      - name: Remove one-off workflow
+        run: |
+          git rm .github/workflows/track1-persona-vocabulary-boundary-once.yml
+          git config user.name semantic-taxonomy-search-bot
+          git config user.email semantic-taxonomy-search-bot@users.noreply.github.com
+          git commit -m 'chore: clean persona vocabulary probe workflow'
+          git pull --rebase origin main
+          git push origin HEAD:main
