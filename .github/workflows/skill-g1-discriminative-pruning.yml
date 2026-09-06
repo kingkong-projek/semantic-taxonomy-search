@@ -1,0 +1,29 @@
+name: Skill G1 discriminative pruning
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/evaluate_skill_g1_discriminative_pruning.py
+      - .github/workflows/skill-g1-discriminative-pruning.yml
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Evaluate discriminative pruning
+        run: python scripts/evaluate_skill_g1_discriminative_pruning.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: skill-g1-discriminative-pruning-v31
+          path: artifacts/skill-g1-discriminative-pruning-v31.json
+          if-no-files-found: error
+          retention-days: 30
