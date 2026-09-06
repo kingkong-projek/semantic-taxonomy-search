@@ -1,0 +1,44 @@
+name: Skill G1 student runtime
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/compile_skill_g1_student_runtime.py
+      - scripts/benchmark_skill_g1_student_runtime.mjs
+      - scripts/evaluate_skill_training_language_enrichment.py
+      - scripts/evaluate_skill_training_language_fusion.py
+      - research/benchmark/v31/training-skill-fresh-holdout/**
+      - research/benchmark/v31/training-skill-second-holdout/**
+      - research/benchmark/v31/p80-source-truth/kv-p80-source-truth.jsonl
+      - research/benchmark/v31/synthetic-description-stress/**
+      - research/coverage/v31/pareto-demand-aggregate.json
+      - research/coverage/source-adapters.json
+      - .github/workflows/skill-g1-student-runtime.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  compile-and-measure:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Compile validated C0 + G1 postings assets
+        run: python scripts/compile_skill_g1_student_runtime.py
+      - name: Verify dependency-free JS parity and benchmark host cost
+        run: node scripts/benchmark_skill_g1_student_runtime.mjs --rounds 25
+      - uses: actions/upload-artifact@v4
+        with:
+          name: skill-g1-student-runtime-v31
+          path: artifacts/skill-g1-student-runtime-v31/
+          if-no-files-found: error
+          retention-days: 30
