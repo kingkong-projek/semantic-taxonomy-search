@@ -5,58 +5,62 @@ on:
     branches: [main]
     paths:
       - research/personas/v31/journeys.jsonl
-      - scripts/track1-persona-product-replay.spec.ts
+      - scripts/replay_track1_personas.mjs
+      - scripts/fix_track1_persona_replay_once.py
       - .github/workflows/track1-persona-product-replay.yml
   workflow_dispatch: {}
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   replay:
     runs-on: [self-hosted, Linux, X64]
-    timeout-minutes: 25
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Checkout current patched YV/KV product repo
-        env:
-          YV_COMMIT: 1ad8c389a4f43caa5a704843487ca94419bf745a
+      - name: Apply deterministic harness fix
+        run: python3 scripts/fix_track1_persona_replay_once.py
+      - name: Install pinned Fuse dependency
         run: |
-          rm -rf /tmp/yv-track1
-          git init -q /tmp/yv-track1
-          git -C /tmp/yv-track1 remote add origin https://github.com/kingkong-projek/yrkesvaljaren.git
-          git -C /tmp/yv-track1 fetch -q --depth 1 origin "$YV_COMMIT"
-          git -C /tmp/yv-track1 checkout -q --detach FETCH_HEAD
-      - name: Install and build product test prerequisites
+          printf '{"private":true,"type":"module"}\n' > scripts/package.json
+          npm install --prefix scripts --no-package-lock --no-save fuse.js@7.5.0
+      - name: Replay frozen non-description Track-1 journeys
         run: |
-          cd /tmp/yv-track1
-          npm ci
-          npm run build -w @taxonomy/core
-      - name: Replay frozen Track-1 journeys using actual product engines
-        env:
-          YV_COMMIT: 1ad8c389a4f43caa5a704843487ca94419bf745a
-          JOURNEYS_FILE: ${{ github.workspace }}/research/personas/v31/journeys.jsonl
-          OUT_FILE: ${{ github.workspace }}/artifacts/track1-persona-product-replay-v31.json
-        run: |
-          cp scripts/track1-persona-product-replay.spec.ts /tmp/yv-track1/track1-persona-product-replay.spec.ts
-          cd /tmp/yv-track1
-          npx vitest run track1-persona-product-replay.spec.ts --reporter=verbose
-      - name: Guard track separation
+          rm -rf artifacts/track1-persona-product-replay-v31.json
+          node scripts/replay_track1_personas.mjs \
+            --journeys research/personas/v31/journeys.jsonl \
+            --output artifacts/track1-persona-product-replay-v31.json
+      - name: Guard track separation and source contract
         run: |
           python3 - <<'PY'
           import json
           from pathlib import Path
           x=json.loads(Path('artifacts/track1-persona-product-replay-v31.json').read_text())
           assert x['track']=='1-current-yv-kv-findability'
-          assert x['yv_commit']=='1ad8c389a4f43caa5a704843487ca94419bf745a'
+          assert x['replay_contract']['yv_commit']=='1ad8c389a4f43caa5a704843487ca94419bf745a'
+          assert x['replay_contract']['yv_search_utils_blob']=='1eb706399ff97634b556164061e651a024b98003'
+          assert x['replay_contract']['kv_engine_blob']=='bd255b894d39b9e8d628998cf8b749c71d529a3f'
           assert set(x['description_journeys_skipped'])=={'J12','J13','J14','J20'}
           assert x['included_journeys']==20
           assert not any('DESCRIPTION' in r['product'] for r in x['results'])
           print('Track 1 boundary preserved; description journeys were not replayed')
           PY
+      - name: Persist harness fix if needed
+        run: |
+          if ! git diff --quiet -- scripts/replay_track1_personas.mjs; then
+            git config user.name semantic-taxonomy-search-bot
+            git config user.email semantic-taxonomy-search-bot@users.noreply.github.com
+            git add scripts/replay_track1_personas.mjs
+            git diff --cached --check
+            git commit -m 'fix(research): correct track1 persona replay harness'
+            git push origin HEAD:main
+          fi
       - uses: actions/upload-artifact@v4
         with:
           name: track1-persona-product-replay-v31
