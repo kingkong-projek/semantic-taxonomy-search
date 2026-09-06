@@ -1,0 +1,30 @@
+name: Build KV third-holdout review context
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/build_skill_g1_third_review_context.py
+      - .github/workflows/skill-g1-third-review-context.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  review-context:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build diagnostic review context
+        run: python scripts/build_skill_g1_third_review_context.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: skill-g1-third-review-context-v31
+          path: artifacts/skill-g1-third-review-context-v31.json
+          if-no-files-found: error
+          retention-days: 30
