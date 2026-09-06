@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 31,
+  "status": "development_candidate_frozen_before_final_p80_gate",
+  "candidate": {
+    "name": "G1T3-drop-pure-numeric-expansion-only",
+    "fusion": "C0-top1 + G1-1slot + teacher-3slot",
+    "token_policy": "leave C0 and all exact surfaces unchanged; remove pure integer tokens only from G1 and teacher semantic BM25 document/query streams",
+    "teacher_representation": "unchanged G1 + prefrozen teacher phrases",
+    "complexity_delta": "one deterministic token predicate in existing expansion lanes; no new model, lane, score calibration, stopword list, stemming, subwords, embeddings or inference"
+  },
+  "opened_source_attested_evidence": {
+    "queries": 81,
+    "current_hit5": 71,
+    "candidate_hit5": 72,
+    "rescues": 1,
+    "regressions": 0,
+    "known_boundary_rescue": {
+      "id": "kv.training-skill-second-holdout.017",
+      "target": "Ekonomistyrning",
+      "current_rank": 6,
+      "candidate_rank": 5,
+      "diagnosed_cause": "pure numeric section-marker tokens in the AF query gave unrelated numbered concepts an artificial BM25 boost"
+    }
+  },
+  "opened_synthetic_diagnostics": {
+    "ranks101_200_hit5": {"current": 93, "candidate": 93, "n": 100},
+    "ranks201_300_hit5": {"current": 96, "candidate": 96, "n": 100},
+    "material_hit5_regressions": 0
+  },
+  "canonical_guard": {
+    "current_top1": 617,
+    "candidate_top1": 617,
+    "current_hit5": 617,
+    "candidate_hit5": 617,
+    "n": 617
+  },
+  "rejected_broader_variant": {
+    "name": "drop-pure-numeric-all-semantic-lanes",
+    "reason": "it rescued the same AF boundary case but changed canonical Top1 from 617/617 to 616/617 because C0 numeric evidence was unnecessarily altered; expansion-only sanitation achieves the rescue while preserving C0 exactly"
+  },
+  "rejected_teacher_separation": {
+    "reason": "teacher-only and C0+teacher improved model-authored suites but materially regressed source-attested AF holdouts; current G1+teacher representation remains required by stronger evidence"
+  },
+  "decision": "Freeze expansion-only pure-number sanitation as the sole candidate for the untouched P80 ranks301-316 gate. Do not add stopwords, morphology, subwords or any higher-complexity model before this candidate is tested.",
+  "next_gate": "After this commit: reveal frozen P80 ranks301-316 identities only; commit teacher phrases; then commit independent natural-language queries; only then run retrieval. No policy, fusion, teacher or query changes after first output.",
+  "artifact": {
+    "workflow_run_id": 34066486708,
+    "artifact_id": 9999095389,
+    "zip_sha256": "28deb034a97ebe54c5bdadd0b5d110c2fe1cc47ebbb8b9181e3ebb6777084b25"
+  }
+}
