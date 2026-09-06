@@ -16,7 +16,7 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - name: Probe JobSearch aggregate stats and current API contract
+      - name: Probe aggregate demand APIs
         shell: bash
         run: |
           set -euo pipefail
@@ -26,38 +26,32 @@ jobs:
           from pathlib import Path
 
           out = Path('artifacts/pareto-demand-probe')
-          base = 'https://jobsearch.api.jobtechdev.se/search'
-          tests = {
-              'occupation_name_stats': [('limit','1'), ('stats','occupation-name')],
-              'skill_stats': [('limit','1'), ('stats','skill')],
-              'occupation_and_skill_stats': [('limit','1'), ('stats','occupation-name'), ('stats','skill')],
-          }
           summary = {}
-          for name, params in tests.items():
-              url = base + '?' + urllib.parse.urlencode(params)
-              req = urllib.request.Request(url, headers={'Accept':'application/json','User-Agent':'semantic-taxonomy-search-pareto-probe/0.1'})
+
+          def get(name, url):
+              req = urllib.request.Request(url, headers={'Accept':'application/json','User-Agent':'semantic-taxonomy-search-pareto-probe/0.2'})
               try:
-                  with urllib.request.urlopen(req, timeout=60) as r:
+                  with urllib.request.urlopen(req, timeout=90) as r:
                       body = r.read()
                       summary[name] = {'url': url, 'status': r.status, 'bytes': len(body)}
                       (out / f'{name}.json').write_bytes(body)
               except Exception as exc:
                   summary[name] = {'url': url, 'error': repr(exc)}
-          # Also capture swagger/API definition if publicly exposed.
-          for swagger_url in ('https://jobsearch.api.jobtechdev.se/swagger.json', 'https://jobsearch.api.jobtechdev.se/openapi.json'):
-              try:
-                  req = urllib.request.Request(swagger_url, headers={'Accept':'application/json','User-Agent':'semantic-taxonomy-search-pareto-probe/0.1'})
-                  with urllib.request.urlopen(req, timeout=60) as r:
-                      body = r.read()
-                      name = swagger_url.rsplit('/',1)[-1]
-                      (out / name).write_bytes(body)
-                      summary[name] = {'url': swagger_url, 'status': r.status, 'bytes': len(body)}
-              except Exception as exc:
-                  summary[swagger_url] = {'error': repr(exc)}
+
+          jobsearch = 'https://jobsearch.api.jobtechdev.se/search'
+          for name, params in {
+              'jobsearch_occupation_name_stats': [('limit','1'), ('stats','occupation-name'), ('stats.limit','30')],
+              'jobsearch_skill_stats': [('limit','1'), ('stats','skill'), ('stats.limit','30')],
+          }.items():
+              get(name, jobsearch + '?' + urllib.parse.urlencode(params))
+
+          get('jobsearch_swagger', 'https://jobsearch.api.jobtechdev.se/swagger.json')
+          get('historical_swagger', 'https://historical.api.jobtechdev.se/swagger.json')
+
           (out / 'probe-summary.json').write_text(json.dumps(summary, ensure_ascii=False, indent=2, sort_keys=True)+'\n', encoding='utf-8')
           print(json.dumps(summary, ensure_ascii=False, indent=2, sort_keys=True))
           PY
-      - name: Summarize returned stats shapes
+      - name: Inspect stats contracts and returned values
         shell: bash
         run: |
           python3 - <<'PY'
@@ -65,18 +59,25 @@ jobs:
           from pathlib import Path
           out=Path('artifacts/pareto-demand-probe')
           result={}
-          for p in sorted(out.glob('*_stats.json')):
+          for name in ('jobsearch_swagger','historical_swagger'):
+              p=out/f'{name}.json'
+              if not p.exists(): continue
               doc=json.loads(p.read_text(encoding='utf-8'))
-              result[p.name]={
-                  'top_level_keys': sorted(doc.keys()) if isinstance(doc,dict) else None,
-                  'stats_type': type(doc.get('stats')).__name__ if isinstance(doc,dict) else None,
-                  'stats_keys': sorted(doc.get('stats',{}).keys()) if isinstance(doc,dict) and isinstance(doc.get('stats'),dict) else None,
-              }
-              if isinstance(doc,dict) and isinstance(doc.get('stats'),dict):
-                  for k,v in doc['stats'].items():
-                      if isinstance(v,list): result[p.name][f'{k}_count']=len(v)
-                      elif isinstance(v,dict): result[p.name][f'{k}_count']=len(v)
-          (out/'shape-summary.json').write_text(json.dumps(result,ensure_ascii=False,indent=2,sort_keys=True)+'\n',encoding='utf-8')
+              rows=[]
+              for path, methods in doc.get('paths',{}).items():
+                  for method, spec in methods.items():
+                      if not isinstance(spec,dict): continue
+                      for param in spec.get('parameters',[]):
+                          pname=str(param.get('name',''))
+                          if 'stat' in pname.lower() or pname=='skill':
+                              rows.append({'path':path,'method':method,'parameter':pname,'enum':param.get('enum') or (param.get('items') or {}).get('enum'),'description':param.get('description')})
+              result[name]=rows
+          for p in sorted(out.glob('*_stats.json')):
+              try: doc=json.loads(p.read_text(encoding='utf-8'))
+              except Exception: continue
+              stats=doc.get('stats') if isinstance(doc,dict) else None
+              result[p.name]={'stats':stats}
+          (out/'contract-summary.json').write_text(json.dumps(result,ensure_ascii=False,indent=2,sort_keys=True)+'\n',encoding='utf-8')
           print(json.dumps(result,ensure_ascii=False,indent=2,sort_keys=True))
           PY
       - uses: actions/upload-artifact@v4
