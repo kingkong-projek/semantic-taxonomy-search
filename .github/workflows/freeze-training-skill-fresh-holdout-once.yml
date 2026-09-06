@@ -1,0 +1,58 @@
+name: Freeze blind skill training holdout once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/freeze-training-skill-fresh-holdout-once.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  freeze:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Rebuild blind holdout without retrieval
+        run: |
+          rm -rf artifacts/training-skill-fresh-holdout-v31
+          python scripts/build_training_skill_fresh_holdout.py \
+            --output-dir artifacts/training-skill-fresh-holdout-v31
+      - name: Verify frozen population
+        run: |
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          d=Path('artifacts/training-skill-fresh-holdout-v31')
+          m=json.loads((d/'manifest.json').read_text())
+          body=(d/'cases.jsonl').read_bytes()
+          assert m['cases'] == 35, m
+          assert m['unique_p80_skills'] == 35, m
+          assert m['development_cases_excluded'] == 76, m
+          assert hashlib.sha256(body).hexdigest() == '79816eb2020b100bf8260b8f1807069288c30dbabd457bfffbfe3f49735c6675'
+          assert m['benchmark_sha256'] == '79816eb2020b100bf8260b8f1807069288c30dbabd457bfffbfe3f49735c6675'
+          print(json.dumps(m, ensure_ascii=False, indent=2, sort_keys=True))
+          PY
+      - name: Freeze before retrieval evaluation
+        run: |
+          dst=research/benchmark/v31/training-skill-fresh-holdout
+          mkdir -p "$dst"
+          cp artifacts/training-skill-fresh-holdout-v31/cases.jsonl "$dst/cases.jsonl"
+          cp artifacts/training-skill-fresh-holdout-v31/manifest.json "$dst/manifest.json"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$dst/cases.jsonl" "$dst/manifest.json"
+          if git diff --cached --quiet; then
+            echo 'No holdout drift.'
+            exit 0
+          fi
+          git commit -m 'research: freeze blind skill description holdout'
+          git push origin HEAD:main
