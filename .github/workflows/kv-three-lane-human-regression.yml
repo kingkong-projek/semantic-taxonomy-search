@@ -1,0 +1,35 @@
+name: KV three-lane human regression
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/evaluate_kv_three_lane_human_regression.py
+      - .github/workflows/kv-three-lane-human-regression.yml
+      - research/enrichment/v31/model-teacher-kv-top100/**
+      - research/enrichment/v31/model-teacher-kv-ranks101-200/**
+      - research/benchmark/v31/training-skill-fresh-holdout/**
+      - research/benchmark/v31/training-skill-second-holdout/**
+      - research/benchmark/v31/training-skill-third-holdout/**
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Evaluate human-source regression control
+        run: python scripts/evaluate_kv_three_lane_human_regression.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kv-three-lane-human-regression-v31
+          path: artifacts/kv-three-lane-human-regression-v31.json
+          if-no-files-found: error
+          retention-days: 30
