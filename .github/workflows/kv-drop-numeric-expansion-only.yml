@@ -1,0 +1,30 @@
+name: KV expansion-only numeric sanitation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/evaluate_kv_drop_numeric_expansion_only.py
+      - .github/workflows/kv-drop-numeric-expansion-only.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compare current vs expansion-only numeric sanitation
+        run: python scripts/evaluate_kv_drop_numeric_expansion_only.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kv-drop-numeric-expansion-only-v31
+          path: artifacts/kv-drop-numeric-expansion-only-v31.json
+          if-no-files-found: error
+          retention-days: 30
