@@ -2773,7 +2773,7 @@
       }
     }
   },
-  "schema_version": 1,
+  "schema_version": 2,
   "selection_rule": {
     "expansion_tiers": [
       "P90",
@@ -8701,7 +8701,9 @@
       "url": "https://historical.api.jobtechdev.se/swagger.json"
     },
     "historical_stats": {
-      "sha256": "3dce0048b0c5f5ecf6854a3f2d3b4d0cbd0a5bcddca884dd5584d241ca014f7b",
+      "hash_semantics": "SHA-256 of canonical normalized occupation-name/skill statistic rows (concept_id, label, legacy_ams_taxonomy_id, occurrences); API timing/response metadata excluded",
+      "last_observed_raw_response_sha256": "f319781b3ec88a25f604e24b34763c710878ccfc5642cf98cfa6c7f0df2cc657",
+      "sha256": "21b7333a350ecc595efb22f02f3dfe98001259b2b00c87ed7f2d0020bc93ef3d",
       "url": "https://historical.api.jobtechdev.se/stats?taxonomy-type=occupation-name&taxonomy-type=skill&stats-by=concept_id&limit=10000"
     },
     "taxonomy": {

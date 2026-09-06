@@ -85,6 +85,7 @@ This does not change YV's product-valid destination universe. It narrows only th
 
 - Taxonomy v31 source SHA-256: `634fd9d848a172747e54e3e487160a912ae6c0fcb8219c50998767c8c9aacbcc`
 - Historical API Swagger SHA-256: `f421f111f96b6de59b007a88c5c6b4dc136fdff8ef4e13cf26be6669c60904eb`
-- Historical stats response SHA-256: `3dce0048b0c5f5ecf6854a3f2d3b4d0cbd0a5bcddca884dd5584d241ca014f7b`
+- Normalized Historical statistic-row SHA-256: `21b7333a350ecc595efb22f02f3dfe98001259b2b00c87ed7f2d0020bc93ef3d`
+- Hash semantics: `SHA-256 of canonical normalized occupation-name/skill statistic rows (concept_id, label, legacy_ams_taxonomy_id, occurrences); API timing/response metadata excluded`
 - Measurement code: `scripts/pareto_demand_coverage.py`
 - Frozen machine evidence: `research/coverage/v31/pareto-demand-aggregate.json`

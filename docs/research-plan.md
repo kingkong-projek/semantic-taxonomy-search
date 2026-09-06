@@ -861,7 +861,12 @@ After the repository transfer, GitHub-hosted jobs were failing before their firs
 
 First decision: run the **smallest useful baseline** on the compact Pareto benchmark before adding more data engineering.
 
-- [ ] A–D non-neural baseline
+Preliminary source-truth result: A/B/C is complete on the 950-case P80 core. C (`preferred labels + real canonical definitions + canonical alternative labels`) reaches **100% top-1 and Recall@10 for both YV and KV** on this source-attested suite. This is an ingestion/retrieval result, not natural-paraphrase proof. The next decision-bearing step is the small manually judged real-query + safety slice before adding D/ESCO or neural retrieval.
+
+Evidence: `docs/findings/p80-lexical-ablation-v31.md` and `research/evaluation/v31/p80-lexical-ablation.json`.
+
+- [x] preliminary A–C source-truth lexical ablation on P80 core
+- [ ] D typed graph/ESCO only if the real-query/safety residual justifies it; do not add D merely to complete an ablation ladder
 - [ ] E–G evidence layers separately
 - [ ] H vectors/reranking in shadow evaluation
 - [ ] local compiled vs central API deployment benchmark

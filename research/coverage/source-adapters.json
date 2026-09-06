@@ -423,12 +423,13 @@
         "ranked P95 priority membership"
       ],
       "source": "https://historical.api.jobtechdev.se/stats?taxonomy-type=occupation-name&taxonomy-type=skill&stats-by=concept_id&limit=10000",
-      "source_sha256": "3dce0048b0c5f5ecf6854a3f2d3b4d0cbd0a5bcddca884dd5584d241ca014f7b",
+      "source_sha256": "21b7333a350ecc595efb22f02f3dfe98001259b2b00c87ed7f2d0020bc93ef3d",
       "evidence": [
         "docs/findings/pareto-demand-priority-v31.md",
         "research/coverage/v31/pareto-demand-aggregate.json"
       ],
-      "notes": "Historical API server-side taxonomy occurrence statistics. Used only as a corpus/popularity proxy for simple-first target prioritisation; not user query intent, semantic ground truth, canonical authority, or skill-essentiality evidence. P80 is the initial semantic priority envelope; full lexical product coverage remains unchanged."
+      "notes": "Historical API server-side taxonomy occurrence statistics. Used only as a corpus/popularity proxy for simple-first target prioritisation; not user query intent, semantic ground truth, canonical authority, or skill-essentiality evidence. P80 is the initial semantic priority envelope; full lexical product coverage remains unchanged. source_sha256 hashes only normalized statistic rows used by the measurement; volatile API metadata is excluded.",
+      "source_hash_semantics": "SHA-256 of canonical normalized occupation-name/skill statistic rows (concept_id, label, legacy_ams_taxonomy_id, occurrences); API timing/response metadata excluded"
     }
   ]
 }

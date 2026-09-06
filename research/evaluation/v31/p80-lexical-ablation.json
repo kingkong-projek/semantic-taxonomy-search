@@ -1,0 +1,2074 @@
+{
+  "benchmark": {
+    "KV_cases": 617,
+    "YV_cases": 333,
+    "semantics": "source-truth P80 ingestion/retrieval benchmark; not natural-paraphrase proof"
+  },
+  "products": {
+    "KV": {
+      "A_labels": {
+        "by_query_origin": {
+          "alternative_label": {
+            "cases": 108,
+            "mrr": 0.76822,
+            "ndcg_at_10": 0.772155,
+            "recall_at_10": 0.787037,
+            "top1": 0.75
+          },
+          "canonical_definition": {
+            "cases": 193,
+            "mrr": 0.875962,
+            "ndcg_at_10": 0.897757,
+            "recall_at_10": 0.963731,
+            "top1": 0.823834
+          },
+          "canonical_label": {
+            "cases": 316,
+            "mrr": 1.0,
+            "ndcg_at_10": 1.0,
+            "recall_at_10": 1.0,
+            "top1": 1.0
+          }
+        },
+        "by_stratum": {
+          "alternative_label": {
+            "cases": 108,
+            "mrr": 0.76822,
+            "ndcg_at_10": 0.772155,
+            "recall_at_10": 0.787037,
+            "top1": 0.75
+          },
+          "exact_preferred_label": {
+            "cases": 316,
+            "mrr": 1.0,
+            "ndcg_at_10": 1.0,
+            "recall_at_10": 1.0,
+            "top1": 1.0
+          },
+          "kv_description_without_canonical_term": {
+            "cases": 38,
+            "mrr": 0.821466,
+            "ndcg_at_10": 0.838176,
+            "recall_at_10": 0.894737,
+            "top1": 0.789474
+          },
+          "long_description": {
+            "cases": 193,
+            "mrr": 0.875962,
+            "ndcg_at_10": 0.897757,
+            "recall_at_10": 0.963731,
+            "top1": 0.823834
+          }
+        },
+        "cases": 617,
+        "overall": {
+          "mrr": 0.92063,
+          "ndcg_at_10": 0.928136,
+          "recall_at_10": 0.951378,
+          "top1": 0.901135
+        },
+        "top1_miss_count": 61,
+        "top1_misses_first_50": [
+          {
+            "expected": [
+              "WQdS_Jtu_qPC"
+            ],
+            "id": "kv.p80.0022",
+            "query": "Androidteknik",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "WQdS_Jtu_qPC"
+            ],
+            "id": "kv.p80.0023",
+            "query": "Androidutveckling",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "e9Qi_WjN_h71"
+            ],
+            "id": "kv.p80.0033",
+            "query": "Arbetsterapeutexamenär en yrkesexamen på högskolenivå kopplad till utbildning med inriktning mot arbetsterapeut. Källa: UHR (Universitets- och högskolerådet)",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "6Rxx_zRM_Dqc",
+              "ba8g_LRR_Sj2",
+              "Zffc_M4R_Gws",
+              "nDE1_gZr_UJX",
+              "th2t_DxP_C8m"
+            ]
+          },
+          {
+            "expected": [
+              "Lq2i_vZo_BEx"
+            ],
+            "id": "kv.p80.0058",
+            "query": "Bokslut avser sammanställningen av ett företags eller en organisations ekonomiska resultat i slutet av en räkenskapsperiod. Detta inkluderar upprättande av balans- och resultaträkningar samt nedskrivning av tillgångar och redovisning av skulder.",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "FYk9_RXp_7c5",
+              "Lq2i_vZo_BEx",
+              "yc3o_fvU_E6V",
+              "SMLj_ds3_Qe7",
+              "Bc4A_Z6e_Pq1"
+            ]
+          },
+          {
+            "expected": [
+              "o8wR_57f_jv9"
+            ],
+            "id": "kv.p80.0076",
+            "query": "C",
+            "query_origin": "alternative_label",
+            "top5": [
+              "jBKc_5Yx_Y6T",
+              "o8wR_57f_jv9",
+              "yNm8_krX_usR",
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2"
+            ]
+          },
+          {
+            "expected": [
+              "yNm8_krX_usR"
+            ],
+            "id": "kv.p80.0080",
+            "query": "C++",
+            "query_origin": "alternative_label",
+            "top5": [
+              "jBKc_5Yx_Y6T",
+              "o8wR_57f_jv9",
+              "yNm8_krX_usR",
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2"
+            ]
+          },
+          {
+            "expected": [
+              "euH8_yAp_hiG"
+            ],
+            "id": "kv.p80.0088",
+            "query": "Cascading stylesheets",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "jBKc_5Yx_Y6T"
+            ],
+            "id": "kv.p80.0101",
+            "query": "Csharp",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "seSm_rEC_9fU"
+            ],
+            "id": "kv.p80.0174",
+            "query": "Fysioterapeutexamenär en yrkesexamen på högskolenivå kopplad till utbildning med inriktning mot fysioterapeut. Källa: UHR (Universitets- och högskolerådet)",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "6Rxx_zRM_Dqc",
+              "ba8g_LRR_Sj2",
+              "Zffc_M4R_Gws",
+              "5agw_dEi_Ag4",
+              "th2t_DxP_C8m"
+            ]
+          },
+          {
+            "expected": [
+              "yyJQ_gFx_TKr"
+            ],
+            "id": "kv.p80.0181",
+            "query": "Förskollärarexamenär en yrkesexamen på högskolenivå kopplad till utbildning med inriktning mot förskollärare. Källa: UHR (Universitets- och högskolerådet)",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "6Rxx_zRM_Dqc",
+              "ba8g_LRR_Sj2",
+              "Zffc_M4R_Gws",
+              "th2t_DxP_C8m",
+              "Bc4A_Z6e_Pq1"
+            ]
+          },
+          {
+            "expected": [
+              "vsdz_cNF_c2C"
+            ],
+            "id": "kv.p80.0201",
+            "query": "Godkänd trafiklärare",
+            "query_origin": "alternative_label",
+            "top5": [
+              "bG9S_mns_7q9",
+              "vsdz_cNF_c2C",
+              "th2t_DxP_C8m",
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2"
+            ]
+          },
+          {
+            "expected": [
+              "vsdz_cNF_c2C"
+            ],
+            "id": "kv.p80.0205",
+            "query": "Godkännandebevis",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "xowU_8Wu_K7C"
+            ],
+            "id": "kv.p80.0222",
+            "query": "Hemtjänst avser en form av vård och omsorg som tillhandahålls i hemmet för äldre och personer med funktionsnedsättning, vilket syftar till att stödja deras dagliga liv och upprätthålla deras välbefinnande. Denna kompetens innebär att ge individuell vård, assistans och social service baserat på klientens behov och förutsättningar.",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "SfoE_zq7_ADN",
+              "yL7p_NgY_yKc",
+              "xowU_8Wu_K7C",
+              "axxm_t1P_6WR",
+              "qkyH_MC1_YKU"
+            ]
+          },
+          {
+            "expected": [
+              "K8eq_sEz_eXV"
+            ],
+            "id": "kv.p80.0228",
+            "query": "HTML, programmeringsspråk, avser ett markup-språk som används för att strukturera och presentera innehåll på webbsidor. Kompetensen innebär kunskaper om syntax och grundläggande funktioner för att skapa och utveckla webbinnehåll samt integration med andra teknologier som CSS och JavaScript.",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "DHhX_uVf_y6X",
+              "K8eq_sEz_eXV",
+              "euH8_yAp_hiG",
+              "qkyH_MC1_YKU",
+              "6Rxx_zRM_Dqc"
+            ]
+          },
+          {
+            "expected": [
+              "hndr_LeJ_so6"
+            ],
+            "id": "kv.p80.0238",
+            "query": "Hästskötsel avser den kompetens som omfattar vård, fodring, träning och hantering av hästar för att säkerställa deras hälsa och välbefinnande. Kompetensen inkluderar också kunskaper i uppfödning och avel samt underhåll av utrustning och anläggningar relaterade till hästaffärer.",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "yL7p_NgY_yKc",
+              "hndr_LeJ_so6",
+              "qkyH_MC1_YKU",
+              "yc3o_fvU_E6V",
+              "SMLj_ds3_Qe7"
+            ]
+          },
+          {
+            "expected": [
+              "jCsR_WQX_CKD"
+            ],
+            "id": "kv.p80.0250",
+            "query": "Java-programmering",
+            "query_origin": "alternative_label",
+            "top5": [
+              "iUew_moc_BRk",
+              "jCsR_WQX_CKD",
+              "JFDz_Uyg_Nmy",
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2"
+            ]
+          },
+          {
+            "expected": [
+              "jCsR_WQX_CKD"
+            ],
+            "id": "kv.p80.0252",
+            "query": "Javakompetens",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "jCsR_WQX_CKD"
+            ],
+            "id": "kv.p80.0253",
+            "query": "Javakunskap",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "jCsR_WQX_CKD"
+            ],
+            "id": "kv.p80.0254",
+            "query": "Javaprogrammering",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "DHhX_uVf_y6X"
+            ],
+            "id": "kv.p80.0260",
+            "query": "Javascriptkompetens",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "DHhX_uVf_y6X"
+            ],
+            "id": "kv.p80.0261",
+            "query": "Javascriptkunskap",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "DHhX_uVf_y6X"
+            ],
+            "id": "kv.p80.0262",
+            "query": "Javascriptutveckling",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "jCsR_WQX_CKD"
+            ],
+            "id": "kv.p80.0263",
+            "query": "Javautveckling",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "pLfm_Uff_BsM"
+            ],
+            "id": "kv.p80.0265",
+            "query": "Juristexamen är en examen på högskolenivå kopplad till utbildning med inriktning mot jurist.",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "6Rxx_zRM_Dqc",
+              "ba8g_LRR_Sj2",
+              "pLfm_Uff_BsM",
+              "th2t_DxP_C8m",
+              "Zffc_M4R_Gws"
+            ]
+          },
+          {
+            "expected": [
+              "euH8_yAp_hiG"
+            ],
+            "id": "kv.p80.0272",
+            "query": "Kaskadmallar",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "hYpk_RYx_y3V"
+            ],
+            "id": "kv.p80.0274",
+            "query": "Kassavana avser erfarenhet och färdighet i att hantera betalningar och genomföra kassatransaktioner i olika försäljningsmiljöer. Kompetensen involverar kunskaper om kassaapparater, betalningssystem och rutiner för att säkerställa korrekt betalning och redovisning av transaktioner.",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "FYk9_RXp_7c5",
+              "hYpk_RYx_y3V",
+              "3TSx_fJE_Z26",
+              "4oKa_e7b_oHW",
+              "qkyH_MC1_YKU"
+            ]
+          },
+          {
+            "expected": [
+              "awjU_C3D_XEJ"
+            ],
+            "id": "kv.p80.0279",
+            "query": "Kompetensen avser kunskaper om och tillämpning av metoder för ekonomisk styrning inom organisationer. Det innefattar bedömning av ekonomiskt nuläge, definiering av mål, resursfördelning, budgetering, uppföljning av resultat samt analys för beslutsfattande och värdeskapande.",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "W7Qf_aRY_FEo",
+              "WNnT_qrt_M77",
+              "qkyH_MC1_YKU",
+              "yL7p_NgY_yKc",
+              "yc3o_fvU_E6V"
+            ]
+          },
+          {
+            "expected": [
+              "dQre_aBF_3dE"
+            ],
+            "id": "kv.p80.0290",
+            "query": "Kundvård",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "6Suw_3c1_47a"
+            ],
+            "id": "kv.p80.0310",
+            "query": "Legitimation som krävs för att bli tillsvidareanställd och få sätta betyg som förskollärare i Sverige. Utfärdas av Skolverket.",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "5agw_dEi_Ag4",
+              "9RTm_B69_6ec",
+              "9ntP_jdL_3iG",
+              "Azca_cCi_Y21",
+              "B4E8_NBS_irE"
+            ]
+          },
+          {
+            "expected": [
+              "yKnk_W7X_Zvk"
+            ],
+            "id": "kv.p80.0311",
+            "query": "Legitimation som krävs för att bli tillsvidareanställd och få sätta betyg som lärare i Sverige. Utfärdas av Skolverket.",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "5agw_dEi_Ag4",
+              "9RTm_B69_6ec",
+              "9ntP_jdL_3iG",
+              "Azca_cCi_Y21",
+              "B4E8_NBS_irE"
+            ]
+          },
+          {
+            "expected": [
+              "Tpvt_9yv_KAw"
+            ],
+            "id": "kv.p80.0325",
+            "query": "Legitimation som krävs för att kunna arbeta som taxiförare i Sverige. Utfärdas av Transportstyrelsen.",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "5agw_dEi_Ag4",
+              "9RTm_B69_6ec",
+              "9ntP_jdL_3iG",
+              "Azca_cCi_Y21",
+              "B4E8_NBS_irE"
+            ]
+          },
+          {
+            "expected": [
+              "z52H_f4y_4ZA"
+            ],
+            "id": "kv.p80.0341",
+            "query": "Linuxkompetens",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "z52H_f4y_4ZA"
+            ],
+            "id": "kv.p80.0342",
+            "query": "Linuxkunskap",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "n9ho_3vf_UZP"
+            ],
+            "id": "kv.p80.0350",
+            "query": "Läkarexamen är en examen på högskolenivå kopplad till utbildning med inriktning mot läkare.",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "6Rxx_zRM_Dqc",
+              "ba8g_LRR_Sj2",
+              "n9ho_3vf_UZP",
+              "9ntP_jdL_3iG",
+              "th2t_DxP_C8m"
+            ]
+          },
+          {
+            "expected": [
+              "zJZd_pDs_SDf"
+            ],
+            "id": "kv.p80.0354",
+            "query": "Lärarexamen är en examen på högskolenivå kopplad till utbildning med inriktning mot lärare.",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "6Rxx_zRM_Dqc",
+              "ba8g_LRR_Sj2",
+              "zJZd_pDs_SDf",
+              "th2t_DxP_C8m",
+              "Zffc_M4R_Gws"
+            ]
+          },
+          {
+            "expected": [
+              "yXmf_iKi_7ci"
+            ],
+            "id": "kv.p80.0361",
+            "query": "MA",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "yXmf_iKi_7ci"
+            ],
+            "id": "kv.p80.0379",
+            "query": "Materialadministration",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "ygEQ_Pwp_ozn"
+            ],
+            "id": "kv.p80.0382",
+            "query": "Mekanik avser studiet av krafter och deras inverkan på kroppar i vila och rörelse. Kompetensen innefattar kunskap om principer för statik, dynamik och energikonservering, och tillämpas inom områden såsom maskinteknik, underhåll och reparation av mekanisk utrustning.",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "7AFv_z2m_swt",
+              "ygEQ_Pwp_ozn",
+              "qkyH_MC1_YKU",
+              "yL7p_NgY_yKc",
+              "yc3o_fvU_E6V"
+            ]
+          },
+          {
+            "expected": [
+              "wJUD_v8j_Aep"
+            ],
+            "id": "kv.p80.0385",
+            "query": "Mekaniska reparationsarbeten avser arbetsuppgifter som innefattar reparation och underhåll av mekaniska system och utrustning. Kompetensen omfattar förståelse för mekanik, diagnostik av fel samt utförande av reparationer på maskiner och olika typer av mekaniska komponenter.",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "SMLj_ds3_Qe7",
+              "wJUD_v8j_Aep",
+              "ygEQ_Pwp_ozn",
+              "XThy_HCH_FFc",
+              "qkyH_MC1_YKU"
+            ]
+          },
+          {
+            "expected": [
+              "A5HJ_aMw_BQt"
+            ],
+            "id": "kv.p80.0389",
+            "query": "Mjukvaruutveckling avser processen att analysera, designa och skapa programvara och applikationer som körs på datorer och andra elektroniska enheter. Denna kompetens omfattar olika steg i utvecklingscykeln, inklusive kravinsamling, kodning, testning och underhåll av mjukvara för att säkerställa funktionalitet och effektivitet.",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "2kEw_jWL_6Zz",
+              "Bc4A_Z6e_Pq1",
+              "A5HJ_aMw_BQt",
+              "drj3_CKp_Mpp",
+              "TFQD_onf_Tid"
+            ]
+          },
+          {
+            "expected": [
+              "w8bU_wHe_omF"
+            ],
+            "id": "kv.p80.0397",
+            "query": "MS Office avser en uppsättning programvara från Microsoft som används för kontorsarbete, inklusive dokumenthantering, kalkylering och presentation. Kompetensen omfattar färdigheter i vanliga applikationer som Word, Excel, PowerPoint och Outlook.",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "5wab_aFK_gdL",
+              "6Ei3_fZV_YKM",
+              "w8bU_wHe_omF",
+              "xwfa_jdj_eiR",
+              "qkyH_MC1_YKU"
+            ]
+          },
+          {
+            "expected": [
+              "w8bU_wHe_omF"
+            ],
+            "id": "kv.p80.0408",
+            "query": "Officepaketet",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "MR4H_FFT_mTj"
+            ],
+            "id": "kv.p80.0410",
+            "query": "Omvårdnad avser ett antal åtgärder och insatser som syftar till att ge fysisk, emotionell och social stöd och vård till individer med olika behov. Denna kompetens omfattar bland annat att förstå och tillämpa hälso- och sjukvårdsprinciper samt att ge omsorg och hjälp i dagliga aktiviteter.",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "SfoE_zq7_ADN",
+              "MR4H_FFT_mTj",
+              "gHBQ_WJe_ijx",
+              "Zffc_M4R_Gws",
+              "axxm_t1P_6WR"
+            ]
+          },
+          {
+            "expected": [
+              "h51N_cgx_7NJ"
+            ],
+            "id": "kv.p80.0414",
+            "query": "Optikerexamen är en yrkesexamen på högskolenivå kopplad till utbildning med inriktning mot optiker. Källa: UHR (Universitets- och högskolerådet)",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "6Rxx_zRM_Dqc",
+              "ba8g_LRR_Sj2",
+              "h51N_cgx_7NJ",
+              "Zffc_M4R_Gws",
+              "B4E8_NBS_irE"
+            ]
+          },
+          {
+            "expected": [
+              "eoGp_ZP3_Lex"
+            ],
+            "id": "kv.p80.0459",
+            "query": "Psykologexamen är en examen på högskolenivå kopplad till utbildning med inriktning mot psykolog.",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "6Rxx_zRM_Dqc",
+              "ba8g_LRR_Sj2",
+              "eoGp_ZP3_Lex",
+              "Azca_cCi_Y21",
+              "th2t_DxP_C8m"
+            ]
+          },
+          {
+            "expected": [
+              "qfkh_ZRK_w4W"
+            ],
+            "id": "kv.p80.0463",
+            "query": "Pythonkunskaper",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "qfkh_ZRK_w4W"
+            ],
+            "id": "kv.p80.0464",
+            "query": "Pythonprogrammering",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "qfkh_ZRK_w4W"
+            ],
+            "id": "kv.p80.0465",
+            "query": "Pythonscript",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "qfkh_ZRK_w4W"
+            ],
+            "id": "kv.p80.0466",
+            "query": "Pythonutveckling",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "FYk9_RXp_7c5"
+            ],
+            "id": "kv.p80.0470",
+            "query": "Redovisning avser systematiska processer för att registrera, sammanställa och rapportera finansiell information om företag, organisationer och myndigheter. Kompetensen omfattar kunskaper i bokföring, ekonomisk analys och rapportering.",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "W7Qf_aRY_FEo",
+              "WNnT_qrt_M77",
+              "FYk9_RXp_7c5",
+              "qkyH_MC1_YKU",
+              "dRWb_Mgx_yJf"
+            ]
+          }
+        ]
+      },
+      "B_plus_definitions": {
+        "by_query_origin": {
+          "alternative_label": {
+            "cases": 108,
+            "mrr": 0.76359,
+            "ndcg_at_10": 0.768738,
+            "recall_at_10": 0.787037,
+            "top1": 0.740741
+          },
+          "canonical_definition": {
+            "cases": 193,
+            "mrr": 1.0,
+            "ndcg_at_10": 1.0,
+            "recall_at_10": 1.0,
+            "top1": 1.0
+          },
+          "canonical_label": {
+            "cases": 316,
+            "mrr": 1.0,
+            "ndcg_at_10": 1.0,
+            "recall_at_10": 1.0,
+            "top1": 1.0
+          }
+        },
+        "by_stratum": {
+          "alternative_label": {
+            "cases": 108,
+            "mrr": 0.76359,
+            "ndcg_at_10": 0.768738,
+            "recall_at_10": 0.787037,
+            "top1": 0.740741
+          },
+          "exact_preferred_label": {
+            "cases": 316,
+            "mrr": 1.0,
+            "ndcg_at_10": 1.0,
+            "recall_at_10": 1.0,
+            "top1": 1.0
+          },
+          "kv_description_without_canonical_term": {
+            "cases": 38,
+            "mrr": 1.0,
+            "ndcg_at_10": 1.0,
+            "recall_at_10": 1.0,
+            "top1": 1.0
+          },
+          "long_description": {
+            "cases": 193,
+            "mrr": 1.0,
+            "ndcg_at_10": 1.0,
+            "recall_at_10": 1.0,
+            "top1": 1.0
+          }
+        },
+        "cases": 617,
+        "overall": {
+          "mrr": 0.958619,
+          "ndcg_at_10": 0.95952,
+          "recall_at_10": 0.962723,
+          "top1": 0.954619
+        },
+        "top1_miss_count": 28,
+        "top1_misses_first_50": [
+          {
+            "expected": [
+              "HnQ2_FhC_xgt"
+            ],
+            "id": "kv.p80.0007",
+            "query": "ADR",
+            "query_origin": "alternative_label",
+            "top5": [
+              "zf1U_Xnn_g1Z",
+              "HnQ2_FhC_xgt",
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx"
+            ]
+          },
+          {
+            "expected": [
+              "WQdS_Jtu_qPC"
+            ],
+            "id": "kv.p80.0022",
+            "query": "Androidteknik",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "WQdS_Jtu_qPC"
+            ],
+            "id": "kv.p80.0023",
+            "query": "Androidutveckling",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "o8wR_57f_jv9"
+            ],
+            "id": "kv.p80.0076",
+            "query": "C",
+            "query_origin": "alternative_label",
+            "top5": [
+              "jBKc_5Yx_Y6T",
+              "o8wR_57f_jv9",
+              "yNm8_krX_usR",
+              "imVM_9XE_Rrm",
+              "11L4_Q2Z_8tM"
+            ]
+          },
+          {
+            "expected": [
+              "yNm8_krX_usR"
+            ],
+            "id": "kv.p80.0080",
+            "query": "C++",
+            "query_origin": "alternative_label",
+            "top5": [
+              "jBKc_5Yx_Y6T",
+              "o8wR_57f_jv9",
+              "yNm8_krX_usR",
+              "imVM_9XE_Rrm",
+              "11L4_Q2Z_8tM"
+            ]
+          },
+          {
+            "expected": [
+              "euH8_yAp_hiG"
+            ],
+            "id": "kv.p80.0088",
+            "query": "Cascading stylesheets",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "jBKc_5Yx_Y6T"
+            ],
+            "id": "kv.p80.0101",
+            "query": "Csharp",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "vsdz_cNF_c2C"
+            ],
+            "id": "kv.p80.0205",
+            "query": "Godkännandebevis",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "jCsR_WQX_CKD"
+            ],
+            "id": "kv.p80.0252",
+            "query": "Javakompetens",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "jCsR_WQX_CKD"
+            ],
+            "id": "kv.p80.0253",
+            "query": "Javakunskap",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "jCsR_WQX_CKD"
+            ],
+            "id": "kv.p80.0254",
+            "query": "Javaprogrammering",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "DHhX_uVf_y6X"
+            ],
+            "id": "kv.p80.0260",
+            "query": "Javascriptkompetens",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "DHhX_uVf_y6X"
+            ],
+            "id": "kv.p80.0261",
+            "query": "Javascriptkunskap",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "DHhX_uVf_y6X"
+            ],
+            "id": "kv.p80.0262",
+            "query": "Javascriptutveckling",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "jCsR_WQX_CKD"
+            ],
+            "id": "kv.p80.0263",
+            "query": "Javautveckling",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "euH8_yAp_hiG"
+            ],
+            "id": "kv.p80.0272",
+            "query": "Kaskadmallar",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "dQre_aBF_3dE"
+            ],
+            "id": "kv.p80.0290",
+            "query": "Kundvård",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "z52H_f4y_4ZA"
+            ],
+            "id": "kv.p80.0341",
+            "query": "Linuxkompetens",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "z52H_f4y_4ZA"
+            ],
+            "id": "kv.p80.0342",
+            "query": "Linuxkunskap",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "yXmf_iKi_7ci"
+            ],
+            "id": "kv.p80.0361",
+            "query": "MA",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "yXmf_iKi_7ci"
+            ],
+            "id": "kv.p80.0379",
+            "query": "Materialadministration",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "w8bU_wHe_omF"
+            ],
+            "id": "kv.p80.0408",
+            "query": "Officepaketet",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "qfkh_ZRK_w4W"
+            ],
+            "id": "kv.p80.0463",
+            "query": "Pythonkunskaper",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "qfkh_ZRK_w4W"
+            ],
+            "id": "kv.p80.0464",
+            "query": "Pythonprogrammering",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "qfkh_ZRK_w4W"
+            ],
+            "id": "kv.p80.0465",
+            "query": "Pythonscript",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "qfkh_ZRK_w4W"
+            ],
+            "id": "kv.p80.0466",
+            "query": "Pythonutveckling",
+            "query_origin": "alternative_label",
+            "top5": [
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx",
+              "2KV1_FD8_vGp",
+              "2REh_Drn_nsh"
+            ]
+          },
+          {
+            "expected": [
+              "Xnmr_kYS_YKY"
+            ],
+            "id": "kv.p80.0506",
+            "query": "SQL",
+            "query_origin": "alternative_label",
+            "top5": [
+              "voRm_aoU_cKB",
+              "Xnmr_kYS_YKY",
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx"
+            ]
+          },
+          {
+            "expected": [
+              "G4sF_xod_zoq"
+            ],
+            "id": "kv.p80.0597",
+            "query": "Windows",
+            "query_origin": "alternative_label",
+            "top5": [
+              "pnX9_gFn_CLt",
+              "G4sF_xod_zoq",
+              "11L4_Q2Z_8tM",
+              "1abT_LRk_fg2",
+              "29MP_yhF_mjx"
+            ]
+          }
+        ]
+      },
+      "C_plus_alternative_labels": {
+        "by_query_origin": {
+          "alternative_label": {
+            "cases": 108,
+            "mrr": 1.0,
+            "ndcg_at_10": 1.0,
+            "recall_at_10": 1.0,
+            "top1": 1.0
+          },
+          "canonical_definition": {
+            "cases": 193,
+            "mrr": 1.0,
+            "ndcg_at_10": 1.0,
+            "recall_at_10": 1.0,
+            "top1": 1.0
+          },
+          "canonical_label": {
+            "cases": 316,
+            "mrr": 1.0,
+            "ndcg_at_10": 1.0,
+            "recall_at_10": 1.0,
+            "top1": 1.0
+          }
+        },
+        "by_stratum": {
+          "alternative_label": {
+            "cases": 108,
+            "mrr": 1.0,
+            "ndcg_at_10": 1.0,
+            "recall_at_10": 1.0,
+            "top1": 1.0
+          },
+          "exact_preferred_label": {
+            "cases": 316,
+            "mrr": 1.0,
+            "ndcg_at_10": 1.0,
+            "recall_at_10": 1.0,
+            "top1": 1.0
+          },
+          "kv_description_without_canonical_term": {
+            "cases": 38,
+            "mrr": 1.0,
+            "ndcg_at_10": 1.0,
+            "recall_at_10": 1.0,
+            "top1": 1.0
+          },
+          "long_description": {
+            "cases": 193,
+            "mrr": 1.0,
+            "ndcg_at_10": 1.0,
+            "recall_at_10": 1.0,
+            "top1": 1.0
+          }
+        },
+        "cases": 617,
+        "overall": {
+          "mrr": 1.0,
+          "ndcg_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "top1": 1.0
+        },
+        "top1_miss_count": 0,
+        "top1_misses_first_50": []
+      }
+    },
+    "YV": {
+      "A_labels": {
+        "by_query_origin": {
+          "alternative_label": {
+            "cases": 37,
+            "mrr": 1.0,
+            "ndcg_at_10": 1.0,
+            "recall_at_10": 1.0,
+            "top1": 1.0
+          },
+          "canonical_definition": {
+            "cases": 137,
+            "mrr": 0.800966,
+            "ndcg_at_10": 0.812883,
+            "recall_at_10": 0.854015,
+            "top1": 0.759124
+          },
+          "canonical_label": {
+            "cases": 159,
+            "mrr": 1.0,
+            "ndcg_at_10": 1.0,
+            "recall_at_10": 1.0,
+            "top1": 1.0
+          }
+        },
+        "by_stratum": {
+          "alternative_label": {
+            "cases": 37,
+            "mrr": 1.0,
+            "ndcg_at_10": 1.0,
+            "recall_at_10": 1.0,
+            "top1": 1.0
+          },
+          "exact_preferred_label": {
+            "cases": 159,
+            "mrr": 1.0,
+            "ndcg_at_10": 1.0,
+            "recall_at_10": 1.0,
+            "top1": 1.0
+          },
+          "long_description": {
+            "cases": 137,
+            "mrr": 0.800966,
+            "ndcg_at_10": 0.812883,
+            "recall_at_10": 0.854015,
+            "top1": 0.759124
+          }
+        },
+        "cases": 333,
+        "overall": {
+          "mrr": 0.918115,
+          "ndcg_at_10": 0.923018,
+          "recall_at_10": 0.93994,
+          "top1": 0.900901
+        },
+        "top1_miss_count": 33,
+        "top1_misses_first_50": [
+          {
+            "expected": [
+              "rncq_GAq_KMx"
+            ],
+            "id": "yv.p80.0015",
+            "query": "Automationsingenjörer inom maskin utvecklar, programmerar och optimerar automatiserade maskiner och produktionslinjer i industriell produktion. \n\nArbetsuppgifterna inkluderar design och programmering av styrsystem (PLC/SCADA), installation och test av automationssystem, integrering av maskiner och robotar med IT‑miljöer samt felsökning och underhåll av befintliga lösningar. Automationsingenjörer analyserar produktionsflöden, genomför simuleringar och optimeringar för att öka effektivitet, tillgänglighet och kvalitet samt samarbetar med produktion, teknik och projektteam.\n\nKälla: Wise, MYH, Högskolan Väst",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "K3iK_iEb_41Y",
+              "Rd3G_bFa_zvR",
+              "TT8h_qKk_1iu",
+              "mBMU_HvW_LMY",
+              "rncq_GAq_KMx"
+            ]
+          },
+          {
+            "expected": [
+              "CQBS_ZSZ_ViP"
+            ],
+            "id": "yv.p80.0025",
+            "query": "Barnsjuksköterska förebygger, vårdar och behandlar svårt sjuka barn och ungdomar omfattande akut, intensiv, kurativ, preventiv, palliativ och rehabiliterande vård. \n\nSjuksköterska är en skyddad titel med legitimationskrav. En barnsjuksköterska med specialistsjuksköterskeexamen får använda benämningen specialistsjuksköterska inom hälso- och sjukvård för barn och ungdomar. Vanliga arbetsuppgifter är att planera, genomföra och utvärdera vårdinsatser, ge medicinsk och pedagogisk information till barn och föräldrar, utföra behandlingar, provtagning och vaccinationer samt samordna vårdinsatser vid både planerade och akuta besök. En barnsjuksköterska kan arbeta inom till exempel akutmottagning, barnhälsovård, elevhälsa, neonatalvård eller vårdavdelningar.\n\nKälla: Arbetsförmedlingen, Socialstyrelsen, Svensk sjuksköterskeförening",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "41Vq_aR6_yRb",
+              "ZKKT_4bd_Sxs",
+              "CQBS_ZSZ_ViP",
+              "PQkQ_Dmk_ZF8",
+              "bXNH_MNX_dUR"
+            ]
+          },
+          {
+            "expected": [
+              "rM7G_ge7_XhP"
+            ],
+            "id": "yv.p80.0027",
+            "query": "Barnskötare sköter och aktiverar barn vid förskola, förskoleklass och fritidshem.\n\nI arbetet ingår bland annat att planera, genomföra och dokumentera aktiviteter, att hjälpa barn vid matning, tvättning och påklädning. Barnskötare utvecklar även tillsammans med förskollärarna den pedagogiska verksamheten.\n\nKälla: Sveriges Kommuner och Regioner, Skolverket, ISCO, Arbetsförmedlingen",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "JUu4_wcP_kQG",
+              "rM7G_ge7_XhP",
+              "rgsj_poi_koz",
+              "PQkQ_Dmk_ZF8",
+              "9kWY_X1U_RyC"
+            ]
+          },
+          {
+            "expected": [
+              "MMTE_fiP_1Ng"
+            ],
+            "id": "yv.p80.0031",
+            "query": "Behandlingsassistenter/Socialpedagoger arbetar med att stödja och behandla barn, unga och vuxna som har psykosociala problem, missbruks- eller beroendeproblematik.\n\nArbetsuppgifter innefattar att i vardagen stötta klienter i aktiviteter som fritid, studier och arbete samt hjälpa till med vardagliga sysslor såsom matlagning, städning och tvätt. Rollen innebär även motivationsarbete, samtal och lyssnande för att hjälpa klienter att lämna exempelvis drogberoende och utveckla ett självständigt liv. Arbetet kan vara psykiskt krävande men upplevs ofta meningsfullt. Behandlingsassistenter/socialpedagoger verkar ofta inom institutioner, behandlingshem, kriminalvård och socialtjänst. De arbetar nära klienterna och är en del av det dagliga livet i respektive verksamhet. Arbetet kan innebära skiftarbete och medlevarskap, där man bor och verkar tillsammans med klienterna under vissa perioder.\n\nKälla: Sveriges kommuner och regioner, Arbetsförmedlingen",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "CnYS_d4N_CZJ",
+              "JUu4_wcP_kQG",
+              "rgsj_poi_koz",
+              "PQkQ_Dmk_ZF8",
+              "9kWY_X1U_RyC"
+            ]
+          },
+          {
+            "expected": [
+              "57z2_b5A_hAT"
+            ],
+            "id": "yv.p80.0036",
+            "query": "Betongarbetarens uppgifter är bland annat att armera, gjuta och bearbeta betong i olika byggprojekt som till exempel husgrunder, golv och broar.\n\nBetongarbetare armerar och gjuter husgrunder, väggar och pelare. En betongarbetare arbetar inte bara med husbyggnad utan även vid väg- och brobyggen. Betongarbetare gjuter också betonggolv och efter gjutningen kan det krävas efterbearbetning, såsom vakumsugning och slipning för att höja ytans kvalite. Slipningen görs med hjälp av speciella maskiner.\nBetongarbetaren kan ansöka om sitt yrkesbevis efter teoretisk grundutbildning och lärlingsanställning.\n\nKälla Arbetsförmedlingen",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "HdcS_g6a_jPk",
+              "57z2_b5A_hAT",
+              "MQHi_q9J_x2d",
+              "JUu4_wcP_kQG",
+              "rgsj_poi_koz"
+            ]
+          },
+          {
+            "expected": [
+              "GujS_MtW_PRH"
+            ],
+            "id": "yv.p80.0038",
+            "query": "Bibliotekarier samlar in, strukturerar och tillgängliggör information, litteratur och digitala medier.\n\nYrket är brett där arbetsuppgifter skiljer sig åt beroende på arbetsplats, från kommunala bibliotek till forskningsavdelningar. Exempelvis kan man arbeta med att främja läsande hos unga, lära ut källkritik, anordna evenemang. Man kan även ha en mer samordnande roll för biblioteksverksamheten i, till exempel, en kommun. Gemensamt är att bibliotekarier är specialister på att hantera information för olika syften. I detta ingår att köpa in, katalogisera och underhålla fysiska och digitala samlingar, vanligtvis på just bibliotek. Bibliotekarier har vanligtvis högskoleutbildning i biblioteks- och informationsvetenskap. \n\nKälla: DIK, SACO, Arbetsförmedlingen",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "JUu4_wcP_kQG",
+              "rgsj_poi_koz",
+              "PQkQ_Dmk_ZF8",
+              "9kWY_X1U_RyC",
+              "MQHi_q9J_x2d"
+            ]
+          },
+          {
+            "expected": [
+              "Pj8T_bST_f7D"
+            ],
+            "id": "yv.p80.0043",
+            "query": "Biomedicinska analytiker arbetar med att utföra och analysera medicinska prover och undersökningar för att stödja diagnostik och behandling inom hälso- och sjukvården.\n\nBiomedicinska analytiker är en skyddad titel med legitimationskrav. Vanliga arbetsuppgifter är att analysera blod-, vävnads- och andra kroppsvätskeprover eller att genomföra patientnära undersökningar såsom EKG och ultraljud. Biomedicinska analytiker kan också arbeta inom forskning, läkemedelsindustri eller miljöanalys.\n\nKälla: Arbetsförmedlingen, Karolinska Institutet, Region Skåne, Socialstyrelsen",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "41Vq_aR6_yRb",
+              "ZKKT_4bd_Sxs",
+              "CnYS_d4N_CZJ",
+              "Pj8T_bST_f7D",
+              "PQkQ_Dmk_ZF8"
+            ]
+          },
+          {
+            "expected": [
+              "QyBB_mhx_iKS"
+            ],
+            "id": "yv.p80.0060",
+            "query": "Byggingenjörer behövs ända från idéutveckling och detaljplanering, till färdigställande och besiktning. \n\nDe gör ritningar och konstruktioner efter beställarens behov och arbetar i kontakt med myndigheter och entreprenadfirmor för bygglov och upphandlingar. Mycket ska kalkyleras och analyseras innan själva byggnationen kan påbörjas. Byggnationen ska sedan följas noggrant för att hålla budget och tidsram. Slutligen besiktigas byggnaden och projektet kan avslutas.\n\nKälla: Arbetsförmedlingen",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "JUu4_wcP_kQG",
+              "rgsj_poi_koz",
+              "PQkQ_Dmk_ZF8",
+              "9kWY_X1U_RyC",
+              "MQHi_q9J_x2d"
+            ]
+          },
+          {
+            "expected": [
+              "Rd3G_bFa_zvR"
+            ],
+            "id": "yv.p80.0064",
+            "query": "Civilingenjörer inom maskinteknik arbetar med att utveckla, konstruera och analysera tekniska system och produkter inom industri och teknik. \n\nArbetsuppgifter omfattar konstruktion av maskiner och komponenter, tekniska beräkningar samt simuleringar av funktion och hållfasthet. Civilingenjörer inom maskinteknik deltar i produktutvecklingsprocesser, inklusive framtagning av ritningar, prototyper och tester. Arbetet innefattar även optimering av produktionsprocesser, förbättring av befintliga lösningar samt framtagning av teknisk dokumentation. Civilingenjörer inom maskinteknik medverkar i projekt inom exempelvis tillverkningsindustri, energi och fordon.\n\nKälla: Arbetsförmedlingen, div jobbannonser",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "44U4_7Fz_GCy",
+              "CnYS_d4N_CZJ",
+              "JUu4_wcP_kQG",
+              "rgsj_poi_koz",
+              "PQkQ_Dmk_ZF8"
+            ]
+          },
+          {
+            "expected": [
+              "n2Tp_B8E_gED"
+            ],
+            "id": "yv.p80.0074",
+            "query": "Distriktssköterska främjar hälsa, förebygger sjukdom samt ger vård och stöd till människor i alla åldrar, främst inom primärvård, hemsjukvård och skolhälsovård.\n\nSjuksköterska är en skyddad titel med legitimationskrav. En distriktssköterska med specialistsjuksköterskeexamen får använda benämningen specialistsjuksköterska med inriktning mot distriktssköterska. Vanliga arbetsuppgifter är att bedöma vårdbehov, planera och leda omvårdnadsinsatser, utföra hälsokontroller, såromläggningar, vaccinationer och ge rådgivning både på mottagning, i hemmet och via telefon. Distriktssköterskan ansvarar ofta för samordning av insatser mellan olika vårdgivare, upprättar individuella vårdplaner och arbetar med att stärka patientens egenvård genom information och utbildning. \n\nKälla: Arbetsförmedlingen, Linköpings Universitet, Socialstyrelsen, Svensk sjuksköterskeförening",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "PQkQ_Dmk_ZF8",
+              "n2Tp_B8E_gED",
+              "bXNH_MNX_dUR",
+              "CnYS_d4N_CZJ",
+              "JUu4_wcP_kQG"
+            ]
+          },
+          {
+            "expected": [
+              "BK8D_hZe_dtk"
+            ],
+            "id": "yv.p80.0077",
+            "query": "Ekonomiassistenter arbetar med administrativa uppgifter inom företagsekonomi.\n\nVanliga arbetsuppgifter inkluderar hantering av leverantörs- och kundreskontra, fakturahantering, avstämningar mellan bokföring och bankkonton samt registrering av ekonomiska transaktioner. Ekonomiassistenter sammanställer ekonomiska rapporter, bistår vid bokslut och hanterar underlag för löner, skatter och reseräkningar. Rollen innebär ofta kontakt med kunder, leverantörer och interna avdelningar för att ge information om betalningar och ekonomiska frågor. Arbetsuppgifterna kan variera beroende på företagets storlek och bransch, där ekonomiassistenten i mindre företag ofta hanterar flera områden, medan arbetsuppgifterna i större företag kan vara mer specialiserade\n\nKälla: Arbetsförmedlingen, Unionen",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "CnYS_d4N_CZJ",
+              "JUu4_wcP_kQG",
+              "rgsj_poi_koz",
+              "PQkQ_Dmk_ZF8",
+              "9kWY_X1U_RyC"
+            ]
+          },
+          {
+            "expected": [
+              "Sbzf_iBA_MAS"
+            ],
+            "id": "yv.p80.0082",
+            "query": "Elevassistenter stödjer elever och lärare för att göra lärandet lättare.\n\nElevassistenter ger extra hjälp i klassrummet under undervisningen, stöd på raster, i omklädningsrum och på utflykter till enskilda elever, en klass eller en fritidsgrupp. Arbetsuppgifter varierar beroende på det stöd eleven är i behov av. Elevassistentens grunduppgift är att finnas som stöd och resurs för en eller flera elever. Arbetet kan innebära att hjälpa eleven att få studiero och kunna delta i undervisningen. I vissa fall handlar det om hjälp vid måltider, raster eller vid ombyte.\n\nKälla: Arbetsförmedlingen",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "JUu4_wcP_kQG",
+              "15e8_KDZ_31Z",
+              "rgsj_poi_koz",
+              "PQkQ_Dmk_ZF8",
+              "9kWY_X1U_RyC"
+            ]
+          },
+          {
+            "expected": [
+              "kx3b_92W_PuD"
+            ],
+            "id": "yv.p80.0084",
+            "query": "Elingenjören ser till att skapa kraft, ljus, värme och olika tekniklösningar inom både nybyggnation och i befintliga anläggningar. \n\nElingenjören är nyckelpersonen som med ett ingenjörsmässigt tänk ansvarar för hela processen från förstudie, konstruktion, installation till underhåll.\nElingenjören har bred teknisk kunskap och tar det eltekniska ansvaret i projekt. Det är också elingenjören som samordnar de tekniska lösningarna med närliggande yrkesgrupper.\n\nKälla: Installatörsföretagen",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "K3iK_iEb_41Y",
+              "CnYS_d4N_CZJ",
+              "JUu4_wcP_kQG",
+              "rgsj_poi_koz",
+              "PQkQ_Dmk_ZF8"
+            ]
+          },
+          {
+            "expected": [
+              "tuoE_9Nj_fAS"
+            ],
+            "id": "yv.p80.0116",
+            "query": "Frisörer arbetar med att klippa, färga, forma och vårda hår.\n\nArbetsuppgifterna omfattar konsultation, klippning, färgning, slingor, permanent, tvätt, styling och försäljning av hårvårdsprodukter. Frisörer kan arbeta med både kort och långt hår, och anpassar behandlingar efter kundens stil och behov. Inom yrket kan man specialisera sig, till exempel som herrfrisör, damfrisör samt peruk- och tupéfrisör.\n\nKälla: Frisörföretagarna, Arbetsförmedlingen",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "CnYS_d4N_CZJ",
+              "PQkQ_Dmk_ZF8",
+              "9kWY_X1U_RyC",
+              "MQHi_q9J_x2d",
+              "YfCD_kUE_kck"
+            ]
+          },
+          {
+            "expected": [
+              "rUcW_z9R_Qsv"
+            ],
+            "id": "yv.p80.0121",
+            "query": "Förskollärare leder och ansvarar för undervisningen och den pedagogiska verksamheten för barn i förskoleåldern, med fokus på att stimulera utveckling och lärande enligt läroplanen.\n\nVanliga arbetsuppgifter är att planera, genomföra och utvärdera pedagogiska aktiviteter som utgår från barnens ålder, intressen och behov. Förskollärare dokumenterar och följer och har löpande dialog med vårdnadshavare och kollegor. Huvudregeln är att bara lärare och förskollärare som har legitimation kan få en tillsvidareanställning, men det finns flera undantag.\n\nKälla: Arbetsförmedlingen, SACO, Socialstyrelsen, Stockholms stad",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "JUu4_wcP_kQG",
+              "rUcW_z9R_Qsv",
+              "15e8_KDZ_31Z",
+              "rgsj_poi_koz",
+              "PQkQ_Dmk_ZF8"
+            ]
+          },
+          {
+            "expected": [
+              "uwYE_D2Z_45B"
+            ],
+            "id": "yv.p80.0124",
+            "query": "Försäljningschefer leder och utvecklar försäljningsverksamheten inom ett företag eller en avdelning. \n\nArbetsuppgifterna inkluderar att sätta försäljningsmål, planera och stödja försäljningsstrategier, följa upp resultat och utveckling samt att ge stöd och rådgivning till säljare och kundansvariga. Försäljningschefer medverkar i produkt‑ och marknadsutveckling, analyserar kund‑ och marknadsdata, genomför förbättringsinsatser.\n\nKälla: Arbetsförmedlingen, div jobbannonser",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "CnYS_d4N_CZJ",
+              "JUu4_wcP_kQG",
+              "rgsj_poi_koz",
+              "PQkQ_Dmk_ZF8",
+              "9kWY_X1U_RyC"
+            ]
+          },
+          {
+            "expected": [
+              "uZU6_oxo_Dpd"
+            ],
+            "id": "yv.p80.0145",
+            "query": "Industrielektrikerns jobb är att installera och trimma in automatiska anläggningar, förebygga fel, felsöka, utföra service och reparation samt att bidra till att utveckla industriprocessen. \n\nArbetet sker både med låg- och högspänning. Arbetsuppgifterna är blandade och även om det finns en planering över service och reparation av maskiner så styrs ofta industrielektrikerns uppdrag utifrån vad som löpande sker i industrin.\n\nKälla: ECY",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "JUu4_wcP_kQG",
+              "rgsj_poi_koz",
+              "PQkQ_Dmk_ZF8",
+              "9kWY_X1U_RyC",
+              "MQHi_q9J_x2d"
+            ]
+          },
+          {
+            "expected": [
+              "84Uc_bhA_s47"
+            ],
+            "id": "yv.p80.0153",
+            "query": "Installationselektrikern arbetar med att dra ledningar och installera elektrisk utrustning i bostäder, affärer, kontor och industrier. \n\nInstallationselektrikern arbetar med allt från nybyggnation till renoveringar. På byggen arbetar man ofta i lag tillsammans med andra yrkesgrupper med att dra ledningar, montera elcentraler och sätta upp strömbrytare. Installationselektrikern kan också arbeta med ny och energieffektiv teknik, som styrsystem och fastighetsautomation. \n\nKälla: Arbetsförmedlingen, Installationsföretagen",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "JUu4_wcP_kQG",
+              "rgsj_poi_koz",
+              "PQkQ_Dmk_ZF8",
+              "9kWY_X1U_RyC",
+              "MQHi_q9J_x2d"
+            ]
+          },
+          {
+            "expected": [
+              "gPCx_T6e_6P8"
+            ],
+            "id": "yv.p80.0159",
+            "query": "jobb- och utbildningscoacher hjälper arbetssökande att komma närmare arbete eller utbildning genom motiverande samtal, tydlig målsättning och praktiskt stöd.\n\nArbetsuppgifter omfattar bland annat att hålla individuella coachsamtal, leda gruppträffar och workshops, stötta i att skriva CV och personligt brev, träna på intervjusituationer samt matcha deltagare mot lämpliga arbetsgivare genom aktivt nätverkande och företagskontakter. Jobbcoacher arbetar vanligtvis hos privata matchnings- och omställningsföretag, inom kommunala arbetsmarknadsenheter, samt hos utbildnings- och karriärvägledningsföretag som bedriver arbetsmarknadsprogram på uppdrag av offentliga aktörer.\n\nKälla: Arbetsförmedlingen",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "CnYS_d4N_CZJ",
+              "JUu4_wcP_kQG",
+              "rgsj_poi_koz",
+              "PQkQ_Dmk_ZF8",
+              "9kWY_X1U_RyC"
+            ]
+          },
+          {
+            "expected": [
+              "aRp4_qjZ_tPV"
+            ],
+            "id": "yv.p80.0171",
+            "query": "Kommunikatörer planerar, utformar och sprider informations- och kommunikationsinsatser för att nå specifika målgrupper och bidra till att organisationens mål uppnås. \n\nArbetsuppgifterna inkluderar omvärldsbevakning, textproduktion för webb och sociala medier, pressarbete, kriskommunikation samt strategisk rådgivning till beslutsfattare. Kommunikatörer anpassar budskap och kanalval utifrån målgruppsanalyser och utvärderar genomförda kommunikationsaktiviteter.\n\nKälla: Sveriges Kommunikatörer, DIK, Akavia, Arbetsförmedlingen, samt div jobbannonser",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "PQkQ_Dmk_ZF8",
+              "9kWY_X1U_RyC",
+              "MQHi_q9J_x2d",
+              "YfCD_kUE_kck",
+              "3uEE_35U_U6j"
+            ]
+          },
+          {
+            "expected": [
+              "Zfgc_BYU_HM2"
+            ],
+            "id": "yv.p80.0193",
+            "query": "Lärarassistenter ger administrativt och pedagogiskt stöd i klassrummet och i övriga delar av skolverksamheten, i syfte att avlasta lärare så att de ska kunna ägna sig åt undervisning och uppgifter som hör till undervisningen.\n\nArbetsuppgifterna kan omfatta förberedelse av undervisningsmaterial, dokumentation, närvaroregistrering och att vara ett praktiskt stöd för lärare under lektioner. Lärarassistenter kan finnas som stöd på raster och i handledning av elever enskilt eller i mindre grupper, efter lärarens instruktion.\n\nKälla: Skolverket, Arbetsförmedlingen",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "JUu4_wcP_kQG",
+              "15e8_KDZ_31Z",
+              "rgsj_poi_koz",
+              "PQkQ_Dmk_ZF8",
+              "9kWY_X1U_RyC"
+            ]
+          },
+          {
+            "expected": [
+              "uWwq_jF2_nhq"
+            ],
+            "id": "yv.p80.0196",
+            "query": "Marknadsassistenter planerar, genomför och följer upp marknadsföringskampanjer.\n\nArbetet innebär i huvudsak att producera marknadsföringsmaterial som reklam, sociala medier-inlägg och säljmaterial. Rollen innebär även att planera och följa upp kampanjer, samt koordinera samarbeten med influencers och leverantörer. Marknadsassistenten sköter ofta kundregister, handlar upp tjänster som trycksaker och reklamutskick, och ansvarar för administrativa uppgifter som statistikinsamling, rapportering och eventplanering. Dessutom bistår marknadsassistenten marknadsansvariga och produktchefer med material och presentationer. \n\nKälla: Marknadsföreningen i Sverige, Handelsrådet, Arbetsförmedlingen",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "JUu4_wcP_kQG",
+              "rgsj_poi_koz",
+              "PQkQ_Dmk_ZF8",
+              "9kWY_X1U_RyC",
+              "MQHi_q9J_x2d"
+            ]
+          },
+          {
+            "expected": [
+              "eU1q_zvL_9Rf"
+            ],
+            "id": "yv.p80.0229",
+            "query": "Personliga assistenter kompenserar och underlättar vardagen för människor med funktionsnedsättning. \n\nArbetsuppgifterna varierar och är allt från hjälp vid måltider, hygien, klä av/på sig, egenvård och sköta hemmet till att göra det möjligt för en person att vara förälder, arbeta, studera, ägna sig åt fritidsintressen, umgås med vänner eller följa med på resor.\n\nKälla: Arbetsförmedlingen - Hitta yrken",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "PQkQ_Dmk_ZF8",
+              "9kWY_X1U_RyC",
+              "MQHi_q9J_x2d",
+              "YfCD_kUE_kck",
+              "3uEE_35U_U6j"
+            ]
+          },
+          {
+            "expected": [
+              "xBo9_V9m_bfg"
+            ],
+            "id": "yv.p80.0247",
+            "query": "Psykolog förebygger, utreder, diagnostiserar och behandlar psykisk ohälsa samt främja psykiskt välbefinnande hos individer, grupper och organisationer.\n\nPsykolog är en skyddad titel med legitimationskrav. Vanliga arbetsuppgifter är samtalsterapi, psykologiska utredningar och förebyggande och hälsofrämjande insatser. Psykologer kan också handleda personal, ge ledningsstöd, delta i organisationsutveckling och arbeta med forskning eller utbildning. Arbetet sker inom exempelvis hälso- och sjukvård, skola, företagshälsovård, myndigheter och privat verksamhet.\n\nKälla: Arbetsförmedlingen, Psykologförbundet, Socialstyrelsen",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "41Vq_aR6_yRb",
+              "ZKKT_4bd_Sxs",
+              "xBo9_V9m_bfg",
+              "CnYS_d4N_CZJ",
+              "JUu4_wcP_kQG"
+            ]
+          },
+          {
+            "expected": [
+              "yXRQ_Ad9_E8V"
+            ],
+            "id": "yv.p80.0257",
+            "query": "Restaurangbiträde hjälper gäster och annan personal på restauranger.\n\nArbetet innebär i huvudsak att ge service till besökare i restauranger. Vanliga arbetsuppgifter är att portionera upp mat, förbereda bufféer, ta emot betalning i kassa, servera gäster och att plocka bort disk från borden. I arbetsuppgifterna ingår också att diska och städa. Restaurangbiträde och köksbiträde liknar varandra och beroende på arbetsplats kan man använda båda benämningarna.\n\nKälla: Arbetsförmedlingen",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "oRB5_b7i_Qzv",
+              "yXRQ_Ad9_E8V",
+              "JUu4_wcP_kQG",
+              "rgsj_poi_koz",
+              "PQkQ_Dmk_ZF8"
+            ]
+          },
+          {
+            "expected": [
+              "ztEq_Vts_77r"
+            ],
+            "id": "yv.p80.0260",
+            "query": "Röntgensjuksköterska genomför medicinska bilddiagnostiska undersökningar och behandlingar med hjälp av röntgenteknik för att ge underlag till diagnos och behandling.\n\nRöntgensjuksköterska är en skyddad titel med legitimationskrav. Vanliga arbetsuppgifter är att planera och utföra röntgenundersökningar, säkerställa bildkvalitet och följa strålskydds- och säkerhetsrutiner. Röntgensjuksköterskan ansvarar för att informera och förbereda patienter, samarbeta med läkare och övrig vårdpersonal samt hantera och underhålla medicinteknisk utrustning.\n\nKälla: Arbetsförmedlingen, Karolinska Institutet, Region Stockholm, Socialstyrelsen, Uppsala universitet",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "9K3i_XD4_Kyy",
+              "ztEq_Vts_77r",
+              "PQkQ_Dmk_ZF8",
+              "9kWY_X1U_RyC",
+              "MQHi_q9J_x2d"
+            ]
+          },
+          {
+            "expected": [
+              "aEF1_qeh_5Qe"
+            ],
+            "id": "yv.p80.0279",
+            "query": "Socionom är en yrkestitel för den som har socionomexamen, och det är en bred utbildning som ger behörighet till många olika yrkesroller inom socialt arbete.\n\nEn socionom arbetar med socialt arbete och har som huvudsaklig uppgift att ge stöd, hjälp och vägledning till människor i olika livssituationer, ofta när de befinner sig i utsatthet eller behöver förändra sin livssituation. Socionomer kan arbeta inom en rad olika områden och roller, till exempel som socialsekreterare, kurator, biståndshandläggare, familjerådgivare, inom äldre- och handikappomsorg, kriminalvård, skola eller ideella organisationer.\n\nKälla: Arbetsförmedlingen, SACO, Stockholms universitet",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "FwM7_WYB_qgc",
+              "YpRs_ybt_47a",
+              "aEF1_qeh_5Qe",
+              "pYiF_Z6V_ULQ",
+              "CnYS_d4N_CZJ"
+            ]
+          },
+          {
+            "expected": [
+              "dhXy_7Te_Tzb"
+            ],
+            "id": "yv.p80.0281",
+            "query": "Speciallärare ger individuellt anpassad undervisning till elever som har behov av särskilt stöd, ofta inom områden som språk-, läs- och skrivutveckling, matematik eller utvecklingsstörning.\n\nVanliga arbetsuppgifter är att kartlägga elevers behov, genomföra enskild undervisning eller stöd i klassrummet samt att planera och följa upp anpassningar och särskilt stöd. Specialläraren deltar också i utredningar, dokumenterar insatser och fungerar som samtalspartner till arbetslag och elever. Huvudregeln är att bara lärare och förskollärare som har legitimation kan få en tillsvidareanställning, men det finns flera undantag. Lärarlegitimation behövs för att självständigt få sätta betyg. För att kunna arbeta som speciallärare behövs också speciallärarexamen.\n\nKälla: Arbetsförmedlingen, Skolverket, Socialstyrelsen",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "JUu4_wcP_kQG",
+              "dhXy_7Te_Tzb",
+              "rUcW_z9R_Qsv",
+              "15e8_KDZ_31Z",
+              "CnYS_d4N_CZJ"
+            ]
+          },
+          {
+            "expected": [
+              "LxhG_of8_eMi"
+            ],
+            "id": "yv.p80.0286",
+            "query": "Stödassistenter fungerar som stöd för att klara det dagliga livet för personer som har ett funktionshinder. \n\nArbetet innebär att ge pedagogiskt stöd och/eller omsorg för att främja den enskildes förmågor och självständighet. Arbetsplatsen är vanligen gruppbostad, daglig verksamhet eller korttidshem för barn och ungdomar. \n\nArbetsuppgifter skiljer sig åt beroende på arbetsplats. På en gruppbostad handlar det om till exempel stöd med matlagning, städning, personlig hygien, fritidsaktiviteter och hjälp med myndighetskontakter. Inom daglig verksamhet är målet med arbetsuppgifterna en meningsfull sysselsättning för personer med ett funktionshinder inom till exempel caféverksamhet, servicearbete, snickeri, konst, drama eller data. På ett korttidshem handlar arbetsuppgifterna om att ta hand om och aktivera barn och ungdomar.\n\nKälla: Arbetsförmedlingen - Hitta yrken",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "eU1q_zvL_9Rf",
+              "CnYS_d4N_CZJ",
+              "PQkQ_Dmk_ZF8",
+              "9kWY_X1U_RyC",
+              "MQHi_q9J_x2d"
+            ]
+          },
+          {
+            "expected": [
+              "NSEG_DmQ_waj"
+            ],
+            "id": "yv.p80.0288",
+            "query": "Stödpedagoger arbetar med att stödja personer med kognitiva funktionsnedsättningar genom pedagogiska metoder och samtalsteknik.\n\nArbetsuppgifter omfattar kartläggning av förmågor, upprättande av genomförandeplaner samt att stimulera och uppmuntra till aktivitet, utveckling och delaktighet i vardagen. Rollen innefattar handledning av kollegor, utveckling och implementering av pedagogiska metoder samt samverkan med närstående och andra verksamheter. Stödpedagoger bidrar till en anpassad och meningsfull vardag för brukare, ofta inom LSS-verksamhet, särskilt i boende, daglig verksamhet, skola och äldreboenden.\n\nKälla: Arbetsförmedlingen, yrkeshögskoleutbilndingar",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "CnYS_d4N_CZJ",
+              "JUu4_wcP_kQG",
+              "rgsj_poi_koz",
+              "PQkQ_Dmk_ZF8",
+              "9kWY_X1U_RyC"
+            ]
+          },
+          {
+            "expected": [
+              "ckkD_JhH_Sc6"
+            ],
+            "id": "yv.p80.0302",
+            "query": "Tandsköterskor assisterar tandläkare och tandhygienister vid undersökningar och behandlingar. \n\nArbetsuppgifterna omfattar förberedelse och sterilisering av instrument, röntgenfotografering, bedövning samt vissa självständiga behandlingar. Förebyggande tandvård och patientinformation ingår också i rollen. Administrativa uppgifter såsom tidsbokning, journalhantering och betalningshantering är vanligt förekommande.\n\nKälla: Sveriges kommuner och regioner, Arbetsförmedlingen",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "TdvW_S8R_CFH",
+              "JUu4_wcP_kQG",
+              "rgsj_poi_koz",
+              "PQkQ_Dmk_ZF8",
+              "9kWY_X1U_RyC"
+            ]
+          },
+          {
+            "expected": [
+              "4Z7F_oBG_vMG"
+            ],
+            "id": "yv.p80.0309",
+            "query": "Träarbetare arbetar med nybyggnation, ombyggnation och renovering av bostäder och lokaler. \n\nDe bygger bland annat formar för betonggjutning och tillverkar träkonstruktioner för stommar eller mellanväggar. De monterar förtillverkade träelement, fönster- och dörrkarmar, väggbeklädnad och inredning. En del träarbetare arbetar också vid anläggningsprojekt, exempelvis med formsättning på brobyggen.\nSnickaren kan ansöka om sitt yrkesbevis efter teoretisk grundutbildning och lärlingsanställning.\n\nKälla: Arbetsförmedlingen, BYN",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "HdcS_g6a_jPk",
+              "4Z7F_oBG_vMG",
+              "PQkQ_Dmk_ZF8",
+              "9kWY_X1U_RyC",
+              "MQHi_q9J_x2d"
+            ]
+          },
+          {
+            "expected": [
+              "4zLr_jP5_peZ"
+            ],
+            "id": "yv.p80.0332",
+            "query": "Vårdbiträden utför praktiskt omsorgsarbete och hemskötsel inom äldreomsorgen, som stöd till personer med funktionsnedsättning eller inom hälso- och sjukvården.\n\nArbetsuppgifter för vårdbiträden är varierande. Vanligt förekommande uppgifter är att hjälpa till med personlig hygien, påklädning, linda ben, hjälpa brukaren att ta sin medicin, dokumentera och rapportera om förändringar i hälsotillståndet.\n\nKälla: Arbetsförmedlingen, Sveriges Kommuner och Regioner",
+            "query_origin": "canonical_definition",
+            "top5": [
+              "41Vq_aR6_yRb",
+              "ZKKT_4bd_Sxs",
+              "eU1q_zvL_9Rf",
+              "CnYS_d4N_CZJ",
+              "JUu4_wcP_kQG"
+            ]
+          }
+        ]
+      },
+      "B_plus_definitions": {
+        "by_query_origin": {
+          "alternative_label": {
+            "cases": 37,
+            "mrr": 0.986486,
+            "ndcg_at_10": 0.990025,
+            "recall_at_10": 1.0,
+            "top1": 0.972973
+          },
+          "canonical_definition": {
+            "cases": 137,
+            "mrr": 1.0,
+            "ndcg_at_10": 1.0,
+            "recall_at_10": 1.0,
+            "top1": 1.0
+          },
+          "canonical_label": {
+            "cases": 159,
+            "mrr": 1.0,
+            "ndcg_at_10": 1.0,
+            "recall_at_10": 1.0,
+            "top1": 1.0
+          }
+        },
+        "by_stratum": {
+          "alternative_label": {
+            "cases": 37,
+            "mrr": 0.986486,
+            "ndcg_at_10": 0.990025,
+            "recall_at_10": 1.0,
+            "top1": 0.972973
+          },
+          "exact_preferred_label": {
+            "cases": 159,
+            "mrr": 1.0,
+            "ndcg_at_10": 1.0,
+            "recall_at_10": 1.0,
+            "top1": 1.0
+          },
+          "long_description": {
+            "cases": 137,
+            "mrr": 1.0,
+            "ndcg_at_10": 1.0,
+            "recall_at_10": 1.0,
+            "top1": 1.0
+          }
+        },
+        "cases": 333,
+        "overall": {
+          "mrr": 0.998498,
+          "ndcg_at_10": 0.998892,
+          "recall_at_10": 1.0,
+          "top1": 0.996997
+        },
+        "top1_miss_count": 1,
+        "top1_misses_first_50": [
+          {
+            "expected": [
+              "4Z7F_oBG_vMG"
+            ],
+            "id": "yv.p80.0274",
+            "query": "Snickare",
+            "query_origin": "alternative_label",
+            "top5": [
+              "HdcS_g6a_jPk",
+              "4Z7F_oBG_vMG",
+              "ZZTi_v6g_4cZ",
+              "15e8_KDZ_31Z",
+              "1ERY_48v_Q6m"
+            ]
+          }
+        ]
+      },
+      "C_plus_alternative_labels": {
+        "by_query_origin": {
+          "alternative_label": {
+            "cases": 37,
+            "mrr": 1.0,
+            "ndcg_at_10": 1.0,
+            "recall_at_10": 1.0,
+            "top1": 1.0
+          },
+          "canonical_definition": {
+            "cases": 137,
+            "mrr": 1.0,
+            "ndcg_at_10": 1.0,
+            "recall_at_10": 1.0,
+            "top1": 1.0
+          },
+          "canonical_label": {
+            "cases": 159,
+            "mrr": 1.0,
+            "ndcg_at_10": 1.0,
+            "recall_at_10": 1.0,
+            "top1": 1.0
+          }
+        },
+        "by_stratum": {
+          "alternative_label": {
+            "cases": 37,
+            "mrr": 1.0,
+            "ndcg_at_10": 1.0,
+            "recall_at_10": 1.0,
+            "top1": 1.0
+          },
+          "exact_preferred_label": {
+            "cases": 159,
+            "mrr": 1.0,
+            "ndcg_at_10": 1.0,
+            "recall_at_10": 1.0,
+            "top1": 1.0
+          },
+          "long_description": {
+            "cases": 137,
+            "mrr": 1.0,
+            "ndcg_at_10": 1.0,
+            "recall_at_10": 1.0,
+            "top1": 1.0
+          }
+        },
+        "cases": 333,
+        "overall": {
+          "mrr": 1.0,
+          "ndcg_at_10": 1.0,
+          "recall_at_10": 1.0,
+          "top1": 1.0
+        },
+        "top1_miss_count": 0,
+        "top1_misses_first_50": []
+      }
+    }
+  },
+  "retrieval": {
+    "algorithm": "deterministic BM25 over P80 target documents with exact indexed lexical-surface dominance",
+    "configs": {
+      "A_labels": "preferred_label only; preferred label is an exact indexed surface",
+      "B_plus_definitions": "A + canonical definition when non-empty/distinct from label; exact surfaces unchanged",
+      "C_plus_alternative_labels": "B + canonical alternative labels; preferred and alternative labels are exact indexed surfaces"
+    }
+  },
+  "schema_version": 2,
+  "source": {
+    "taxonomy_sha256": "634fd9d848a172747e54e3e487160a912ae6c0fcb8219c50998767c8c9aacbcc",
+    "taxonomy_url": "https://data.jobtechdev.se/taxonomy/version/31/query/concepts-and-common-relations/concepts-and-common-relations.json"
+  },
+  "taxonomy_version": 31
+}
