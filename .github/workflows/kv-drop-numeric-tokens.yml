@@ -1,0 +1,30 @@
+name: KV numeric-token sanitation ablation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/evaluate_kv_drop_numeric_tokens.py
+      - .github/workflows/kv-drop-numeric-tokens.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compare current vs drop-pure-numeric semantic tokens
+        run: python scripts/evaluate_kv_drop_numeric_tokens.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kv-drop-numeric-tokens-v31
+          path: artifacts/kv-drop-numeric-tokens-v31.json
+          if-no-files-found: error
+          retention-days: 30
