@@ -1,0 +1,30 @@
+name: Diagnose KV G1+T3 Ekonomistyrning regression
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/diagnose_kv_g1_t3_ekonomistyrning.py
+      - .github/workflows/kv-g1-t3-ekonomistyrning-diagnostic.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Explain regression without changing retrieval
+        run: python scripts/diagnose_kv_g1_t3_ekonomistyrning.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kv-g1-t3-ekonomistyrning-diagnostic
+          path: artifacts/kv-g1-t3-ekonomistyrning-diagnostic.json
+          if-no-files-found: error
+          retention-days: 30
