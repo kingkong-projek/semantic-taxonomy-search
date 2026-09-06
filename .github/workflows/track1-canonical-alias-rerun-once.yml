@@ -1,0 +1,62 @@
+name: Track 1 canonical alias rerun once
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/track1-canonical-alias-rerun-once.yml
+
+permissions:
+  contents: read
+
+jobs:
+  measure:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify authority boundary tests
+        run: python3 -m unittest scripts.test_findability_authority
+      - name: Checkout pinned YV generator
+        env:
+          SOURCE_COMMIT: 6dd9e4737d7db3cb2709f8082808b88e5c89ed6e
+        run: |
+          rm -rf /tmp/yv-generator
+          git init -q /tmp/yv-generator
+          git -C /tmp/yv-generator remote add origin https://gitlab.com/arbetsformedlingen/taxonomy-dev/backend/yrkesvaljaren.git
+          git -C /tmp/yv-generator fetch -q --depth 1 origin "$SOURCE_COMMIT"
+          git -C /tmp/yv-generator checkout -q --detach FETCH_HEAD
+          printf '%s\n' "$SOURCE_COMMIT" > /tmp/yv-generator/SOURCE_COMMIT.txt
+      - name: Rebuild source-attested should-find packet
+        run: |
+          rm -rf artifacts/findability-should-find-v31
+          python3 scripts/build_findability_should_find_cases.py --version 31 --generator-dir /tmp/yv-generator --output-dir artifacts/findability-should-find-v31
+      - name: Replay current selectors
+        run: |
+          printf '{"private":true,"type":"module"}\n' > scripts/package.json
+          npm install --prefix scripts --no-package-lock --no-save fuse.js@7.5.0
+          node scripts/evaluate_findability_should_find.mjs --input artifacts/findability-should-find-v31/cases.jsonl --output artifacts/findability-should-find-v31/evaluation.json
+      - name: Measure canonical alias rescue
+        run: |
+          python3 scripts/analyze_canonical_alias_rescue.py --cases artifacts/findability-should-find-v31/cases.jsonl --evaluation artifacts/findability-should-find-v31/evaluation.json --manifest artifacts/findability-should-find-v31/manifest.json --output artifacts/findability-should-find-v31/canonical-alias-rescue.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('artifacts/findability-should-find-v31/canonical-alias-rescue.json').read_text())
+          assert a['KV']['strict_unique_alias_cases']==1279, a['KV']['strict_unique_alias_cases']
+          assert a['YV']['strict_unique_alias_cases']==357, a['YV']['strict_unique_alias_cases']
+          print(json.dumps({'YV':a['YV'],'KV':a['KV']},ensure_ascii=False,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: track1-canonical-alias-rerun-v31
+          path: artifacts/findability-should-find-v31/
+          if-no-files-found: error
+          retention-days: 30
