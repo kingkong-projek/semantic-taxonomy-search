@@ -34,7 +34,8 @@ jobs:
         run: |
           python -m json.tool research/evaluation/v31/pareto-holdout-discovery.json >/dev/null
           grep -F 'Discovery Success@5' docs/research-plan.md
-          grep -F '84.788% volume-weighted Discovery Success@5' docs/findings/discovery-objective-v31.md
+          grep -F '84.788%' docs/findings/discovery-objective-v31.md
+          grep -F 'primary product evaluation objective' docs/findings/discovery-objective-v31.md
       - name: Commit discovery objective and SSOT
         run: |
           set -euo pipefail
