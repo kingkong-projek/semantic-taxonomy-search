@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 31,
+  "benchmark_sha256": "2903954d7b68cac0dbdd0b7e841a1222938a2e2670e366444cd63b7f12ed3e29",
+  "status": "post-result manual adjudication; does not alter raw metrics",
+  "guardrail": "AF source mappings are evidence, not infallible ground truth. Raw 20/26 metrics remain unchanged; these classifications guide benchmark design and error interpretation only.",
+  "reviewed_cases": 7,
+  "cases": [
+    {
+      "id": "kv.training-skill-third-holdout.004",
+      "target": "Trädgårdsskötsel",
+      "classification": "plausible_multi_intent",
+      "rationale": "Query clearly concerns green outdoor environments, parks and tree/bush planting, so the target is relevant. But the source also maps Trädgårdsanläggning and Skötsel och underhåll av utemiljöer, which are at least as directly expressed. A single-target miss must not be treated as an unambiguous product failure."
+    },
+    {
+      "id": "kv.training-skill-third-holdout.008",
+      "target": "Mätteknik",
+      "classification": "strong_ground_truth_subword_regression",
+      "rationale": "The query repeatedly describes geodetic measurements, instruments, measurement methods and analysis. Validated G1 ranks Mätteknik first; the 4-gram lane drops it to rank 6. This is a genuine warning against naive subword fusion."
+    },
+    {
+      "id": "kv.training-skill-third-holdout.013",
+      "target": "Städmaterial",
+      "classification": "strong_ground_truth_retrieval_gap",
+      "rationale": "The source maps only Städmaterial and the query describes cleaning tools, machines, accessories, base equipment and a cleaning cart. The exact canonical label is sparse, but the intended competence is reasonably inferable. Both lanes miss materially."
+    },
+    {
+      "id": "kv.training-skill-third-holdout.014",
+      "target": "Plattsättning",
+      "classification": "plausible_multi_intent_near_equivalent_retrieved",
+      "rationale": "The query mentions ceramic surface coverings but is a broad special-trade module with 11 mapped skills. Both lanes retrieve Kakel och klinker, plattsättningsvana in top-5, which is semantically very close to the asserted Plattsättning target. Treating this as a hard user-visible failure would overstate the defect."
+    },
+    {
+      "id": "kv.training-skill-third-holdout.022",
+      "target": "Kabelinstallationer",
+      "classification": "strong_ground_truth_subword_rescue",
+      "rationale": "The source maps only Kabelinstallationer and the query explicitly describes copper cable splicing, telecom-network construction and cable termination. Validated G1 misses; the fixed 4-gram lane ranks Kabelinstallationer third. This is a genuine complementary rescue."
+    },
+    {
+      "id": "kv.training-skill-third-holdout.024",
+      "target": "Städmaterial",
+      "classification": "weak_or_uninferable_target",
+      "rationale": "The query is about healthcare hygiene requirements, cleaning methods and hygiene classes. The same source row also maps Hygienstädning, which is much more directly expressed. Nothing in the query specifically identifies materials. Do not tune retrieval to force Städmaterial here."
+    },
+    {
+      "id": "kv.training-skill-third-holdout.025",
+      "target": "Plattsättning",
+      "classification": "uninferable_from_query",
+      "rationale": "The module title identifies plattsättning, but the benchmark intentionally excludes the title from the query. The remaining text is generic special-trade/building content and maps six skills. Plattsättning cannot be reliably inferred from the query itself. This is a benchmark-label problem, not a demonstrated retrieval defect."
+    }
+  ],
+  "consequence": "Keep raw third-holdout metrics unchanged. Future confirmatory natural-description holdouts should prefer exactly one total mapped skill, not merely exactly one P80 target, and all material misses/rescues/regressions must be manually adjudicated before product conclusions."
+}
