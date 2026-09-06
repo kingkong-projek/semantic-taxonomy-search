@@ -1,0 +1,54 @@
+name: Freeze P80 benchmark SSOT
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/freeze_p80_benchmark_ssot.py
+      - .github/workflows/freeze-p80-benchmark-ssot.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  freeze:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Rebuild source-truth P80 benchmark
+        run: |
+          python scripts/build_p80_decision_benchmark.py \
+            --version 31 \
+            --output-dir /tmp/p80-benchmark-v31
+      - name: Validate rebuilt benchmark
+        run: |
+          python scripts/validate_benchmark.py \
+            /tmp/p80-benchmark-v31/yv-p80-source-truth.jsonl \
+            /tmp/p80-benchmark-v31/kv-p80-source-truth.jsonl
+      - name: Freeze benchmark and synchronize SSOT
+        run: python scripts/freeze_p80_benchmark_ssot.py /tmp/p80-benchmark-v31
+      - name: Revalidate frozen files
+        run: |
+          python scripts/validate_benchmark.py \
+            research/benchmark/v31/p80-source-truth/yv-p80-source-truth.jsonl \
+            research/benchmark/v31/p80-source-truth/kv-p80-source-truth.jsonl
+          grep -F '950-case P80 source-truth core benchmark' docs/research-plan.md
+          grep -F 'P80 source-truth decision benchmark' docs/findings/p80-decision-benchmark-v31.md
+      - name: Commit frozen benchmark and SSOT
+        run: |
+          set -euo pipefail
+          git config user.name "kingkongola"
+          git config user.email "adambergman90@gmail.com"
+          git add \
+            research/benchmark/v31/p80-source-truth \
+            docs/findings/p80-decision-benchmark-v31.md \
+            docs/research-plan.md
+          git commit -m "benchmark: freeze P80 source-truth decision suite"
+          git push origin HEAD:main
