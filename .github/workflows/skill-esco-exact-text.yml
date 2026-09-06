@@ -1,0 +1,63 @@
+name: Skill exact ESCO text
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/evaluate_skill_esco_exact_text.py
+      - research/benchmark/v31/training-skill-validation/**
+      - research/benchmark/v31/p80-source-truth/kv-p80-source-truth.jsonl
+      - research/coverage/v31/pareto-demand-aggregate.json
+      - research/coverage/source-adapters.json
+      - .github/workflows/skill-esco-exact-text.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify frozen skill benchmark
+        run: |
+          test "$(wc -l < research/benchmark/v31/training-skill-validation/cases.jsonl)" -eq 76
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          rows=[json.loads(x) for x in Path('research/benchmark/v31/training-skill-validation/cases.jsonl').read_text(encoding='utf-8').splitlines() if x.strip()]
+          assert len(rows)==76
+          assert sum(bool(r['primary_descriptive_nonleaky']) for r in rows)==63
+          assert all('benchmark truth only' in r['authority_boundary'] for r in rows)
+          PY
+      - name: Evaluate exact ESCO text lane
+        run: |
+          python scripts/evaluate_skill_esco_exact_text.py --output artifacts/skill-esco-exact-text-v31.json
+      - name: Guard baseline and report experiment
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('artifacts/skill-esco-exact-text-v31.json').read_text())
+          base=x['source_truth_regression']['KV-C0']
+          assert base['top1_pct']==100.0
+          assert base['discovery_hit_at_5_pct']==100.0
+          assert base['failure_count']==0
+          assert x['benchmark']['KV-C0']['primary_descriptive_nonleaky']['cases']==63
+          print(json.dumps({
+              'coverage':x['coverage'],
+              'benchmark':x['benchmark'],
+              'source_truth_regression':x['source_truth_regression'],
+          },ensure_ascii=False,indent=2,sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: skill-esco-exact-text-v31
+          path: artifacts/skill-esco-exact-text-v31.json
+          if-no-files-found: error
+          retention-days: 30
