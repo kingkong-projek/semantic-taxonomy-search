@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 31,
+  "status": "measured",
+  "scope": "decision-bearing compact projection of the reproducible current YV/KV product failure-mode audit",
+  "sources": {
+    "yv_generator_commit": "6dd9e4737d7db3cb2709f8082808b88e5c89ed6e",
+    "selector_frontend_commit": "0eba98e3a91079a43c1eaf6da09dfabe11e5bc8b",
+    "taxonomy_sha256": "634fd9d848a172747e54e3e487160a912ae6c0fcb8219c50998767c8c9aacbcc",
+    "yv_sha256": "1036f9525416fac4ce475c1c1d3909b9e2849ebcf7094ffd38104955e4c2ee49",
+    "kv_sha256": "da83f26bf316971caa407364d8feae6f791203bff5758e674cace3d919e4b524",
+    "yv_query_corpus_sha256": "01a2550473091b06fdaaf450015eeea13b301471f1c78f5fb0dc8d3499645ae2",
+    "yv_query_corpus_total_volume": 3136136606,
+    "yv_query_corpus_start_date": "2022-05-04",
+    "yv_query_corpus_end_date": "2026-08-16"
+  },
+  "yv": {
+    "published": {
+      "total_rows": 12330,
+      "occupation_name_rows": 2105,
+      "job_title_context_rows": 10225,
+      "unique_job_title_ids": 9580
+    },
+    "multi_context": {
+      "job_title_ids": 541,
+      "context_rows": 1186,
+      "exact_title_queries_with_all_contexts_in_direct_top10": 541,
+      "exact_title_query_population_volume": 35949704,
+      "interpretation": "ordinary explicit dropdown disambiguation is healthy; this population must not be described as failed search"
+    },
+    "context_preservation_risks": {
+      "non_first_context_rows_that_programmatic_id_only_roundtrip_can_collapse": 645,
+      "multi_context_rows_not_encodable_by_standard_id_only_form_value": 1186,
+      "exact_blur_autoselect": "findExactMatch uses first matching taxonomy row for a bare preferred label; 541 IDs / 35.95M exact-query volume are exposed, but actual blur-path incidence is unmeasured",
+      "multi_select": "duplicate prevention compares job-title id first, so two contexts of the same job-title id cannot coexist"
+    },
+    "excluded_title_direct_reachability": {
+      "observed_exact_excluded_volume": 349760282,
+      "observed_exact_excluded_volume_share_pct": 11.153,
+      "volume_with_generator_mapped_occupation_in_current_direct_top10": 336025601,
+      "covered_share_of_excluded_volume_pct": 96.073,
+      "volume_without_generator_mapped_occupation_in_current_direct_top10": 13734681,
+      "residual_share_of_excluded_volume_pct": 3.927,
+      "residual_share_of_all_query_volume_pct": 0.438,
+      "note": "direct lane only; guarded Fuse may resolve additional cases",
+      "by_reason": {
+        "redundant_label": {
+          "titles": 101,
+          "direct_relevant_top10": 100,
+          "observed_query_volume": 265510870,
+          "volume_without_direct_relevant_top10": 1769
+        },
+        "too_many_parents": {
+          "titles": 104,
+          "direct_relevant_top10": 8,
+          "observed_query_volume": 84249412,
+          "volume_without_direct_relevant_top10": 13732912
+        }
+      },
+      "highest_volume_residual_queries": [
+        ["Lastbilsförare", 2475234],
+        ["Lagermedarbetare", 2148491],
+        ["Grundskollärare", 1628450],
+        ["Lastbilschaufför", 1376452],
+        ["Beteendevetare", 1376342],
+        ["Idrottslärare", 952555],
+        ["Slöjdlärare", 787437],
+        ["Lärare svenska", 368552],
+        ["Samtalsterapeut", 331270],
+        ["Anläggningsmaskinförare", 287983]
+      ]
+    },
+    "unused_canonical_vocabulary": {
+      "admitted_concepts_with_alternative_labels": 197,
+      "distinct_alternative_label_surfaces": 362,
+      "alternative_surfaces_with_no_current_deterministic_direct_result": 51
+    }
+  },
+  "kv": {
+    "runtime_active_skill_catalog": 6752,
+    "candidate_generation": "preferred skill labels and tokens from preferred labels only",
+    "context_behavior": "occupation/SSYK context ranks or filters lexical candidates but does not add query vocabulary",
+    "unused_canonical_vocabulary": {
+      "skills_with_alternative_labels": 819,
+      "distinct_alternative_label_surfaces": 1308,
+      "alternative_surfaces_with_no_canonical_contains_match": 260,
+      "skills_with_definition_distinct_from_preferred_label": 1654
+    }
+  },
+  "yv_to_kv_handoff": {
+    "kv_accepted_context_types": ["occupation-name", "ssyk-level-4"],
+    "yv_job_title_output": "job-title id plus related occupation-name id",
+    "correct_job_title_context_handoff": "selection.related.id",
+    "repo_demo_behavior": "passes selection.id directly to KV af-occupation-id",
+    "classification": "demonstrated integration footgun in repo demo; production consumer behavior remains unverified"
+  },
+  "decision": "close or measure product-native selector residuals before further semantic source/model expansion"
+}
