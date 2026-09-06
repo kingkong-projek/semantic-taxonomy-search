@@ -146,7 +146,7 @@ def main() -> int:
     suites: list[tuple[str, str, Path, Any]] = [
         ("yv_source_truth", "YV", Path("research/benchmark/v31/p80-source-truth/yv-p80-source-truth.jsonl"), None),
         ("kv_source_truth", "KV", Path("research/benchmark/v31/p80-source-truth/kv-p80-source-truth.jsonl"), None),
-        ("yv_fresh_natural", "YV", Path("research/benchmark/v31/fresh-natural-holdout/cases.jsonl"), None),
+        ("yv_fresh_natural", "YV", Path("research/benchmark/v31/fresh-natural-holdout/benchmark.jsonl"), None),
         ("kv_fresh_natural", "KV", Path("research/benchmark/v31/training-skill-fresh-holdout/cases.jsonl"), None),
         ("synthetic_description", "BOTH", Path("research/benchmark/v31/synthetic-description-stress/cases.jsonl"), None),
     ]
