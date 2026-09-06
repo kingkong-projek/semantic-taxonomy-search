@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 31,
+  "status": "measured",
+  "track": "1-current-yv-kv-findability",
+  "scope": "complete generator-excluded exact-title population under reproduced current YV product search",
+  "sources": {
+    "yv_selector_commit": "1ad8c389a4f43caa5a704843487ca94419bf745a",
+    "yv_search_utils_blob": "1eb706399ff97634b556164061e651a024b98003",
+    "fuse_js_version": "7.5.0",
+    "yv_sha256": "1036f9525416fac4ce475c1c1d3909b9e2849ebcf7094ffd38104955e4c2ee49",
+    "yv_generator_commit": "6dd9e4737d7db3cb2709f8082808b88e5c89ed6e",
+    "query_corpus_sha256": "01a2550473091b06fdaaf450015eeea13b301471f1c78f5fb0dc8d3499645ae2",
+    "workflow_run_id": 34055609446,
+    "artifact_id": 9995858597,
+    "artifact_zip_sha256": "ac5bd1d8c014e7ebf43a4c3759d8d22bc31e0352a059008dc66785f3be0b5242"
+  },
+  "population": {
+    "cases": 205,
+    "redundant_label": 101,
+    "too_many_parents": 104,
+    "observed_exact_query_volume": 349760282
+  },
+  "current_product": {
+    "any_generator_mapped_parent": {
+      "top1_pct_cases": 56.585,
+      "top3_pct_cases": 68.293,
+      "top5_pct_cases": 68.78,
+      "weighted_top1_pct": 85.162,
+      "weighted_top3_pct": 97.924,
+      "weighted_top5_pct": 98.863,
+      "cases_with_no_mapped_parent_visible": 64
+    },
+    "distinct_parent_recall": {
+      "micro_top5_pct": 22.508,
+      "micro_top10_pct": 27.133,
+      "note": "Low multi-parent recall is expected for structurally ambiguous too-many-parent titles and is not itself a search failure. It counts distinct generator-mapped occupation identities, not duplicate YV rows."
+    },
+    "non_target_prefix_before_first_mapped_parent": {
+      "cases": 7,
+      "weighted_volume_pct": 12.851,
+      "interpretation": "High weighted share is driven by a few very frequent broad terms such as Säljare; it does not imply loss of findability when a mapped parent remains immediately visible."
+    }
+  },
+  "by_reason": {
+    "redundant_label": {
+      "cases": 101,
+      "observed_volume": 265510870,
+      "weighted_any_parent_top1_pct": 99.78,
+      "weighted_any_parent_top5_pct": 99.999,
+      "cases_with_no_mapped_parent_visible": 1,
+      "micro_distinct_parent_recall_top5_pct": 73.545
+    },
+    "too_many_parents": {
+      "cases": 104,
+      "observed_volume": 84249412,
+      "any_parent_top1_pct_cases": 22.115,
+      "any_parent_top5_pct_cases": 39.423,
+      "weighted_any_parent_top1_pct": 39.094,
+      "weighted_any_parent_top3_pct": 91.383,
+      "weighted_any_parent_top5_pct": 95.28,
+      "cases_with_no_mapped_parent_visible": 63,
+      "micro_distinct_parent_recall_top5_pct": 10.204
+    }
+  },
+  "high_volume_examples": [
+    {
+      "query": "Säljare",
+      "observed_count": 41047237,
+      "reason": "too_many_parents",
+      "mapped_parent_count": 25,
+      "first_mapped_parent_rank": 2,
+      "interpretation": "variant overload / structural ambiguity; not a demonstrated missing-findability defect"
+    },
+    {
+      "query": "Jurist",
+      "observed_count": 3283699,
+      "reason": "too_many_parents",
+      "mapped_parent_count": 38,
+      "first_mapped_parent_rank": 4,
+      "interpretation": "broad structurally ambiguous title with mapped routes still visible in top 5"
+    },
+    {
+      "query": "Grundskollärare",
+      "observed_count": 1628450,
+      "reason": "too_many_parents",
+      "mapped_parent_count": 4,
+      "first_mapped_parent_rank": null,
+      "interpretation": "material residual candidate for targeted Track-1 review"
+    },
+    {
+      "query": "Slöjdlärare",
+      "observed_count": 787437,
+      "reason": "too_many_parents",
+      "mapped_parent_count": 4,
+      "first_mapped_parent_rank": null,
+      "interpretation": "material residual candidate for targeted Track-1 review"
+    },
+    {
+      "query": "Samtalsterapeut",
+      "observed_count": 331270,
+      "reason": "too_many_parents",
+      "mapped_parent_count": 4,
+      "first_mapped_parent_rank": null,
+      "interpretation": "targeted residual candidate"
+    },
+    {
+      "query": "Anläggningsmaskinförare",
+      "observed_count": 287983,
+      "reason": "too_many_parents",
+      "mapped_parent_count": 4,
+      "first_mapped_parent_rank": null,
+      "interpretation": "targeted residual candidate"
+    }
+  ],
+  "counterfactual": {
+    "rule": "for an exact generator-excluded title only, place its already generator-mapped occupation parents first",
+    "any_parent_top1_pct": 100.0,
+    "micro_distinct_parent_recall_top5_pct": 63.309,
+    "interpretation": "Diagnostic ceiling only. It cannot resolve which parent a user intended and is therefore not evidence for a global parent-first production rule."
+  },
+  "decision": {
+    "global_parent_first_patch": "do_not_adopt_from_this_measurement",
+    "reason": "Current product already exposes a mapped route for 98.863% of observed excluded-title volume within top 5, while the remaining too-many-parent cases are structurally ambiguous. Forcing all mapped parents first would manufacture apparent recall without resolving intent.",
+    "next_track1_work": "review the high-volume no-mapped-parent residuals individually; then close YV->KV context handoff/coherence and freeze the compact failure-mode map",
+    "track2": "remains_paused"
+  }
+}
