@@ -26,6 +26,9 @@ function tokens(value) {
   const matches = String(value ?? '').match(TOKEN_RE);
   return matches ? matches.map(x => x.toLowerCase()) : [];
 }
+function codepointCompare(a, b) {
+  return a < b ? -1 : a > b ? 1 : 0;
+}
 
 function loadJson(file) {
   return JSON.parse(fs.readFileSync(file, 'utf8'));
@@ -39,7 +42,7 @@ const vectors = loadJson(vectorsPath).cases;
 
 function rank(asset, query) {
   const scores = new Map();
-  const unique = [...new Set(tokens(query))].sort();
+  const unique = [...new Set(tokens(query))].sort(codepointCompare);
   let postingsVisited = 0;
   let matchedTerms = 0;
   for (const term of unique) {
@@ -59,7 +62,7 @@ function rank(asset, query) {
   const ranked = [...scores.entries()]
     .filter(([, score]) => score > 0)
     .map(([ordinal, score]) => [score, asset.document_ids[ordinal]])
-    .sort((a, b) => (b[0] - a[0]) || a[1].localeCompare(b[1]))
+    .sort((a, b) => (b[0] - a[0]) || codepointCompare(a[1], b[1]))
     .map(([, id]) => id);
   return {
     ranked,
