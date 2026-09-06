@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 31,
+  "status": "measured-counterfactual",
+  "track": "1-current-yv-kv-findability",
+  "role": "query-only exact-title fallback evaluation; not a product change",
+  "sources": {
+    "yv_selector_commit": "1ad8c389a4f43caa5a704843487ca94419bf745a",
+    "yv_search_utils_blob": "1eb706399ff97634b556164061e651a024b98003",
+    "fuse_js_version": "7.5.0",
+    "yv_sha256": "1036f9525416fac4ce475c1c1d3909b9e2849ebcf7094ffd38104955e4c2ee49",
+    "yv_generator_commit": "6dd9e4737d7db3cb2709f8082808b88e5c89ed6e",
+    "query_corpus_sha256": "01a2550473091b06fdaaf450015eeea13b301471f1c78f5fb0dc8d3499645ae2",
+    "workflow_run_id": 34056007065,
+    "artifact_id": 9995975414,
+    "artifact_zip_sha256": "3713464f706954034916349d6fc7d905f99f83f25a56d6bb18e03fbc521614be"
+  },
+  "candidate_rule": {
+    "precondition": "exact generator-excluded title AND current product result exposes no generator-mapped occupation",
+    "too_many_parents": "route only when mapped occupation count is exactly 4, the minimum overflow above the generator's >3 exclusion threshold",
+    "redundant_label": "route only when mapped occupation count is exactly 1",
+    "destination": "allowed occupation-name identities only; excluded job-title stays query vocabulary and never becomes selectable identity",
+    "existing_behavior_preservation": "do nothing whenever current product search already exposes a generator-mapped route"
+  },
+  "current_residual": {
+    "cases": 64,
+    "observed_exact_volume": 3978003,
+    "share_of_excluded_exact_volume_pct": 1.137,
+    "share_of_all_retained_yv_query_volume_pct": 0.127
+  },
+  "candidate_effect": {
+    "triggered_cases": 37,
+    "triggered_observed_volume": 3687311,
+    "share_of_current_residual_volume_rescued_pct": 92.693,
+    "resulting_weighted_any_generator_mapped_parent_top5_pct": 99.917,
+    "remaining_no_parent_cases": 27,
+    "remaining_observed_volume": 290692,
+    "remaining_share_of_all_retained_yv_query_volume_pct": 0.009
+  },
+  "highest_volume_triggered": [
+    ["Grundskollärare", 1628450, 4],
+    ["Slöjdlärare", 787437, 4],
+    ["Samtalsterapeut", 331270, 4],
+    ["Anläggningsmaskinförare", 287983, 4],
+    ["Lärare historia", 275648, 4],
+    ["Managementkonsult", 82664, 4],
+    ["Träslöjdslärare", 82601, 4],
+    ["Spelutvecklare", 71124, 4],
+    ["Labbassistent", 56297, 4],
+    ["Lagerpersonal", 51015, 4]
+  ],
+  "highest_volume_remaining": [
+    ["Teacher", 237289, 9],
+    ["Yrkesförare", 22556, 12],
+    ["Sjökapten", 18202, 6],
+    ["Analyschef", 6426, 5],
+    ["Montessoripedagog", 5594, 5],
+    ["Gastronom", 625, 5]
+  ],
+  "guardrails": [
+    "This measures reachability, not proof that every mapped occupation is equally intended.",
+    "The fallback does not rerank Säljare, Jurist, Projektledare, Kock, or any other already-grounded current result.",
+    "Titles with five or more mapped occupations remain unchanged because current evidence does not justify flattening larger ambiguity sets into ordinary results.",
+    "Track 2 semantic/description fallback remains separate and paused."
+  ],
+  "decision": {
+    "classification": "strong bounded Track-1 candidate",
+    "production_status": "not-yet-implemented-from-this-evaluation",
+    "reason": "The rule recovers 92.693% of measured residual exact-query volume while preserving all already-grounded current behavior by construction.",
+    "next": "freeze in Track-1 failure map and decide branch-local implementation only after remaining integration/SSOT exit criteria are closed"
+  }
+}
