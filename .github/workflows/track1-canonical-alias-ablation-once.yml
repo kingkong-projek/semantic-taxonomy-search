@@ -1,0 +1,131 @@
+name: Track 1 canonical alias ablation once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/track1-canonical-alias-ablation-once.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  measure:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Patch replay in workspace to current YV behavior and expose alias ambiguity
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          p=Path('scripts/evaluate_findability_should_find.mjs')
+          s=p.read_text(encoding='utf-8')
+          reps=[
+            (
+              'current search.utils.ts deduplicates fuzzy candidates by job-title id,\n * while contextual rows share that id. Exact/direct search does not have this issue.',
+              'current search.utils.ts preserves fuzzy candidates by contextual row identity\n * (`job-title id + occupation-name id`), matching current production.'
+            ),
+            (
+              "function rowKey(r){return `${r.id}|${r.occupation_name_id??''}`;}\n",
+              "function rowKey(r){return `${r.id}|${r.occupation_name_id??''}`;}\nfunction searchIdentity(r){return r.type==='job-title'?`${r.id}|${r.occupation_name_id??''}`:r.id;}\n"
+            ),
+            (
+              "    // IMPORTANT: mirror production exactly. Fuzzy dedupe is by item.id, not contextual row key.\n    const processedIds=new Set();\n    for(const fr of raw){if(processedIds.has(fr.item.id))continue;const rs=fr.score??1,base=1-rs;if(base<MIN_FUZZY_SCORE)continue;if(rs>best+.12)continue;const root=rootMatch(q,norm(fr.item.preferred_label));if(root&&rs<=.25)strong=true;let score=base*.70+Number(fr.item.weight??0)*.10+(root?.12:0);score=Math.min(MAX_FUZZY_SCORE,Math.max(MIN_FUZZY_SCORE,score));candidates.push({...fr.item,score,displayLabel:displayLabel(fr.item)});processedIds.add(fr.item.id);}",
+              "    // IMPORTANT: mirror current production exactly. Fuzzy dedupe preserves each published job-title context row.\n    const processedIdentities=new Set();\n    for(const fr of raw){const identity=searchIdentity(fr.item);if(processedIdentities.has(identity))continue;const rs=fr.score??1,base=1-rs;if(base<MIN_FUZZY_SCORE)continue;if(rs>best+.12)continue;const root=rootMatch(q,norm(fr.item.preferred_label));if(root&&rs<=.25)strong=true;let score=base*.70+Number(fr.item.weight??0)*.10+(root?.12:0);score=Math.min(MAX_FUZZY_SCORE,Math.max(MIN_FUZZY_SCORE,score));candidates.push({...fr.item,score,displayLabel:displayLabel(fr.item)});processedIdentities.add(identity);}" 
+            ),
+            (
+              "selector_contract:{yv_search_utils_blob:'711769d019d01539b958776467e42dbafa46d9c1',yv_constants_blob:'e9a412778d77de1aef82da94e36559619f5d607c',fuse_js_version:FUSE_VERSION,yv_fuzzy_dedupe_key:'job-title id'}",
+              "selector_contract:{yv_repository_commit:'ab0b3f28576d8aebec2b593b771a70c7684b1eca',yv_search_utils_blob:'1eb706399ff97634b556164061e651a024b98003',yv_constants_blob:'e9a412778d77de1aef82da94e36559619f5d607c',fuse_js_version:FUSE_VERSION,yv_fuzzy_dedupe_key:'job-title id + occupation-name context'}"
+            ),
+          ]
+          for old,new in reps:
+              if old not in s: raise RuntimeError(f'evaluator anchor missing: {old[:90]}')
+              s=s.replace(old,new,1)
+          p.write_text(s,encoding='utf-8')
+
+          p=Path('scripts/build_findability_should_find_cases.py')
+          s=p.read_text(encoding='utf-8')
+          old='''    grouped: dict[tuple[str, str], list[dict[str, Any]]] = collections.defaultdict(list)\n    for row in surfaces:\n        grouped[(row["product"], norm(row["query"]))].append(row)\n\n    occurrence: dict[str, int] = {}\n'''
+          new='''    grouped: dict[tuple[str, str], list[dict[str, Any]]] = collections.defaultdict(list)\n    for row in surfaces:\n        grouped[(row["product"], norm(row["query"]))].append(row)\n\n    canonical_alias_groups: dict[tuple[str, str], list[dict[str, Any]]] = collections.defaultdict(list)\n    for row in surfaces:\n        if row["surface_provenance"] in {"canonical_alternative_label", "canonical_hidden_label"}:\n            canonical_alias_groups[(row["product"], norm(row["query"]))].append(row)\n    canonical_alias_surface_collisions: dict[str, dict[str, int | float]] = {}\n    for product in ("YV", "KV"):\n        groups=[rows for (p,_),rows in canonical_alias_groups.items() if p==product]\n        unique=[rows for rows in groups if len({(str(r["target_type"]),str(r["target_id"])) for r in rows})==1]\n        ambiguous=[rows for rows in groups if len({(str(r["target_type"]),str(r["target_id"])) for r in rows})>1]\n        canonical_alias_surface_collisions[product]={\n            "distinct_normalized_surfaces":len(groups),\n            "unique_target_surfaces":len(unique),\n            "ambiguous_target_surfaces":len(ambiguous),\n            "ambiguous_target_surface_pct":round(100.0*len(ambiguous)/len(groups),3) if groups else 0.0,\n        }\n\n    occurrence: dict[str, int] = {}\n'''
+          if old not in s: raise RuntimeError('builder grouped anchor missing')
+          s=s.replace(old,new,1)
+          old='''        "counts": {\n            "all_cases": len(cases),\n'''
+          new='''        "canonical_alias_surface_collisions": canonical_alias_surface_collisions,\n        "counts": {\n            "all_cases": len(cases),\n'''
+          if old not in s: raise RuntimeError('builder manifest anchor missing')
+          s=s.replace(old,new,1)
+          p.write_text(s,encoding='utf-8')
+          PY
+          python3 -m py_compile scripts/build_findability_should_find_cases.py scripts/analyze_canonical_alias_rescue.py
+
+      - name: Checkout pinned YV generator
+        env:
+          SOURCE_COMMIT: 6dd9e4737d7db3cb2709f8082808b88e5c89ed6e
+        run: |
+          rm -rf /tmp/yv-generator
+          git init -q /tmp/yv-generator
+          git -C /tmp/yv-generator remote add origin https://gitlab.com/arbetsformedlingen/taxonomy-dev/backend/yrkesvaljaren.git
+          git -C /tmp/yv-generator fetch -q --depth 1 origin "$SOURCE_COMMIT"
+          git -C /tmp/yv-generator checkout -q --detach FETCH_HEAD
+          printf '%s\n' "$SOURCE_COMMIT" > /tmp/yv-generator/SOURCE_COMMIT.txt
+
+      - name: Rebuild source-attested should-find packet
+        run: |
+          rm -rf artifacts/findability-should-find-v31
+          python3 scripts/build_findability_should_find_cases.py \
+            --version 31 \
+            --generator-dir /tmp/yv-generator \
+            --output-dir artifacts/findability-should-find-v31
+
+      - name: Install pinned Fuse and replay current selectors
+        run: |
+          printf '{"private":true,"type":"module"}\n' > scripts/package.json
+          npm install --prefix scripts --no-package-lock --no-save fuse.js@7.5.0
+          node scripts/evaluate_findability_should_find.mjs \
+            --input artifacts/findability-should-find-v31/cases.jsonl \
+            --output artifacts/findability-should-find-v31/evaluation.json
+
+      - name: Measure deterministic canonical alias rescue
+        run: |
+          python3 scripts/analyze_canonical_alias_rescue.py \
+            --cases artifacts/findability-should-find-v31/cases.jsonl \
+            --evaluation artifacts/findability-should-find-v31/evaluation.json \
+            --manifest artifacts/findability-should-find-v31/manifest.json \
+            --output artifacts/findability-should-find-v31/canonical-alias-rescue.json
+
+      - name: Guard Track 1 and production baseline
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          e=json.loads(Path('artifacts/findability-should-find-v31/evaluation.json').read_text())
+          a=json.loads(Path('artifacts/findability-should-find-v31/canonical-alias-rescue.json').read_text())
+          assert e['selector_contract']['yv_repository_commit']=='ab0b3f28576d8aebec2b593b771a70c7684b1eca'
+          assert e['selector_contract']['yv_search_utils_blob']=='1eb706399ff97634b556164061e651a024b98003'
+          assert a['track']=='1-current-yv-kv-findability'
+          assert a['intervention'].startswith('exact normalized canonical')
+          print(json.dumps({
+            'YV_baseline': {k:v for k,v in e['YV'].items() if k not in ('top_failures','by_surface_provenance')},
+            'KV_baseline': {k:v for k,v in e['KV'].items() if k not in ('top_failures','by_surface_provenance')},
+            'fuzzy_context_stress': {k:v for k,v in e['yv_multi_context_fuzzy_structural_stress'].items() if k!='examples'},
+            'alias_ambiguity': a['source_manifest_alias_surface_collisions'],
+            'YV_alias': {k:v for k,v in a['YV'].items() if k not in ('top_rescues','by_provenance')},
+            'KV_alias': {k:v for k,v in a['KV'].items() if k not in ('top_rescues','by_provenance')},
+          },ensure_ascii=False,indent=2))
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: track1-canonical-alias-ablation-v31
+          path: artifacts/findability-should-find-v31/
+          if-no-files-found: error
+          retention-days: 30
