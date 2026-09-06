@@ -1,0 +1,20 @@
+{
+  "authority_boundary": "manual mapping is frozen holdout truth; builder contains no retrieval/model code",
+  "benchmark_sha256": "79816eb2020b100bf8260b8f1807069288c30dbabd457bfffbfe3f49735c6675",
+  "cases": 35,
+  "development_cases_excluded": 76,
+  "development_module_ids_excluded": 205,
+  "primary_metric": "mapped-skill Discovery Hit@5; skill occurrence proxy used only for weighted reporting",
+  "rejected_counts": {
+    "development_query_reuse": 77,
+    "direct_label_leakage": 38,
+    "not_exactly_one_p80_target": 697,
+    "terse_text": 11
+  },
+  "schema_version": 1,
+  "selection": "one deterministic clean unused module per unique P80 skill; excludes all development module IDs and normalized query texts; exactly one P80 target; no direct label leakage; non-terse",
+  "source_sha256": "fea97867a1225e078d28ab9b0772f6a37f92b37c3c6c0d0e886ae65e9d79361c",
+  "source_url": "https://data.arbetsformedlingen.se/utbildningar/mappings/mapping_labour-market-training.json",
+  "taxonomy_version": 31,
+  "unique_p80_skills": 35
+}
