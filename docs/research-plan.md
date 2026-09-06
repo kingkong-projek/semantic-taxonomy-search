@@ -48,7 +48,7 @@ high-demand + high-confidence + cheap-to-explain cases
 → defer rare/weakly evidenced tail until data shows it matters
 ```
 
-Where real demand data exists, optimise the first release for cumulative user value rather than equal concept coverage. YV can use measured search frequency as a demand signal. KV currently lacks equivalent query→skill demand telemetry, so source-supported/common product contexts may be used only as an explicit proxy, never mislabeled as traffic.
+Where real demand data exists, optimise the first release for cumulative user value rather than equal concept coverage. YV has measured Platsbanken search frequency for query sampling. For concept-level prioritisation across both products, Historical API taxonomy occurrence counts are now measured as one simple shared corpus/popularity proxy. They are **not user traffic** and are never mislabeled as query→selection evidence.
 
 This creates two benchmark views:
 
@@ -484,6 +484,26 @@ This replaces the earlier partial offline matrix as the Gate-1 coverage result. 
 
 Evidence: `docs/findings/unified-target-coverage-v31.md` and `research/coverage/v31/unified-target-coverage-aggregate.json`.
 
+### 5.16 Pareto demand priority
+
+Historical API server-side taxonomy occurrence statistics provide a cheap concept-level popularity proxy for both occupations and skills. After intersecting with active v31 identities:
+
+| cumulative share of observed active-v31 occurrence mass | occupation-name | skill |
+|---:|---:|---:|
+| 50% | 33 | 63 |
+| 80% | **159** | **316** |
+| 90% | 302 | 614 |
+| 95% | 455 | 976 |
+| 99% | 834 | 1,848 |
+
+The first semantic priority envelope is therefore **P80 = 159 YV occupations + 316 KV skills = 475 canonical targets**. P90/P95 are explicit expansion tiers. The exact ranked P95 memberships are frozen in repo, so P80/P90 are reproducible prefixes rather than hand-maintained lists.
+
+This is a `corpus_derived` popularity proxy, not user intent or destination ground truth. Existing lexical search continues to cover the full product-valid taxonomy.
+
+**v0 semantic-lane simplification:** YV semantic description search is required initially to emit only the P80 `occupation-name` set. Published job titles remain fully available in the existing lexical picker and may be semantic routing/context vocabulary, but direct semantic `job-title` destinations are deferred until benchmark/telemetry shows material value. KV semantic description search starts with the P80 skill set.
+
+Evidence: `docs/findings/pareto-demand-priority-v31.md` and `research/coverage/v31/pareto-demand-aggregate.json`.
+
 ## 6. Semantic boundaries
 
 ### 6.1 YV retrieval vocabulary vs destination identity
@@ -611,26 +631,24 @@ Shared strata:
 - broad/underspecified intent;
 - deliberate no-valid-match / abstention.
 
-Mandatory YV strata:
+Initial YV benchmark priority:
 
-- exact published job-title;
-- measured 541-title multi-parent ambiguity population;
-- 205-title excluded-YV retrieval-vocabulary population, split by >3-context vs redundant-label policy;
-- high-frequency excluded-title terms from observed query data;
-- unbound observed query-language samples with **manual judgments**, not auto-labels;
-- raw daily JobSearch Trends recency/long-tail samples, with `q_approved` treated only as privacy-filtered behavioral wording;
-- task/skill description→occupation;
-- same/similar title in different occupational contexts;
-- substitutability 25/75 neighbours as hard-negative/context material.
+- the **159 P80 occupation-name identities** are the core semantic destination population;
+- exact/prefix lexical behavior remains a full-universe regression baseline, not something semantic v0 must reimplement;
+- high-volume admitted/excluded job-title wording is sampled as router language into product-valid occupations;
+- a **small** multi-parent-title safety slice is retained; the full 541-title population is not an initial benchmark requirement;
+- a **small** excluded-title routing safety slice is retained; the full 205-title population is reproducible but not all must be manually judged now;
+- a small high-volume unbound observed-query sample receives human judgments;
+- task/skill description→occupation and hard-negative/no-match cases focus primarily on P80;
+- P90/P95/tail contribute only small boundary/sentinel samples initially.
 
-Mandatory KV strata:
+Initial KV benchmark priority:
 
-- skill descriptions without canonical terminology;
-- software/tool/certificate/qualification/experience-like skill subtypes;
-- occupation phrase→relevant skills;
-- native curated vs calculated vs transferable evidence;
-- Relevanta-only incremental skill population;
-- nearby/confusable skills that must remain MUST_NOT.
+- the **316 P80 active skill identities** are the core semantic destination population;
+- exact/alternative labels plus description-style cases focus on that core;
+- occupation→skill bridge, transferable/calculated/Relevanta and subtype cases are sampled where they materially exercise the P80 core;
+- nearby/confusable skills and no-match/abstention remain explicit safety cases;
+- P90/P95/tail contribute only small boundary/sentinel samples initially.
 
 Bounded ad-derived benchmark samples must record field provenance and taxonomy version. Model-derived JobAd Enrichments output cannot serve as ground truth for evaluating the same semantic mapping.
 
@@ -826,8 +844,8 @@ After the repository transfer, GitHub-hosted jobs were failing before their firs
 ### Now — Gate 2
 
 - [x] benchmark schema and semantic validator contract
-- [ ] define the compact Pareto decision slice: demand-weighted where real demand exists, otherwise explicit source-strength/context proxy
-- [ ] freeze 500–1,000 high-confidence/source-truth seed cases sufficient to compare simple baselines
+- [x] define the compact Pareto decision slice: **P80 = 159 occupation-name + 316 skill targets**, using Historical API occurrence counts as an explicit corpus/popularity proxy; exact P95 membership frozen in repo
+- [ ] freeze a 500–1,000 case benchmark around the 475-target P80 core plus compact safety/boundary slices
 - [ ] automatic strata construction only where source truth permits
 - [ ] compact safety/regression slices: multi-parent ambiguity, excluded-YV routing, hard negatives and no-match/abstention
 - [ ] small manually judged sample from high-volume unbound observed language
@@ -847,8 +865,8 @@ First decision: run the **smallest useful baseline** on the compact Pareto bench
 
 ### Product prototype after evidence
 
-- [ ] YV `Beskriv yrket`
-- [ ] KV `Beskriv kompetensen`
+- [ ] YV `Beskriv yrket` — v0 semantic destination envelope: P80 occupation-name only; lexical picker still supports full YV including job titles
+- [ ] KV `Beskriv kompetensen` — v0 semantic destination envelope: P80 skills; lexical picker still supports full KV
 - [ ] `Inget av dessa` + feedback flow
 - [ ] privacy-reviewed query→candidate→selection telemetry if permitted
 - [ ] canary/rollback/versioned semantic API if API wins deployment evaluation
@@ -890,8 +908,9 @@ Resolved answers remain listed when useful.
 31. How much vocabulary and recency signal is lost by the YV `>=10/day` and `>=100 cumulative` filters, and which raw-date windows are most useful for Gate-2 sampling?
 32. How much incremental Swedish semantic text do mapped ESCO v1.2.1 concepts add specifically to the 244 weak YV occupations and 1,410 critical-sparse KV skills?
 33. How much of the critical-sparse KV population is covered by AF's manually mapped labour-market-training learning outcomes and other explicitly curated domain sources?
-34. What cumulative share of real YV demand can a simple configuration solve at acceptable precision before long-tail enrichment is added?
-35. What is the smallest evidence/retrieval configuration whose Pareto performance is statistically/materially indistinguishable from more complex alternatives?
+34. Concept-level Pareto priority? **Historical ad-taxonomy occurrence proxy gives P80 = 159 active occupations + 316 active skills; P90 = 302 + 614; P95 = 455 + 976. This is popularity, not query→selection truth.**
+35. What cumulative share of real YV query demand does the P80 occupation envelope cover once high-volume observed wording is manually/safely mapped?
+36. What is the smallest evidence/retrieval configuration whose Pareto performance is statistically/materially indistinguishable from more complex alternatives?
 
 ## 20. Research discipline
 

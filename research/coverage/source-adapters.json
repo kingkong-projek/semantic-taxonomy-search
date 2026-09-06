@@ -407,6 +407,28 @@
       ],
       "source": "Taxonomy version/history",
       "notes": "Keep separate from active retrieval corpus. Needed to support old language/IDs without polluting active identity."
+    },
+    {
+      "id": "historical-taxonomy-demand-stats",
+      "status": "measured",
+      "provenance_class": "corpus_derived",
+      "target_types": [
+        "occupation-name",
+        "skill"
+      ],
+      "join_key": "taxonomy concept_id, intersected with active v31 identity universe",
+      "dimensions": [
+        "historical occurrence count",
+        "P50/P80/P90/P95/P99 cumulative occurrence tiers",
+        "ranked P95 priority membership"
+      ],
+      "source": "https://historical.api.jobtechdev.se/stats?taxonomy-type=occupation-name&taxonomy-type=skill&stats-by=concept_id&limit=10000",
+      "source_sha256": "3dce0048b0c5f5ecf6854a3f2d3b4d0cbd0a5bcddca884dd5584d241ca014f7b",
+      "evidence": [
+        "docs/findings/pareto-demand-priority-v31.md",
+        "research/coverage/v31/pareto-demand-aggregate.json"
+      ],
+      "notes": "Historical API server-side taxonomy occurrence statistics. Used only as a corpus/popularity proxy for simple-first target prioritisation; not user query intent, semantic ground truth, canonical authority, or skill-essentiality evidence. P80 is the initial semantic priority envelope; full lexical product coverage remains unchanged."
     }
   ]
 }
