@@ -1,0 +1,28 @@
+name: Model-authored KV-100 stress test
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'research/benchmark/v31/model-authored-kv-100/**'
+      - 'scripts/evaluate_model_authored_kv_100.py'
+      - '.github/workflows/model-authored-kv-100.yml'
+
+jobs:
+  evaluate:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Evaluate synthetic KV descriptions
+        run: python scripts/evaluate_model_authored_kv_100.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: model-authored-kv-100-v31
+          path: artifacts/model-authored-kv-100-v31.json
+          if-no-files-found: error
+          retention-days: 30
