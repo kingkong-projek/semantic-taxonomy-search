@@ -1,0 +1,47 @@
+name: Pareto model adjudication
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/build_pareto_model_adjudication.py
+      - scripts/validate_benchmark.py
+      - research/benchmark/schema/benchmark-case.schema.json
+      - research/benchmark/v31/yv-real-query-review/**
+      - research/benchmark/v31/yv-profile-safety/excluded-routing-review.jsonl
+      - research/coverage/source-adapters.json
+      - .github/workflows/pareto-model-adjudication.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build model-adjudicated Pareto slice
+        run: python scripts/build_pareto_model_adjudication.py --output-dir artifacts/pareto-model-adjudicated-v31
+      - name: Validate benchmark semantics
+        run: |
+          python scripts/validate_benchmark.py artifacts/pareto-model-adjudicated-v31/benchmark.jsonl
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          m=json.loads(Path('artifacts/pareto-model-adjudicated-v31/manifest.json').read_text(encoding='utf-8'))
+          assert m['cases']==34
+          assert m['intent_counts']=={'AMBIGUOUS':11,'NO_MATCH':18,'SINGLE':5}
+          assert m['selected_share_of_70_row_review_pool_pct']==80.738
+          print(json.dumps(m, indent=2, sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pareto-model-adjudicated-v31
+          path: artifacts/pareto-model-adjudicated-v31/
+          if-no-files-found: error
+          retention-days: 30
