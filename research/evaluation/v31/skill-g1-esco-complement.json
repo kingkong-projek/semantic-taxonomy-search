@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "status": "frozen oracle/complement diagnostic; no ESCO fusion selected",
+  "validated_baseline": "KV-G1-4slot-single-desc",
+  "source_run": 34061580681,
+  "source_artifact_id": 9997634154,
+  "source_artifact_zip_sha256": "1870706d57981d1a6b72587d021c50f0e3d94dd663030c56ee6a6bd1f409b86b",
+  "esco_coverage": {
+    "exact_match": {"p80_skills_with_text": 96, "edges": 107},
+    "close_match": {"p80_skills_with_text": 105, "edges": 274},
+    "broad_match": {"p80_skills_with_text": 146, "edges": 196},
+    "narrow_match": {"p80_skills_with_text": 169, "edges": 1359}
+  },
+  "suites": {
+    "first_holdout_posthoc_shape": {
+      "baseline_hit5_pct": 91.429,
+      "baseline_misses": 3,
+      "exact_match": {"lane_hit5_pct": 8.571, "misses_rescued": 1, "oracle_hit5_pct": 94.286, "rescued_ids": ["kv.training-skill-holdout.001"]},
+      "close_match": {"lane_hit5_pct": 8.571, "misses_rescued": 0, "oracle_hit5_pct": 91.429},
+      "broad_match": {"lane_hit5_pct": 8.571, "misses_rescued": 0, "oracle_hit5_pct": 91.429},
+      "narrow_match": {"lane_hit5_pct": 20.0, "misses_rescued": 0, "oracle_hit5_pct": 91.429}
+    },
+    "second_holdout_posthoc": {
+      "baseline_hit5_pct": 85.0,
+      "baseline_misses": 3,
+      "exact_match": {"lane_hit5_pct": 10.0, "misses_rescued": 1, "oracle_hit5_pct": 90.0, "rescued_ids": ["kv.training-skill-second-holdout.018"]},
+      "close_match": {"lane_hit5_pct": 5.0, "misses_rescued": 0, "oracle_hit5_pct": 85.0},
+      "broad_match": {"lane_hit5_pct": 15.0, "misses_rescued": 0, "oracle_hit5_pct": 85.0},
+      "narrow_match": {"lane_hit5_pct": 20.0, "misses_rescued": 0, "oracle_hit5_pct": 85.0}
+    },
+    "synthetic_stress": {
+      "baseline_hit5_pct": 66.667,
+      "exact_match": {"misses_rescued": 1, "oracle_hit5_pct": 75.0},
+      "close_match": {"misses_rescued": 1, "oracle_hit5_pct": 75.0},
+      "broad_match": {"misses_rescued": 1, "oracle_hit5_pct": 75.0},
+      "narrow_match": {"misses_rescued": 2, "oracle_hit5_pct": 83.333}
+    }
+  },
+  "decision": "Do not add an ESCO lane to the v0 KV candidate. Exact ESCO adds only one natural miss per opened holdout; on the second holdout the rescue is the already ambiguous Produktionsplanering case, while the clean source-gap Städmaterial case is not rescued. Close/broad/narrow add zero natural residual recall. Synthetic complement alone does not justify the added mapping lane and fusion complexity.",
+  "note": "The first-holdout 91.429% value is the later diagnostic shape with both natural holdouts excluded from G1 evidence; it does not replace the independently frozen 88.571% validation headline."
+}
