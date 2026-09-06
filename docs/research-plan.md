@@ -857,7 +857,11 @@ After the repository transfer, GitHub-hosted jobs were failing before their firs
 - [x] define the compact Pareto decision slice: **P80 = 159 occupation-name + 316 skill targets**, using Historical API occurrence counts as an explicit corpus/popularity proxy; exact P95 membership frozen in repo
 - [x] freeze the **950-case P80 source-truth core benchmark**: 333 YV + 617 KV cases over all 475 P80 targets; preferred labels + 330 real canonical-definition cases + 145 alternative-label cases; validator-clean and frozen in repo
 - [x] automatic source-truth strata construction for preferred labels, real canonical definitions and alternative labels; no corpus/model/synthetic signal is auto-promoted to destination truth
-- [ ] compact safety/regression slices: multi-parent ambiguity, excluded-YV routing, hard negatives and no-match/abstention
+- [x] compact high-volume **YV reference-profile multi-parent ambiguity** slice: 20 source-truth exact-title cases selected by observed frequency from the 541-ID population; all admitted context identities are required
+- [x] compact high-volume **excluded-YV routing review** slice: 20 highest-volume excluded title queries selected from the 205-ID population; generator reason is verified, destination judgment remains `PENDING_HUMAN_REVIEW`
+- [ ] compact hard-negative + no-match/abstention safety slice; keep it small and adjudicated rather than manufacturing negatives
+
+Evidence: `docs/findings/compact-yv-profile-safety-v31.md` and `research/benchmark/v31/yv-profile-safety/`.
 - [x] prepare deterministic **top-50 high-volume Platsbanken/YV occupation-language review packet** from the pinned real query corpus: 742.0M searches = 23.661% of all volume / 35.117% of unbound volume; remains fully `PENDING_HUMAN_REVIEW`; this is one behavioral evidence slice, not the engine's product scope
 - [ ] adjudicate the prepared top-50 real-query packet into occupation intent vs other/no-match and MUST/ACCEPTABLE/MUST_NOT identities; do not score it before review
 - [ ] **defer** full raw JobSearch Trends date-range/long-tail adapter until the first simple baseline shows that recency/long-tail materially changes decisions

@@ -1,0 +1,138 @@
+{
+  "excluded_routing": {
+    "population": 205,
+    "reason_counts": {
+      "redundant_label": 10,
+      "too_many_parents": 10
+    },
+    "selected": 20,
+    "selected_query_volume": 340823768,
+    "selection": "highest exact observed query count first",
+    "top_queries": [
+      {
+        "count": 58994102,
+        "query": "Undersköterska",
+        "reason": "redundant_label"
+      },
+      {
+        "count": 55275922,
+        "query": "Butikssäljare",
+        "reason": "redundant_label"
+      },
+      {
+        "count": 52465935,
+        "query": "Sjuksköterska",
+        "reason": "redundant_label"
+      },
+      {
+        "count": 42198933,
+        "query": "Kock",
+        "reason": "redundant_label"
+      },
+      {
+        "count": 41047237,
+        "query": "Säljare",
+        "reason": "too_many_parents"
+      },
+      {
+        "count": 40208930,
+        "query": "Projektledare",
+        "reason": "redundant_label"
+      },
+      {
+        "count": 25557308,
+        "query": "Grundlärare",
+        "reason": "too_many_parents"
+      },
+      {
+        "count": 4674163,
+        "query": "Specialistläkare",
+        "reason": "redundant_label"
+      },
+      {
+        "count": 3283699,
+        "query": "Jurist",
+        "reason": "too_many_parents"
+      },
+      {
+        "count": 3206024,
+        "query": "Vaktmästare",
+        "reason": "redundant_label"
+      }
+    ],
+    "truth": "PENDING_HUMAN_REVIEW; generator reason is source truth, candidate parent occupations are not destination labels"
+  },
+  "multi_parent": {
+    "population": 541,
+    "selected": 20,
+    "selected_query_volume": 31374980,
+    "selection": "highest exact observed query count first",
+    "top_queries": [
+      {
+        "contexts": 3,
+        "count": 12330700,
+        "query": "Chaufför"
+      },
+      {
+        "contexts": 2,
+        "count": 5100388,
+        "query": "Gymnasielärare"
+      },
+      {
+        "contexts": 3,
+        "count": 3453970,
+        "query": "Butiksmedarbetare"
+      },
+      {
+        "contexts": 2,
+        "count": 2160417,
+        "query": "Serveringspersonal"
+      },
+      {
+        "contexts": 3,
+        "count": 1890727,
+        "query": "Musiklärare"
+      },
+      {
+        "contexts": 2,
+        "count": 1198757,
+        "query": "Farmaceut"
+      },
+      {
+        "contexts": 3,
+        "count": 979003,
+        "query": "Bildlärare"
+      },
+      {
+        "contexts": 2,
+        "count": 654818,
+        "query": "Skribent"
+      },
+      {
+        "contexts": 3,
+        "count": 579095,
+        "query": "Butiksbiträde"
+      },
+      {
+        "contexts": 2,
+        "count": 447150,
+        "query": "Underhållstekniker"
+      }
+    ],
+    "truth": "AUTO_HIGH_CONFIDENCE exact admitted context identities"
+  },
+  "schema_version": 1,
+  "semantics": "compact YV reference-profile safety slices; not generic-engine scope",
+  "sources": {
+    "generator_commit": "6dd9e4737d7db3cb2709f8082808b88e5c89ed6e",
+    "query_corpus": {
+      "end_date": "2026-08-16",
+      "sha256": "01a2550473091b06fdaaf450015eeea13b301471f1c78f5fb0dc8d3499645ae2",
+      "start_date": "2022-05-04",
+      "total_query_volume": 3136136606
+    },
+    "taxonomy_sha256": "634fd9d848a172747e54e3e487160a912ae6c0fcb8219c50998767c8c9aacbcc",
+    "yrkesvaljaren_sha256": "1036f9525416fac4ce475c1c1d3909b9e2849ebcf7094ffd38104955e4c2ee49"
+  },
+  "taxonomy_version": 31
+}
