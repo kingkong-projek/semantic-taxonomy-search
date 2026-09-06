@@ -1,0 +1,40 @@
+name: Sync merged YV context fix into SSOT
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/sync-product-first-yv-patch-ssot-once.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on:
+      - self-hosted
+      - Linux
+      - X64
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Patch SSOT
+        run: python3 scripts/sync_product_first_yv_patch_ssot_once.py
+      - name: Validate
+        run: |
+          grep -Fq '81a7cb5e' docs/research-plan.md
+          grep -Fq '0.438%' docs/research-plan.md
+          grep -Fq 'Product-native residual gate' docs/research-plan.md
+          grep -Fq 'Ordering constraint' docs/research-plan.md
+          git diff --check
+      - name: Commit
+        run: |
+          git config user.name semantic-taxonomy-search-bot
+          git config user.email semantic-taxonomy-search-bot@users.noreply.github.com
+          git add docs/research-plan.md
+          git commit -m 'research: gate semantic expansion on selector residuals'
+          git push origin HEAD:main
