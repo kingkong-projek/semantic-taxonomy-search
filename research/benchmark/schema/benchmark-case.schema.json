@@ -140,6 +140,7 @@
             "behavioral",
             "corpus_derived",
             "model_derived",
+            "model_judgment",
             "synthetic",
             "human_judgment"
           ]
@@ -154,7 +155,7 @@
       "additionalProperties": false,
       "required": ["status"],
       "properties": {
-        "status": {"enum": ["AUTO_HIGH_CONFIDENCE", "HUMAN_SINGLE", "HUMAN_DOUBLE", "PENDING"]},
+        "status": {"enum": ["AUTO_HIGH_CONFIDENCE", "MODEL_ADJUDICATED", "HUMAN_SINGLE", "HUMAN_DOUBLE", "PENDING"]},
         "reviewer_count": {"type": "integer", "minimum": 0},
         "agreement": {"enum": ["UNREVIEWED", "AGREED", "DISAGREED", "RESOLVED"]},
         "review_note": {"type": "string"}
