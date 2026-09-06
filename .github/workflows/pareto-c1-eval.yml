@@ -24,6 +24,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      # Keep this workflow decision-bearing: every C1 ranking change reruns both
+      # the Pareto development slice and the frozen source-truth regression.
       - name: Evaluate minimal C1
         run: |
           python scripts/evaluate_pareto_c1.py \
