@@ -1,0 +1,47 @@
+name: Adjudication context
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/build_adjudication_context.py
+      - scripts/build_pareto_adjudication_batch.py
+      - research/benchmark/v31/yv-real-query-review/**
+      - research/benchmark/v31/yv-profile-safety/excluded-routing-review.jsonl
+      - research/coverage/source-adapters.json
+      - .github/workflows/adjudication-context.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build Pareto batch locally
+        run: python scripts/build_pareto_adjudication_batch.py --output-dir /tmp/pareto-batch
+      - name: Build taxonomy context
+        run: python scripts/build_adjudication_context.py --batch /tmp/pareto-batch/batch.jsonl --output artifacts/adjudication-context-v31.json
+      - name: Validate context
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('artifacts/adjudication-context-v31.json').read_text(encoding='utf-8'))
+          assert x['taxonomy_version']==31
+          assert len(x['rows'])==27
+          assert x['authority_boundary'].startswith('context only')
+          print('rows',len(x['rows']))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: adjudication-context-v31
+          path: artifacts/adjudication-context-v31.json
+          if-no-files-found: error
+          retention-days: 30
