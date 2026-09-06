@@ -1,0 +1,30 @@
+name: Build strict single-skill KV holdout
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/build_training_skill_strict_holdout.py
+      - .github/workflows/build-training-skill-strict-holdout.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build strict holdout without retrieval
+        run: python scripts/build_training_skill_strict_holdout.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: training-skill-strict-holdout-v31
+          path: artifacts/training-skill-strict-holdout-v31/
+          if-no-files-found: error
+          retention-days: 30
