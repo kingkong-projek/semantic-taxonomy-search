@@ -1,0 +1,111 @@
+name: Sync product-first audit into SSOT once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/sync-current-selector-audit-ssot-once.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Patch SSOT
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path=Path('docs/research-plan.md')
+          text=path.read_text(encoding='utf-8')
+          def rep(old,new):
+              global text
+              n=text.count(old)
+              if n != 1: raise RuntimeError(f'expected one anchor, got {n}: {old[:90]!r}')
+              text=text.replace(old,new,1)
+
+          rep(
+            "Evidence: `docs/findings/current-selector-baseline-2026-09-06.md`.\n\n### 2.2 Pareto / simple-first delivery principle",
+            "Evidence: `docs/findings/current-selector-baseline-2026-09-06.md`.\n\n**Product-first gate before semantic expansion:** audit the ordinary YV/KV products against their actual published data, interaction paths and integration contracts before attributing a residual to missing semantic intelligence. Prefer fixing existing reachability, context preservation, canonical vocabulary and hand-off defects before adding retrieval sources/models. Synthetic or description-style probes diagnose only the residual that remains after this baseline is honest.\n\nEvidence: `docs/findings/current-selector-failure-audit-v31.md` and `research/coverage/v31/current-selector-failure-audit.json`.\n\n### 2.2 Pareto / simple-first delivery principle"
+          )
+
+          rep(
+            "YV weights are behavioural/search-frequency priors, not concept meaning.\n\nEvidence: `docs/findings/selector-coverage-v31.md`.",
+            "YV weights are behavioural/search-frequency priors, not concept meaning.\n\nProduct replay correction: the multi-context read model itself works on ordinary exact dropdown lookup. Exact preferred-label search exposes **all intended occupation contexts in top 10 for 541/541 multi-parent job-title IDs** (1,186 rows; 35.95M observed exact-query volume). The measured hazards are instead context collapse in blur/programmatic/form paths, not failure to display the alternative parentheses in the normal explicit-choice path.\n\nEvidence: `docs/findings/selector-coverage-v31.md` and `docs/findings/current-selector-failure-audit-v31.md`."
+          )
+
+          rep(
+            "Thus **141 observed excluded-title labels account for 349,760,282 searches = 11.153% of all volume**.\n\nThis is not an edge case. High-volume examples include `undersköterska`, `butikssäljare`, `sjuksköterska`, `kock`, `projektledare` and `säljare`.",
+            "Thus **141 observed excluded-title labels account for 349,760,282 searches = 11.153% of all volume**.\n\n**Important product-replay correction:** 11.153% is a vocabulary/admission statistic, not a product failure rate. The current deterministic direct YV lane already puts at least one generator-mapped occupation in top 10 for **336,025,601 / 349,760,282 = 96.073%** of that excluded-title exact-query volume. Only **13,734,681 = 3.927%** of excluded-title volume — **0.438% of all retained query volume** — lacks such a direct route before guarded Fuse fallback is considered. High-volume unresolved direct-lane examples include `Lastbilsförare`, `Lagermedarbetare`, `Grundskollärare`, `Lastbilschaufför`, `Beteendevetare`, `Idrottslärare` and `Slöjdlärare`.\n\nTherefore excluded-title work should target the measured residual, not all 205 titles or all 11.153% raw volume."
+          )
+
+          rep(
+            "### 5.6 Published Kompetensväljaren v31",
+            """### 5.5.2 Current YV/KV product failure-mode audit
+
+The pinned current selectors have now been audited as products, not only as data sources.
+
+YV findings:
+
+- ordinary exact dropdown search is healthy for multi-context titles: **541/541** expose all intended context rows within top 10;
+- blur/free-text exact-match confirmation uses first-row `find(...)`, creating a context-autoselect risk for those 541 titles; **35.95M** observed exact-query volume is the exposed population, not a measured failure count;
+- rich programmatic `setSelection()` resolves by job-title ID only, so **645 non-first context rows** can collapse on roundtrip;
+- standard HTML form value serializes only job-title ID and therefore cannot preserve the chosen parent for any of the **1,186** multi-context rows;
+- YV indexes preferred labels only; 197 admitted concepts expose 362 canonical alternative-label surfaces, of which **51** have no current deterministic direct result.
+
+KV findings:
+
+- all 6,752 active skills are present, but candidate generation uses preferred labels/tokens only;
+- **819** skills expose 1,308 canonical alternative-label surfaces, with **260** lacking a canonical contains match in the current direct lane;
+- **1,654** skills have a definition distinct from preferred label, but definitions do not participate in current candidate generation;
+- occupation/SSYK context ranks or filters already generated lexical candidates; it cannot manufacture a candidate when the user's wording is absent from the skill label.
+
+Integration finding:
+
+- YV job-title output carries the occupation parent as `related.id`, while KV accepts occupation-name/SSYK4 context;
+- the repo's stepped YV→KV demo passes `selection.id` instead, which is wrong for job-title selections and produces context-free KV behaviour;
+- this is a demonstrated integration footgun, not yet evidence about production consumers.
+
+**Decision:** pause semantic-source/model expansion until these ordinary-product residuals are measured/fixed first. Description fallback remains a separate incremental capability for queries that still fail after the baseline is corrected.
+
+Evidence: `docs/findings/current-selector-failure-audit-v31.md` and `research/coverage/v31/current-selector-failure-audit.json`.
+
+### 5.6 Published Kompetensväljaren v31"""
+          )
+
+          gate_anchor="- [x] pin and code-audit the **current YV/KV selector implementation as baseline 0** (`kingkong-projek/yrkesvaljaren@0eba98e3a91079a43c1eaf6da09dfabe11e5bc8b`); separate primary fallback-value evaluation from secondary full-replacement potential"
+          rep(gate_anchor, gate_anchor + "\n- [x] run a **product-first current-selector failure-mode audit** over pinned frontend + YV generator + published v31 data; correct the earlier over-broad excluded-title interpretation and verify the normal 541-title multi-context dropdown path\n- [ ] before further semantic expansion, close/measure the ordinary-product residuals: YV exact-blur disambiguation, context-preserving roundtrip/form semantics where required, YV→KV job-title hand-off, unused canonical alternative labels, and exact current-Fuse reachability for the remaining excluded-title residual")
+
+          rep(
+            "### Then — Gate 3\n\nFirst decision: run the **smallest useful baseline** on the compact Pareto benchmark before adding more data engineering.",
+            "### Then — Gate 3\n\n**Current ordering correction:** further Gate-3 semantic expansion is paused until the product-first YV/KV residual checklist in Gate 2 is closed or explicitly measured as non-material. Existing C0/C1/C2/F1 results remain valid research evidence, but they do not outrank cheap fixes to the current selector paths.\n\nFirst decision: run the **smallest useful baseline** on the compact Pareto benchmark before adding more data engineering."
+          )
+
+          rep(
+            "10. Excluded-title search importance? **349.76M searches = 11.153% of measured query volume**.",
+            "10. Excluded-title search importance? **349.76M searches = 11.153% of measured vocabulary volume, but current direct YV already routes 336.03M = 96.073% of that volume to at least one mapped occupation in top 10. The direct-lane residual is 13.73M = 0.438% of all retained query volume before Fuse; do not treat 11.153% as a failure rate.**"
+          )
+
+          q36="36. What is the smallest evidence/retrieval configuration whose Pareto performance is statistically/materially indistinguishable from more complex alternatives?"
+          rep(q36, q36 + "\n37. How often do users hit YV's exact-label blur/autoselect path instead of explicitly choosing a multi-context row, and what is the real error rate by context?\n38. Do production YV→KV consumers pass the job-title's `related.id` (occupation-name) correctly, or repeat the repo demo's `selection.id` integration footgun?\n39. How much real demand and Discovery@5 gain comes from the canonical alternative-label vocabulary that current YV/KV runtime does not index?")
+
+          path.write_text(text,encoding='utf-8')
+          PY
+
+      - name: Validate and commit
+        run: |
+          grep -Fq '96.073%' docs/research-plan.md
+          grep -Fq '645 non-first context rows' docs/research-plan.md
+          grep -Fq 'further Gate-3 semantic expansion is paused' docs/research-plan.md
+          git diff --check
+          git config user.name "semantic-taxonomy-search-bot"
+          git config user.email "semantic-taxonomy-search-bot@users.noreply.github.com"
+          git add docs/research-plan.md
+          git commit -m "research: make selector failures gate semantic expansion"
+          git push origin HEAD:main
