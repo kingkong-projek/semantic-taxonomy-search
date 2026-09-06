@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "status": "frozen diagnostic classification; no retrieval policy change",
+  "taxonomy_version": 31,
+  "validated_candidate": "KV-G1-4slot",
+  "source_run": 34061036918,
+  "source_artifact_id": 9997464989,
+  "source_artifact_zip_sha256": "3c61926a75207aa7e8c244f0b6145ea3f4c64cda04491bba7fafc05ee5195609",
+  "second_holdout_cases": 20,
+  "hit5_misses": 3,
+  "cases": [
+    {
+      "id": "kv.training-skill-second-holdout.006",
+      "target": {"concept_id": "VQxj_dHG_UCE", "label": "Kabelinstallationer", "occurrence_proxy": 205},
+      "ranks": {"c0": null, "g1": 8, "fused": null},
+      "g1_source_rows": 4,
+      "target_query_shared_unique_tokens": 21,
+      "fused_top5_labels": ["Brandlarm, installationsvana", "Felsökning, fordonsmekanik", "Fordonselektronik, felsökningsvana/Fordonselektronik, reparationsvana", "Ritningsläsning", "Ventilationsmontering"],
+      "heldout_module_other_mapped_concepts": ["ESA (Elsäkerhetsanvisningarna)", "Gatubelysning, installation och underhåll", "Säkert arbetssätt", "Elschemaläsning"],
+      "classification": "ranking separation plus target-envelope ambiguity",
+      "interpretation": "The target has substantial source-attested language and reaches G1 rank 8, but generic technical tokens over-rank neighboring P80 skills. The held-out module also maps to the non-P80 concept Gatubelysning, installation och underhåll, which is more directly named by the query; therefore the single P80 target is not equivalent to unique semantic intent."
+    },
+    {
+      "id": "kv.training-skill-second-holdout.014",
+      "target": {"concept_id": "iu18_YyQ_hmh", "label": "Städmaterial", "occurrence_proxy": 108},
+      "ranks": {"c0": null, "g1": 7, "fused": null},
+      "g1_source_rows": 3,
+      "target_query_shared_unique_tokens": 4,
+      "fused_top5_labels": ["Utbildning i Första hjälpen/Hjärt-lungräddning, HLR", "Trädgårdsskötsel", "Användarsupport, mjukvara", "Elektronikkonstruktion", "Storstädning"],
+      "heldout_module_other_mapped_concepts": [],
+      "classification": "missing semantic phrase/source coverage",
+      "interpretation": "The held-out query is specifically about chemical-technical cleaning products, while the three allowed non-holdout source descriptions for Städmaterial discuss ergonomics/hygiene, cleaning tools and machines. The target language is absent rather than merely mis-weighted."
+    },
+    {
+      "id": "kv.training-skill-second-holdout.018",
+      "target": {"concept_id": "kvLG_4uo_M5p", "label": "Produktionsplanering, tillverkning", "occurrence_proxy": 95},
+      "ranks": {"c0": 39, "g1": 13, "fused": 40},
+      "g1_source_rows": 3,
+      "target_query_shared_unique_tokens": 3,
+      "fused_top5_labels": ["Produktionsteknik", "Ständiga förbättringar/Lean", "Städmaterial", "Automationsteknik", "Kundtjänst"],
+      "heldout_module_other_mapped_concepts": [],
+      "classification": "fine-grained intent separation plus missing target language",
+      "interpretation": "The query explicitly says produktionsteknik and Lean, making the first two returned skills semantically plausible. The target's non-holdout descriptions weakly encode production planning. This should not be treated as a pure retrieval failure without recognisability/adjudication of close neighbors."
+    }
+  ],
+  "decision": "Do not tune the validated 4-slot policy directly on these three opened cases. Evaluate only the smallest already-owned source-text variant as exploratory development evidence; any promoted change requires independent validation."
+}
