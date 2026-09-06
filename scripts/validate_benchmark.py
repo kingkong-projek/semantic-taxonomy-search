@@ -19,13 +19,14 @@ QUERY_ORIGINS = {
     "manual", "canonical_label", "canonical_definition", "alternative_label",
     "observed_query", "ad_text", "legacy_label", "synthetic",
 }
-ADJUDICATION = {"AUTO_HIGH_CONFIDENCE", "HUMAN_SINGLE", "HUMAN_DOUBLE", "PENDING"}
+ADJUDICATION = {"AUTO_HIGH_CONFIDENCE", "MODEL_ADJUDICATED", "HUMAN_SINGLE", "HUMAN_DOUBLE", "PENDING"}
 PROVENANCE = {
     "canonical", "canonical_history", "curated_relation", "derived_af",
-    "behavioral", "corpus_derived", "model_derived", "synthetic", "human_judgment",
+    "behavioral", "corpus_derived", "model_derived", "model_judgment",
+    "synthetic", "human_judgment",
 }
 EVIDENCE_ROLES = {"query_origin", "destination_ground_truth", "product_admission", "context_only", "hard_negative"}
-GROUND_TRUTH_PROVENANCE = {"canonical", "curated_relation", "human_judgment"}
+GROUND_TRUTH_PROVENANCE = {"canonical", "curated_relation", "human_judgment", "model_judgment"}
 REQUIRED = {
     "id", "taxonomy_version", "product", "query", "query_language", "query_origin",
     "strata", "expected_intent", "must", "acceptable", "must_not",
@@ -79,7 +80,7 @@ def validate_evidence(evidence: Any, path: str, errors: list[str]) -> None:
     if role == "destination_ground_truth" and provenance not in GROUND_TRUTH_PROVENANCE:
         errors.append(
             f"{path}: {provenance!r} cannot be destination ground truth; "
-            "use canonical/curated_relation or explicit human_judgment"
+            "use canonical/curated_relation, explicit human_judgment, or explicit model_judgment"
         )
     if role == "product_admission" and provenance != "behavioral":
         errors.append(
@@ -188,11 +189,19 @@ def validate_case(case: Any) -> list[str]:
             errors.append("HUMAN_SINGLE requires reviewer_count >= 1")
         if status == "HUMAN_DOUBLE" and reviewers < 2:
             errors.append("HUMAN_DOUBLE requires reviewer_count >= 2")
+        if status == "MODEL_ADJUDICATED" and reviewers != 0:
+            errors.append("MODEL_ADJUDICATED uses reviewer_count=0; the model is recorded through provenance, not as a human reviewer")
 
     has_human_truth = any(
         isinstance(item, dict)
         and item.get("role") == "destination_ground_truth"
         and item.get("provenance") == "human_judgment"
+        for item in evidence
+    )
+    has_model_truth = any(
+        isinstance(item, dict)
+        and item.get("role") == "destination_ground_truth"
+        and item.get("provenance") == "model_judgment"
         for item in evidence
     )
     has_source_truth = any(
@@ -210,13 +219,15 @@ def validate_case(case: Any) -> list[str]:
 
     if status in {"HUMAN_SINGLE", "HUMAN_DOUBLE"} and not has_human_truth:
         errors.append(f"{status} requires explicit human_judgment destination_ground_truth evidence")
+    if status == "MODEL_ADJUDICATED" and not has_model_truth:
+        errors.append("MODEL_ADJUDICATED requires explicit model_judgment destination_ground_truth evidence")
     if status == "AUTO_HIGH_CONFIDENCE":
         if case.get("query_origin") not in {"canonical_label", "canonical_definition", "alternative_label"}:
             errors.append("AUTO_HIGH_CONFIDENCE is limited to canonical labels, canonical definitions and alternative-label query origins")
         if not has_source_truth:
             errors.append("AUTO_HIGH_CONFIDENCE requires canonical/curated destination_ground_truth evidence")
-    if status != "PENDING" and intent != "NO_MATCH" and not (has_human_truth or has_source_truth):
-        errors.append("scored positive case requires auditable destination_ground_truth evidence")
+    if status != "PENDING" and intent != "NO_MATCH" and not (has_human_truth or has_model_truth or has_source_truth):
+        errors.append("scored positive case requires auditable source, human, or model judgment destination_ground_truth evidence")
     if product == "YV" and status != "PENDING" and positive_count > 0 and not has_product_admission:
         errors.append("scored positive YV case requires explicit behavioral product_admission evidence")
 
