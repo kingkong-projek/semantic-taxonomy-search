@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 31,
+  "status": "post_hoc_development_probe_not_validation",
+  "benchmark": "model-authored-kv-100",
+  "teacher": {
+    "targets": 100,
+    "phrases_per_target": 3,
+    "phrase_count": 300,
+    "authored_after_miss_review": true
+  },
+  "baseline": {
+    "candidate": "C0-top1+G1d-4slot",
+    "hit_at_5": {"hits": 53, "n": 100, "pct": 53.0, "wilson95_pct": [43.3, 62.5]}
+  },
+  "teacher_lane": {
+    "candidate": "T1-teacher",
+    "top1": {"hits": 93, "n": 100, "pct": 93.0, "wilson95_pct": [86.3, 96.6]},
+    "hit_at_5": {"hits": 100, "n": 100, "pct": 100.0, "wilson95_pct": [96.3, 100.0]},
+    "hit_at_10": {"hits": 100, "n": 100, "pct": 100.0, "wilson95_pct": [96.3, 100.0]}
+  },
+  "teacher_fusion": {
+    "candidate": "C0-top1+T1-4slot",
+    "top1": {"hits": 35, "n": 100, "pct": 35.0, "wilson95_pct": [26.4, 44.7]},
+    "hit_at_5": {"hits": 100, "n": 100, "pct": 100.0, "wilson95_pct": [96.3, 100.0]},
+    "hit_at_10": {"hits": 100, "n": 100, "pct": 100.0, "wilson95_pct": [96.3, 100.0]}
+  },
+  "delta_vs_g1_fusion": {
+    "hit5_rescues": 47,
+    "hit5_regressions": 0
+  },
+  "interpretation": "The result is intentionally not treated as generalization evidence because the same model authored the evaluation descriptions and later authored teacher phrases after seeing their misses. It does show that model-authored build-time language can be distilled into the existing deterministic BM25/postings student and has enough representational capacity to justify a disjoint pre-frozen teacher/query experiment.",
+  "next_gate": "Freeze teacher phrases for untouched P80 ranks 101-200 before authoring their evaluation queries; then freeze the queries before the first retrieval run. Report hits/N, Wilson95, evidence class, all misses/regressions, and a deterministic sample of nominal hits.",
+  "artifact": {
+    "workflow_run_id": 34064199624,
+    "artifact_id": 9998416092,
+    "zip_sha256": "e6024258fcb95d969aa6256b938a2e33be286590f679c90a1b180a58f9df6d88"
+  }
+}
