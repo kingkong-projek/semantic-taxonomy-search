@@ -1,0 +1,60 @@
+name: C2 fresh natural-query holdout
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/evaluate_c2_fresh_natural_holdout.py
+      - scripts/evaluate_c2_job_title_router.py
+      - scripts/evaluate_pareto_c1.py
+      - research/benchmark/v31/fresh-natural-holdout/**
+      - research/benchmark/v31/p80-source-truth/yv-p80-source-truth.jsonl
+      - research/coverage/v31/pareto-demand-aggregate.json
+      - research/coverage/source-adapters.json
+      - .github/workflows/c2-fresh-natural-holdout.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate frozen fresh holdout
+        run: |
+          python scripts/validate_benchmark.py research/benchmark/v31/fresh-natural-holdout/benchmark.jsonl
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          m=json.loads(Path('research/benchmark/v31/fresh-natural-holdout/manifest.json').read_text())
+          assert m['cases']==30 and m['observed_volume']==138075677
+          assert m['status']=='MODEL_ADJUDICATED_BLINDED_TO_C2'
+          assert m['retrieval_blinding']=='No C2 output was generated or inspected before these judgments were finalized.'
+          PY
+      - name: Evaluate frozen C2 unchanged
+        run: |
+          python scripts/evaluate_c2_fresh_natural_holdout.py --output artifacts/c2-fresh-natural-holdout-v31.json
+      - name: Regression guard only
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('artifacts/c2-fresh-natural-holdout-v31.json').read_text())
+          assert x['fresh_natural_holdout']['cases']==30
+          assert x['source_truth_regression']['top1_pct']==100.0
+          assert x['source_truth_regression']['discovery_hit_at_5_pct']==100.0
+          assert x['source_truth_regression']['top1_miss_count']==0
+          print(json.dumps(x['fresh_natural_holdout'],ensure_ascii=False,indent=2,sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: c2-fresh-natural-holdout-v31
+          path: artifacts/c2-fresh-natural-holdout-v31.json
+          if-no-files-found: error
+          retention-days: 30
