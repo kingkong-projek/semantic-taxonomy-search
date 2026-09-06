@@ -1,0 +1,47 @@
+name: Skill ESCO candidate lanes
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/evaluate_skill_esco_candidate_lanes.py
+      - scripts/evaluate_skill_c0_training_validation.py
+      - research/benchmark/v31/training-skill-validation/**
+      - research/coverage/v31/pareto-demand-aggregate.json
+      - research/coverage/source-adapters.json
+      - .github/workflows/skill-esco-candidate-lanes.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Measure ESCO lanes without fusion
+        run: |
+          python scripts/evaluate_skill_esco_candidate_lanes.py --output artifacts/skill-esco-candidate-lanes-v31.json
+      - name: Validate diagnostic boundary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('artifacts/skill-esco-candidate-lanes-v31.json').read_text())
+          assert x['c0_primary']['cases']==63
+          assert x['c0_primary']['c0_misses']==34
+          assert x['role']=='candidate-lane diagnostic only; no fusion and no document expansion'
+          assert set(x['lanes'])=={'exact_match','close_match','broad_match','narrow_match'}
+          print(json.dumps({'coverage':x['coverage'],'lanes':x['lanes']},ensure_ascii=False,indent=2,sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: skill-esco-candidate-lanes-v31
+          path: artifacts/skill-esco-candidate-lanes-v31.json
+          if-no-files-found: error
+          retention-days: 30
