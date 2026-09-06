@@ -1,0 +1,107 @@
+name: Fresh natural-query holdout context
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/fresh-natural-holdout-context.yml
+      - scripts/build_yv_real_query_review_packet.py
+      - scripts/build_adjudication_context.py
+      - research/coverage/v31/yv-query-language-aggregate.json
+      - research/coverage/v31/pareto-demand-aggregate.json
+      - research/coverage/source-adapters.json
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Checkout pinned Yrkesväljaren generator evidence
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/yv-generator
+          git init -q /tmp/yv-generator
+          git -C /tmp/yv-generator remote add origin https://gitlab.com/arbetsformedlingen/taxonomy-dev/backend/yrkesvaljaren.git
+          git -C /tmp/yv-generator fetch -q --depth 1 origin 6dd9e4737d7db3cb2709f8082808b88e5c89ed6e
+          git -C /tmp/yv-generator checkout -q --detach FETCH_HEAD
+          test "$(git -C /tmp/yv-generator rev-parse HEAD)" = "6dd9e4737d7db3cb2709f8082808b88e5c89ed6e"
+          printf '%s\n' "6dd9e4737d7db3cb2709f8082808b88e5c89ed6e" > /tmp/yv-generator/SOURCE_COMMIT.txt
+      - name: Recompute top 100 unbound observed queries
+        run: |
+          python scripts/build_yv_real_query_review_packet.py \
+            --version 31 \
+            --limit 100 \
+            --source-dir /tmp/yv-generator \
+            --output-dir /tmp/yv-review-100
+      - name: Freeze unseen ranks 51-80 without retrieval output
+        run: |
+          mkdir -p artifacts/fresh-natural-holdout-v31
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          rows=[json.loads(x) for x in Path('/tmp/yv-review-100/review-packet.jsonl').read_text(encoding='utf-8').splitlines() if x.strip()]
+          assert len(rows)==100
+          selected=rows[50:80]
+          assert [r['observed_rank_within_unbound_population'] for r in selected]==list(range(51,81))
+          batch=[]
+          for r in selected:
+              batch.append({
+                  'source_pool':'observed_unbound_query',
+                  'source_id':r['id'],
+                  'query':r['query'],
+                  'observed_count':r['observed_count'],
+                  'observed_rank_within_unbound_population':r['observed_rank_within_unbound_population'],
+                  'source':r['source'],
+              })
+          out=Path('artifacts/fresh-natural-holdout-v31/batch.jsonl')
+          out.write_text(''.join(json.dumps(r,ensure_ascii=False,sort_keys=True)+'\n' for r in batch),encoding='utf-8')
+          top100=json.loads(Path('/tmp/yv-review-100/manifest.json').read_text(encoding='utf-8'))
+          volume=sum(int(r['observed_count']) for r in batch)
+          manifest={
+              'schema_version':1,
+              'taxonomy_version':31,
+              'status':'PENDING_MODEL_ADJUDICATION',
+              'selection':'unbound observed-query ranks 51-80 by frozen aggregate frequency',
+              'rows':len(batch),
+              'observed_volume':volume,
+              'generator_commit':top100['sources']['generator_commit'],
+              'query_corpus_sha256':top100['sources']['query_corpus_sha256'],
+              'authority_boundary':'queries/frequency only; no destination truth and no C2 output generated before adjudication',
+              'retrieval_blinding':'C2 is intentionally not invoked by this workflow',
+          }
+          Path('artifacts/fresh-natural-holdout-v31/manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2,sort_keys=True)+'\n',encoding='utf-8')
+          print(json.dumps(manifest,indent=2,ensure_ascii=False,sort_keys=True))
+          PY
+      - name: Build taxonomy-only adjudication context
+        run: |
+          python scripts/build_adjudication_context.py \
+            --batch artifacts/fresh-natural-holdout-v31/batch.jsonl \
+            --output artifacts/fresh-natural-holdout-v31/context.json
+      - name: Verify blinded holdout
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          rows=[json.loads(x) for x in Path('artifacts/fresh-natural-holdout-v31/batch.jsonl').read_text(encoding='utf-8').splitlines() if x.strip()]
+          ctx=json.loads(Path('artifacts/fresh-natural-holdout-v31/context.json').read_text(encoding='utf-8'))
+          manifest=json.loads(Path('artifacts/fresh-natural-holdout-v31/manifest.json').read_text(encoding='utf-8'))
+          assert len(rows)==30 and len(ctx['rows'])==30
+          assert manifest['status']=='PENDING_MODEL_ADJUDICATION'
+          assert manifest['retrieval_blinding']=='C2 is intentionally not invoked by this workflow'
+          assert all('candidate_context' not in r and 'top5' not in r for r in rows)
+          print('validated blinded ranks 51-80 holdout')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fresh-natural-holdout-v31
+          path: artifacts/fresh-natural-holdout-v31/
+          if-no-files-found: error
+          retention-days: 30
