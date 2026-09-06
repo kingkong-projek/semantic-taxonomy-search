@@ -2,8 +2,8 @@
 """Compile validated KV C0 + G1 4-slot fusion into static postings-only assets.
 
 Evaluation-shape assets exclude both frozen natural-description holdouts from G1 retrieval
-language. A separate production-shape size estimate includes all eligible source-attested
-training language but is not used for relevance evaluation.
+language. A separate production-shape asset includes all eligible source-attested training
+language for deployment-size measurement only; it is not used for relevance evaluation.
 """
 from __future__ import annotations
 
@@ -64,7 +64,7 @@ def main() -> int:
     out=Path('artifacts/skill-g1-student-runtime-v31'); out.mkdir(parents=True,exist_ok=True); sizes={}
     for key,a in assets.items():
         data=compact(a); (out/f'{key}.json').write_bytes(data); sizes[key]={'raw_bytes':len(data),'gzip9_bytes':len(gzip.compress(data,9,mtime=0)),'terms':len(a['postings']),'postings':sum(len(x) for x in a['postings'].values()),'sha256':hashlib.sha256(data).hexdigest()}
-    full_data=compact(full_g1); sizes['g1_production_shape']={'raw_bytes':len(full_data),'gzip9_bytes':len(gzip.compress(full_data,9,mtime=0)),'terms':len(full_g1['postings']),'postings':sum(len(x) for x in full_g1['postings'].values()),'sha256':hashlib.sha256(full_data).hexdigest()}
+    full_data=compact(full_g1); (out/'g1-production-shape.json').write_bytes(full_data); sizes['g1_production_shape']={'raw_bytes':len(full_data),'gzip9_bytes':len(gzip.compress(full_data,9,mtime=0)),'terms':len(full_g1['postings']),'postings':sum(len(x) for x in full_g1['postings'].values()),'sha256':hashlib.sha256(full_data).hexdigest()}
     vectors=[]; parity=0; op_totals=collections.Counter()
     c0ref=BM25(docs['KV-C0'],exact); g1ref=BM25(docs['KV-G1-single-desc'],exact)
     for suite,cases in [('canonical',canonical),('second_holdout',second),('synthetic',synthetic)]:
