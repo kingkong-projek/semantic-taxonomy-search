@@ -1,0 +1,60 @@
+name: YV minimal excluded-title fallback once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/yv-minimal-excluded-fallback-once.yml
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Checkout pinned YV generator read-only
+        env:
+          SOURCE_COMMIT: 6dd9e4737d7db3cb2709f8082808b88e5c89ed6e
+        run: |
+          rm -rf /tmp/yv-generator-minimal-fallback
+          git init -q /tmp/yv-generator-minimal-fallback
+          git -C /tmp/yv-generator-minimal-fallback remote add origin https://gitlab.com/arbetsformedlingen/taxonomy-dev/backend/yrkesvaljaren.git
+          git -C /tmp/yv-generator-minimal-fallback fetch -q --depth 1 origin "$SOURCE_COMMIT"
+          git -C /tmp/yv-generator-minimal-fallback checkout -q --detach FETCH_HEAD
+          test "$(git -C /tmp/yv-generator-minimal-fallback rev-parse HEAD)" = "$SOURCE_COMMIT"
+          printf '%s\n' "$SOURCE_COMMIT" > /tmp/yv-generator-minimal-fallback/SOURCE_COMMIT.txt
+      - name: Build complete excluded-title population
+        run: |
+          mkdir -p artifacts
+          python scripts/build_yv_excluded_title_population.py \
+            --generator-dir /tmp/yv-generator-minimal-fallback \
+            --output artifacts/yv-excluded-title-population-v31.json
+      - name: Install pinned Fuse dependency in script sandbox
+        run: |
+          printf '{"private":true,"type":"module"}\n' > scripts/package.json
+          npm install --prefix scripts --no-package-lock --no-save fuse.js@7.5.0
+      - name: Reproduce corrected current ranking
+        run: |
+          node scripts/analyze_yv_excluded_title_ranking.mjs \
+            --cases artifacts/yv-excluded-title-population-v31.json \
+            --output artifacts/yv-excluded-title-ranking-v31.json
+      - name: Evaluate minimal fallback
+        run: |
+          python scripts/evaluate_yv_minimal_excluded_fallback.py \
+            --ranking artifacts/yv-excluded-title-ranking-v31.json \
+            --output artifacts/yv-minimal-excluded-fallback-v31.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: yv-minimal-excluded-fallback-v31
+          path: artifacts/yv-minimal-excluded-fallback-v31.json
+          retention-days: 30
+          if-no-files-found: error
