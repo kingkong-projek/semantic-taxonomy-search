@@ -1,0 +1,37 @@
+name: Skill G1 ESCO complement
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/measure_skill_g1_esco_complement.py
+      - scripts/evaluate_skill_training_language_enrichment.py
+      - scripts/evaluate_skill_training_language_fusion.py
+      - research/benchmark/v31/training-skill-fresh-holdout/**
+      - research/benchmark/v31/training-skill-second-holdout/**
+      - research/benchmark/v31/synthetic-description-stress/**
+      - research/coverage/v31/pareto-demand-aggregate.json
+      - research/coverage/source-adapters.json
+      - .github/workflows/skill-g1-esco-complement.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  measure:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Measure ESCO lane complement without fusion
+        run: python scripts/measure_skill_g1_esco_complement.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: skill-g1-esco-complement-v31
+          path: artifacts/skill-g1-esco-complement-v31.json
+          if-no-files-found: error
+          retention-days: 30
