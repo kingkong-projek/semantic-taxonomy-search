@@ -1,0 +1,16 @@
+{
+  "benchmark_sha256": "3eeebf641241a72c459cde3bad0660780b84ffa29e59468997bf683842492682",
+  "cases": 30,
+  "intent_counts": {
+    "AMBIGUOUS": 4,
+    "NO_MATCH": 25,
+    "SINGLE": 1
+  },
+  "observed_volume": 138075677,
+  "retrieval_blinding": "No C2 output was generated or inspected before these judgments were finalized.",
+  "schema_version": 1,
+  "selection": "unbound observed-query ranks 51-80 by frozen aggregate frequency",
+  "source_context": "taxonomy-only context from JobTech Taxonomy v31",
+  "status": "MODEL_ADJUDICATED_BLINDED_TO_C2",
+  "taxonomy_version": 31
+}
