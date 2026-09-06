@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 31,
+  "status": "mixed_prefrozen_validation_not_promoted",
+  "policy": "C0-top1+G1-1slot+teacher-3slot",
+  "freeze_order": {
+    "policy_commit": "61808d52e4253e912a6e1a75f02491e100457466",
+    "teacher_commit": "d7464ab4a0feb946d9fc475ab7911df6664c019b",
+    "query_commit": "1468f1594c5789b21efb98264a9bd3f99afa163f"
+  },
+  "disjointness": {
+    "new_cases": 100,
+    "target_overlap_with_ranks1_200": 0,
+    "exact_query_overlap_with_prior_synthetic": 0,
+    "teacher_phrases_total": 900,
+    "exact_teacher_query_overlap": 0,
+    "direct_full_label_mentions": 0
+  },
+  "primary_ranks201_300": {
+    "C0_hit5": {"hits": 25, "n": 100, "pct": 25.0},
+    "G1_hit5": {"hits": 22, "n": 100, "pct": 22.0},
+    "G1_4slot_baseline_hit5": {"hits": 22, "n": 100, "pct": 22.0},
+    "teacher_hit5": {"hits": 97, "n": 100, "pct": 97.0},
+    "teacher_top1": {"hits": 85, "n": 100, "pct": 85.0},
+    "frozen_candidate_hit5": {"hits": 96, "n": 100, "pct": 96.0, "wilson95_pct": [90.2, 98.4]},
+    "frozen_candidate_hit10": {"hits": 96, "n": 100, "pct": 96.0},
+    "rescues_vs_G1_4slot": 74,
+    "regressions_vs_G1_4slot": 0,
+    "hit5_misses": [
+      {"id":"kv.model-authored-201-300.204","target":"Anläggningsarbete","target_rank_in_candidate":230},
+      {"id":"kv.model-authored-201-300.220","target":"Mekanikkonstruktion","target_rank_in_candidate":201},
+      {"id":"kv.model-authored-201-300.260","target":"Kvalitetskontroll","target_rank_in_candidate":26},
+      {"id":"kv.model-authored-201-300.300","target":"Produktionsledning, tillverkning","target_rank_in_candidate":128}
+    ]
+  },
+  "source_attested_regression_control": {
+    "first35": {"baseline_hit5":31,"candidate_hit5":33,"n":35,"rescues":2,"regressions":0},
+    "second20": {"baseline_hit5":17,"candidate_hit5":16,"n":20,"rescues":0,"regressions":1},
+    "third26": {"baseline_hit5":20,"candidate_hit5":22,"n":26,"rescues":2,"regressions":0},
+    "material_regression": {
+      "id":"kv.training-skill-second-holdout.017",
+      "target":{"concept_id":"awjU_C3D_XEJ","label":"Ekonomistyrning","p80_rank":246},
+      "baseline_rank":5,
+      "candidate_rank":6,
+      "classification":"unadjudicated_source_attested_hit5_boundary_regression"
+    },
+    "notable_strong_rescues": [
+      {"id":"kv.training-skill-third-holdout.013","target":"Städmaterial","baseline_rank":177,"candidate_rank":3},
+      {"id":"kv.training-skill-third-holdout.022","target":"Kabelinstallationer","baseline_rank":28,"candidate_rank":5}
+    ]
+  },
+  "canonical_guard": {"top1":{"hits":617,"n":617,"pct":100.0},"hit5":{"hits":617,"n":617,"pct":100.0}},
+  "decision": "Do not promote the frozen G1+T3 policy yet. The target-disjoint prefrozen synthetic gate strongly validates representational capacity, and source-attested controls show four rescues overall, but one second-holdout source-attested case crosses the Hit@5 boundary from rank 5 to 6 after the ranks201-300 teacher expansion. Diagnose that competition before any further tuning or complexity increase.",
+  "interpretation_boundary": "Model-authored teacher/query evidence is not independent user evidence. AF holdouts are source-attested but small and some mappings are ambiguous; paired material regressions require adjudication.",
+  "artifact": {
+    "workflow_run_id": 34066016857,
+    "artifact_id": 9998950885,
+    "zip_sha256": "f6405854bd321a3bde44f91ee35bea33c15c6a7c31726749253a0c98f8d76e41"
+  }
+}
