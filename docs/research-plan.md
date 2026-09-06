@@ -30,12 +30,18 @@ Hard shared rule:
 
 Do not replace ordinary selectors with a chatbot.
 
-Keep fast lexical selection as the privileged path where a consuming service already has it. Add semantic description search when ordinary lookup is insufficient. YV/KV remain useful reference UX examples:
+Keep fast lexical selection as the privileged path where a consuming service already has it. A live hypothesis is that **YV and KV may already be very good within their current selector architecture**; the vague report that some users cannot find an occupation/competence is not evidence that ordinary search is broadly broken. Track 1 therefore measures and fixes only demonstrated current-selector failures instead of assuming a semantic diagnosis.
+
+Even a near-perfect YV/KV selector still leaves a separate product need: some users do not know the occupational or competence term they need to search for. Semantic free-text is intended for that case, not as a replacement for a healthy lexical selector. The preferred UX is a progressive fallback ladder:
 
 ```text
-YV: Hittar du inte det du söker? [Beskriv yrket]
-KV: Hittar du inte kompetensen? [Beskriv kompetensen / vad du kan göra]
+1. ordinary YV/KV lookup
+2. if the user does not get a useful match: [Sök med fritext]
+3. interpret description/task/tool/method language and return canonical candidates
+4. if confidence is still insufficient: [Ge förslag] / clarification rather than forcing a nearest neighbour
 ```
+
+The exact labels are product copy hypotheses, not a frozen UI contract. The important contract is progressive disclosure: do not make users describe something semantically when they already know its name, but provide semantic help when naming/terminology is the actual obstacle. `Tillåt fritext` should therefore not be treated as a mere manual-string escape hatch; the semantic path should be framed as an active **search with free text**, with safe suggestions/clarification if a direct confident match is unavailable.
 
 Description mode explicitly includes ordinary first-person/task language such as `jag drog kabel, kopplade uttag och läste elscheman`, not only near-synonyms of taxonomy labels. Tasks, tools, methods, responsibilities and colloquial wording are first-class fallback input.
 
