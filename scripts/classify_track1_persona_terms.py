@@ -4,10 +4,13 @@
 The classifier deliberately does not perform semantic similarity. It asks only:
 - is the query itself an active canonical preferred/alternative/hidden label?;
 - does the query literally contain one of those authoritative surfaces?;
+- is the query itself a literal substring of a longer authoritative surface, as
+  current lexical selectors already support for inputs such as ``YKB``?
 
-That is enough to distinguish missing lexical/compositional reachability from cases
-that actually require meaning inference. Output is evidence for manual classification,
-not an automatic product decision.
+That is enough to separate already-attested lexical/compositional reachability from
+cases for which canonical vocabulary alone supplies no literal bridge. The final
+class is only a candidate for Track 2: absence of literal evidence does not prove
+that embeddings or any other semantic model are required.
 """
 from __future__ import annotations
 
@@ -84,7 +87,8 @@ def main() -> int:
     for case in CASES:
         nq = norm(case["query"])
         exact = []
-        contained = []
+        query_contains_surface = []
+        surface_contains_query = []
         for ctype in case["types"]:
             for concept in concepts_by_type[ctype]:
                 for row in surfaces(concept):
@@ -99,7 +103,9 @@ def main() -> int:
                     if ns == nq:
                         exact.append(item)
                     elif len(ns) >= 4 and ns in nq and token_count(ns) >= 1:
-                        contained.append(item)
+                        query_contains_surface.append(item)
+                    elif len(nq) >= 3 and nq in ns and token_count(nq) >= 1:
+                        surface_contains_query.append(item)
 
         def uniq(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
             seen = set()
@@ -112,10 +118,11 @@ def main() -> int:
             return out
 
         exact = uniq(exact)
-        contained = uniq(contained)
+        query_contains_surface = uniq(query_contains_surface)
+        surface_contains_query = uniq(surface_contains_query)
         if exact:
             boundary = "TRACK1_AUTHORITATIVE_EXACT_SURFACE"
-        elif contained:
+        elif query_contains_surface or surface_contains_query:
             boundary = "TRACK1_LEXICAL_COMPOSITION_CANDIDATE"
         else:
             boundary = "TRACK2_MEANING_INFERENCE_CANDIDATE"
@@ -125,15 +132,16 @@ def main() -> int:
             "normalized_query": nq,
             "boundary_class": boundary,
             "exact_authoritative_surfaces": exact,
-            "contained_authoritative_surfaces": contained,
-            "note": "absence of an exact/contained surface does not prove a semantic mapping; it only means current canonical vocabulary does not directly attest one",
+            "query_contains_authoritative_surfaces": query_contains_surface,
+            "authoritative_surfaces_containing_query": surface_contains_query,
+            "note": "absence of exact or bidirectional literal containment does not prove a semantic mapping or model is required; it only means current canonical vocabulary supplies no direct literal bridge",
         })
 
     result = {
-        "schema_version": 1,
+        "schema_version": 2,
         "taxonomy_version": int(args.version),
         "track": "1-current-yv-kv-findability",
-        "method": "exact and literal-contained active preferred/alternative/hidden taxonomy surfaces only; no semantic similarity",
+        "method": "exact plus bidirectional literal containment over active preferred/alternative/hidden taxonomy surfaces only; no semantic similarity",
         "cases": result_cases,
     }
     output = Path(args.output)
