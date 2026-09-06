@@ -1,0 +1,36 @@
+name: Skill G1 residual analysis
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/analyze_skill_g1_residual.py
+      - scripts/evaluate_skill_training_language_enrichment.py
+      - scripts/evaluate_skill_training_language_fusion.py
+      - research/benchmark/v31/training-skill-fresh-holdout/**
+      - research/benchmark/v31/training-skill-second-holdout/**
+      - research/coverage/v31/pareto-demand-aggregate.json
+      - research/coverage/source-adapters.json
+      - .github/workflows/skill-g1-residual-analysis.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  analyze:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Analyze frozen 4-slot misses without tuning
+        run: python scripts/analyze_skill_g1_residual.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: skill-g1-residual-v31
+          path: artifacts/skill-g1-residual-v31.json
+          if-no-files-found: error
+          retention-days: 30
