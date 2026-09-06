@@ -17,8 +17,9 @@ import urllib.request
 from pathlib import Path
 from typing import Any
 
-UA = "semantic-taxonomy-search-pareto-demand/0.1"
+UA = "semantic-taxonomy-search-pareto-demand/0.2"
 THRESHOLDS = (0.50, 0.80, 0.90, 0.95, 0.99)
+PRIORITY_SET_THRESHOLDS = ("p80", "p90", "p95")
 
 
 def now_utc() -> str:
@@ -116,9 +117,15 @@ def pareto(rows: list[dict[str, Any]]) -> dict[str, Any]:
                 "last_included_occurrences": row["occurrences"],
             }
             threshold_index += 1
+    priority_sets = {
+        key: rows[: int(thresholds[key]["concept_count"])]
+        for key in PRIORITY_SET_THRESHOLDS
+        if key in thresholds
+    }
     return {
         "observed_occurrence_total": total,
         "thresholds": thresholds,
+        "priority_sets": priority_sets,
         "top_100": rows[:100],
     }
 
@@ -188,7 +195,7 @@ def main() -> int:
         }
 
     aggregate = {
-        "schema_version": 1,
+        "schema_version": 2,
         "taxonomy_version": version,
         "measured_at": now_utc(),
         "semantics": {
@@ -201,6 +208,7 @@ def main() -> int:
                 "proof that a listed skill is required rather than merely present in the source taxonomy fields",
             ],
             "pareto_denominator": "occurrence mass belonging to currently active v31 concepts that appear in the Historical API response",
+            "priority_membership": "P80/P90/P95 memberships are persisted exactly so benchmark/runtime research can reproduce the same envelope without hand-written lists",
         },
         "sources": {
             "taxonomy": {"url": taxonomy_url, "sha256": hashlib.sha256(taxonomy_body).hexdigest()},
