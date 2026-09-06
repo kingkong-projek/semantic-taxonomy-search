@@ -1,0 +1,47 @@
+name: Skill fresh holdout validation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/evaluate_skill_fresh_holdout.py
+      - research/benchmark/v31/training-skill-fresh-holdout/**
+      - research/benchmark/v31/p80-source-truth/kv-p80-source-truth.jsonl
+      - research/coverage/v31/pareto-demand-aggregate.json
+      - research/coverage/source-adapters.json
+      - .github/workflows/skill-fresh-holdout-eval.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Evaluate frozen C0 and preselected F1
+        run: python scripts/evaluate_skill_fresh_holdout.py --output artifacts/skill-fresh-holdout-v31.json
+      - name: Guard independent-validation contract
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('artifacts/skill-fresh-holdout-v31.json').read_text())
+          assert r['holdout']['cases'] == 35
+          assert r['source_truth_regression']['cases'] == 617
+          assert r['source_truth_regression']['top1_pct'] == 100.0
+          assert r['source_truth_regression']['discovery_hit_at_5_pct'] == 100.0
+          assert 'blind holdout frozen before evaluator' in r['experiment_role']
+          print(json.dumps({k:r[k] for k in ('configurations','delta','source_truth_regression')},ensure_ascii=False,indent=2,sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: skill-fresh-holdout-v31
+          path: artifacts/skill-fresh-holdout-v31.json
+          if-no-files-found: error
+          retention-days: 30
