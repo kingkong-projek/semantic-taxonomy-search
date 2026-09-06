@@ -17,7 +17,7 @@ import urllib.request
 from pathlib import Path
 from typing import Any
 
-UA = "semantic-taxonomy-search-pareto-demand/0.2"
+UA = "semantic-taxonomy-search-pareto-demand/0.3"
 THRESHOLDS = (0.50, 0.80, 0.90, 0.95, 0.99)
 PRIORITY_SET_THRESHOLDS = ("p80", "p90", "p95")
 
@@ -34,6 +34,16 @@ def fetch(url: str, timeout: int = 180) -> bytes:
 
 def pct(n: int, d: int) -> float:
     return round(100.0 * n / d, 3) if d else 0.0
+
+
+def canonical_json_sha256(value: Any) -> str:
+    payload = json.dumps(
+        value,
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+    ).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
 
 
 def expected_hash(registry: dict[str, Any], adapter_id: str) -> str:
@@ -174,6 +184,10 @@ def main() -> int:
     stats_url = stats_base + "?" + urllib.parse.urlencode(params)
     stats_body = fetch(stats_url, timeout=300)
     stats_doc = json.loads(stats_body)
+    stats_payload = stats_doc.get("stats")
+    if not isinstance(stats_payload, dict):
+        raise RuntimeError("Historical API stats response has no stats object")
+    canonical_stats_sha256 = canonical_json_sha256(stats_payload)
 
     occupation_rows = parse_rows(stats_doc, "occupation-name")
     skill_rows = parse_rows(stats_doc, "skill")
@@ -195,7 +209,7 @@ def main() -> int:
         }
 
     aggregate = {
-        "schema_version": 2,
+        "schema_version": 3,
         "taxonomy_version": version,
         "measured_at": now_utc(),
         "semantics": {
@@ -213,7 +227,12 @@ def main() -> int:
         "sources": {
             "taxonomy": {"url": taxonomy_url, "sha256": hashlib.sha256(taxonomy_body).hexdigest()},
             "historical_api_swagger": {"url": swagger_url, "sha256": hashlib.sha256(swagger_body).hexdigest()},
-            "historical_stats": {"url": stats_url, "sha256": hashlib.sha256(stats_body).hexdigest()},
+            "historical_stats": {
+                "url": stats_url,
+                "sha256": canonical_stats_sha256,
+                "hash_semantics": "SHA-256 of canonical JSON stats object only; request timing/metadata fields are excluded",
+                "raw_response_sha256": hashlib.sha256(stats_body).hexdigest(),
+            },
         },
         "occupation_name": summarize(occupation_rows, active_occ_rows, active_occupations),
         "skill": summarize(skill_rows, active_skill_rows, active_skills),
@@ -247,6 +266,7 @@ def main() -> int:
         f"- Active skills represented in stats: **{s['active_v31_rows']:,}/{s['active_v31_target_universe']:,} = {s['active_v31_targets_with_observed_occurrence_pct']}%**.",
         f"- Active-v31 occupation occurrence mass: **{o['active_v31_occurrences']:,}**.",
         f"- Active-v31 skill occurrence mass: **{s['active_v31_occurrences']:,}**.",
+        f"- Canonical Historical `stats` SHA-256: `{canonical_stats_sha256}`.",
         "",
         "Simple-first implication: use P80 as the first candidate semantic confidence envelope, keep P90/P95 as measured expansion tiers, and preserve lexical fallback for the entire taxonomy.",
         "",
