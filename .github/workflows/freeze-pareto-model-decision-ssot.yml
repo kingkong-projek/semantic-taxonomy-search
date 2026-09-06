@@ -1,0 +1,58 @@
+name: Freeze Pareto model decision SSOT
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/freeze_pareto_model_decision_ssot.py
+      - .github/workflows/freeze-pareto-model-decision-ssot.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  freeze:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Rebuild model-adjudicated Pareto benchmark
+        run: |
+          python scripts/build_pareto_model_adjudication.py \
+            --output-dir /tmp/pareto-model-adjudicated-v31
+          python scripts/validate_benchmark.py /tmp/pareto-model-adjudicated-v31/benchmark.jsonl
+      - name: Rebuild C0 decision evaluation
+        run: |
+          python scripts/evaluate_pareto_model_slice.py \
+            --benchmark /tmp/pareto-model-adjudicated-v31/benchmark.jsonl \
+            --output /tmp/pareto-model-c0-eval-v31.json
+      - name: Freeze evidence and synchronize SSOT
+        run: |
+          python scripts/freeze_pareto_model_decision_ssot.py \
+            /tmp/pareto-model-adjudicated-v31 \
+            /tmp/pareto-model-c0-eval-v31.json
+      - name: Validate frozen state
+        run: |
+          python scripts/validate_benchmark.py research/benchmark/v31/pareto-model-adjudicated/benchmark.jsonl
+          python -m json.tool research/benchmark/v31/pareto-model-adjudicated/manifest.json >/dev/null
+          python -m json.tool research/evaluation/v31/pareto-model-c0-eval.json >/dev/null
+          grep -F '63.786% volume-weighted decision accuracy' docs/research-plan.md
+          grep -F 'P80 + the six measured high-volume boundary identities' docs/findings/pareto-model-decision-v31.md
+      - name: Commit frozen benchmark, evaluation and SSOT
+        run: |
+          set -euo pipefail
+          git config user.name "kingkongola"
+          git config user.email "adambergman90@gmail.com"
+          git add \
+            research/benchmark/v31/pareto-model-adjudicated \
+            research/evaluation/v31/pareto-model-c0-eval.json \
+            docs/findings/pareto-model-decision-v31.md \
+            docs/research-plan.md
+          git commit -m "benchmark: freeze first Pareto decision slice"
+          git push origin HEAD:main
