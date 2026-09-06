@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 31,
+  "product": "KV",
+  "case_count": 100,
+  "target_slice": "P80 skill ranks 201-300",
+  "evidence_class": "synthetic_model_authored_prefrozen_validation",
+  "author_model": "GPT-5.6 Sol",
+  "purpose": "fresh target-disjoint validation of the already-frozen C0-top1+G1-1slot+teacher-3slot Track 2 candidate",
+  "freeze_order": {
+    "policy_commit": "61808d52e4253e912a6e1a75f02491e100457466",
+    "teacher_commit": "d7464ab4a0feb946d9fc475ab7911df6664c019b",
+    "query_commit": "1468f1594c5789b21efb98264a9bd3f99afa163f",
+    "policy_before_teacher": true,
+    "teacher_before_queries": true,
+    "retrieval_before_all_freezes": false
+  },
+  "selection": "exactly one authored natural-language description for each frozen P80 skill rank 201-300; no retrieval output was consulted during teacher or query authoring",
+  "disjointness_contract": {
+    "target_overlap_with_ranks1_200": 0,
+    "exact_query_overlap_with_prior_synthetic_suites": 0,
+    "exact_teacher_query_overlap": 0,
+    "checks_must_run_before_metric acceptance": true
+  },
+  "frozen_policy": {
+    "name": "C0-top1+G1-1slot+teacher-3slot",
+    "semantics": "preserve C0 rank 1; admit one unique G1-single-desc candidate; admit three unique teacher-lane candidates; deterministically backfill duplicates; no learned scores or thresholds"
+  },
+  "evaluation_policy": {
+    "primary_metric": "Hit@5",
+    "report": ["hits/N", "percentage", "95% Wilson interval", "all Hit@5 misses", "all paired regressions versus G1-4slot baseline"],
+    "canonical_guard": "617/617 source-truth Top1 and Hit@5 must remain intact",
+    "source_attested_guard": "re-run first35, second20 and third26 AF-description suites with their established evidence exclusions and report every Hit@5 regression",
+    "no_alternate_policy_search": true,
+    "no_posthoc_query_or_teacher_cleaning": true
+  },
+  "interpretation_boundary": "This suite can test temporal prefreeze, target-disjoint representational generalization and cross-target competition. Because both teacher language and evaluation descriptions are model-authored, it is not independent human/user accuracy evidence."
+}
