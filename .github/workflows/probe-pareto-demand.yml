@@ -1,0 +1,87 @@
+name: Probe Pareto demand signals
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/probe-pareto-demand.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Probe JobSearch aggregate stats and current API contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/pareto-demand-probe
+          python3 - <<'PY'
+          import json, urllib.parse, urllib.request
+          from pathlib import Path
+
+          out = Path('artifacts/pareto-demand-probe')
+          base = 'https://jobsearch.api.jobtechdev.se/search'
+          tests = {
+              'occupation_name_stats': [('limit','1'), ('stats','occupation-name')],
+              'skill_stats': [('limit','1'), ('stats','skill')],
+              'occupation_and_skill_stats': [('limit','1'), ('stats','occupation-name'), ('stats','skill')],
+          }
+          summary = {}
+          for name, params in tests.items():
+              url = base + '?' + urllib.parse.urlencode(params)
+              req = urllib.request.Request(url, headers={'Accept':'application/json','User-Agent':'semantic-taxonomy-search-pareto-probe/0.1'})
+              try:
+                  with urllib.request.urlopen(req, timeout=60) as r:
+                      body = r.read()
+                      summary[name] = {'url': url, 'status': r.status, 'bytes': len(body)}
+                      (out / f'{name}.json').write_bytes(body)
+              except Exception as exc:
+                  summary[name] = {'url': url, 'error': repr(exc)}
+          # Also capture swagger/API definition if publicly exposed.
+          for swagger_url in ('https://jobsearch.api.jobtechdev.se/swagger.json', 'https://jobsearch.api.jobtechdev.se/openapi.json'):
+              try:
+                  req = urllib.request.Request(swagger_url, headers={'Accept':'application/json','User-Agent':'semantic-taxonomy-search-pareto-probe/0.1'})
+                  with urllib.request.urlopen(req, timeout=60) as r:
+                      body = r.read()
+                      name = swagger_url.rsplit('/',1)[-1]
+                      (out / name).write_bytes(body)
+                      summary[name] = {'url': swagger_url, 'status': r.status, 'bytes': len(body)}
+              except Exception as exc:
+                  summary[swagger_url] = {'error': repr(exc)}
+          (out / 'probe-summary.json').write_text(json.dumps(summary, ensure_ascii=False, indent=2, sort_keys=True)+'\n', encoding='utf-8')
+          print(json.dumps(summary, ensure_ascii=False, indent=2, sort_keys=True))
+          PY
+      - name: Summarize returned stats shapes
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          out=Path('artifacts/pareto-demand-probe')
+          result={}
+          for p in sorted(out.glob('*_stats.json')):
+              doc=json.loads(p.read_text(encoding='utf-8'))
+              result[p.name]={
+                  'top_level_keys': sorted(doc.keys()) if isinstance(doc,dict) else None,
+                  'stats_type': type(doc.get('stats')).__name__ if isinstance(doc,dict) else None,
+                  'stats_keys': sorted(doc.get('stats',{}).keys()) if isinstance(doc,dict) and isinstance(doc.get('stats'),dict) else None,
+              }
+              if isinstance(doc,dict) and isinstance(doc.get('stats'),dict):
+                  for k,v in doc['stats'].items():
+                      if isinstance(v,list): result[p.name][f'{k}_count']=len(v)
+                      elif isinstance(v,dict): result[p.name][f'{k}_count']=len(v)
+          (out/'shape-summary.json').write_text(json.dumps(result,ensure_ascii=False,indent=2,sort_keys=True)+'\n',encoding='utf-8')
+          print(json.dumps(result,ensure_ascii=False,indent=2,sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pareto-demand-probe
+          path: artifacts/pareto-demand-probe/
+          if-no-files-found: error
+          retention-days: 7
