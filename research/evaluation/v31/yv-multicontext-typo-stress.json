@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 31,
+  "track": "1-current-yv-kv-findability",
+  "classification": "structural stress probe only; deterministic synthetic typos are not observed user traffic",
+  "population": {
+    "multi_context_job_title_ids": 541,
+    "eligible_cases_per_mutation": 538,
+    "combined_cases": 1076
+  },
+  "exact_baseline": {
+    "all_contexts_visible_top10": 541,
+    "cases": 541,
+    "pct": 100.0
+  },
+  "deletion": {
+    "cases": 538,
+    "no_result": 0,
+    "top1_is_intended": 511,
+    "any_intended_context_visible": 534,
+    "all_intended_contexts_visible": 533,
+    "mean_context_recall": 0.9919,
+    "median_context_recall": 1.0
+  },
+  "transposition": {
+    "cases": 538,
+    "no_result": 0,
+    "top1_is_intended": 507,
+    "any_intended_context_visible": 531,
+    "all_intended_contexts_visible": 530,
+    "mean_context_recall": 0.9864,
+    "median_context_recall": 1.0
+  },
+  "combined": {
+    "cases": 1076,
+    "no_result": 0,
+    "top1_is_intended": 1018,
+    "any_intended_context_visible": 1065,
+    "all_intended_contexts_visible": 1063,
+    "all_intended_contexts_visible_pct": 98.792,
+    "zero_intended_context_cases": 11,
+    "partial_context_cases": 2,
+    "mean_context_recall": 0.9892,
+    "median_context_recall": 1.0
+  },
+  "decision": "do not classify small-typo multi-context loss as a general YV defect; investigate rare misleading-fuzzy cases only with demand evidence",
+  "reproducer": "scripts/measure_yv_multicontext_typo_stress.mjs",
+  "source_run_id": 34054618954,
+  "source_artifact_id": 9995619591,
+  "source_artifact_zip_sha256": "235bef9aab1c0b481ac7732b1180a52eab2c954aa48a7a7035d5cc8a866dab4c",
+  "fuse_js_version": "7.5.0"
+}
