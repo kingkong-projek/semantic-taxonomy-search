@@ -22,7 +22,7 @@ import urllib.request
 from pathlib import Path
 from typing import Any
 
-UA = "semantic-taxonomy-search-p80-lexical-ablation/0.1"
+UA = "semantic-taxonomy-search-p80-lexical-ablation/0.2"
 TOKEN_RE = re.compile(r"[0-9A-Za-zÅÄÖåäöÉéÜü]+", re.UNICODE)
 CONFIGS = ("A_labels", "B_plus_definitions", "C_plus_alternative_labels")
 
@@ -76,8 +76,16 @@ def load_jsonl(path: Path) -> list[dict[str, Any]]:
 
 
 class BM25:
-    def __init__(self, documents: dict[str, list[str]], *, k1: float = 1.2, b: float = 0.75) -> None:
+    def __init__(
+        self,
+        documents: dict[str, list[str]],
+        exact_surfaces: dict[str, set[str]],
+        *,
+        k1: float = 1.2,
+        b: float = 0.75,
+    ) -> None:
         self.documents = documents
+        self.exact_surfaces = exact_surfaces
         self.k1 = k1
         self.b = b
         self.lengths = {cid: len(ts) for cid, ts in documents.items()}
@@ -105,14 +113,17 @@ class BM25:
             score += idf * (f * (self.k1 + 1.0) / denom)
         return score
 
-    def rank(self, query: str, labels: dict[str, str]) -> list[str]:
+    def rank(self, query: str) -> list[str]:
         q = tokens(query)
         scored = []
         nq = norm(query)
         for cid in self.documents:
             score = self.score(q, cid)
-            # Preserve the privileged exact canonical-label path deterministically.
-            if nq and nq == norm(labels[cid]):
+            # Exact indexed lexical surfaces dominate token scoring. In A/B those
+            # surfaces are preferred labels only; C additionally indexes canonical
+            # alternative labels. This also preserves punctuation-sensitive terms
+            # such as C++ without inventing fuzzy token rules.
+            if nq and nq in self.exact_surfaces[cid]:
                 score += 1_000_000.0
             scored.append((score, cid))
         scored.sort(key=lambda item: (-item[0], item[1]))
@@ -127,7 +138,7 @@ def dcg_binary(ranked: list[str], relevant: set[str], k: int) -> float:
     return value
 
 
-def evaluate(cases: list[dict[str, Any]], ranker: BM25, labels: dict[str, str]) -> dict[str, Any]:
+def evaluate(cases: list[dict[str, Any]], ranker: BM25) -> dict[str, Any]:
     totals = collections.defaultdict(float)
     by_origin: dict[str, list[dict[str, float]]] = collections.defaultdict(list)
     by_stratum: dict[str, list[dict[str, float]]] = collections.defaultdict(list)
@@ -135,7 +146,7 @@ def evaluate(cases: list[dict[str, Any]], ranker: BM25, labels: dict[str, str]) 
 
     for case in cases:
         relevant = {str(x["concept_id"]) for x in case["must"]}
-        ranked = ranker.rank(str(case["query"]), labels)
+        ranked = ranker.rank(str(case["query"]))
         positions = [ranked.index(cid) + 1 for cid in relevant if cid in ranked]
         first = min(positions) if positions else len(ranked) + 1
         top1 = 1.0 if ranked and ranked[0] in relevant else 0.0
@@ -211,7 +222,7 @@ def main() -> int:
     by_id = {str(c["id"]): c for c in concepts if isinstance(c, dict) and c.get("id")}
 
     result: dict[str, Any] = {
-        "schema_version": 1,
+        "schema_version": 2,
         "taxonomy_version": int(version),
         "benchmark": {
             "YV_cases": len(yv_cases),
@@ -219,11 +230,11 @@ def main() -> int:
             "semantics": "source-truth P80 ingestion/retrieval benchmark; not natural-paraphrase proof",
         },
         "retrieval": {
-            "algorithm": "deterministic BM25 over P80 target documents with explicit exact preferred-label dominance",
+            "algorithm": "deterministic BM25 over P80 target documents with exact indexed lexical-surface dominance",
             "configs": {
-                "A_labels": "preferred_label only",
-                "B_plus_definitions": "A + canonical definition when non-empty/distinct from label",
-                "C_plus_alternative_labels": "B + canonical alternative labels",
+                "A_labels": "preferred_label only; preferred label is an exact indexed surface",
+                "B_plus_definitions": "A + canonical definition when non-empty/distinct from label; exact surfaces unchanged",
+                "C_plus_alternative_labels": "B + canonical alternative labels; preferred and alternative labels are exact indexed surfaces",
             },
         },
         "source": {"taxonomy_url": taxonomy_url, "taxonomy_sha256": actual},
@@ -235,24 +246,32 @@ def main() -> int:
         expected_count = 159 if product == "YV" else 316
         if len(target_ids) != expected_count:
             raise RuntimeError(f"{product} target count drift: {len(target_ids)}")
-        labels = {cid: str(by_id[cid].get("preferred_label") or "") for cid in target_ids}
         documents_by_config: dict[str, dict[str, list[str]]] = {key: {} for key in CONFIGS}
+        exact_by_config: dict[str, dict[str, set[str]]] = {key: {} for key in CONFIGS}
         for cid in target_ids:
             concept = by_id.get(cid)
             if not isinstance(concept, dict) or concept.get("type") != expected_kind:
                 raise RuntimeError(f"invalid {product} target {cid}")
-            label = labels[cid]
+            label = str(concept.get("preferred_label") or "")
             definition = str(concept.get("definition") or "").strip()
             real_definition = definition if definition and norm(definition) != norm(label) else ""
             alternatives = [x for x in as_list(concept.get("alternative_labels")) if norm(x) != norm(label)]
+            preferred_surface = {norm(label)} if norm(label) else set()
+            all_exact_surfaces = preferred_surface | {norm(x) for x in alternatives if norm(x)}
+
             documents_by_config["A_labels"][cid] = tokens(label)
+            exact_by_config["A_labels"][cid] = set(preferred_surface)
+
             documents_by_config["B_plus_definitions"][cid] = tokens(" ".join(x for x in (label, real_definition) if x))
+            exact_by_config["B_plus_definitions"][cid] = set(preferred_surface)
+
             documents_by_config["C_plus_alternative_labels"][cid] = tokens(" ".join([label, real_definition, *alternatives]))
+            exact_by_config["C_plus_alternative_labels"][cid] = set(all_exact_surfaces)
 
         product_result = {}
         for config in CONFIGS:
-            ranker = BM25(documents_by_config[config])
-            product_result[config] = evaluate(cases, ranker, labels)
+            ranker = BM25(documents_by_config[config], exact_by_config[config])
+            product_result[config] = evaluate(cases, ranker)
         result["products"][product] = product_result
 
     out = Path(args.output)
