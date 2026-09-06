@@ -1,0 +1,111 @@
+name: Findability should-find reconstruction
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/build_findability_should_find_cases.py
+      - scripts/evaluate_findability_should_find.mjs
+      - .github/workflows/findability-should-find-audit.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Fix evaluator typo before execution
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('scripts/evaluate_findability_should_find.mjs')
+          s=p.read_text(encoding='utf-8')
+          old='+(root?.12:0)'
+          new='+(root ? .12 : 0)'
+          if old in s:
+              s=s.replace(old,new)
+              p.write_text(s,encoding='utf-8')
+          elif new not in s:
+              raise RuntimeError('expected evaluator patch anchor not found')
+          PY
+
+      - name: Checkout pinned YV generator
+        env:
+          SOURCE_COMMIT: 6dd9e4737d7db3cb2709f8082808b88e5c89ed6e
+        run: |
+          rm -rf /tmp/yv-generator
+          git init -q /tmp/yv-generator
+          git -C /tmp/yv-generator remote add origin https://gitlab.com/arbetsformedlingen/taxonomy-dev/backend/yrkesvaljaren.git
+          git -C /tmp/yv-generator fetch -q --depth 1 origin "$SOURCE_COMMIT"
+          git -C /tmp/yv-generator checkout -q --detach FETCH_HEAD
+          printf '%s\n' "$SOURCE_COMMIT" > /tmp/yv-generator/SOURCE_COMMIT.txt
+
+      - name: Build source-attested should-find probes
+        run: |
+          rm -rf artifacts/findability-should-find-v31
+          python3 scripts/build_findability_should_find_cases.py \
+            --version 31 \
+            --generator-dir /tmp/yv-generator \
+            --output-dir artifacts/findability-should-find-v31
+
+      - name: Install pinned Fuse dependency
+        run: |
+          printf '{"private":true,"type":"module"}\n' > scripts/package.json
+          npm install --prefix scripts --no-package-lock --no-save fuse.js@7.5.0
+
+      - name: Replay current selectors
+        run: |
+          node scripts/evaluate_findability_should_find.mjs \
+            --input artifacts/findability-should-find-v31/cases.jsonl \
+            --output artifacts/findability-should-find-v31/evaluation.json
+
+      - name: Guard result boundaries
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          m=json.loads(Path('artifacts/findability-should-find-v31/manifest.json').read_text())
+          r=json.loads(Path('artifacts/findability-should-find-v31/evaluation.json').read_text())
+          assert m['taxonomy_version']==31
+          assert m['counts']['all_cases']>0
+          assert r['selector_contract']['fuse_js_version']=='7.5.0'
+          assert r['sources']['yv']['sha256']=='1036f9525416fac4ce475c1c1d3909b9e2849ebcf7094ffd38104955e4c2ee49'
+          assert r['sources']['kv']['sha256']=='da83f26bf316971caa407364d8feae6f791203bff5758e674cace3d919e4b524'
+          print(json.dumps({
+            'probe_counts': m['counts'],
+            'YV': {k:v for k,v in r['YV'].items() if k not in ('top_failures','by_surface_provenance')},
+            'KV': {k:v for k,v in r['KV'].items() if k not in ('top_failures','by_surface_provenance')},
+            'YV_fuzzy_multi_context': {k:v for k,v in r['yv_multi_context_fuzzy_structural_stress'].items() if k!='examples'},
+          },ensure_ascii=False,indent=2))
+          PY
+
+      - name: Persist evaluator syntax fix
+        run: |
+          if ! git diff --quiet -- scripts/evaluate_findability_should_find.mjs; then
+            git config user.name semantic-taxonomy-search-bot
+            git config user.email semantic-taxonomy-search-bot@users.noreply.github.com
+            git add scripts/evaluate_findability_should_find.mjs
+            git diff --cached --check
+            git commit -m 'fix(research): correct should-find evaluator syntax'
+            git push origin HEAD:main
+          fi
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: findability-should-find-v31
+          path: artifacts/findability-should-find-v31/
+          if-no-files-found: error
+          retention-days: 30
