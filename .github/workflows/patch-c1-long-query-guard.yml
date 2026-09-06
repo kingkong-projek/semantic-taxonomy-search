@@ -1,0 +1,38 @@
+name: Patch C1 long query guard
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/patch_c1_long_query_guard.py
+      - .github/workflows/patch-c1-long-query-guard.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Patch C1 ranking split
+        run: python scripts/patch_c1_long_query_guard.py
+      - name: Validate patched source
+        run: |
+          python -m py_compile scripts/evaluate_pareto_c1.py
+          grep -F 'Description-style queries keep C0 semantics' scripts/evaluate_pareto_c1.py
+      - name: Commit patch
+        run: |
+          set -euo pipefail
+          git config user.name "kingkongola"
+          git config user.email "adambergman90@gmail.com"
+          git add scripts/evaluate_pareto_c1.py
+          git commit -m "fix(research): separate short-query and description ranking"
+          git push origin HEAD:main
