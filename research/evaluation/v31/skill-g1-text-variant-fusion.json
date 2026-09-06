@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "status": "frozen exploratory development evidence; second holdout already inspected before this ablation",
+  "source_run": 34061286183,
+  "source_artifact_id": 9997541822,
+  "source_artifact_zip_sha256": "2f17f56501e67a7d3e4e58c6e0f86a967004ae60caebc0b4a8ac527e158d2359",
+  "fixed_policy": "preserve C0 rank1; take up to four unique candidates from the selected human-training-text lane; fill tail from C0",
+  "decision": "retain independently validated KV-G1-4slot-single-desc; do not promote module-name or all-description variants; no new independent holdout is justified for these variants",
+  "results": {
+    "KV-G1-4slot-single-desc": {
+      "first_holdout_hit5_pct_with_both_holdouts_excluded": 91.429,
+      "first_holdout_weighted_hit5_pct": 84.632,
+      "second_holdout_posthoc_hit5_pct": 85.0,
+      "second_holdout_posthoc_weighted_hit5_pct": 89.331,
+      "canonical_top1_pct": 100.0,
+      "canonical_hit5_pct": 100.0,
+      "synthetic_hit5_pct": 66.667,
+      "opened_residual_ranks": {"006_Kabelinstallationer": null, "014_Städmaterial": null, "018_Produktionsplanering": 40}
+    },
+    "KV-G1-4slot-single-name-desc": {
+      "first_holdout_hit5_pct_with_both_holdouts_excluded": 88.571,
+      "first_holdout_weighted_hit5_pct": 82.769,
+      "second_holdout_posthoc_hit5_pct": 85.0,
+      "second_holdout_posthoc_weighted_hit5_pct": 89.304,
+      "canonical_top1_pct": 100.0,
+      "canonical_hit5_pct": 100.0,
+      "synthetic_hit5_pct": 66.667,
+      "opened_residual_ranks": {"006_Kabelinstallationer": null, "014_Städmaterial": null, "018_Produktionsplanering": 5},
+      "interpretation": "Module names rescue the inspected production-planning case but do not improve aggregate second-holdout discovery and regress the first natural slice, so the local rescue is not sufficient evidence for promotion."
+    },
+    "KV-G1-4slot-all-desc": {
+      "first_holdout_hit5_pct_with_both_holdouts_excluded": 88.571,
+      "first_holdout_weighted_hit5_pct": 82.769,
+      "second_holdout_posthoc_hit5_pct": 75.0,
+      "second_holdout_posthoc_weighted_hit5_pct": 84.623,
+      "canonical_top1_pct": 100.0,
+      "canonical_hit5_pct": 100.0,
+      "synthetic_hit5_pct": 50.0,
+      "opened_residual_ranks": {"006_Kabelinstallationer": null, "014_Städmaterial": null, "018_Produktionsplanering": 42},
+      "interpretation": "Attaching all multi-mapped training descriptions introduces semantic noise and is rejected."
+    }
+  },
+  "note": "The independently validated headline for the original first holdout remains 88.571% from the predeclared validation experiment. The 91.429% value here is a later diagnostic shape in which both natural holdouts are excluded from retrieval evidence; it does not replace the frozen validation headline."
+}
