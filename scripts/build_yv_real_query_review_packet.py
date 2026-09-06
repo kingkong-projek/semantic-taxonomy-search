@@ -9,7 +9,9 @@ candidates are never auto-promoted to truth.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
+import zipfile
 from pathlib import Path
 
 from evaluate_p80_lexical_ablation import BM25, as_list, expected_hash, fetch, norm, tokens
@@ -27,10 +29,61 @@ def p80_ids(pareto: dict, expected_count: int = 159) -> list[str]:
     return ids
 
 
+def top_unbound_from_generator(source_dir: Path, version: str, expected_zip_sha256: str, limit: int) -> tuple[list[dict], dict]:
+    zip_path = source_dir / "data/sokningar-platsbanken.json.zip"
+    zip_bytes = zip_path.read_bytes()
+    actual_zip_sha = hashlib.sha256(zip_bytes).hexdigest()
+    if actual_zip_sha != expected_zip_sha256:
+        raise RuntimeError(f"query corpus hash drift: expected {expected_zip_sha256}, got {actual_zip_sha}")
+    with zipfile.ZipFile(zip_path) as zf:
+        names = [name for name in zf.namelist() if name.endswith(".json")]
+        if len(names) != 1:
+            raise RuntimeError(f"expected one JSON in query ZIP, got {names}")
+        corpus = json.load(zf.open(names[0]))
+    terms = corpus.get("search_terms")
+    if not isinstance(terms, dict):
+        raise RuntimeError("query corpus missing search_terms")
+    terms = {str(query): int(count) for query, count in terms.items()}
+    if sum(terms.values()) != int(corpus.get("total_search_terms") or -1):
+        raise RuntimeError("query corpus total mismatch")
+
+    yv = json.loads((source_dir / f"output/v1/yrkesvaljaren-t{version}.json").read_text(encoding="utf-8"))
+    yv_rows = yv.get("data")
+    if not isinstance(yv_rows, list):
+        raise RuntimeError("pinned YV output missing data")
+    admitted_labels = {
+        str(row["preferred_label"]).casefold()
+        for row in yv_rows
+        if isinstance(row, dict) and row.get("preferred_label")
+    }
+    many = json.loads((source_dir / f"data/jobbtitlar-mappad-till-för-många-yb-t{version}.json").read_text(encoding="utf-8"))
+    redundant = json.loads((source_dir / f"data/jobbtitlar-del-av-yb-t{version}.json").read_text(encoding="utf-8"))
+    excluded_labels = {str(x).casefold() for x in many} | {str(x).casefold() for x in redundant}
+
+    unbound = [
+        {"query": query, "count": count}
+        for query, count in terms.items()
+        if query.casefold() not in admitted_labels and query.casefold() not in excluded_labels
+    ]
+    unbound.sort(key=lambda row: (-row["count"], row["query"]))
+    if len(unbound) < limit:
+        raise RuntimeError(f"only {len(unbound)} unbound terms available")
+    return unbound[:limit], {
+        "distinct_terms": len(terms),
+        "total_query_volume": sum(terms.values()),
+        "unbound_distinct_terms": len(unbound),
+        "unbound_query_volume": sum(row["count"] for row in unbound),
+        "start_date": corpus.get("start_date"),
+        "end_date": corpus.get("end_date"),
+        "zip_sha256": actual_zip_sha,
+    }
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--version", default="31")
     ap.add_argument("--limit", type=int, default=50)
+    ap.add_argument("--source-dir", required=True, help="Pinned Yrkesväljaren generator checkout")
     ap.add_argument("--registry", default="research/coverage/source-adapters.json")
     ap.add_argument("--pareto", default="research/coverage/v31/pareto-demand-aggregate.json")
     ap.add_argument("--query-aggregate", default="research/coverage/v31/yv-query-language-aggregate.json")
@@ -40,23 +93,33 @@ def main() -> int:
     if not 20 <= args.limit <= 100:
         raise RuntimeError("review packet limit must stay in [20,100]")
     version = str(args.version)
+    source_dir = Path(args.source_dir)
     registry = json.loads(Path(args.registry).read_text(encoding="utf-8"))
     pareto = json.loads(Path(args.pareto).read_text(encoding="utf-8"))
     queries = json.loads(Path(args.query_aggregate).read_text(encoding="utf-8"))
+    source_commit = (source_dir / "SOURCE_COMMIT.txt").read_text(encoding="utf-8").strip()
+    if source_commit != queries["generator_source_commit"]:
+        raise RuntimeError(f"generator commit mismatch: {source_commit}")
 
-    top = queries.get("exact_text_binding", {}).get("unbound", {}).get("top_terms")
-    if not isinstance(top, list) or len(top) < args.limit:
-        raise RuntimeError(f"need at least {args.limit} frozen high-volume unbound terms")
-    selected = top[: args.limit]
-    if any(not isinstance(row, dict) or not row.get("query") or int(row.get("count") or 0) <= 0 for row in selected):
-        raise RuntimeError("invalid frozen unbound query row")
+    selected, corpus_stats = top_unbound_from_generator(
+        source_dir,
+        version,
+        str(queries["query_corpus"]["zip_sha256"]),
+        args.limit,
+    )
+    # Prove the directly re-read corpus has the same aggregate boundary previously frozen.
+    if corpus_stats["total_query_volume"] != int(queries["query_corpus"]["total_query_volume"]):
+        raise RuntimeError("frozen query total drift")
+    if corpus_stats["unbound_distinct_terms"] != int(queries["exact_text_binding"]["unbound"]["distinct_terms"]):
+        raise RuntimeError("frozen unbound distinct-term count drift")
+    if corpus_stats["unbound_query_volume"] != int(queries["exact_text_binding"]["unbound"]["query_volume"]):
+        raise RuntimeError("frozen unbound query-volume drift")
 
     taxonomy_url = (
         "https://data.jobtechdev.se/taxonomy/version/"
         f"{version}/query/concepts-and-common-relations/concepts-and-common-relations.json"
     )
     body = fetch(taxonomy_url)
-    import hashlib
     actual = hashlib.sha256(body).hexdigest()
     expected = expected_hash(registry, "taxonomy-common-relations")
     if actual != expected:
@@ -84,8 +147,8 @@ def main() -> int:
         labels[cid] = label
 
     ranker = BM25(documents, exact_surfaces)
-    total_corpus = int(queries["query_corpus"]["total_query_volume"])
-    unbound_volume = int(queries["exact_text_binding"]["unbound"]["query_volume"])
+    total_corpus = corpus_stats["total_query_volume"]
+    unbound_volume = corpus_stats["unbound_query_volume"]
     cumulative = 0
     rows = []
     for rank, source_row in enumerate(selected, 1):
@@ -98,14 +161,14 @@ def main() -> int:
             "taxonomy_version": int(version),
             "query": query,
             "observed_count": count,
-            "observed_rank_within_frozen_unbound_top_terms": rank,
+            "observed_rank_within_unbound_population": rank,
             "cumulative_selected_count": cumulative,
             "share_of_all_frozen_query_volume_pct": round(100 * count / total_corpus, 4),
             "source": {
                 "kind": "behavioral_query_frequency",
                 "provenance": "behavioral",
-                "generator_commit": queries["generator_source_commit"],
-                "query_corpus_sha256": queries["query_corpus"]["zip_sha256"],
+                "generator_commit": source_commit,
+                "query_corpus_sha256": corpus_stats["zip_sha256"],
                 "semantics": "observed free-text query plus aggregate frequency; no selected taxonomy ID",
             },
             "candidate_context": {
@@ -134,18 +197,19 @@ def main() -> int:
             handle.write(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n")
 
     manifest = {
-        "schema_version": 1,
+        "schema_version": 2,
         "taxonomy_version": int(version),
         "status": "PENDING_HUMAN_REVIEW",
         "queries": len(rows),
-        "selection_rule": f"top {args.limit} highest-frequency terms from frozen unbound YV query-language top_terms; no semantic filtering",
+        "selection_rule": f"top {args.limit} highest-frequency unbound terms recomputed from pinned Yrkesväljaren query corpus; no semantic filtering",
         "selected_query_volume": cumulative,
         "selected_share_of_all_frozen_query_volume_pct": round(100 * cumulative / total_corpus, 3),
         "selected_share_of_unbound_query_volume_pct": round(100 * cumulative / unbound_volume, 3),
         "authority_boundary": "Observed query frequency and C-ranked candidates are not labels. Human/domain review is required for SINGLE/AMBIGUOUS/NO_MATCH and MUST/ACCEPTABLE/MUST_NOT judgments.",
         "sources": {
+            "generator_commit": source_commit,
             "query_aggregate": args.query_aggregate,
-            "query_corpus_sha256": queries["query_corpus"]["zip_sha256"],
+            "query_corpus_sha256": corpus_stats["zip_sha256"],
             "taxonomy_sha256": actual,
             "pareto": args.pareto,
         },
@@ -166,7 +230,7 @@ def main() -> int:
     ]
     for row in rows:
         top1 = row["candidate_context"]["top5"][0]
-        lines.append(f"| {row['observed_rank_within_frozen_unbound_top_terms']} | `{row['query']}` | {row['observed_count']:,} | {top1['label']} |")
+        lines.append(f"| {row['observed_rank_within_unbound_population']} | `{row['query']}` | {row['observed_count']:,} | {top1['label']} |")
     (out / "review.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True))
     return 0
