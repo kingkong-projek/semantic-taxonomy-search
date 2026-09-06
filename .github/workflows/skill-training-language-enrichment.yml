@@ -1,0 +1,36 @@
+name: Skill training-language enrichment
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/evaluate_skill_training_language_enrichment.py
+      - research/benchmark/v31/training-skill-fresh-holdout/**
+      - research/benchmark/v31/p80-source-truth/kv-p80-source-truth.jsonl
+      - research/benchmark/v31/synthetic-description-stress/**
+      - research/coverage/v31/pareto-demand-aggregate.json
+      - research/coverage/source-adapters.json
+      - .github/workflows/skill-training-language-enrichment.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Evaluate non-holdout human-mapped training language
+        run: |
+          python scripts/evaluate_skill_training_language_enrichment.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: skill-training-language-enrichment-v31
+          path: artifacts/skill-training-language-enrichment-v31.json
+          if-no-files-found: error
+          retention-days: 30
