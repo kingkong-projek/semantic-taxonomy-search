@@ -1,0 +1,61 @@
+name: Skill graph-context ablation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/evaluate_skill_graph_context_ablation.py
+      - scripts/evaluate_skill_c0_training_validation.py
+      - research/benchmark/v31/training-skill-validation/**
+      - research/benchmark/v31/p80-source-truth/kv-p80-source-truth.jsonl
+      - research/coverage/v31/pareto-demand-aggregate.json
+      - research/coverage/v31/native-occupation-skill-aggregate.json
+      - research/coverage/source-adapters.json
+      - .github/workflows/skill-graph-context-ablation.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify frozen skill benchmark
+        run: |
+          test "$(wc -l < research/benchmark/v31/training-skill-validation/cases.jsonl)" -eq 76
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          rows=[json.loads(x) for x in Path('research/benchmark/v31/training-skill-validation/cases.jsonl').read_text(encoding='utf-8').splitlines() if x.strip()]
+          assert sum(bool(r['primary_descriptive_nonleaky']) for r in rows)==63
+          assert all('benchmark truth only' in r['authority_boundary'] for r in rows)
+          PY
+      - name: Evaluate typed context ablation
+        run: |
+          python scripts/evaluate_skill_graph_context_ablation.py --output artifacts/skill-graph-context-ablation-v31.json
+      - name: Guard canonical regression
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('artifacts/skill-graph-context-ablation-v31.json').read_text())
+          assert x['benchmark']['KV-C0']['primary_descriptive_nonleaky']['cases']==63
+          for name in ('KV-C0','KV-C1e','KV-C1all'):
+              r=x['source_truth_regression'][name]
+              assert r['top1_pct']==100.0
+              assert r['discovery_hit_at_5_pct']==100.0
+              assert r['top1_miss_count']==0
+          print(json.dumps(x['benchmark'],ensure_ascii=False,indent=2,sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: skill-graph-context-ablation-v31
+          path: artifacts/skill-graph-context-ablation-v31.json
+          if-no-files-found: error
+          retention-days: 30
