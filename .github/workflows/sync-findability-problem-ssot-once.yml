@@ -1,0 +1,35 @@
+name: Sync findability problem into SSOT
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/sync-findability-problem-ssot-once.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Patch SSOT
+        run: python3 scripts/sync_findability_problem_ssot_once.py
+      - name: Validate
+        run: |
+          grep -Fq 'primary v0 product question is end-to-end findability' docs/research-plan.md
+          grep -Fq 'semantic retrieval as one candidate capability rather than the assumed diagnosis' docs/research-plan.md
+          grep -Fq 'Treat that report as the phenomenon to explain' docs/research-plan.md
+          git diff --check
+      - name: Commit
+        run: |
+          git config user.name semantic-taxonomy-search-bot
+          git config user.email semantic-taxonomy-search-bot@users.noreply.github.com
+          git add docs/research-plan.md
+          git commit -m 'research: make end-to-end findability the product objective'
+          git push origin HEAD:main
