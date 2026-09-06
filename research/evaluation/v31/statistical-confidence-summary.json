@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "status": "reporting guardrail; no retrieval-policy change",
+  "principle": "Distinguish exhaustive deterministic slices, development holdouts, independent blind holdouts, synthetic stress cases and proxy-weighted summaries. Do not report percentages without denominators and evidence role.",
+  "kv_description_search": {
+    "first_natural_holdout": {
+      "role": "development evidence; opened before final 3-slot/4-slot fusion choice",
+      "cases": 35,
+      "c0": {"hits_at_5": 11, "hit_at_5_pct": 31.429, "wilson_95_pct": [18.55, 47.98]},
+      "g1_4slot": {"hits_at_5": 31, "hit_at_5_pct": 88.571, "wilson_95_pct": [74.05, 95.46]},
+      "confirmatory_inference_allowed": false
+    },
+    "second_blind_holdout": {
+      "role": "independent validation frozen before candidate outputs were generated",
+      "cases": 20,
+      "c0": {"hits_at_5": 6, "hit_at_5_pct": 30.0, "wilson_95_pct": [14.55, 51.90]},
+      "g1_4slot": {"hits_at_5": 17, "hit_at_5_pct": 85.0, "wilson_95_pct": [63.96, 94.76]},
+      "paired_change": {
+        "rescued_c0_misses": 11,
+        "regressed_c0_hits": 0,
+        "unchanged_hits": 6,
+        "unchanged_misses": 3,
+        "absolute_hit5_change_percentage_points": 55.0,
+        "exact_two_sided_mcnemar_binomial_p": 0.0009765625
+      },
+      "interpretation": "Strong evidence that G1-4slot improves Hit@5 over C0 on this frozen benchmark distribution; the absolute 85% rate remains imprecisely estimated because n=20."
+    },
+    "canonical_regression": {
+      "role": "fixed deterministic regression set, not a random production sample",
+      "cases": 617,
+      "g1_4slot_top1_hits": 617,
+      "g1_4slot_hit5_hits": 617,
+      "interpretation": "Zero observed regression on these 617 frozen cases. Do not convert this mechanically into a production-population confidence claim."
+    },
+    "weighted_metrics": {
+      "second_blind_c0_weighted_hit5_pct": 19.639,
+      "second_blind_g1_4slot_weighted_hit5_pct": 89.331,
+      "weight_semantics": "historical occurrence proxy, not sampling probability for production description queries",
+      "classical_confidence_interval": "not reported without a defensible sampling/variance model"
+    },
+    "scope_limits": [
+      "target space is the 316-skill P80 priority envelope, not all 6752 active skills",
+      "blind descriptions come from AF labour-market-training text and may differ from real user free text",
+      "second blind holdout contains only 20 cases",
+      "each blind case has exactly one P80 target by construction, so multi-intent user descriptions are underrepresented",
+      "post-residual experiments after opening the second holdout are exploratory and require a new independent holdout before candidate promotion",
+      "synthetic stress cases are instrumentation, not population evidence"
+    ]
+  },
+  "track1_reporting_classes": {
+    "exhaustive_or_deterministic_slices": [
+      "YV exact multi-context population: 541/541 IDs evaluated",
+      "YV deterministic one-edit typo stress: 1076 mutations across 541 multi-context IDs",
+      "YV generator-excluded title population: all 205 active excluded titles evaluated",
+      "strict current canonical alias populations: 357 YV aliases and 1279 KV aliases"
+    ],
+    "interpretation": "These are defined-slice enumerations rather than random samples; sampling confidence intervals are not the main uncertainty. External-validity and traffic-distribution uncertainty still remain."
+  },
+  "reporting_rule": "Every headline metric must include numerator/denominator (or population size), evidence role, scope, and confidence interval when a genuine sample-based proportion is being generalized. Proxy-weighted metrics must be labelled descriptive unless a valid variance model exists."
+}
