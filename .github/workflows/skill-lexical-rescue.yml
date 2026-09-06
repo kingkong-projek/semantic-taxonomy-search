@@ -1,0 +1,55 @@
+name: Skill lexical rescue
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/evaluate_skill_lexical_rescue.py
+      - scripts/evaluate_skill_c0_training_validation.py
+      - scripts/evaluate_pareto_c1.py
+      - research/benchmark/v31/training-skill-validation/**
+      - research/benchmark/v31/p80-source-truth/kv-p80-source-truth.jsonl
+      - research/coverage/v31/pareto-demand-aggregate.json
+      - research/coverage/source-adapters.json
+      - .github/workflows/skill-lexical-rescue.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify frozen benchmark
+        run: |
+          test "$(wc -l < research/benchmark/v31/training-skill-validation/cases.jsonl)" -eq 76
+      - name: Evaluate conservative lexical rescue
+        run: |
+          python scripts/evaluate_skill_lexical_rescue.py --output artifacts/skill-lexical-rescue-v31.json
+      - name: Guard canonical top1
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('artifacts/skill-lexical-rescue-v31.json').read_text())
+          assert x['benchmark']['KV-C0']['primary_descriptive_nonleaky']['cases']==63
+          for name in ('KV-C0','KV-L1-one-slot','KV-L1-two-slot'):
+              assert x['source_truth_regression'][name]['top1_pct']==100.0
+          print(json.dumps({
+              'benchmark':x['benchmark'],
+              'source_truth_regression':x['source_truth_regression'],
+              'morphology':x['morphology_on_primary_c0_misses'],
+          },ensure_ascii=False,indent=2,sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: skill-lexical-rescue-v31
+          path: artifacts/skill-lexical-rescue-v31.json
+          if-no-files-found: error
+          retention-days: 30
