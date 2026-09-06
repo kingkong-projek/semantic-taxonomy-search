@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 31,
+  "role": "incremental KV description-fallback comparison on frozen blind source-attested holdout",
+  "benchmark": {
+    "path": "research/benchmark/v31/training-skill-fresh-holdout/cases.jsonl",
+    "sha256": "79816eb2020b100bf8260b8f1807069288c30dbabd457bfffbfe3f49735c6675",
+    "cases": 35,
+    "occurrence_proxy_weight": 5902,
+    "traffic_weight": false
+  },
+  "product_baseline": {
+    "repository": "kingkong-projek/yrkesvaljaren",
+    "commit": "0eba98e3a91079a43c1eaf6da09dfabe11e5bc8b",
+    "fuse_js_version": "7.5.0",
+    "path_replayed": "HybridSearchEngine.search(query, '', [], 5)",
+    "context": "none",
+    "discovery_hit_at_5_pct": 0.0,
+    "weighted_discovery_hit_at_5_pct": 0.0,
+    "no_result_cases": 35
+  },
+  "semantic_fallback": {
+    "configuration": "KV-C0",
+    "retrieval_documents": "P80 skill preferred labels + real canonical definitions + canonical alternative labels only",
+    "discovery_hit_at_5_pct": 31.429,
+    "weighted_discovery_hit_at_5_pct": 34.734,
+    "canonical_regression_cases": 617,
+    "canonical_regression_discovery_hit_at_5_pct": 100.0
+  },
+  "increment": {
+    "discovery_hit_at_5_percentage_points": 31.429,
+    "weighted_discovery_hit_at_5_percentage_points": 34.734,
+    "fallback_eligible_cases": 35,
+    "fallback_eligible_pct": 100.0,
+    "semantic_rescues": 11,
+    "rescue_rate_among_product_misses_pct": 31.429,
+    "weighted_rescue_rate_among_product_misses_pct": 34.734
+  },
+  "contingency": {
+    "both_hit": 0,
+    "product_only": 0,
+    "semantic_rescue": 11,
+    "both_miss": 24
+  },
+  "contingency_occurrence_proxy_weight": {
+    "both_hit": 0,
+    "product_only": 0,
+    "semantic_rescue": 2050,
+    "both_miss": 3852
+  },
+  "semantic_rescue_case_ids": [
+    "kv.training-skill-holdout.002",
+    "kv.training-skill-holdout.003",
+    "kv.training-skill-holdout.004",
+    "kv.training-skill-holdout.010",
+    "kv.training-skill-holdout.011",
+    "kv.training-skill-holdout.013",
+    "kv.training-skill-holdout.019",
+    "kv.training-skill-holdout.023",
+    "kv.training-skill-holdout.024",
+    "kv.training-skill-holdout.034",
+    "kv.training-skill-holdout.035"
+  ],
+  "remaining_residual_case_ids": [
+    "kv.training-skill-holdout.001",
+    "kv.training-skill-holdout.005",
+    "kv.training-skill-holdout.006",
+    "kv.training-skill-holdout.007",
+    "kv.training-skill-holdout.008",
+    "kv.training-skill-holdout.009",
+    "kv.training-skill-holdout.012",
+    "kv.training-skill-holdout.014",
+    "kv.training-skill-holdout.015",
+    "kv.training-skill-holdout.016",
+    "kv.training-skill-holdout.017",
+    "kv.training-skill-holdout.018",
+    "kv.training-skill-holdout.020",
+    "kv.training-skill-holdout.021",
+    "kv.training-skill-holdout.022",
+    "kv.training-skill-holdout.025",
+    "kv.training-skill-holdout.026",
+    "kv.training-skill-holdout.027",
+    "kv.training-skill-holdout.028",
+    "kv.training-skill-holdout.029",
+    "kv.training-skill-holdout.030",
+    "kv.training-skill-holdout.031",
+    "kv.training-skill-holdout.032",
+    "kv.training-skill-holdout.033"
+  ],
+  "reproduction": {
+    "workflow": ".github/workflows/pinned-kv-description-baseline.yml",
+    "product_evaluator": "scripts/evaluate_pinned_kv_selector_description_baseline.mjs",
+    "comparator": "scripts/compare_skill_fallback_increment.py",
+    "semantic_result": "research/evaluation/v31/skill-fresh-holdout.json",
+    "successful_workflow_run": 34038717537,
+    "workflow_artifact_digest": "sha256:ce52d0ea5a1839d1ee20195d46ba49d35f5cf23171eb7d03639c533a6aac8dc6"
+  },
+  "interpretation_boundary": "This measures incremental fallback value on this frozen source-attested description benchmark. Occurrence proxy is not user traffic, and the opened residual must not be reused as independent validation after tuning."
+}
