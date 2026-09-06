@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 31,
+  "configuration": {
+    "name": "C2",
+    "base": "C1",
+    "new_lane": "exact active job-title preferred label -> union of typed related occupation-name parents",
+    "fusion": "existing exact canonical occupation surfaces first; then typed job-title parents ordered by frozen occupation occurrence proxy; then remaining C1 candidates",
+    "destination_boundary": "job-title is retrieval vocabulary only; emitted candidates are canonical occupation-name identities",
+    "primary_metric": "Discovery Success@5 / typed-parent coverage@5"
+  },
+  "opened_holdout_development_view": {
+    "cases": 36,
+    "observed_volume": 208583095,
+    "discovery_success_at_5_pct": 94.444,
+    "volume_weighted_discovery_success_at_5_pct": 93.677,
+    "no_match_abstention_pct": 100.0,
+    "interpretation": "development-only because this holdout was already opened before C2 design",
+    "remaining_failures": [
+      {"query": "lager", "intent": "AMBIGUOUS", "observed_count": 7235178},
+      {"query": "administration", "intent": "SINGLE", "observed_count": 5953776}
+    ]
+  },
+  "unseen_excluded_title_sentinel_ranks_21_50": {
+    "rows": 30,
+    "observed_volume": 7205252,
+    "any_parent_hit_at_5_pct": 100.0,
+    "volume_weighted_any_parent_hit_at_5_pct": 100.0,
+    "all_typed_parents_visible_at_5_pct": 80.0,
+    "volume_weighted_all_typed_parents_visible_at_5_pct": 79.049,
+    "mean_typed_parent_recall_at_5_pct": 92.395,
+    "volume_weighted_typed_parent_recall_at_5_pct": 93.22,
+    "typed_parent_count_distribution": {"1": 16, "2": 2, "4": 5, "5": 1, "6": 2, "8": 1, "9": 1, "11": 1, "12": 1}
+  },
+  "source_truth_regression": {
+    "cases": 333,
+    "top1_pct": 100.0,
+    "discovery_hit_at_5_pct": 100.0,
+    "top1_miss_count": 0
+  },
+  "provenance": {
+    "workflow_run_id": 34022726840,
+    "head_sha": "23bb0e121fd22b4913f9af78bbf1057e9225c3ca",
+    "artifact_name": "c2-job-title-router-v31",
+    "artifact_digest": "sha256:0b350df51af9b636a7a4329210ca2c07603c6ac81bf271693a9c695572b932ec"
+  }
+}
