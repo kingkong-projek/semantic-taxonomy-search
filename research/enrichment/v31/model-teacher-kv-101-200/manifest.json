@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 31,
+  "p80_rank_start": 101,
+  "p80_rank_end": 200,
+  "target_count": 100,
+  "phrases_per_target": 3,
+  "evidence_class": "synthetic_model_teacher_prefrozen",
+  "teacher_commit": "1597db4b0d7ef42eade8ceb8065d84a6af10056c",
+  "freeze_order": "Teacher phrases committed before any evaluation descriptions for ranks 101-200 were authored or retrieved.",
+  "purpose": "Blind-between-artifacts test of whether model-authored build-time semantic language generalizes to disjoint targets and later-authored natural descriptions while runtime remains deterministic BM25/postings.",
+  "constraints": [
+    "No retrieval results for ranks 101-200 are consulted while authoring teacher phrases.",
+    "Evaluation queries are authored only after this teacher artifact is frozen.",
+    "Evaluation queries must not equal a teacher phrase and must not contain the full canonical preferred label.",
+    "Raw benchmark scores are immutable; all misses/regressions plus a deterministic sample of hits are adjudicated separately."
+  ]
+}
