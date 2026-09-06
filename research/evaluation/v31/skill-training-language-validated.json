@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 31,
+  "status": "independently_validated_candidate",
+  "candidate": "KV-G1-4slot",
+  "target_space": "P80 active skill identities (316)",
+  "policy": "preserve KV-C0 rank 1; then admit up to four unique KV-G1-single-desc candidates; fill remaining ranks from C0",
+  "identity_boundary": "only AF v31 skill identities are emitted",
+  "retrieval_evidence": {
+    "canonical": "P80 skill preferred label + real canonical definition + canonical alternative labels",
+    "g1": "descriptions from AF labour-market-training modules manually mapped to exactly one P80 skill",
+    "training_source_sha256": "fea97867a1225e078d28ab9b0772f6a37f92b37c3c6c0d0e886ae65e9d79361c",
+    "taxonomy_sha256": "634fd9d848a172747e54e3e487160a912ae6c0fcb8219c50998767c8c9aacbcc",
+    "synthetic_text_ingested": false
+  },
+  "first_fresh_holdout": {
+    "cases": 35,
+    "benchmark_sha256": "79816eb2020b100bf8260b8f1807069288c30dbabd457bfffbfe3f49735c6675",
+    "role": "first independent holdout for G1 enrichment; opened before bounded fusion policy selection",
+    "c0_discovery_hit_at_5_pct": 31.429,
+    "g1_4slot_discovery_hit_at_5_pct": 88.571,
+    "c0_weighted_discovery_hit_at_5_pct": 34.734,
+    "g1_4slot_weighted_discovery_hit_at_5_pct": 82.769,
+    "workflow_run": 34059728835,
+    "artifact_id": 9997078661
+  },
+  "second_blind_holdout": {
+    "cases": 20,
+    "benchmark_sha256": "3960fd217deb9d7346fd78d4f281a62b614ce927e18e4ed12cbebec08a898aa7",
+    "role": "independent validation frozen before 3-slot/4-slot candidate outputs were generated",
+    "retrieval_exclusion": "both first and second holdout module IDs and normalized texts removed from G1 evidence before validation",
+    "c0_top1_pct": 20.0,
+    "c0_discovery_hit_at_5_pct": 30.0,
+    "c0_weighted_discovery_hit_at_5_pct": 19.639,
+    "g1_3slot_discovery_hit_at_5_pct": 75.0,
+    "g1_3slot_weighted_discovery_hit_at_5_pct": 84.623,
+    "g1_4slot_top1_pct": 20.0,
+    "g1_4slot_discovery_hit_at_5_pct": 85.0,
+    "g1_4slot_hit_at_10_pct": 85.0,
+    "g1_4slot_weighted_discovery_hit_at_5_pct": 89.331,
+    "g1_4slot_hit5_miss_count": 3,
+    "workflow_run": 34059968131,
+    "artifact_id": 9997147505
+  },
+  "canonical_regression": {
+    "cases": 617,
+    "top1_pct": 100.0,
+    "discovery_hit_at_5_pct": 100.0,
+    "hit_at_10_pct": 100.0
+  },
+  "decision": {
+    "promote_candidate_for_next_track2_steps": true,
+    "preferred_policy": "KV-G1-4slot",
+    "reason": "large first-holdout gain reproduced on an independently frozen second holdout while preserving 617/617 canonical top-1 and Discovery@5",
+    "not_claimed": [
+      "production traffic accuracy",
+      "full 6752-skill long-tail coverage",
+      "optimal top-1 ranking for description queries",
+      "need for embeddings or an LLM runtime"
+    ]
+  }
+}
