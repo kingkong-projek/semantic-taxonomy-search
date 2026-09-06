@@ -1,0 +1,1103 @@
+{
+  "cases_detail": {
+    "KV-C0": [
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.001",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "oaiv_GsB_AFK",
+          "aMyW_hB7_TpU",
+          "SX34_4Ed_rNM",
+          "73Pw_nip_4EW",
+          "Lq2i_vZo_BEx"
+        ],
+        "target_id": "aHCV_VsV_LiD",
+        "target_label": "Ritningsläsning"
+      },
+      {
+        "c0_hit5": true,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.002",
+        "result_hit5": true,
+        "result_top5_ids": [
+          "z52H_f4y_4ZA",
+          "XThy_HCH_FFc",
+          "73Pw_nip_4EW",
+          "Uytu_hWi_5nh",
+          "MT1a_Nyq_DGQ"
+        ],
+        "target_id": "z52H_f4y_4ZA",
+        "target_label": "Linux, operativsystem"
+      },
+      {
+        "c0_hit5": true,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.003",
+        "result_hit5": true,
+        "result_top5_ids": [
+          "xowU_8Wu_K7C",
+          "hndr_LeJ_so6",
+          "ZjBN_Pwc_L61",
+          "Gstq_4UH_9na",
+          "MR4H_FFT_mTj"
+        ],
+        "target_id": "MR4H_FFT_mTj",
+        "target_label": "Omvårdnad"
+      },
+      {
+        "c0_hit5": true,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.004",
+        "result_hit5": true,
+        "result_top5_ids": [
+          "ZjBN_Pwc_L61",
+          "GN1z_Mve_mR4",
+          "Q6DB_h8V_mc7",
+          "4fRg_DA4_Dj3",
+          "CiMi_7ax_tXs"
+        ],
+        "target_id": "GN1z_Mve_mR4",
+        "target_label": "Yrkesbevis, SRY"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.005",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "SX34_4Ed_rNM",
+          "MR4H_FFT_mTj",
+          "Gstq_4UH_9na",
+          "J5Xc_doF_TUR",
+          "73Pw_nip_4EW"
+        ],
+        "target_id": "AAaS_o41_sEg",
+        "target_label": "Trädgårdsskötsel"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.006",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "zf1U_Xnn_g1Z",
+          "HnQ2_FhC_xgt",
+          "kvLG_4uo_M5p",
+          "wJXm_pi7_5xW",
+          "dNA9_T9K_JXF"
+        ],
+        "target_id": "ijHY_aHk_ADE",
+        "target_label": "Terminal- och lagerarbete"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.007",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "4fRg_DA4_Dj3",
+          "K8eq_sEz_eXV",
+          "Lq2i_vZo_BEx",
+          "DXNc_cU4_j4N",
+          "oCKN_G9k_zTj"
+        ],
+        "target_id": "4oKa_e7b_oHW",
+        "target_label": "Försäljning, erfarenhet"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": true,
+        "id": "kv.training-skill-holdout.008",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "73Pw_nip_4EW",
+          "wJUD_v8j_Aep",
+          "Giw8_cWm_RWU",
+          "ygEQ_Pwp_ozn",
+          "Ljxo_4Zn_ygo"
+        ],
+        "target_id": "VQxj_dHG_UCE",
+        "target_label": "Kabelinstallationer"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.009",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "AEgv_4gP_ndv",
+          "qQms_DVy_WhS",
+          "5fAq_Squ_o7p",
+          "TzHP_38y_mhm",
+          "kj4Q_nLh_u8Q"
+        ],
+        "target_id": "MT1a_Nyq_DGQ",
+        "target_label": "Automationsteknik"
+      },
+      {
+        "c0_hit5": true,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.010",
+        "result_hit5": true,
+        "result_top5_ids": [
+          "G4sF_xod_zoq",
+          "wZpC_X9a_xzG",
+          "oCKN_G9k_zTj",
+          "yc3o_fvU_E6V",
+          "AfJ4_Pvv_YBa"
+        ],
+        "target_id": "wZpC_X9a_xzG",
+        "target_label": "Mätteknik"
+      },
+      {
+        "c0_hit5": true,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.011",
+        "result_hit5": true,
+        "result_top5_ids": [
+          "2kEw_jWL_6Zz",
+          "A5HJ_aMw_BQt",
+          "TFQD_onf_Tid",
+          "yL7p_NgY_yKc",
+          "4y7C_Lsh_EPM"
+        ],
+        "target_id": "2kEw_jWL_6Zz",
+        "target_label": "Testning, mjukvara/Verifiering, mjukvara"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.012",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "6Suw_3c1_47a",
+          "yKnk_W7X_Zvk",
+          "qkyH_MC1_YKU",
+          "2KV1_FD8_vGp",
+          "WUoy_Yua_8Mr"
+        ],
+        "target_id": "us91_jB5_a3A",
+        "target_label": "Markanläggning"
+      },
+      {
+        "c0_hit5": true,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.013",
+        "result_hit5": true,
+        "result_top5_ids": [
+          "wJUD_v8j_Aep",
+          "qQms_DVy_WhS",
+          "rmuF_Dce_PPS",
+          "SMLj_ds3_Qe7",
+          "ZjBN_Pwc_L61"
+        ],
+        "target_id": "qQms_DVy_WhS",
+        "target_label": "Felsökning, fordonsmekanik"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.014",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "CiMi_7ax_tXs",
+          "tKd2_9Ei_PTQ",
+          "Ljxo_4Zn_ygo",
+          "ZzN5_m7B_5CY",
+          "zeB7_Xk7_wZ5"
+        ],
+        "target_id": "Q1D1_Pdc_rnT",
+        "target_label": "MAG/MIG-svetsning"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.015",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "ba8g_LRR_Sj2",
+          "kj4Q_nLh_u8Q",
+          "hndr_LeJ_so6",
+          "wbAz_fL9_jgx",
+          "yc3o_fvU_E6V"
+        ],
+        "target_id": "GnKk_qZt_CJv",
+        "target_label": "Betongarbete"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": true,
+        "id": "kv.training-skill-holdout.016",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "rmuF_Dce_PPS",
+          "pSTA_VfB_7eA",
+          "wbAz_fL9_jgx",
+          "qndS_X6D_iB8",
+          "x289_bKF_ihE"
+        ],
+        "target_id": "AEgv_4gP_ndv",
+        "target_label": "Teknisk dokumentation"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.017",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "rmuF_Dce_PPS",
+          "ZjBN_Pwc_L61",
+          "qQms_DVy_WhS",
+          "wJUD_v8j_Aep",
+          "ba8g_LRR_Sj2"
+        ],
+        "target_id": "moJc_yZC_sjN",
+        "target_label": "Fordonselektronik, felsökningsvana/Fordonselektronik, reparationsvana"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.018",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "drj3_CKp_Mpp",
+          "ba8g_LRR_Sj2",
+          "rmuF_Dce_PPS",
+          "pSTA_VfB_7eA",
+          "PU86_3ea_LUQ"
+        ],
+        "target_id": "J5Xc_doF_TUR",
+        "target_label": "Fastighetsskötsel"
+      },
+      {
+        "c0_hit5": true,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.019",
+        "result_hit5": true,
+        "result_top5_ids": [
+          "Q7eC_B7g_QiU",
+          "th2t_DxP_C8m",
+          "mwCM_MmB_6Ks",
+          "drj3_CKp_Mpp",
+          "Kzvi_T2N_vx6"
+        ],
+        "target_id": "Q7eC_B7g_QiU",
+        "target_label": "Certifikat, heta arbeten"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.020",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "CiMi_7ax_tXs",
+          "tKd2_9Ei_PTQ",
+          "Ljxo_4Zn_ygo",
+          "ZzN5_m7B_5CY",
+          "zeB7_Xk7_wZ5"
+        ],
+        "target_id": "JUpW_QCd_vCM",
+        "target_label": "MMA, metallbågssvetsning"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.021",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "x289_bKF_ihE",
+          "kj4Q_nLh_u8Q",
+          "ygEQ_Pwp_ozn",
+          "hndr_LeJ_so6",
+          "fZdk_vbt_LhP"
+        ],
+        "target_id": "drj3_CKp_Mpp",
+        "target_label": "Arbete på väg steg 2, anpassad säkerhetskompetens"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.022",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "CiMi_7ax_tXs",
+          "tKd2_9Ei_PTQ",
+          "Ljxo_4Zn_ygo",
+          "ZzN5_m7B_5CY",
+          "zeB7_Xk7_wZ5"
+        ],
+        "target_id": "WBnc_JXj_MvY",
+        "target_label": "TIG-svetsning"
+      },
+      {
+        "c0_hit5": true,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.023",
+        "result_hit5": true,
+        "result_top5_ids": [
+          "EwT4_Jtg_AQf",
+          "wbAz_fL9_jgx",
+          "ba8g_LRR_Sj2",
+          "BHCG_hQC_kNa",
+          "kj4Q_nLh_u8Q"
+        ],
+        "target_id": "EwT4_Jtg_AQf",
+        "target_label": "Träarbete, husbyggnad"
+      },
+      {
+        "c0_hit5": true,
+        "close_lane_hit5": true,
+        "id": "kv.training-skill-holdout.024",
+        "result_hit5": true,
+        "result_top5_ids": [
+          "x289_bKF_ihE",
+          "aMyW_hB7_TpU",
+          "xowU_8Wu_K7C",
+          "PU86_3ea_LUQ",
+          "SfoE_zq7_ADN"
+        ],
+        "target_id": "SfoE_zq7_ADN",
+        "target_label": "Social service och omsorg, områdeskunskap"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.025",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "oCKN_G9k_zTj",
+          "fZdk_vbt_LhP",
+          "xNyv_PTi_fSa",
+          "Bb4Q_Vou_pbq",
+          "wbAz_fL9_jgx"
+        ],
+        "target_id": "iu18_YyQ_hmh",
+        "target_label": "Städmaterial"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.026",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "tKd2_9Ei_PTQ",
+          "drj3_CKp_Mpp",
+          "xAbu_uKA_Jeu"
+        ],
+        "target_id": "ZzuK_jNE_XCG",
+        "target_label": "Plattsättning"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.027",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "ba8g_LRR_Sj2",
+          "hndr_LeJ_so6",
+          "wbAz_fL9_jgx",
+          "kj4Q_nLh_u8Q",
+          "rmuF_Dce_PPS"
+        ],
+        "target_id": "njeW_wb3_Zry",
+        "target_label": "Stensättning"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.028",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "ba8g_LRR_Sj2",
+          "BHCG_hQC_kNa",
+          "kj4Q_nLh_u8Q",
+          "ZjBN_Pwc_L61",
+          "rdtv_EuD_NfB"
+        ],
+        "target_id": "u1bJ_gvt_ECc",
+        "target_label": "Ventilationsmontering"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.029",
+        "result_hit5": false,
+        "result_top5_ids": [],
+        "target_id": "pnX9_gFn_CLt",
+        "target_label": "Windows Server, operativsystem"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.030",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "aMyW_hB7_TpU",
+          "D7Ns_RG6_hD2",
+          "73Pw_nip_4EW",
+          "TzHP_38y_mhm",
+          "xZLY_ZU5_E1q"
+        ],
+        "target_id": "awjU_C3D_XEJ",
+        "target_label": "Ekonomistyrning"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.031",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "73Pw_nip_4EW",
+          "4oKa_e7b_oHW",
+          "Td4F_YtH_u6S",
+          "kj4Q_nLh_u8Q",
+          "wbAz_fL9_jgx"
+        ],
+        "target_id": "kvLG_4uo_M5p",
+        "target_label": "Produktionsplanering, tillverkning"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.032",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "wJUD_v8j_Aep",
+          "J5Xc_doF_TUR",
+          "BHCG_hQC_kNa",
+          "X6Pi_hDT_KDA",
+          "4y7C_Lsh_EPM"
+        ],
+        "target_id": "UmrF_gc3_XBh",
+        "target_label": "Personbilslackering"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.033",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "wJUD_v8j_Aep",
+          "SMLj_ds3_Qe7",
+          "qQms_DVy_WhS",
+          "aMyW_hB7_TpU",
+          "ZjBN_Pwc_L61"
+        ],
+        "target_id": "73Pw_nip_4EW",
+        "target_label": "Hydraulik"
+      },
+      {
+        "c0_hit5": true,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.034",
+        "result_hit5": true,
+        "result_top5_ids": [
+          "Lgt8_xjP_7Fq",
+          "dTK5_R7G_p56",
+          "Q5Gj_qVb_1AY",
+          "aMyW_hB7_TpU",
+          "Fiq4_siu_LXn"
+        ],
+        "target_id": "Lgt8_xjP_7Fq",
+        "target_label": "Tillverkningsindustri-Solid Works"
+      },
+      {
+        "c0_hit5": true,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.035",
+        "result_hit5": true,
+        "result_top5_ids": [
+          "mwCM_MmB_6Ks",
+          "bNRS_e6U_i9r",
+          "e9Qi_WjN_h71",
+          "seSm_rEC_9fU",
+          "yyJQ_gFx_TKr"
+        ],
+        "target_id": "mwCM_MmB_6Ks",
+        "target_label": "Utbildning i Första hjälpen/Hjärt-lungräddning, HLR"
+      }
+    ],
+    "KV-F1-close-one-slot": [
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.001",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "oaiv_GsB_AFK",
+          "q7Mx_gjU_F9q",
+          "aMyW_hB7_TpU",
+          "SX34_4Ed_rNM",
+          "73Pw_nip_4EW"
+        ],
+        "target_id": "aHCV_VsV_LiD",
+        "target_label": "Ritningsläsning"
+      },
+      {
+        "c0_hit5": true,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.002",
+        "result_hit5": true,
+        "result_top5_ids": [
+          "z52H_f4y_4ZA",
+          "TFQD_onf_Tid",
+          "XThy_HCH_FFc",
+          "73Pw_nip_4EW",
+          "Uytu_hWi_5nh"
+        ],
+        "target_id": "z52H_f4y_4ZA",
+        "target_label": "Linux, operativsystem"
+      },
+      {
+        "c0_hit5": true,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.003",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "xowU_8Wu_K7C",
+          "tCDB_MjS_nqc",
+          "hndr_LeJ_so6",
+          "ZjBN_Pwc_L61",
+          "Gstq_4UH_9na"
+        ],
+        "target_id": "MR4H_FFT_mTj",
+        "target_label": "Omvårdnad"
+      },
+      {
+        "c0_hit5": true,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.004",
+        "result_hit5": true,
+        "result_top5_ids": [
+          "ZjBN_Pwc_L61",
+          "A5HJ_aMw_BQt",
+          "GN1z_Mve_mR4",
+          "Q6DB_h8V_mc7",
+          "4fRg_DA4_Dj3"
+        ],
+        "target_id": "GN1z_Mve_mR4",
+        "target_label": "Yrkesbevis, SRY"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.005",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "SX34_4Ed_rNM",
+          "yXmf_iKi_7ci",
+          "MR4H_FFT_mTj",
+          "Gstq_4UH_9na",
+          "J5Xc_doF_TUR"
+        ],
+        "target_id": "AAaS_o41_sEg",
+        "target_label": "Trädgårdsskötsel"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.006",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "zf1U_Xnn_g1Z",
+          "yXmf_iKi_7ci",
+          "HnQ2_FhC_xgt",
+          "kvLG_4uo_M5p",
+          "wJXm_pi7_5xW"
+        ],
+        "target_id": "ijHY_aHk_ADE",
+        "target_label": "Terminal- och lagerarbete"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.007",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "4fRg_DA4_Dj3",
+          "gHBQ_WJe_ijx",
+          "K8eq_sEz_eXV",
+          "Lq2i_vZo_BEx",
+          "DXNc_cU4_j4N"
+        ],
+        "target_id": "4oKa_e7b_oHW",
+        "target_label": "Försäljning, erfarenhet"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": true,
+        "id": "kv.training-skill-holdout.008",
+        "result_hit5": true,
+        "result_top5_ids": [
+          "73Pw_nip_4EW",
+          "VQxj_dHG_UCE",
+          "wJUD_v8j_Aep",
+          "Giw8_cWm_RWU",
+          "ygEQ_Pwp_ozn"
+        ],
+        "target_id": "VQxj_dHG_UCE",
+        "target_label": "Kabelinstallationer"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.009",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "AEgv_4gP_ndv",
+          "5Gmv_EZs_BPe",
+          "qQms_DVy_WhS",
+          "5fAq_Squ_o7p",
+          "TzHP_38y_mhm"
+        ],
+        "target_id": "MT1a_Nyq_DGQ",
+        "target_label": "Automationsteknik"
+      },
+      {
+        "c0_hit5": true,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.010",
+        "result_hit5": true,
+        "result_top5_ids": [
+          "G4sF_xod_zoq",
+          "5PjX_999_uLZ",
+          "wZpC_X9a_xzG",
+          "oCKN_G9k_zTj",
+          "yc3o_fvU_E6V"
+        ],
+        "target_id": "wZpC_X9a_xzG",
+        "target_label": "Mätteknik"
+      },
+      {
+        "c0_hit5": true,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.011",
+        "result_hit5": true,
+        "result_top5_ids": [
+          "2kEw_jWL_6Zz",
+          "DHhX_uVf_y6X",
+          "A5HJ_aMw_BQt",
+          "TFQD_onf_Tid",
+          "yL7p_NgY_yKc"
+        ],
+        "target_id": "2kEw_jWL_6Zz",
+        "target_label": "Testning, mjukvara/Verifiering, mjukvara"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.012",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "6Suw_3c1_47a",
+          "ijHY_aHk_ADE",
+          "yKnk_W7X_Zvk",
+          "qkyH_MC1_YKU",
+          "2KV1_FD8_vGp"
+        ],
+        "target_id": "us91_jB5_a3A",
+        "target_label": "Markanläggning"
+      },
+      {
+        "c0_hit5": true,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.013",
+        "result_hit5": true,
+        "result_top5_ids": [
+          "wJUD_v8j_Aep",
+          "zeB7_Xk7_wZ5",
+          "qQms_DVy_WhS",
+          "rmuF_Dce_PPS",
+          "SMLj_ds3_Qe7"
+        ],
+        "target_id": "qQms_DVy_WhS",
+        "target_label": "Felsökning, fordonsmekanik"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.014",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "CiMi_7ax_tXs",
+          "pgts_2XY_xKi",
+          "tKd2_9Ei_PTQ",
+          "Ljxo_4Zn_ygo",
+          "ZzN5_m7B_5CY"
+        ],
+        "target_id": "Q1D1_Pdc_rnT",
+        "target_label": "MAG/MIG-svetsning"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.015",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "ba8g_LRR_Sj2",
+          "hndr_LeJ_so6",
+          "kj4Q_nLh_u8Q",
+          "wbAz_fL9_jgx",
+          "yc3o_fvU_E6V"
+        ],
+        "target_id": "GnKk_qZt_CJv",
+        "target_label": "Betongarbete"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": true,
+        "id": "kv.training-skill-holdout.016",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "rmuF_Dce_PPS",
+          "kj4Q_nLh_u8Q",
+          "pSTA_VfB_7eA",
+          "wbAz_fL9_jgx",
+          "qndS_X6D_iB8"
+        ],
+        "target_id": "AEgv_4gP_ndv",
+        "target_label": "Teknisk dokumentation"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.017",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "rmuF_Dce_PPS",
+          "zeB7_Xk7_wZ5",
+          "ZjBN_Pwc_L61",
+          "qQms_DVy_WhS",
+          "wJUD_v8j_Aep"
+        ],
+        "target_id": "moJc_yZC_sjN",
+        "target_label": "Fordonselektronik, felsökningsvana/Fordonselektronik, reparationsvana"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.018",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "drj3_CKp_Mpp",
+          "wpVJ_UXf_uSb",
+          "ba8g_LRR_Sj2",
+          "rmuF_Dce_PPS",
+          "pSTA_VfB_7eA"
+        ],
+        "target_id": "J5Xc_doF_TUR",
+        "target_label": "Fastighetsskötsel"
+      },
+      {
+        "c0_hit5": true,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.019",
+        "result_hit5": true,
+        "result_top5_ids": [
+          "Q7eC_B7g_QiU",
+          "ZzN5_m7B_5CY",
+          "th2t_DxP_C8m",
+          "mwCM_MmB_6Ks",
+          "drj3_CKp_Mpp"
+        ],
+        "target_id": "Q7eC_B7g_QiU",
+        "target_label": "Certifikat, heta arbeten"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.020",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "CiMi_7ax_tXs",
+          "pgts_2XY_xKi",
+          "tKd2_9Ei_PTQ",
+          "Ljxo_4Zn_ygo",
+          "ZzN5_m7B_5CY"
+        ],
+        "target_id": "JUpW_QCd_vCM",
+        "target_label": "MMA, metallbågssvetsning"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.021",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "x289_bKF_ihE",
+          "yXmf_iKi_7ci",
+          "kj4Q_nLh_u8Q",
+          "ygEQ_Pwp_ozn",
+          "hndr_LeJ_so6"
+        ],
+        "target_id": "drj3_CKp_Mpp",
+        "target_label": "Arbete på väg steg 2, anpassad säkerhetskompetens"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.022",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "CiMi_7ax_tXs",
+          "pgts_2XY_xKi",
+          "tKd2_9Ei_PTQ",
+          "Ljxo_4Zn_ygo",
+          "ZzN5_m7B_5CY"
+        ],
+        "target_id": "WBnc_JXj_MvY",
+        "target_label": "TIG-svetsning"
+      },
+      {
+        "c0_hit5": true,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.023",
+        "result_hit5": true,
+        "result_top5_ids": [
+          "EwT4_Jtg_AQf",
+          "PyXu_cE2_tRa",
+          "wbAz_fL9_jgx",
+          "ba8g_LRR_Sj2",
+          "BHCG_hQC_kNa"
+        ],
+        "target_id": "EwT4_Jtg_AQf",
+        "target_label": "Träarbete, husbyggnad"
+      },
+      {
+        "c0_hit5": true,
+        "close_lane_hit5": true,
+        "id": "kv.training-skill-holdout.024",
+        "result_hit5": true,
+        "result_top5_ids": [
+          "x289_bKF_ihE",
+          "SfoE_zq7_ADN",
+          "aMyW_hB7_TpU",
+          "xowU_8Wu_K7C",
+          "PU86_3ea_LUQ"
+        ],
+        "target_id": "SfoE_zq7_ADN",
+        "target_label": "Social service och omsorg, områdeskunskap"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.025",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "oCKN_G9k_zTj",
+          "fZdk_vbt_LhP",
+          "xNyv_PTi_fSa",
+          "Bb4Q_Vou_pbq",
+          "wbAz_fL9_jgx"
+        ],
+        "target_id": "iu18_YyQ_hmh",
+        "target_label": "Städmaterial"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.026",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "tKd2_9Ei_PTQ",
+          "ijHY_aHk_ADE",
+          "drj3_CKp_Mpp",
+          "xAbu_uKA_Jeu"
+        ],
+        "target_id": "ZzuK_jNE_XCG",
+        "target_label": "Plattsättning"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.027",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "ba8g_LRR_Sj2",
+          "gHBQ_WJe_ijx",
+          "hndr_LeJ_so6",
+          "wbAz_fL9_jgx",
+          "kj4Q_nLh_u8Q"
+        ],
+        "target_id": "njeW_wb3_Zry",
+        "target_label": "Stensättning"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.028",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "ba8g_LRR_Sj2",
+          "PyXu_cE2_tRa",
+          "BHCG_hQC_kNa",
+          "kj4Q_nLh_u8Q",
+          "ZjBN_Pwc_L61"
+        ],
+        "target_id": "u1bJ_gvt_ECc",
+        "target_label": "Ventilationsmontering"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.029",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "SfoE_zq7_ADN"
+        ],
+        "target_id": "pnX9_gFn_CLt",
+        "target_label": "Windows Server, operativsystem"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.030",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "aMyW_hB7_TpU",
+          "SfoE_zq7_ADN",
+          "D7Ns_RG6_hD2",
+          "73Pw_nip_4EW",
+          "TzHP_38y_mhm"
+        ],
+        "target_id": "awjU_C3D_XEJ",
+        "target_label": "Ekonomistyrning"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.031",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "73Pw_nip_4EW",
+          "SfoE_zq7_ADN",
+          "4oKa_e7b_oHW",
+          "Td4F_YtH_u6S",
+          "kj4Q_nLh_u8Q"
+        ],
+        "target_id": "kvLG_4uo_M5p",
+        "target_label": "Produktionsplanering, tillverkning"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.032",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "wJUD_v8j_Aep",
+          "gHBQ_WJe_ijx",
+          "J5Xc_doF_TUR",
+          "BHCG_hQC_kNa",
+          "X6Pi_hDT_KDA"
+        ],
+        "target_id": "UmrF_gc3_XBh",
+        "target_label": "Personbilslackering"
+      },
+      {
+        "c0_hit5": false,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.033",
+        "result_hit5": false,
+        "result_top5_ids": [
+          "wJUD_v8j_Aep",
+          "zeB7_Xk7_wZ5",
+          "SMLj_ds3_Qe7",
+          "qQms_DVy_WhS",
+          "aMyW_hB7_TpU"
+        ],
+        "target_id": "73Pw_nip_4EW",
+        "target_label": "Hydraulik"
+      },
+      {
+        "c0_hit5": true,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.034",
+        "result_hit5": true,
+        "result_top5_ids": [
+          "Lgt8_xjP_7Fq",
+          "29MP_yhF_mjx",
+          "dTK5_R7G_p56",
+          "Q5Gj_qVb_1AY",
+          "aMyW_hB7_TpU"
+        ],
+        "target_id": "Lgt8_xjP_7Fq",
+        "target_label": "Tillverkningsindustri-Solid Works"
+      },
+      {
+        "c0_hit5": true,
+        "close_lane_hit5": false,
+        "id": "kv.training-skill-holdout.035",
+        "result_hit5": true,
+        "result_top5_ids": [
+          "mwCM_MmB_6Ks",
+          "D7Ns_RG6_hD2",
+          "bNRS_e6U_i9r",
+          "e9Qi_WjN_h71",
+          "seSm_rEC_9fU"
+        ],
+        "target_id": "mwCM_MmB_6Ks",
+        "target_label": "Utbildning i Första hjälpen/Hjärt-lungräddning, HLR"
+      }
+    ]
+  },
+  "configurations": {
+    "KV-C0": {
+      "cases": 35,
+      "discovery_hit_at_5_pct": 31.429,
+      "hit_at_10_pct": 40.0,
+      "occurrence_proxy_weight": 5902,
+      "top1_pct": 17.143,
+      "weighted_discovery_hit_at_5_pct": 34.734,
+      "weighted_hit_at_10_pct": 40.529,
+      "weighted_top1_pct": 16.181
+    },
+    "KV-F1-close-one-slot": {
+      "cases": 35,
+      "discovery_hit_at_5_pct": 31.429,
+      "hit_at_10_pct": 31.429,
+      "occurrence_proxy_weight": 5902,
+      "top1_pct": 17.143,
+      "weighted_discovery_hit_at_5_pct": 31.955,
+      "weighted_hit_at_10_pct": 31.955,
+      "weighted_top1_pct": 16.181
+    }
+  },
+  "delta": {
+    "discovery_hit_at_5_percentage_points": 0.0,
+    "weighted_discovery_hit_at_5_percentage_points": -2.779
+  },
+  "experiment_role": "independent validation; blind holdout frozen before evaluator and before KV-F1 sees these queries",
+  "holdout": {
+    "authority_boundary": "manual mapping is frozen holdout truth; builder contains no retrieval/model code",
+    "benchmark_sha256": "79816eb2020b100bf8260b8f1807069288c30dbabd457bfffbfe3f49735c6675",
+    "cases": 35,
+    "development_cases_excluded": 76,
+    "development_module_ids_excluded": 205,
+    "primary_metric": "mapped-skill Discovery Hit@5; skill occurrence proxy used only for weighted reporting",
+    "rejected_counts": {
+      "development_query_reuse": 77,
+      "direct_label_leakage": 38,
+      "not_exactly_one_p80_target": 697,
+      "terse_text": 11
+    },
+    "schema_version": 1,
+    "selection": "one deterministic clean unused module per unique P80 skill; excludes all development module IDs and normalized query texts; exactly one P80 target; no direct label leakage; non-terse",
+    "source_sha256": "fea97867a1225e078d28ab9b0772f6a37f92b37c3c6c0d0e886ae65e9d79361c",
+    "source_url": "https://data.arbetsformedlingen.se/utbildningar/mappings/mapping_labour-market-training.json",
+    "taxonomy_version": 31,
+    "unique_p80_skills": 35
+  },
+  "runtime_implication": "both C0 and F1 are deterministic and fully build-time compilable; no API, ML, vectors or runtime model required",
+  "schema_version": 1,
+  "source_truth_regression": {
+    "cases": 617,
+    "discovery_hit_at_5_pct": 100.0,
+    "failure_count": 0,
+    "failures_first_20": [],
+    "top1_pct": 100.0
+  },
+  "taxonomy_sha256": "634fd9d848a172747e54e3e487160a912ae6c0fcb8219c50998767c8c9aacbcc",
+  "taxonomy_version": 31
+}

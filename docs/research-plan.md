@@ -7,9 +7,9 @@
 
 ## 1. Product problem
 
-We are building a **reusable semantic retrieval capability for occupations and skills/competences** in services where a user must identify or select taxonomy concepts without knowing the taxonomy's exact wording.
+We are building a **reusable semantic retrieval capability for occupations and skills/competences** in services where a user must identify or select taxonomy concepts without knowing the taxonomy's exact wording. The project is concretely motivated by reports from users of Yrkesväljaren (YV) and Kompetensväljaren (KV) who cannot find the occupation or competence they are looking for with the current selector wording.
 
-Yrkesväljaren (YV) and Kompetensväljaren (KV) are current **reference profiles**, not the scope boundary of the retrieval core. JobSearch/Platsbanken and other AF datasets are evidence sources, not the target product.
+YV and KV are current **reference profiles and the first product problem to solve**, not the scope boundary of the retrieval core. JobSearch/Platsbanken and other AF datasets are evidence sources, not the target product.
 
 The core target spaces are intentionally simple:
 
@@ -34,6 +34,8 @@ Keep fast lexical selection as the privileged path where a consuming service alr
 YV: Hittar du inte det du söker? [Beskriv yrket]
 KV: Hittar du inte kompetensen? [Beskriv kompetensen / vad du kan göra]
 ```
+
+Description mode explicitly includes ordinary first-person/task language such as `jag drog kabel, kopplade uttag och läste elscheman`, not only near-synonyms of taxonomy labels. Tasks, tools, methods, responsibilities and colloquial wording are first-class fallback input.
 
 The core result remains an exact canonical occupation/skill identity with provenance; the consumer then enforces its admission profile. `Inget av dessa` / abstention is a first-class successful outcome. A nearest neighbour is not proof that a valid match exists.
 
@@ -583,9 +585,13 @@ The ad-language, YV query-language and Relevanta measurements materially reduce 
 
 ## 8. Synthetic data policy
 
-Do **not** generate N phrases per concept as the baseline.
+Synthetic **queries for evaluation** and synthetic **retrieval/enrichment text** are different things and must not be conflated.
 
-Synthetic phrases are allowed only after ablation shows a concrete residual gap that real/curated/observed sources do not solve. If used they must be generated, provenance-tagged, validated, deduplicated, adversarially tested and versioned. They never become canonical synonyms merely because retrieval metrics improve.
+Synthetic query generation is allowed now as a separate benchmark/stress-testing tool, especially for realistic description-mode input such as first-person work history, tasks, tools, methods and colloquial wording that is not available with selected-ID ground truth in public query logs. Such cases must be tagged `synthetic_query`, kept separate from real/source-attested traffic metrics, and never assigned traffic weights. Their expected identity must be anchored in source-attested taxonomy evidence or separately adjudicated. Preferred/alternative target-label leakage should be excluded unless leakage is the explicit stratum under test.
+
+Synthetic queries are **not training data by default** and must not be copied into retrieval documents merely because they expose failures.
+
+Synthetic retrieval/enrichment phrases remain deferred until ablation shows a concrete residual gap that real/curated/observed sources do not solve. If used they must be provenance-tagged, validated, deduplicated, adversarially tested and versioned. They never become canonical synonyms merely because retrieval metrics improve.
 
 ## 9. Research Gate 1 — Semantic Coverage Inventory
 
@@ -934,11 +940,19 @@ Interpretation: this is strong independent evidence for the simple occupation co
 
 Evidence: `docs/findings/c2-fresh-natural-holdout-v31.md`, `research/benchmark/v31/fresh-natural-holdout/` and `research/evaluation/v31/c2-fresh-natural-holdout.json`.
 
+Skill independent validation: the first source-attested natural-description skill benchmark exposed a real gap that canonical C0 does not solve. On a separately frozen **35-case blind holdout**, KV-C0 reaches **31.429% Discovery Hit@5 (34.734% occurrence-proxy weighted)**. The only surviving minimal development candidate, `KV-F1-close-one-slot`, does **not** improve unweighted Hit@5 and falls to **31.955% weighted**. The 617-case canonical regression remains 100%.
+
+Decision: reject that F1 lane. The next decision-bearing comparison is against the pinned current KV selector itself; synthetic task/tool/method/first-person queries may be added as a separate stress suite, but may not be treated as traffic, ground-truth source evidence or retrieval enrichment.
+
+Evidence: `docs/findings/skill-fresh-holdout-v31.md`, `research/benchmark/v31/training-skill-fresh-holdout/` and `research/evaluation/v31/skill-fresh-holdout.json`.
+
 - [x] preliminary **A/B/C0** source-truth lexical ablation on P80 core, where C0 = preferred labels + real canonical definitions + canonical alternative labels
 - [x] **C1:** P80 + six measured high-volume boundary occupations + short-query lexical surface/component/fuzzy evidence + conservative definition-only abstention; 100% on the 34-row development slice, 100% on the frozen 333-case source-truth regression, and **83.173% volume-weighted decision accuracy on untouched 36-row holdout** vs C0 59.765%
 - [x] **complete planned C retrieval vocabulary:** C2 adds exact active job-title preferred-label → typed occupation-name parent routing, with job-title retained as retrieval vocabulary only. On the already-opened 36-case holdout C2 reaches **93.677% volume-weighted Discovery Success@5** with 100% NO_MATCH abstention. On a new unseen excluded-title ranks 21–50 sentinel it achieves **100% volume-weighted Any-parent Hit@5** and **93.220% volume-weighted typed-parent Recall@5**; the 333-case source-truth regression remains 100%.
 - [x] validate frozen C2 on a **fresh blinded natural-language next-volume holdout**: unbound query ranks 51–80 were adjudicated and frozen before C2 output existed; **30 cases / 138.1M searches**, with **100% volume-weighted Discovery Success@5**, **100% positive-intent Discovery@5 (5/5)**, **100% NO_MATCH abstention (25/25)** and no 333-case source-truth regression
-- [ ] **next core gap: natural-language skill discovery.** Build a small source-attested text→skill validation slice before changing retrieval; prefer curated/manual mappings where published text is sufficient, and keep model/synthetic text out of ground truth
+- [x] **natural-language skill discovery source-attested validation:** 76 development cases plus a separately frozen **35-case blind holdout** from AF manual learning-outcome→skill mappings; on the blind holdout KV-C0 reaches **31.429% Discovery@5 / 34.734% weighted**, while preselected `KV-F1-close-one-slot` fails to generalize (**31.429% / 31.955% weighted**) and is rejected; canonical 617-case regression remains 100%
+- [ ] measure the pinned **current KV selector** on the same blind 35-case description holdout so fallback value is reported as increment over the actual product baseline
+- [ ] add a separate **synthetic-query description stress suite** for YV and KV (`synthetic_query` provenance; task/tool/method/first-person phrasing; no retrieval ingestion and no traffic weighting)
 - [ ] D typed graph/ESCO remains deferred: the fresh YV holdout exposes no occupation residual that justifies it; add D only if a later occupation or skill benchmark demonstrates material value
 - [ ] E–G evidence layers separately
 - [ ] H vectors/reranking in shadow evaluation
