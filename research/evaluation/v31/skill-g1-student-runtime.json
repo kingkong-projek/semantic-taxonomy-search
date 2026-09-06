@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 31,
+  "status": "validated_runtime_shape",
+  "candidate": "KV-G1-4slot",
+  "runtime_engine": "dual-precomputed-bm25-postings",
+  "policy": "single token pass computes precompiled C0 and G1 scores; keep C0 rank 1; admit up to four unique G1 candidates; fill tail from C0",
+  "runtime_dependencies": [],
+  "ordinary_selector_semantic_bytes": 0,
+  "load_point": "only after the user opens description fallback",
+  "validation_shape": {
+    "gzip9_bytes": 140565,
+    "raw_bytes": 444138,
+    "terms": 4099,
+    "postings": 10081,
+    "sha256": "42631342fde32d00315c1f2886d5957604afab9e7c0dee76b94038ca0c7e692f",
+    "excludes_first_holdout_cases": 35,
+    "excludes_second_holdout_cases": 20,
+    "excluded_module_ids": 149,
+    "excluded_normalized_texts": 55
+  },
+  "production_shape": {
+    "gzip9_bytes": 151768,
+    "raw_bytes": 477833,
+    "terms": 4533,
+    "postings": 11030,
+    "sha256": "edc7481a4e2928c9ef1cc6b5856cfe9ea22fc367d9508e518c588cf934717aab",
+    "includes_all_eligible_source_attested_training_language": true,
+    "separate_lane_gzip9_bytes": 171379,
+    "dual_index_saving_bytes": 19611,
+    "dual_index_saving_pct": 11.443
+  },
+  "parity": {
+    "cases": 649,
+    "failures": 0,
+    "suites": [
+      "617 canonical KV source-truth cases",
+      "20 second-holdout natural-description cases",
+      "12 synthetic KV description-stress cases"
+    ]
+  },
+  "garderob_diagnostic": {
+    "query_runs": 16225,
+    "mean_microseconds_per_query": 165.815,
+    "median_round_ms_for_649_queries": 102.138,
+    "p95_round_ms_for_649_queries": 109.235,
+    "warning": "self-hosted garderob timing is a deterministic implementation diagnostic, not a low-end-mobile SLA"
+  },
+  "sources": {
+    "taxonomy_sha256": "634fd9d848a172747e54e3e487160a912ae6c0fcb8219c50998767c8c9aacbcc",
+    "training_mapping_sha256": "fea97867a1225e078d28ab9b0772f6a37f92b37c3c6c0d0e886ae65e9d79361c"
+  },
+  "workflow": {
+    "run_id": 34060318525,
+    "artifact_id": 9997255650,
+    "artifact_zip_sha256": "30cd0a6c3be38e358db0c9462e3556e8c8f28791edd59f6aab5f621302f386e0"
+  },
+  "decision": {
+    "preferred_packaging": "single dual-score postings asset",
+    "shard_now": false,
+    "reason": "the complete production-shape fallback is only 151768 bytes gzip and is loaded only on explicit description fallback; sharding would add complexity without a measured need",
+    "neural_runtime_justified": false
+  }
+}
