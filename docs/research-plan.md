@@ -614,6 +614,10 @@ Start with a **compact 500–1,000 case decision benchmark**, intentionally bias
 
 The initial benchmark should be sufficient to choose between simple baselines. It is not a census of the taxonomy.
 
+The frozen source-truth core currently contains **950 cases**: 333 YV and 617 KV over all 475 P80 targets. It includes 475 preferred-label cases, 330 real canonical-definition cases and 145 alternative-label cases. This is deliberately a source-attested benchmark; it must be complemented by a small manually judged real-query slice before making claims about natural paraphrase performance.
+
+Evidence: `docs/findings/p80-decision-benchmark-v31.md` and `research/benchmark/v31/p80-source-truth/manifest.json`.
+
 Shared strata:
 
 - exact preferred label;
@@ -845,8 +849,8 @@ After the repository transfer, GitHub-hosted jobs were failing before their firs
 
 - [x] benchmark schema and semantic validator contract
 - [x] define the compact Pareto decision slice: **P80 = 159 occupation-name + 316 skill targets**, using Historical API occurrence counts as an explicit corpus/popularity proxy; exact P95 membership frozen in repo
-- [ ] freeze a 500–1,000 case benchmark around the 475-target P80 core plus compact safety/boundary slices
-- [ ] automatic strata construction only where source truth permits
+- [x] freeze the **950-case P80 source-truth core benchmark**: 333 YV + 617 KV cases over all 475 P80 targets; preferred labels + 330 real canonical-definition cases + 145 alternative-label cases; validator-clean and frozen in repo
+- [x] automatic source-truth strata construction for preferred labels, real canonical definitions and alternative labels; no corpus/model/synthetic signal is auto-promoted to destination truth
 - [ ] compact safety/regression slices: multi-parent ambiguity, excluded-YV routing, hard negatives and no-match/abstention
 - [ ] small manually judged sample from high-volume unbound observed language
 - [ ] **defer** full raw JobSearch Trends date-range/long-tail adapter until the first simple baseline shows that recency/long-tail materially changes decisions

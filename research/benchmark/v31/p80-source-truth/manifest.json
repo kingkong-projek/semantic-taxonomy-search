@@ -1,0 +1,47 @@
+{
+  "authority_boundary": "No observed-query, ad-derived, historical popularity, model-derived or synthetic signal is used as destination ground truth. Canonical definitions/labels bind only to their own canonical identities; YV positives also require published product admission.",
+  "cases": {
+    "KV": 617,
+    "YV": 333,
+    "origin_counts": {
+      "KV": {
+        "alternative_label": 108,
+        "canonical_definition": 193,
+        "canonical_label": 316
+      },
+      "YV": {
+        "alternative_label": 37,
+        "canonical_definition": 137,
+        "canonical_label": 159
+      }
+    },
+    "total": 950
+  },
+  "schema_version": 1,
+  "selection": {
+    "kv_p80_skill_targets": 316,
+    "rule": "Frozen Historical-API P80 popularity envelope selects targets; accepted taxonomy/YV sources alone supply benchmark truth.",
+    "total_p80_targets": 475,
+    "yv_p80_occupation_targets": 159
+  },
+  "source_attested_target_surfaces": {
+    "KV.alternative": 109,
+    "KV.definition": 193,
+    "KV.preferred": 316,
+    "YV.alternative": 37,
+    "YV.definition": 137,
+    "YV.preferred": 159
+  },
+  "sources": {
+    "pareto_frozen_repo_file": "research/coverage/v31/pareto-demand-aggregate.json",
+    "taxonomy": {
+      "sha256": "634fd9d848a172747e54e3e487160a912ae6c0fcb8219c50998767c8c9aacbcc",
+      "url": "https://data.jobtechdev.se/taxonomy/version/31/query/concepts-and-common-relations/concepts-and-common-relations.json"
+    },
+    "yrkesvaljaren": {
+      "sha256": "1036f9525416fac4ce475c1c1d3909b9e2849ebcf7094ffd38104955e4c2ee49",
+      "url": "https://data.arbetsformedlingen.se/yrke/yrkesvaljaren/v1/yrkesvaljaren-t31.json"
+    }
+  },
+  "taxonomy_version": 31
+}
