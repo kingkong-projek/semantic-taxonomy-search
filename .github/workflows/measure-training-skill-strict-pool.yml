@@ -1,0 +1,30 @@
+name: Measure strict KV training pool
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/measure_training_skill_strict_pool.py
+      - .github/workflows/measure-training-skill-strict-pool.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  measure:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Measure strict pool
+        run: python scripts/measure_training_skill_strict_pool.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: training-skill-strict-pool-v31
+          path: artifacts/training-skill-strict-pool-v31.json
+          if-no-files-found: error
+          retention-days: 30
