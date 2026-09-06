@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 31,
+  "role": "exploratory findability red-team personas; synthetic discovery aids, never benchmark ground truth",
+  "rules": [
+    "Do not infer behaviour from protected or demographic traits.",
+    "Vary language, occupational self-knowledge, labour-market history, search strategy and digital/search literacy instead.",
+    "Freeze each journey's goal and first query before inspecting selector output.",
+    "A persona observation becomes a product finding only after independent verification against source truth, observed query data, product code or human feedback.",
+    "Ambiguous journeys may legitimately end in abstention or a request for clarification."
+  ],
+  "personas": [
+    {
+      "id": "P01-known-common-title",
+      "name": "Vanlig titel, tydlig självidentitet",
+      "situation": "Har haft samma vanliga yrkesroll länge och vet exakt vad rollen brukar kallas.",
+      "search_style": ["kort vanlig yrkestitel", "förväntar sig igenkänning direkt", "skannar bara första få träffarna"],
+      "example_intents": ["undersköterska", "kock", "projektledare"],
+      "failure_experience": ["den självklara generella titeln saknas", "bara snävare varianter visas", "parentes får titeln att kännas fel"]
+    },
+    {
+      "id": "P02-employer-specific-title",
+      "name": "Företagsspecifik jobbtitel",
+      "situation": "Känner sin titel från anställningsavtalet men inte taxonomins generella yrkesbenämning.",
+      "search_style": ["skriver den lokala jobbtiteln ordagrant", "provar närliggande ord om första försöket misslyckas"],
+      "example_intents": ["projektkoordinator", "team lead", "customer success"],
+      "failure_experience": ["ingen igenkännbar träff", "fel parentetisk yrkeskontext", "tvingas själv översätta till taxonomispråk"]
+    },
+    {
+      "id": "P03-task-first",
+      "name": "Vet vad jobbet innebär, inte vad det heter",
+      "situation": "Kan beskriva arbetsuppgifter mycket bättre än en officiell titel.",
+      "search_style": ["första person", "arbetsuppgifter", "verktyg och ansvar"],
+      "example_intents": ["jag körde truck och plockade order", "jag drog kabel och kopplade uttag", "jag bokade kunder och svarade i telefon"],
+      "failure_experience": ["lexikal sökbox kräver ett ord användaren inte känner", "semantiskt fallback-läge saknas eller ger för breda träffar"]
+    },
+    {
+      "id": "P04-old-title",
+      "name": "Gammalt yrkesnamn",
+      "situation": "Har varit i yrket länge och använder fortfarande en äldre benämning som har ersatts i taxonomin.",
+      "search_style": ["gammalt invant namn", "förväntar sig att systemet känner igen historisk terminologi"],
+      "example_intents": ["deprecated/replaced_by labels från verklig v31-historik"],
+      "failure_experience": ["noll träff trots entydig aktiv replacement", "får en språkligt lik men fel nutida roll"]
+    },
+    {
+      "id": "P05-english-workplace",
+      "name": "Engelsk arbetsplatstitel",
+      "situation": "Arbetar i svensk arbetsmarknad men arbetsgivaren använder engelska titlar och kompetensord.",
+      "search_style": ["engelsk titel", "engelskt verktygs- eller kompetensnamn", "kan blanda svenska och engelska"],
+      "example_intents": ["product owner", "account manager", "frontend developer"],
+      "failure_experience": ["måste känna svensk canonical label", "fuzzy väljer fel svensk lookalike", "kompetensen finns men under oväntat svenskt namn"]
+    },
+    {
+      "id": "P06-typo-mobile",
+      "name": "Snabb sökning med stavfel",
+      "situation": "Vet ungefär vad yrket heter men skriver snabbt och gör ett litet stavfel.",
+      "search_style": ["ett tecken fel", "sammansättning eller särskrivning", "förväntar sig robust autocomplete"],
+      "example_intents": ["projektledre", "sjuksköterksa", "lager arbetare"],
+      "failure_experience": ["fuzzy tappar rätt kontextvariant", "få men felaktiga förslag ser auktoritativa ut"]
+    },
+    {
+      "id": "P07-broad-umbrella",
+      "name": "Bred vardagskategori",
+      "situation": "Tänker i en bred rollfamilj medan taxonomin erbjuder många specificerade underroller.",
+      "search_style": ["ett generellt ord", "vill först känna igen familjen och sedan precisera"],
+      "example_intents": ["projektledare", "säljare", "ingenjör", "lärare"],
+      "failure_experience": ["resultatlistan exploderar i likartade varianter", "ingen neutral ingång", "användaren ger upp eller väljer första halvpassande"]
+    },
+    {
+      "id": "P08-multi-context-title",
+      "name": "Samma titel i flera branscher",
+      "situation": "Jobbtiteln är vanlig i flera yrkeskontexter och rätt parentes är avgörande.",
+      "search_style": ["titel först", "lägger ibland till branschord", "använder parentesen som huvudsaklig disambiguering"],
+      "example_intents": ["projektledare IT", "projektledare bygg", "koordinator ekonomi"],
+      "failure_experience": ["rätt kontext saknas i topplistan", "fuzzy visar bara en av flera kontexter", "valt ID tappar parent context senare"]
+    },
+    {
+      "id": "P09-career-changer",
+      "name": "Karriärbytare som tänker i överförbara färdigheter",
+      "situation": "Försöker inte återskapa sin gamla titel utan beskriva vad hen faktiskt kan för att hitta ett nytt område.",
+      "search_style": ["kompetenser", "ansvar", "verktyg", "kombinationer av erfarenheter"],
+      "example_intents": ["planera projekt hålla kundmöten budget", "felsöka maskiner läsa ritning"],
+      "failure_experience": ["systemet kräver först en exakt yrkesidentitet", "KV rekommenderar kontextlösa populära kompetenser i stället för relevanta"]
+    },
+    {
+      "id": "P10-practical-skill",
+      "name": "Praktisk kompetens i vardagsspråk",
+      "situation": "Kan en konkret sak men känner inte den formella kompetensetiketten.",
+      "search_style": ["verb + objekt", "maskin/verktyg", "vardagligt uttryck"],
+      "example_intents": ["köra motviktstruck", "svetsa rostfritt", "ta blodprov"],
+      "failure_experience": ["KV indexerar bara preferred label", "rätt kompetens finns men användarens formulering är inte en substring"]
+    },
+    {
+      "id": "P11-formal-credential",
+      "name": "Legitimation, behörighet eller certifikat",
+      "situation": "Söker en formell kompetens/behörighet och förväntar sig mycket hög precision.",
+      "search_style": ["certifikatsnamn", "förkortning", "myndighets- eller branschterm"],
+      "example_intents": ["YKB", "sjuksköterskelegitimation", "B-körkort"],
+      "failure_experience": ["semantiskt liknande men juridiskt annan kompetens rankas högt", "förkortningen känns okänd för systemet"]
+    },
+    {
+      "id": "P12-low-patience-recognition",
+      "name": "Låg tolerans för sökarbete",
+      "situation": "Har ett legitimt mål men lägger högst några sekunder på att tolka listan.",
+      "search_style": ["en eller två frågor", "läser främst top 3-5", "byter inte frivilligt till taxonomispråk"],
+      "example_intents": ["kombineras med övriga personas som ett beteendelager"],
+      "failure_experience": ["korrekt träff finns på plats 9 men upplevs som saknad", "många nästan likadana etiketter ger beslutströtthet", "okänd parentes gör korrekt träff oigenkännbar"]
+    }
+  ],
+  "journey_contexts": [
+    "återskapa nuvarande/senaste yrke",
+    "hitta en tidigare roll med gammal titel",
+    "beskriva yrket utan att veta titeln",
+    "välja rätt branschvariant av en generell titel",
+    "hitta en konkret kompetens efter YV-val",
+    "hitta överförbara kompetenser vid karriärbyte"
+  ]
+}
