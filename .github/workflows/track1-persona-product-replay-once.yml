@@ -18,8 +18,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-          cache: npm
-      - run: npm ci
+      - name: Install pinned Fuse dependency in script sandbox
+        run: |
+          printf '{"private":true,"type":"module"}\n' > scripts/package.json
+          npm install --prefix scripts --no-package-lock --no-save fuse.js@7.5.0
       - name: Replay frozen non-description persona journeys
         run: |
           mkdir -p artifacts
@@ -39,7 +41,7 @@ jobs:
             path_count:(r.paths||[]).length,
             status:r.status||null
           }));
-          console.log(JSON.stringify({metadata:{yv_commit:x.yv_commit,kv_engine_blob:x.kv_engine_blob,fuse_version:x.fuse_version},rows},null,2));
+          console.log(JSON.stringify({replay_contract:x.replay_contract,description_journeys_skipped:x.description_journeys_skipped,rows},null,2));
           NODE
       - uses: actions/upload-artifact@v4
         with:
