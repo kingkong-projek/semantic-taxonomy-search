@@ -1,0 +1,50 @@
+name: YV real-query review packet
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/build_yv_real_query_review_packet.py
+      - scripts/evaluate_p80_lexical_ablation.py
+      - research/coverage/v31/yv-query-language-aggregate.json
+      - research/coverage/v31/pareto-demand-aggregate.json
+      - .github/workflows/yv-real-query-review-packet.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build pending human-review packet
+        run: |
+          python scripts/build_yv_real_query_review_packet.py \
+            --version 31 \
+            --limit 50 \
+            --output-dir artifacts/yv-real-query-review-v31
+      - name: Validate packet remains unjudged
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          rows=[json.loads(x) for x in Path('artifacts/yv-real-query-review-v31/review-packet.jsonl').read_text(encoding='utf-8').splitlines() if x.strip()]
+          manifest=json.loads(Path('artifacts/yv-real-query-review-v31/manifest.json').read_text(encoding='utf-8'))
+          assert len(rows)==50
+          assert manifest['status']=='PENDING_HUMAN_REVIEW'
+          assert all(r['adjudication']['status']=='PENDING_HUMAN_REVIEW' for r in rows)
+          assert all(not r['adjudication']['must'] and not r['adjudication']['acceptable'] and not r['adjudication']['must_not'] for r in rows)
+          print('validated', len(rows), 'unjudged rows')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: yv-real-query-review-v31
+          path: artifacts/yv-real-query-review-v31/
+          if-no-files-found: error
+          retention-days: 30
