@@ -1,0 +1,114 @@
+{
+  "benchmark": {
+    "KV-C0": {
+      "all_cases": {
+        "cases": 76,
+        "discovery_hit_at_5_pct": 50.0,
+        "occurrence_proxy_weight": 18734,
+        "top1_pct": 32.895,
+        "weighted_discovery_hit_at_5_pct": 57.708,
+        "weighted_top1_pct": 30.228
+      },
+      "primary_descriptive_nonleaky": {
+        "cases": 63,
+        "discovery_hit_at_5_pct": 46.032,
+        "occurrence_proxy_weight": 14132,
+        "top1_pct": 30.159,
+        "weighted_discovery_hit_at_5_pct": 57.083,
+        "weighted_top1_pct": 29.607
+      }
+    },
+    "KV-F1-close-one-slot": {
+      "all_cases": {
+        "cases": 76,
+        "discovery_hit_at_5_pct": 53.947,
+        "occurrence_proxy_weight": 18734,
+        "top1_pct": 32.895,
+        "weighted_discovery_hit_at_5_pct": 60.089,
+        "weighted_top1_pct": 30.228
+      },
+      "primary_descriptive_nonleaky": {
+        "cases": 63,
+        "discovery_hit_at_5_pct": 50.794,
+        "occurrence_proxy_weight": 14132,
+        "top1_pct": 30.159,
+        "weighted_discovery_hit_at_5_pct": 60.239,
+        "weighted_top1_pct": 29.607
+      }
+    },
+    "KV-F1-exact-one-slot": {
+      "all_cases": {
+        "cases": 76,
+        "discovery_hit_at_5_pct": 48.684,
+        "occurrence_proxy_weight": 18734,
+        "top1_pct": 32.895,
+        "weighted_discovery_hit_at_5_pct": 49.285,
+        "weighted_top1_pct": 30.228
+      },
+      "primary_descriptive_nonleaky": {
+        "cases": 63,
+        "discovery_hit_at_5_pct": 44.444,
+        "occurrence_proxy_weight": 14132,
+        "top1_pct": 30.159,
+        "weighted_discovery_hit_at_5_pct": 45.917,
+        "weighted_top1_pct": 29.607
+      }
+    },
+    "KV-F1-narrow-one-slot": {
+      "all_cases": {
+        "cases": 76,
+        "discovery_hit_at_5_pct": 52.632,
+        "occurrence_proxy_weight": 18734,
+        "top1_pct": 32.895,
+        "weighted_discovery_hit_at_5_pct": 66.553,
+        "weighted_top1_pct": 30.228
+      },
+      "primary_descriptive_nonleaky": {
+        "cases": 63,
+        "discovery_hit_at_5_pct": 47.619,
+        "occurrence_proxy_weight": 14132,
+        "top1_pct": 30.159,
+        "weighted_discovery_hit_at_5_pct": 59.369,
+        "weighted_top1_pct": 29.607
+      }
+    },
+    "KV-F1-narrow-two-slot": {
+      "all_cases": {
+        "cases": 76,
+        "discovery_hit_at_5_pct": 55.263,
+        "occurrence_proxy_weight": 18734,
+        "top1_pct": 32.895,
+        "weighted_discovery_hit_at_5_pct": 67.583,
+        "weighted_top1_pct": 30.228
+      },
+      "primary_descriptive_nonleaky": {
+        "cases": 63,
+        "discovery_hit_at_5_pct": 50.794,
+        "occurrence_proxy_weight": 14132,
+        "top1_pct": 30.159,
+        "weighted_discovery_hit_at_5_pct": 60.735,
+        "weighted_top1_pct": 29.607
+      }
+    }
+  },
+  "decision": {
+    "accepted_for_production": false,
+    "development_candidate": "KV-F1-close-one-slot",
+    "rationale": "Same primary unweighted Discovery@5 as narrow-two-slot (50.794%) with one ESCO slot instead of two and a closer mapping semantic. A fresh holdout is required before acceptance."
+  },
+  "experiment_role": "development ablation; frozen training benchmark was opened before fusion design",
+  "fusion_policy": "preserve C0 rank1; offer one or two remaining top-5 slots to exactly one typed ESCO lane; fill remainder from C0",
+  "identity_boundary": "only AF v31 skill IDs are emitted; ESCO is retrieval evidence only",
+  "mapping_semantics_guard": "exact/close/narrow stay separate; broad excluded from fusion after weak candidate-lane rescue signal",
+  "runtime_implication": "deterministic static candidate fusion; all inputs are precompilable and no API or ML is required",
+  "schema_version": 1,
+  "source_truth_regression": {
+    "KV-C0": {"cases": 617, "discovery_hit_at_5_pct": 100.0, "failure_count": 0, "top1_pct": 100.0},
+    "KV-F1-close-one-slot": {"cases": 617, "discovery_hit_at_5_pct": 100.0, "failure_count": 0, "top1_pct": 100.0},
+    "KV-F1-exact-one-slot": {"cases": 617, "discovery_hit_at_5_pct": 100.0, "failure_count": 0, "top1_pct": 100.0},
+    "KV-F1-narrow-one-slot": {"cases": 617, "discovery_hit_at_5_pct": 100.0, "failure_count": 0, "top1_pct": 100.0},
+    "KV-F1-narrow-two-slot": {"cases": 617, "discovery_hit_at_5_pct": 100.0, "failure_count": 0, "top1_pct": 100.0}
+  },
+  "taxonomy_sha256": "634fd9d848a172747e54e3e487160a912ae6c0fcb8219c50998767c8c9aacbcc",
+  "taxonomy_version": 31
+}
