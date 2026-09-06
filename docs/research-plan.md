@@ -646,7 +646,7 @@ Initial YV benchmark priority:
 - high-volume admitted/excluded job-title wording is sampled as router language into product-valid occupations;
 - a **small** multi-parent-title safety slice is retained; the full 541-title population is not an initial benchmark requirement;
 - a **small** excluded-title routing safety slice is retained; the full 205-title population is reproducible but not all must be manually judged now;
-- a small high-volume unbound observed-query sample receives human judgments;
+- a small high-volume unbound observed-query sample receives explicitly provenance-tagged adjudication (human or model judgment);
 - task/skill description→occupation and hard-negative/no-match cases focus primarily on P80;
 - P90/P95/tail contribute only small boundary/sentinel samples initially.
 
@@ -896,10 +896,18 @@ Discovery framing: because the product goal is to help a user **find** the inten
 
 Evidence: `docs/findings/discovery-objective-v31.md` and `research/evaluation/v31/pareto-holdout-discovery.json`.
 
+
+C2 result: the smallest next capability was enough again. C2 keeps C1 unchanged and adds only an exact active `job-title` preferred-label lookup whose already-typed `occupation-name` parents are unioned into the candidate list. On the previously opened holdout, volume-weighted Discovery Success@5 rises from C1 **84.788%** to C2 **93.677%**, with 100% NO_MATCH abstention; only `lager` and `administration` remain failures there. Because this holdout was opened before C2 design, that number is development evidence only. The independent capability sentinel is excluded-title ranks 21–50: **30 unseen high-volume rows / 7.21M searches**, with **100% Any-parent Hit@5**, **93.220% volume-weighted typed-parent Recall@5**, and no regression on the frozen 333-case source-truth suite.
+
+Decision: planned C is complete enough for v0 research. Do not add a special residual rule, D/ESCO, embeddings or more source engineering yet. First build and adjudicate a fresh next-volume natural-language holdout with C2 outputs hidden, then evaluate the frozen C2 configuration unchanged.
+
+Evidence: `docs/findings/c2-job-title-router-v31.md` and `research/evaluation/v31/c2-job-title-router.json`.
+
 - [x] preliminary **A/B/C0** source-truth lexical ablation on P80 core, where C0 = preferred labels + real canonical definitions + canonical alternative labels
 - [x] **C1:** P80 + six measured high-volume boundary occupations + short-query lexical surface/component/fuzzy evidence + conservative definition-only abstention; 100% on the 34-row development slice, 100% on the frozen 333-case source-truth regression, and **83.173% volume-weighted decision accuracy on untouched 36-row holdout** vs C0 59.765%
-- [ ] **complete planned C retrieval vocabulary next:** add exact active job-title preferred-label → typed occupation-name parent routing. Optimize/evaluate primarily for **Discovery Success@5**, not rank 1; the holdout shows exact job-title routing is the dominant remaining candidate-generation gap. Evaluate on a new next-volume sentinel before D/ESCO.
-- [ ] D typed graph/ESCO only if the adjudicated real-query/safety residual justifies it; do not add D merely to complete an ablation ladder
+- [x] **complete planned C retrieval vocabulary:** C2 adds exact active job-title preferred-label → typed occupation-name parent routing, with job-title retained as retrieval vocabulary only. On the already-opened 36-case holdout C2 reaches **93.677% volume-weighted Discovery Success@5** with 100% NO_MATCH abstention. On a new unseen excluded-title ranks 21–50 sentinel it achieves **100% volume-weighted Any-parent Hit@5** and **93.220% volume-weighted typed-parent Recall@5**; the 333-case source-truth regression remains 100%.
+- [ ] validate frozen C2 on a **fresh natural-language next-volume holdout** adjudicated before C2 output is inspected; do not special-case the two development residuals (`lager`, `administration`) before this test
+- [ ] D typed graph/ESCO only if the fresh adjudicated natural-query residual justifies it; do not add D merely to complete an ablation ladder
 - [ ] E–G evidence layers separately
 - [ ] H vectors/reranking in shadow evaluation
 - [ ] local compiled vs central API deployment benchmark
