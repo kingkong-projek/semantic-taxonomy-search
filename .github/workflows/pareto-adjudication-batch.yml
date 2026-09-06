@@ -1,0 +1,45 @@
+name: Pareto adjudication batch
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/build_pareto_adjudication_batch.py
+      - research/benchmark/v31/yv-real-query-review/**
+      - research/benchmark/v31/yv-profile-safety/excluded-routing-review.jsonl
+      - .github/workflows/pareto-adjudication-batch.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build batch
+        run: python scripts/build_pareto_adjudication_batch.py --output-dir artifacts/pareto-adjudication-batch-v31
+      - name: Validate batch
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          m=json.loads(Path('artifacts/pareto-adjudication-batch-v31/manifest.json').read_text(encoding='utf-8'))
+          rows=[json.loads(x) for x in Path('artifacts/pareto-adjudication-batch-v31/batch.jsonl').read_text(encoding='utf-8').splitlines() if x.strip()]
+          assert m['selected_rows']==34
+          assert m['selected_share_pct'] >= 80
+          assert len(rows)==34
+          assert all(r['adjudication']['status']=='PENDING_HUMAN_REVIEW' for r in rows)
+          print(json.dumps(m, indent=2, sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pareto-adjudication-batch-v31
+          path: artifacts/pareto-adjudication-batch-v31/
+          if-no-files-found: error
+          retention-days: 30
