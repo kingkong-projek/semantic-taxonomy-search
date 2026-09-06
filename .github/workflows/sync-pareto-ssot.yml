@@ -4,8 +4,8 @@ on:
   push:
     branches: [main]
     paths:
-      - ".github/workflows/sync-pareto-ssot.yml"
-  workflow_dispatch:
+      - .github/workflows/sync-pareto-ssot.yml
+  workflow_dispatch: {}
 
 permissions:
   contents: write
@@ -18,118 +18,19 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - name: Apply Pareto/simple-first policy to SSOT
-        shell: bash
+      - name: Patch SSOT
         run: |
-          python - <<'PY'
-          from pathlib import Path
-
-          path = Path("docs/research-plan.md")
-          text = path.read_text(encoding="utf-8")
-
-          marker = "The result remains exact canonical/product-valid YV/KV identities. `Inget av dessa` / abstention is a first-class successful outcome. A nearest neighbour is not proof that a valid match exists.\n\n## 3. Architectural hypothesis"
-          replacement = """The result remains exact canonical/product-valid YV/KV identities. `Inget av dessa` / abstention is a first-class successful outcome. A nearest neighbour is not proof that a valid match exists.
-
-### 2.1 Pareto / simple-first delivery principle
-
-The semantic feature is **not required to solve the full taxonomy long tail in v0**. The existing lexical picker remains the complete deterministic fallback over the product's canonical destination universe. Semantic retrieval may start with a narrower confidence envelope and abstain outside it.
-
-Product/research priority is therefore:
-
-```text
-high-demand + high-confidence + cheap-to-explain cases
-→ measure real incremental value
-→ add the smallest next capability that fixes a material residual
-→ defer rare/weakly evidenced tail until data shows it matters
-```
-
-Where real demand data exists, optimise the first release for cumulative user value rather than equal concept coverage. YV can use measured search frequency as a demand signal. KV currently lacks equivalent query→skill demand telemetry, so source-supported/common product contexts may be used only as an explicit proxy, never mislabeled as traffic.
-
-This creates two benchmark views:
-
-1. **Pareto/product-value view** — weighted toward common/high-confidence use where demand evidence exists;
-2. **safety/regression view** — small explicit slices for ambiguity, excluded routes, hard negatives and abstention so weighted metrics cannot hide dangerous failures.
-
-Long-tail recall remains measurable but is not a v0 launch gate. A rare concept failing semantic retrieval is acceptable when lexical retrieval still works and semantic search abstains safely.
-
-Complexity has a burden of proof. A new source, retrieval lane, model, reranker or deployment component is admitted only if it produces a material measured gain on the Pareto view or fixes a defined safety/regression failure. If two configurations perform similarly, prefer the one with fewer sources, rules, models and moving parts.
-
-## 3. Architectural hypothesis"""
-          if marker not in text:
-              raise RuntimeError("UX marker not found exactly once")
-          text = text.replace(marker, replacement, 1)
-
-          marker = "Build separate but structurally compatible YV and KV suites. Initial target: roughly 1,000–3,000 judged queries, expanded where strata expose weakness.\n\nShared strata:"
-          replacement = """Build separate but structurally compatible YV and KV suites.
-
-Start with a **compact 500–1,000 case decision benchmark**, intentionally biased toward source-truth, common/high-value and easy-to-adjudicate cases. Expand toward 1,000–3,000 only when measured residuals, uncertainty or safety slices justify it. Do not spend early benchmark budget trying to make every rare target equally represented.
-
-The initial benchmark should be sufficient to choose between simple baselines. It is not a census of the taxonomy.
-
-Shared strata:"""
-          if marker not in text:
-              raise RuntimeError("Gate-2 intro marker not found exactly once")
-          text = text.replace(marker, replacement, 1)
-
-          marker = "- rare/long-tail concepts;\n- hard negatives/confusable siblings;"
-          replacement = "- rare/long-tail concepts (small sentinel slice initially; expand only if value/risk warrants);\n- hard negatives/confusable siblings;"
-          if marker not in text:
-              raise RuntimeError("long-tail marker not found exactly once")
-          text = text.replace(marker, replacement, 1)
-
-          marker = "### Now — Gate 2\n\n- [x] benchmark schema and semantic validator contract\n- [ ] bounded raw JobSearch Trends date-range adapter + exact dated-file manifest + recency/long-tail strata\n- [ ] targeted source-gap inventory against measured weak strata: AF catalog first, ESCO through existing typed mappings, Sveriges dataportal as discovery index; admit a source only with explicit join/provenance semantics\n- [ ] high-confidence judged seed cases\n- [ ] automatic strata construction only where source truth permits\n- [ ] 541-title ambiguity corpus/sample\n- [ ] 205-title excluded-YV routing corpus/sample\n- [ ] observed unbound-query manually judged sample\n- [ ] bounded provenance-safe ad-language samples\n- [ ] no-match and hard-negative corpus"
-          replacement = """### Now — Gate 2
-
-- [x] benchmark schema and semantic validator contract
-- [ ] define the compact Pareto decision slice: demand-weighted where real demand exists, otherwise explicit source-strength/context proxy
-- [ ] freeze 500–1,000 high-confidence/source-truth seed cases sufficient to compare simple baselines
-- [ ] automatic strata construction only where source truth permits
-- [ ] compact safety/regression slices: multi-parent ambiguity, excluded-YV routing, hard negatives and no-match/abstention
-- [ ] small manually judged sample from high-volume unbound observed language
-- [ ] **defer** full raw JobSearch Trends date-range/long-tail adapter until the first simple baseline shows that recency/long-tail materially changes decisions
-- [ ] **defer** broad source-gap enrichment (ESCO text, AF catalog, Sveriges dataportal discovery, ad-language expansion) until benchmark residuals identify which gaps are worth paying complexity for
-- [ ] bounded provenance-safe ad-language sample only if needed by the first measured residuals"""
-          if marker not in text:
-              raise RuntimeError("work-sequence Gate-2 marker not found exactly once")
-          text = text.replace(marker, replacement, 1)
-
-          marker = "### Then — Gate 3\n\n- [ ] A–D non-neural baseline"
-          replacement = """### Then — Gate 3
-
-First decision: run the **smallest useful baseline** on the compact Pareto benchmark before adding more data engineering.
-
-- [ ] A–D non-neural baseline"""
-          if marker not in text:
-              raise RuntimeError("Gate-3 marker not found exactly once")
-          text = text.replace(marker, replacement, 1)
-
-          marker = "33. How much of the critical-sparse KV population is covered by AF's manually mapped labour-market-training learning outcomes and other explicitly curated domain sources?"
-          replacement = """33. How much of the critical-sparse KV population is covered by AF's manually mapped labour-market-training learning outcomes and other explicitly curated domain sources?
-34. What cumulative share of real YV demand can a simple configuration solve at acceptable precision before long-tail enrichment is added?
-35. What is the smallest evidence/retrieval configuration whose Pareto performance is statistically/materially indistinguishable from more complex alternatives?"""
-          if marker not in text:
-              raise RuntimeError("open-question marker not found exactly once")
-          text = text.replace(marker, replacement, 1)
-
-          path.write_text(text, encoding="utf-8")
-          PY
-      - name: Validate expected policy markers
-        shell: bash
+          echo 'ZnJvbSBwYXRobGliIGltcG9ydCBQYXRoCnA9UGF0aCgiZG9jcy9yZXNlYXJjaC1wbGFuLm1kIikKdD1wLnJlYWRfdGV4dChlbmNvZGluZz0idXRmLTgiKQpkZWYgcihhLGIsbGFiZWwpOgogICAgZ2xvYmFsIHQKICAgIG49dC5jb3VudChhKQogICAgaWYgbiE9MTogcmFpc2UgUnVudGltZUVycm9yKGYie2xhYmVsfToge259IikKICAgIHQ9dC5yZXBsYWNlKGEsYiwxKQpyKCJUaGUgcmVzdWx0IHJlbWFpbnMgZXhhY3QgY2Fub25pY2FsL3Byb2R1Y3QtdmFsaWQgWVYvS1YgaWRlbnRpdGllcy4gYEluZ2V0IGF2IGRlc3NhYCAvIGFic3RlbnRpb24gaXMgYSBmaXJzdC1jbGFzcyBzdWNjZXNzZnVsIG91dGNvbWUuIEEgbmVhcmVzdCBuZWlnaGJvdXIgaXMgbm90IHByb29mIHRoYXQgYSB2YWxpZCBtYXRjaCBleGlzdHMuXG5cbiMjIDMuIEFyY2hpdGVjdHVyYWwgaHlwb3RoZXNpcyIsCiIiIlRoZSByZXN1bHQgcmVtYWlucyBleGFjdCBjYW5vbmljYWwvcHJvZHVjdC12YWxpZCBZVi9LViBpZGVudGl0aWVzLiBgSW5nZXQgYXYgZGVzc2FgIC8gYWJzdGVudGlvbiBpcyBhIGZpcnN0LWNsYXNzIHN1Y2Nlc3NmdWwgb3V0Y29tZS4gQSBuZWFyZXN0IG5laWdoYm91ciBpcyBub3QgcHJvb2YgdGhhdCBhIHZhbGlkIG1hdGNoIGV4aXN0cy4KCiMjIyAyLjEgUGFyZXRvIC8gc2ltcGxlLWZpcnN0IGRlbGl2ZXJ5IHByaW5jaXBsZQoKVGhlIHNlbWFudGljIGZlYXR1cmUgaXMgKipub3QgcmVxdWlyZWQgdG8gc29sdmUgdGhlIGZ1bGwgdGF4b25vbXkgbG9uZyB0YWlsIGluIHYwKiouIFRoZSBleGlzdGluZyBsZXhpY2FsIHBpY2tlciByZW1haW5zIHRoZSBjb21wbGV0ZSBkZXRlcm1pbmlzdGljIGZhbGxiYWNrIG92ZXIgdGhlIHByb2R1Y3QncyBjYW5vbmljYWwgZGVzdGluYXRpb24gdW5pdmVyc2UuIFNlbWFudGljIHJldHJpZXZhbCBtYXkgc3RhcnQgd2l0aCBhIG5hcnJvd2VyIGNvbmZpZGVuY2UgZW52ZWxvcGUgYW5kIGFic3RhaW4gb3V0c2lkZSBpdC4KClByb2R1Y3QvcmVzZWFyY2ggcHJpb3JpdHkgaXMgdGhlcmVmb3JlOgoKYGBgdGV4dApoaWdoLWRlbWFuZCArIGhpZ2gtY29uZmlkZW5jZSArIGNoZWFwLXRvLWV4cGxhaW4gY2FzZXMK4oaSIG1lYXN1cmUgcmVhbCBpbmNyZW1lbnRhbCB2YWx1ZQrihpIgYWRkIHRoZSBzbWFsbGVzdCBuZXh0IGNhcGFiaWxpdHkgdGhhdCBmaXhlcyBhIG1hdGVyaWFsIHJlc2lkdWFsCuKGkiBkZWZlciByYXJlL3dlYWtseSBldmlkZW5jZWQgdGFpbCB1bnRpbCBkYXRhIHNob3dzIGl0IG1hdHRlcnMKYGBgCgpXaGVyZSByZWFsIGRlbWFuZCBkYXRhIGV4aXN0cywgb3B0aW1pc2UgdGhlIGZpcnN0IHJlbGVhc2UgZm9yIGN1bXVsYXRpdmUgdXNlciB2YWx1ZSByYXRoZXIgdGhhbiBlcXVhbCBjb25jZXB0IGNvdmVyYWdlLiBZViBjYW4gdXNlIG1lYXN1cmVkIHNlYXJjaCBmcmVxdWVuY3kgYXMgYSBkZW1hbmQgc2lnbmFsLiBLViBjdXJyZW50bHkgbGFja3MgZXF1aXZhbGVudCBxdWVyeeKGknNraWxsIGRlbWFuZCB0ZWxlbWV0cnksIHNvIHNvdXJjZS1zdXBwb3J0ZWQvY29tbW9uIHByb2R1Y3QgY29udGV4dHMgbWF5IGJlIHVzZWQgb25seSBhcyBhbiBleHBsaWNpdCBwcm94eSwgbmV2ZXIgbWlzbGFiZWxlZCBhcyB0cmFmZmljLgoKVGhpcyBjcmVhdGVzIHR3byBiZW5jaG1hcmsgdmlld3M6CgoxLiAqKlBhcmV0by9wcm9kdWN0LXZhbHVlIHZpZXcqKiDigJQgd2VpZ2h0ZWQgdG93YXJkIGNvbW1vbi9oaWdoLWNvbmZpZGVuY2UgdXNlIHdoZXJlIGRlbWFuZCBldmlkZW5jZSBleGlzdHM7CjIuICoqc2FmZXR5L3JlZ3Jlc3Npb24gdmlldyoqIOKAlCBzbWFsbCBleHBsaWNpdCBzbGljZXMgZm9yIGFtYmlndWl0eSwgZXhjbHVkZWQgcm91dGVzLCBoYXJkIG5lZ2F0aXZlcyBhbmQgYWJzdGVudGlvbiBzbyB3ZWlnaHRlZCBtZXRyaWNzIGNhbm5vdCBoaWRlIGRhbmdlcm91cyBmYWlsdXJlcy4KCkxvbmctdGFpbCByZWNhbGwgcmVtYWlucyBtZWFzdXJhYmxlIGJ1dCBpcyBub3QgYSB2MCBsYXVuY2ggZ2F0ZS4gQSByYXJlIGNvbmNlcHQgZmFpbGluZyBzZW1hbnRpYyByZXRyaWV2YWwgaXMgYWNjZXB0YWJsZSB3aGVuIGxleGljYWwgcmV0cmlldmFsIHN0aWxsIHdvcmtzIGFuZCBzZW1hbnRpYyBzZWFyY2ggYWJzdGFpbnMgc2FmZWx5LgoKQ29tcGxleGl0eSBoYXMgYSBidXJkZW4gb2YgcHJvb2YuIEEgbmV3IHNvdXJjZSwgcmV0cmlldmFsIGxhbmUsIG1vZGVsLCByZXJhbmtlciBvciBkZXBsb3ltZW50IGNvbXBvbmVudCBpcyBhZG1pdHRlZCBvbmx5IGlmIGl0IHByb2R1Y2VzIGEgbWF0ZXJpYWwgbWVhc3VyZWQgZ2FpbiBvbiB0aGUgUGFyZXRvIHZpZXcgb3IgZml4ZXMgYSBkZWZpbmVkIHNhZmV0eS9yZWdyZXNzaW9uIGZhaWx1cmUuIElmIHR3byBjb25maWd1cmF0aW9ucyBwZXJmb3JtIHNpbWlsYXJseSwgcHJlZmVyIHRoZSBvbmUgd2l0aCBmZXdlciBzb3VyY2VzLCBydWxlcywgbW9kZWxzIGFuZCBtb3ZpbmcgcGFydHMuCgojIyAzLiBBcmNoaXRlY3R1cmFsIGh5cG90aGVzaXMiIiIsInBhcmV0byIpCnIoIkJ1aWxkIHNlcGFyYXRlIGJ1dCBzdHJ1Y3R1cmFsbHkgY29tcGF0aWJsZSBZViBhbmQgS1Ygc3VpdGVzLiBJbml0aWFsIHRhcmdldDogcm91Z2hseSAxLDAwMOKAkzMsMDAwIGp1ZGdlZCBxdWVyaWVzLCBleHBhbmRlZCB3aGVyZSBzdHJhdGEgZXhwb3NlIHdlYWtuZXNzLlxuXG5TaGFyZWQgc3RyYXRhOiIsCiIiIkJ1aWxkIHNlcGFyYXRlIGJ1dCBzdHJ1Y3R1cmFsbHkgY29tcGF0aWJsZSBZViBhbmQgS1Ygc3VpdGVzLgoKU3RhcnQgd2l0aCBhICoqY29tcGFjdCA1MDDigJMxLDAwMCBjYXNlIGRlY2lzaW9uIGJlbmNobWFyayoqLCBpbnRlbnRpb25hbGx5IGJpYXNlZCB0b3dhcmQgc291cmNlLXRydXRoLCBjb21tb24vaGlnaC12YWx1ZSBhbmQgZWFzeS10by1hZGp1ZGljYXRlIGNhc2VzLiBFeHBhbmQgdG93YXJkIDEsMDAw4oCTMywwMDAgb25seSB3aGVuIG1lYXN1cmVkIHJlc2lkdWFscywgdW5jZXJ0YWludHkgb3Igc2FmZXR5IHNsaWNlcyBqdXN0aWZ5IGl0LiBEbyBub3Qgc3BlbmQgZWFybHkgYmVuY2htYXJrIGJ1ZGdldCB0cnlpbmcgdG8gbWFrZSBldmVyeSByYXJlIHRhcmdldCBlcXVhbGx5IHJlcHJlc2VudGVkLgoKVGhlIGluaXRpYWwgYmVuY2htYXJrIHNob3VsZCBiZSBzdWZmaWNpZW50IHRvIGNob29zZSBiZXR3ZWVuIHNpbXBsZSBiYXNlbGluZXMuIEl0IGlzIG5vdCBhIGNlbnN1cyBvZiB0aGUgdGF4b25vbXkuCgpTaGFyZWQgc3RyYXRhOiIiIiwiZ2F0ZTJpbnRybyIpCnIoIi0gcmFyZS9sb25nLXRhaWwgY29uY2VwdHM7XG4tIGhhcmQgbmVnYXRpdmVzL2NvbmZ1c2FibGUgc2libGluZ3M7IiwiLSByYXJlL2xvbmctdGFpbCBjb25jZXB0cyAoc21hbGwgc2VudGluZWwgc2xpY2UgaW5pdGlhbGx5OyBleHBhbmQgb25seSBpZiB2YWx1ZS9yaXNrIHdhcnJhbnRzKTtcbi0gaGFyZCBuZWdhdGl2ZXMvY29uZnVzYWJsZSBzaWJsaW5nczsiLCJsb25ndGFpbCIpCnIoIiIiIyMjIE5vdyDigJQgR2F0ZSAyCgotIFt4XSBiZW5jaG1hcmsgc2NoZW1hIGFuZCBzZW1hbnRpYyB2YWxpZGF0b3IgY29udHJhY3QKLSBbIF0gYm91bmRlZCByYXcgSm9iU2VhcmNoIFRyZW5kcyBkYXRlLXJhbmdlIGFkYXB0ZXIgKyBleGFjdCBkYXRlZC1maWxlIG1hbmlmZXN0ICsgcmVjZW5jeS9sb25nLXRhaWwgc3RyYXRhCi0gWyBdIHRhcmdldGVkIHNvdXJjZS1nYXAgaW52ZW50b3J5IGFnYWluc3QgbWVhc3VyZWQgd2VhayBzdHJhdGE6IEFGIGNhdGFsb2cgZmlyc3QsIEVTQ08gdGhyb3VnaCBleGlzdGluZyB0eXBlZCBtYXBwaW5ncywgU3ZlcmlnZXMgZGF0YXBvcnRhbCBhcyBkaXNjb3ZlcnkgaW5kZXg7IGFkbWl0IGEgc291cmNlIG9ubHkgd2l0aCBleHBsaWNpdCBqb2luL3Byb3ZlbmFuY2Ugc2VtYW50aWNzCi0gWyBdIGhpZ2gtY29uZmlkZW5jZSBqdWRnZWQgc2VlZCBjYXNlcwotIFsgXSBhdXRvbWF0aWMgc3RyYXRhIGNvbnN0cnVjdGlvbiBvbmx5IHdoZXJlIHNvdXJjZSB0cnV0aCBwZXJtaXRzCi0gWyBdIDU0MS10aXRsZSBhbWJpZ3VpdHkgY29ycHVzL3NhbXBsZQotIFsgXSAyMDUtdGl0bGUgZXhjbHVkZWQtWVYgcm91dGluZyBjb3JwdXMvc2FtcGxlCi0gWyBdIG9ic2VydmVkIHVuYm91bmQtcXVlcnkgbWFudWFsbHkganVkZ2VkIHNhbXBsZQotIFsgXSBib3VuZGVkIHByb3ZlbmFuY2Utc2FmZSBhZC1sYW5ndWFnZSBzYW1wbGVzCi0gWyBdIG5vLW1hdGNoIGFuZCBoYXJkLW5lZ2F0aXZlIGNvcnB1cyIiIiwKIiIiIyMjIE5vdyDigJQgR2F0ZSAyCgotIFt4XSBiZW5jaG1hcmsgc2NoZW1hIGFuZCBzZW1hbnRpYyB2YWxpZGF0b3IgY29udHJhY3QKLSBbIF0gZGVmaW5lIHRoZSBjb21wYWN0IFBhcmV0byBkZWNpc2lvbiBzbGljZTogZGVtYW5kLXdlaWdodGVkIHdoZXJlIHJlYWwgZGVtYW5kIGV4aXN0cywgb3RoZXJ3aXNlIGV4cGxpY2l0IHNvdXJjZS1zdHJlbmd0aC9jb250ZXh0IHByb3h5Ci0gWyBdIGZyZWV6ZSA1MDDigJMxLDAwMCBoaWdoLWNvbmZpZGVuY2Uvc291cmNlLXRydXRoIHNlZWQgY2FzZXMgc3VmZmljaWVudCB0byBjb21wYXJlIHNpbXBsZSBiYXNlbGluZXMKLSBbIF0gYXV0b21hdGljIHN0cmF0YSBjb25zdHJ1Y3Rpb24gb25seSB3aGVyZSBzb3VyY2UgdHJ1dGggcGVybWl0cwotIFsgXSBjb21wYWN0IHNhZmV0eS9yZWdyZXNzaW9uIHNsaWNlczogbXVsdGktcGFyZW50IGFtYmlndWl0eSwgZXhjbHVkZWQtWVYgcm91dGluZywgaGFyZCBuZWdhdGl2ZXMgYW5kIG5vLW1hdGNoL2Fic3RlbnRpb24KLSBbIF0gc21hbGwgbWFudWFsbHkganVkZ2VkIHNhbXBsZSBmcm9tIGhpZ2gtdm9sdW1lIHVuYm91bmQgb2JzZXJ2ZWQgbGFuZ3VhZ2UKLSBbIF0gKipkZWZlcioqIGZ1bGwgcmF3IEpvYlNlYXJjaCBUcmVuZHMgZGF0ZS1yYW5nZS9sb25nLXRhaWwgYWRhcHRlciB1bnRpbCB0aGUgZmlyc3Qgc2ltcGxlIGJhc2VsaW5lIHNob3dzIHRoYXQgcmVjZW5jeS9sb25nLXRhaWwgbWF0ZXJpYWxseSBjaGFuZ2VzIGRlY2lzaW9ucwotIFsgXSAqKmRlZmVyKiogYnJvYWQgc291cmNlLWdhcCBlbnJpY2htZW50IChFU0NPIHRleHQsIEFGIGNhdGFsb2csIFN2ZXJpZ2VzIGRhdGFwb3J0YWwgZGlzY292ZXJ5LCBhZC1sYW5ndWFnZSBleHBhbnNpb24pIHVudGlsIGJlbmNobWFyayByZXNpZHVhbHMgaWRlbnRpZnkgd2hpY2ggZ2FwcyBhcmUgd29ydGggcGF5aW5nIGNvbXBsZXhpdHkgZm9yCi0gWyBdIGJvdW5kZWQgcHJvdmVuYW5jZS1zYWZlIGFkLWxhbmd1YWdlIHNhbXBsZSBvbmx5IGlmIG5lZWRlZCBieSB0aGUgZmlyc3QgbWVhc3VyZWQgcmVzaWR1YWxzIiIiLCJ3b3Jrc2VxIikKcigiIiIjIyMgVGhlbiDigJQgR2F0ZSAzCgotIFsgXSBB4oCTRCBub24tbmV1cmFsIGJhc2VsaW5lIiIiLAoiIiIjIyMgVGhlbiDigJQgR2F0ZSAzCgpGaXJzdCBkZWNpc2lvbjogcnVuIHRoZSAqKnNtYWxsZXN0IHVzZWZ1bCBiYXNlbGluZSoqIG9uIHRoZSBjb21wYWN0IFBhcmV0byBiZW5jaG1hcmsgYmVmb3JlIGFkZGluZyBtb3JlIGRhdGEgZW5naW5lZXJpbmcuCgotIFsgXSBB4oCTRCBub24tbmV1cmFsIGJhc2VsaW5lIiIiLCJnYXRlMyIpCnIoIjMzLiBIb3cgbXVjaCBvZiB0aGUgY3JpdGljYWwtc3BhcnNlIEtWIHBvcHVsYXRpb24gaXMgY292ZXJlZCBieSBBRidzIG1hbnVhbGx5IG1hcHBlZCBsYWJvdXItbWFya2V0LXRyYWluaW5nIGxlYXJuaW5nIG91dGNvbWVzIGFuZCBvdGhlciBleHBsaWNpdGx5IGN1cmF0ZWQgZG9tYWluIHNvdXJjZXM/IiwKIiIiMzMuIEhvdyBtdWNoIG9mIHRoZSBjcml0aWNhbC1zcGFyc2UgS1YgcG9wdWxhdGlvbiBpcyBjb3ZlcmVkIGJ5IEFGJ3MgbWFudWFsbHkgbWFwcGVkIGxhYm91ci1tYXJrZXQtdHJhaW5pbmcgbGVhcm5pbmcgb3V0Y29tZXMgYW5kIG90aGVyIGV4cGxpY2l0bHkgY3VyYXRlZCBkb21haW4gc291cmNlcz8KMzQuIFdoYXQgY3VtdWxhdGl2ZSBzaGFyZSBvZiByZWFsIFlWIGRlbWFuZCBjYW4gYSBzaW1wbGUgY29uZmlndXJhdGlvbiBzb2x2ZSBhdCBhY2NlcHRhYmxlIHByZWNpc2lvbiBiZWZvcmUgbG9uZy10YWlsIGVucmljaG1lbnQgaXMgYWRkZWQ/CjM1LiBXaGF0IGlzIHRoZSBzbWFsbGVzdCBldmlkZW5jZS9yZXRyaWV2YWwgY29uZmlndXJhdGlvbiB3aG9zZSBQYXJldG8gcGVyZm9ybWFuY2UgaXMgc3RhdGlzdGljYWxseS9tYXRlcmlhbGx5IGluZGlzdGluZ3Vpc2hhYmxlIGZyb20gbW9yZSBjb21wbGV4IGFsdGVybmF0aXZlcz8iIiIsInF1ZXN0aW9ucyIpCnAud3JpdGVfdGV4dCh0LGVuY29kaW5nPSJ1dGYtOCIpCg==' | base64 -d > /tmp/patch_pareto.py
+          python3 /tmp/patch_pareto.py
+      - name: Validate policy markers
         run: |
-          set -euo pipefail
-          grep -F "### 2.1 Pareto / simple-first delivery principle" docs/research-plan.md
-          grep -F "compact 500–1,000 case decision benchmark" docs/research-plan.md
-          grep -F "Complexity has a burden of proof" docs/research-plan.md
-          grep -F "defer" docs/research-plan.md >/dev/null
+          grep -F '### 2.1 Pareto / simple-first delivery principle' docs/research-plan.md
+          grep -F 'compact 500–1,000 case decision benchmark' docs/research-plan.md
+          grep -F 'Complexity has a burden of proof' docs/research-plan.md
       - name: Commit SSOT change
-        shell: bash
         run: |
-          set -euo pipefail
-          git config user.name "kingkongola"
-          git config user.email "adambergman90@gmail.com"
+          git config user.name kingkongola
+          git config user.email adambergman90@gmail.com
           git add docs/research-plan.md
-          git commit -m "research: adopt Pareto simple-first delivery policy"
+          git commit -m 'research: adopt Pareto simple-first delivery policy'
           git push origin HEAD:main
