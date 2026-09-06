@@ -26,13 +26,91 @@ function editDistance(a,b){const n=b.length;let prev=Array.from({length:n+1},(_,
 function fuzzySubstring(text,q){const target=q.length,min=Math.max(3,target-2),max=Math.min(text.length,target+2);let best=99;for(let s=0;s<=text.length-min;s++)for(let l=min;l<=max&&s+l<=text.length;l++)best=Math.min(best,editDistance(q,text.slice(s,s+l)));return best<=Math.max(2,Math.floor(target*.25))?best:null;}
 function rootMatch(q,label){q=norm(q);label=norm(label);if(label.includes(' ')){const d=editDistance(q,label);return d<=Math.max(2,Math.floor(q.length*.25))&&Math.abs(q.length-label.length)<=2;}return fuzzySubstring(label,q)!==null;}
 function yvSort(rows){return rows.sort((a,b)=>b.score-a.score+0 || Number(b.weight??0)-Number(a.weight??0) || yvDisplay(a).localeCompare(yvDisplay(b),'sv'));}
-class CurrentYv{
- constructor(items){this.items=items;this.fuse=new Fuse(items,{keys:['preferred_label'],includeScore:true,ignoreDiacritics:true,ignoreFieldNorm:true,threshold:.6,minMatchCharLength:1,ignoreLocation:true,distance:100});}
- search(query,max=50){if(!query)return[];const q=norm(query),tokens=q.split(' ').filter(Boolean),direct=[];for(const item of this.items){const s=getDirectScore(norm(item.preferred_label),q,tokens);if(s!==null)direct.push({...item,score:s,search_lane:'direct'});}if(direct.length)return yvSort(direct).slice(0,max);const raw=this.fuse.search(q);if(!raw.length)return[];const best=raw[0].score??1,candidates=[],seen=new Set();let strong=false;for(const fr of raw){const identity=yvIdentity(fr.item);if(seen.has(identity))continue;const rs=fr.score??1,base=1-rs;if(base<MIN_FUZZY_SCORE||rs>best+.12)continue;const root=rootMatch(q,norm(fr.item.preferred_label));if(root&&rs<=.25)strong=true;let score=base*.70+Number(fr.item.weight??0)*.10+(root?.12:0);score=Math.min(MAX_FUZZY_SCORE,Math.max(MIN_FUZZY_SCORE,score));candidates.push({...fr.item,score,search_lane:'fuzzy'});seen.add(identity);}if(!candidates.length)return[];const sorted=yvSort(candidates),limit=strong?Math.min(5,max):Math.min(MAX_WEAK_FUZZY_RESULTS,max);return sorted.slice(0,limit);}
-}
-function routedResults(current,targetIds,occupationById){const parents=[...targetIds].map(id=>occupationById.get(id)).filter(Boolean).map(item=>({...item,score:1,search_lane:'excluded-title-parent-route'})).sort((a,b)=>Number(b.weight??0)-Number(a.weight??0)||yvDisplay(a).localeCompare(yvDisplay(b),'sv'));const parentIds=new Set(parents.map(x=>x.id));return [...parents,...current.filter(r=>!(r.type==='occupation-name'&&parentIds.has(r.id)))];}
-function measure(results,targetIds){const ranks=[];results.forEach((r,i)=>{if(targetIds.has(discoveryOccupationId(r)))ranks.push(i+1);});return{result_count:results.length,first_target_rank:ranks.length?ranks[0]:null,target_hits_at_5:ranks.filter(x=>x<=5).length,target_hits_at_10:ranks.filter(x=>x<=10).length,top10:results.slice(0,10).map((r,i)=>({rank:i+1,type:r.type,id:r.id,label:r.preferred_label,parent_id:r.occupation_name_id??null,parent_label:r.occupation_name_preferred_label??null,score:Number(r.score??0),weight:Number(r.weight??0),target:targetIds.has(discoveryOccupationId(r)),lane:r.search_lane}))};}
-function summarize(rows){const total=rows.length,volume=rows.reduce((s,r)=>s+r.observed_count,0),targetTotal=rows.reduce((s,r)=>s+r.target_parent_count,0);const countAt=(which,k)=>rows.reduce((s,r)=>s+Number(r[which].first_target_rank!==null&&r[which].first_target_rank<=k),0),weightedAt=(which,k)=>rows.reduce((s,r)=>s+r.observed_count*Number(r[which].first_target_rank!==null&&r[which].first_target_rank<=k),0),hits=(which,k)=>rows.reduce((s,r)=>s+r[which][`target_hits_at_${k}`],0);return{cases:total,observed_volume:volume,current:{any_parent_at_1_pct:pct(countAt('current',1),total),any_parent_at_3_pct:pct(countAt('current',3),total),any_parent_at_5_pct:pct(countAt('current',5),total),any_parent_at_10_pct:pct(countAt('current',10),total),weighted_any_parent_at_1_pct:pct(weightedAt('current',1),volume),weighted_any_parent_at_3_pct:pct(weightedAt('current',3),volume),weighted_any_parent_at_5_pct:pct(weightedAt('current',5),volume),weighted_any_parent_at_10_pct:pct(weightedAt('current',10),volume),micro_parent_recall_at_5_pct:pct(hits('current',5),targetTotal),micro_parent_recall_at_10_pct:pct(hits('current',10),targetTotal),no_parent_visible:rows.filter(r=>r.current.first_target_rank===null).length,higher_score_prefix_shadow_cases:rows.filter(r=>r.mechanism.higher_score_prefix_shadow).length,weighted_higher_score_prefix_shadow_pct:pct(rows.reduce((s,r)=>s+r.observed_count*Number(r.mechanism.higher_score_prefix_shadow),0),volume)},exact_excluded_title_parent_route_counterfactual:{any_parent_at_1_pct:pct(countAt('routed',1),total),any_parent_at_3_pct:pct(countAt('routed',3),total),any_parent_at_5_pct:pct(countAt('routed',5),total),any_parent_at_10_pct:pct(countAt('routed',10),total),weighted_any_parent_at_1_pct:pct(weightedAt('routed',1),volume),weighted_any_parent_at_3_pct:pct(weightedAt('routed',3),volume),weighted_any_parent_at_5_pct:pct(weightedAt('routed',5),volume),weighted_any_parent_at_10_pct:pct(weightedAt('routed',10),volume),micro_parent_recall_at_5_pct:pct(hits('routed',5),targetTotal),micro_parent_recall_at_10_pct:pct(hits('routed',10),targetTotal)}};}
 
-async function main(){const a=args(),population=JSON.parse(fs.readFileSync(a.cases,'utf8'));if(!Array.isArray(population.cases)||population.cases.length!==205)throw new Error(`expected 205 population cases, got ${population.cases?.length}`);const response=await fetch(YV_URL);if(!response.ok)throw new Error(`YV source HTTP ${response.status}`);const bytes=Buffer.from(await response.arrayBuffer()),sha=hash(bytes);if(sha!==YV_SHA)throw new Error(`YV source drift ${sha}`);const items=JSON.parse(bytes.toString('utf8')).data;if(!Array.isArray(items))throw new Error('YV data missing');const engine=new CurrentYv(items),occupationRows=items.filter(x=>x.type==='occupation-name'),occupationByLabel=new Map(occupationRows.map(x=>[norm(x.preferred_label),x])),occupationById=new Map(occupationRows.map(x=>[x.id,x])),detail=[];for(const c of population.cases){const parents=c.target_parent_labels.map(label=>occupationByLabel.get(norm(label)));const missing=c.target_parent_labels.filter(label=>!occupationByLabel.has(norm(label)));if(missing.length)throw new Error(`${c.query}: mapped parent labels absent from published YV: ${missing.join(', ')}`);const targetIds=new Set(parents.map(x=>x.id)),currentRows=engine.search(c.query,50),routedRows=routedResults(currentRows,targetIds,occupationById),current=measure(currentRows,targetIds),routed=measure(routedRows,targetIds),firstTarget=current.first_target_rank===null?null:currentRows[current.first_target_rank-1],preceding=current.first_target_rank===null?currentRows:currentRows.slice(0,current.first_target_rank-1),higherScorePrefixShadow=Boolean(firstTarget&&preceding.some(r=>r.type==='job-title'&&r.score>firstTarget.score&&norm(r.preferred_label).startsWith(norm(c.query))));detail.push({query:c.query,reason:c.reason,observed_count:Number(c.observed_count),target_parent_count:targetIds.size,target_parent_ids:[...targetIds],current,routed,mechanism:{higher_score_prefix_shadow:higherScorePrefixShadow,rows_before_first_target:current.first_target_rank===null?currentRows.length:current.first_target_rank-1,non_target_prefix_job_titles_before_first_target:preceding.filter(r=>r.type==='job-title'&&norm(r.preferred_label).startsWith(norm(c.query))).length}});}const byReason={};for(const reason of [...new Set(detail.map(x=>x.reason))].sort())byReason[reason]=summarize(detail.filter(x=>x.reason===reason));const worst=[...detail].filter(x=>x.current.first_target_rank===null||x.current.first_target_rank>1).sort((a,b)=>b.observed_count-a.observed_count).slice(0,30).map(x=>({query:x.query,reason:x.reason,observed_count:x.observed_count,target_parent_count:x.target_parent_count,current_first_target_rank:x.current.first_target_rank,routed_first_target_rank:x.routed.first_target_rank,higher_score_prefix_shadow:x.mechanism.higher_score_prefix_shadow,current_top5:x.current.top10.slice(0,5)}));const result={schema_version:1,taxonomy_version:31,track:'1-current-yv-kv-findability',role:'complete generator-excluded exact-title ranking diagnostic',selector_contract:{yv_commit:YV_COMMIT,yv_search_utils_blob:YV_SEARCH_UTILS_BLOB,fuse_js_version:FUSE_VERSION},source:{yv_url:YV_URL,yv_sha256:sha,generator_commit:population.generator_commit,query_corpus_sha256:population.query_corpus_sha256,cases:detail.length},interpretation_guardrails:['generator-mapped occupation parents are routing/context evidence, not proof that every parent is equally user-intended','the counterfactual is exact excluded-title only; it does not globally prefer occupation-name over job-title results','observed_count is exact-query frequency and does not prove selection or satisfaction'],summary:summarize(detail),by_reason:byReason,highest_volume_current_rank_failures:worst,detail};fs.mkdirSync('artifacts',{recursive:true});fs.writeFileSync(a.output,JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify({summary:result.summary,by_reason:result.by_reason,highest_volume_current_rank_failures:worst.slice(0,15)},null,2));}
+class CurrentYv{
+  constructor(items){this.items=items;this.fuse=new Fuse(items,{keys:['preferred_label'],includeScore:true,ignoreDiacritics:true,ignoreFieldNorm:true,threshold:.6,minMatchCharLength:1,ignoreLocation:true,distance:100});}
+  search(query,max=50){
+    if(!query)return[];
+    const q=norm(query),tokens=q.split(' ').filter(Boolean),direct=[];
+    for(const item of this.items){const s=getDirectScore(norm(item.preferred_label),q,tokens);if(s!==null)direct.push({...item,score:s,search_lane:'direct'});}
+    if(direct.length)return yvSort(direct).slice(0,max);
+    const raw=this.fuse.search(q);if(!raw.length)return[];
+    const best=raw[0].score??1,candidates=[],seen=new Set();let strong=false;
+    for(const fr of raw){
+      const identity=yvIdentity(fr.item);if(seen.has(identity))continue;
+      const rs=fr.score??1,base=1-rs;if(base<MIN_FUZZY_SCORE||rs>best+.12)continue;
+      const root=rootMatch(q,norm(fr.item.preferred_label));if(root&&rs<=.25)strong=true;
+      let score=base*.70+Number(fr.item.weight??0)*.10+(root?.12:0);score=Math.min(MAX_FUZZY_SCORE,Math.max(MIN_FUZZY_SCORE,score));
+      candidates.push({...fr.item,score,search_lane:'fuzzy'});seen.add(identity);
+    }
+    if(!candidates.length)return[];
+    const sorted=yvSort(candidates),limit=strong?Math.min(5,max):Math.min(MAX_WEAK_FUZZY_RESULTS,max);
+    return sorted.slice(0,limit);
+  }
+}
+
+function routedResults(current,targetIds,occupationById){
+  const parents=[...targetIds].map(id=>occupationById.get(id)).filter(Boolean).map(item=>({...item,score:1,search_lane:'excluded-title-parent-route'})).sort((a,b)=>Number(b.weight??0)-Number(a.weight??0)||yvDisplay(a).localeCompare(yvDisplay(b),'sv'));
+  const parentIds=new Set(parents.map(x=>x.id));
+  return [...parents,...current.filter(r=>!(r.type==='occupation-name'&&parentIds.has(r.id)))];
+}
+
+function measure(results,targetIds){
+  const rowRanks=[];
+  results.forEach((r,i)=>{if(targetIds.has(discoveryOccupationId(r)))rowRanks.push(i+1);});
+  const distinctTargetsAt=(k)=>new Set(results.slice(0,k).map(discoveryOccupationId).filter(id=>id&&targetIds.has(id))).size;
+  return {
+    result_count:results.length,
+    first_target_rank:rowRanks.length?rowRanks[0]:null,
+    target_hits_at_5:distinctTargetsAt(5),
+    target_hits_at_10:distinctTargetsAt(10),
+    top10:results.slice(0,10).map((r,i)=>({rank:i+1,type:r.type,id:r.id,label:r.preferred_label,parent_id:r.occupation_name_id??null,parent_label:r.occupation_name_preferred_label??null,score:Number(r.score??0),weight:Number(r.weight??0),target:targetIds.has(discoveryOccupationId(r)),lane:r.search_lane}))
+  };
+}
+
+function summarize(rows){
+  const total=rows.length,volume=rows.reduce((s,r)=>s+r.observed_count,0),targetTotal=rows.reduce((s,r)=>s+r.target_parent_count,0);
+  const countAt=(which,k)=>rows.reduce((s,r)=>s+Number(r[which].first_target_rank!==null&&r[which].first_target_rank<=k),0);
+  const weightedAt=(which,k)=>rows.reduce((s,r)=>s+r.observed_count*Number(r[which].first_target_rank!==null&&r[which].first_target_rank<=k),0);
+  const hits=(which,k)=>rows.reduce((s,r)=>s+r[which][`target_hits_at_${k}`],0);
+  const prefixBefore=rows.filter(r=>r.mechanism.non_target_prefix_precedes_first_target);
+  return {
+    cases:total,
+    observed_volume:volume,
+    current:{
+      any_parent_at_1_pct:pct(countAt('current',1),total),any_parent_at_3_pct:pct(countAt('current',3),total),any_parent_at_5_pct:pct(countAt('current',5),total),any_parent_at_10_pct:pct(countAt('current',10),total),
+      weighted_any_parent_at_1_pct:pct(weightedAt('current',1),volume),weighted_any_parent_at_3_pct:pct(weightedAt('current',3),volume),weighted_any_parent_at_5_pct:pct(weightedAt('current',5),volume),weighted_any_parent_at_10_pct:pct(weightedAt('current',10),volume),
+      micro_distinct_parent_recall_at_5_pct:pct(hits('current',5),targetTotal),micro_distinct_parent_recall_at_10_pct:pct(hits('current',10),targetTotal),
+      no_parent_visible:rows.filter(r=>r.current.first_target_rank===null).length,
+      non_target_prefix_precedes_first_target_cases:prefixBefore.length,
+      weighted_non_target_prefix_precedes_first_target_pct:pct(prefixBefore.reduce((s,r)=>s+r.observed_count,0),volume)
+    },
+    exact_excluded_title_parent_route_counterfactual:{
+      any_parent_at_1_pct:pct(countAt('routed',1),total),any_parent_at_3_pct:pct(countAt('routed',3),total),any_parent_at_5_pct:pct(countAt('routed',5),total),any_parent_at_10_pct:pct(countAt('routed',10),total),
+      weighted_any_parent_at_1_pct:pct(weightedAt('routed',1),volume),weighted_any_parent_at_3_pct:pct(weightedAt('routed',3),volume),weighted_any_parent_at_5_pct:pct(weightedAt('routed',5),volume),weighted_any_parent_at_10_pct:pct(weightedAt('routed',10),volume),
+      micro_distinct_parent_recall_at_5_pct:pct(hits('routed',5),targetTotal),micro_distinct_parent_recall_at_10_pct:pct(hits('routed',10),targetTotal)
+    }
+  };
+}
+
+async function main(){
+  const a=args(),population=JSON.parse(fs.readFileSync(a.cases,'utf8'));
+  if(!Array.isArray(population.cases)||population.cases.length!==205)throw new Error(`expected 205 population cases, got ${population.cases?.length}`);
+  const response=await fetch(YV_URL);if(!response.ok)throw new Error(`YV source HTTP ${response.status}`);
+  const bytes=Buffer.from(await response.arrayBuffer()),sha=hash(bytes);if(sha!==YV_SHA)throw new Error(`YV source drift ${sha}`);
+  const items=JSON.parse(bytes.toString('utf8')).data;if(!Array.isArray(items))throw new Error('YV data missing');
+  const engine=new CurrentYv(items),occupationRows=items.filter(x=>x.type==='occupation-name'),occupationByLabel=new Map(occupationRows.map(x=>[norm(x.preferred_label),x])),occupationById=new Map(occupationRows.map(x=>[x.id,x])),detail=[];
+  for(const c of population.cases){
+    const parents=c.target_parent_labels.map(label=>occupationByLabel.get(norm(label)));
+    const missing=c.target_parent_labels.filter(label=>!occupationByLabel.has(norm(label)));if(missing.length)throw new Error(`${c.query}: mapped parent labels absent from published YV: ${missing.join(', ')}`);
+    const targetIds=new Set(parents.map(x=>x.id)),currentRows=engine.search(c.query,50),routedRows=routedResults(currentRows,targetIds,occupationById),current=measure(currentRows,targetIds),routed=measure(routedRows,targetIds);
+    const preceding=current.first_target_rank===null?currentRows:currentRows.slice(0,current.first_target_rank-1);
+    const nonTargetPrefixPrecedes=Boolean(current.first_target_rank!==null&&preceding.some(r=>!targetIds.has(discoveryOccupationId(r))&&r.search_lane==='direct'&&norm(r.preferred_label).startsWith(norm(c.query))));
+    detail.push({query:c.query,reason:c.reason,observed_count:Number(c.observed_count),target_parent_count:targetIds.size,target_parent_ids:[...targetIds],current,routed,mechanism:{non_target_prefix_precedes_first_target:nonTargetPrefixPrecedes,rows_before_first_target:current.first_target_rank===null?currentRows.length:current.first_target_rank-1,non_target_prefix_rows_before_first_target:preceding.filter(r=>!targetIds.has(discoveryOccupationId(r))&&r.search_lane==='direct'&&norm(r.preferred_label).startsWith(norm(c.query))).length}});
+  }
+  const byReason={};for(const reason of [...new Set(detail.map(x=>x.reason))].sort())byReason[reason]=summarize(detail.filter(x=>x.reason===reason));
+  const worst=[...detail].filter(x=>x.current.first_target_rank===null||x.current.first_target_rank>1).sort((a,b)=>b.observed_count-a.observed_count).slice(0,30).map(x=>({query:x.query,reason:x.reason,observed_count:x.observed_count,target_parent_count:x.target_parent_count,current_first_target_rank:x.current.first_target_rank,routed_first_target_rank:x.routed.first_target_rank,non_target_prefix_precedes_first_target:x.mechanism.non_target_prefix_precedes_first_target,current_top5:x.current.top10.slice(0,5)}));
+  const result={schema_version:2,taxonomy_version:31,track:'1-current-yv-kv-findability',role:'complete generator-excluded exact-title ranking diagnostic',selector_contract:{yv_commit:YV_COMMIT,yv_search_utils_blob:YV_SEARCH_UTILS_BLOB,fuse_js_version:FUSE_VERSION},source:{yv_url:YV_URL,yv_sha256:sha,generator_commit:population.generator_commit,query_corpus_sha256:population.query_corpus_sha256,cases:detail.length},interpretation_guardrails:['generator-mapped occupation parents are routing/context evidence, not proof that every parent is equally user-intended','the counterfactual is exact excluded-title only; it does not globally prefer occupation-name over job-title results','observed_count is exact-query frequency and does not prove selection or satisfaction','micro parent recall counts distinct generator-mapped occupation identities, not duplicate YV rows that happen to route to the same parent'],summary:summarize(detail),by_reason:byReason,highest_volume_current_rank_failures:worst,detail};
+  fs.mkdirSync('artifacts',{recursive:true});fs.writeFileSync(a.output,JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify({summary:result.summary,by_reason:result.by_reason,highest_volume_current_rank_failures:worst.slice(0,15)},null,2));
+}
 await main();
