@@ -1,0 +1,48 @@
+name: Freeze training skill benchmark once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/build_training_skill_validation_benchmark.py
+      - .github/workflows/freeze-training-skill-benchmark-once.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  freeze:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build pinned source-attested benchmark
+        run: |
+          rm -rf /tmp/training-skill-benchmark
+          python scripts/build_training_skill_validation_benchmark.py --output-dir /tmp/training-skill-benchmark
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          m=json.loads(Path('/tmp/training-skill-benchmark/manifest.json').read_text())
+          assert m['cases']==76
+          assert m['unique_p80_skills']==76
+          assert m['primary_descriptive_nonleaky_cases']==63
+          assert m['source_sha256']=='fea97867a1225e078d28ab9b0772f6a37f92b37c3c6c0d0e886ae65e9d79361c'
+          PY
+      - name: Freeze before retrieval evaluation
+        run: |
+          mkdir -p research/benchmark/v31/training-skill-validation
+          cp /tmp/training-skill-benchmark/cases.jsonl research/benchmark/v31/training-skill-validation/cases.jsonl
+          cp /tmp/training-skill-benchmark/manifest.json research/benchmark/v31/training-skill-validation/manifest.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/benchmark/v31/training-skill-validation
+          if git diff --cached --quiet; then echo 'already frozen'; exit 0; fi
+          git commit -m 'research: freeze manual-mapping skill validation benchmark'
+          git push origin HEAD:main
