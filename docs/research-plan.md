@@ -35,6 +35,30 @@ KV: Hittar du inte kompetensen? [Beskriv kompetensen / vad du kan göra]
 
 The result remains exact canonical/product-valid YV/KV identities. `Inget av dessa` / abstention is a first-class successful outcome. A nearest neighbour is not proof that a valid match exists.
 
+### 2.1 Pareto / simple-first delivery principle
+
+The semantic feature is **not required to solve the full taxonomy long tail in v0**. The existing lexical picker remains the complete deterministic fallback over the product's canonical destination universe. Semantic retrieval may start with a narrower confidence envelope and abstain outside it.
+
+Product/research priority is therefore:
+
+```text
+high-demand + high-confidence + cheap-to-explain cases
+→ measure real incremental value
+→ add the smallest next capability that fixes a material residual
+→ defer rare/weakly evidenced tail until data shows it matters
+```
+
+Where real demand data exists, optimise the first release for cumulative user value rather than equal concept coverage. YV can use measured search frequency as a demand signal. KV currently lacks equivalent query→skill demand telemetry, so source-supported/common product contexts may be used only as an explicit proxy, never mislabeled as traffic.
+
+This creates two benchmark views:
+
+1. **Pareto/product-value view** — weighted toward common/high-confidence use where demand evidence exists;
+2. **safety/regression view** — small explicit slices for ambiguity, excluded routes, hard negatives and abstention so weighted metrics cannot hide dangerous failures.
+
+Long-tail recall remains measurable but is not a v0 launch gate. A rare concept failing semantic retrieval is acceptable when lexical retrieval still works and semantic search abstains safely.
+
+Complexity has a burden of proof. A new source, retrieval lane, model, reranker or deployment component is admitted only if it produces a material measured gain on the Pareto view or fixes a defined safety/regression failure. If two configurations perform similarly, prefer the one with fewer sources, rules, models and moving parts.
+
 ## 3. Architectural hypothesis
 
 The feature is larger than "put embeddings on autocomplete".
@@ -564,7 +588,11 @@ Raw public JobSearch Trends lineage is now audited end-to-end. It does not reope
 
 ## 10. Research Gate 2 — judged relevance benchmark
 
-Build separate but structurally compatible YV and KV suites. Initial target: roughly 1,000–3,000 judged queries, expanded where strata expose weakness.
+Build separate but structurally compatible YV and KV suites.
+
+Start with a **compact 500–1,000 case decision benchmark**, intentionally biased toward source-truth, common/high-value and easy-to-adjudicate cases. Expand toward 1,000–3,000 only when measured residuals, uncertainty or safety slices justify it. Do not spend early benchmark budget trying to make every rare target equally represented.
+
+The initial benchmark should be sufficient to choose between simple baselines. It is not a census of the taxonomy.
 
 Shared strata:
 
@@ -578,7 +606,7 @@ Shared strata:
 - task descriptions;
 - tools/method descriptions;
 - long descriptions;
-- rare/long-tail concepts;
+- rare/long-tail concepts (small sentinel slice initially; expand only if value/risk warrants);
 - hard negatives/confusable siblings;
 - broad/underspecified intent;
 - deliberate no-valid-match / abstention.
@@ -798,17 +826,18 @@ After the repository transfer, GitHub-hosted jobs were failing before their firs
 ### Now — Gate 2
 
 - [x] benchmark schema and semantic validator contract
-- [ ] bounded raw JobSearch Trends date-range adapter + exact dated-file manifest + recency/long-tail strata
-- [ ] targeted source-gap inventory against measured weak strata: AF catalog first, ESCO through existing typed mappings, Sveriges dataportal as discovery index; admit a source only with explicit join/provenance semantics
-- [ ] high-confidence judged seed cases
+- [ ] define the compact Pareto decision slice: demand-weighted where real demand exists, otherwise explicit source-strength/context proxy
+- [ ] freeze 500–1,000 high-confidence/source-truth seed cases sufficient to compare simple baselines
 - [ ] automatic strata construction only where source truth permits
-- [ ] 541-title ambiguity corpus/sample
-- [ ] 205-title excluded-YV routing corpus/sample
-- [ ] observed unbound-query manually judged sample
-- [ ] bounded provenance-safe ad-language samples
-- [ ] no-match and hard-negative corpus
+- [ ] compact safety/regression slices: multi-parent ambiguity, excluded-YV routing, hard negatives and no-match/abstention
+- [ ] small manually judged sample from high-volume unbound observed language
+- [ ] **defer** full raw JobSearch Trends date-range/long-tail adapter until the first simple baseline shows that recency/long-tail materially changes decisions
+- [ ] **defer** broad source-gap enrichment (ESCO text, AF catalog, Sveriges dataportal discovery, ad-language expansion) until benchmark residuals identify which gaps are worth paying complexity for
+- [ ] bounded provenance-safe ad-language sample only if needed by the first measured residuals
 
 ### Then — Gate 3
+
+First decision: run the **smallest useful baseline** on the compact Pareto benchmark before adding more data engineering.
 
 - [ ] A–D non-neural baseline
 - [ ] E–G evidence layers separately
@@ -861,6 +890,8 @@ Resolved answers remain listed when useful.
 31. How much vocabulary and recency signal is lost by the YV `>=10/day` and `>=100 cumulative` filters, and which raw-date windows are most useful for Gate-2 sampling?
 32. How much incremental Swedish semantic text do mapped ESCO v1.2.1 concepts add specifically to the 244 weak YV occupations and 1,410 critical-sparse KV skills?
 33. How much of the critical-sparse KV population is covered by AF's manually mapped labour-market-training learning outcomes and other explicitly curated domain sources?
+34. What cumulative share of real YV demand can a simple configuration solve at acceptable precision before long-tail enrichment is added?
+35. What is the smallest evidence/retrieval configuration whose Pareto performance is statistically/materially indistinguishable from more complex alternatives?
 
 ## 20. Research discipline
 
