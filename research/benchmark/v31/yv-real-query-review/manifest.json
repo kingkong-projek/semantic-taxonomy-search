@@ -1,0 +1,21 @@
+{
+  "authority_boundary": "Observed query frequency and C-ranked candidates are not labels. Zero lexical evidence explicitly abstains. Human/domain review is required for SINGLE/AMBIGUOUS/NO_MATCH and MUST/ACCEPTABLE/MUST_NOT judgments.",
+  "queries": 50,
+  "schema_version": 3,
+  "selected_query_volume": 742033566,
+  "selected_share_of_all_frozen_query_volume_pct": 23.661,
+  "selected_share_of_unbound_query_volume_pct": 35.117,
+  "selection_rule": "top 50 highest-frequency unbound terms recomputed from pinned Yrkesväljaren query corpus; no semantic filtering",
+  "simple_C_zero_evidence_queries": 29,
+  "simple_C_zero_evidence_query_volume": 367240861,
+  "simple_C_zero_evidence_share_of_selected_volume_pct": 49.491,
+  "sources": {
+    "generator_commit": "6dd9e4737d7db3cb2709f8082808b88e5c89ed6e",
+    "pareto": "research/coverage/v31/pareto-demand-aggregate.json",
+    "query_aggregate": "research/coverage/v31/yv-query-language-aggregate.json",
+    "query_corpus_sha256": "01a2550473091b06fdaaf450015eeea13b301471f1c78f5fb0dc8d3499645ae2",
+    "taxonomy_sha256": "634fd9d848a172747e54e3e487160a912ae6c0fcb8219c50998767c8c9aacbcc"
+  },
+  "status": "PENDING_HUMAN_REVIEW",
+  "taxonomy_version": 31
+}

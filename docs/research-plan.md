@@ -852,7 +852,8 @@ After the repository transfer, GitHub-hosted jobs were failing before their firs
 - [x] freeze the **950-case P80 source-truth core benchmark**: 333 YV + 617 KV cases over all 475 P80 targets; preferred labels + 330 real canonical-definition cases + 145 alternative-label cases; validator-clean and frozen in repo
 - [x] automatic source-truth strata construction for preferred labels, real canonical definitions and alternative labels; no corpus/model/synthetic signal is auto-promoted to destination truth
 - [ ] compact safety/regression slices: multi-parent ambiguity, excluded-YV routing, hard negatives and no-match/abstention
-- [ ] small manually judged sample from high-volume unbound observed language
+- [x] prepare deterministic **top-50 high-volume unbound YV review packet** from the pinned real query corpus: 742.0M searches = 23.661% of all volume / 35.117% of unbound volume; remains fully `PENDING_HUMAN_REVIEW`
+- [ ] adjudicate the prepared top-50 real-query packet into occupation intent vs other/no-match and MUST/ACCEPTABLE/MUST_NOT identities; do not score it before review
 - [ ] **defer** full raw JobSearch Trends date-range/long-tail adapter until the first simple baseline shows that recency/long-tail materially changes decisions
 - [ ] **defer** broad source-gap enrichment (ESCO text, AF catalog, Sveriges dataportal discovery, ad-language expansion) until benchmark residuals identify which gaps are worth paying complexity for
 - [ ] bounded provenance-safe ad-language sample only if needed by the first measured residuals
@@ -861,12 +862,13 @@ After the repository transfer, GitHub-hosted jobs were failing before their firs
 
 First decision: run the **smallest useful baseline** on the compact Pareto benchmark before adding more data engineering.
 
-Preliminary source-truth result: A/B/C is complete on the 950-case P80 core. C (`preferred labels + real canonical definitions + canonical alternative labels`) reaches **100% top-1 and Recall@10 for both YV and KV** on this source-attested suite. This is an ingestion/retrieval result, not natural-paraphrase proof. The next decision-bearing step is the small manually judged real-query + safety slice before adding D/ESCO or neural retrieval.
+Preliminary source-truth result: A/B/C0 is complete on the 950-case P80 core. C0 (`preferred labels + real canonical definitions + canonical alternative labels`) reaches **100% top-1 and Recall@10 for both YV and KV** on this source-attested suite. C0 intentionally does **not** yet include the planned C layer's product-title/retrieval vocabulary. This is an ingestion/retrieval result, not natural-paraphrase proof. The next decision-bearing step is the small manually judged real-query + safety slice before adding D/ESCO or neural retrieval.
 
 Evidence: `docs/findings/p80-lexical-ablation-v31.md` and `research/evaluation/v31/p80-lexical-ablation.json`.
 
-- [x] preliminary A–C source-truth lexical ablation on P80 core
-- [ ] D typed graph/ESCO only if the real-query/safety residual justifies it; do not add D merely to complete an ablation ladder
+- [x] preliminary **A/B/C0** source-truth lexical ablation on P80 core, where C0 = preferred labels + real canonical definitions + canonical alternative labels
+- [ ] complete planned C's product-title/retrieval-vocabulary portion only where the real-query/safety slice demonstrates value; do not conflate C0 with full planned C
+- [ ] D typed graph/ESCO only if the adjudicated real-query/safety residual justifies it; do not add D merely to complete an ablation ladder
 - [ ] E–G evidence layers separately
 - [ ] H vectors/reranking in shadow evaluation
 - [ ] local compiled vs central API deployment benchmark
