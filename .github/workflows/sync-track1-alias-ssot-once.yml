@@ -1,0 +1,43 @@
+name: Sync Track 1 alias SSOT once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/sync-track1-alias-ssot-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Insert corrected Track 1 status into research plan
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('docs/research-plan.md')
+          text = p.read_text()
+          anchor = "Skill independent validation: the first source-attested natural-description skill benchmark exposed a real gap that canonical C0 does not solve."
+          block = """Current-selector lexical-gap audit (Track 1): a corrected source-attested replay of the current v31 YV/KV selectors shows that ordinary known-term lookup is already strong in YV but has a cheap canonical-vocabulary residual in KV. After excluding ambiguous alias surfaces and aliases colliding with current preferred labels, YV has **357** strict current canonical alias cases: **318** already hit@5 and **39** deterministic exact-alias rescues. KV has **1,279** strict cases: **1,056** already hit@5 (**82.565%**) and **223** deterministic rescues. An exact normalized current `alternative_labels`/`hidden_labels` lane before fuzzy therefore closes this measured slice to 100% without semantic retrieval. `replaced_by` history remains migration/routing evidence and is not promoted to synonymy; ambiguous surfaces fail closed. The product implementation on `fix/canonical-alias-search` passes the full quality/build/package chain on self-hosted `garderob`, including all versioned data-package builds. GitHub PR #38 is a draft verification surface only and must not be merged; YV/KV `main` remains governed by the protected GitLab branch and its sync process.\n\nEvidence: `docs/findings/track1-canonical-alias-reachability-v31.md` and `research/evaluation/v31/track1-canonical-alias-rescue.json`.\n\n"""
+          if block in text:
+              raise SystemExit(0)
+          if anchor not in text:
+              raise SystemExit('research-plan anchor not found')
+          p.write_text(text.replace(anchor, block + anchor, 1))
+          PY
+      - name: Commit SSOT update
+        shell: bash
+        run: |
+          if git diff --quiet -- docs/research-plan.md; then exit 0; fi
+          git config user.name github-actions-bot
+          git config user.email github-actions-bot@users.noreply.github.com
+          git add docs/research-plan.md
+          git commit -m "docs: sync Track 1 canonical alias decision"
+          git push origin HEAD:main
