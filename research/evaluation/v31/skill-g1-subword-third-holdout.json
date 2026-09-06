@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 31,
+  "benchmark_sha256": "2903954d7b68cac0dbdd0b7e841a1222938a2e2670e366444cd63b7f12ed3e29",
+  "evidence_class": "fixed-lane validation on a frozen third holdout; character-4gram N=4 and lane ranking existed before holdout construction; no fusion selected",
+  "holdout": {"queries": 26, "unique_target_skills": 17, "max_queries_per_skill": 2},
+  "validated_g1": {"hits_at_5": 20, "n": 26, "hit5_pct": 76.923, "wilson_95_pct": [57.95, 88.97]},
+  "character_4gram_lane": {"hits_at_5": 20, "n": 26, "hit5_pct": 76.923, "wilson_95_pct": [57.95, 88.97]},
+  "oracle_union": {"hits_at_5": 21, "n": 26, "hit5_pct": 80.769, "wilson_95_pct": [62.12, 91.49]},
+  "paired": {"both_hit": 19, "g1_only_hit": 1, "subword_only_hit": 1, "neither_hit": 5, "discordant": 2},
+  "interpretation": "4-gram retrieval is complementary but not a net standalone improvement on this set. One strong Cable installations rescue is offset by one strong Measurement technique regression. Do not add a subword runtime lane or choose a fusion from this result.",
+  "manual_adjudication": "research/evaluation/v31/skill-g1-third-holdout-adjudication.json",
+  "statistics_note": "query-level Wilson intervals are descriptive; queries cluster over 17 targets. Raw metrics are not retroactively changed after adjudication.",
+  "workflow_run_id": 34062427816,
+  "artifact_id": 9997887725,
+  "artifact_zip_sha256": "f67c6785a4251b826c2c3f345d4cd5c3de37252a5857471e740fac62304ab3d3"
+}
