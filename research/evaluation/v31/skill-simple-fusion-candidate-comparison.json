@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 31,
+  "experiment_role": "final development comparison of one-slot deterministic candidates; training benchmark was already opened before candidate selection",
+  "baseline": {
+    "name": "KV-C0",
+    "primary_cases": 63,
+    "primary_discovery_hit_at_5_pct": 46.032,
+    "primary_weighted_discovery_hit_at_5_pct": 57.083,
+    "canonical_source_truth_cases": 617,
+    "canonical_top1_pct": 100.0,
+    "canonical_discovery_hit_at_5_pct": 100.0
+  },
+  "candidates": {
+    "KV-F1-close-one-slot": {
+      "lane_documents": 105,
+      "primary_discovery_hit_at_5_pct": 50.794,
+      "primary_weighted_discovery_hit_at_5_pct": 60.239,
+      "canonical_top1_pct": 100.0,
+      "canonical_discovery_hit_at_5_pct": 100.0,
+      "decision": "only surviving minimal one-slot development candidate"
+    },
+    "KV-F1-calculated-one-slot": {
+      "lane_documents": 225,
+      "primary_discovery_hit_at_5_pct": 44.444,
+      "primary_weighted_discovery_hit_at_5_pct": 45.960,
+      "canonical_top1_pct": 100.0,
+      "canonical_discovery_hit_at_5_pct": 100.0,
+      "decision": "reject fusion; inserted candidate displaces more correct C0 top-5 results than it rescues"
+    }
+  },
+  "fusion_policy": "preserve C0 rank 1; allow exactly one candidate-lane identity into the remaining top-5 slots; fill the rest from C0",
+  "identity_boundary": "only AF v31 skill identities are emitted",
+  "runtime_implication": "the surviving candidate is deterministic and build-time compilable; no API or ML is required",
+  "decision": {
+    "development_candidate": "KV-F1-close-one-slot",
+    "accepted_for_production": false,
+    "reason": "close-match one-slot is the only tested minimal fusion that improves the primary development slice without canonical regression; further cheaper F/G evidence should be diagnosed before H, and any adopted retrieval configuration still requires independent validation"
+  }
+}
