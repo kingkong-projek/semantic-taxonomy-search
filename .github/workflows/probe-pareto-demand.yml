@@ -13,7 +13,7 @@ permissions:
 jobs:
   probe:
     runs-on: [self-hosted, Linux, X64]
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - name: Probe aggregate demand APIs
@@ -28,57 +28,51 @@ jobs:
           out = Path('artifacts/pareto-demand-probe')
           summary = {}
 
-          def get(name, url):
-              req = urllib.request.Request(url, headers={'Accept':'application/json','User-Agent':'semantic-taxonomy-search-pareto-probe/0.2'})
+          def get(name, base, params=None):
+              url = base
+              if params:
+                  url += '?' + urllib.parse.urlencode(params)
+              req = urllib.request.Request(url, headers={'Accept':'application/json','User-Agent':'semantic-taxonomy-search-pareto-probe/0.3'})
               try:
-                  with urllib.request.urlopen(req, timeout=90) as r:
+                  with urllib.request.urlopen(req, timeout=120) as r:
                       body = r.read()
                       summary[name] = {'url': url, 'status': r.status, 'bytes': len(body)}
                       (out / f'{name}.json').write_bytes(body)
               except Exception as exc:
                   summary[name] = {'url': url, 'error': repr(exc)}
 
-          jobsearch = 'https://jobsearch.api.jobtechdev.se/search'
-          for name, params in {
-              'jobsearch_occupation_name_stats': [('limit','1'), ('stats','occupation-name'), ('stats.limit','30')],
-              'jobsearch_skill_stats': [('limit','1'), ('stats','skill'), ('stats.limit','30')],
-          }.items():
-              get(name, jobsearch + '?' + urllib.parse.urlencode(params))
-
+          get('jobsearch_occupation_name_stats', 'https://jobsearch.api.jobtechdev.se/search', [('limit','1'), ('stats','occupation-name'), ('stats.limit','30')])
           get('jobsearch_swagger', 'https://jobsearch.api.jobtechdev.se/swagger.json')
           get('historical_swagger', 'https://historical.api.jobtechdev.se/swagger.json')
+          get('historical_occupation_name_stats', 'https://historical.api.jobtechdev.se/stats', [('taxonomy-type','occupation-name'), ('stats-by','concept_id'), ('limit','10000')])
+          get('historical_skill_stats', 'https://historical.api.jobtechdev.se/stats', [('taxonomy-type','skill'), ('stats-by','concept_id'), ('limit','10000')])
+          get('historical_occ_and_skill_stats', 'https://historical.api.jobtechdev.se/stats', [('taxonomy-type','occupation-name'), ('taxonomy-type','skill'), ('stats-by','concept_id'), ('limit','10000')])
 
           (out / 'probe-summary.json').write_text(json.dumps(summary, ensure_ascii=False, indent=2, sort_keys=True)+'\n', encoding='utf-8')
           print(json.dumps(summary, ensure_ascii=False, indent=2, sort_keys=True))
           PY
-      - name: Inspect stats contracts and returned values
+      - name: Summarize demand distributions
         shell: bash
         run: |
           python3 - <<'PY'
           import json
           from pathlib import Path
           out=Path('artifacts/pareto-demand-probe')
-          result={}
-          for name in ('jobsearch_swagger','historical_swagger'):
-              p=out/f'{name}.json'
-              if not p.exists(): continue
-              doc=json.loads(p.read_text(encoding='utf-8'))
-              rows=[]
-              for path, methods in doc.get('paths',{}).items():
-                  for method, spec in methods.items():
-                      if not isinstance(spec,dict): continue
-                      for param in spec.get('parameters',[]):
-                          pname=str(param.get('name',''))
-                          if 'stat' in pname.lower() or pname=='skill':
-                              rows.append({'path':path,'method':method,'parameter':pname,'enum':param.get('enum') or (param.get('items') or {}).get('enum'),'description':param.get('description')})
-              result[name]=rows
+          summary={}
+
+          def walk(obj, depth=0):
+              if depth>4: return None
+              if isinstance(obj,dict): return {k:walk(v,depth+1) for k,v in list(obj.items())[:20]}
+              if isinstance(obj,list): return [walk(v,depth+1) for v in obj[:5]]
+              return obj
+
           for p in sorted(out.glob('*_stats.json')):
               try: doc=json.loads(p.read_text(encoding='utf-8'))
-              except Exception: continue
-              stats=doc.get('stats') if isinstance(doc,dict) else None
-              result[p.name]={'stats':stats}
-          (out/'contract-summary.json').write_text(json.dumps(result,ensure_ascii=False,indent=2,sort_keys=True)+'\n',encoding='utf-8')
-          print(json.dumps(result,ensure_ascii=False,indent=2,sort_keys=True))
+              except Exception as exc:
+                  summary[p.name]={'error':repr(exc)}; continue
+              summary[p.name]={'shape_sample':walk(doc)}
+          (out/'distribution-shape-summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2,sort_keys=True)+'\n',encoding='utf-8')
+          print(json.dumps(summary,ensure_ascii=False,indent=2,sort_keys=True)[:20000])
           PY
       - uses: actions/upload-artifact@v4
         with:
