@@ -75,13 +75,17 @@ The first YV audit materially narrowed the problem. Ordinary multi-context dropd
 
 Evidence: `docs/findings/current-selector-failure-audit-v31.md` and `research/coverage/v31/current-selector-failure-audit.json`.
 
-### 2.1.1 Two-track research order — Track 1 first
+### 2.1.1 Two-track research order — Track 2 active; Track 1 parked
 
-The work is now deliberately split into two separate tracks. They must not be blended into one residual metric.
+The work remains split into two separate tracks. They must not be blended into one residual metric.
 
-**Track 1 — current YV/KV findability (NOW; bounded sidetrack).** Establish whether ordinary selectors already do their intended job well enough, and classify only material product-native failures that would otherwise be misdiagnosed as a need for semantic search. This includes canonical vocabulary reachability, ranking/recognisability, broad-vs-specific variants, job-title/occupation context, typo/fuzzy behaviour, interaction, and YV→KV context/coherence. Track 1 may produce evidence or product-branch proposals, but YV/KV implementation is outside this repository's semantic-search abstraction. Run this track only to a compact decision boundary before resuming semantic work.
+**Track 1 — current YV/KV findability (PARKED; bounded sidetrack).** The product audit already produced useful baseline evidence and branch-verified product findings, but YV/KV implementation is outside this repository's semantic-search abstraction. By explicit project decision on 2026-09-06, do not continue expanding this sidetrack now. Its remaining exit criteria stay recorded below so the audit can be resumed later without losing state.
 
-**Track 2 — semantic description fallback (PAUSED).** Build and evaluate the capability behind `Beskriv ditt yrke` / `Beskriv din kompetens` for users who still cannot select a suitable existing concept through ordinary lookup. Existing C0/C1/C2/F1 and frozen description/synthetic-query evidence is retained, but no new model/source/tuning decision is allowed to be driven by Track 2 until Track 1 exits. If description search still yields no acceptable existing identity, the consumer may offer `Ge förslag`; proposal handling itself is outside the semantic retrieval core.
+**Track 2 — semantic description fallback (ACTIVE).** Build and evaluate the capability behind `Beskriv ditt yrke` / `Beskriv din kompetens` for users who still cannot select a suitable existing concept through ordinary lookup. If description search still yields no acceptable existing identity, the consumer may offer `Ge förslag`; proposal handling itself is outside the semantic retrieval core.
+
+Current Track-2 result: occupation discovery remains on the simple deterministic C2 boundary because no measured fresh-holdout residual has justified more complexity. Skill discovery has a new independently validated candidate, **`KV-G1-4slot`**: keep canonical C0 at rank 1, then admit up to four candidates from a second deterministic BM25 lane enriched only with other human-mapped AF labour-market-training descriptions. On the first 35-case natural-description holdout, Discovery Hit@5 improves from **31.429% to 88.571%**. On a separately frozen 20-case blind holdout, it improves from **30.0% to 85.0%** (occurrence-proxy weighted **19.639% to 89.331%**) while the frozen 617-case canonical regression remains **100% top-1 and 100% Hit@5**. This is evidence for capability on measured source-attested descriptions, not a production-traffic accuracy claim.
+
+Evidence: `docs/findings/skill-training-language-validated-v31.md` and `research/evaluation/v31/skill-training-language-validated.json`.
 
 Track 1 exits only when all of the following are true:
 
@@ -135,6 +139,10 @@ Long-tail recall remains measurable but is not a v0 launch gate. A rare concept 
 
 Complexity has a burden of proof. A new source, retrieval lane, model, reranker or deployment component is admitted only if it produces a material measured gain on the Pareto view or fixes a defined safety/regression failure. If two configurations perform similarly, prefer the one with fewer sources, rules, models and moving parts.
 
+**Experimental discipline: do not build the palace first.** Every step should be the smallest falsifiable increment over a frozen baseline. Measure it, keep it only if it earns its complexity, and let negative results delete entire ideas. Do not pre-build general frameworks, shard hierarchies, model-serving abstractions or future-proof extension points merely because they may become useful later. A deliberately plain implementation is preferred when it answers the current decision question.
+
+Build-time work and runtime work have different budgets. Expensive offline analysis, model-assisted adjudication or future teacher-model generation is allowed when it can be provenance-preservingly distilled into a simpler static representation and independently validated. Such generated evidence never becomes canonical truth merely because a strong model produced it. Runtime complexity receives no credit for being sophisticated; the smallest validated student representation wins.
+
 ## 3. Architectural hypothesis
 
 The feature is larger than "put embeddings on autocomplete".
@@ -172,11 +180,17 @@ Current strongest data principle:
 
 > **Use existing semantics before manufacturing semantics.**
 
-Current deployment principle:
+Current deployment constraint:
 
-> **Compile semantics when practical; serve semantics where central iteration materially improves the product.**
+> **Frontend-only, build-time-first, low-end-mobile-first. Compile as much semantic work as practical before release; ordinary YV/KV pays zero semantic payload/runtime cost; lazy-load the smallest static fallback asset only after the user explicitly enters description mode.**
 
-Local/static versus API remains a deployment experiment, not a relevance-architecture decision.
+The current consuming architecture has no semantic search/inference API. API serving is therefore out of scope for v0 rather than an open experiment. Runtime must require no accelerator and must not depend on WebGPU, ONNX or a heavyweight local model. A future architecture change may revisit that boundary, but current relevance work must remain deployable as static assets plus deterministic browser computation.
+
+The validated KV student runtime now demonstrates the intended shape concretely. C0 and G1 BM25 statistics are precomputed at build time into one dual-score inverted index. Browser work is only normalization/tokenization, postings lookup, floating-point addition, a deterministic small sort and bounded fusion. The complete production-shaped dual index is **151,768 bytes gzip-9**, has zero runtime dependencies and is loaded only for `Beskriv din kompetens`. It reproduces the reference top-10 exactly on **649/649** frozen parity cases. `garderob` measures about **166 microseconds/query** as an implementation diagnostic; that timing is not a mobile SLA.
+
+Because the whole currently validated KV semantic payload is only about 152 kB compressed, **do not shard it now**. Chunking remains available if later measured evidence grows the asset enough to justify the extra requests/cache/complexity. Likewise, embeddings or local neural inference remain deferred until a relevance residual proves that the static student approach is insufficient.
+
+Evidence: `docs/findings/skill-g1-student-runtime-v31.md` and `research/evaluation/v31/skill-g1-student-runtime.json`.
 
 ## 4. Provenance classes
 
