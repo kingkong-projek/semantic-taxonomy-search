@@ -16,8 +16,8 @@ from typing import Any
 PRODUCTS = {"YV", "KV"}
 INTENTS = {"SINGLE", "AMBIGUOUS", "NO_MATCH"}
 QUERY_ORIGINS = {
-    "manual", "canonical_label", "alternative_label", "observed_query",
-    "ad_text", "legacy_label", "synthetic",
+    "manual", "canonical_label", "canonical_definition", "alternative_label",
+    "observed_query", "ad_text", "legacy_label", "synthetic",
 }
 ADJUDICATION = {"AUTO_HIGH_CONFIDENCE", "HUMAN_SINGLE", "HUMAN_DOUBLE", "PENDING"}
 PROVENANCE = {
@@ -211,8 +211,8 @@ def validate_case(case: Any) -> list[str]:
     if status in {"HUMAN_SINGLE", "HUMAN_DOUBLE"} and not has_human_truth:
         errors.append(f"{status} requires explicit human_judgment destination_ground_truth evidence")
     if status == "AUTO_HIGH_CONFIDENCE":
-        if case.get("query_origin") not in {"canonical_label", "alternative_label"}:
-            errors.append("AUTO_HIGH_CONFIDENCE is limited to canonical/alternative-label query origins")
+        if case.get("query_origin") not in {"canonical_label", "canonical_definition", "alternative_label"}:
+            errors.append("AUTO_HIGH_CONFIDENCE is limited to canonical labels, canonical definitions and alternative-label query origins")
         if not has_source_truth:
             errors.append("AUTO_HIGH_CONFIDENCE requires canonical/curated destination_ground_truth evidence")
     if status != "PENDING" and intent != "NO_MATCH" and not (has_human_truth or has_source_truth):
