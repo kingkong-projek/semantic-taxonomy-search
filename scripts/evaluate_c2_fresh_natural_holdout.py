@@ -2,7 +2,7 @@
 """Evaluate frozen C2 unchanged on the blinded fresh natural-query holdout."""
 from __future__ import annotations
 
-import argparse, hashlib, json
+import argparse, hashlib, json, re
 from collections import defaultdict
 from pathlib import Path
 from typing import Any
@@ -10,7 +10,13 @@ from typing import Any
 from evaluate_c2_job_title_router import build_c1_index, pct, read_jsonl, relation_parent_ids
 from evaluate_p80_lexical_ablation import expected_hash, fetch, norm
 from evaluate_pareto_c1 import BOUNDARY_IDS, p80_ids, rank_c1
-from evaluate_pareto_model_slice import observed_count
+
+COUNT_RE=re.compile(r"Observed count in frozen source review pool: ([0-9]+)\.")
+
+def observed_count(case: dict[str,Any]) -> int:
+    m=COUNT_RE.search(str(case.get('notes') or ''))
+    if not m: raise RuntimeError(f"case {case.get('id')} missing frozen observed count")
+    return int(m.group(1))
 
 
 def main() -> int:
