@@ -1,0 +1,42 @@
+name: Training skill validation measurement
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/measure_training_skill_validation.py
+      - research/coverage/v31/pareto-demand-aggregate.json
+      - .github/workflows/training-skill-validation-measurement.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  measure:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Measure manual training mapping coverage
+        run: python scripts/measure_training_skill_validation.py --output-dir artifacts/training-skill-validation-v31
+      - name: Sanity-check authority boundary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('artifacts/training-skill-validation-v31/report.json').read_text())
+          assert x['p80_skill_universe']==316
+          assert x['modules_with_nonempty_description_and_p80_mapping']>0
+          assert x['clean_candidate_modules_1_to_5_p80_targets']>0
+          print(json.dumps(x,ensure_ascii=False,indent=2,sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: training-skill-validation-v31
+          path: artifacts/training-skill-validation-v31/
+          if-no-files-found: error
+          retention-days: 30
