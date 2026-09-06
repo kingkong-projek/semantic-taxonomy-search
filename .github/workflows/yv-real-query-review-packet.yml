@@ -23,11 +23,22 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Checkout pinned Yrkesväljaren generator evidence
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/yv-generator
+          git init -q /tmp/yv-generator
+          git -C /tmp/yv-generator remote add origin https://gitlab.com/arbetsformedlingen/taxonomy-dev/backend/yrkesvaljaren.git
+          git -C /tmp/yv-generator fetch -q --depth 1 origin 6dd9e4737d7db3cb2709f8082808b88e5c89ed6e
+          git -C /tmp/yv-generator checkout -q --detach FETCH_HEAD
+          test "$(git -C /tmp/yv-generator rev-parse HEAD)" = "6dd9e4737d7db3cb2709f8082808b88e5c89ed6e"
+          printf '%s\n' "6dd9e4737d7db3cb2709f8082808b88e5c89ed6e" > /tmp/yv-generator/SOURCE_COMMIT.txt
       - name: Build pending human-review packet
         run: |
           python scripts/build_yv_real_query_review_packet.py \
             --version 31 \
             --limit 50 \
+            --source-dir /tmp/yv-generator \
             --output-dir artifacts/yv-real-query-review-v31
       - name: Validate packet remains unjudged
         run: |
@@ -38,6 +49,7 @@ jobs:
           manifest=json.loads(Path('artifacts/yv-real-query-review-v31/manifest.json').read_text(encoding='utf-8'))
           assert len(rows)==50
           assert manifest['status']=='PENDING_HUMAN_REVIEW'
+          assert manifest['sources']['generator_commit']=='6dd9e4737d7db3cb2709f8082808b88e5c89ed6e'
           assert all(r['adjudication']['status']=='PENDING_HUMAN_REVIEW' for r in rows)
           assert all(not r['adjudication']['must'] and not r['adjudication']['acceptable'] and not r['adjudication']['must_not'] for r in rows)
           print('validated', len(rows), 'unjudged rows')
