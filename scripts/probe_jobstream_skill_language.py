@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Bounded JobStream v2 probe for skill-field shape and provenance markers.
 
-Reads only the first N valid NDJSON ads (default 500) with a conservative byte cap.
+Reads at most N ads and at most a hard byte budget from the snapshot response. Supports
+NDJSON as well as a compact top-level JSON array without reading the full response.
 Does not persist ad text or ad IDs. Output is schema/coverage metadata only.
 """
 from __future__ import annotations
@@ -12,10 +13,9 @@ import hashlib
 import json
 import urllib.request
 from pathlib import Path
-from typing import Any
+from typing import Any, Iterator
 
 URL = "https://jobstream.api.jobtechdev.se/v2/snapshot"
-SENSITIVE_TEXT_KEYS = {"description", "headline", "application_details", "workplace_address"}
 PROVENANCE_KEYWORDS = ("source", "origin", "original", "enrich", "derived", "provider", "producer", "method", "model")
 
 
@@ -62,6 +62,85 @@ def safe_example(item: Any) -> Any:
     return out
 
 
+def iter_json_array(response: Any, max_bytes: int, state: dict[str, Any]) -> Iterator[dict[str, Any]]:
+    """Incrementally decode objects from a compact top-level JSON array.
+
+    Never calls response.read() for more than the remaining byte budget. The decoder keeps
+    only the unconsumed suffix in memory. If the root is not an array, the probe is marked
+    inconclusive rather than attempting to buffer the whole document.
+    """
+    decoder = json.JSONDecoder()
+    buffer = ""
+    root_seen = False
+    ended = False
+    while state["bytes_read"] < max_bytes and not ended:
+        remaining = max_bytes - state["bytes_read"]
+        chunk = response.read(min(65_536, remaining))
+        if not chunk:
+            state["eof"] = True
+            break
+        state["bytes_read"] += len(chunk)
+        buffer += chunk.decode("utf-8")
+
+        if not root_seen:
+            stripped = buffer.lstrip()
+            if not stripped:
+                continue
+            state["root_token"] = stripped[0]
+            if stripped[0] != "[":
+                state["parse_status"] = "unsupported_non_array_json_root"
+                return
+            buffer = stripped[1:]
+            root_seen = True
+
+        while True:
+            buffer = buffer.lstrip()
+            while buffer.startswith(","):
+                buffer = buffer[1:].lstrip()
+            if buffer.startswith("]"):
+                ended = True
+                state["parse_status"] = "complete_array"
+                break
+            if not buffer:
+                break
+            try:
+                value, end = decoder.raw_decode(buffer)
+            except json.JSONDecodeError:
+                # Most commonly an object split across chunks. Keep the suffix and read more.
+                break
+            buffer = buffer[end:]
+            if isinstance(value, dict):
+                state["decoded_values"] += 1
+                yield value
+            else:
+                state["non_object_values"] += 1
+
+    if root_seen and not ended and state["bytes_read"] >= max_bytes:
+        state["parse_status"] = "byte_budget_reached"
+
+
+def iter_ndjson(response: Any, max_bytes: int, state: dict[str, Any]) -> Iterator[dict[str, Any]]:
+    while state["bytes_read"] < max_bytes:
+        remaining = max_bytes - state["bytes_read"]
+        # readline(size) bounds a pathological single line as well.
+        line = response.readline(remaining)
+        if not line:
+            state["eof"] = True
+            break
+        state["bytes_read"] += len(line)
+        try:
+            value = json.loads(line)
+        except json.JSONDecodeError:
+            state["invalid_lines"] += 1
+            continue
+        if isinstance(value, dict):
+            state["decoded_values"] += 1
+            yield value
+        else:
+            state["non_object_values"] += 1
+    state["parse_status"] = "byte_budget_reached" if state["bytes_read"] >= max_bytes else "complete_ndjson"
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--max-ads", type=int, default=500)
@@ -71,8 +150,6 @@ def main() -> int:
 
     req = urllib.request.Request(URL, headers={"User-Agent": "semantic-taxonomy-search-research/1.0", "Accept": "application/x-ndjson,application/json"})
     valid_ads = 0
-    bytes_read = 0
-    invalid_lines = 0
     top_keys = collections.Counter()
     requirement_shapes = {"must_have": collections.Counter(), "nice_to_have": collections.Counter()}
     skill_shapes = {"must_have": collections.Counter(), "nice_to_have": collections.Counter()}
@@ -82,8 +159,18 @@ def main() -> int:
     skill_items = {"must_have": 0, "nice_to_have": 0}
     examples = {"must_have": [], "nice_to_have": []}
     response_meta: dict[str, Any] = {}
+    parse_state: dict[str, Any] = {
+        "bytes_read": 0,
+        "decoded_values": 0,
+        "non_object_values": 0,
+        "invalid_lines": 0,
+        "root_token": None,
+        "parse_status": "not_started",
+        "eof": False,
+    }
 
     with urllib.request.urlopen(req, timeout=45) as response:
+        content_type = str(response.headers.get("Content-Type") or "").casefold()
         response_meta = {
             "status": getattr(response, "status", None),
             "content_type": response.headers.get("Content-Type"),
@@ -92,21 +179,8 @@ def main() -> int:
             "etag": response.headers.get("ETag"),
             "last_modified": response.headers.get("Last-Modified"),
         }
-        while valid_ads < args.max_ads and bytes_read < args.max_bytes:
-            line = response.readline()
-            if not line:
-                break
-            bytes_read += len(line)
-            if bytes_read > args.max_bytes:
-                break
-            try:
-                ad = json.loads(line)
-            except json.JSONDecodeError:
-                invalid_lines += 1
-                continue
-            if not isinstance(ad, dict):
-                invalid_lines += 1
-                continue
+        iterator = iter_ndjson(response, args.max_bytes, parse_state) if "ndjson" in content_type else iter_json_array(response, args.max_bytes, parse_state)
+        for ad in iterator:
             valid_ads += 1
             top_keys.update(ad.keys())
             for requirement in ("must_have", "nice_to_have"):
@@ -125,23 +199,29 @@ def main() -> int:
                                 provenance_keys[requirement][k] += 1
                     if len(examples[requirement]) < 5:
                         examples[requirement].append(safe_example(item))
+            if valid_ads >= args.max_ads:
+                parse_state["parse_status"] = "max_ads_reached"
+                break
 
     explicit_provenance_markers = sorted(set(provenance_keys["must_have"]) | set(provenance_keys["nice_to_have"]))
-    if explicit_provenance_markers:
+    if valid_ads == 0:
+        provenance_assessment = "inconclusive_no_valid_ads"
+    elif skill_items["must_have"] + skill_items["nice_to_have"] == 0:
+        provenance_assessment = "inconclusive_no_skill_items_in_sample"
+    elif explicit_provenance_markers:
         provenance_assessment = "machine_visible_markers_present"
     else:
         provenance_assessment = "no_machine_visible_item_provenance_marker_in_sample"
 
     result = {
-        "schema_version": 1,
+        "schema_version": 2,
         "role": "bounded schema/provenance probe only; no retrieval evidence admitted",
         "source_url": URL,
         "request_limits": {"max_ads": args.max_ads, "max_bytes": args.max_bytes},
         "response": response_meta,
+        "parse": parse_state,
         "observed": {
             "valid_ads": valid_ads,
-            "bytes_read": bytes_read,
-            "invalid_lines": invalid_lines,
             "top_level_keys": dict(top_keys.most_common()),
             "ads_with_skills": ads_with_skills,
             "skill_item_counts": skill_items,
@@ -160,7 +240,8 @@ def main() -> int:
     p.write_text(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True) + "\n")
     print(json.dumps({
         "valid_ads": valid_ads,
-        "bytes_read": bytes_read,
+        "bytes_read": parse_state["bytes_read"],
+        "parse_status": parse_state["parse_status"],
         "content_type": response_meta.get("content_type"),
         "ads_with_skills": ads_with_skills,
         "skill_item_counts": skill_items,
