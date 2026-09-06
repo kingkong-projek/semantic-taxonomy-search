@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "status": "development candidate frozen before fresh ranks 201-300 teacher/query authoring",
+  "evidence_class": "mixed_opened_development",
+  "policy": {
+    "name": "C0-top1+G1-1slot+teacher-3slot",
+    "semantics": "preserve C0 rank 1; admit one unique G1-single-desc candidate; admit three unique teacher-lane candidates; deterministically backfill duplicates; no learned score fusion or thresholds",
+    "top5_slots": {"C0": 1, "G1": 1, "teacher": 3}
+  },
+  "opened_synthetic_development": {
+    "ranks101_200": {"baseline_G4_T0_hit5": 25, "candidate_G1_T3_hit5": 94, "n": 100, "rescues": 69, "regressions": 0},
+    "top100": "not used as clean selection evidence because its own teacher phrases were post-hoc authored after miss review"
+  },
+  "source_attested_regression_control": {
+    "first35": {"baseline_hit5": 31, "candidate_hit5": 32, "n": 35, "rescues": 1, "regressions": 0},
+    "second20": {"baseline_hit5": 17, "candidate_hit5": 18, "n": 20, "rescues": 1, "regressions": 0},
+    "third26": {"baseline_hit5": 20, "candidate_hit5": 21, "n": 26, "rescues": 1, "regressions": 0}
+  },
+  "canonical_guard": {"cases": 617, "top1": 617, "hit5": 617},
+  "decision": "freeze G1+T3 because it matches or exceeds G2+T2 on opened suites while retaining zero observed source-attested Hit@5 regressions; do not tune further before fresh validation",
+  "next_gate": "P80 ranks 201-300 must be target-disjoint from ranks 1-200; teacher phrases committed before query authoring; queries committed before first retrieval; no policy changes after seeing outputs"
+}
