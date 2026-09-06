@@ -1,0 +1,47 @@
+name: Pareto discovery scorecard
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/evaluate_discovery_holdout.py
+      - research/benchmark/v31/pareto-model-holdout/**
+      - scripts/evaluate_pareto_c1.py
+      - .github/workflows/pareto-discovery-scorecard.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Evaluate discovery-oriented metrics
+        run: |
+          python scripts/evaluate_discovery_holdout.py \
+            --output artifacts/pareto-holdout-discovery-v31.json
+      - name: Validate scorecard
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('artifacts/pareto-holdout-discovery-v31.json').read_text())
+          assert x['primary_k']==5
+          assert x['C0']['counts']['cases']==36
+          assert x['C1']['counts']['cases']==36
+          assert x['C1']['counts']['no_match_cases']==20
+          assert x['objective'].startswith('discovery:')
+          print(json.dumps({'C0':x['C0']['primary'],'C1':x['C1']['primary'],'delta':x['delta']}, indent=2, sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pareto-holdout-discovery-v31
+          path: artifacts/pareto-holdout-discovery-v31.json
+          if-no-files-found: error
+          retention-days: 30
