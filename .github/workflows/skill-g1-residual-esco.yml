@@ -1,0 +1,32 @@
+name: Skill G1 residual ESCO coverage
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/measure_skill_g1_residual_esco.py
+      - research/benchmark/v31/training-skill-second-holdout/**
+      - research/coverage/source-adapters.json
+      - .github/workflows/skill-g1-residual-esco.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  measure:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Measure typed ESCO residual coverage
+        run: python scripts/measure_skill_g1_residual_esco.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: skill-g1-residual-esco-v31
+          path: artifacts/skill-g1-residual-esco-v31.json
+          if-no-files-found: error
+          retention-days: 30
