@@ -1,0 +1,54 @@
+name: Sync P80 evaluation SSOT
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/sync_p80_eval_and_pareto_metadata.py
+      - .github/workflows/sync-p80-eval-ssot.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Reproduce Pareto metadata
+        run: python scripts/pareto_demand_coverage.py --version 31 --output-dir /tmp/pareto-demand-v31
+      - name: Reproduce P80 A/B/C evaluation
+        run: |
+          python scripts/evaluate_p80_lexical_ablation.py \
+            --version 31 \
+            --output /tmp/p80-lexical-ablation-v31.json
+      - name: Synchronize frozen evidence and SSOT
+        run: python scripts/sync_p80_eval_and_pareto_metadata.py /tmp/pareto-demand-v31/aggregate.json /tmp/p80-lexical-ablation-v31.json
+      - name: Validate synchronized state
+        run: |
+          python -m json.tool research/coverage/v31/pareto-demand-aggregate.json >/dev/null
+          python -m json.tool research/evaluation/v31/p80-lexical-ablation.json >/dev/null
+          grep -F '049a3979c3e9458fe60191575a352f7d780ede7196a4aacffd1c335b0ecf99c7' research/coverage/v31/pareto-demand-aggregate.json >/dev/null
+          grep -F 'preliminary A–C source-truth lexical ablation on P80 core' docs/research-plan.md
+          grep -F 'zero top-1 misses' docs/findings/p80-lexical-ablation-v31.md
+      - name: Commit evaluation and SSOT
+        run: |
+          set -euo pipefail
+          git config user.name "kingkongola"
+          git config user.email "adambergman90@gmail.com"
+          git add \
+            research/coverage/v31/pareto-demand-aggregate.json \
+            research/coverage/source-adapters.json \
+            docs/findings/pareto-demand-priority-v31.md \
+            research/evaluation/v31/p80-lexical-ablation.json \
+            docs/findings/p80-lexical-ablation-v31.md \
+            docs/research-plan.md
+          git commit -m "eval: freeze simple P80 lexical ablation"
+          git push origin HEAD:main
