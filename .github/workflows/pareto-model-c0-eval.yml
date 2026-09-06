@@ -1,0 +1,57 @@
+name: Pareto model C0 eval
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/evaluate_pareto_model_slice.py
+      - scripts/build_pareto_model_adjudication.py
+      - scripts/evaluate_p80_lexical_ablation.py
+      - research/benchmark/v31/yv-real-query-review/**
+      - research/benchmark/v31/yv-profile-safety/excluded-routing-review.jsonl
+      - research/coverage/v31/pareto-demand-aggregate.json
+      - research/coverage/source-adapters.json
+      - .github/workflows/pareto-model-c0-eval.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Rebuild model-adjudicated benchmark slice
+        run: |
+          python scripts/build_pareto_model_adjudication.py \
+            --output-dir /tmp/pareto-model-adjudicated-v31
+          python scripts/validate_benchmark.py /tmp/pareto-model-adjudicated-v31/benchmark.jsonl
+      - name: Evaluate C0
+        run: |
+          python scripts/evaluate_pareto_model_slice.py \
+            --benchmark /tmp/pareto-model-adjudicated-v31/benchmark.jsonl \
+            --output artifacts/pareto-model-c0-eval-v31.json
+      - name: Validate evaluation shape
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('artifacts/pareto-model-c0-eval-v31.json').read_text(encoding='utf-8'))
+          assert x['overall']['cases']==34
+          assert x['overall']['observed_volume']==874274239
+          assert x['by_intent']['NO_MATCH']['cases']==18
+          assert x['by_intent']['SINGLE']['cases']==5
+          assert x['by_intent']['AMBIGUOUS']['cases']==11
+          print(json.dumps({'overall':x['overall'],'by_intent':x['by_intent']}, indent=2, sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pareto-model-c0-eval-v31
+          path: artifacts/pareto-model-c0-eval-v31.json
+          if-no-files-found: error
+          retention-days: 30
