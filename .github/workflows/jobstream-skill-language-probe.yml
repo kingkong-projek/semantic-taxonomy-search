@@ -1,0 +1,30 @@
+name: JobStream skill language probe
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/probe_jobstream_skill_language.py
+      - .github/workflows/jobstream-skill-language-probe.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Read at most 500 JobStream ads / 8 MB
+        run: python scripts/probe_jobstream_skill_language.py --max-ads 500 --max-bytes 8000000
+      - uses: actions/upload-artifact@v4
+        with:
+          name: jobstream-skill-language-probe
+          path: artifacts/jobstream-skill-language-probe.json
+          if-no-files-found: error
+          retention-days: 30
