@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-06",
+  "source_url": "https://jobstream.api.jobtechdev.se/v2/snapshot",
+  "role": "bounded schema/provenance probe only; no retrieval evidence admitted",
+  "request_limits": {"max_ads": 500, "max_bytes": 8000000},
+  "observed": {
+    "valid_ads": 500,
+    "bytes_read": 5767168,
+    "parse_status": "max_ads_reached",
+    "content_type": "application/json",
+    "ads_with_skills": {"must_have": 4, "nice_to_have": 14},
+    "skill_item_counts": {"must_have": 4, "nice_to_have": 27},
+    "skill_item_keys": ["weight", "concept_id", "label", "legacy_ams_taxonomy_id"],
+    "provenance_like_keys": []
+  },
+  "source_snapshot_fingerprint": "2d463af72c1b006c97601c2be79e864c68e8955eea28275499ca5221b351a2d3",
+  "assessment": "no_machine_visible_item_provenance_marker_in_sample",
+  "interpretation": "Current JobStream payload exposes structured skill IDs but does not itself distinguish original human-entered requirement skills from any downstream/enriched lineage. Do not join ad text to these skill IDs as training/evaluation truth without independent lineage evidence.",
+  "privacy_guard": "no ad id, headline, description or address text persisted",
+  "workflow_run_id": 34062216453,
+  "artifact_id": 9997826716,
+  "artifact_zip_sha256": "c8f9a6ba4dd4a05771ed86e35eca5a326883f7933b7883bddf2da2ef70121f5b"
+}
