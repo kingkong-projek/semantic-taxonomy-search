@@ -1,0 +1,166 @@
+name: Audit actual YV product model
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/yv-product-model-audit.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch pinned YV sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/yv-product /tmp/yv-generator yv-product-model-audit
+          git clone --quiet https://github.com/kingkong-projek/yrkesvaljaren.git /tmp/yv-product
+          test "$(git -C /tmp/yv-product rev-parse HEAD)" = "0eba98e3a91079a43c1eaf6da09dfabe11e5bc8b"
+
+          git init -q /tmp/yv-generator
+          git -C /tmp/yv-generator remote add origin https://gitlab.com/arbetsformedlingen/taxonomy-dev/backend/yrkesvaljaren.git
+          git -C /tmp/yv-generator fetch -q --depth=1 origin 6dd9e4737d7db3cb2709f8082808b88e5c89ed6e
+          git -C /tmp/yv-generator checkout -q FETCH_HEAD
+          test "$(git -C /tmp/yv-generator rev-parse HEAD)" = "6dd9e4737d7db3cb2709f8082808b88e5c89ed6e"
+
+      - name: Aggregate actual latest.json identity model
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p yv-product-model-audit/generator
+          python3 - <<'PY'
+          import collections, hashlib, json
+          from pathlib import Path
+
+          src = Path('/tmp/yv-product/data/latest.json')
+          raw = src.read_bytes()
+          doc = json.loads(raw)
+          rows = doc['data'] if isinstance(doc, dict) and isinstance(doc.get('data'), list) else doc
+          assert isinstance(rows, list)
+
+          by_type = collections.Counter(str(r.get('type')) for r in rows)
+          ids_by_type = collections.defaultdict(set)
+          rows_by_type_id = collections.defaultdict(lambda: collections.defaultdict(list))
+          for r in rows:
+              t = str(r.get('type'))
+              i = str(r.get('id'))
+              ids_by_type[t].add(i)
+              rows_by_type_id[t][i].append(r)
+
+          jt = [r for r in rows if r.get('type') == 'job-title']
+          occ = [r for r in rows if r.get('type') == 'occupation-name']
+
+          jt_by_id = collections.defaultdict(list)
+          jt_by_label = collections.defaultdict(list)
+          for r in jt:
+              jt_by_id[r.get('id')].append(r)
+              jt_by_label[(r.get('preferred_label') or '').strip()].append(r)
+
+          def parents(rs):
+              return sorted({(r.get('occupation_name_id'), r.get('occupation_name_preferred_label')) for r in rs})
+
+          multirow_ids = {i: rs for i, rs in jt_by_id.items() if len(rs) > 1}
+          multiparent_ids = {i: rs for i, rs in jt_by_id.items() if len({r.get('occupation_name_id') for r in rs}) > 1}
+          label_multi_ids = {l: rs for l, rs in jt_by_label.items() if len({r.get('id') for r in rs}) > 1}
+          label_multi_parents = {l: rs for l, rs in jt_by_label.items() if len({r.get('occupation_name_id') for r in rs}) > 1}
+
+          def example_for_id(i, rs):
+              return {
+                  'job_title_id': i,
+                  'preferred_labels': sorted({r.get('preferred_label') for r in rs}),
+                  'row_count': len(rs),
+                  'parents': [{'occupation_name_id': p[0], 'occupation_name_preferred_label': p[1]} for p in parents(rs)],
+                  'weights': sorted({r.get('weight') for r in rs if r.get('weight') is not None}, reverse=True),
+              }
+
+          def example_for_label(l, rs):
+              return {
+                  'preferred_label': l,
+                  'row_count': len(rs),
+                  'job_title_ids': sorted({r.get('id') for r in rs}),
+                  'parents': [{'occupation_name_id': p[0], 'occupation_name_preferred_label': p[1]} for p in parents(rs)],
+                  'weights': sorted({r.get('weight') for r in rs if r.get('weight') is not None}, reverse=True),
+              }
+
+          multiparent_examples = sorted(
+              [example_for_id(i, rs) for i, rs in multiparent_ids.items()],
+              key=lambda x: (-max(x['weights'] or [0]), -x['row_count'], str(x['preferred_labels']))
+          )[:100]
+          label_ambiguity_examples = sorted(
+              [example_for_label(l, rs) for l, rs in label_multi_parents.items()],
+              key=lambda x: (-max(x['weights'] or [0]), -x['row_count'], x['preferred_label'])
+          )[:100]
+
+          duplicate_exact_identity_rows = 0
+          for i, rs in jt_by_id.items():
+              c = collections.Counter((r.get('occupation_name_id'), r.get('preferred_label')) for r in rs)
+              duplicate_exact_identity_rows += sum(n - 1 for n in c.values() if n > 1)
+
+          occ_ids = {r.get('id') for r in occ}
+          jt_ids = {r.get('id') for r in jt}
+          parent_ids = {r.get('occupation_name_id') for r in jt if r.get('occupation_name_id')}
+
+          output = {
+              'source': {
+                  'repo': 'kingkong-projek/yrkesvaljaren',
+                  'commit': '0eba98e3a91079a43c1eaf6da09dfabe11e5bc8b',
+                  'path': 'data/latest.json',
+                  'sha256': hashlib.sha256(raw).hexdigest(),
+                  'metadata': doc.get('metadata') if isinstance(doc, dict) else None,
+              },
+              'rows': {
+                  'total': len(rows),
+                  'by_type': dict(sorted(by_type.items())),
+                  'unique_ids_by_type': {k: len(v) for k, v in sorted(ids_by_type.items())},
+              },
+              'job_title_identity': {
+                  'rows': len(jt),
+                  'unique_ids': len(jt_ids),
+                  'ids_with_multiple_rows': len(multirow_ids),
+                  'ids_with_multiple_occupation_parents': len(multiparent_ids),
+                  'max_rows_for_one_id': max((len(v) for v in jt_by_id.values()), default=0),
+                  'rows_missing_occupation_name_id': sum(not r.get('occupation_name_id') for r in jt),
+                  'duplicate_exact_id_parent_label_rows_beyond_first': duplicate_exact_identity_rows,
+                  'unique_preferred_labels': len(jt_by_label),
+                  'preferred_labels_mapping_to_multiple_job_title_ids': len(label_multi_ids),
+                  'preferred_labels_mapping_to_multiple_occupation_parents': len(label_multi_parents),
+                  'occupation_parent_ids_referenced': len(parent_ids),
+                  'referenced_parent_ids_missing_as_occupation_name_rows': len(parent_ids - occ_ids),
+                  'job_title_ids_colliding_with_occupation_name_ids': len(jt_ids & occ_ids),
+              },
+              'examples': {
+                  'multi_parent_same_job_title_id_top100': multiparent_examples,
+                  'same_label_multiple_parents_top100': label_ambiguity_examples,
+              },
+          }
+          out = Path('yv-product-model-audit/latest-json-aggregate.json')
+          out.write_text(json.dumps(output, ensure_ascii=False, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          print(json.dumps(output['rows'], ensure_ascii=False, indent=2))
+          print(json.dumps(output['job_title_identity'], ensure_ascii=False, indent=2))
+          PY
+
+          cp /tmp/yv-generator/main.py yv-product-model-audit/generator/
+          cp /tmp/yv-generator/Metodbeskrivning.md yv-product-model-audit/generator/ || true
+          cp /tmp/yv-generator/README.md yv-product-model-audit/generator/ || true
+          cp /tmp/yv-generator/utils/create_weighted_occupational_data.py yv-product-model-audit/generator/
+          cp /tmp/yv-generator/utils/add_weights_to_searches.py yv-product-model-audit/generator/
+          cp /tmp/yv-generator/utils/update_search_terms.py yv-product-model-audit/generator/
+          cp /tmp/yv-generator/utils/download_data.py yv-product-model-audit/generator/
+          cp /tmp/yv-generator/utils/queries.py yv-product-model-audit/generator/
+          git -C /tmp/yv-product rev-parse HEAD > yv-product-model-audit/product-commit.txt
+          git -C /tmp/yv-generator rev-parse HEAD > yv-product-model-audit/generator-commit.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: yv-product-model-audit
+          path: yv-product-model-audit
+          if-no-files-found: error
+          retention-days: 7
