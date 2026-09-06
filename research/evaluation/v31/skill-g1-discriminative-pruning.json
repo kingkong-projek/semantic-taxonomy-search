@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "status": "negative development ablation; do not adopt pruning",
+  "validated_baseline": "KV-G1-4slot-single-desc",
+  "source_run": 34061833973,
+  "source_artifact_id": 9997714040,
+  "source_artifact_zip_sha256": "86a9f4ce7b96a40352af8d1eecad07a86ededfeac4a4545dd23eace695c6d797",
+  "representation_tested": "per-skill enrichment terms ranked by enrichment-document IDF * (1 + ln(tf)); top K unique terms retained once; canonical C0 untouched",
+  "results": {
+    "full_g1": {
+      "first_holdout_posthoc_hit5_pct": 91.429,
+      "first_weighted_hit5_pct": 84.632,
+      "second_holdout_posthoc_hit5_pct": 85.0,
+      "second_weighted_hit5_pct": 89.331,
+      "synthetic_hit5_pct": 66.667,
+      "canonical_hit5_pct": 100.0
+    },
+    "pruned_128": {
+      "selected_vs_original_unique_skill_term_pairs_pct": 69.238,
+      "first_holdout_posthoc_hit5_pct": 94.286,
+      "first_weighted_hit5_pct": 86.784,
+      "second_holdout_posthoc_hit5_pct": 75.0,
+      "second_weighted_hit5_pct": 84.623,
+      "synthetic_hit5_pct": 75.0,
+      "canonical_hit5_pct": 100.0,
+      "new_second_holdout_misses_vs_full_g1": [
+        "kv.training-skill-second-holdout.017",
+        "kv.training-skill-second-holdout.019"
+      ]
+    },
+    "pruned_64": {"second_holdout_posthoc_hit5_pct": 70.0, "second_weighted_hit5_pct": 74.974},
+    "pruned_32": {"second_holdout_posthoc_hit5_pct": 70.0, "second_weighted_hit5_pct": 73.849},
+    "pruned_16": {"second_holdout_posthoc_hit5_pct": 75.0, "second_weighted_hit5_pct": 68.724},
+    "pruned_8": {"second_holdout_posthoc_hit5_pct": 75.0, "second_weighted_hit5_pct": 68.07}
+  },
+  "decision": "Reject discriminative keyword pruning. The best-looking development setting (K=128) slightly improves the older first slice and synthetic stress while materially regressing the second natural holdout from 85% to 75%. Smaller K values regress further. The full human-training text remains the safer representation.",
+  "next_question": "The clean Städmaterial residual requires genuinely missing semantic language, not document-noise reduction. Any next candidate must add build-time semantic representation without benchmark-query ingestion and must earn promotion on a new unopened source-attested holdout."
+}
