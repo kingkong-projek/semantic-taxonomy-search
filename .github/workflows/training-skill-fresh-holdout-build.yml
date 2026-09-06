@@ -1,0 +1,46 @@
+name: Build blind skill training holdout
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/build_training_skill_fresh_holdout.py
+      - research/benchmark/v31/training-skill-validation/cases.jsonl
+      - research/coverage/v31/pareto-demand-aggregate.json
+      - .github/workflows/training-skill-fresh-holdout-build.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build holdout without retrieval code
+        run: python scripts/build_training_skill_fresh_holdout.py --output-dir artifacts/training-skill-fresh-holdout-v31
+      - name: Guard holdout independence
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          m=json.loads(Path('artifacts/training-skill-fresh-holdout-v31/manifest.json').read_text())
+          assert m['cases']>=10
+          assert m['cases']==m['unique_p80_skills']
+          assert m['development_cases_excluded']==76
+          text=Path('scripts/build_training_skill_fresh_holdout.py').read_text()
+          for forbidden in ('evaluate_skill_esco_fusion','evaluate_skill_c0','KV-F1','ranker'):
+              assert forbidden not in text, forbidden
+          print(json.dumps(m,ensure_ascii=False,indent=2,sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: training-skill-fresh-holdout-v31
+          path: artifacts/training-skill-fresh-holdout-v31/
+          if-no-files-found: error
+          retention-days: 30
