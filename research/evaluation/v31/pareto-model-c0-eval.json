@@ -1,0 +1,775 @@
+{
+  "benchmark_semantics": "model-adjudicated first Pareto decision slice; 34 rows cover 80.738% of the frozen 70-row review-pool observed volume",
+  "by_intent": {
+    "AMBIGUOUS": {
+      "abstention_rate_pct": 27.273,
+      "cases": 11,
+      "decision_accuracy_pct": 63.636,
+      "observed_volume": 444891638,
+      "volume_weighted_abstention_rate_pct": 21.365,
+      "volume_weighted_decision_accuracy_pct": 69.408
+    },
+    "NO_MATCH": {
+      "abstention_rate_pct": 61.111,
+      "cases": 18,
+      "decision_accuracy_pct": 61.111,
+      "observed_volume": 249669669,
+      "volume_weighted_abstention_rate_pct": 54.742,
+      "volume_weighted_decision_accuracy_pct": 54.742
+    },
+    "SINGLE": {
+      "abstention_rate_pct": 20.0,
+      "cases": 5,
+      "decision_accuracy_pct": 60.0,
+      "observed_volume": 179712932,
+      "volume_weighted_abstention_rate_pct": 24.006,
+      "volume_weighted_decision_accuracy_pct": 62.43
+    }
+  },
+  "cases": [
+    {
+      "abstained": false,
+      "decision_success": true,
+      "hard_negative_violation": false,
+      "id": "yv.model-pareto.001",
+      "intent": "AMBIGUOUS",
+      "observed_count": 58994102,
+      "p80_satisfiable": true,
+      "positive_in_p80": 1,
+      "positive_total": 2,
+      "query": "Undersköterska",
+      "top10_success": true,
+      "top5": [
+        {
+          "concept_id": "PQkQ_Dmk_ZF8",
+          "label": "Undersköterska, vård- och specialavdelning och mottagning",
+          "score": 4.85529
+        }
+      ]
+    },
+    {
+      "abstained": false,
+      "decision_success": true,
+      "hard_negative_violation": false,
+      "id": "yv.model-pareto.002",
+      "intent": "AMBIGUOUS",
+      "observed_count": 55702222,
+      "p80_satisfiable": true,
+      "positive_in_p80": 6,
+      "positive_total": 25,
+      "query": "lärare",
+      "top10_success": true,
+      "top5": [
+        {
+          "concept_id": "15e8_KDZ_31Z",
+          "label": "SFI-lärare",
+          "score": 5.065721
+        },
+        {
+          "concept_id": "Zfgc_BYU_HM2",
+          "label": "Lärarassistent",
+          "score": 3.955816
+        },
+        {
+          "concept_id": "f1zq_tpA_QtN",
+          "label": "Specialpedagog",
+          "score": 3.841082
+        },
+        {
+          "concept_id": "JUu4_wcP_kQG",
+          "label": "Lärare i förskoleklass",
+          "score": 3.520199
+        },
+        {
+          "concept_id": "rUcW_z9R_Qsv",
+          "label": "Förskollärare",
+          "score": 2.734607
+        }
+      ]
+    },
+    {
+      "abstained": false,
+      "decision_success": true,
+      "hard_negative_violation": false,
+      "id": "yv.model-pareto.003",
+      "intent": "AMBIGUOUS",
+      "observed_count": 55275922,
+      "p80_satisfiable": true,
+      "positive_in_p80": 2,
+      "positive_total": 2,
+      "query": "Butikssäljare",
+      "top10_success": true,
+      "top5": [
+        {
+          "concept_id": "pBhS_6fg_727",
+          "label": "Butikssäljare, dagligvaror/Medarbetare, dagligvaror",
+          "score": 6.068817
+        },
+        {
+          "concept_id": "ek9W_CmD_y2M",
+          "label": "Butikssäljare, fackhandel",
+          "score": 5.278872
+        },
+        {
+          "concept_id": "j8X2_KhG_6ty",
+          "label": "Kassapersonal",
+          "score": 4.650202
+        }
+      ]
+    },
+    {
+      "abstained": false,
+      "decision_success": true,
+      "hard_negative_violation": false,
+      "id": "yv.model-pareto.004",
+      "intent": "SINGLE",
+      "observed_count": 52465935,
+      "p80_satisfiable": true,
+      "positive_in_p80": 1,
+      "positive_total": 1,
+      "query": "Sjuksköterska",
+      "top10_success": true,
+      "top5": [
+        {
+          "concept_id": "bXNH_MNX_dUR",
+          "label": "Sjuksköterska, grundutbildad",
+          "score": 3.529755
+        },
+        {
+          "concept_id": "Uh7q_DpM_rm3",
+          "label": "Intensivvårdssjuksköterska",
+          "score": 2.615974
+        },
+        {
+          "concept_id": "DEDi_wap_ntF",
+          "label": "Barnmorska",
+          "score": 2.523374
+        },
+        {
+          "concept_id": "szfD_hPZ_y7M",
+          "label": "Skolsköterska",
+          "score": 2.508574
+        },
+        {
+          "concept_id": "UVrW_krj_vk8",
+          "label": "Psykiatrisjuksköterska",
+          "score": 2.493947
+        }
+      ]
+    },
+    {
+      "abstained": true,
+      "decision_success": false,
+      "hard_negative_violation": false,
+      "id": "yv.model-pareto.005",
+      "intent": "SINGLE",
+      "observed_count": 43141330,
+      "p80_satisfiable": false,
+      "positive_in_p80": 0,
+      "positive_total": 1,
+      "query": "lagerarbetare",
+      "top10_success": false,
+      "top5": []
+    },
+    {
+      "abstained": true,
+      "decision_success": false,
+      "hard_negative_violation": false,
+      "id": "yv.model-pareto.006",
+      "intent": "AMBIGUOUS",
+      "observed_count": 42863214,
+      "p80_satisfiable": true,
+      "positive_in_p80": 10,
+      "positive_total": 25,
+      "query": "försäljare",
+      "top10_success": false,
+      "top5": []
+    },
+    {
+      "abstained": false,
+      "decision_success": true,
+      "hard_negative_violation": false,
+      "id": "yv.model-pareto.007",
+      "intent": "AMBIGUOUS",
+      "observed_count": 42198933,
+      "p80_satisfiable": true,
+      "positive_in_p80": 2,
+      "positive_total": 5,
+      "query": "Kock",
+      "top10_success": true,
+      "top5": [
+        {
+          "concept_id": "Vg3d_Azf_p5Y",
+          "label": "Kock storhushåll",
+          "score": 4.790214
+        },
+        {
+          "concept_id": "JbJw_as4_S93",
+          "label": "Kock à la carte",
+          "score": 4.329304
+        }
+      ]
+    },
+    {
+      "abstained": false,
+      "decision_success": false,
+      "hard_negative_violation": false,
+      "id": "yv.model-pareto.008",
+      "intent": "AMBIGUOUS",
+      "observed_count": 41047237,
+      "p80_satisfiable": true,
+      "positive_in_p80": 10,
+      "positive_total": 25,
+      "query": "Säljare",
+      "top10_success": true,
+      "top5": [
+        {
+          "concept_id": "QLwS_aMP_Jcu",
+          "label": "Säljledare",
+          "score": 4.037423
+        },
+        {
+          "concept_id": "uwYE_D2Z_45B",
+          "label": "Försäljningschef",
+          "score": 3.428902
+        },
+        {
+          "concept_id": "pBhS_6fg_727",
+          "label": "Butikssäljare, dagligvaror/Medarbetare, dagligvaror",
+          "score": 3.267272
+        },
+        {
+          "concept_id": "w8eg_Ufq_B5X",
+          "label": "Besöksbokare/Kundbokare",
+          "score": 3.267272
+        },
+        {
+          "concept_id": "ek9W_CmD_y2M",
+          "label": "Butikssäljare, fackhandel",
+          "score": 3.223853
+        }
+      ]
+    },
+    {
+      "abstained": false,
+      "decision_success": true,
+      "hard_negative_violation": false,
+      "id": "yv.model-pareto.009",
+      "intent": "AMBIGUOUS",
+      "observed_count": 40208930,
+      "p80_satisfiable": true,
+      "positive_in_p80": 2,
+      "positive_total": 17,
+      "query": "Projektledare",
+      "top10_success": true,
+      "top5": [
+        {
+          "concept_id": "z5AM_ayf_WcL",
+          "label": "Projektledare, IT",
+          "score": 7.046197
+        },
+        {
+          "concept_id": "pTTz_5DC_itW",
+          "label": "Projektledare, bygg och anläggning",
+          "score": 5.796402
+        }
+      ]
+    },
+    {
+      "abstained": false,
+      "decision_success": true,
+      "hard_negative_violation": false,
+      "id": "yv.model-pareto.010",
+      "intent": "SINGLE",
+      "observed_count": 38636494,
+      "p80_satisfiable": true,
+      "positive_in_p80": 1,
+      "positive_total": 1,
+      "query": "systemutvecklare",
+      "top10_success": true,
+      "top5": [
+        {
+          "concept_id": "fg7B_yov_smw",
+          "label": "Systemutvecklare/Programmerare",
+          "score": 1000007.131804
+        }
+      ]
+    },
+    {
+      "abstained": false,
+      "decision_success": true,
+      "hard_negative_violation": false,
+      "id": "yv.model-pareto.011",
+      "intent": "AMBIGUOUS",
+      "observed_count": 37123678,
+      "p80_satisfiable": true,
+      "positive_in_p80": 2,
+      "positive_total": 20,
+      "query": "civilingenjör",
+      "top10_success": true,
+      "top5": [
+        {
+          "concept_id": "CQse_CRd_snw",
+          "label": "Civilingenjör, systemutveckling",
+          "score": 6.884273
+        },
+        {
+          "concept_id": "Rd3G_bFa_zvR",
+          "label": "Civilingenjör, maskin",
+          "score": 3.738364
+        }
+      ]
+    },
+    {
+      "abstained": false,
+      "decision_success": false,
+      "hard_negative_violation": true,
+      "id": "yv.model-pareto.012",
+      "intent": "NO_MATCH",
+      "observed_count": 27782097,
+      "p80_satisfiable": true,
+      "positive_in_p80": 0,
+      "positive_total": 0,
+      "query": "stockholms län",
+      "top10_success": false,
+      "top5": [
+        {
+          "concept_id": "YJKc_yXU_DUH",
+          "label": "Operationssjuksköterska",
+          "score": 4.007282
+        },
+        {
+          "concept_id": "ofiS_5F2_YmV",
+          "label": "HR-assistent",
+          "score": 3.229174
+        },
+        {
+          "concept_id": "pYiF_Z6V_ULQ",
+          "label": "Biståndsbedömare/Biståndshandläggare",
+          "score": 3.191072
+        },
+        {
+          "concept_id": "rUcW_z9R_Qsv",
+          "label": "Förskollärare",
+          "score": 3.191072
+        },
+        {
+          "concept_id": "aEF1_qeh_5Qe",
+          "label": "Socionom",
+          "score": 2.996604
+        }
+      ]
+    },
+    {
+      "abstained": true,
+      "decision_success": false,
+      "hard_negative_violation": false,
+      "id": "yv.model-pareto.013",
+      "intent": "AMBIGUOUS",
+      "observed_count": 26631897,
+      "p80_satisfiable": false,
+      "positive_in_p80": 0,
+      "positive_total": 2,
+      "query": "ämneslärare",
+      "top10_success": false,
+      "top5": []
+    },
+    {
+      "abstained": true,
+      "decision_success": false,
+      "hard_negative_violation": false,
+      "id": "yv.model-pareto.014",
+      "intent": "AMBIGUOUS",
+      "observed_count": 25557308,
+      "p80_satisfiable": false,
+      "positive_in_p80": 0,
+      "positive_total": 3,
+      "query": "Grundlärare",
+      "top10_success": false,
+      "top5": []
+    },
+    {
+      "abstained": false,
+      "decision_success": false,
+      "hard_negative_violation": false,
+      "id": "yv.model-pareto.015",
+      "intent": "SINGLE",
+      "observed_count": 24377288,
+      "p80_satisfiable": true,
+      "positive_in_p80": 1,
+      "positive_total": 1,
+      "query": "sjuksköterskor",
+      "top10_success": false,
+      "top5": [
+        {
+          "concept_id": "YJKc_yXU_DUH",
+          "label": "Operationssjuksköterska",
+          "score": 3.56892
+        },
+        {
+          "concept_id": "PQkQ_Dmk_ZF8",
+          "label": "Undersköterska, vård- och specialavdelning och mottagning",
+          "score": 2.83108
+        }
+      ]
+    },
+    {
+      "abstained": false,
+      "decision_success": true,
+      "hard_negative_violation": false,
+      "id": "yv.model-pareto.016",
+      "intent": "SINGLE",
+      "observed_count": 21091885,
+      "p80_satisfiable": true,
+      "positive_in_p80": 1,
+      "positive_total": 1,
+      "query": "programmerare",
+      "top10_success": true,
+      "top5": [
+        {
+          "concept_id": "fg7B_yov_smw",
+          "label": "Systemutvecklare/Programmerare",
+          "score": 1000007.941275
+        }
+      ]
+    },
+    {
+      "abstained": true,
+      "decision_success": true,
+      "hard_negative_violation": false,
+      "id": "yv.model-pareto.017",
+      "intent": "NO_MATCH",
+      "observed_count": 20924369,
+      "p80_satisfiable": true,
+      "positive_in_p80": 0,
+      "positive_total": 0,
+      "query": "göteborg",
+      "top10_success": true,
+      "top5": []
+    },
+    {
+      "abstained": false,
+      "decision_success": true,
+      "hard_negative_violation": false,
+      "id": "yv.model-pareto.018",
+      "intent": "AMBIGUOUS",
+      "observed_count": 19288195,
+      "p80_satisfiable": true,
+      "positive_in_p80": 9,
+      "positive_total": 51,
+      "query": "assistent",
+      "top10_success": true,
+      "top5": [
+        {
+          "concept_id": "ofiS_5F2_YmV",
+          "label": "HR-assistent",
+          "score": 6.191959
+        },
+        {
+          "concept_id": "eU1q_zvL_9Rf",
+          "label": "Personlig assistent",
+          "score": 4.241844
+        }
+      ]
+    },
+    {
+      "abstained": false,
+      "decision_success": false,
+      "hard_negative_violation": true,
+      "id": "yv.model-pareto.019",
+      "intent": "NO_MATCH",
+      "observed_count": 18217752,
+      "p80_satisfiable": true,
+      "positive_in_p80": 0,
+      "positive_total": 0,
+      "query": "stockholm",
+      "top10_success": false,
+      "top5": [
+        {
+          "concept_id": "ztEq_Vts_77r",
+          "label": "Röntgensjuksköterska",
+          "score": 4.40676
+        }
+      ]
+    },
+    {
+      "abstained": false,
+      "decision_success": false,
+      "hard_negative_violation": true,
+      "id": "yv.model-pareto.020",
+      "intent": "NO_MATCH",
+      "observed_count": 15711965,
+      "p80_satisfiable": true,
+      "positive_in_p80": 0,
+      "positive_total": 0,
+      "query": "umeå",
+      "top10_success": false,
+      "top5": [
+        {
+          "concept_id": "YJKc_yXU_DUH",
+          "label": "Operationssjuksköterska",
+          "score": 4.007282
+        }
+      ]
+    },
+    {
+      "abstained": false,
+      "decision_success": false,
+      "hard_negative_violation": true,
+      "id": "yv.model-pareto.021",
+      "intent": "NO_MATCH",
+      "observed_count": 14657766,
+      "p80_satisfiable": true,
+      "positive_in_p80": 0,
+      "positive_total": 0,
+      "query": "skåne län",
+      "top10_success": false,
+      "top5": [
+        {
+          "concept_id": "Pj8T_bST_f7D",
+          "label": "Biomedicinsk analytiker/BMA",
+          "score": 4.379473
+        },
+        {
+          "concept_id": "YJKc_yXU_DUH",
+          "label": "Operationssjuksköterska",
+          "score": 4.007282
+        }
+      ]
+    },
+    {
+      "abstained": true,
+      "decision_success": true,
+      "hard_negative_violation": false,
+      "id": "yv.model-pareto.022",
+      "intent": "NO_MATCH",
+      "observed_count": 13460719,
+      "p80_satisfiable": true,
+      "positive_in_p80": 0,
+      "positive_total": 0,
+      "query": "malmö",
+      "top10_success": true,
+      "top5": []
+    },
+    {
+      "abstained": false,
+      "decision_success": false,
+      "hard_negative_violation": true,
+      "id": "yv.model-pareto.023",
+      "intent": "NO_MATCH",
+      "observed_count": 12981876,
+      "p80_satisfiable": true,
+      "positive_in_p80": 0,
+      "positive_total": 0,
+      "query": "örebro",
+      "top10_success": false,
+      "top5": [
+        {
+          "concept_id": "YJKc_yXU_DUH",
+          "label": "Operationssjuksköterska",
+          "score": 4.007282
+        }
+      ]
+    },
+    {
+      "abstained": false,
+      "decision_success": false,
+      "hard_negative_violation": true,
+      "id": "yv.model-pareto.024",
+      "intent": "NO_MATCH",
+      "observed_count": 12584363,
+      "p80_satisfiable": true,
+      "positive_in_p80": 0,
+      "positive_total": 0,
+      "query": "västra götalands län",
+      "top10_success": false,
+      "top5": [
+        {
+          "concept_id": "YJKc_yXU_DUH",
+          "label": "Operationssjuksköterska",
+          "score": 4.007282
+        }
+      ]
+    },
+    {
+      "abstained": true,
+      "decision_success": true,
+      "hard_negative_violation": false,
+      "id": "yv.model-pareto.025",
+      "intent": "NO_MATCH",
+      "observed_count": 12235596,
+      "p80_satisfiable": true,
+      "positive_in_p80": 0,
+      "positive_total": 0,
+      "query": "västerås",
+      "top10_success": true,
+      "top5": []
+    },
+    {
+      "abstained": true,
+      "decision_success": true,
+      "hard_negative_violation": false,
+      "id": "yv.model-pareto.026",
+      "intent": "NO_MATCH",
+      "observed_count": 11905117,
+      "p80_satisfiable": true,
+      "positive_in_p80": 0,
+      "positive_total": 0,
+      "query": "jönköping",
+      "top10_success": true,
+      "top5": []
+    },
+    {
+      "abstained": true,
+      "decision_success": true,
+      "hard_negative_violation": false,
+      "id": "yv.model-pareto.027",
+      "intent": "NO_MATCH",
+      "observed_count": 11901358,
+      "p80_satisfiable": true,
+      "positive_in_p80": 0,
+      "positive_total": 0,
+      "query": "karlstad",
+      "top10_success": true,
+      "top5": []
+    },
+    {
+      "abstained": true,
+      "decision_success": true,
+      "hard_negative_violation": false,
+      "id": "yv.model-pareto.028",
+      "intent": "NO_MATCH",
+      "observed_count": 11809705,
+      "p80_satisfiable": true,
+      "positive_in_p80": 0,
+      "positive_total": 0,
+      "query": "luleå",
+      "top10_success": true,
+      "top5": []
+    },
+    {
+      "abstained": true,
+      "decision_success": true,
+      "hard_negative_violation": false,
+      "id": "yv.model-pareto.029",
+      "intent": "NO_MATCH",
+      "observed_count": 11413080,
+      "p80_satisfiable": true,
+      "positive_in_p80": 0,
+      "positive_total": 0,
+      "query": "sundsvall",
+      "top10_success": true,
+      "top5": []
+    },
+    {
+      "abstained": true,
+      "decision_success": true,
+      "hard_negative_violation": false,
+      "id": "yv.model-pareto.030",
+      "intent": "NO_MATCH",
+      "observed_count": 11242009,
+      "p80_satisfiable": true,
+      "positive_in_p80": 0,
+      "positive_total": 0,
+      "query": "linköping",
+      "top10_success": true,
+      "top5": []
+    },
+    {
+      "abstained": false,
+      "decision_success": false,
+      "hard_negative_violation": true,
+      "id": "yv.model-pareto.031",
+      "intent": "NO_MATCH",
+      "observed_count": 11059264,
+      "p80_satisfiable": true,
+      "positive_in_p80": 0,
+      "positive_total": 0,
+      "query": "uppsala",
+      "top10_success": false,
+      "top5": [
+        {
+          "concept_id": "KYPa_Jv8_ZbU",
+          "label": "Studie- och yrkesvägledare/SYV",
+          "score": 3.7964
+        },
+        {
+          "concept_id": "ztEq_Vts_77r",
+          "label": "Röntgensjuksköterska",
+          "score": 3.607173
+        },
+        {
+          "concept_id": "9K3i_XD4_Kyy",
+          "label": "Läkare",
+          "score": 3.435913
+        }
+      ]
+    },
+    {
+      "abstained": true,
+      "decision_success": true,
+      "hard_negative_violation": false,
+      "id": "yv.model-pareto.032",
+      "intent": "NO_MATCH",
+      "observed_count": 11013294,
+      "p80_satisfiable": true,
+      "positive_in_p80": 0,
+      "positive_total": 0,
+      "query": "norrköping",
+      "top10_success": true,
+      "top5": []
+    },
+    {
+      "abstained": true,
+      "decision_success": true,
+      "hard_negative_violation": false,
+      "id": "yv.model-pareto.033",
+      "intent": "NO_MATCH",
+      "observed_count": 10421524,
+      "p80_satisfiable": true,
+      "positive_in_p80": 0,
+      "positive_total": 0,
+      "query": "skövde",
+      "top10_success": true,
+      "top5": []
+    },
+    {
+      "abstained": true,
+      "decision_success": true,
+      "hard_negative_violation": false,
+      "id": "yv.model-pareto.034",
+      "intent": "NO_MATCH",
+      "observed_count": 10347815,
+      "p80_satisfiable": true,
+      "positive_in_p80": 0,
+      "positive_total": 0,
+      "query": "skellefteå",
+      "top10_success": true,
+      "top5": []
+    }
+  ],
+  "overall": {
+    "cases": 34,
+    "decision_accuracy_pct": 61.765,
+    "false_confident_no_match_cases": 7,
+    "false_confident_no_match_volume": 112995083,
+    "hard_negative_violation_cases": 7,
+    "hard_negative_violation_volume": 112995083,
+    "observed_volume": 874274239,
+    "positive_cases_unsatisfiable_inside_p80": 3,
+    "positive_volume_unsatisfiable_inside_p80": 95330535,
+    "top10_success_pct": 64.706,
+    "volume_weighted_decision_accuracy_pct": 63.786,
+    "volume_weighted_top10_success_pct": 68.481
+  },
+  "retrieval": {
+    "abstention": "zero positive lexical evidence => abstain",
+    "name": "C0",
+    "ranking": "deterministic BM25 with exact indexed-surface dominance",
+    "representation": "preferred label + real canonical definition + canonical alternative labels",
+    "target_envelope": "P80 occupation-name only (159 targets)"
+  },
+  "schema_version": 1,
+  "taxonomy_sha256": "634fd9d848a172747e54e3e487160a912ae6c0fcb8219c50998767c8c9aacbcc",
+  "taxonomy_version": 31
+}

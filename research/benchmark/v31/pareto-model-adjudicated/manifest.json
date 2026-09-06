@@ -1,0 +1,24 @@
+{
+  "authority_boundary": "model_judgment is evaluation truth for this initial decision slice only; it is not canonical taxonomy authority, source truth, or human review and may later be audited/revised independently",
+  "cases": 34,
+  "intent_counts": {
+    "AMBIGUOUS": 11,
+    "NO_MATCH": 18,
+    "SINGLE": 5
+  },
+  "model_judgment_source": "GPT-5.6 Sol model adjudication 2026-09-06",
+  "observed_volume": 874274239,
+  "schema_version": 1,
+  "selected_share_of_70_row_review_pool_pct": 80.738,
+  "source_files": [
+    "research/benchmark/v31/yv-real-query-review/review-packet.jsonl",
+    "research/benchmark/v31/yv-profile-safety/excluded-routing-review.jsonl"
+  ],
+  "source_pool_counts": {
+    "observed_unbound_query": 27,
+    "yv_excluded_title_routing": 7
+  },
+  "status": "MODEL_ADJUDICATED",
+  "taxonomy_sha256": "634fd9d848a172747e54e3e487160a912ae6c0fcb8219c50998767c8c9aacbcc",
+  "taxonomy_version": 31
+}

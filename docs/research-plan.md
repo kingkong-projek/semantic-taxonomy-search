@@ -859,11 +859,12 @@ After the repository transfer, GitHub-hosted jobs were failing before their firs
 - [x] automatic source-truth strata construction for preferred labels, real canonical definitions and alternative labels; no corpus/model/synthetic signal is auto-promoted to destination truth
 - [x] compact high-volume **YV reference-profile multi-parent ambiguity** slice: 20 source-truth exact-title cases selected by observed frequency from the 541-ID population; all admitted context identities are required
 - [x] compact high-volume **excluded-YV routing review** slice: 20 highest-volume excluded title queries selected from the 205-ID population; generator reason is verified, destination judgment remains `PENDING_HUMAN_REVIEW`
-- [ ] compact hard-negative + no-match/abstention safety slice; keep it small and adjudicated rather than manufacturing negatives
+- [x] compact **model-adjudicated hard-negative + no-match/abstention slice** embedded in the first 34-case Pareto decision benchmark: 18 real high-volume `NO_MATCH` cases, primarily geography; no synthetic negatives required
 
 Evidence: `docs/findings/compact-yv-profile-safety-v31.md` and `research/benchmark/v31/yv-profile-safety/`.
 - [x] prepare deterministic **top-50 high-volume Platsbanken/YV occupation-language review packet** from the pinned real query corpus: 742.0M searches = 23.661% of all volume / 35.117% of unbound volume; remains fully `PENDING_HUMAN_REVIEW`; this is one behavioral evidence slice, not the engine's product scope
-- [ ] adjudicate the prepared top-50 real-query packet into occupation intent vs other/no-match and MUST/ACCEPTABLE/MUST_NOT identities; do not score it before review
+- [x] adjudicate the **first Pareto batch** rather than all review rows: 34 highest-volume rows across the 50 real unbound queries + 20 excluded-title routing rows cover **80.738%** of combined review-pool volume; 27 are observed unbound queries and 7 excluded-title routes; judgments are explicitly `MODEL_ADJUDICATED`, not source/human truth
+- [ ] adjudicate the remaining 36 lower-volume review rows only if C1/holdout evidence shows that doing so can change a decision
 - [ ] **defer** full raw JobSearch Trends date-range/long-tail adapter until the first simple baseline shows that recency/long-tail materially changes decisions
 - [ ] **defer** broad source-gap enrichment (ESCO text, AF catalog, Sveriges dataportal discovery, ad-language expansion) until benchmark residuals identify which gaps are worth paying complexity for
 - [ ] bounded provenance-safe ad-language sample only if needed by the first measured residuals
@@ -876,8 +877,14 @@ Preliminary source-truth result: A/B/C0 is complete on the 950-case P80 core. C0
 
 Evidence: `docs/findings/p80-lexical-ablation-v31.md` and `research/evaluation/v31/p80-lexical-ablation.json`.
 
+First real-language/Pareto result: the frozen 34-case `MODEL_ADJUDICATED` occupation slice covers **80.738%** of the combined review-pool observed volume. C0 reaches **63.786% volume-weighted decision accuracy** and **68.481% volume-weighted top-10 success**. Seven of 18 `NO_MATCH` rows are false-confident because short geography strings overlap definition text. Three positive rows fall outside P80; all are covered by only six additional occupation identities. P80 can represent **84.737%** of positive-intent volume in this slice.
+
+Decision: test a minimal **C1** (P80 + six measured boundary identities + stronger label-surface evidence + conservative short-query abstention) before D/ESCO, neural retrieval or new source engineering.
+
+Evidence: `docs/findings/pareto-model-decision-v31.md`, `research/benchmark/v31/pareto-model-adjudicated/` and `research/evaluation/v31/pareto-model-c0-eval.json`.
+
 - [x] preliminary **A/B/C0** source-truth lexical ablation on P80 core, where C0 = preferred labels + real canonical definitions + canonical alternative labels
-- [ ] complete planned C's product-title/retrieval-vocabulary portion only where the real-query/safety slice demonstrates value; do not conflate C0 with full planned C
+- [ ] **C1 first:** P80 + six measured high-volume boundary occupations + lexical surface/component/fuzzy evidence + conservative short-query definition-only abstention; evaluate before adding broader product-title vocabulary
 - [ ] D typed graph/ESCO only if the adjudicated real-query/safety residual justifies it; do not add D merely to complete an ablation ladder
 - [ ] E–G evidence layers separately
 - [ ] H vectors/reranking in shadow evaluation
