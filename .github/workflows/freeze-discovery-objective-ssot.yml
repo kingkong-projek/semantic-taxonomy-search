@@ -1,0 +1,48 @@
+name: Freeze discovery objective SSOT
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/freeze_discovery_objective_ssot.py
+      - .github/workflows/freeze-discovery-objective-ssot.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  freeze:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Recompute discovery scorecard
+        run: |
+          python scripts/evaluate_discovery_holdout.py \
+            --output /tmp/pareto-holdout-discovery-v31.json
+      - name: Freeze discovery objective and synchronize SSOT
+        run: |
+          python scripts/freeze_discovery_objective_ssot.py \
+            /tmp/pareto-holdout-discovery-v31.json
+      - name: Validate frozen state
+        run: |
+          python -m json.tool research/evaluation/v31/pareto-holdout-discovery.json >/dev/null
+          grep -F 'Discovery Success@5' docs/research-plan.md
+          grep -F '84.788% volume-weighted Discovery Success@5' docs/findings/discovery-objective-v31.md
+      - name: Commit discovery objective and SSOT
+        run: |
+          set -euo pipefail
+          git config user.name "kingkongola"
+          git config user.email "adambergman90@gmail.com"
+          git add \
+            research/evaluation/v31/pareto-holdout-discovery.json \
+            docs/findings/discovery-objective-v31.md \
+            docs/research-plan.md
+          git commit -m "research: make discovery success the primary metric"
+          git push origin HEAD:main
