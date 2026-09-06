@@ -1,0 +1,49 @@
+name: Track 1 persona product replay once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/track1-persona-product-replay-once.yml
+
+permissions:
+  contents: read
+
+jobs:
+  replay:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Replay frozen non-description persona journeys
+        run: |
+          mkdir -p artifacts
+          node scripts/replay_track1_personas.mjs \
+            --journeys research/personas/v31/journeys.jsonl \
+            --output artifacts/track1-persona-product-replay-v31.json
+      - name: Print compact replay summary
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const x=JSON.parse(fs.readFileSync('artifacts/track1-persona-product-replay-v31.json','utf8'));
+          const rows=(x.results||[]).map(r=>({
+            id:r.id, product:r.product, query:r.query,
+            visible_count:(r.visible||r.yv_visible||[]).length,
+            result_count:r.result_count,
+            visible:(r.visible||r.yv_visible||[]).map(v=>v.display||v.preferred_label),
+            path_count:(r.paths||[]).length,
+            status:r.status||null
+          }));
+          console.log(JSON.stringify({metadata:{yv_commit:x.yv_commit,kv_engine_blob:x.kv_engine_blob,fuse_version:x.fuse_version},rows},null,2));
+          NODE
+      - uses: actions/upload-artifact@v4
+        with:
+          name: track1-persona-product-replay-v31
+          path: artifacts/track1-persona-product-replay-v31.json
+          retention-days: 30
+          if-no-files-found: error
