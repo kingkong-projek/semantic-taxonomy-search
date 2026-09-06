@@ -1,0 +1,57 @@
+name: Pareto holdout adjudication
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/build_pareto_holdout_batch.py
+      - scripts/build_adjudication_context.py
+      - scripts/build_pareto_holdout_adjudication.py
+      - scripts/validate_benchmark.py
+      - .github/workflows/pareto-holdout-adjudication.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Rebuild untouched holdout and taxonomy-only context
+        run: |
+          python scripts/build_pareto_holdout_batch.py --output-dir /tmp/holdout
+          python scripts/build_adjudication_context.py \
+            --batch /tmp/holdout/holdout.jsonl \
+            --output /tmp/holdout/context.json
+      - name: Apply independent model adjudication
+        run: |
+          python scripts/build_pareto_holdout_adjudication.py \
+            --holdout /tmp/holdout/holdout.jsonl \
+            --context /tmp/holdout/context.json \
+            --output-dir artifacts/pareto-holdout-adjudicated-v31
+      - name: Validate benchmark and leakage boundary
+        run: |
+          python scripts/validate_benchmark.py artifacts/pareto-holdout-adjudicated-v31/benchmark.jsonl
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          m=json.loads(Path('artifacts/pareto-holdout-adjudicated-v31/manifest.json').read_text())
+          assert m['cases']==36
+          assert m['intent_counts']=={'AMBIGUOUS':13,'NO_MATCH':20,'SINGLE':3}
+          assert m['source_pool_counts']=={'observed_unbound_query':23,'yv_excluded_title_routing':13}
+          assert m['pareto_ranks']==[35,70]
+          assert 'no C0/C1 retrieval output' in m['leakage_boundary']
+          print(json.dumps(m, indent=2, sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pareto-holdout-adjudicated-v31
+          path: artifacts/pareto-holdout-adjudicated-v31/
+          if-no-files-found: error
+          retention-days: 30
