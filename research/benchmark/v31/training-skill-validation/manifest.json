@@ -1,0 +1,15 @@
+{
+  "authority_boundary": "manual mapping is validation truth; training text is not retrieval evidence in baseline",
+  "benchmark_sha256": "9f2346d445d69b9f48cd9aa65c0695e6385ecaf060cd7f798fbcd6251d5e16f1",
+  "cases": 76,
+  "direct_label_leak_cases": 1,
+  "primary_descriptive_nonleaky_cases": 63,
+  "primary_metric": "mapped-skill Discovery Hit@5; skill occurrence proxy used only for weighted reporting",
+  "schema_version": 1,
+  "selection": "one deterministic module per unique skill among modules with exactly one P80 mapped skill",
+  "source_sha256": "fea97867a1225e078d28ab9b0772f6a37f92b37c3c6c0d0e886ae65e9d79361c",
+  "source_url": "https://data.arbetsformedlingen.se/utbildningar/mappings/mapping_labour-market-training.json",
+  "taxonomy_version": 31,
+  "terse_cases": 12,
+  "unique_p80_skills": 76
+}
