@@ -1,0 +1,326 @@
+{
+  "adjudication_policy": "Raw score is immutable. Review classifies interpretation only. All raw fusion Hit@5 misses were reviewed, plus a deterministic 15-case sample of nominal hits.",
+  "benchmark": "model-authored-kv-100",
+  "evidence_class": "synthetic_model_authored_development",
+  "interpretation": {
+    "nonclean_raw_miss_count": 15,
+    "statement": "Most raw misses are genuine representation/retrieval language gaps, but a material minority are taxonomy boundaries, multi-intent targets, equally reasonable returned concepts, or an uninferable synthetic target. G1 does not generalize broadly beyond its source-language neighborhood on this stress suite.",
+    "strong_target_model_miss_count": 32
+  },
+  "nominal_hit_sample": [
+    {
+      "adjudication": "nominal_hit_target_multi_intent",
+      "authored_target": {"concept_id": "GN1z_Mve_mR4", "label": "Yrkesbevis, SRY"},
+      "confidence": "medium",
+      "fusion_rank": 3,
+      "fusion_top5": [
+        {"concept_id": "bNRS_e6U_i9r", "label": "Yrkesbevis, träarbetare"},
+        {"concept_id": "5nv3_Ei4_1Xh", "label": "Yrkesbevis, PRYL"},
+        {"concept_id": "GN1z_Mve_mR4", "label": "Yrkesbevis, SRY"},
+        {"concept_id": "XGCK_5qV_wPd", "label": "Släp, körvana"},
+        {"concept_id": "SfoE_zq7_ADN", "label": "Social service och omsorg, områdeskunskap"}
+      ],
+      "id": "kv.model-authored.082",
+      "query": "Jag har städbranschens yrkesbevis efter utbildning och praktiskt prov enligt den etablerade svenska branschstandarden för professionell rengöring.",
+      "rationale": "Städbranschens yrkesbevis utan namnet SRY kan även avse PRYL; target ligger i top-5 men är inte unikt infererbart."
+    },
+    {
+      "adjudication": "nominal_hit_strong",
+      "authored_target": {"concept_id": "nDE1_gZr_UJX", "label": "Legitimation som arbetsterapeut"},
+      "confidence": "high",
+      "fusion_rank": 1,
+      "fusion_top5": [
+        {"concept_id": "nDE1_gZr_UJX", "label": "Legitimation som arbetsterapeut"},
+        {"concept_id": "YcrR_5QB_3XL", "label": "Gesällbrev, frisör"},
+        {"concept_id": "bNRS_e6U_i9r", "label": "Yrkesbevis, träarbetare"},
+        {"concept_id": "GL3x_bFE_86J", "label": "Auktoriserad hudterapeut"},
+        {"concept_id": "e9Qi_WjN_h71", "label": "Arbetsterapeutexamen"}
+      ],
+      "id": "kv.model-authored.022",
+      "query": "Jag är arbetsterapeut och har fått den formella behörigheten från Socialstyrelsen att utöva yrket.",
+      "rationale": "Target är tydligt stödd av queryn och ligger på en rimlig plats i top-5."
+    },
+    {
+      "adjudication": "nominal_hit_good_but_not_top1",
+      "authored_target": {"concept_id": "tPU1_wJL_suB", "label": "Försäljningsvana, direktförsäljning konsument"},
+      "confidence": "high",
+      "fusion_rank": 3,
+      "fusion_top5": [
+        {"concept_id": "Td4F_YtH_u6S", "label": "Butiksvana, fackhandel"},
+        {"concept_id": "FJBT_yzk_BWe", "label": "Uppsökande försäljning"},
+        {"concept_id": "tPU1_wJL_suB", "label": "Försäljningsvana, direktförsäljning konsument"},
+        {"concept_id": "GnKk_qZt_CJv", "label": "Betongarbete"},
+        {"concept_id": "YcrR_5QB_3XL", "label": "Gesällbrev, frisör"}
+      ],
+      "id": "kv.model-authored.015",
+      "query": "Jag har sålt direkt till privatpersoner genom hembesök, event och personliga möten där jag avslutat affären på plats.",
+      "rationale": "Direktförsäljning till konsument är starkt target; rank 3 är användbart men fackhandel rank 1 är mindre precist."
+    },
+    {
+      "adjudication": "nominal_hit_strong",
+      "authored_target": {"concept_id": "K8eq_sEz_eXV", "label": "HTML, programmeringsspråk"},
+      "confidence": "high",
+      "fusion_rank": 1,
+      "fusion_top5": [
+        {"concept_id": "K8eq_sEz_eXV", "label": "HTML, programmeringsspråk"},
+        {"concept_id": "rmuF_Dce_PPS", "label": "Elarbeten, servicevana"},
+        {"concept_id": "pSTA_VfB_7eA", "label": "Maskinelektronik, felsökningsvana/Maskinelektronik, reparationsvana"},
+        {"concept_id": "74Mw_JUN_VKx", "label": "Ständiga förbättringar/Lean"},
+        {"concept_id": "AfJ4_Pvv_YBa", "label": "Webbutveckling"}
+      ],
+      "id": "kv.model-authored.060",
+      "query": "Jag bygger webbsidors struktur med element för rubriker, länkar, formulär, tabeller och semantisk uppmärkning i markup.",
+      "rationale": "Target är tydligt stödd av queryn och ligger på en rimlig plats i top-5."
+    },
+    {
+      "adjudication": "nominal_hit_strong",
+      "authored_target": {"concept_id": "yyJQ_gFx_TKr", "label": "Förskollärarexamen"},
+      "confidence": "high",
+      "fusion_rank": 1,
+      "fusion_top5": [
+        {"concept_id": "yyJQ_gFx_TKr", "label": "Förskollärarexamen"},
+        {"concept_id": "6Suw_3c1_47a", "label": "Förskollärarlegitimation"},
+        {"concept_id": "9bdT_Hrb_LjG", "label": "Specialpedagogexamen"},
+        {"concept_id": "MjPH_341_Zmc", "label": "Socionomexamen"},
+        {"concept_id": "Qgfp_vqW_51G", "label": "Tandläkarexamen"}
+      ],
+      "id": "kv.model-authored.025",
+      "query": "Jag har slutfört högskoleutbildningen till förskollärare och fått examen från lärosätet.",
+      "rationale": "Target är tydligt stödd av queryn och ligger på en rimlig plats i top-5."
+    },
+    {
+      "adjudication": "nominal_hit_taxonomy_boundary",
+      "authored_target": {"concept_id": "Qgfp_vqW_51G", "label": "Tandläkarexamen"},
+      "confidence": "high",
+      "fusion_rank": 2,
+      "fusion_top5": [
+        {"concept_id": "viQT_1Vf_hvu", "label": "Legitimation som tandläkare"},
+        {"concept_id": "Qgfp_vqW_51G", "label": "Tandläkarexamen"},
+        {"concept_id": "SfoE_zq7_ADN", "label": "Social service och omsorg, områdeskunskap"},
+        {"concept_id": "YcrR_5QB_3XL", "label": "Gesällbrev, frisör"},
+        {"concept_id": "j1Yr_UhC_X16", "label": "Arbetsledarerfarenhet"}
+      ],
+      "id": "kv.model-authored.064",
+      "query": "Jag har slutfört universitetsutbildningen till tandläkare och fått den examen som krävs före ansökan om yrkesbehörighet.",
+      "rationale": "Tandläkarexamen ligger rank 2 medan legitimation ligger rank 1; queryn handlar om examen före behörighet, så target är starkt och resultatet ändå användbart."
+    },
+    {
+      "adjudication": "nominal_hit_strong",
+      "authored_target": {"concept_id": "8Yqr_o72_jqv", "label": "Yrkesbevis, grävlastare/Yrkesbevis, grävmaskin"},
+      "confidence": "high",
+      "fusion_rank": 1,
+      "fusion_top5": [
+        {"concept_id": "8Yqr_o72_jqv", "label": "Yrkesbevis, grävlastare/Yrkesbevis, grävmaskin"},
+        {"concept_id": "aMyW_hB7_TpU", "label": "Kundtjänst"},
+        {"concept_id": "beHF_mum_ANM", "label": "Kontorsstädning"},
+        {"concept_id": "X6Pi_hDT_KDA", "label": "Distributionskörning"},
+        {"concept_id": "Q7eC_B7g_QiU", "label": "Certifikat, heta arbeten"}
+      ],
+      "id": "kv.model-authored.083",
+      "query": "Jag har dokumenterad yrkesbehörighet för att köra grävmaskin och grävlastare professionellt på arbetsplats.",
+      "rationale": "Target är tydligt stödd av queryn och ligger på en rimlig plats i top-5."
+    },
+    {
+      "adjudication": "nominal_hit_strong",
+      "authored_target": {"concept_id": "AwhJ_eLD_xpG", "label": "Försäljningsvana, telefonförsäljning"},
+      "confidence": "high",
+      "fusion_rank": 1,
+      "fusion_top5": [
+        {"concept_id": "AwhJ_eLD_xpG", "label": "Försäljningsvana, telefonförsäljning"},
+        {"concept_id": "sA2V_erA_3WN", "label": "Teknisk försäljning"},
+        {"concept_id": "dRWb_Mgx_yJf", "label": "Försäljningsvana, uppsökande försäljning företag"},
+        {"concept_id": "eKuz_edm_kmi", "label": "Inköpsvana"},
+        {"concept_id": "YcrR_5QB_3XL", "label": "Gesällbrev, frisör"}
+      ],
+      "id": "kv.model-authored.003",
+      "query": "Jag har arbetat med att ringa prospekt och sälja abonnemang och tjänster helt via telefon.",
+      "rationale": "Target är tydligt stödd av queryn och ligger på en rimlig plats i top-5."
+    },
+    {
+      "adjudication": "nominal_hit_strong",
+      "authored_target": {"concept_id": "Kzvi_T2N_vx6", "label": "Digitalt färdskrivarkort"},
+      "confidence": "high",
+      "fusion_rank": 1,
+      "fusion_top5": [
+        {"concept_id": "Kzvi_T2N_vx6", "label": "Digitalt färdskrivarkort"},
+        {"concept_id": "FYk9_RXp_7c5", "label": "Redovisning"},
+        {"concept_id": "bNRS_e6U_i9r", "label": "Yrkesbevis, träarbetare"},
+        {"concept_id": "GL3x_bFE_86J", "label": "Auktoriserad hudterapeut"},
+        {"concept_id": "YcrR_5QB_3XL", "label": "Gesällbrev, frisör"}
+      ],
+      "id": "kv.model-authored.017",
+      "query": "Jag har förarkortet som sätts i lastbilens digitala färdskrivare för att registrera kör- och vilotider.",
+      "rationale": "Target är tydligt stödd av queryn och ligger på en rimlig plats i top-5."
+    },
+    {
+      "adjudication": "nominal_hit_strong",
+      "authored_target": {"concept_id": "eKuz_edm_kmi", "label": "Inköpsvana"},
+      "confidence": "high",
+      "fusion_rank": 1,
+      "fusion_top5": [
+        {"concept_id": "eKuz_edm_kmi", "label": "Inköpsvana"},
+        {"concept_id": "Lz84_K5d_CcL", "label": "Digital marknadsföring/Onlinemarknadsföring"},
+        {"concept_id": "ba8g_LRR_Sj2", "label": "Utbildning på motorsåg"},
+        {"concept_id": "BHCG_hQC_kNa", "label": "Budtransporter"},
+        {"concept_id": "4fRg_DA4_Dj3", "label": "Avtalsutformning/Kontraktsutformning"}
+      ],
+      "id": "kv.model-authored.092",
+      "query": "Jag tar in offerter, jämför leverantörer, förhandlar pris och villkor, lägger beställningar och följer upp leveranser.",
+      "rationale": "Target är tydligt stödd av queryn och ligger på en rimlig plats i top-5."
+    },
+    {
+      "adjudication": "nominal_hit_strong",
+      "authored_target": {"concept_id": "MjPH_341_Zmc", "label": "Socionomexamen"},
+      "confidence": "high",
+      "fusion_rank": 1,
+      "fusion_top5": [
+        {"concept_id": "MjPH_341_Zmc", "label": "Socionomexamen"},
+        {"concept_id": "SfoE_zq7_ADN", "label": "Social service och omsorg, områdeskunskap"},
+        {"concept_id": "qMfa_U8e_Lto", "label": "Pedagogiskt förhållningssätt/Tydliggörande pedagogik"},
+        {"concept_id": "tg1e_QpF_xdX", "label": "Neuropsykologisk funktionsnedsättning/NPF, erfarenhet"},
+        {"concept_id": "awjU_C3D_XEJ", "label": "Ekonomistyrning"}
+      ],
+      "id": "kv.model-authored.007",
+      "query": "Jag har avslutad universitetsutbildning i socialt arbete som ger examen för att arbeta som socionom.",
+      "rationale": "Target är tydligt stödd av queryn och ligger på en rimlig plats i top-5."
+    },
+    {
+      "adjudication": "nominal_hit_good_but_not_top1",
+      "authored_target": {"concept_id": "Lz84_K5d_CcL", "label": "Digital marknadsföring/Onlinemarknadsföring"},
+      "confidence": "high",
+      "fusion_rank": 2,
+      "fusion_top5": [
+        {"concept_id": "aaQr_mcK_hgK", "label": "Google Ads"},
+        {"concept_id": "Lz84_K5d_CcL", "label": "Digital marknadsföring/Onlinemarknadsföring"},
+        {"concept_id": "VANx_32R_rU1", "label": "Sökmotormarknadsföring/SEM"},
+        {"concept_id": "oCKN_G9k_zTj", "label": "Google Analytics"},
+        {"concept_id": "imVM_9XE_Rrm", "label": "Yrkeskompetensbevis för förare (YKB)"}
+      ],
+      "id": "kv.model-authored.011",
+      "query": "Jag driver annonsering i Google och Meta, jobbar med SEO, e-postkampanjer och följer upp konverteringar på webben.",
+      "rationale": "Digital marknadsföring är ett starkt paraplytarget; Google Ads rank 1 är en rimlig delkompetens och target rank 2."
+    },
+    {
+      "adjudication": "nominal_hit_strong",
+      "authored_target": {"concept_id": "FJBT_yzk_BWe", "label": "Uppsökande försäljning"},
+      "confidence": "high",
+      "fusion_rank": 1,
+      "fusion_top5": [
+        {"concept_id": "FJBT_yzk_BWe", "label": "Uppsökande försäljning"},
+        {"concept_id": "TzHP_38y_mhm", "label": "Affärsutveckling"},
+        {"concept_id": "dRWb_Mgx_yJf", "label": "Försäljningsvana, uppsökande försäljning företag"},
+        {"concept_id": "sA2V_erA_3WN", "label": "Teknisk försäljning"},
+        {"concept_id": "zBNU_qqu_TbC", "label": "Besöksbokning"}
+      ],
+      "id": "kv.model-authored.009",
+      "query": "Jag arbetar med kalla kontakter, söker själv upp nya kunder och bokar möten för att skapa nya affärer.",
+      "rationale": "Target är tydligt stödd av queryn och ligger på en rimlig plats i top-5."
+    },
+    {
+      "adjudication": "nominal_hit_strong",
+      "authored_target": {"concept_id": "w8bU_wHe_omF", "label": "MS Office"},
+      "confidence": "high",
+      "fusion_rank": 1,
+      "fusion_top5": [
+        {"concept_id": "w8bU_wHe_omF", "label": "MS Office"},
+        {"concept_id": "Lz84_K5d_CcL", "label": "Digital marknadsföring/Onlinemarknadsföring"},
+        {"concept_id": "hqYJ_jyZ_Ks8", "label": "Demensvård"},
+        {"concept_id": "5wab_aFK_gdL", "label": "MS Excel"},
+        {"concept_id": "6Ei3_fZV_YKM", "label": "MS Word"}
+      ],
+      "id": "kv.model-authored.010",
+      "query": "Jag arbetar obehindrat i Word, Excel, PowerPoint och Outlook i det dagliga kontorsarbetet.",
+      "rationale": "Target är tydligt stödd av queryn och ligger på en rimlig plats i top-5."
+    },
+    {
+      "adjudication": "nominal_hit_strong",
+      "authored_target": {"concept_id": "1abT_LRk_fg2", "label": "Pizzabakning"},
+      "confidence": "high",
+      "fusion_rank": 1,
+      "fusion_top5": [
+        {"concept_id": "1abT_LRk_fg2", "label": "Pizzabakning"},
+        {"concept_id": "GnKk_qZt_CJv", "label": "Betongarbete"},
+        {"concept_id": "sjyJ_XPV_rXU", "label": "Ordningsvaktsförordnande"},
+        {"concept_id": "Gstq_4UH_9na", "label": "Klassisk massage"},
+        {"concept_id": "w8bU_wHe_omF", "label": "MS Office"}
+      ],
+      "id": "kv.model-authored.066",
+      "query": "Jag gör deg från grunden, jäser och formar bottnar, toppar efter beställning och gräddar i mycket varm ugn.",
+      "rationale": "Target är tydligt stödd av queryn och ligger på en rimlig plats i top-5."
+    }
+  ],
+  "nominal_hit_sample_counts": {
+    "nominal_hit_good_but_not_top1": 2,
+    "nominal_hit_strong": 11,
+    "nominal_hit_target_multi_intent": 1,
+    "nominal_hit_taxonomy_boundary": 1
+  },
+  "raw_miss_review": [
+    {"id":"kv.model-authored.002","query":"Jag har flera års vana av att själv kontakta nya företagskunder, boka möten och driva affärer från första samtal till offert.","authored_target":{"concept_id":"dRWb_Mgx_yJf","label":"Försäljningsvana, uppsökande försäljning företag"},"fusion_rank":123,"adjudication":"strong_target_model_miss","confidence":"high","rationale":"Beskrivningen anger aktiv uppsökande B2B-försäljning från prospektering till offert; målkonceptet är tydligt och topplistan är huvudsakligen irrelevant."},
+    {"id":"kv.model-authored.004","query":"Jag har den behörighet som krävs för att köra taxi yrkesmässigt och ta betalande passagerare.","authored_target":{"concept_id":"Tpvt_9yv_KAw","label":"Taxiförarlegitimation"},"fusion_rank":8,"adjudication":"strong_target_model_miss","confidence":"high","rationale":"Taxi, yrkesmässig körning och särskild behörighet gör taxiförarlegitimation tydligt; rank 8 är för lågt."},
+    {"id":"kv.model-authored.005","query":"Jag är behörig lärare och har fått min undervisningsbehörighet utfärdad efter min utbildning.","authored_target":{"concept_id":"yKnk_W7X_Zvk","label":"Lärarlegitimation"},"fusion_rank":9,"adjudication":"taxonomy_boundary_or_near_duplicate","confidence":"high","rationale":"Texten uttrycker lärarbehörighet snarare än bara utbildning; Lärarlegitimation är starkt mål men Lärarexamen på rank 1 är en närliggande credential-gräns."},
+    {"id":"kv.model-authored.008","query":"Jag har avslutat lärarutbildningen på universitet och fått examen för att undervisa.","authored_target":{"concept_id":"zJZd_pDs_SDf","label":"Lärarexamen"},"fusion_rank":11,"adjudication":"strong_target_model_miss","confidence":"high","rationale":"Avslutad universitetsutbildning till lärare och erhållen examen pekar direkt på Lärarexamen; topplistan är fel credential-familj."},
+    {"id":"kv.model-authored.012","query":"Jag behandlar patienter med strukturerade övningar där vi kartlägger tankar, känslor och beteenden och tränar på att förändra mönster.","authored_target":{"concept_id":"Hh2K_Seb_wZQ","label":"Kognitiv beteendeterapi"},"fusion_rank":null,"adjudication":"strong_target_model_miss","confidence":"high","rationale":"Strukturerat arbete med tankar, känslor och beteenden är klassisk KBT-beskrivning; målet saknas helt medan topplistan är irrelevant."},
+    {"id":"kv.model-authored.013","query":"Jag bygger kalkylblad med formler, pivottabeller, diagram och uppslag och kan hantera stora tabeller med data.","authored_target":{"concept_id":"5wab_aFK_gdL","label":"MS Excel"},"fusion_rank":null,"adjudication":"target_reasonable_but_multi_intent","confidence":"medium","rationale":"Formler, pivottabeller och uppslag beskriver kalkylbladsarbete starkt men utan produktnamn kan andra kalkylprogram också passa; topplistan är ändå dålig."},
+    {"id":"kv.model-authored.014","query":"Jag har avslutad högskoleutbildning till sjuksköterska och har tagit den examen som utbildningen leder till.","authored_target":{"concept_id":"GYz6_5Jt_Wmy","label":"Sjuksköterskeexamen"},"fusion_rank":6,"adjudication":"taxonomy_boundary_or_near_duplicate","confidence":"high","rationale":"Texten säger uttryckligen utbildning och examen; Sjuksköterskeexamen är rätt granularity, men legitimationen på rank 1 är nära relaterad och användbar."},
+    {"id":"kv.model-authored.016","query":"Jag har lett ett arbetslag, fördelat dagens jobb, följt upp resultat och stöttat kollegor i det dagliga arbetet.","authored_target":{"concept_id":"j1Yr_UhC_X16","label":"Arbetsledarerfarenhet"},"fusion_rank":57,"adjudication":"strong_target_model_miss","confidence":"high","rationale":"Att leda arbetslag, fördela arbete och följa resultat är direkt arbetsledarerfarenhet; rank 57 och topplistan är klart fel."},
+    {"id":"kv.model-authored.020","query":"Jag kör låglyftare, ledstaplare och andra mindre trucktyper som används för intern materialhantering.","authored_target":{"concept_id":"Zk4h_jP4_e85","label":"A-truckar"},"fusion_rank":16,"adjudication":"strong_target_model_miss","confidence":"high","rationale":"Låglyftare och ledstaplare är konkreta A-trucktyper; bred Truckvana är relevant men A-truckar bör vara synligt i top-5."},
+    {"id":"kv.model-authored.021","query":"Jag har drivit projekt från planering och tidslinje till leverans, samordnat deltagare och följt upp risker och budget.","authored_target":{"concept_id":"3TSx_fJE_Z26","label":"Projektledning, erfarenhet"},"fusion_rank":12,"adjudication":"strong_target_model_miss","confidence":"high","rationale":"Projekt från planering till leverans med risk- och budgetuppföljning är tydlig projektledningserfarenhet; projektadministration är närliggande men för svagt."},
+    {"id":"kv.model-authored.023","query":"Jag svarar på kundfrågor via telefon, mejl och chatt, löser reklamationer och följer ärenden tills kunden fått hjälp.","authored_target":{"concept_id":"aMyW_hB7_TpU","label":"Kundtjänst"},"fusion_rank":49,"adjudication":"strong_target_model_miss","confidence":"high","rationale":"Kundfrågor, reklamationer och ärendeuppföljning över telefon/mejl/chatt är direkt kundtjänst; rank 49 är tydlig retrievalbrist."},
+    {"id":"kv.model-authored.027","query":"Jag har arbetat i butikskassa, skannat varor, tagit kort- och kontantbetalningar och gjort dagsavslut.","authored_target":{"concept_id":"hYpk_RYx_y3V","label":"Kassavana"},"fusion_rank":14,"adjudication":"strong_target_model_miss","confidence":"high","rationale":"Butikskassa, betalningar och dagsavslut är direkt kassavana; butiksvana är relevant men målkonceptet bör vara top-5."},
+    {"id":"kv.model-authored.028","query":"Jag arbetar i system där vi sparar kundkontakter, affärsmöjligheter, pipeline, aktiviteter och historik för varje konto.","authored_target":{"concept_id":"dQre_aBF_3dE","label":"Customer Relationship Management/CRM"},"fusion_rank":149,"adjudication":"strong_target_model_miss","confidence":"high","rationale":"Kundkontakter, pipeline, affärsmöjligheter och kontohistorik beskriver CRM-systemets kärna; target är starkt trots utebliven akronym."},
+    {"id":"kv.model-authored.029","query":"Jag konterar verifikationer, bokar leverantörs- och kundhändelser och stämmer av konton löpande.","authored_target":{"concept_id":"Fiq4_siu_LXn","label":"Bokföringsvana"},"fusion_rank":30,"adjudication":"strong_target_model_miss","confidence":"high","rationale":"Kontering, verifikationer och kontoavstämningar är direkt bokföringsarbete; topplistan är huvudsakligen irrelevant."},
+    {"id":"kv.model-authored.031","query":"Jag planerar kanalval, målgrupper, räckvidd och budget för kampanjer mellan exempelvis tv, digitalt, print och sociala medier.","authored_target":{"concept_id":"E9LX_1eF_jDB","label":"Mediastrategi"},"fusion_rank":null,"adjudication":"taxonomy_boundary_or_near_duplicate","confidence":"medium","rationale":"Kanalval, räckvidd och mediebudget passar Mediastrategi väl, men digital marknadsföring och marknadskommunikation är legitima närliggande svar."},
+    {"id":"kv.model-authored.032","query":"Jag arbetar professionellt i kök med mise en place, råvaruhantering, tillagning under service och rengöring efter passet.","authored_target":{"concept_id":"Dxqv_2WA_TYt","label":"Restaurangkök"},"fusion_rank":14,"adjudication":"taxonomy_boundary_or_near_duplicate","confidence":"medium","rationale":"Professionellt restaurangkök är ett rimligt paraplymål, medan Kallkök/Livsmedelshygien är delar av samma domän; single-target-evalueringen är för snäv här."},
+    {"id":"kv.model-authored.034","query":"Jag kan läsa elscheman, mäta spänning och ström, förstå trefassystem och felsöka grundläggande elektriska kretsar.","authored_target":{"concept_id":"TGZ1_Xb5_77h","label":"Elteknik"},"fusion_rank":null,"adjudication":"strong_target_model_miss","confidence":"high","rationale":"Elscheman, trefas, spänning/ström och elektrisk felsökning är direkt elteknik; målet saknas helt."},
+    {"id":"kv.model-authored.035","query":"Jag bygger funktionalitet som körs i webbläsaren och arbetar även med Node på serversidan, med promises, events och npm-paket.","authored_target":{"concept_id":"DHhX_uVf_y6X","label":"JavaScript, programmeringsspråk"},"fusion_rank":null,"adjudication":"target_reasonable_but_multi_intent","confidence":"medium","rationale":"Node, npm, promises och browserkod pekar starkt mot JavaScript men TypeScript och generell mjukvaruutveckling kan också vara rimliga."},
+    {"id":"kv.model-authored.039","query":"Jag registrerar löneunderlag, frånvaro, semester, tillägg och avdrag och gör kontroller inför lönekörning.","authored_target":{"concept_id":"WCWw_wZz_8iv","label":"Löneadministration"},"fusion_rank":null,"adjudication":"strong_target_model_miss","confidence":"high","rationale":"Löneunderlag, frånvaro, semester, tillägg/avdrag och lönekörning är direkt löneadministration; målet saknas helt."},
+    {"id":"kv.model-authored.044","query":"Jag skriver scripts för datahantering och automation, använder pandas och virtuella miljöer och är van vid indenteringsstyrd syntax.","authored_target":{"concept_id":"qfkh_ZRK_w4W","label":"Python, programmeringsspråk"},"fusion_rank":null,"adjudication":"strong_target_model_miss","confidence":"high","rationale":"pandas, virtuella miljöer och indenteringsstyrd syntax är mycket starka Python-signaler; målet saknas helt."},
+    {"id":"kv.model-authored.045","query":"Jag lagar individuella rätter på beställning under service, med flera stationer och olika stekgrader och garnityr beroende på order.","authored_target":{"concept_id":"Bb4Q_Vou_pbq","label":"A la carte"},"fusion_rank":11,"adjudication":"strong_target_model_miss","confidence":"high","rationale":"Individuella beställningar, flera stationer, stekgrader och service beskriver à la carte-arbete väl; rank 11 är för lågt."},
+    {"id":"kv.model-authored.048","query":"Jag utvecklar backendtjänster på JVM, använder ofta Spring Boot, Maven eller Gradle och arbetar med objektorienterad kod.","authored_target":{"concept_id":"jCsR_WQX_CKD","label":"Java, programmeringsspråk"},"fusion_rank":null,"adjudication":"target_reasonable_but_multi_intent","confidence":"medium","rationale":"JVM + Spring Boot + Maven/Gradle pekar starkt mot Java men Kotlin kan också förekomma; generell Programmering som top-1 är relevant men för bred."},
+    {"id":"kv.model-authored.051","query":"Jag administrerar servrar från terminalen, arbetar med systemd, bash, paketmanager, filrättigheter och SSH.","authored_target":{"concept_id":"z52H_f4y_4ZA","label":"Linux, operativsystem"},"fusion_rank":152,"adjudication":"strong_target_model_miss","confidence":"high","rationale":"systemd, bash, paketmanager, filrättigheter och SSH är mycket stark Linux-signal; Windows på rank 1 gör felet tydligt."},
+    {"id":"kv.model-authored.054","query":"Jag utvecklar i .NET, använder Visual Studio, LINQ och async/await och bygger ofta webb-API:er med Microsofts ramverk.","authored_target":{"concept_id":"jBKc_5Yx_Y6T","label":"C#, programmeringsspråk"},"fusion_rank":null,"adjudication":"strong_target_model_miss","confidence":"high","rationale":".NET, Visual Studio, LINQ och async/await är mycket starka C#-signaler; ASP.NET är närliggande men språkkompetensen bör synas."},
+    {"id":"kv.model-authored.055","query":"Jag gör period- och årsstängning, periodiseringar, avskrivningar, kontoavstämningar och tar fram underlag till årsredovisningen.","authored_target":{"concept_id":"Lq2i_vZo_BEx","label":"Bokslut"},"fusion_rank":150,"adjudication":"strong_target_model_miss","confidence":"high","rationale":"Period-/årsstängning, periodiseringar, avskrivningar och årsredovisningsunderlag beskriver bokslutsarbete direkt."},
+    {"id":"kv.model-authored.058","query":"Jag har genomgått grundutbildningen som krävs för att arbeta bevakande med uniform, rondering och skydd av objekt.","authored_target":{"concept_id":"qsCj_EhM_fyT","label":"Väktarutbildning (grundutbildning)"},"fusion_rank":null,"adjudication":"strong_target_model_miss","confidence":"high","rationale":"Grundutbildning för uniformerad bevakning, rondering och objektskydd pekar tydligt på väktarutbildning; målet saknas helt."},
+    {"id":"kv.model-authored.063","query":"Efter grundutbildningen till sjuksköterska har jag läst vidare på avancerad nivå och tagit examen inom en klinisk specialisering.","authored_target":{"concept_id":"Ektq_nPz_4YF","label":"Specialistsjuksköterskeexamen"},"fusion_rank":21,"adjudication":"strong_target_model_miss","confidence":"medium","rationale":"Vidareutbildning efter sjuksköterskegrund på avancerad nivå med klinisk specialisering pekar starkt på specialistsjuksköterskeexamen, även om exakt examensform inte sägs ordagrant."},
+    {"id":"kv.model-authored.065","query":"Jag är specialistsjuksköterska och arbetar specifikt med barns och ungdomars sjukdomar, utveckling och vårdbehov.","authored_target":{"concept_id":"qkyH_MC1_YKU","label":"Hälso- och sjukvård för barn och ungdomar, specialistområde för sjuksköterska"},"fusion_rank":75,"adjudication":"taxonomy_boundary_or_near_duplicate","confidence":"high","rationale":"Barn- och ungdomsvård som specialistsjuksköterska matchar specialistområdet starkt; Specialistsjuksköterskeexamen är relevant men ett bredare credential-svar."},
+    {"id":"kv.model-authored.067","query":"Jag fotograferar med systemkamera, ställer bländare, slutartid och ISO manuellt och efterbehandlar bilder från RAW-filer.","authored_target":{"concept_id":"UdXV_fqG_jWu","label":"Fotografering, digitalkamera"},"fusion_rank":null,"adjudication":"strong_target_model_miss","confidence":"high","rationale":"Systemkamera, bländare, slutartid, ISO och RAW är direkt digital fotograferingskompetens; topplistan är fel."},
+    {"id":"kv.model-authored.068","query":"Jag utvecklar nativekod med templates, RAII, smart pointers och kompilering till maskinkod och jobbar nära minne och prestanda.","authored_target":{"concept_id":"yNm8_krX_usR","label":"C++, programmeringsspråk"},"fusion_rank":null,"adjudication":"strong_target_model_miss","confidence":"high","rationale":"Templates, RAII och smart pointers är mycket specifika C++-signaler; målet saknas helt."},
+    {"id":"kv.model-authored.069","query":"Jag har yrkesbeviset som visar att jag uppfyller branschkraven för att arbeta som elektriker med elinstallationer.","authored_target":{"concept_id":"EjB9_prP_VQZ","label":"Certifikat, elektriker - elteknik"},"fusion_rank":23,"adjudication":"strong_target_model_miss","confidence":"medium","rationale":"Elektriker, elinstallationer och branschbevis pekar starkt mot ECY-certifikat, även om ordet ECY inte används."},
+    {"id":"kv.model-authored.070","query":"Jag arbetar med kampanjer, presskontakter, varumärkesbudskap och extern kommunikation för att skapa synlighet och publicitet.","authored_target":{"concept_id":"5yDE_FiQ_bMn","label":"Marknadsföring/PR"},"fusion_rank":37,"adjudication":"taxonomy_boundary_or_near_duplicate","confidence":"medium","rationale":"Presskontakter/publicitet stärker PR-målet, men Marknadsföring/Marknadskommunikation på rank 1 är ett semantiskt närliggande och användbart svar."},
+    {"id":"kv.model-authored.071","query":"Jag skapar och formaterar längre dokument med rubriknivåer, tabeller, sidhuvud, innehållsförteckning och spårade ändringar i Microsofts ordbehandlare.","authored_target":{"concept_id":"6Ei3_fZV_YKM","label":"MS Word"},"fusion_rank":null,"adjudication":"strong_target_model_miss","confidence":"high","rationale":"Microsofts ordbehandlare plus dokumentfunktioner beskriver Word mycket tydligt även utan produktnamnet; målet saknas helt."},
+    {"id":"kv.model-authored.072","query":"Jag styr layout, färger, typografi och responsivitet på webbsidor med selektorer, boxmodellen, flexbox och grid.","authored_target":{"concept_id":"euH8_yAp_hiG","label":"CSS, stilmall"},"fusion_rank":null,"adjudication":"strong_target_model_miss","confidence":"high","rationale":"Selektorer, boxmodell, flexbox och grid är direkt CSS; HTML/Webbdesign är närliggande men CSS bör ligga i top-5."},
+    {"id":"kv.model-authored.073","query":"Jag tar fram krav, designar tekniska lösningar, implementerar, testar och förvaltar informationssystem över tid.","authored_target":{"concept_id":"D7Ns_RG6_hD2","label":"Systemutveckling"},"fusion_rank":8,"adjudication":"strong_target_model_miss","confidence":"high","rationale":"Krav, design, implementation, test och förvaltning av informationssystem beskriver systemutveckling direkt; rank 8 är för lågt."},
+    {"id":"kv.model-authored.074","query":"Jag tar fram måttsatta 2D- och 3D-modeller av komponenter och sammanställningar i konstruktionsprogram och gör ritningsunderlag för tillverkning.","authored_target":{"concept_id":"oaiv_GsB_AFK","label":"CAD-konstruktion/CAD-ritning"},"fusion_rank":55,"adjudication":"strong_target_model_miss","confidence":"high","rationale":"Måttsatta 2D/3D-modeller, sammanställningar och ritningsunderlag i konstruktionsprogram är direkt CAD-konstruktion; rank 55 är tydligt fel."},
+    {"id":"kv.model-authored.076","query":"Jag har flera säsongers erfarenhet av att städa hotellrum snabbt mellan gäster, bädda, byta linne och återställa badrum och ytor.","authored_target":{"concept_id":"6XRu_MQm_4NK","label":"Städvana, hotell"},"fusion_rank":null,"adjudication":"returned_candidate_equally_or_more_reasonable","confidence":"high","rationale":"Top-1 Hotellstädning beskriver queryn minst lika direkt som target Städvana, hotell; detta är inte ett meningsfullt produktfel trots raw miss."},
+    {"id":"kv.model-authored.078","query":"Jag är specialistsjuksköterska och arbetar med sövning, luftväg, övervakning och läkemedel före, under och efter operation.","authored_target":{"concept_id":"Xk3A_N4V_aAK","label":"Anestesisjukvård, specialistområde för sjuksköterska"},"fusion_rank":null,"adjudication":"taxonomy_boundary_or_near_duplicate","confidence":"high","rationale":"Sövning, luftväg och perioperativ övervakning matchar anestesisjukvård starkt; Specialistsjuksköterskeexamen är relevant men för bred."},
+    {"id":"kv.model-authored.079","query":"Jag vårdar personer med kognitiv svikt och minnessjukdom, hanterar beteendemässiga symtom och anpassar bemötande och vardagsstöd.","authored_target":{"concept_id":"hqYJ_jyZ_Ks8","label":"Demensvård"},"fusion_rank":null,"adjudication":"strong_target_model_miss","confidence":"high","rationale":"Kognitiv svikt, minnessjukdom och anpassat bemötande är tydlig demensvård; målet saknas helt."},
+    {"id":"kv.model-authored.080","query":"Jag har slutfört universitetets juristprogram och tagit den akademiska examen som utbildningen leder till.","authored_target":{"concept_id":"pLfm_Uff_BsM","label":"Juristexamen"},"fusion_rank":11,"adjudication":"strong_target_model_miss","confidence":"high","rationale":"Slutfört juristprogram och erhållen examen pekar direkt på Juristexamen; rank 11 och topplistan är fel."},
+    {"id":"kv.model-authored.081","query":"Jag sköter fakturering, leverantörsfakturor och bokföringsunderlag i det svenska molnbaserade ekonomisystemet som många småföretag använder.","authored_target":{"concept_id":"D7RV_iq7_KE4","label":"Fortnox, affärssystem"},"fusion_rank":null,"adjudication":"synthetic_target_not_inferable","confidence":"high","rationale":"Beskrivningen anger ett vanligt svenskt molnbaserat ekonomisystem men nämner ingen unik Fortnox-signal; Visma/Bokio m.fl. är möjliga."},
+    {"id":"kv.model-authored.086","query":"Jag har arbetat i specialbutik med rådgivande försäljning, varuplock, exponering, lager och kassa inom ett avgränsat produktsortiment.","authored_target":{"concept_id":"Td4F_YtH_u6S","label":"Butiksvana, fackhandel"},"fusion_rank":38,"adjudication":"strong_target_model_miss","confidence":"high","rationale":"Specialbutik, rådgivande försäljning, exponering, lager och kassa matchar butiksvana i fackhandel direkt; rank 38 är tydligt fel."},
+    {"id":"kv.model-authored.090","query":"Jag undervisar studenter på universitet eller högskola i kliniska vårdämnen, handleder moment och examinerar kunskaper inom vårdområdet.","authored_target":{"concept_id":"Zffc_M4R_Gws","label":"Hälso- och sjukvård, undervisning högskolenivå"},"fusion_rank":180,"adjudication":"strong_target_model_miss","confidence":"high","rationale":"Undervisning och examination av kliniska vårdämnen på universitet/högskola matchar target nästan ordagrant semantiskt; rank 180 är grovt fel."},
+    {"id":"kv.model-authored.091","query":"Jag säljer, installerar eller ger råd om inbrottslarm, passersystem, sensorer, kameror och andra tekniska skyddslösningar.","authored_target":{"concept_id":"wbAz_fL9_jgx","label":"Larmprodukter/Säkerhetsprodukter"},"fusion_rank":59,"adjudication":"returned_candidate_equally_or_more_reasonable","confidence":"medium","rationale":"Inbrottslarm-installationsvana på rank 1 är direkt stödd av queryn; breda Larmprodukter/Säkerhetsprodukter är också rimligt eftersom flera säkerhetssystem nämns."},
+    {"id":"kv.model-authored.095","query":"Jag har lärarutbildning och examen med inriktning mot undervisning för äldre elever i grundskolan och motsvarande årskurser.","authored_target":{"concept_id":"Tp1G_2jt_rN4","label":"Lärarexamen inr senare år"},"fusion_rank":null,"adjudication":"taxonomy_boundary_or_near_duplicate","confidence":"medium","rationale":"Examen för undervisning av äldre grundskoleelever är rimlig match mot äldre taxonomibegreppet, men exakt historisk examensindelning kan inte säkert härledas ur formuleringen."},
+    {"id":"kv.model-authored.097","query":"Jag leder pedagogiskt arbete, coachar lärare, följer undervisningens kvalitet och skapar gemensam riktning för lärande och utveckling.","authored_target":{"concept_id":"5PjX_999_uLZ","label":"Pedagogiskt ledarskap"},"fusion_rank":6,"adjudication":"taxonomy_boundary_or_near_duplicate","confidence":"medium","rationale":"Pedagogiskt ledarskap är starkt mål, men Pedagogiskt förhållningssätt på rank 1 är närliggande; target på rank 6 är en liten men materiell gränsmiss."},
+    {"id":"kv.model-authored.098","query":"Jag retuscherar foton, arbetar med lager, masker, markeringar, färgkorrigering och komposition i Adobes bildredigeringsprogram.","authored_target":{"concept_id":"xNyv_PTi_fSa","label":"2D-grafik-Adobe Photoshop"},"fusion_rank":84,"adjudication":"strong_target_model_miss","confidence":"high","rationale":"Adobes bildredigerare med lager, masker och färgkorrigering är mycket stark Photoshop-signal; rank 84 är tydlig retrievalbrist."}
+  ],
+  "raw_miss_review_counts": {
+    "returned_candidate_equally_or_more_reasonable": 2,
+    "strong_target_model_miss": 32,
+    "synthetic_target_not_inferable": 1,
+    "target_reasonable_but_multi_intent": 3,
+    "taxonomy_boundary_or_near_duplicate": 9
+  },
+  "raw_result": {
+    "candidate": "C0-top1+G1d-4slot",
+    "c0_hit_at_5": {"hits": 52, "n": 100, "pct": 52.0, "wilson95_pct": [42.3, 61.5]},
+    "g1_hit_at_5": {"hits": 53, "n": 100, "pct": 53.0, "wilson95_pct": [43.3, 62.5]},
+    "hit_at_10": {"hits": 58, "n": 100, "pct": 58.0, "wilson95_pct": [48.2, 67.2]},
+    "hit_at_5": {"hits": 53, "n": 100, "pct": 53.0, "wilson95_pct": [43.3, 62.5]},
+    "regressed_vs_c0": 2,
+    "rescued_vs_c0": 3,
+    "top1": {"hits": 35, "n": 100, "pct": 35.0, "wilson95_pct": [26.4, 44.7]}
+  },
+  "schema_version": 1,
+  "taxonomy_version": 31
+}
