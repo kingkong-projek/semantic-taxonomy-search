@@ -1,0 +1,42 @@
+name: Sync C2 SSOT once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/sync_c2_ssot_once.py
+      - .github/workflows/sync-c2-ssot-once.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Patch SSOT
+        run: python scripts/sync_c2_ssot_once.py
+      - name: Verify intended C2 state
+        run: |
+          grep -Fq '93.677% volume-weighted Discovery Success@5' docs/research-plan.md
+          grep -Fq 'fresh natural-language next-volume holdout' docs/research-plan.md
+          grep -Fq '[x] **complete planned C retrieval vocabulary:**' docs/research-plan.md
+      - name: Commit SSOT
+        run: |
+          if git diff --quiet -- docs/research-plan.md; then
+            echo 'SSOT already synchronized'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add docs/research-plan.md
+          git commit -m 'research: sync C2 decision into SSOT'
+          git push origin HEAD:main
