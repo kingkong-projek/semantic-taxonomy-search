@@ -1,0 +1,63 @@
+name: Freeze C1 holdout SSOT
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/freeze_pareto_holdout_c1_ssot.py
+      - .github/workflows/freeze-pareto-holdout-c1-ssot.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  freeze:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Rebuild untouched holdout and adjudication
+        run: |
+          python scripts/build_pareto_holdout_batch.py --output-dir /tmp/holdout
+          python scripts/build_adjudication_context.py \
+            --batch /tmp/holdout/holdout.jsonl \
+            --output /tmp/holdout/context.json
+          python scripts/build_pareto_holdout_adjudication.py \
+            --holdout /tmp/holdout/holdout.jsonl \
+            --context /tmp/holdout/context.json \
+            --output-dir /tmp/holdout-adjudicated
+          python scripts/validate_benchmark.py /tmp/holdout-adjudicated/benchmark.jsonl
+      - name: Rebuild unchanged C0/C1 holdout comparison
+        run: |
+          python scripts/evaluate_pareto_holdout.py \
+            --benchmark /tmp/holdout-adjudicated/benchmark.jsonl \
+            --output /tmp/pareto-holdout-c0-c1.json
+      - name: Freeze evidence and synchronize SSOT
+        run: |
+          python scripts/freeze_pareto_holdout_c1_ssot.py \
+            /tmp/holdout-adjudicated \
+            /tmp/pareto-holdout-c0-c1.json
+      - name: Validate frozen state
+        run: |
+          python scripts/validate_benchmark.py research/benchmark/v31/pareto-model-holdout/benchmark.jsonl
+          python -m json.tool research/evaluation/v31/pareto-holdout-c0-c1.json >/dev/null
+          grep -F '83.173% volume-weighted decision accuracy on untouched 36-row holdout' docs/research-plan.md
+          grep -F '10/12 are exact active job-title queries' docs/findings/pareto-holdout-c1-v31.md
+      - name: Commit frozen holdout evidence and SSOT
+        run: |
+          set -euo pipefail
+          git config user.name "kingkongola"
+          git config user.email "adambergman90@gmail.com"
+          git add \
+            research/benchmark/v31/pareto-model-holdout \
+            research/evaluation/v31/pareto-holdout-c0-c1.json \
+            docs/findings/pareto-holdout-c1-v31.md \
+            docs/research-plan.md
+          git commit -m "benchmark: freeze C1 Pareto holdout result"
+          git push origin HEAD:main
