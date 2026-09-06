@@ -1,0 +1,48 @@
+name: Exact job-title router eval
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/measure_exact_job_title_router.py
+      - research/benchmark/v31/yv-real-query-review/**
+      - research/coverage/v31/pareto-demand-aggregate.json
+      - research/coverage/source-adapters.json
+      - .github/workflows/exact-job-title-router-eval.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Measure exact job-title routing lane
+        run: |
+          python scripts/measure_exact_job_title_router.py \
+            --version 31 \
+            --output artifacts/exact-job-title-router-v31.json
+      - name: Validate authority boundary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('artifacts/exact-job-title-router-v31.json').read_text(encoding='utf-8'))
+          assert x['review_slice']['queries']==50
+          assert x['review_slice']['c0_zero_evidence_queries']==29
+          assert x['semantics'].startswith('candidate-generation diagnostic')
+          assert 'no relevance labels are inferred' in x['semantics']
+          print(json.dumps(x['router'], indent=2, sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: exact-job-title-router-v31
+          path: artifacts/exact-job-title-router-v31.json
+          if-no-files-found: error
+          retention-days: 30
