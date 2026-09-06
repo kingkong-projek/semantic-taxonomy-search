@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "status": "frozen coverage diagnostic; no ESCO ranking or fusion",
+  "taxonomy_version": 31,
+  "source_run": 34061405681,
+  "source_artifact_id": 9997577903,
+  "source_artifact_zip_sha256": "a2412937dbd0de8a845bc7aafaa3981f58b2850f97f4be0e7525b4a44829246a",
+  "mapping_semantics_guard": "exact_match, close_match, broad_match and narrow_match remain distinct",
+  "cases": [
+    {
+      "target": "Kabelinstallationer",
+      "concept_id": "VQxj_dHG_UCE",
+      "mapping_counts": {"exact_match": 0, "close_match": 1, "broad_match": 0, "narrow_match": 8},
+      "close_match": [{"label": "reparera ledningar", "definition": "Lokalisera fel i ledningar eller kablar genom att använda specialutrustning och reparera felen utifrån vilken typ av ledning det rör sig om."}],
+      "narrow_labels": ["skala kablar", "använda maskiner för bearbetning av kablar", "binda samman kablar", "täta kablar", "använda handverktyg för kablar", "kabeltillbehör", "skarva kabel", "kabelsele"],
+      "interpretation": "Plausible cable-specific ESCO language exists, but only through weaker close/narrow semantics; do not append or union these edges indiscriminately."
+    },
+    {
+      "target": "Städmaterial",
+      "concept_id": "iu18_YyQ_hmh",
+      "mapping_counts": {"exact_match": 1, "close_match": 0, "broad_match": 0, "narrow_match": 2},
+      "exact_match": [{"label": "rengöringsprodukter", "definition": "De ingredienser som används vid utarbetande av rengöringsprodukter samt deras egenskaper och risker."}],
+      "narrow_matches": [
+        {"label": "använda lösningsmedel", "definition": "Rengöra produkter eller ytor genom att använda lösningsmedel för att lösa upp eller avlägsna onödiga ämnen."},
+        {"label": "se till att det finns en uppsättning städartiklar", "definition": "Följa varulagret av rengöringsmedel, beställa nytt material när lagret tar slut och följa upp hur det används för att bibehålla en kontinuerlig försörjning."}
+      ],
+      "interpretation": "Exact ESCO text covers the missing cleaning-product semantic domain materially better than the current G1 training descriptions. This justifies a candidate-lane headroom measurement, not global document expansion."
+    },
+    {
+      "target": "Produktionsplanering, tillverkning",
+      "concept_id": "kvLG_4uo_M5p",
+      "mapping_counts": {"exact_match": 1, "close_match": 0, "broad_match": 0, "narrow_match": 29},
+      "exact_match": [{"label": "planera tillverkningsprocesser", "definition": "Fastställa och planera arbetsmoment för produktion och montering. Planera behovet av arbetskraft och utrustning med hänsyn till ergonomiska aspekter."}],
+      "notable_narrow_labels": ["schemalägga produktion", "delta i produktionsplanläggning", "använda programvara för produktionsplanering", "ta fram delmål utifrån produktionsplanen", "fastställa produktionskapacitet"],
+      "interpretation": "ESCO strongly represents production planning, but the held-out query also explicitly names Produktionsteknik and Lean. Better target text would not remove the underlying close-neighbor intent ambiguity."
+    }
+  ],
+  "decision": "Measure typed ESCO lanes only as independent candidate-generation complements to the validated G1 baseline. Do not change fusion, expand G1 documents, or merge mapping semantics yet."
+}
