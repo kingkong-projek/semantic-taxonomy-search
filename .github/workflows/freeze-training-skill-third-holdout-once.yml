@@ -1,0 +1,51 @@
+name: Freeze third KV holdout once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/freeze-training-skill-third-holdout-once.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  freeze:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Rebuild and verify frozen benchmark
+        run: |
+          rm -rf artifacts/training-skill-third-holdout-v31
+          python scripts/build_training_skill_third_holdout.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          expected='2903954d7b68cac0dbdd0b7e841a1222938a2e2670e366444cd63b7f12ed3e29'
+          p=Path('artifacts/training-skill-third-holdout-v31/manifest.json')
+          m=json.loads(p.read_text())
+          assert m['benchmark_sha256']==expected, m['benchmark_sha256']
+          assert m['cases']==26 and m['unique_p80_skills']==17
+          dst=Path('research/benchmark/v31/training-skill-third-holdout')
+          dst.mkdir(parents=True,exist_ok=True)
+          (dst/'cases.jsonl').write_bytes(Path('artifacts/training-skill-third-holdout-v31/cases.jsonl').read_bytes())
+          # Existing manifest was already frozen through the contents API; ensure exact semantic identity.
+          current=json.loads((dst/'manifest.json').read_text())
+          assert current['benchmark_sha256']==expected and current['cases']==26
+          PY
+      - name: Commit cases without overwriting concurrent main work
+        run: |
+          git config user.name "semantic-taxonomy-research-bot"
+          git config user.email "semantic-taxonomy-research-bot@users.noreply.github.com"
+          git add research/benchmark/v31/training-skill-third-holdout/cases.jsonl
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "research: freeze third KV holdout cases"
+          git pull --rebase origin main
+          git push origin HEAD:main
