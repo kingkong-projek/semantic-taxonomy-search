@@ -1,0 +1,29 @@
+{
+  "benchmark_sha256": "2903954d7b68cac0dbdd0b7e841a1222938a2e2670e366444cd63b7f12ed3e29",
+  "cases": 26,
+  "excluded_prior_module_ids": 354,
+  "excluded_prior_query_texts": 131,
+  "max_cases_per_skill": 2,
+  "primary_metric": "mapped-skill Discovery Hit@5; paired candidate-vs-validated-G1 comparison; occurrence proxy secondary only",
+  "prior_cases_excluded": {
+    "development": 76,
+    "first_holdout": 35,
+    "second_holdout": 20,
+    "total": 131
+  },
+  "rejected_counts": {
+    "direct_label_leakage": 38,
+    "not_exactly_one_p80_target": 643,
+    "prior_use": 189,
+    "terse": 19
+  },
+  "retrieval_blinding": "builder contains no retrieval/model code; no candidate output is consulted during selection",
+  "schema_version": 1,
+  "selection": "all prior development/holdout module ids and normalized query texts excluded; exactly one P80 target; no direct label leakage; non-terse; deterministic quality ordering; round-robin at most two rows per target skill",
+  "skills_with_two_cases": 9,
+  "source_sha256": "fea97867a1225e078d28ab9b0772f6a37f92b37c3c6c0d0e886ae65e9d79361c",
+  "source_url": "https://data.arbetsformedlingen.se/utbildningar/mappings/mapping_labour-market-training.json",
+  "statistics_note": "queries may cluster by target skill; report query-level numerator/N and Wilson interval, unique-skill count, and paired discordant counts; do not treat occurrence weights as independent trials",
+  "taxonomy_version": 31,
+  "unique_p80_skills": 17
+}
