@@ -7,33 +7,35 @@
 
 ## 1. Product problem
 
-We are building semantic search for **both Yrkesväljaren (YV) and Kompetensväljaren (KV)**.
+We are building a **reusable semantic retrieval capability for occupations and skills/competences** in services where a user must identify or select taxonomy concepts without knowing the taxonomy's exact wording.
 
-A person often knows what they do or can do, but not the exact taxonomy wording. The products therefore need better retrieval without weakening canonical identity.
+Yrkesväljaren (YV) and Kompetensväljaren (KV) are current **reference profiles**, not the scope boundary of the retrieval core. JobSearch/Platsbanken and other AF datasets are evidence sources, not the target product.
 
-The destination spaces are intentionally different:
+The core target spaces are intentionally simple:
 
-- **YV:** published/selectable `occupation-name` and `job-title` with exact occupation-name context preserved.
-- **KV:** active `skill` identities.
+- **occupation:** canonical active `occupation-name` identities;
+- **skill:** canonical active `skill` identities.
 
-Occupation, SSYK, skill-headline, keyword, ESCO, excluded YV title vocabulary and other concepts may be used as evidence/routing/context. They are not interchangeable with the returned identity.
+A consuming service applies its own admission/profile rules after or around retrieval. YV may therefore admit published occupation/job-title identities with exact occupation context, while another service may admit a different occupation subset. KV is one concrete skill-selection profile.
+
+Occupation context, job titles, SSYK, skill-headline, keyword, ESCO and other concepts may be used as evidence/routing/context. They are not interchangeable with the returned core identity.
 
 Hard shared rule:
 
-> Semantic retrieval may discover, expand, route, rank and explain candidates. It may never invent, merge or mutate canonical taxonomy identities or silently expand a product's selectable destination space.
+> Semantic retrieval may discover, expand, route, rank and explain candidates. It may never invent, merge or mutate canonical taxonomy identities, and it may never bypass the consuming service's explicit admission policy.
 
 ## 2. Product UX hypothesis
 
-Do not replace either picker with a chatbot.
+Do not replace ordinary selectors with a chatbot.
 
-Keep the current fast lexical picker as the privileged path. Add semantic description search when ordinary lookup is insufficient, for example:
+Keep fast lexical selection as the privileged path where a consuming service already has it. Add semantic description search when ordinary lookup is insufficient. YV/KV remain useful reference UX examples:
 
 ```text
 YV: Hittar du inte det du söker? [Beskriv yrket]
 KV: Hittar du inte kompetensen? [Beskriv kompetensen / vad du kan göra]
 ```
 
-The result remains exact canonical/product-valid YV/KV identities. `Inget av dessa` / abstention is a first-class successful outcome. A nearest neighbour is not proof that a valid match exists.
+The core result remains an exact canonical occupation/skill identity with provenance; the consumer then enforces its admission profile. `Inget av dessa` / abstention is a first-class successful outcome. A nearest neighbour is not proof that a valid match exists.
 
 ### 2.1 Pareto / simple-first delivery principle
 
@@ -48,7 +50,7 @@ high-demand + high-confidence + cheap-to-explain cases
 → defer rare/weakly evidenced tail until data shows it matters
 ```
 
-Where real demand data exists, optimise the first release for cumulative user value rather than equal concept coverage. YV has measured Platsbanken search frequency for query sampling. For concept-level prioritisation across both products, Historical API taxonomy occurrence counts are now measured as one simple shared corpus/popularity proxy. They are **not user traffic** and are never mislabeled as query→selection evidence.
+Where real demand data exists, optimise the first release for cumulative user value rather than equal concept coverage. Platsbanken/YV provides one measured source of real occupation-query language for sampling; it is evidence about that usage context, not the scope of the engine. For concept-level prioritisation across occupation and skill target spaces, Historical API taxonomy occurrence counts are now measured as one simple shared corpus/popularity proxy. They are **not user traffic** and are never mislabeled as query→selection evidence.
 
 This creates two benchmark views:
 
@@ -83,14 +85,14 @@ query interpretation
  typed product-valid canonical candidates + provenance
 ```
 
-The retrieval infrastructure may be shared, but each request has an explicit target space:
+Each core request has an explicit semantic target space independent of the consuming service:
 
 ```text
-YV -> published occupation / job-title-in-occupation-context
-KV -> active skill
+occupation -> active canonical occupation-name candidates
+skill      -> active canonical skill candidates
 ```
 
-Cross-entity bridges generate evidence; they do not convert identity.
+A separate consumer/admission profile constrains what a specific service may present or select. YV and KV are the first measured profiles; they are not hard-coded engine target spaces. Cross-entity bridges generate evidence; they do not convert identity.
 
 Current strongest data principle:
 
@@ -496,7 +498,7 @@ Historical API server-side taxonomy occurrence statistics provide a cheap concep
 | 95% | 455 | 976 |
 | 99% | 834 | 1,848 |
 
-The first semantic priority envelope is therefore **P80 = 159 YV occupations + 316 KV skills = 475 canonical targets**. P90/P95 are explicit expansion tiers. The exact ranked P95 memberships are frozen in repo, so P80/P90 are reproducible prefixes rather than hand-maintained lists.
+The first semantic priority envelope is therefore **P80 = 159 occupations + 316 skills = 475 canonical targets**. YV/KV are the measured reference profiles used to validate this envelope, not the definition of the core target spaces. P90/P95 are explicit expansion tiers. The exact ranked P95 memberships are frozen in repo, so P80/P90 are reproducible prefixes rather than hand-maintained lists.
 
 This is a `corpus_derived` popularity proxy, not user intent or destination ground truth. Existing lexical search continues to cover the full product-valid taxonomy.
 
@@ -608,7 +610,9 @@ Raw public JobSearch Trends lineage is now audited end-to-end. It does not reope
 
 ## 10. Research Gate 2 — judged relevance benchmark
 
-Build separate but structurally compatible YV and KV suites.
+Build structurally compatible **occupation** and **skill** suites. YV/KV-labelled cases remain reference-profile fixtures where product admission semantics matter; they do not define the core engine API.
+
+The current benchmark schema keeps `product: YV | KV` for frozen-fixture compatibility. Treat that field as an **admission/reference-profile label**, not as the semantic engine's `target_space`. A future schema revision should change it only when doing so buys concrete value; do not migrate the 950 frozen cases merely for naming purity.
 
 Start with a **compact 500–1,000 case decision benchmark**, intentionally biased toward source-truth, common/high-value and easy-to-adjudicate cases. Expand toward 1,000–3,000 only when measured residuals, uncertainty or safety slices justify it. Do not spend early benchmark budget trying to make every rare target equally represented.
 
@@ -668,7 +672,7 @@ expected_intent: SINGLE | AMBIGUOUS | NO_MATCH
 
 ## 11. Research Gate 3 — controlled ablation
 
-Evaluate YV and KV separately; do not force source symmetry.
+Evaluate occupation and skill retrieval separately; do not force source symmetry. Keep YV/KV reference-profile slices separate where their admission/routing semantics materially differ.
 
 ```text
 A  canonical labels only
@@ -766,7 +770,8 @@ The bridge is evidence generation, not identity conversion.
 ## 16. Hard invariants
 
 - semantic retrieval never invents taxonomy IDs;
-- YV and KV destination spaces never collapse;
+- occupation and skill core target spaces never collapse;
+- consumer admission profiles never silently expand because retrieval found extra vocabulary;
 - YV retrieval vocabulary cannot silently expand selectable YV identities;
 - job-title identity retains occupation context;
 - exact ambiguous YV identities remain available until disambiguated;
@@ -807,18 +812,19 @@ versioned canonical candidates + provenance
 client validates product-valid taxonomy identities
 ```
 
-Possible shared request contract:
+Possible shared core request contract:
 
 ```json
 {
   "taxonomy_version": 31,
-  "target_space": "YV | KV",
+  "target_space": "occupation | skill",
   "query": "...",
-  "limit": 10
+  "limit": 10,
+  "admission_profile": "optional consumer-defined profile/version"
 }
 ```
 
-Response must preserve taxonomy version, matcher version, target space, canonical candidate identity and provenance. API outage should degrade semantic enhancement, not make the selectors unusable.
+The engine must not require a named AF product to retrieve canonical candidates. A profile may constrain the candidate set before/after ranking when a consuming service needs stricter admission semantics. Response must preserve taxonomy version, matcher version, target space, canonical candidate identity, profile/admission provenance when used, and retrieval provenance. API outage should degrade semantic enhancement, not make the selectors unusable.
 
 No deployment choice is final before relevance, latency, privacy, availability, payload and iteration speed are measured.
 
@@ -852,7 +858,7 @@ After the repository transfer, GitHub-hosted jobs were failing before their firs
 - [x] freeze the **950-case P80 source-truth core benchmark**: 333 YV + 617 KV cases over all 475 P80 targets; preferred labels + 330 real canonical-definition cases + 145 alternative-label cases; validator-clean and frozen in repo
 - [x] automatic source-truth strata construction for preferred labels, real canonical definitions and alternative labels; no corpus/model/synthetic signal is auto-promoted to destination truth
 - [ ] compact safety/regression slices: multi-parent ambiguity, excluded-YV routing, hard negatives and no-match/abstention
-- [x] prepare deterministic **top-50 high-volume unbound YV review packet** from the pinned real query corpus: 742.0M searches = 23.661% of all volume / 35.117% of unbound volume; remains fully `PENDING_HUMAN_REVIEW`
+- [x] prepare deterministic **top-50 high-volume Platsbanken/YV occupation-language review packet** from the pinned real query corpus: 742.0M searches = 23.661% of all volume / 35.117% of unbound volume; remains fully `PENDING_HUMAN_REVIEW`; this is one behavioral evidence slice, not the engine's product scope
 - [ ] adjudicate the prepared top-50 real-query packet into occupation intent vs other/no-match and MUST/ACCEPTABLE/MUST_NOT identities; do not score it before review
 - [ ] **defer** full raw JobSearch Trends date-range/long-tail adapter until the first simple baseline shows that recency/long-tail materially changes decisions
 - [ ] **defer** broad source-gap enrichment (ESCO text, AF catalog, Sveriges dataportal discovery, ad-language expansion) until benchmark residuals identify which gaps are worth paying complexity for
@@ -874,10 +880,11 @@ Evidence: `docs/findings/p80-lexical-ablation-v31.md` and `research/evaluation/v
 - [ ] local compiled vs central API deployment benchmark
 - [ ] I synthetic enrichment only if residual gaps justify it
 
-### Product prototype after evidence
+### Prototype after evidence
 
-- [ ] YV `Beskriv yrket` — v0 semantic destination envelope: P80 occupation-name only; lexical picker still supports full YV including job titles
-- [ ] KV `Beskriv kompetensen` — v0 semantic destination envelope: P80 skills; lexical picker still supports full KV
+- [ ] reusable core retrieval prototype with `target_space = occupation | skill` and explicit versioned provenance
+- [ ] YV reference integration: `Beskriv yrket` with P80 occupation core plus YV admission/routing policy; lexical picker still supports full YV including job titles
+- [ ] KV reference integration: `Beskriv kompetensen` with P80 skill core plus KV admission/context policy; lexical picker still supports full KV
 - [ ] `Inget av dessa` + feedback flow
 - [ ] privacy-reviewed query→candidate→selection telemetry if permitted
 - [ ] canary/rollback/versioned semantic API if API wins deployment evaluation
