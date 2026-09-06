@@ -1,0 +1,30 @@
+name: YV excluded-title ranking once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/yv-excluded-title-ranking-once.yml
+
+permissions:
+  contents: read
+
+jobs:
+  measure:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Measure excluded-title ranking
+        run: |
+          mkdir -p artifacts
+          node scripts/analyze_yv_excluded_title_ranking.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: yv-excluded-title-ranking-v31
+          path: artifacts/yv-excluded-title-ranking-v31.json
+          retention-days: 30
+          if-no-files-found: error
