@@ -1,26 +1,30 @@
 {
   "KV": {
+    "canonical_alias_cases_before_preferred_collision_filter": 1289,
     "current_hit_at_5": 1056,
-    "current_hit_at_5_pct": 82.629,
-    "current_miss_at_5": 222,
+    "current_hit_at_5_pct": 82.565,
+    "current_miss_at_5": 223,
     "current_no_result_cases": 179,
     "current_target_occurrence_proxy_hit_at_5_pct": 49.098,
-    "deterministic_exact_alias_rescue_cases": 222,
-    "post_alias_hit_at_5_pct": 100.0,
+    "deterministic_exact_alias_rescue_cases": 223,
+    "post_alias_hit_at_5_pct_if_lane_precedes_fuzzy": 100.0,
+    "preferred_label_collision_cases": 10,
     "rescued_target_occurrence_proxy": 18765,
     "rescued_target_occurrence_proxy_pct": 50.902,
-    "strict_unique_alias_cases": 1278,
+    "strict_unique_alias_cases": 1279,
     "target_occurrence_proxy": 36865
   },
   "YV": {
+    "canonical_alias_cases_before_preferred_collision_filter": 361,
     "current_hit_at_5": 318,
     "current_hit_at_5_pct": 89.076,
     "current_miss_at_5": 39,
     "current_no_result_cases": 0,
-    "current_observed_volume_hit_at_5_pct": 98.578,
+    "current_observed_exact_query_volume_hit_at_5_pct": 98.578,
     "deterministic_exact_alias_rescue_cases": 39,
     "observed_exact_query_volume": 95842570,
-    "post_alias_hit_at_5_pct": 100.0,
+    "post_alias_hit_at_5_pct_if_lane_precedes_fuzzy": 100.0,
+    "preferred_label_collision_cases": 4,
     "rescued_observed_exact_query_volume": 1362861,
     "rescued_observed_exact_query_volume_pct": 1.422,
     "strict_unique_alias_cases": 357
@@ -55,9 +59,9 @@
     "yv_repository_commit": "ab0b3f28576d8aebec2b593b771a70c7684b1eca",
     "yv_search_utils_blob": "1eb706399ff97634b556164061e651a024b98003"
   },
-  "source_artifact_id": 9993147225,
-  "source_artifact_sha256": "1970e3b0218bc356911c975d70feff76a60b2af59019dba0d7d2b8036f7be797",
-  "source_run_id": 34045443253,
+  "source_artifact_id": 9994222228,
+  "source_artifact_sha256": "8e399809078dbb06f98d9fdd9ca30b30ee55cd74bcc702b6e9a6123d2880bcb5",
+  "source_run_id": 34049277863,
   "taxonomy_version": 31,
   "track": "1-current-yv-kv-findability"
 }
