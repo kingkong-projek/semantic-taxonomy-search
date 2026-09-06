@@ -1,0 +1,53 @@
+name: Skill ESCO fusion
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/evaluate_skill_esco_fusion.py
+      - scripts/evaluate_skill_esco_candidate_lanes.py
+      - research/benchmark/v31/training-skill-validation/**
+      - research/benchmark/v31/p80-source-truth/kv-p80-source-truth.jsonl
+      - research/coverage/v31/pareto-demand-aggregate.json
+      - research/coverage/source-adapters.json
+      - .github/workflows/skill-esco-fusion.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify frozen benchmark
+        run: |
+          test "$(wc -l < research/benchmark/v31/training-skill-validation/cases.jsonl)" -eq 76
+          test "$(wc -l < research/benchmark/v31/p80-source-truth/kv-p80-source-truth.jsonl)" -eq 617
+      - name: Evaluate minimal ESCO fusion
+        run: |
+          python scripts/evaluate_skill_esco_fusion.py --output artifacts/skill-esco-fusion-v31.json
+      - name: Guard canonical regression and report
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('artifacts/skill-esco-fusion-v31.json').read_text())
+          for name,row in x['source_truth_regression'].items():
+              assert row['top1_pct']==100.0, (name,row)
+              assert row['discovery_hit_at_5_pct']==100.0, (name,row)
+              assert row['failure_count']==0, (name,row)
+          assert x['benchmark']['KV-C0']['primary_descriptive_nonleaky']['discovery_hit_at_5_pct']==46.032
+          print(json.dumps(x['benchmark'],ensure_ascii=False,indent=2,sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: skill-esco-fusion-v31
+          path: artifacts/skill-esco-fusion-v31.json
+          if-no-files-found: error
+          retention-days: 30
