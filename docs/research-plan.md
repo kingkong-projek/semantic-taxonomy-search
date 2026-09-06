@@ -864,7 +864,7 @@ After the repository transfer, GitHub-hosted jobs were failing before their firs
 Evidence: `docs/findings/compact-yv-profile-safety-v31.md` and `research/benchmark/v31/yv-profile-safety/`.
 - [x] prepare deterministic **top-50 high-volume Platsbanken/YV occupation-language review packet** from the pinned real query corpus: 742.0M searches = 23.661% of all volume / 35.117% of unbound volume; remains fully `PENDING_HUMAN_REVIEW`; this is one behavioral evidence slice, not the engine's product scope
 - [x] adjudicate the **first Pareto batch** rather than all review rows: 34 highest-volume rows across the 50 real unbound queries + 20 excluded-title routing rows cover **80.738%** of combined review-pool volume; 27 are observed unbound queries and 7 excluded-title routes; judgments are explicitly `MODEL_ADJUDICATED`, not source/human truth
-- [ ] adjudicate the remaining 36 lower-volume review rows only if C1/holdout evidence shows that doing so can change a decision
+- [x] independently adjudicate the **remaining 36 lower-volume rows (Pareto ranks 35–70)** as an untouched holdout before evaluating C1; 208.6M observed searches, 20 NO_MATCH / 13 AMBIGUOUS / 3 SINGLE
 - [ ] **defer** full raw JobSearch Trends date-range/long-tail adapter until the first simple baseline shows that recency/long-tail materially changes decisions
 - [ ] **defer** broad source-gap enrichment (ESCO text, AF catalog, Sveriges dataportal discovery, ad-language expansion) until benchmark residuals identify which gaps are worth paying complexity for
 - [ ] bounded provenance-safe ad-language sample only if needed by the first measured residuals
@@ -883,8 +883,13 @@ Decision: test a minimal **C1** (P80 + six measured boundary identities + strong
 
 Evidence: `docs/findings/pareto-model-decision-v31.md`, `research/benchmark/v31/pareto-model-adjudicated/` and `research/evaluation/v31/pareto-model-c0-eval.json`.
 
+C1 holdout result: on independently adjudicated Pareto ranks 35–70 (**36 untouched cases / 208.6M observed searches**), C1 improves volume-weighted decision accuracy from **59.765% to 83.173%** and top-10 success from **59.765% to 84.788%**. It eliminates all five C0 false-confident `NO_MATCH` holdout failures; all 20 NO_MATCH cases abstain. The 333-case source-truth regression remains 100%. Of C1's 12 remaining holdout top-1 failures, **10 are exact active job-title retrieval/routing terms**, so the next justified complexity is the planned deterministic typed job-title router, not D/ESCO or neural retrieval.
+
+Evidence: `docs/findings/pareto-holdout-c1-v31.md`, `research/benchmark/v31/pareto-model-holdout/` and `research/evaluation/v31/pareto-holdout-c0-c1.json`.
+
 - [x] preliminary **A/B/C0** source-truth lexical ablation on P80 core, where C0 = preferred labels + real canonical definitions + canonical alternative labels
-- [ ] **C1 first:** P80 + six measured high-volume boundary occupations + lexical surface/component/fuzzy evidence + conservative short-query definition-only abstention; evaluate before adding broader product-title vocabulary
+- [x] **C1:** P80 + six measured high-volume boundary occupations + short-query lexical surface/component/fuzzy evidence + conservative definition-only abstention; 100% on the 34-row development slice, 100% on the frozen 333-case source-truth regression, and **83.173% volume-weighted decision accuracy on untouched 36-row holdout** vs C0 59.765%
+- [ ] **complete planned C retrieval vocabulary next:** add exact active job-title preferred-label → typed occupation-name parent routing; 10/12 remaining C1 holdout top-1 failures are exact measured job-title routes. Evaluate on a new next-volume sentinel before D/ESCO.
 - [ ] D typed graph/ESCO only if the adjudicated real-query/safety residual justifies it; do not add D merely to complete an ablation ladder
 - [ ] E–G evidence layers separately
 - [ ] H vectors/reranking in shadow evaluation

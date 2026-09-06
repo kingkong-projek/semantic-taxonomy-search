@@ -1,0 +1,24 @@
+{
+  "authority_boundary": "model_judgment is benchmark evaluation provenance only; it is neither canonical taxonomy authority nor human review",
+  "cases": 36,
+  "intent_counts": {
+    "AMBIGUOUS": 13,
+    "NO_MATCH": 20,
+    "SINGLE": 3
+  },
+  "judgment_source": "GPT-5.6 Sol holdout model adjudication 2026-09-06",
+  "leakage_boundary": "judgments use frozen query/routing rows plus taxonomy-only context; no C0/C1 retrieval output was consulted before adjudication",
+  "observed_volume": 208583095,
+  "pareto_ranks": [
+    35,
+    70
+  ],
+  "schema_version": 1,
+  "source_pool_counts": {
+    "observed_unbound_query": 23,
+    "yv_excluded_title_routing": 13
+  },
+  "status": "MODEL_ADJUDICATED_HOLDOUT",
+  "taxonomy_sha256": "634fd9d848a172747e54e3e487160a912ae6c0fcb8219c50998767c8c9aacbcc",
+  "taxonomy_version": 31
+}

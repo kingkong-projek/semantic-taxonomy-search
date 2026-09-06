@@ -1,0 +1,956 @@
+{
+  "C0": {
+    "by_intent": {
+      "AMBIGUOUS": {
+        "abstention_rate_pct": 69.231,
+        "cases": 13,
+        "decision_accuracy_pct": 15.385,
+        "observed_volume": 35876960,
+        "volume_weighted_abstention_rate_pct": 56.535,
+        "volume_weighted_decision_accuracy_pct": 18.759
+      },
+      "NO_MATCH": {
+        "abstention_rate_pct": 75.0,
+        "cases": 20,
+        "decision_accuracy_pct": 75.0,
+        "observed_volume": 164062958,
+        "volume_weighted_abstention_rate_pct": 71.881,
+        "volume_weighted_decision_accuracy_pct": 71.881
+      },
+      "SINGLE": {
+        "abstention_rate_pct": 66.667,
+        "cases": 3,
+        "decision_accuracy_pct": 0.0,
+        "observed_volume": 8643177,
+        "volume_weighted_abstention_rate_pct": 31.116,
+        "volume_weighted_decision_accuracy_pct": 0.0
+      }
+    },
+    "cases": [
+      {
+        "abstained": false,
+        "decision_success": false,
+        "id": "yv.model-holdout.001",
+        "intent": "NO_MATCH",
+        "observed_count": 10148602,
+        "positive_in_envelope": 0,
+        "query": "halmstad",
+        "top10_success": false,
+        "top5_ids": [
+          "9U5Y_9Ji_uJq"
+        ]
+      },
+      {
+        "abstained": true,
+        "decision_success": true,
+        "id": "yv.model-holdout.002",
+        "intent": "NO_MATCH",
+        "observed_count": 9891126,
+        "positive_in_envelope": 0,
+        "query": "kalmar",
+        "top10_success": true,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": true,
+        "id": "yv.model-holdout.003",
+        "intent": "NO_MATCH",
+        "observed_count": 9792392,
+        "positive_in_envelope": 0,
+        "query": "eskilstuna",
+        "top10_success": true,
+        "top5_ids": []
+      },
+      {
+        "abstained": false,
+        "decision_success": false,
+        "id": "yv.model-holdout.004",
+        "intent": "NO_MATCH",
+        "observed_count": 9777038,
+        "positive_in_envelope": 0,
+        "query": "örebro län",
+        "top10_success": false,
+        "top5_ids": [
+          "YJKc_yXU_DUH"
+        ]
+      },
+      {
+        "abstained": true,
+        "decision_success": true,
+        "id": "yv.model-holdout.005",
+        "intent": "NO_MATCH",
+        "observed_count": 9319013,
+        "positive_in_envelope": 0,
+        "query": "kristianstad",
+        "top10_success": true,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": true,
+        "id": "yv.model-holdout.006",
+        "intent": "NO_MATCH",
+        "observed_count": 9304661,
+        "positive_in_envelope": 0,
+        "query": "helsingborg",
+        "top10_success": true,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": true,
+        "id": "yv.model-holdout.007",
+        "intent": "NO_MATCH",
+        "observed_count": 9215260,
+        "positive_in_envelope": 0,
+        "query": "gävle",
+        "top10_success": true,
+        "top5_ids": []
+      },
+      {
+        "abstained": false,
+        "decision_success": false,
+        "id": "yv.model-holdout.008",
+        "intent": "NO_MATCH",
+        "observed_count": 8981452,
+        "positive_in_envelope": 0,
+        "query": "borås",
+        "top10_success": false,
+        "top5_ids": [
+          "YJKc_yXU_DUH"
+        ]
+      },
+      {
+        "abstained": false,
+        "decision_success": false,
+        "id": "yv.model-holdout.009",
+        "intent": "NO_MATCH",
+        "observed_count": 8928278,
+        "positive_in_envelope": 0,
+        "query": "jönköpings län",
+        "top10_success": false,
+        "top5_ids": [
+          "YJKc_yXU_DUH"
+        ]
+      },
+      {
+        "abstained": true,
+        "decision_success": true,
+        "id": "yv.model-holdout.010",
+        "intent": "NO_MATCH",
+        "observed_count": 8875718,
+        "positive_in_envelope": 0,
+        "query": "växjö",
+        "top10_success": true,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": true,
+        "id": "yv.model-holdout.011",
+        "intent": "NO_MATCH",
+        "observed_count": 8636950,
+        "positive_in_envelope": 0,
+        "query": "östersund",
+        "top10_success": true,
+        "top5_ids": []
+      },
+      {
+        "abstained": false,
+        "decision_success": false,
+        "id": "yv.model-holdout.012",
+        "intent": "NO_MATCH",
+        "observed_count": 8297754,
+        "positive_in_envelope": 0,
+        "query": "skåne",
+        "top10_success": false,
+        "top5_ids": [
+          "Pj8T_bST_f7D"
+        ]
+      },
+      {
+        "abstained": true,
+        "decision_success": true,
+        "id": "yv.model-holdout.013",
+        "intent": "NO_MATCH",
+        "observed_count": 7263672,
+        "positive_in_envelope": 0,
+        "query": "örnsköldsvik",
+        "top10_success": true,
+        "top5_ids": []
+      },
+      {
+        "abstained": false,
+        "decision_success": false,
+        "id": "yv.model-holdout.014",
+        "intent": "AMBIGUOUS",
+        "observed_count": 7235178,
+        "positive_in_envelope": 0,
+        "query": "lager",
+        "top10_success": false,
+        "top5_ids": [
+          "gLtU_eR9_ZcW",
+          "GQSf_fnq_kjF"
+        ]
+      },
+      {
+        "abstained": true,
+        "decision_success": true,
+        "id": "yv.model-holdout.015",
+        "intent": "NO_MATCH",
+        "observed_count": 6942018,
+        "positive_in_envelope": 0,
+        "query": "trollhättan",
+        "top10_success": true,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": true,
+        "id": "yv.model-holdout.016",
+        "intent": "NO_MATCH",
+        "observed_count": 6872449,
+        "positive_in_envelope": 0,
+        "query": "uddevalla",
+        "top10_success": true,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": true,
+        "id": "yv.model-holdout.017",
+        "intent": "NO_MATCH",
+        "observed_count": 6778432,
+        "positive_in_envelope": 0,
+        "query": "nyköping",
+        "top10_success": true,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": true,
+        "id": "yv.model-holdout.018",
+        "intent": "NO_MATCH",
+        "observed_count": 6566810,
+        "positive_in_envelope": 0,
+        "query": "sommarjobb",
+        "top10_success": true,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": true,
+        "id": "yv.model-holdout.019",
+        "intent": "NO_MATCH",
+        "observed_count": 6448197,
+        "positive_in_envelope": 0,
+        "query": "karlskrona",
+        "top10_success": true,
+        "top5_ids": []
+      },
+      {
+        "abstained": false,
+        "decision_success": true,
+        "id": "yv.model-holdout.020",
+        "intent": "AMBIGUOUS",
+        "observed_count": 6255782,
+        "positive_in_envelope": 3,
+        "query": "handläggare",
+        "top10_success": true,
+        "top5_ids": [
+          "YG1s_tUg_jWJ"
+        ]
+      },
+      {
+        "abstained": true,
+        "decision_success": true,
+        "id": "yv.model-holdout.021",
+        "intent": "NO_MATCH",
+        "observed_count": 6255492,
+        "positive_in_envelope": 0,
+        "query": "varberg",
+        "top10_success": true,
+        "top5_ids": []
+      },
+      {
+        "abstained": false,
+        "decision_success": false,
+        "id": "yv.model-holdout.022",
+        "intent": "SINGLE",
+        "observed_count": 5953776,
+        "positive_in_envelope": 0,
+        "query": "administration",
+        "top10_success": false,
+        "top5_ids": [
+          "nFJR_WkF_ir7",
+          "bXfh_r3N_Wue",
+          "Uh7q_DpM_rm3",
+          "rkXK_cb5_Ft9",
+          "ofiS_5F2_YmV"
+        ]
+      },
+      {
+        "abstained": true,
+        "decision_success": true,
+        "id": "yv.model-holdout.023",
+        "intent": "NO_MATCH",
+        "observed_count": 5767644,
+        "positive_in_envelope": 0,
+        "query": "piteå",
+        "top10_success": true,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": false,
+        "id": "yv.model-holdout.024",
+        "intent": "AMBIGUOUS",
+        "observed_count": 4674163,
+        "positive_in_envelope": 0,
+        "query": "Specialistläkare",
+        "top10_success": false,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": false,
+        "id": "yv.model-holdout.025",
+        "intent": "AMBIGUOUS",
+        "observed_count": 3283699,
+        "positive_in_envelope": 0,
+        "query": "Jurist",
+        "top10_success": false,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": false,
+        "id": "yv.model-holdout.026",
+        "intent": "AMBIGUOUS",
+        "observed_count": 3206024,
+        "positive_in_envelope": 0,
+        "query": "Vaktmästare",
+        "top10_success": false,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": false,
+        "id": "yv.model-holdout.027",
+        "intent": "AMBIGUOUS",
+        "observed_count": 2475234,
+        "positive_in_envelope": 3,
+        "query": "Lastbilsförare",
+        "top10_success": false,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": false,
+        "id": "yv.model-holdout.028",
+        "intent": "AMBIGUOUS",
+        "observed_count": 2151257,
+        "positive_in_envelope": 1,
+        "query": "Koordinator",
+        "top10_success": false,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": false,
+        "id": "yv.model-holdout.029",
+        "intent": "SINGLE",
+        "observed_count": 2148491,
+        "positive_in_envelope": 0,
+        "query": "Lagermedarbetare",
+        "top10_success": false,
+        "top5_ids": []
+      },
+      {
+        "abstained": false,
+        "decision_success": false,
+        "id": "yv.model-holdout.030",
+        "intent": "AMBIGUOUS",
+        "observed_count": 1628450,
+        "positive_in_envelope": 0,
+        "query": "Grundskollärare",
+        "top10_success": false,
+        "top5_ids": [
+          "JUu4_wcP_kQG"
+        ]
+      },
+      {
+        "abstained": true,
+        "decision_success": false,
+        "id": "yv.model-holdout.031",
+        "intent": "AMBIGUOUS",
+        "observed_count": 1376452,
+        "positive_in_envelope": 3,
+        "query": "Lastbilschaufför",
+        "top10_success": false,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": false,
+        "id": "yv.model-holdout.032",
+        "intent": "AMBIGUOUS",
+        "observed_count": 1376342,
+        "positive_in_envelope": 5,
+        "query": "Beteendevetare",
+        "top10_success": false,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": false,
+        "id": "yv.model-holdout.033",
+        "intent": "AMBIGUOUS",
+        "observed_count": 952555,
+        "positive_in_envelope": 0,
+        "query": "Idrottslärare",
+        "top10_success": false,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": false,
+        "id": "yv.model-holdout.034",
+        "intent": "AMBIGUOUS",
+        "observed_count": 787437,
+        "positive_in_envelope": 0,
+        "query": "Slöjdlärare",
+        "top10_success": false,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": false,
+        "id": "yv.model-holdout.035",
+        "intent": "SINGLE",
+        "observed_count": 540910,
+        "positive_in_envelope": 1,
+        "query": "Adjunkt",
+        "top10_success": false,
+        "top5_ids": []
+      },
+      {
+        "abstained": false,
+        "decision_success": true,
+        "id": "yv.model-holdout.036",
+        "intent": "AMBIGUOUS",
+        "observed_count": 474387,
+        "positive_in_envelope": 1,
+        "query": "Anläggningsarbetare",
+        "top10_success": true,
+        "top5_ids": [
+          "MQHi_q9J_x2d"
+        ]
+      }
+    ],
+    "name": "C0",
+    "overall": {
+      "cases": 36,
+      "decision_accuracy_pct": 47.222,
+      "false_confident_no_match_cases": 5,
+      "false_confident_no_match_volume": 46133124,
+      "hard_negative_violation_cases": 5,
+      "hard_negative_violation_volume": 46133124,
+      "observed_volume": 208583095,
+      "positive_cases_unsatisfiable_inside_envelope": 9,
+      "positive_volume_unsatisfiable_inside_envelope": 29869773,
+      "top10_success_pct": 47.222,
+      "volume_weighted_decision_accuracy_pct": 59.765,
+      "volume_weighted_top10_success_pct": 59.765
+    }
+  },
+  "C1": {
+    "by_intent": {
+      "AMBIGUOUS": {
+        "abstention_rate_pct": 46.154,
+        "cases": 13,
+        "decision_accuracy_pct": 23.077,
+        "observed_volume": 35876960,
+        "volume_weighted_abstention_rate_pct": 52.828,
+        "volume_weighted_decision_accuracy_pct": 24.755
+      },
+      "NO_MATCH": {
+        "abstention_rate_pct": 100.0,
+        "cases": 20,
+        "decision_accuracy_pct": 100.0,
+        "observed_volume": 164062958,
+        "volume_weighted_abstention_rate_pct": 100.0,
+        "volume_weighted_decision_accuracy_pct": 100.0
+      },
+      "SINGLE": {
+        "abstention_rate_pct": 0.0,
+        "cases": 3,
+        "decision_accuracy_pct": 33.333,
+        "observed_volume": 8643177,
+        "volume_weighted_abstention_rate_pct": 0.0,
+        "volume_weighted_decision_accuracy_pct": 6.258
+      }
+    },
+    "cases": [
+      {
+        "abstained": true,
+        "decision_success": true,
+        "id": "yv.model-holdout.001",
+        "intent": "NO_MATCH",
+        "observed_count": 10148602,
+        "positive_in_envelope": 0,
+        "query": "halmstad",
+        "top10_success": true,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": true,
+        "id": "yv.model-holdout.002",
+        "intent": "NO_MATCH",
+        "observed_count": 9891126,
+        "positive_in_envelope": 0,
+        "query": "kalmar",
+        "top10_success": true,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": true,
+        "id": "yv.model-holdout.003",
+        "intent": "NO_MATCH",
+        "observed_count": 9792392,
+        "positive_in_envelope": 0,
+        "query": "eskilstuna",
+        "top10_success": true,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": true,
+        "id": "yv.model-holdout.004",
+        "intent": "NO_MATCH",
+        "observed_count": 9777038,
+        "positive_in_envelope": 0,
+        "query": "örebro län",
+        "top10_success": true,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": true,
+        "id": "yv.model-holdout.005",
+        "intent": "NO_MATCH",
+        "observed_count": 9319013,
+        "positive_in_envelope": 0,
+        "query": "kristianstad",
+        "top10_success": true,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": true,
+        "id": "yv.model-holdout.006",
+        "intent": "NO_MATCH",
+        "observed_count": 9304661,
+        "positive_in_envelope": 0,
+        "query": "helsingborg",
+        "top10_success": true,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": true,
+        "id": "yv.model-holdout.007",
+        "intent": "NO_MATCH",
+        "observed_count": 9215260,
+        "positive_in_envelope": 0,
+        "query": "gävle",
+        "top10_success": true,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": true,
+        "id": "yv.model-holdout.008",
+        "intent": "NO_MATCH",
+        "observed_count": 8981452,
+        "positive_in_envelope": 0,
+        "query": "borås",
+        "top10_success": true,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": true,
+        "id": "yv.model-holdout.009",
+        "intent": "NO_MATCH",
+        "observed_count": 8928278,
+        "positive_in_envelope": 0,
+        "query": "jönköpings län",
+        "top10_success": true,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": true,
+        "id": "yv.model-holdout.010",
+        "intent": "NO_MATCH",
+        "observed_count": 8875718,
+        "positive_in_envelope": 0,
+        "query": "växjö",
+        "top10_success": true,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": true,
+        "id": "yv.model-holdout.011",
+        "intent": "NO_MATCH",
+        "observed_count": 8636950,
+        "positive_in_envelope": 0,
+        "query": "östersund",
+        "top10_success": true,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": true,
+        "id": "yv.model-holdout.012",
+        "intent": "NO_MATCH",
+        "observed_count": 8297754,
+        "positive_in_envelope": 0,
+        "query": "skåne",
+        "top10_success": true,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": true,
+        "id": "yv.model-holdout.013",
+        "intent": "NO_MATCH",
+        "observed_count": 7263672,
+        "positive_in_envelope": 0,
+        "query": "örnsköldsvik",
+        "top10_success": true,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": false,
+        "id": "yv.model-holdout.014",
+        "intent": "AMBIGUOUS",
+        "observed_count": 7235178,
+        "positive_in_envelope": 1,
+        "query": "lager",
+        "top10_success": false,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": true,
+        "id": "yv.model-holdout.015",
+        "intent": "NO_MATCH",
+        "observed_count": 6942018,
+        "positive_in_envelope": 0,
+        "query": "trollhättan",
+        "top10_success": true,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": true,
+        "id": "yv.model-holdout.016",
+        "intent": "NO_MATCH",
+        "observed_count": 6872449,
+        "positive_in_envelope": 0,
+        "query": "uddevalla",
+        "top10_success": true,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": true,
+        "id": "yv.model-holdout.017",
+        "intent": "NO_MATCH",
+        "observed_count": 6778432,
+        "positive_in_envelope": 0,
+        "query": "nyköping",
+        "top10_success": true,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": true,
+        "id": "yv.model-holdout.018",
+        "intent": "NO_MATCH",
+        "observed_count": 6566810,
+        "positive_in_envelope": 0,
+        "query": "sommarjobb",
+        "top10_success": true,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": true,
+        "id": "yv.model-holdout.019",
+        "intent": "NO_MATCH",
+        "observed_count": 6448197,
+        "positive_in_envelope": 0,
+        "query": "karlskrona",
+        "top10_success": true,
+        "top5_ids": []
+      },
+      {
+        "abstained": false,
+        "decision_success": true,
+        "id": "yv.model-holdout.020",
+        "intent": "AMBIGUOUS",
+        "observed_count": 6255782,
+        "positive_in_envelope": 3,
+        "query": "handläggare",
+        "top10_success": true,
+        "top5_ids": [
+          "YG1s_tUg_jWJ",
+          "X7oZ_fbn_TgG",
+          "pYiF_Z6V_ULQ"
+        ]
+      },
+      {
+        "abstained": true,
+        "decision_success": true,
+        "id": "yv.model-holdout.021",
+        "intent": "NO_MATCH",
+        "observed_count": 6255492,
+        "positive_in_envelope": 0,
+        "query": "varberg",
+        "top10_success": true,
+        "top5_ids": []
+      },
+      {
+        "abstained": false,
+        "decision_success": false,
+        "id": "yv.model-holdout.022",
+        "intent": "SINGLE",
+        "observed_count": 5953776,
+        "positive_in_envelope": 0,
+        "query": "administration",
+        "top10_success": false,
+        "top5_ids": [
+          "1ERY_48v_Q6m"
+        ]
+      },
+      {
+        "abstained": true,
+        "decision_success": true,
+        "id": "yv.model-holdout.023",
+        "intent": "NO_MATCH",
+        "observed_count": 5767644,
+        "positive_in_envelope": 0,
+        "query": "piteå",
+        "top10_success": true,
+        "top5_ids": []
+      },
+      {
+        "abstained": false,
+        "decision_success": false,
+        "id": "yv.model-holdout.024",
+        "intent": "AMBIGUOUS",
+        "observed_count": 4674163,
+        "positive_in_envelope": 0,
+        "query": "Specialistläkare",
+        "top10_success": false,
+        "top5_ids": [
+          "9K3i_XD4_Kyy",
+          "s28Q_sya_S2b"
+        ]
+      },
+      {
+        "abstained": true,
+        "decision_success": false,
+        "id": "yv.model-holdout.025",
+        "intent": "AMBIGUOUS",
+        "observed_count": 3283699,
+        "positive_in_envelope": 0,
+        "query": "Jurist",
+        "top10_success": false,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": false,
+        "id": "yv.model-holdout.026",
+        "intent": "AMBIGUOUS",
+        "observed_count": 3206024,
+        "positive_in_envelope": 0,
+        "query": "Vaktmästare",
+        "top10_success": false,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": false,
+        "id": "yv.model-holdout.027",
+        "intent": "AMBIGUOUS",
+        "observed_count": 2475234,
+        "positive_in_envelope": 3,
+        "query": "Lastbilsförare",
+        "top10_success": false,
+        "top5_ids": []
+      },
+      {
+        "abstained": false,
+        "decision_success": true,
+        "id": "yv.model-holdout.028",
+        "intent": "AMBIGUOUS",
+        "observed_count": 2151257,
+        "positive_in_envelope": 1,
+        "query": "Koordinator",
+        "top10_success": true,
+        "top5_ids": [
+          "3abF_Jyu_WtS"
+        ]
+      },
+      {
+        "abstained": false,
+        "decision_success": false,
+        "id": "yv.model-holdout.029",
+        "intent": "SINGLE",
+        "observed_count": 2148491,
+        "positive_in_envelope": 1,
+        "query": "Lagermedarbetare",
+        "top10_success": false,
+        "top5_ids": [
+          "pBhS_6fg_727"
+        ]
+      },
+      {
+        "abstained": false,
+        "decision_success": false,
+        "id": "yv.model-holdout.030",
+        "intent": "AMBIGUOUS",
+        "observed_count": 1628450,
+        "positive_in_envelope": 4,
+        "query": "Grundskollärare",
+        "top10_success": true,
+        "top5_ids": [
+          "JUu4_wcP_kQG",
+          "15e8_KDZ_31Z",
+          "VZoJ_4oe_xyR"
+        ]
+      },
+      {
+        "abstained": true,
+        "decision_success": false,
+        "id": "yv.model-holdout.031",
+        "intent": "AMBIGUOUS",
+        "observed_count": 1376452,
+        "positive_in_envelope": 3,
+        "query": "Lastbilschaufför",
+        "top10_success": false,
+        "top5_ids": []
+      },
+      {
+        "abstained": true,
+        "decision_success": false,
+        "id": "yv.model-holdout.032",
+        "intent": "AMBIGUOUS",
+        "observed_count": 1376342,
+        "positive_in_envelope": 5,
+        "query": "Beteendevetare",
+        "top10_success": false,
+        "top5_ids": []
+      },
+      {
+        "abstained": false,
+        "decision_success": false,
+        "id": "yv.model-holdout.033",
+        "intent": "AMBIGUOUS",
+        "observed_count": 952555,
+        "positive_in_envelope": 5,
+        "query": "Idrottslärare",
+        "top10_success": true,
+        "top5_ids": [
+          "15e8_KDZ_31Z",
+          "JUu4_wcP_kQG",
+          "VZoJ_4oe_xyR"
+        ]
+      },
+      {
+        "abstained": false,
+        "decision_success": false,
+        "id": "yv.model-holdout.034",
+        "intent": "AMBIGUOUS",
+        "observed_count": 787437,
+        "positive_in_envelope": 3,
+        "query": "Slöjdlärare",
+        "top10_success": true,
+        "top5_ids": [
+          "15e8_KDZ_31Z",
+          "JUu4_wcP_kQG",
+          "VZoJ_4oe_xyR"
+        ]
+      },
+      {
+        "abstained": false,
+        "decision_success": true,
+        "id": "yv.model-holdout.035",
+        "intent": "SINGLE",
+        "observed_count": 540910,
+        "positive_in_envelope": 1,
+        "query": "Adjunkt",
+        "top10_success": true,
+        "top5_ids": [
+          "YfCD_kUE_kck"
+        ]
+      },
+      {
+        "abstained": false,
+        "decision_success": true,
+        "id": "yv.model-holdout.036",
+        "intent": "AMBIGUOUS",
+        "observed_count": 474387,
+        "positive_in_envelope": 1,
+        "query": "Anläggningsarbetare",
+        "top10_success": true,
+        "top5_ids": [
+          "MQHi_q9J_x2d",
+          "3uEE_35U_U6j",
+          "A6CQ_XVJ_iy4",
+          "fCCr_Mp8_6oE",
+          "mcAc_Xvo_Jp8"
+        ]
+      }
+    ],
+    "name": "C1",
+    "overall": {
+      "cases": 36,
+      "decision_accuracy_pct": 66.667,
+      "false_confident_no_match_cases": 0,
+      "false_confident_no_match_volume": 0,
+      "hard_negative_violation_cases": 0,
+      "hard_negative_violation_volume": 0,
+      "observed_volume": 208583095,
+      "positive_cases_unsatisfiable_inside_envelope": 4,
+      "positive_volume_unsatisfiable_inside_envelope": 17117662,
+      "top10_success_pct": 75.0,
+      "volume_weighted_decision_accuracy_pct": 83.173,
+      "volume_weighted_top10_success_pct": 84.788
+    }
+  },
+  "configurations": {
+    "C0": "159 P80 targets; canonical label+definition+alternative label BM25; zero score abstains",
+    "C1": "C0 representation over 165 targets; six predeclared boundary identities; short-query surface/component/fuzzy gate; long descriptions retain C0 ranking"
+  },
+  "delta": {
+    "false_confident_no_match_cases": -5,
+    "unsatisfiable_positive_cases": -5,
+    "volume_weighted_decision_accuracy_points": 23.408,
+    "volume_weighted_top10_success_points": 25.023
+  },
+  "holdout_semantics": "Pareto ranks 35-70; independently model-adjudicated before retrieval evaluation and untouched by C1 design",
+  "schema_version": 1,
+  "taxonomy_sha256": "634fd9d848a172747e54e3e487160a912ae6c0fcb8219c50998767c8c9aacbcc",
+  "taxonomy_version": 31
+}
