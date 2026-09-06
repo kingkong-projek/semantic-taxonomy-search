@@ -1,162 +1,38 @@
 #!/usr/bin/env node
 /**
- * Measure ranking/reachability for the frozen generator-excluded YV title population.
- *
- * This is a Track-1 diagnostic, not a product change. It compares the pinned current
- * direct-search ordering with one deliberately narrow counterfactual:
- *   exact excluded-title wording -> already generator-mapped occupation parents first.
- *
- * The counterfactual uses only parent identities already frozen in
- * research/benchmark/v31/yv-profile-safety/excluded-routing-review.jsonl.
+ * Measure current YV ranking for the complete pinned generator-excluded title population.
+ * Diagnostic only: no product data or selector code is changed.
  */
 import fs from 'node:fs';
 import crypto from 'node:crypto';
+import Fuse from 'fuse.js';
 
-const YV_URL = 'https://data.arbetsformedlingen.se/yrke/yrkesvaljaren/v1/yrkesvaljaren-t31.json';
-const YV_SHA256 = '1036f9525416fac4ce475c1c1d3909b9e2849ebcf7094ffd38104955e4c2ee49';
-const CASES_PATH = 'research/benchmark/v31/yv-profile-safety/excluded-routing-review.jsonl';
-const EXPECTED_CASES = 205;
+const YV_COMMIT='1ad8c389a4f43caa5a704843487ca94419bf745a';
+const YV_SEARCH_UTILS_BLOB='1eb706399ff97634b556164061e651a024b98003';
+const FUSE_VERSION='7.5.0';
+const YV_URL='https://data.arbetsformedlingen.se/yrke/yrkesvaljaren/v1/yrkesvaljaren-t31.json';
+const YV_SHA='1036f9525416fac4ce475c1c1d3909b9e2849ebcf7094ffd38104955e4c2ee49';
+const MAX_WEAK_FUZZY_RESULTS=3, MIN_FUZZY_SCORE=.4, MAX_FUZZY_SCORE=.84;
 
-function norm(v){ return String(v ?? '').toLowerCase().trim().replace(/\s+/g,' '); }
-function readJsonl(path){ return fs.readFileSync(path,'utf8').split(/\n/).filter(Boolean).map(JSON.parse); }
-function pct(n,d){ return d ? Number((100*n/d).toFixed(3)) : 0; }
-function display(item){ return item.occupation_name_preferred_label ? `${item.preferred_label} (${item.occupation_name_preferred_label})` : item.preferred_label; }
-function discoveryOccupationId(r){ return r.type === 'occupation-name' ? r.id : (r.type === 'job-title' ? r.occupation_name_id : null); }
-function directScore(label, query){
-  const l=norm(label), q=norm(query), tokens=q.split(' ').filter(Boolean);
-  if(l===q) return 1.0;
-  if(tokens.length>1) return tokens.every(t=>l.includes(t)) ? 0.98 : null;
-  if(l.startsWith(q)) return 0.99;
-  if(l.includes(q)) return 0.95;
-  return null;
+function args(){let cases='artifacts/yv-excluded-title-population-v31.json',output='artifacts/yv-excluded-title-ranking-v31.json';for(let i=2;i<process.argv.length;i++){if(process.argv[i]==='--cases')cases=process.argv[++i];else if(process.argv[i]==='--output')output=process.argv[++i];else throw new Error(`unknown arg ${process.argv[i]}`);}return{cases,output};}
+function norm(v){return String(v??'').normalize('NFC').toLowerCase().trim().replace(/\s+/g,' ');}
+function hash(b){return crypto.createHash('sha256').update(b).digest('hex');}
+function pct(n,d){return d?Number((100*n/d).toFixed(3)):0;}
+function yvDisplay(r){return r.occupation_name_preferred_label?`${r.preferred_label} (${r.occupation_name_preferred_label})`:r.preferred_label;}
+function yvIdentity(r){return r.type==='job-title'?`${r.id}|${r.occupation_name_id??''}`:r.id;}
+function discoveryOccupationId(r){return r.type==='occupation-name'?r.id:(r.type==='job-title'?r.occupation_name_id:null);}
+function getDirectScore(label,q,tokens){if(label===q)return 1;if(tokens.length>1)return tokens.every(t=>label.includes(t))?.98:null;if(label.startsWith(q))return .99;if(label.includes(q))return .95;return null;}
+function editDistance(a,b){const n=b.length;let prev=Array.from({length:n+1},(_,i)=>i);for(let i=1;i<=a.length;i++){const cur=[i,...new Array(n).fill(0)];for(let j=1;j<=n;j++)cur[j]=Math.min(cur[j-1]+1,prev[j]+1,prev[j-1]+(a[i-1]===b[j-1]?0:1));prev=cur;}return prev[n];}
+function fuzzySubstring(text,q){const target=q.length,min=Math.max(3,target-2),max=Math.min(text.length,target+2);let best=99;for(let s=0;s<=text.length-min;s++)for(let l=min;l<=max&&s+l<=text.length;l++)best=Math.min(best,editDistance(q,text.slice(s,s+l)));return best<=Math.max(2,Math.floor(target*.25))?best:null;}
+function rootMatch(q,label){q=norm(q);label=norm(label);if(label.includes(' ')){const d=editDistance(q,label);return d<=Math.max(2,Math.floor(q.length*.25))&&Math.abs(q.length-label.length)<=2;}return fuzzySubstring(label,q)!==null;}
+function yvSort(rows){return rows.sort((a,b)=>b.score-a.score+0 || Number(b.weight??0)-Number(a.weight??0) || yvDisplay(a).localeCompare(yvDisplay(b),'sv'));}
+class CurrentYv{
+ constructor(items){this.items=items;this.fuse=new Fuse(items,{keys:['preferred_label'],includeScore:true,ignoreDiacritics:true,ignoreFieldNorm:true,threshold:.6,minMatchCharLength:1,ignoreLocation:true,distance:100});}
+ search(query,max=50){if(!query)return[];const q=norm(query),tokens=q.split(' ').filter(Boolean),direct=[];for(const item of this.items){const s=getDirectScore(norm(item.preferred_label),q,tokens);if(s!==null)direct.push({...item,score:s,search_lane:'direct'});}if(direct.length)return yvSort(direct).slice(0,max);const raw=this.fuse.search(q);if(!raw.length)return[];const best=raw[0].score??1,candidates=[],seen=new Set();let strong=false;for(const fr of raw){const identity=yvIdentity(fr.item);if(seen.has(identity))continue;const rs=fr.score??1,base=1-rs;if(base<MIN_FUZZY_SCORE||rs>best+.12)continue;const root=rootMatch(q,norm(fr.item.preferred_label));if(root&&rs<=.25)strong=true;let score=base*.70+Number(fr.item.weight??0)*.10+(root?.12:0);score=Math.min(MAX_FUZZY_SCORE,Math.max(MIN_FUZZY_SCORE,score));candidates.push({...fr.item,score,search_lane:'fuzzy'});seen.add(identity);}if(!candidates.length)return[];const sorted=yvSort(candidates),limit=strong?Math.min(5,max):Math.min(MAX_WEAK_FUZZY_RESULTS,max);return sorted.slice(0,limit);}
 }
-function sortStrict(rows){
-  return rows.sort((a,b)=>{
-    if(a.score!==b.score) return b.score-a.score;
-    const aw=a.weight??0,bw=b.weight??0;
-    if(aw!==bw) return bw-aw;
-    return a.display.localeCompare(b.display,'sv');
-  });
-}
-function directResults(items,query){
-  const out=[];
-  for(const item of items){
-    const score=directScore(item.preferred_label,query);
-    if(score!==null) out.push({...item,score,display:display(item)});
-  }
-  return sortStrict(out);
-}
-function routedResults(current,targetIds,occupationById){
-  const parents=[...targetIds]
-    .map(id=>occupationById.get(id))
-    .filter(Boolean)
-    .map(item=>({...item,score:1.0,display:display(item),route:'excluded-title-parent'}))
-    .sort((a,b)=>{
-      const aw=a.weight??0,bw=b.weight??0;
-      if(aw!==bw) return bw-aw;
-      return a.display.localeCompare(b.display,'sv');
-    });
-  const parentIds=new Set(parents.map(x=>x.id));
-  const rest=current.filter(r=>!(r.type==='occupation-name' && parentIds.has(r.id)));
-  return [...parents,...rest];
-}
-function summarize(rows){
-  const total=rows.length;
-  const volume=rows.reduce((s,r)=>s+r.observed_count,0);
-  const at=(k)=>rows.reduce((s,r)=>s+Number(r.current.first_target_rank!==null && r.current.first_target_rank<=k),0);
-  const wat=(k)=>rows.reduce((s,r)=>s+r.observed_count*Number(r.current.first_target_rank!==null && r.current.first_target_rank<=k),0);
-  const rat=(k)=>rows.reduce((s,r)=>s+Number(r.routed.first_target_rank!==null && r.routed.first_target_rank<=k),0);
-  const rwat=(k)=>rows.reduce((s,r)=>s+r.observed_count*Number(r.routed.first_target_rank!==null && r.routed.first_target_rank<=k),0);
-  const targetTotal=rows.reduce((s,r)=>s+r.target_parent_count,0);
-  const recall=(which,k)=>rows.reduce((s,r)=>s+r[which][`target_hits_at_${k}`],0);
-  return {
-    cases:total,
-    observed_volume:volume,
-    current:{
-      any_parent_at_1_pct:pct(at(1),total), any_parent_at_3_pct:pct(at(3),total), any_parent_at_5_pct:pct(at(5),total), any_parent_at_10_pct:pct(at(10),total),
-      weighted_any_parent_at_1_pct:pct(wat(1),volume), weighted_any_parent_at_3_pct:pct(wat(3),volume), weighted_any_parent_at_5_pct:pct(wat(5),volume), weighted_any_parent_at_10_pct:pct(wat(10),volume),
-      micro_parent_recall_at_5_pct:pct(recall('current',5),targetTotal), micro_parent_recall_at_10_pct:pct(recall('current',10),targetTotal),
-      no_parent_in_direct_results:rows.filter(r=>r.current.first_target_rank===null).length,
-      higher_score_prefix_shadow_cases:rows.filter(r=>r.mechanism.higher_score_prefix_shadow).length,
-      weighted_higher_score_prefix_shadow_pct:pct(rows.reduce((s,r)=>s+r.observed_count*Number(r.mechanism.higher_score_prefix_shadow),0),volume)
-    },
-    exact_excluded_title_parent_route_counterfactual:{
-      any_parent_at_1_pct:pct(rat(1),total), any_parent_at_3_pct:pct(rat(3),total), any_parent_at_5_pct:pct(rat(5),total), any_parent_at_10_pct:pct(rat(10),total),
-      weighted_any_parent_at_1_pct:pct(rwat(1),volume), weighted_any_parent_at_3_pct:pct(rwat(3),volume), weighted_any_parent_at_5_pct:pct(rwat(5),volume), weighted_any_parent_at_10_pct:pct(rwat(10),volume),
-      micro_parent_recall_at_5_pct:pct(recall('routed',5),targetTotal), micro_parent_recall_at_10_pct:pct(recall('routed',10),targetTotal)
-    }
-  };
-}
+function routedResults(current,targetIds,occupationById){const parents=[...targetIds].map(id=>occupationById.get(id)).filter(Boolean).map(item=>({...item,score:1,search_lane:'excluded-title-parent-route'})).sort((a,b)=>Number(b.weight??0)-Number(a.weight??0)||yvDisplay(a).localeCompare(yvDisplay(b),'sv'));const parentIds=new Set(parents.map(x=>x.id));return [...parents,...current.filter(r=>!(r.type==='occupation-name'&&parentIds.has(r.id)))];}
+function measure(results,targetIds){const ranks=[];results.forEach((r,i)=>{if(targetIds.has(discoveryOccupationId(r)))ranks.push(i+1);});return{result_count:results.length,first_target_rank:ranks.length?ranks[0]:null,target_hits_at_5:ranks.filter(x=>x<=5).length,target_hits_at_10:ranks.filter(x=>x<=10).length,top10:results.slice(0,10).map((r,i)=>({rank:i+1,type:r.type,id:r.id,label:r.preferred_label,parent_id:r.occupation_name_id??null,parent_label:r.occupation_name_preferred_label??null,score:Number(r.score??0),weight:Number(r.weight??0),target:targetIds.has(discoveryOccupationId(r)),lane:r.search_lane}))};}
+function summarize(rows){const total=rows.length,volume=rows.reduce((s,r)=>s+r.observed_count,0),targetTotal=rows.reduce((s,r)=>s+r.target_parent_count,0);const countAt=(which,k)=>rows.reduce((s,r)=>s+Number(r[which].first_target_rank!==null&&r[which].first_target_rank<=k),0),weightedAt=(which,k)=>rows.reduce((s,r)=>s+r.observed_count*Number(r[which].first_target_rank!==null&&r[which].first_target_rank<=k),0),hits=(which,k)=>rows.reduce((s,r)=>s+r[which][`target_hits_at_${k}`],0);return{cases:total,observed_volume:volume,current:{any_parent_at_1_pct:pct(countAt('current',1),total),any_parent_at_3_pct:pct(countAt('current',3),total),any_parent_at_5_pct:pct(countAt('current',5),total),any_parent_at_10_pct:pct(countAt('current',10),total),weighted_any_parent_at_1_pct:pct(weightedAt('current',1),volume),weighted_any_parent_at_3_pct:pct(weightedAt('current',3),volume),weighted_any_parent_at_5_pct:pct(weightedAt('current',5),volume),weighted_any_parent_at_10_pct:pct(weightedAt('current',10),volume),micro_parent_recall_at_5_pct:pct(hits('current',5),targetTotal),micro_parent_recall_at_10_pct:pct(hits('current',10),targetTotal),no_parent_visible:rows.filter(r=>r.current.first_target_rank===null).length,higher_score_prefix_shadow_cases:rows.filter(r=>r.mechanism.higher_score_prefix_shadow).length,weighted_higher_score_prefix_shadow_pct:pct(rows.reduce((s,r)=>s+r.observed_count*Number(r.mechanism.higher_score_prefix_shadow),0),volume)},exact_excluded_title_parent_route_counterfactual:{any_parent_at_1_pct:pct(countAt('routed',1),total),any_parent_at_3_pct:pct(countAt('routed',3),total),any_parent_at_5_pct:pct(countAt('routed',5),total),any_parent_at_10_pct:pct(countAt('routed',10),total),weighted_any_parent_at_1_pct:pct(weightedAt('routed',1),volume),weighted_any_parent_at_3_pct:pct(weightedAt('routed',3),volume),weighted_any_parent_at_5_pct:pct(weightedAt('routed',5),volume),weighted_any_parent_at_10_pct:pct(weightedAt('routed',10),volume),micro_parent_recall_at_5_pct:pct(hits('routed',5),targetTotal),micro_parent_recall_at_10_pct:pct(hits('routed',10),targetTotal)}};}
 
-async function main(){
-  const cases=readJsonl(CASES_PATH);
-  if(cases.length!==EXPECTED_CASES) throw new Error(`expected ${EXPECTED_CASES} frozen excluded-title cases, got ${cases.length}`);
-  const response=await fetch(YV_URL);
-  if(!response.ok) throw new Error(`YV source HTTP ${response.status}`);
-  const bytes=Buffer.from(await response.arrayBuffer());
-  const sha=crypto.createHash('sha256').update(bytes).digest('hex');
-  if(sha!==YV_SHA256) throw new Error(`YV source drift: ${sha}`);
-  const doc=JSON.parse(bytes.toString('utf8'));
-  const items=doc.data;
-  if(!Array.isArray(items)) throw new Error('YV data missing');
-  const occupationById=new Map(items.filter(x=>x.type==='occupation-name').map(x=>[x.id,x]));
-
-  const detail=[];
-  for(const c of cases){
-    const targetIds=new Set(c.candidate_occupation_identities.map(x=>x.concept_id));
-    const current=directResults(items,c.query);
-    const routed=routedResults(current,targetIds,occupationById);
-    const measure=(results)=>{
-      const ranks=[];
-      results.forEach((r,i)=>{ if(targetIds.has(discoveryOccupationId(r))) ranks.push(i+1); });
-      return {
-        result_count:results.length,
-        first_target_rank:ranks.length?ranks[0]:null,
-        target_hits_at_5:ranks.filter(x=>x<=5).length,
-        target_hits_at_10:ranks.filter(x=>x<=10).length,
-        top10:results.slice(0,10).map(r=>({rank:results.indexOf(r)+1,type:r.type,id:r.id,label:r.preferred_label,parent_id:r.occupation_name_id??null,score:r.score,weight:r.weight??0,target:targetIds.has(discoveryOccupationId(r)),route:r.route??'current'}))
-      };
-    };
-    const cm=measure(current), rm=measure(routed);
-    const firstTarget = cm.first_target_rank===null ? null : current[cm.first_target_rank-1];
-    const preceding = cm.first_target_rank===null ? current : current.slice(0,cm.first_target_rank-1);
-    const higherScorePrefixShadow = Boolean(firstTarget && preceding.some(r=>r.type==='job-title' && r.score>firstTarget.score && norm(r.preferred_label).startsWith(norm(c.query))));
-    detail.push({
-      id:c.id, query:c.query, reason:c.yv_exclusion_reason, observed_count:Number(c.observed_count), target_parent_count:targetIds.size,
-      current:cm, routed:rm,
-      mechanism:{
-        higher_score_prefix_shadow:higherScorePrefixShadow,
-        rows_before_first_target:cm.first_target_rank===null?current.length:cm.first_target_rank-1,
-        non_target_prefix_job_titles_before_first_target:preceding.filter(r=>r.type==='job-title' && norm(r.preferred_label).startsWith(norm(c.query))).length
-      }
-    });
-  }
-
-  const byReason={};
-  for(const reason of [...new Set(detail.map(x=>x.reason))].sort()) byReason[reason]=summarize(detail.filter(x=>x.reason===reason));
-  const worst=[...detail]
-    .filter(x=>x.current.first_target_rank===null || x.current.first_target_rank>1)
-    .sort((a,b)=>b.observed_count-a.observed_count)
-    .slice(0,30)
-    .map(x=>({id:x.id,query:x.query,reason:x.reason,observed_count:x.observed_count,target_parent_count:x.target_parent_count,current_first_target_rank:x.current.first_target_rank,routed_first_target_rank:x.routed.first_target_rank,higher_score_prefix_shadow:x.mechanism.higher_score_prefix_shadow,current_top5:x.current.top10.slice(0,5)}));
-
-  const result={
-    schema_version:1,
-    taxonomy_version:31,
-    role:'Track-1 diagnostic of generator-excluded exact-title ranking',
-    source:{yv_url:YV_URL,yv_sha256:sha,cases_path:CASES_PATH,cases:cases.length},
-    interpretation_guardrails:[
-      'candidate occupation parents are routing/context evidence from the frozen generator mapping, not adjudicated proof that every parent is equally user-intended',
-      'the route counterfactual is exact excluded-title only; it is not a proposal to globally prefer occupation-name over job-title results',
-      'observed_count weights are exact query counts from the frozen source corpus and do not prove selection or satisfaction'
-    ],
-    summary:summarize(detail),
-    by_reason:byReason,
-    highest_volume_current_rank_failures:worst,
-    detail
-  };
-  fs.mkdirSync('artifacts',{recursive:true});
-  fs.writeFileSync('artifacts/yv-excluded-title-ranking-v31.json',JSON.stringify(result,null,2)+'\n');
-  console.log(JSON.stringify({summary:result.summary,by_reason:result.by_reason,highest_volume_current_rank_failures:worst.slice(0,12)},null,2));
-}
+async function main(){const a=args(),population=JSON.parse(fs.readFileSync(a.cases,'utf8'));if(!Array.isArray(population.cases)||population.cases.length!==205)throw new Error(`expected 205 population cases, got ${population.cases?.length}`);const response=await fetch(YV_URL);if(!response.ok)throw new Error(`YV source HTTP ${response.status}`);const bytes=Buffer.from(await response.arrayBuffer()),sha=hash(bytes);if(sha!==YV_SHA)throw new Error(`YV source drift ${sha}`);const items=JSON.parse(bytes.toString('utf8')).data;if(!Array.isArray(items))throw new Error('YV data missing');const engine=new CurrentYv(items),occupationRows=items.filter(x=>x.type==='occupation-name'),occupationByLabel=new Map(occupationRows.map(x=>[norm(x.preferred_label),x])),occupationById=new Map(occupationRows.map(x=>[x.id,x])),detail=[];for(const c of population.cases){const parents=c.target_parent_labels.map(label=>occupationByLabel.get(norm(label)));const missing=c.target_parent_labels.filter(label=>!occupationByLabel.has(norm(label)));if(missing.length)throw new Error(`${c.query}: mapped parent labels absent from published YV: ${missing.join(', ')}`);const targetIds=new Set(parents.map(x=>x.id)),currentRows=engine.search(c.query,50),routedRows=routedResults(currentRows,targetIds,occupationById),current=measure(currentRows,targetIds),routed=measure(routedRows,targetIds),firstTarget=current.first_target_rank===null?null:currentRows[current.first_target_rank-1],preceding=current.first_target_rank===null?currentRows:currentRows.slice(0,current.first_target_rank-1),higherScorePrefixShadow=Boolean(firstTarget&&preceding.some(r=>r.type==='job-title'&&r.score>firstTarget.score&&norm(r.preferred_label).startsWith(norm(c.query))));detail.push({query:c.query,reason:c.reason,observed_count:Number(c.observed_count),target_parent_count:targetIds.size,target_parent_ids:[...targetIds],current,routed,mechanism:{higher_score_prefix_shadow:higherScorePrefixShadow,rows_before_first_target:current.first_target_rank===null?currentRows.length:current.first_target_rank-1,non_target_prefix_job_titles_before_first_target:preceding.filter(r=>r.type==='job-title'&&norm(r.preferred_label).startsWith(norm(c.query))).length}});}const byReason={};for(const reason of [...new Set(detail.map(x=>x.reason))].sort())byReason[reason]=summarize(detail.filter(x=>x.reason===reason));const worst=[...detail].filter(x=>x.current.first_target_rank===null||x.current.first_target_rank>1).sort((a,b)=>b.observed_count-a.observed_count).slice(0,30).map(x=>({query:x.query,reason:x.reason,observed_count:x.observed_count,target_parent_count:x.target_parent_count,current_first_target_rank:x.current.first_target_rank,routed_first_target_rank:x.routed.first_target_rank,higher_score_prefix_shadow:x.mechanism.higher_score_prefix_shadow,current_top5:x.current.top10.slice(0,5)}));const result={schema_version:1,taxonomy_version:31,track:'1-current-yv-kv-findability',role:'complete generator-excluded exact-title ranking diagnostic',selector_contract:{yv_commit:YV_COMMIT,yv_search_utils_blob:YV_SEARCH_UTILS_BLOB,fuse_js_version:FUSE_VERSION},source:{yv_url:YV_URL,yv_sha256:sha,generator_commit:population.generator_commit,query_corpus_sha256:population.query_corpus_sha256,cases:detail.length},interpretation_guardrails:['generator-mapped occupation parents are routing/context evidence, not proof that every parent is equally user-intended','the counterfactual is exact excluded-title only; it does not globally prefer occupation-name over job-title results','observed_count is exact-query frequency and does not prove selection or satisfaction'],summary:summarize(detail),by_reason:byReason,highest_volume_current_rank_failures:worst,detail};fs.mkdirSync('artifacts',{recursive:true});fs.writeFileSync(a.output,JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify({summary:result.summary,by_reason:result.by_reason,highest_volume_current_rank_failures:worst.slice(0,15)},null,2));}
 await main();
