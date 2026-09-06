@@ -4,7 +4,8 @@ on:
   push:
     branches: [main]
     paths:
-      - scripts/sync_p80_eval_and_pareto_metadata.py
+      - scripts/finalize_p80_eval_ssot.py
+      - scripts/pareto_demand_coverage.py
       - .github/workflows/sync-p80-eval-ssot.yml
   workflow_dispatch: {}
 
@@ -22,20 +23,33 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Reproduce Pareto metadata
-        run: python scripts/pareto_demand_coverage.py --version 31 --output-dir /tmp/pareto-demand-v31
+      - name: Reproduce Pareto input twice
+        run: |
+          python scripts/pareto_demand_coverage.py --version 31 --output-dir /tmp/pareto-a
+          python scripts/pareto_demand_coverage.py --version 31 --output-dir /tmp/pareto-b
+          python - <<'PY'
+          import json
+          a=json.load(open('/tmp/pareto-a/aggregate.json'))
+          b=json.load(open('/tmp/pareto-b/aggregate.json'))
+          ha=a['sources']['historical_stats']['sha256']
+          hb=b['sources']['historical_stats']['sha256']
+          assert ha == hb, (ha, hb)
+          assert a['occupation_name']['pareto_within_active_v31_observed_occurrence_mass']['thresholds'] == b['occupation_name']['pareto_within_active_v31_observed_occurrence_mass']['thresholds']
+          assert a['skill']['pareto_within_active_v31_observed_occurrence_mass']['thresholds'] == b['skill']['pareto_within_active_v31_observed_occurrence_mass']['thresholds']
+          print('stable normalized Historical input', ha)
+          PY
       - name: Reproduce P80 A/B/C evaluation
         run: |
           python scripts/evaluate_p80_lexical_ablation.py \
             --version 31 \
             --output /tmp/p80-lexical-ablation-v31.json
       - name: Synchronize frozen evidence and SSOT
-        run: python scripts/sync_p80_eval_and_pareto_metadata.py /tmp/pareto-demand-v31/aggregate.json /tmp/p80-lexical-ablation-v31.json
+        run: python scripts/finalize_p80_eval_ssot.py /tmp/pareto-a/aggregate.json /tmp/p80-lexical-ablation-v31.json
       - name: Validate synchronized state
         run: |
           python -m json.tool research/coverage/v31/pareto-demand-aggregate.json >/dev/null
           python -m json.tool research/evaluation/v31/p80-lexical-ablation.json >/dev/null
-          grep -F '049a3979c3e9458fe60191575a352f7d780ede7196a4aacffd1c335b0ecf99c7' research/coverage/v31/pareto-demand-aggregate.json >/dev/null
+          grep -F 'normalized occupation-name/skill statistic rows' research/coverage/v31/pareto-demand-aggregate.json >/dev/null
           grep -F 'preliminary A–C source-truth lexical ablation on P80 core' docs/research-plan.md
           grep -F 'zero top-1 misses' docs/findings/p80-lexical-ablation-v31.md
       - name: Commit evaluation and SSOT
