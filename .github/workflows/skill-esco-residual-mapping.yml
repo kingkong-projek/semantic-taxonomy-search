@@ -1,0 +1,50 @@
+name: Skill ESCO residual mapping
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/measure_skill_esco_residual_mapping.py
+      - scripts/evaluate_skill_c0_training_validation.py
+      - research/benchmark/v31/training-skill-validation/**
+      - research/coverage/v31/pareto-demand-aggregate.json
+      - research/coverage/source-adapters.json
+      - .github/workflows/skill-esco-residual-mapping.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  measure:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Measure mapping coverage on frozen C0 residual
+        run: |
+          python scripts/measure_skill_esco_residual_mapping.py --output artifacts/skill-esco-residual-mapping-v31.json
+      - name: Validate diagnostic boundary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('artifacts/skill-esco-residual-mapping-v31.json').read_text())
+          assert x['primary_all']['cases']==63
+          assert x['primary_c0_misses']['cases']==34
+          assert x['role']=='diagnostic only; no ESCO retrieval ranking performed'
+          print(json.dumps({
+              'misses':x['primary_c0_misses'],
+              'incremental':x['incremental_miss_coverage_in_order_exact_close_broad_narrow'],
+              'text':x['miss_esco_text_availability'],
+          },ensure_ascii=False,indent=2,sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: skill-esco-residual-mapping-v31
+          path: artifacts/skill-esco-residual-mapping-v31.json
+          if-no-files-found: error
+          retention-days: 30
