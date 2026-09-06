@@ -29,6 +29,7 @@
       "enum": [
         "manual",
         "canonical_label",
+        "canonical_definition",
         "alternative_label",
         "observed_query",
         "ad_text",
