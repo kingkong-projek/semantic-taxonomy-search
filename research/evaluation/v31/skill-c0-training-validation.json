@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 31,
+  "configuration": {
+    "name": "KV-C0",
+    "algorithm": "deterministic BM25 with exact canonical surface dominance",
+    "retrieval_documents": "P80 skill preferred labels + real canonical definitions + canonical alternative labels only",
+    "training_text_ingested": false,
+    "primary_metric": "Discovery Hit@5 on descriptive, non-leaky manual-mapping cases"
+  },
+  "benchmark": {
+    "cases": 76,
+    "unique_p80_skills": 76,
+    "primary_descriptive_nonleaky_cases": 63,
+    "source_sha256": "fea97867a1225e078d28ab9b0772f6a37f92b37c3c6c0d0e886ae65e9d79361c",
+    "benchmark_sha256": "9f2346d445d69b9f48cd9aa65c0695e6385ecaf060cd7f798fbcd6251d5e16f1",
+    "authority_boundary": "AF manual training mapping is validation truth; module text is not retrieval evidence in C0"
+  },
+  "primary_descriptive_nonleaky": {
+    "cases": 63,
+    "occurrence_proxy_weight": 14132,
+    "top1_pct": 30.159,
+    "weighted_top1_pct": 29.607,
+    "discovery_hit_at_5_pct": 46.032,
+    "weighted_discovery_hit_at_5_pct": 57.083,
+    "hit_at_10_pct": 47.619,
+    "weighted_hit_at_10_pct": 58.675,
+    "zero_positive_evidence_cases": 3,
+    "weighted_zero_positive_evidence_pct": 6.899
+  },
+  "all_cases": {
+    "cases": 76,
+    "discovery_hit_at_5_pct": 50.0,
+    "weighted_discovery_hit_at_5_pct": 57.708,
+    "hit_at_10_pct": 51.316,
+    "weighted_hit_at_10_pct": 58.909
+  },
+  "source_truth_regression": {
+    "cases": 617,
+    "top1_pct": 100.0,
+    "discovery_hit_at_5_pct": 100.0,
+    "top1_miss_count": 0
+  },
+  "provenance": {
+    "benchmark_commit": "0c593a8af13446be5ab83147d72b1a223ef7fc81",
+    "workflow_run_id": 34027087269,
+    "head_sha": "62bd60c5de964067c7df22ca9effaeac7147848a",
+    "artifact_name": "skill-c0-training-validation-v31",
+    "artifact_digest": "sha256:53044488141307dff398de479799e8240ea7acf6377d35b94673a3a59aceaa41"
+  }
+}
