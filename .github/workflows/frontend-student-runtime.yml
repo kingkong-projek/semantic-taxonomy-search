@@ -1,0 +1,57 @@
+name: Frontend student runtime
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/compile_frontend_student_index.py
+      - scripts/evaluate_frontend_student_index.py
+      - scripts/benchmark_frontend_student_runtime.mjs
+      - research/benchmark/v31/p80-source-truth/**
+      - research/benchmark/v31/fresh-natural-holdout/**
+      - research/benchmark/v31/training-skill-fresh-holdout/**
+      - research/benchmark/v31/synthetic-description-stress/**
+      - research/coverage/v31/pareto-demand-aggregate.json
+      - research/coverage/source-adapters.json
+      - .github/workflows/frontend-student-runtime.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  compile-and-measure:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Compile static student assets
+        run: |
+          python scripts/compile_frontend_student_index.py
+      - name: Verify exact C0 parity and frozen suites
+        run: |
+          python scripts/evaluate_frontend_student_index.py
+      - name: Verify dependency-free JS runtime and benchmark host cost
+        run: |
+          node scripts/benchmark_frontend_student_runtime.mjs --rounds 25
+      - name: Show compact artifact sizes
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          m=json.loads(Path('artifacts/frontend-student-index-v31/manifest.json').read_text())
+          for k,v in m['assets'].items():
+              print(k, 'docs=',v['documents'],'terms=',v['terms'],'postings=',v['postings'],'raw=',v['raw_bytes'],'gzip9=',v['gzip_9_bytes'])
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: frontend-student-runtime-v31
+          path: artifacts/frontend-student-index-v31/
+          if-no-files-found: error
+          retention-days: 30
