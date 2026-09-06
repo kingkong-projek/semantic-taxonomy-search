@@ -1,0 +1,47 @@
+name: P80 lexical ablation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/evaluate_p80_lexical_ablation.py
+      - research/benchmark/v31/p80-source-truth/**
+      - research/coverage/source-adapters.json
+      - .github/workflows/p80-lexical-ablation.yml
+  workflow_dispatch:
+    inputs:
+      taxonomy_version:
+        description: Taxonomy target version
+        required: true
+        default: "31"
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate frozen benchmark
+        run: |
+          python scripts/validate_benchmark.py \
+            research/benchmark/v31/p80-source-truth/yv-p80-source-truth.jsonl \
+            research/benchmark/v31/p80-source-truth/kv-p80-source-truth.jsonl
+      - name: Evaluate A/B/C lexical ablation
+        env:
+          TAXONOMY_VERSION: ${{ github.event.inputs.taxonomy_version || '31' }}
+        run: |
+          python scripts/evaluate_p80_lexical_ablation.py \
+            --version "$TAXONOMY_VERSION" \
+            --output "artifacts/p80-lexical-ablation-v${TAXONOMY_VERSION}.json"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p80-lexical-ablation-v${{ github.event.inputs.taxonomy_version || '31' }}
+          path: artifacts/p80-lexical-ablation-v${{ github.event.inputs.taxonomy_version || '31' }}.json
+          if-no-files-found: error
+          retention-days: 30
