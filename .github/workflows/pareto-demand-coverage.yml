@@ -1,0 +1,41 @@
+name: Pareto demand coverage
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/pareto_demand_coverage.py
+      - research/coverage/source-adapters.json
+      - .github/workflows/pareto-demand-coverage.yml
+  workflow_dispatch:
+    inputs:
+      taxonomy_version:
+        description: Taxonomy target version
+        required: true
+        default: "31"
+
+permissions:
+  contents: read
+
+jobs:
+  measure:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Measure Pareto demand proxy
+        env:
+          TAXONOMY_VERSION: ${{ github.event.inputs.taxonomy_version || '31' }}
+        run: |
+          python scripts/pareto_demand_coverage.py \
+            --version "$TAXONOMY_VERSION" \
+            --output-dir "artifacts/pareto-demand-v${TAXONOMY_VERSION}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pareto-demand-v${{ github.event.inputs.taxonomy_version || '31' }}
+          path: artifacts/pareto-demand-v${{ github.event.inputs.taxonomy_version || '31' }}/
+          if-no-files-found: error
+          retention-days: 30
