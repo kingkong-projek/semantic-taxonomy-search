@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 31,
+  "p80_rank_start": 101,
+  "p80_rank_end": 200,
+  "case_count": 100,
+  "unique_target_count": 100,
+  "evidence_class": "synthetic_model_authored_blind_between_artifacts",
+  "teacher_artifact": "research/enrichment/v31/model-teacher-kv-101-200/phrases.jsonl",
+  "teacher_commit": "1597db4b0d7ef42eade8ceb8065d84a6af10056c",
+  "teacher_manifest_commit": "7826fbe56aa8b850bcbbcbfc72d431b7dbb39c18",
+  "query_commit": "8722e52bdc0af952469d6d7e12842a545d0ba8e2",
+  "freeze_order": [
+    "Teacher phrases for ranks 101-200 were authored and committed before any evaluation query for those ranks existed.",
+    "The 100 evaluation queries were then authored and committed without consulting retrieval output.",
+    "Retrieval evaluation may only begin after both artifacts are frozen."
+  ],
+  "primary_metric": "Hit@5",
+  "reporting": "hits/N + percentage + 95% Wilson interval + evidence class",
+  "review_policy": "Raw result is immutable. Review every teacher-fusion miss and regression plus a deterministic 15-case sample of nominal hits against canonical taxonomy evidence.",
+  "known_limitation": "Teacher enrichment is available for ranks 1-200 during this stage but not yet for ranks 201-316, so this is not a fully teacher-covered production-universe validation. A subsequent gate should freeze teacher language for all P80 concepts before testing another untouched rank block.",
+  "same_model_bias": "The same GPT-5.6 Sol system authored teacher language and later evaluation descriptions. Artifact ordering prevents direct miss-driven tuning but does not remove shared linguistic priors."
+}
