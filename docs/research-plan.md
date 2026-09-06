@@ -690,11 +690,16 @@ Embeddings are intentionally tested **before** synthetic text. Every layer repor
 
 ## 12. Evaluation metrics
 
+Primary product objective is **discovery**, not exact top-1 classification. A small visible candidate list succeeds when it contains what the user meant; broad/ambiguous queries may correctly expose several plausible canonical candidates. Use **Discovery Success@5** as the primary positive-intent metric and correct abstention as the primary NO_MATCH metric. Top-1 remains secondary ranking diagnostics.
+
 At minimum:
 
+- **Discovery Success@5**, including volume-weighted and per-stratum views;
+- abstention precision/recall for `NO_MATCH`;
+- hard-negative violation rate;
 - Recall@K;
 - MRR / nDCG@K;
-- top-1 precision where one answer is justified;
+- top-1 precision where one answer is justified, as a secondary ordering metric;
 - exact-label preservation;
 - YV ambiguous-title recall/context preservation;
 - YV excluded-title routing correctness;
@@ -887,9 +892,13 @@ C1 holdout result: on independently adjudicated Pareto ranks 35–70 (**36 untou
 
 Evidence: `docs/findings/pareto-holdout-c1-v31.md`, `research/benchmark/v31/pareto-model-holdout/` and `research/evaluation/v31/pareto-holdout-c0-c1.json`.
 
+Discovery framing: because the product goal is to help a user **find** the intended identity in a small result list rather than classify every query to rank 1, the primary holdout metric is now Discovery Success@5. On the same untouched holdout, C1 reaches **84.788% volume-weighted Discovery Success@5** versus C0 59.765%; C1 @5 equals @10, so no additional judged-positive cases require positions 6–10 in this slice. Top-1 remains secondary diagnostics.
+
+Evidence: `docs/findings/discovery-objective-v31.md` and `research/evaluation/v31/pareto-holdout-discovery.json`.
+
 - [x] preliminary **A/B/C0** source-truth lexical ablation on P80 core, where C0 = preferred labels + real canonical definitions + canonical alternative labels
 - [x] **C1:** P80 + six measured high-volume boundary occupations + short-query lexical surface/component/fuzzy evidence + conservative definition-only abstention; 100% on the 34-row development slice, 100% on the frozen 333-case source-truth regression, and **83.173% volume-weighted decision accuracy on untouched 36-row holdout** vs C0 59.765%
-- [ ] **complete planned C retrieval vocabulary next:** add exact active job-title preferred-label → typed occupation-name parent routing; 10/12 remaining C1 holdout top-1 failures are exact measured job-title routes. Evaluate on a new next-volume sentinel before D/ESCO.
+- [ ] **complete planned C retrieval vocabulary next:** add exact active job-title preferred-label → typed occupation-name parent routing. Optimize/evaluate primarily for **Discovery Success@5**, not rank 1; the holdout shows exact job-title routing is the dominant remaining candidate-generation gap. Evaluate on a new next-volume sentinel before D/ESCO.
 - [ ] D typed graph/ESCO only if the adjudicated real-query/safety residual justifies it; do not add D merely to complete an ablation ladder
 - [ ] E–G evidence layers separately
 - [ ] H vectors/reranking in shadow evaluation
