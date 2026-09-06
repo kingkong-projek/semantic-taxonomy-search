@@ -21,6 +21,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Guard frozen blind holdout bytes
+        run: |
+          echo '79816eb2020b100bf8260b8f1807069288c30dbabd457bfffbfe3f49735c6675  research/benchmark/v31/training-skill-fresh-holdout/cases.jsonl' | sha256sum --check --strict
       - name: Install exact pinned fuzzy dependency in isolated script scope
         run: |
           printf '{"private":true,"type":"module"}\n' > scripts/package.json
