@@ -1,0 +1,27 @@
+name: Export synthetic-query seed context
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/export-synthetic-query-seed-context.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: synthetic-query-seed-context-v31
+          path: |
+            research/benchmark/v31/training-skill-validation/cases.jsonl
+            research/benchmark/v31/p80-source-truth/yv-p80-source-truth.jsonl
+            research/coverage/v31/pareto-demand-aggregate.json
+          if-no-files-found: error
+          retention-days: 7
