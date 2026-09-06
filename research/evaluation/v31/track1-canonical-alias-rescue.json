@@ -1,0 +1,63 @@
+{
+  "KV": {
+    "current_hit_at_5": 1056,
+    "current_hit_at_5_pct": 82.629,
+    "current_miss_at_5": 222,
+    "current_no_result_cases": 179,
+    "current_target_occurrence_proxy_hit_at_5_pct": 49.098,
+    "deterministic_exact_alias_rescue_cases": 222,
+    "post_alias_hit_at_5_pct": 100.0,
+    "rescued_target_occurrence_proxy": 18765,
+    "rescued_target_occurrence_proxy_pct": 50.902,
+    "strict_unique_alias_cases": 1278,
+    "target_occurrence_proxy": 36865
+  },
+  "YV": {
+    "current_hit_at_5": 318,
+    "current_hit_at_5_pct": 89.076,
+    "current_miss_at_5": 39,
+    "current_no_result_cases": 0,
+    "current_observed_volume_hit_at_5_pct": 98.578,
+    "deterministic_exact_alias_rescue_cases": 39,
+    "observed_exact_query_volume": 95842570,
+    "post_alias_hit_at_5_pct": 100.0,
+    "rescued_observed_exact_query_volume": 1362861,
+    "rescued_observed_exact_query_volume_pct": 1.422,
+    "strict_unique_alias_cases": 357
+  },
+  "alias_surface_ambiguity": {
+    "KV": {
+      "ambiguous": 28,
+      "ambiguous_pct": 2.126,
+      "distinct": 1317,
+      "unique_target": 1289
+    },
+    "YV": {
+      "ambiguous": 1,
+      "ambiguous_pct": 0.276,
+      "distinct": 362,
+      "unique_target": 361
+    }
+  },
+  "authority_boundary": "Only current canonical alternative/hidden labels are evaluated as same-concept vocabulary. Deprecated replaced_by labels remain migration/history route evidence and are not promoted to synonyms.",
+  "fuzzy_context_structural_stress": {
+    "all_contexts_preserved": 538,
+    "all_contexts_preserved_pct": 99.814,
+    "eligible_multi_context_titles": 539,
+    "one_context_only": 0
+  },
+  "intervention": "exact normalized current canonical alternative/hidden-label lane before fuzzy; ambiguous alias surfaces must not force a unique target",
+  "schema_version": 1,
+  "selector_contract": {
+    "fuse_js_version": "7.5.0",
+    "yv_constants_blob": "e9a412778d77de1aef82da94e36559619f5d607c",
+    "yv_fuzzy_dedupe_key": "job-title id + occupation-name context",
+    "yv_repository_commit": "ab0b3f28576d8aebec2b593b771a70c7684b1eca",
+    "yv_search_utils_blob": "1eb706399ff97634b556164061e651a024b98003"
+  },
+  "source_artifact_id": 9993147225,
+  "source_artifact_sha256": "1970e3b0218bc356911c975d70feff76a60b2af59019dba0d7d2b8036f7be797",
+  "source_run_id": 34045443253,
+  "taxonomy_version": 31,
+  "track": "1-current-yv-kv-findability"
+}

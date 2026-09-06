@@ -53,7 +53,7 @@ The **primary v0 product question is end-to-end findability**: for a user trying
 
 Evaluation must therefore distinguish failure mechanism before choosing a fix: ordinary lexical reachability, ranking, title/occupation routing, ambiguity/context, product admission, integration/hand-off, and description-style semantic retrieval. The smallest intervention that fixes a material measured findability failure wins.
 
-The pinned current implementation baseline is `kingkong-projek/yrkesvaljaren@0eba98e3a91079a43c1eaf6da09dfabe11e5bc8b`:
+The pinned current implementation baseline is `kingkong-projek/yrkesvaljaren@ab0b3f28576d8aebec2b593b771a70c7684b1eca`:
 
 - current YV already performs exact, prefix/multi-token, substring and guarded Fuse fallback over preferred labels, with behavioural weight as ranking evidence;
 - current KV already performs global exact/prefix/word-boundary/contains/fuzzy skill lookup, while occupation/SSYK/context lists and precomputed `weightedSkills` influence ranking among text/fuzzy candidates and provide the empty-query initial list.
@@ -94,6 +94,8 @@ Track 1 exits only when all of the following are true:
 Description journeys already frozen under `research/personas/v31/journeys.jsonl` remain immutable but **must not be replayed or used to choose retrieval changes during Track 1**.
 
 Evidence: `docs/findings/current-selector-should-find-v31.md`, `research/evaluation/v31/current-selector-should-find-summary.json`, `docs/findings/persona-findability-protocol-v31.md`.
+
+**Track 1 status — canonical alias reachability measured (2026-09-06).** Against current YV `ab0b3f28576d8aebec2b593b771a70c7684b1eca`, current canonical alternative/hidden labels are overwhelmingly unambiguous (YV 361/362 unique-target surfaces; KV 1,289/1,317). The current selector already finds 318/357 strict YV alias cases and 1,056/1,278 KV cases at 5. A privileged exact-normalized current-alias lane would deterministically rescue the remaining **39 YV** and **222 KV** strict cases, reaching 100% on that bounded set. The YV increment is modest by observed alias-query volume (**1.422%**); the KV increment is materially larger by the available target-occurrence priority proxy (**50.902%** of the alias-set proxy mass rescued). Therefore the next cheapest Track-1 intervention is to implement current canonical aliases before any semantic expansion. Alias collisions fail closed / remain multi-candidate; deprecated `replaced_by` labels are explicitly excluded from synonym treatment. Evidence: `docs/findings/track1-canonical-alias-reachability-v31.md` and `research/evaluation/v31/track1-canonical-alias-rescue.json`.
 
 ### 2.1.2 Persona-based experiential red-team
 

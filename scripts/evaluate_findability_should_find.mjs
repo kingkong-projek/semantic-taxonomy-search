@@ -8,8 +8,8 @@
  * ordinary current selectors.
  *
  * It also isolates a YV interaction between fuzzy fallback and multi-context job
- * titles: current search.utils.ts deduplicates fuzzy candidates by job-title id,
- * while contextual rows share that id. Exact/direct search does not have this issue.
+ * titles: current search.utils.ts preserves fuzzy candidates by contextual row identity
+ * (`job-title id + occupation-name id`), matching current production.
  */
 import fs from 'node:fs';
 import crypto from 'node:crypto';
@@ -30,6 +30,7 @@ function pct(n,d){return d?Number((100*n/d).toFixed(3)):0;}
 function norm(v){return String(v??'').normalize('NFC').toLowerCase().trim();}
 function sha(b){return crypto.createHash('sha256').update(b).digest('hex');}
 function rowKey(r){return `${r.id}|${r.occupation_name_id??''}`;}
+function searchIdentity(r){return r.type==='job-title'?`${r.id}|${r.occupation_name_id??''}`:r.id;}
 function displayLabel(r){return r.occupation_name_preferred_label?`${r.preferred_label??''} (${r.occupation_name_preferred_label})`:(r.preferred_label??'');}
 
 function getDirectScore(label,q,tokens){if(label===q)return 1;if(tokens.length>1)return tokens.every(t=>label.includes(t))?.98:null;if(label.startsWith(q))return .99;if(label.includes(q))return .95;return null;}
@@ -45,9 +46,9 @@ class CurrentYv {
     for(const item of this.items){const s=getDirectScore(norm(item.preferred_label),q,tokens);if(s!==null)direct.push({...item,score:s,displayLabel:displayLabel(item)});}
     if(direct.length)return{lane:'direct',results:strictSort(direct).slice(0,max)};
     const raw=this.fuse.search(q);if(!raw.length)return{lane:'none',results:[]};const best=raw[0].score??1,candidates=[];let strong=false;
-    // IMPORTANT: mirror production exactly. Fuzzy dedupe is by item.id, not contextual row key.
-    const processedIds=new Set();
-    for(const fr of raw){if(processedIds.has(fr.item.id))continue;const rs=fr.score??1,base=1-rs;if(base<MIN_FUZZY_SCORE)continue;if(rs>best+.12)continue;const root=rootMatch(q,norm(fr.item.preferred_label));if(root&&rs<=.25)strong=true;let score=base*.70+Number(fr.item.weight??0)*.10+(root?.12:0);score=Math.min(MAX_FUZZY_SCORE,Math.max(MIN_FUZZY_SCORE,score));candidates.push({...fr.item,score,displayLabel:displayLabel(fr.item)});processedIds.add(fr.item.id);}
+    // IMPORTANT: mirror current production exactly. Fuzzy dedupe preserves each published job-title context row.
+    const processedIdentities=new Set();
+    for(const fr of raw){const identity=searchIdentity(fr.item);if(processedIdentities.has(identity))continue;const rs=fr.score??1,base=1-rs;if(base<MIN_FUZZY_SCORE)continue;if(rs>best+.12)continue;const root=rootMatch(q,norm(fr.item.preferred_label));if(root&&rs<=.25)strong=true;let score=base*.70+Number(fr.item.weight??0)*.10+(root?.12:0);score=Math.min(MAX_FUZZY_SCORE,Math.max(MIN_FUZZY_SCORE,score));candidates.push({...fr.item,score,displayLabel:displayLabel(fr.item)});processedIdentities.add(identity);}
     if(!candidates.length)return{lane:'none',results:[]};const sorted=strictSort(candidates),limit=strong?Math.min(5,max):Math.min(MAX_WEAK_FUZZY_RESULTS,max);return{lane:'fuzzy',results:sorted.slice(0,limit)};
   }
 }
@@ -123,7 +124,7 @@ async function main(){
   for(const [id,rows] of byJob){const parents=new Set(rows.map(r=>r.occupation_name_id).filter(Boolean));if(parents.size<=1)continue;let chosen=null;for(const q of mutateLabel(rows[0].preferred_label)){const run=yv.searchDetailed(q,10);if(run.lane==='fuzzy'&&run.results.some(r=>String(r.id)===String(id))){chosen={q,run};break;}}if(!chosen)continue;const returned=chosen.run.results.filter(r=>String(r.id)===String(id));stress.push({job_title_id:id,label:rows[0].preferred_label,query:chosen.q,expected_context_rows:rows.length,returned_context_rows:returned.length,returned:returned.map(r=>({parent_id:r.occupation_name_id,parent_label:r.occupation_name_preferred_label}))});}
   const fuzzyStress={eligible_multi_context_titles:stress.length,all_contexts_preserved:stress.filter(x=>x.returned_context_rows===x.expected_context_rows).length,all_contexts_preserved_pct:pct(stress.filter(x=>x.returned_context_rows===x.expected_context_rows).length,stress.length),one_context_only:stress.filter(x=>x.returned_context_rows===1).length,examples:stress.slice(0,30)};
 
-  const result={schema_version:1,taxonomy_version:31,role:'current-selector should-find reconstruction',selector_contract:{yv_search_utils_blob:'711769d019d01539b958776467e42dbafa46d9c1',yv_constants_blob:'e9a412778d77de1aef82da94e36559619f5d607c',fuse_js_version:FUSE_VERSION,yv_fuzzy_dedupe_key:'job-title id'},sources:{yv:{url:YV_URL,sha256:sha(yvSrc.bytes)},kv:{url:KV_URL,sha256:sha(kvSrc.bytes)}},YV:summarize('YV'),KV:summarize('KV'),yv_multi_context_fuzzy_structural_stress:fuzzyStress,cases_detail:detail};
+  const result={schema_version:1,taxonomy_version:31,role:'current-selector should-find reconstruction',selector_contract:{yv_repository_commit:'ab0b3f28576d8aebec2b593b771a70c7684b1eca',yv_search_utils_blob:'1eb706399ff97634b556164061e651a024b98003',yv_constants_blob:'e9a412778d77de1aef82da94e36559619f5d607c',fuse_js_version:FUSE_VERSION,yv_fuzzy_dedupe_key:'job-title id + occupation-name context'},sources:{yv:{url:YV_URL,sha256:sha(yvSrc.bytes)},kv:{url:KV_URL,sha256:sha(kvSrc.bytes)}},YV:summarize('YV'),KV:summarize('KV'),yv_multi_context_fuzzy_structural_stress:fuzzyStress,cases_detail:detail};
   fs.mkdirSync(new URL('../artifacts/',import.meta.url),{recursive:true});fs.mkdirSync(a.output.substring(0,a.output.lastIndexOf('/')),{recursive:true});fs.writeFileSync(a.output,JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify({...result,cases_detail:undefined,YV:{...result.YV,top_failures:result.YV.top_failures.slice(0,10)},KV:{...result.KV,top_failures:result.KV.top_failures.slice(0,10)},yv_multi_context_fuzzy_structural_stress:{...fuzzyStress,examples:fuzzyStress.examples.slice(0,10)}},null,2));
 }
 await main();

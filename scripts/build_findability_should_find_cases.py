@@ -238,6 +238,22 @@ def main() -> int:
     for row in surfaces:
         grouped[(row["product"], norm(row["query"]))].append(row)
 
+    canonical_alias_groups: dict[tuple[str, str], list[dict[str, Any]]] = collections.defaultdict(list)
+    for row in surfaces:
+        if row["surface_provenance"] in {"canonical_alternative_label", "canonical_hidden_label"}:
+            canonical_alias_groups[(row["product"], norm(row["query"]))].append(row)
+    canonical_alias_surface_collisions: dict[str, dict[str, int | float]] = {}
+    for product in ("YV", "KV"):
+        groups=[rows for (p,_),rows in canonical_alias_groups.items() if p==product]
+        unique=[rows for rows in groups if len({(str(r["target_type"]),str(r["target_id"])) for r in rows})==1]
+        ambiguous=[rows for rows in groups if len({(str(r["target_type"]),str(r["target_id"])) for r in rows})>1]
+        canonical_alias_surface_collisions[product]={
+            "distinct_normalized_surfaces":len(groups),
+            "unique_target_surfaces":len(unique),
+            "ambiguous_target_surfaces":len(ambiguous),
+            "ambiguous_target_surface_pct":round(100.0*len(ambiguous)/len(groups),3) if groups else 0.0,
+        }
+
     occurrence: dict[str, int] = {}
     for key in ("occupation_name", "skill"):
         for r in pareto.get(key, {}).get("ranked_p95", []):
@@ -356,6 +372,7 @@ def main() -> int:
             "query_corpus": query_meta,
             "graphql": gql_sources,
         },
+        "canonical_alias_surface_collisions": canonical_alias_surface_collisions,
         "counts": {
             "all_cases": len(cases),
             "yv_cases": len(yv),
