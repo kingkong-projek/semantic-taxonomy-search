@@ -1,0 +1,66 @@
+name: Freeze YV real-query review SSOT
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/freeze_yv_real_query_review_ssot.py
+      - .github/workflows/freeze-yv-real-query-review-ssot.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  freeze:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Checkout pinned Yrkesväljaren generator
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/yv-generator
+          git init -q /tmp/yv-generator
+          git -C /tmp/yv-generator remote add origin https://gitlab.com/arbetsformedlingen/taxonomy-dev/backend/yrkesvaljaren.git
+          git -C /tmp/yv-generator fetch -q --depth 1 origin 6dd9e4737d7db3cb2709f8082808b88e5c89ed6e
+          git -C /tmp/yv-generator checkout -q --detach FETCH_HEAD
+          test "$(git -C /tmp/yv-generator rev-parse HEAD)" = "6dd9e4737d7db3cb2709f8082808b88e5c89ed6e"
+          printf '%s\n' "6dd9e4737d7db3cb2709f8082808b88e5c89ed6e" > /tmp/yv-generator/SOURCE_COMMIT.txt
+      - name: Rebuild review packet
+        run: |
+          python scripts/build_yv_real_query_review_packet.py \
+            --version 31 \
+            --limit 50 \
+            --source-dir /tmp/yv-generator \
+            --output-dir /tmp/yv-real-query-review-v31
+      - name: Freeze packet and synchronize SSOT
+        run: python scripts/freeze_yv_real_query_review_ssot.py /tmp/yv-real-query-review-v31
+      - name: Validate frozen state remains unjudged
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          rows=[json.loads(x) for x in Path('research/benchmark/v31/yv-real-query-review/review-packet.jsonl').read_text(encoding='utf-8').splitlines() if x.strip()]
+          assert len(rows)==50
+          assert all(r['adjudication']['status']=='PENDING_HUMAN_REVIEW' for r in rows)
+          assert all(not r['adjudication']['must'] and not r['adjudication']['acceptable'] and not r['adjudication']['must_not'] for r in rows)
+          PY
+          grep -F 'top-50 high-volume unbound YV review packet' docs/research-plan.md
+          grep -F 'A/B/C0' docs/research-plan.md
+      - name: Commit review evidence and SSOT
+        run: |
+          set -euo pipefail
+          git config user.name "kingkongola"
+          git config user.email "adambergman90@gmail.com"
+          git add \
+            research/benchmark/v31/yv-real-query-review \
+            docs/findings/yv-high-volume-real-query-review-v31.md \
+            docs/research-plan.md
+          git commit -m "benchmark: freeze high-volume YV review slice"
+          git push origin HEAD:main
