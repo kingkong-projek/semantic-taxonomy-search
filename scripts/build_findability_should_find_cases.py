@@ -33,6 +33,7 @@ from typing import Any
 
 from audit_current_selector_failure_modes import checked_json, expected_hash, norm
 from deprecated_compatibility_coverage import as_strings, graphql, relation_ids, resolve_route
+from findability_authority import group_surface_rows_by_authority
 
 EXPECTED_GENERATOR_COMMIT = "6dd9e4737d7db3cb2709f8082808b88e5c89ed6e"
 TARGET_TYPES = ("occupation-name", "job-title", "skill")
@@ -231,12 +232,10 @@ def main() -> int:
     all_concepts, gql_sources = fetch_graphql_concepts(version)
     surfaces = surface_rows(all_concepts, active_by_id, yv_occ_ids, yv_job_ids, active_skill_ids)
 
-    # Collision filter: a surface is decision-bearing only when all authoritative rows for
-    # that product/surface route to the same target. Also do not call a current preferred
-    # label a missing-vocabulary alias.
-    grouped: dict[tuple[str, str], list[dict[str, Any]]] = collections.defaultdict(list)
-    for row in surfaces:
-        grouped[(row["product"], norm(row["query"]))].append(row)
+    # Current canonical vocabulary outranks migration/history vocabulary. A conflicting
+    # deprecated replacement route must not veto or redirect a current canonical alias.
+    # Canonical ambiguity itself still fails closed.
+    grouped = group_surface_rows_by_authority(surfaces, norm)
 
     canonical_alias_groups: dict[tuple[str, str], list[dict[str, Any]]] = collections.defaultdict(list)
     for row in surfaces:
