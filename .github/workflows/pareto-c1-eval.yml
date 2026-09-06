@@ -1,0 +1,49 @@
+name: Pareto C1 eval
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/evaluate_pareto_c1.py
+      - research/benchmark/v31/pareto-model-adjudicated/**
+      - research/benchmark/v31/p80-source-truth/**
+      - research/coverage/v31/pareto-demand-aggregate.json
+      - research/coverage/source-adapters.json
+      - .github/workflows/pareto-c1-eval.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Evaluate minimal C1
+        run: |
+          python scripts/evaluate_pareto_c1.py \
+            --output artifacts/pareto-c1-eval-v31.json
+      - name: Validate evaluation shape
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('artifacts/pareto-c1-eval-v31.json').read_text(encoding='utf-8'))
+          assert x['overall']['cases']==34
+          assert x['overall']['observed_volume']==874274239
+          assert len(x['retrieval']['boundary_ids'])==6
+          assert x['source_truth_regression']['cases']==333
+          assert x['retrieval']['complexity_boundary'].startswith('no ESCO')
+          print(json.dumps({'overall':x['overall'],'by_intent':x['by_intent'],'source_truth_regression':x['source_truth_regression']}, indent=2, sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pareto-c1-eval-v31
+          path: artifacts/pareto-c1-eval-v31.json
+          if-no-files-found: error
+          retention-days: 30
