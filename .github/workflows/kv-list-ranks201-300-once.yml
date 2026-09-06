@@ -1,0 +1,32 @@
+name: List KV ranks 201-300 once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/kv-list-ranks201-300-once.yml
+
+permissions:
+  contents: read
+
+jobs:
+  list:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Print frozen target slice only
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path('research/coverage/v31/pareto-demand-aggregate.json').read_text())
+          rows=p['skill']['ranked_p95'][200:300]
+          assert len(rows)==100
+          assert [int(r['rank']) for r in rows]==list(range(201,301))
+          for r in rows:
+              print(json.dumps({'rank':r['rank'],'concept_id':r['concept_id'],'label':r['label'],'occurrences':r['occurrences']},ensure_ascii=False))
+          PY
