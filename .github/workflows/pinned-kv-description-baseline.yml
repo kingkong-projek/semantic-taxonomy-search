@@ -5,7 +5,9 @@ on:
     branches: [main]
     paths:
       - scripts/evaluate_pinned_kv_selector_description_baseline.mjs
+      - scripts/compare_skill_fallback_increment.py
       - research/benchmark/v31/training-skill-fresh-holdout/**
+      - research/evaluation/v31/skill-fresh-holdout.json
       - .github/workflows/pinned-kv-description-baseline.yml
   workflow_dispatch: {}
 
@@ -42,9 +44,28 @@ jobs:
           const keys=['cases','skill_catalog_count','top1_pct','weighted_top1_pct','discovery_hit_at_5_pct','weighted_discovery_hit_at_5_pct','no_result_cases','no_result_pct'];
           console.log(JSON.stringify(Object.fromEntries(keys.map(k=>[k,r[k]])),null,2));
           JS
+      - name: Compare product baseline with frozen KV-C0
+        run: |
+          python3 scripts/compare_skill_fallback_increment.py \
+            --product artifacts/pinned-kv-selector-description-baseline-v31.json \
+            --output artifacts/skill-fallback-increment-v31.json
+      - name: Guard incremental decision
+        run: |
+          python3 - <<'PY'
+          import json
+          r=json.load(open('artifacts/skill-fallback-increment-v31.json'))
+          assert r['product_baseline']['discovery_hit_at_5_pct']==0.0
+          assert r['semantic_fallback']['discovery_hit_at_5_pct']==31.429
+          assert r['increment']['discovery_hit_at_5_percentage_points']==31.429
+          assert r['increment']['weighted_discovery_hit_at_5_percentage_points']==34.734
+          assert r['contingency']=={'both_hit':0,'product_only':0,'semantic_rescue':11,'both_miss':24}
+          print(json.dumps(r['increment'], indent=2))
+          PY
       - uses: actions/upload-artifact@v4
         with:
           name: pinned-kv-description-baseline-v31
-          path: artifacts/pinned-kv-selector-description-baseline-v31.json
+          path: |
+            artifacts/pinned-kv-selector-description-baseline-v31.json
+            artifacts/skill-fallback-increment-v31.json
           if-no-files-found: error
           retention-days: 30
