@@ -1,0 +1,32 @@
+name: Prefrozen model-teacher KV ranks 101-200
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/evaluate_model_teacher_kv_ranks101_200.py
+      - research/benchmark/v31/model-authored-kv-ranks101-200/**
+      - research/enrichment/v31/model-teacher-kv-ranks101-200/**
+      - .github/workflows/model-teacher-kv-ranks101-200.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate disjointness and evaluate prefrozen teacher lane
+        run: python scripts/evaluate_model_teacher_kv_ranks101_200.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: model-teacher-kv-ranks101-200-v31
+          path: artifacts/model-teacher-kv-ranks101-200-v31.json
+          if-no-files-found: error
+          retention-days: 30
