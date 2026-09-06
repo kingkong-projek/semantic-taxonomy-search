@@ -1,0 +1,88 @@
+name: C2 exact job-title router
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/evaluate_c2_job_title_router.py
+      - scripts/build_compact_yv_profile_safety.py
+      - scripts/evaluate_pareto_c1.py
+      - research/benchmark/v31/pareto-model-holdout/**
+      - research/benchmark/v31/p80-source-truth/**
+      - research/coverage/v31/pareto-demand-aggregate.json
+      - research/coverage/v31/yv-query-language-aggregate.json
+      - research/coverage/source-adapters.json
+      - .github/workflows/c2-job-title-router.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Checkout pinned Yrkesväljaren generator evidence
+        env:
+          YV_GENERATOR_COMMIT: 6dd9e4737d7db3cb2709f8082808b88e5c89ed6e
+        run: |
+          rm -rf /tmp/yv-generator
+          git init -q /tmp/yv-generator
+          git -C /tmp/yv-generator remote add origin https://gitlab.com/arbetsformedlingen/taxonomy-dev/backend/yrkesvaljaren.git
+          git -C /tmp/yv-generator fetch -q --depth 1 origin "$YV_GENERATOR_COMMIT"
+          git -C /tmp/yv-generator checkout -q --detach FETCH_HEAD
+          test "$(git -C /tmp/yv-generator rev-parse HEAD)" = "$YV_GENERATOR_COMMIT"
+          printf '%s\n' "$YV_GENERATOR_COMMIT" > /tmp/yv-generator/SOURCE_COMMIT.txt
+      - name: Build unseen excluded-title ranks 21-50
+        run: |
+          python scripts/build_compact_yv_profile_safety.py \
+            --version 31 \
+            --source-dir /tmp/yv-generator \
+            --multi-parent-limit 20 \
+            --excluded-limit 50 \
+            --output-dir /tmp/compact-safety-50
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          src=Path('/tmp/compact-safety-50/excluded-routing-review.jsonl')
+          rows=[json.loads(x) for x in src.read_text(encoding='utf-8').splitlines() if x.strip()]
+          assert len(rows)==50
+          sentinel=rows[20:50]
+          assert [r['id'] for r in sentinel]==[f'yv.safety.excluded-review.{i:03d}' for i in range(21,51)]
+          Path('/tmp/excluded-sentinel-21-50.jsonl').write_text(''.join(json.dumps(r,ensure_ascii=False,sort_keys=True)+'\n' for r in sentinel),encoding='utf-8')
+          print(json.dumps({'sentinel_rows':len(sentinel),'observed_volume':sum(int(r['observed_count']) for r in sentinel)},indent=2))
+          PY
+      - name: Evaluate C2 discovery routing
+        run: |
+          python scripts/evaluate_c2_job_title_router.py \
+            --excluded-sentinel /tmp/excluded-sentinel-21-50.jsonl \
+            --output artifacts/c2-job-title-router-v31.json
+      - name: Validate C2 boundaries
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('artifacts/c2-job-title-router-v31.json').read_text(encoding='utf-8'))
+          s=x['unseen_excluded_title_sentinel_ranks_21_50']
+          r=x['source_truth_regression']
+          h=x['opened_holdout_development_view']
+          assert s['rows']==30
+          assert r['cases']==333
+          assert r['top1_pct']==100.0
+          assert r['discovery_hit_at_5_pct']==100.0
+          assert r['top1_miss_count']==0
+          assert h['no_match_abstention_pct']==100.0
+          assert x['configuration']['primary_metric'].startswith('Discovery Success@5')
+          print(json.dumps({'sentinel':{k:v for k,v in s.items() if k!='cases'},'opened_holdout':{k:v for k,v in h.items() if k!='cases_detail'},'source_truth_regression':r},indent=2,sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: c2-job-title-router-v31
+          path: artifacts/c2-job-title-router-v31.json
+          if-no-files-found: error
+          retention-days: 30
