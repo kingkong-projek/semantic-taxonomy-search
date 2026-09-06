@@ -1,0 +1,77 @@
+name: Pareto holdout C0 C1 eval
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/build_pareto_holdout_batch.py
+      - scripts/build_adjudication_context.py
+      - scripts/build_pareto_holdout_adjudication.py
+      - scripts/evaluate_pareto_holdout.py
+      - scripts/evaluate_pareto_c1.py
+      - scripts/evaluate_pareto_model_slice.py
+      - .github/workflows/pareto-holdout-eval.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Rebuild untouched holdout and independent adjudication
+        run: |
+          python scripts/build_pareto_holdout_batch.py --output-dir /tmp/holdout
+          python scripts/build_adjudication_context.py \
+            --batch /tmp/holdout/holdout.jsonl \
+            --output /tmp/holdout/context.json
+          python scripts/build_pareto_holdout_adjudication.py \
+            --holdout /tmp/holdout/holdout.jsonl \
+            --context /tmp/holdout/context.json \
+            --output-dir /tmp/holdout-adjudicated
+          python scripts/validate_benchmark.py /tmp/holdout-adjudicated/benchmark.jsonl
+      - name: Compare unchanged C0 and C1 on holdout
+        run: |
+          python scripts/evaluate_pareto_holdout.py \
+            --benchmark /tmp/holdout-adjudicated/benchmark.jsonl \
+            --output artifacts/pareto-holdout-c0-c1-v31.json
+      - name: Recheck C1 source-truth regression
+        run: |
+          python scripts/evaluate_pareto_c1.py \
+            --output /tmp/c1-development-regression.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('/tmp/c1-development-regression.json').read_text())
+          r=x['source_truth_regression']
+          assert r['cases']==333
+          assert r['top1_pct']==100.0
+          assert r['recall_at_10_case_success_pct']==100.0
+          assert r['top1_miss_count']==0
+          print(json.dumps(r, indent=2, sort_keys=True))
+          PY
+      - name: Validate holdout comparison shape
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('artifacts/pareto-holdout-c0-c1-v31.json').read_text())
+          assert x['C0']['overall']['cases']==36
+          assert x['C1']['overall']['cases']==36
+          assert x['C0']['overall']['observed_volume']==208583095
+          assert x['C1']['overall']['observed_volume']==208583095
+          assert x['holdout_semantics'].startswith('Pareto ranks 35-70')
+          print(json.dumps({'C0':x['C0']['overall'],'C1':x['C1']['overall'],'delta':x['delta']}, indent=2, sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pareto-holdout-c0-c1-v31
+          path: artifacts/pareto-holdout-c0-c1-v31.json
+          if-no-files-found: error
+          retention-days: 30
