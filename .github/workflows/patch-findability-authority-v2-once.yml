@@ -1,0 +1,30 @@
+name: Patch findability authority v2 once
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/patch-findability-authority-v2-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: [self-hosted, Linux, X64]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python3 scripts/apply_findability_authority_patch.py
+      - run: python3 -m unittest scripts.test_findability_authority
+      - run: |
+          git config user.name github-actions-bot
+          git config user.email github-actions-bot@users.noreply.github.com
+          git add scripts/build_findability_should_find_cases.py
+          git commit -m "fix(research): keep current alias authority above legacy routes"
+          git push origin HEAD:main
