@@ -1,0 +1,58 @@
+name: Skill C0 training-text validation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/evaluate_skill_c0_training_validation.py
+      - research/benchmark/v31/training-skill-validation/**
+      - research/benchmark/v31/p80-source-truth/kv-p80-source-truth.jsonl
+      - research/coverage/v31/pareto-demand-aggregate.json
+      - research/coverage/source-adapters.json
+      - .github/workflows/skill-c0-training-validation.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify frozen benchmark remains isolated from retrieval
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          rows=[json.loads(x) for x in Path('research/benchmark/v31/training-skill-validation/cases.jsonl').read_text(encoding='utf-8').splitlines() if x.strip()]
+          m=json.loads(Path('research/benchmark/v31/training-skill-validation/manifest.json').read_text())
+          assert len(rows)==76 and m['primary_descriptive_nonleaky_cases']==63
+          assert all(r['authority_boundary']=='benchmark truth only; module text must not be added to retrieval documents before baseline evaluation' for r in rows)
+          assert m['source_sha256']=='fea97867a1225e078d28ab9b0772f6a37f92b37c3c6c0d0e886ae65e9d79361c'
+          PY
+      - name: Evaluate unchanged KV C0
+        run: python scripts/evaluate_skill_c0_training_validation.py --output artifacts/skill-c0-training-validation-v31.json
+      - name: Regression guard only
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('artifacts/skill-c0-training-validation-v31.json').read_text())
+          assert x['configuration']['training_text_ingested'] is False
+          assert x['primary_descriptive_nonleaky']['cases']==63
+          assert x['source_truth_regression']['top1_pct']==100.0
+          assert x['source_truth_regression']['discovery_hit_at_5_pct']==100.0
+          assert x['source_truth_regression']['top1_miss_count']==0
+          print(json.dumps({'primary':x['primary_descriptive_nonleaky'],'all':x['all_cases']},ensure_ascii=False,indent=2,sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: skill-c0-training-validation-v31
+          path: artifacts/skill-c0-training-validation-v31.json
+          if-no-files-found: error
+          retention-days: 30
