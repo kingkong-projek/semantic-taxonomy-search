@@ -1,0 +1,49 @@
+name: Skill native and selector candidate lanes
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/evaluate_skill_native_selector_candidate_lanes.py
+      - scripts/evaluate_skill_c0_training_validation.py
+      - research/benchmark/v31/training-skill-validation/**
+      - research/coverage/v31/pareto-demand-aggregate.json
+      - research/coverage/v31/selector-aggregate.json
+      - research/coverage/source-adapters.json
+      - .github/workflows/skill-native-selector-candidate-lanes.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Measure native graph and KV selector lanes
+        run: |
+          python scripts/evaluate_skill_native_selector_candidate_lanes.py --output artifacts/skill-native-selector-candidate-lanes-v31.json
+      - name: Validate evidence separation
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('artifacts/skill-native-selector-candidate-lanes-v31.json').read_text())
+          assert x['c0_primary']['cases']==63 and x['c0_primary']['c0_misses']==34
+          assert set(x['lanes'])=={
+              'graph_skill_headline','graph_ssyk4','kv_essential_regulated_context','kv_optional_context','kv_calculated_context'
+          }
+          assert x['role']=='D/E candidate-lane diagnostic only; no fusion and no C0 document expansion'
+          print(json.dumps({'coverage':x['coverage'],'lanes':x['lanes']},ensure_ascii=False,indent=2,sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: skill-native-selector-candidate-lanes-v31
+          path: artifacts/skill-native-selector-candidate-lanes-v31.json
+          if-no-files-found: error
+          retention-days: 30
