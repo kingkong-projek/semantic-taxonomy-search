@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 31,
+  "configuration": {
+    "name": "C2",
+    "frozen_behavior": "C1 + exact active job-title preferred-label -> typed occupation-name parents",
+    "primary_metric": "Discovery Success@5 + NO_MATCH abstention"
+  },
+  "fresh_natural_holdout": {
+    "selection": "previously unseen unbound observed-query ranks 51-80",
+    "cases": 30,
+    "observed_volume": 138075677,
+    "intent_counts": {"NO_MATCH": 25, "AMBIGUOUS": 4, "SINGLE": 1},
+    "discovery_success_at_5_pct": 100.0,
+    "volume_weighted_discovery_success_at_5_pct": 100.0,
+    "positive_intent_discovery_success_at_5_pct": 100.0,
+    "positive_intent_volume_weighted_discovery_success_at_5_pct": 100.0,
+    "no_match_abstention_pct": 100.0,
+    "no_match_volume_weighted_abstention_pct": 100.0,
+    "top1_pct": 100.0,
+    "volume_weighted_top1_pct": 100.0,
+    "interpretation": "independent fresh natural-language holdout; judgments were frozen before C2 output was generated"
+  },
+  "source_truth_regression": {
+    "cases": 333,
+    "top1_pct": 100.0,
+    "discovery_hit_at_5_pct": 100.0,
+    "top1_miss_count": 0
+  },
+  "provenance": {
+    "holdout_benchmark_commit": "2a5d1a6af2e49ec7197f4843e678fcdb6c92c9df",
+    "workflow_run_id": 34026624445,
+    "head_sha": "08477d1870d19b5ab6cf170749541b3ac2222d16",
+    "artifact_name": "c2-fresh-natural-holdout-v31",
+    "artifact_digest": "sha256:e8f34def0b4037d55225a4361158eee81223c86ec2928240c056ac3cb1c78b63"
+  }
+}
