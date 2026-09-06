@@ -11,15 +11,12 @@ permissions:
 
 jobs:
   patch:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64]
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
       - name: Patch research-plan SSOT
         run: |
-          python - <<'PY'
+          python3 - <<'PY'
           from pathlib import Path
 
           p = Path('docs/research-plan.md')
@@ -81,7 +78,6 @@ The labels are product-copy hypotheses, but the ordering is a scope contract for
           assert old in s, 'alias status anchor missing'
           s = s.replace(old, new, 1)
 
-          s = s.replace('**Last updated:** 2026-09-06  ', '**Last updated:** 2026-09-06  ', 1)
           p.write_text(s, encoding='utf-8')
           PY
 
