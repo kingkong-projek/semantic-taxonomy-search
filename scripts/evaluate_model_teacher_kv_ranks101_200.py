@@ -17,6 +17,14 @@ from evaluate_skill_training_language_enrichment import build_docs, fetch_traini
 from evaluate_skill_training_language_fusion import fuse_preserve_c0_top1
 from evaluate_skill_c0_training_validation import p80_skill_ids
 
+EVIDENCE_CLASS = 'synthetic_model_teacher_prefrozen_validation'
+
+
+def measured(hits: int, n: int) -> dict[str, Any]:
+    out = metric(hits, n)
+    out['evidence_class'] = EVIDENCE_CLASS
+    return out
+
 
 def evaluate(cases: list[dict[str, Any]], rows: list[list[str]]) -> dict[str, Any]:
     h1 = h5 = h10 = 0
@@ -29,7 +37,7 @@ def evaluate(cases: list[dict[str, Any]], rows: list[list[str]]) -> dict[str, An
             pos = None
         h1 += int(pos == 1); h5 += int(pos is not None and pos <= 5); h10 += int(pos is not None and pos <= 10)
         detail.append({'id':case['id'],'target':case['target'],'rank':pos,'top5':ranked[:5]})
-    return {'top1':metric(h1,len(cases)),'hit_at_5':metric(h5,len(cases)),'hit_at_10':metric(h10,len(cases)),'details':detail}
+    return {'top1':measured(h1,len(cases)),'hit_at_5':measured(h5,len(cases)),'hit_at_10':measured(h10,len(cases)),'details':detail}
 
 
 def compare(base: dict[str, Any], candidate: dict[str, Any], cases: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
@@ -111,7 +119,7 @@ def main() -> int:
     result={
       'schema_version':1,
       'status':'prefrozen synthetic teacher/query validation; teacher committed before query authoring and no retrieval inspected either side before freeze',
-      'evidence_class':'synthetic_model_teacher_prefrozen_validation',
+      'evidence_class':EVIDENCE_CLASS,
       'teacher_freeze_commit':'7e256c137223e60bede01b921e1ed8b7987e6c19',
       'query_freeze_commit':'1e2a811d2830acb2f29ba05bce28806a46ec099b',
       'disjointness':{'new_cases':100,'prior_cases':100,'target_overlap':0,'exact_query_overlap':0,'exact_teacher_query_overlap':0,'teacher_phrases':300,'direct_full_label_mentions':direct_full_label_mentions},
@@ -122,7 +130,7 @@ def main() -> int:
       'new_hit5_regressions_vs_g1_fusion':new_regressions,
       'prior_hit5_rescues_vs_g1_fusion':old_rescues,
       'prior_hit5_regressions_vs_g1_fusion':old_regressions,
-      'canonical_regression':{'cases':len(canonical),'top1':metric(canonical_top1,len(canonical)),'hit_at_5':metric(canonical_hit5,len(canonical))},
+      'canonical_regression':{'cases':len(canonical),'top1':measured(canonical_top1,len(canonical)),'hit_at_5':measured(canonical_hit5,len(canonical))},
       'interpretation_boundary':'This can test generalization across a temporally prefrozen synthetic target/query split and cross-target regression. It is not independent human/user evidence and cannot by itself promote model-authored phrases to production truth.'
     }
     Path(args.output).parent.mkdir(parents=True,exist_ok=True); Path(args.output).write_text(json.dumps(result,ensure_ascii=False,indent=2,sort_keys=True)+'\n')
