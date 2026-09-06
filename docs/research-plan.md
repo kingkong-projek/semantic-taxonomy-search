@@ -677,15 +677,15 @@ The frozen source-truth core currently contains **950 cases**: 333 YV and 617 KV
 
 The current YV/KV implementation is now baseline 0 for decision-bearing product evaluation. Description-style cases should record both current-selector Discovery@K and semantic-fallback Discovery@K; the decision metric is the incremental gain where ordinary lookup is insufficient.
 
-**Product-native residual gate:** before another semantic source/model layer is admitted, close or explicitly measure the cheapest ordinary-selector residuals first:
+**Product-native residual discipline:** prefer cheap ordinary-selector fixes before adding semantic complexity **within the affected target space**. The verified YV context defects are fixed (`81a7cb5e`). The remaining YV Fuse/alternative-label/handoff checks stay useful reference-product hygiene, but they no longer globally block independently measured `skill` fallback research. Skill work may proceed because the pinned current KV product has now been measured on the same blind description benchmark.
 
-- [x] YV rich multi-context `setSelection()` roundtrip preserves chosen occupation context (`81a7cb5e`);
-- [x] YV bare ambiguous exact-title blur no longer silently selects first context (`81a7cb5e`);
+Non-blocking YV follow-ups:
+
 - [ ] replay the remaining **0.438%** excluded-title direct residual through the exact current Fuse.js lane;
-- [ ] measure actual demand and Discovery@5 gain from currently unused canonical alternative-label vocabulary in YV/KV;
-- [ ] verify/fix YV→KV job-title occupation-context hand-off with an actual integration test / production-consumer inspection.
+- [ ] measure actual demand and Discovery@5 gain from currently unused canonical alternative-label vocabulary in YV;
+- [ ] verify YV→KV job-title occupation-context hand-off in production consumers.
 
-Evidence: `docs/findings/p80-decision-benchmark-v31.md`, `research/benchmark/v31/p80-source-truth/manifest.json`, `docs/findings/current-selector-baseline-2026-09-06.md`, and `docs/findings/current-selector-failure-audit-v31.md`.
+Evidence: `docs/findings/p80-decision-benchmark-v31.md`, `research/benchmark/v31/p80-source-truth/manifest.json`, `docs/findings/current-selector-baseline-2026-09-06.md`, `docs/findings/current-selector-failure-audit-v31.md`, and `docs/findings/skill-fallback-increment-v31.md`.
 
 Shared strata:
 
@@ -737,7 +737,7 @@ expected_intent: SINGLE | AMBIGUOUS | NO_MATCH
 
 ## 11. Research Gate 3 — controlled ablation
 
-**Ordering constraint:** further semantic expansion is paused while the product-native residual gate in Gate 2 has cheaper unresolved checks. Existing C0/C1/C2/F1 measurements remain valid evidence; they do not outrank fixes or measurements of the current YV/KV selector paths.
+**Ordering constraint:** within each target space, prefer cheaper product-native fixes before adding semantic complexity. Unresolved YV reference-product hygiene does not block the separately measured KV description fallback. For skills, the pinned current KV selector is now baseline P on the blind holdout: it returns no result for 35/35 cases, while deterministic KV-C0 rescues 11/35. Further skill complexity must therefore be justified against that incremental baseline and validated on fresh evidence.
 
 Evaluate occupation and skill retrieval separately; do not force source symmetry. Keep YV/KV reference-profile slices separate where their admission/routing semantics materially differ.
 
@@ -983,16 +983,18 @@ Evidence: `docs/findings/c2-fresh-natural-holdout-v31.md`, `research/benchmark/v
 
 Skill independent validation: the first source-attested natural-description skill benchmark exposed a real gap that canonical C0 does not solve. On a separately frozen **35-case blind holdout**, KV-C0 reaches **31.429% Discovery Hit@5 (34.734% occurrence-proxy weighted)**. The only surviving minimal development candidate, `KV-F1-close-one-slot`, does **not** improve unweighted Hit@5 and falls to **31.955% weighted**. The 617-case canonical regression remains 100%.
 
-Decision: reject that F1 lane. The next decision-bearing comparison is against the pinned current KV selector itself; synthetic task/tool/method/first-person queries may be added as a separate stress suite, but may not be treated as traffic, ground-truth source evidence or retrieval enrichment.
+The pinned current KV product was then replayed on **the same 35 frozen descriptions** using `kingkong-projek/yrkesvaljaren@0eba98e3`, Fuse.js 7.5.0 and the exact no-context `HybridSearchEngine.search(query, '', [], 5)` path. It returns **no result for 35/35 cases: 0.000% Discovery@5**. KV-C0 therefore provides **11 semantic rescues**, an incremental **+31.429 percentage points Discovery@5** and **+34.734 points occurrence-proxy weighted** over the actual product baseline. All 35 cases are fallback-eligible relative to current KV.
 
-Evidence: `docs/findings/skill-fresh-holdout-v31.md`, `research/benchmark/v31/training-skill-fresh-holdout/` and `research/evaluation/v31/skill-fresh-holdout.json`.
+Decision: description fallback has now demonstrated material incremental product capability. Keep deterministic KV-C0 as the minimum semantic baseline and keep F1 rejected. The remaining 24 misses are an opened development residual, not future independent validation. Next build the separate provenance-tagged synthetic-query stress suite for first-person/task/tool/method language, use it only to nominate the smallest next capability, and validate any promoted capability on a new unopened source-attested holdout.
+
+Evidence: `docs/findings/skill-fresh-holdout-v31.md`, `docs/findings/skill-fallback-increment-v31.md`, `research/benchmark/v31/training-skill-fresh-holdout/`, `research/evaluation/v31/skill-fresh-holdout.json`, and the reproducible pinned-product workflow `.github/workflows/pinned-kv-description-baseline.yml`.
 
 - [x] preliminary **A/B/C0** source-truth lexical ablation on P80 core, where C0 = preferred labels + real canonical definitions + canonical alternative labels
 - [x] **C1:** P80 + six measured high-volume boundary occupations + short-query lexical surface/component/fuzzy evidence + conservative definition-only abstention; 100% on the 34-row development slice, 100% on the frozen 333-case source-truth regression, and **83.173% volume-weighted decision accuracy on untouched 36-row holdout** vs C0 59.765%
 - [x] **complete planned C retrieval vocabulary:** C2 adds exact active job-title preferred-label → typed occupation-name parent routing, with job-title retained as retrieval vocabulary only. On the already-opened 36-case holdout C2 reaches **93.677% volume-weighted Discovery Success@5** with 100% NO_MATCH abstention. On a new unseen excluded-title ranks 21–50 sentinel it achieves **100% volume-weighted Any-parent Hit@5** and **93.220% volume-weighted typed-parent Recall@5**; the 333-case source-truth regression remains 100%.
 - [x] validate frozen C2 on a **fresh blinded natural-language next-volume holdout**: unbound query ranks 51–80 were adjudicated and frozen before C2 output existed; **30 cases / 138.1M searches**, with **100% volume-weighted Discovery Success@5**, **100% positive-intent Discovery@5 (5/5)**, **100% NO_MATCH abstention (25/25)** and no 333-case source-truth regression
 - [x] **natural-language skill discovery source-attested validation:** 76 development cases plus a separately frozen **35-case blind holdout** from AF manual learning-outcome→skill mappings; on the blind holdout KV-C0 reaches **31.429% Discovery@5 / 34.734% weighted**, while preselected `KV-F1-close-one-slot` fails to generalize (**31.429% / 31.955% weighted**) and is rejected; canonical 617-case regression remains 100%
-- [ ] measure the pinned **current KV selector** on the same blind 35-case description holdout so fallback value is reported as increment over the actual product baseline
+- [x] measure the pinned **current KV selector** on the same blind 35-case description holdout: current KV returns **0/35** results / **0.000% Discovery@5**; KV-C0 rescues **11/35 = 31.429%**, giving **+31.429pp** incremental Discovery@5 (**+34.734pp occurrence-proxy weighted**)
 - [ ] add a separate **synthetic-query description stress suite** for YV and KV (`synthetic_query` provenance; task/tool/method/first-person phrasing; no retrieval ingestion and no traffic weighting)
 - [ ] D typed graph/ESCO remains deferred: the fresh YV holdout exposes no occupation residual that justifies it; add D only if a later occupation or skill benchmark demonstrates material value
 - [ ] E–G evidence layers separately
