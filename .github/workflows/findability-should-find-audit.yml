@@ -6,6 +6,7 @@ on:
     paths:
       - scripts/build_findability_should_find_cases.py
       - scripts/evaluate_findability_should_find.mjs
+      - scripts/optimize_findability_builder_once.py
       - .github/workflows/findability-should-find-audit.yml
   workflow_dispatch: {}
 
@@ -27,8 +28,9 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Fix evaluator typo before execution
+      - name: Apply deterministic research-script fixes
         run: |
+          python3 scripts/optimize_findability_builder_once.py
           python3 - <<'PY'
           from pathlib import Path
           p=Path('scripts/evaluate_findability_should_find.mjs')
@@ -92,14 +94,14 @@ jobs:
           },ensure_ascii=False,indent=2))
           PY
 
-      - name: Persist evaluator syntax fix
+      - name: Persist deterministic script fixes
         run: |
-          if ! git diff --quiet -- scripts/evaluate_findability_should_find.mjs; then
+          if ! git diff --quiet -- scripts/build_findability_should_find_cases.py scripts/evaluate_findability_should_find.mjs; then
             git config user.name semantic-taxonomy-search-bot
             git config user.email semantic-taxonomy-search-bot@users.noreply.github.com
-            git add scripts/evaluate_findability_should_find.mjs
+            git add scripts/build_findability_should_find_cases.py scripts/evaluate_findability_should_find.mjs
             git diff --cached --check
-            git commit -m 'fix(research): correct should-find evaluator syntax'
+            git commit -m 'fix(research): make should-find audit reproducible and efficient'
             git push origin HEAD:main
           fi
 
