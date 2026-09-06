@@ -1,0 +1,52 @@
+name: Pareto holdout context
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/build_pareto_holdout_batch.py
+      - scripts/build_adjudication_context.py
+      - .github/workflows/pareto-holdout-context.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build untouched holdout
+        run: |
+          python scripts/build_pareto_holdout_batch.py \
+            --output-dir artifacts/pareto-holdout-v31
+      - name: Build taxonomy-only adjudication context
+        run: |
+          python scripts/build_adjudication_context.py \
+            --batch artifacts/pareto-holdout-v31/holdout.jsonl \
+            --output artifacts/pareto-holdout-v31/context.json
+      - name: Validate holdout isolation
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          m=json.loads(Path('artifacts/pareto-holdout-v31/manifest.json').read_text())
+          c=json.loads(Path('artifacts/pareto-holdout-v31/context.json').read_text())
+          assert m['holdout_rows']==36
+          assert m['development_rows']==34
+          assert m['development_share_pct']==80.738
+          assert len(c['rows'])==m['holdout_by_pool']['observed_unbound_query']
+          assert c['authority_boundary'].startswith('context only')
+          print(json.dumps(m, indent=2, sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pareto-holdout-context-v31
+          path: artifacts/pareto-holdout-v31/
+          if-no-files-found: error
+          retention-days: 30
