@@ -1,0 +1,35 @@
+name: YV multi-context typo stress once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/yv-multicontext-typo-stress-once.yml
+
+permissions:
+  contents: read
+
+jobs:
+  measure:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install pinned Fuse dependency in script sandbox
+        run: |
+          printf '{"private":true,"type":"module"}\n' > scripts/package.json
+          npm install --prefix scripts --no-package-lock --no-save fuse.js@7.5.0
+      - name: Measure deterministic typo stress
+        run: |
+          mkdir -p artifacts
+          node scripts/measure_yv_multicontext_typo_stress.mjs \
+            --output artifacts/yv-multicontext-typo-stress-v31.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: yv-multicontext-typo-stress-v31
+          path: artifacts/yv-multicontext-typo-stress-v31.json
+          retention-days: 30
+          if-no-files-found: error
