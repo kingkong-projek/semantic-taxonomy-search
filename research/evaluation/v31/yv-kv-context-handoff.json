@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 31,
+  "status": "branch-verified-not-merged",
+  "track": "1-current-yv-kv-findability",
+  "scope": "YV selection identity to KV occupation context handoff",
+  "product_repository": "kingkong-projek/yrkesvaljaren",
+  "product_branch": "fix/canonical-alias-search",
+  "merge_policy": "DO NOT MERGE ON GITHUB; GitLab protected main remains authoritative",
+  "verified_head": "bd43e88dbd7fecb32d47f349e0d599e6063d79b8",
+  "current_cleaned_branch_head_after_one_off_removal": "fc907799d9f0676950bf4ac25d948970e7454130",
+  "implementation_contract": {
+    "job_title": "selection.related.id when selection.related.type == occupation-name",
+    "occupation_name": "selection.id",
+    "malformed_or_unrelated": "empty context / fail closed"
+  },
+  "tests": {
+    "resolver_unit": {
+      "path": "e2e-test-app/yv-kv-context.test.js",
+      "passed": 4,
+      "failed": 0,
+      "cases": [
+        "job-title uses related occupation-name for KV context",
+        "occupation-name keeps its own id as KV context",
+        "job-title without related occupation context fails closed",
+        "unrelated or missing selections do not become KV context"
+      ]
+    },
+    "browser": {
+      "path": "tests/e2e/05b-yv-kv-context-handoff.spec.ts",
+      "browser": "Chromium",
+      "passed": 2,
+      "failed": 0,
+      "assertions": [
+        "job-title event assigns related occupation-name id to #stepped-kv af-occupation-id",
+        "job-title id is explicitly not used as KV context",
+        "KV exposes occupation-specific 'vanligast för yrket' behaviour after handoff",
+        "occupation-name selection preserves its own id"
+      ]
+    }
+  },
+  "verification": {
+    "runner": "garderob",
+    "workflow_run_id": 34056120385,
+    "job_id": 101548226190,
+    "result": "success",
+    "build": "success",
+    "e2e_prepare": "success",
+    "chromium_test": "2 passed"
+  },
+  "interpretation": {
+    "old_demo_footgun": "confirmed and closed on the product branch: passing selection.id for a job-title loses occupation context because KV accepts occupation-name/SSYK4 context, not job-title identity",
+    "branch_state": "the smallest explicit handoff fix is implemented and browser-regressed on the unmerged verification branch",
+    "production_state": "not claimed deployed or merged; GitLab authoritative main has not been changed by this GitHub work"
+  },
+  "decision": "Track-1 YV->KV accessible integration-path exit criterion is satisfied for the branch implementation; preserve do-not-merge boundary and carry the change through the normal protected GitLab process separately"
+}
