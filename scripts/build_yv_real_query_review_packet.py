@@ -3,7 +3,8 @@
 
 The queries are public behavioral observations. They have no selected-ID ground truth.
 The current simple C configuration is used only to show reviewer candidates; those
-candidates are never auto-promoted to truth.
+candidates are never auto-promoted to truth. Zero lexical evidence yields abstention,
+not an arbitrary nearest candidate.
 """
 
 from __future__ import annotations
@@ -79,6 +80,20 @@ def top_unbound_from_generator(source_dir: Path, version: str, expected_zip_sha2
     }
 
 
+def positive_rank(ranker: BM25, query: str, exact_surfaces: dict[str, set[str]]) -> list[tuple[str, float]]:
+    query_tokens = tokens(query)
+    normalized = norm(query)
+    scored: list[tuple[str, float]] = []
+    for cid in ranker.documents:
+        score = ranker.score(query_tokens, cid)
+        if normalized and normalized in exact_surfaces[cid]:
+            score += 1_000_000.0
+        if score > 0.0:
+            scored.append((cid, score))
+    scored.sort(key=lambda item: (-item[1], item[0]))
+    return scored
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--version", default="31")
@@ -102,12 +117,8 @@ def main() -> int:
         raise RuntimeError(f"generator commit mismatch: {source_commit}")
 
     selected, corpus_stats = top_unbound_from_generator(
-        source_dir,
-        version,
-        str(queries["query_corpus"]["zip_sha256"]),
-        args.limit,
+        source_dir, version, str(queries["query_corpus"]["zip_sha256"]), args.limit
     )
-    # Prove the directly re-read corpus has the same aggregate boundary previously frozen.
     if corpus_stats["total_query_volume"] != int(queries["query_corpus"]["total_query_volume"]):
         raise RuntimeError("frozen query total drift")
     if corpus_stats["unbound_distinct_terms"] != int(queries["exact_text_binding"]["unbound"]["distinct_terms"]):
@@ -151,11 +162,16 @@ def main() -> int:
     unbound_volume = corpus_stats["unbound_query_volume"]
     cumulative = 0
     rows = []
+    no_evidence_count = 0
+    no_evidence_volume = 0
     for rank, source_row in enumerate(selected, 1):
         query = str(source_row["query"])
         count = int(source_row["count"])
         cumulative += count
-        ranked = ranker.rank(query)[:5]
+        scored = positive_rank(ranker, query, exact_surfaces)[:5]
+        if not scored:
+            no_evidence_count += 1
+            no_evidence_volume += count
         rows.append({
             "id": f"yv.observed-review.{rank:03d}",
             "taxonomy_version": int(version),
@@ -174,11 +190,13 @@ def main() -> int:
             "candidate_context": {
                 "configuration": "C: P80 occupation preferred label + real definition + canonical alternative labels, deterministic BM25",
                 "scope": "159 P80 occupation-name destinations only",
+                "positive_lexical_evidence": bool(scored),
+                "simple_configuration_would_abstain": not bool(scored),
                 "top5": [
-                    {"rank": i, "kind": "occupation-name", "concept_id": cid, "label": labels[cid]}
-                    for i, cid in enumerate(ranked, 1)
+                    {"rank": i, "kind": "occupation-name", "concept_id": cid, "label": labels[cid], "score": round(score, 6)}
+                    for i, (cid, score) in enumerate(scored, 1)
                 ],
-                "warning": "Candidate list is reviewer convenience only. It is not destination truth and may omit a correct P90/P95/tail occupation or a legitimate NO_MATCH outcome.",
+                "warning": "Candidate list is reviewer convenience only. Zero evidence yields no candidate. Positive candidates are still not destination truth and may omit a correct P90/P95/tail occupation or a legitimate NO_MATCH outcome.",
             },
             "adjudication": {
                 "status": "PENDING_HUMAN_REVIEW",
@@ -197,7 +215,7 @@ def main() -> int:
             handle.write(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n")
 
     manifest = {
-        "schema_version": 2,
+        "schema_version": 3,
         "taxonomy_version": int(version),
         "status": "PENDING_HUMAN_REVIEW",
         "queries": len(rows),
@@ -205,7 +223,10 @@ def main() -> int:
         "selected_query_volume": cumulative,
         "selected_share_of_all_frozen_query_volume_pct": round(100 * cumulative / total_corpus, 3),
         "selected_share_of_unbound_query_volume_pct": round(100 * cumulative / unbound_volume, 3),
-        "authority_boundary": "Observed query frequency and C-ranked candidates are not labels. Human/domain review is required for SINGLE/AMBIGUOUS/NO_MATCH and MUST/ACCEPTABLE/MUST_NOT judgments.",
+        "simple_C_zero_evidence_queries": no_evidence_count,
+        "simple_C_zero_evidence_query_volume": no_evidence_volume,
+        "simple_C_zero_evidence_share_of_selected_volume_pct": round(100 * no_evidence_volume / cumulative, 3),
+        "authority_boundary": "Observed query frequency and C-ranked candidates are not labels. Zero lexical evidence explicitly abstains. Human/domain review is required for SINGLE/AMBIGUOUS/NO_MATCH and MUST/ACCEPTABLE/MUST_NOT judgments.",
         "sources": {
             "generator_commit": source_commit,
             "query_aggregate": args.query_aggregate,
@@ -222,15 +243,17 @@ def main() -> int:
         f"**Status:** PENDING HUMAN REVIEW — {len(rows)} queries",
         "",
         f"These queries represent **{manifest['selected_share_of_all_frozen_query_volume_pct']}% of all frozen query volume** and **{manifest['selected_share_of_unbound_query_volume_pct']}% of unbound volume**.",
+        f"The current simple C configuration has **zero lexical evidence for {no_evidence_count}/{len(rows)} queries**, representing **{manifest['simple_C_zero_evidence_share_of_selected_volume_pct']}%** of this packet's volume; those rows abstain instead of returning an arbitrary nearest occupation.",
         "",
-        "No row has an automatic destination label. The five candidates are only the current simple P80 configuration's suggestions.",
+        "No row has an automatic destination label. Positive candidates are only the current simple P80 configuration's suggestions.",
         "",
-        "| rank | query | observed count | current top candidate |",
+        "| rank | query | observed count | simple C |",
         "|---:|---|---:|---|",
     ]
     for row in rows:
-        top1 = row["candidate_context"]["top5"][0]
-        lines.append(f"| {row['observed_rank_within_unbound_population']} | `{row['query']}` | {row['observed_count']:,} | {top1['label']} |")
+        candidates = row["candidate_context"]["top5"]
+        current = candidates[0]["label"] if candidates else "ABSTAIN — no lexical evidence"
+        lines.append(f"| {row['observed_rank_within_unbound_population']} | `{row['query']}` | {row['observed_count']:,} | {current} |")
     (out / "review.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True))
     return 0
