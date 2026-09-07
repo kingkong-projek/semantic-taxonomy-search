@@ -35,20 +35,20 @@ Only after participant text and blind taxonomy adjudication are frozen may retri
 
 For skills the candidate is plain `KV-G1+T3`. The favorable query-only numeric tweak is not part of the candidate because it lacks independent validation.
 
-For occupations, collection is currently blocked until the separate full-universe `YV-description-full-v0` candidate has been evaluated and frozen. The earlier 165-target C2 configuration remains a regression/demo reference; it is not the occupation human-study candidate.
+For occupations the frozen candidate is `YV-description-full-v0-canonical-router`: canonical retrieval over all 2,105 active v31 `occupation-name` identities plus privileged exact active job-title → typed occupation-parent routing. The earlier 165-target C2 configuration remains a regression/demo reference only. AF ad-language and Relevanta-kompetenser lanes remain diagnostic evidence and are not active fusion lanes.
 
 Occupation and skill are separate streams. KV evidence must never be quoted as occupation accuracy.
 
 ## Blinded evidence order
 
-For each case:
+For each study version, preregistration must first pin the exact Git commit and frozen candidate id/definition file for each enabled stream. For each case thereafter:
 
 1. capture a participant description without retrieval output;
 2. freeze the description and minimal non-sensitive metadata;
 3. have a taxonomy-domain reviewer, blind to retrieval, assign zero, one or multiple acceptable canonical identities;
 4. record stream-specific capability-universe membership **per acceptable identity**, then freeze the adjudication;
-5. record SHA-256 hashes for elicitation and adjudication in the study manifest;
-6. run ordinary lexical baseline and the frozen simple fallback;
+5. record SHA-256 hashes for preregistration, elicitation and adjudication in the study manifest; the preregistration hash transitively freezes the exact retrieval commit and candidates;
+6. run ordinary lexical baseline and the frozen simple fallback from the preregistered commit;
 7. show fallback candidate labels to the participant and record what they recognise/select, including `none`;
 8. only then classify the residual.
 
@@ -116,8 +116,8 @@ Published findings should use aggregate metrics and carefully redacted examples.
 
 ## Pre-registration before collection
 
-Before the first real participant is enrolled, freeze the recruitment source, intended sample size or stopping rule, language/sector stratification, adjudicator procedure, data-handling basis and any exclusion rules. Do not choose those after seeing retrieval outcomes.
+Before the first real participant is enrolled, freeze the recruitment source, intended sample size or stopping rule, language/sector stratification, adjudicator procedure, data-handling basis, exclusion rules **and the exact retrieval repository commit/candidates**. Do not choose those after seeing retrieval outcomes.
 
-The staged case schema is versioned before collection. Changing target/capability-universe semantics after seeing retrieval output starts a new study version; it does not silently rewrite the old holdout.
+The staged case schema is versioned before collection. Changing target/capability-universe semantics, retrieval commit or candidate after seeing retrieval output starts a new study version; it does not silently rewrite the old holdout.
 
 Synthetic/model-authored descriptions remain useful regression fixtures, but they can never satisfy this human evidence gate.
