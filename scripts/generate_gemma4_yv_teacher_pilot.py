@@ -96,10 +96,10 @@ def extract_text(payload: dict[str, Any]) -> str:
     text = "".join(
         str(part.get("text") or "")
         for part in parts
-        if isinstance(part, dict)
+        if isinstance(part, dict) and not part.get("thought")
     ).strip()
     if not text:
-        raise RuntimeError(f"Gemma returned empty text: {json.dumps(payload, ensure_ascii=False)[:1200]}")
+        raise RuntimeError(f"Gemma returned no non-thought text: {json.dumps(payload, ensure_ascii=False)[:1200]}")
     return text
 
 
