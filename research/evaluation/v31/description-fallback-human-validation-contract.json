@@ -1,6 +1,6 @@
 {
-  "schema_version": 2,
-  "status": "prefrozen_before_human_data_collection",
+  "schema_version": 3,
+  "status": "collection_ready_preregistration_not_frozen",
   "study_id": "description-fallback-human-v1",
   "research_question": "When ordinary lexical YV/KV lookup is insufficient, can users express their work or competence in ordinary language well enough for the existing simple deterministic fallback candidate to surface a canonical result they recognize and a blind taxonomy adjudicator accepts?",
   "non_claims": [
@@ -27,15 +27,48 @@
     }
   },
   "evidence_order": [
+    "preregistration is completed, placeholder-free, committed and frozen before the first real participant",
     "participant description captured without retrieval output and without example text naming or strongly cueing a target",
     "description plus minimal non-sensitive metadata frozen",
     "at least one taxonomy-domain adjudicator maps the description to zero, one or multiple acceptable canonical identities while blind to retrieval output; uncertain/unmappable is a valid outcome",
     "adjudication frozen with per-target demand-envelope membership",
-    "manifest records hashes of elicitation and adjudication before retrieval",
+    "manifest records SHA-256 hashes of preregistration, elicitation and adjudication before retrieval",
     "ordinary lexical baseline and frozen simple fallback candidate are run",
     "participant may then inspect fallback candidate labels and record recognize/select/none",
     "only after outcome freeze may residuals be classified"
   ],
+  "preregistration": {
+    "template": "research/human/description-fallback-v1/preregistration-template.json",
+    "frozen_file": "research/human/description-fallback-v1/preregistration.json",
+    "required_status": "frozen-before-first-participant",
+    "must_be_placeholder_free": true,
+    "must_precede_first_real_participant": true,
+    "decision_bearing_fields_include": [
+      "recruitment source",
+      "sampling mode",
+      "sample size or stopping rule",
+      "enabled occupation/skill streams and strata",
+      "inclusion/exclusion rules",
+      "adjudicator count and conflict resolution",
+      "need/prevalence lexical-failure definition if measured",
+      "data-handling basis and repository redaction process"
+    ],
+    "changing_decision_rules_after_retrieval": "starts a new study version; never silently rewrites the frozen study"
+  },
+  "freeze_binding": {
+    "manifest_schema_version": 2,
+    "manifest_file": "research/human/description-fallback-v1/manifest.json",
+    "required_sha256_bindings": [
+      "preregistration_sha256",
+      "elicitation_sha256",
+      "adjudication_sha256"
+    ],
+    "frozen_before_retrieval": true,
+    "freeze_tool": "scripts/freeze_human_description_study_manifest.py",
+    "verification_tool": "scripts/verify_human_description_study.py",
+    "repository_stage_guard": "scripts/check_human_description_repository_state.py",
+    "manifest_overwrite": "forbidden"
+  },
   "need_measurement": {
     "production_prevalence": "requires an aggregate funnel denominator outside the human case files: eligible lexical-failure/retry exposures, fallback offers/views, opens, submissions and selections. Raw free text is not required for these counts.",
     "capability_study": "may report stated willingness/usefulness and completion among recruited/prompted participants, but must not call that production uptake or prevalence.",
