@@ -4,13 +4,26 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from pathlib import Path
 from typing import Any
 
 import validate_human_description_study as base
 
 PREREG_STATUS = 'frozen-before-first-participant'
+PREREG_SCHEMA_VERSION = 2
 PLACEHOLDER_MARKERS = ('REPLACE', 'UNFROZEN_TEMPLATE')
+COMMIT_RE = re.compile(r'^[0-9a-f]{40}$')
+EXPECTED_CANDIDATES = {
+    'occupation': {
+        'candidate_id': 'YV-description-full-v0-canonical-router',
+        'definition_file': 'research/evaluation/v31/yv-full-universe-description-baseline.json',
+    },
+    'skill': {
+        'candidate_id': 'KV-G1+T3',
+        'definition_file': 'research/evaluation/v31/kv-g1-t3-simple-boundary.json',
+    },
+}
 
 
 def _walk_strings(value: Any):
@@ -30,6 +43,34 @@ def _string_list(value: Any, where: str) -> list[str]:
     return value
 
 
+def _validate_retrieval_freeze(value: Any, streams: dict[str, Any]) -> dict[str, Any]:
+    if not isinstance(value, dict):
+        raise RuntimeError('preregistration retrieval_freeze must be object')
+    base.required(value, {'repository_commit', 'candidates'}, 'preregistration:retrieval_freeze')
+    repository_commit = value['repository_commit']
+    if not isinstance(repository_commit, str) or COMMIT_RE.fullmatch(repository_commit) is None:
+        raise RuntimeError('preregistration retrieval_freeze repository_commit must be a 40-character lowercase hex commit')
+    candidates = value['candidates']
+    if not isinstance(candidates, dict) or set(candidates) != base.STREAMS:
+        raise RuntimeError('preregistration retrieval_freeze candidates must contain exactly occupation and skill')
+    for stream in sorted(base.STREAMS):
+        candidate = candidates[stream]
+        if not isinstance(candidate, dict):
+            raise RuntimeError(f'preregistration retrieval candidate {stream} must be object')
+        base.required(candidate, {'candidate_id', 'definition_file'}, f'preregistration:retrieval_candidate:{stream}')
+        if not base.nonempty_string(candidate['candidate_id']) or not base.nonempty_string(candidate['definition_file']):
+            raise RuntimeError(f'preregistration retrieval candidate {stream} fields must be non-empty strings')
+        expected = EXPECTED_CANDIDATES[stream]
+        if streams[stream].get('enabled') is True and candidate != expected:
+            raise RuntimeError(
+                f'preregistration retrieval candidate {stream} differs from the frozen simple boundary: {candidate}'
+            )
+        definition_path = Path(candidate['definition_file'])
+        if definition_path.is_absolute() or '..' in definition_path.parts:
+            raise RuntimeError(f'preregistration retrieval candidate {stream} definition_file must be repository-relative')
+    return value
+
+
 def validate_preregistration(path: Path) -> dict[str, Any]:
     obj = json.loads(path.read_text(encoding='utf-8'))
     if not isinstance(obj, dict):
@@ -38,13 +79,14 @@ def validate_preregistration(path: Path) -> dict[str, Any]:
         obj,
         {
             'schema_version', 'study_id', 'status', 'recruitment_source', 'sampling_mode',
-            'sample_size_or_stopping_rule', 'streams', 'inclusion_criteria', 'exclusion_criteria',
-            'elicitation', 'adjudication', 'need_prevalence', 'data_handling', 'freeze'
+            'sample_size_or_stopping_rule', 'streams', 'retrieval_freeze', 'inclusion_criteria',
+            'exclusion_criteria', 'elicitation', 'adjudication', 'need_prevalence', 'data_handling',
+            'freeze'
         },
         'preregistration',
     )
-    if obj['schema_version'] != 1:
-        raise RuntimeError('preregistration schema_version must be 1')
+    if obj['schema_version'] != PREREG_SCHEMA_VERSION:
+        raise RuntimeError(f'preregistration schema_version must be {PREREG_SCHEMA_VERSION}')
     if obj['status'] != PREREG_STATUS:
         raise RuntimeError(f'preregistration status must be {PREREG_STATUS}')
     for field in ('study_id', 'recruitment_source', 'sampling_mode', 'sample_size_or_stopping_rule'):
@@ -69,6 +111,8 @@ def validate_preregistration(path: Path) -> dict[str, Any]:
             raise RuntimeError(f'preregistration:{stream}: enabled stream needs target_or_stopping_rule')
         if not isinstance(row['language_strata'], list) or not isinstance(row['sector_strata'], list):
             raise RuntimeError(f'preregistration:{stream}: strata must be lists')
+
+    _validate_retrieval_freeze(obj['retrieval_freeze'], streams)
 
     _string_list(obj['inclusion_criteria'], 'preregistration:inclusion_criteria') if obj['inclusion_criteria'] else None
     _string_list(obj['exclusion_criteria'], 'preregistration:exclusion_criteria') if obj['exclusion_criteria'] else None
@@ -182,6 +226,8 @@ def verify(
     result = base.summarize(manifest, elicitation, adjudication, outcomes_present, funnel)
     result['preregistration_sha256'] = base.sha(preregistration_path)
     result['preregistration_status'] = preregistration['status']
+    result['retrieval_repository_commit'] = preregistration['retrieval_freeze']['repository_commit']
+    result['retrieval_candidates'] = preregistration['retrieval_freeze']['candidates']
     return result
 
 
