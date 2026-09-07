@@ -25,11 +25,37 @@ if (!model.metadata?.job_title_route_surface_count) throw new Error('YV job-titl
 if (!String(model.metadata?.retrieval_contract || '').includes('diagnostic lanes excluded')) {
   throw new Error('YV runtime must exclude unpromoted diagnostic lanes');
 }
+
+const canonicalIds = new Set(model.document_ids);
+const routeEntries = Object.entries(model.job_title_routes || {});
+if (routeEntries.length !== model.metadata.job_title_route_surface_count) {
+  throw new Error('YV route population metadata drift');
+}
+if (parity.full_route_structure_checked !== true || parity.route_population_count !== routeEntries.length) {
+  throw new Error('YV parity packet must attest the exhaustive route-table structure check');
+}
+if (!Number.isInteger(parity.route_rank_parity_sample_count) || parity.route_rank_parity_sample_count < 100) {
+  throw new Error('YV route ranking parity sample unexpectedly small');
+}
+for (const [surface, parentIds] of routeEntries) {
+  if (!surface || !Array.isArray(parentIds) || parentIds.length === 0) {
+    throw new Error(`YV invalid route row: ${surface}`);
+  }
+  if (new Set(parentIds).size !== parentIds.length) {
+    throw new Error(`YV duplicate parent in route: ${surface}`);
+  }
+  for (const id of parentIds) {
+    if (!canonicalIds.has(id)) throw new Error(`YV route parent outside canonical universe: ${surface} -> ${id}`);
+  }
+}
+
 console.log(JSON.stringify({
   engine: model.engine,
   parity_cases: parity.cases.length,
   parity_failures: 0,
   target_count: model.metadata.target_count,
-  job_title_route_surfaces: model.metadata.job_title_route_surface_count,
+  job_title_route_surfaces: routeEntries.length,
+  route_rank_parity_sample: parity.route_rank_parity_sample_count,
+  route_structure_failures: 0,
   runtime_dependencies: model.metadata.runtime_dependencies,
 }, null, 2));
