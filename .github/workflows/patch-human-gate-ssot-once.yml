@@ -1,0 +1,51 @@
+name: Sync human gate SSOT once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/patch-human-gate-ssot-once.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Patch Track2 human gate status
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('docs/research-plan.md')
+          text = p.read_text()
+          marker = "Therefore **plain G1+T3 is the current simple research boundary and no higher model class is justified now**. Stop retrieval micro-optimization until new independent human/user evidence or a measured product failure identifies a material residual. The next evidence priority is the bounded product hypothesis itself: whether users who fail ordinary lexical lookup can describe tasks/tools/methods/responsibilities well enough to recognise and select the intended canonical candidate from a small fallback result set."
+          if text.count(marker) != 1:
+              raise SystemExit(f'expected one Track2 marker, got {text.count(marker)}')
+          addition = "\n\n**Human-gate status (2026-09-07): collection-ready, not started.** The no-example participant prompt, blind adjudication rules, per-target P80-envelope semantics, staged case validator, preregistration template, preregistration→manifest SHA binding, raw-text-free need/prevalence funnel format and repository stage-order guard are now frozen and self-tested on the `garderob` runner. No real human description, adjudication or outcome file is present in the repository yet. Before the first participant, `preregistration.json` must replace all template placeholders and be committed with status `frozen-before-first-participant`; retrieval may run only after elicitation and blind adjudication are frozen and a manifest binds all three SHA-256 values. A recruited capability study must not be reported as production prevalence without the separate eligible lexical-failure denominator."
+          text = text.replace(marker, marker + addition, 1)
+          old = "Evidence: `docs/findings/skill-training-language-validated-v31.md`, `research/evaluation/v31/skill-training-language-validated.json`, `docs/findings/kv-g1-t3-simple-boundary-v31.md`, `research/evaluation/v31/kv-g1-t3-simple-boundary.json` and `research/evaluation/v31/kv-query-only-numeric-validation-boundary.json`."
+          new = "Evidence: `docs/findings/skill-training-language-validated-v31.md`, `research/evaluation/v31/skill-training-language-validated.json`, `docs/findings/kv-g1-t3-simple-boundary-v31.md`, `research/evaluation/v31/kv-g1-t3-simple-boundary.json`, `research/evaluation/v31/kv-query-only-numeric-validation-boundary.json`, `docs/findings/description-fallback-human-validation-protocol-v31.md` and `research/evaluation/v31/description-fallback-human-validation-contract.json`."
+          if text.count(old) != 1:
+              raise SystemExit(f'expected one Track2 evidence line, got {text.count(old)}')
+          text = text.replace(old, new, 1)
+          p.write_text(text)
+          PY
+          git diff --check -- docs/research-plan.md || true
+          git diff -- docs/research-plan.md
+      - name: Commit SSOT
+        run: |
+          git config user.name 'github-actions-bot'
+          git config user.email 'github-actions-bot@users.noreply.github.com'
+          git add docs/research-plan.md
+          git diff --cached --quiet && exit 0
+          git commit -m 'docs: sync human description gate status'
+          git push origin HEAD:main
