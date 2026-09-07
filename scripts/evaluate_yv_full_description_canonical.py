@@ -19,7 +19,7 @@ from pathlib import Path
 from typing import Any
 
 from evaluate_c2_job_title_router import build_c1_index, relation_parent_ids
-from evaluate_p80_lexical_ablation import as_list, expected_hash, fetch, norm
+from evaluate_p80_lexical_ablation import as_list, expected_hash, fetch, norm, tokens
 from evaluate_pareto_c1 import BOUNDARY_IDS, p80_ids, rank_c1
 from occupational_information_coverage import find_explicit_taxonomy_ids, record_map
 
@@ -30,9 +30,13 @@ SOURCE_URL = (
 
 
 def phrase_present(text: str, surface: str) -> bool:
-    nt = f" {norm(text)} "
-    ns = norm(surface)
-    return bool(ns) and f" {ns} " in nt
+    """Match a complete token sequence, insensitive to punctuation/case."""
+    haystack = tokens(text)
+    needle = tokens(surface)
+    if not needle or len(needle) > len(haystack):
+        return False
+    width = len(needle)
+    return any(haystack[index:index + width] == needle for index in range(len(haystack) - width + 1))
 
 
 def metrics(rows: list[dict[str, Any]], key: str) -> dict[str, Any]:
@@ -200,8 +204,8 @@ def main() -> int:
             "active v31 occupation-name ID; source text is not ingested into either candidate"
         ),
         "anti_leakage": (
-            "exclude a case if work_task contains the target preferred/alternative label "
-            "or any active related job-title preferred-label surface"
+            "exclude a case when normalized token sequences reveal the target preferred/alternative "
+            "label or any active related job-title preferred-label surface, including next to punctuation"
         ),
         "source_sha256": source_sha,
         "taxonomy_sha256": taxonomy_sha,
