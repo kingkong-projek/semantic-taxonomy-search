@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "status": "opened architecture diagnostic; no runtime promotion",
+  "taxonomy_version": 31,
+  "decision_question": "how much semantic lift can be compiled into a tiny deterministic client runtime without transformer inference",
+  "hard_client_budget": {
+    "preferred_gzip_bytes_max": 3000000,
+    "frontend_failure_gzip_bytes_above": 5000000
+  },
+  "runs": {
+    "dense_source_attested_crosscheck": {
+      "workflow_run_id": 34161754351,
+      "head_sha": "b6c72955b0cb08ce56d9351e1071b3ce1f84c711",
+      "artifact_id": 10032961845,
+      "artifact_digest": "sha256:27a0b817bd87fd81dabcf1868c5efd3fd667b145461d6b29a6e0723f4c253e8f"
+    },
+    "round0_B0_C0": {
+      "workflow_run_id": 34162157870,
+      "head_sha": "3db10a0f329b5eff5c193c310c65cf23b7f8e6a4",
+      "artifact_id": 10033127422,
+      "artifact_digest": "sha256:4a1de3527bc672780bdc0a2abd908f94809bd9826aa8cf25f3dc07c511696aa8"
+    },
+    "round0_D0_model2vec": {
+      "workflow_run_id": 34162906514,
+      "head_sha": "d4c23e626eddfac23cc9ac6a44bdf50eb685cfdc",
+      "artifact_id": 10033265985,
+      "artifact_digest": "sha256:190d99a48a6b3ee72ecacb08356ec23d8bbd607568245a3562ed8dd5119bd3ea"
+    }
+  },
+  "teacher": {
+    "name": "intfloat/multilingual-e5-small",
+    "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+    "runtime_status": "teacher/diagnostic ceiling only; never a browser candidate"
+  },
+  "scoreboard": {
+    "YV_current_canonical_BM25": {
+      "source_attested_hit_at_5": "9/17",
+      "opened_stress_hit_at_5": {
+        "direct": "8/12",
+        "colloquial": "2/12",
+        "noisy": "5/8",
+        "indirect": "3/8"
+      },
+      "deployed_asset_gzip_bytes": 1012020,
+      "note": "exact deployed Pages YV asset gzip-9; includes the full canonical/browser asset, not only incremental semantic data"
+    },
+    "YV_E5_dense_teacher": {
+      "canonical_source_attested_hit_at_5": "13/17",
+      "three_provenance_lane_oracle_hit_at_5": "15/17",
+      "opened_stress_dense_oracle_hit_at_5": {
+        "direct": "12/12",
+        "colloquial": "7/12",
+        "noisy": "6/8",
+        "indirect": "4/8"
+      },
+      "note": "oracle is complementarity evidence, not a fusion rule"
+    },
+    "KV_current_G1_plus_T3": {
+      "source_attested_hit_at_5": "71/81",
+      "opened_stress_hit_at_5": {
+        "direct": "10/10",
+        "colloquial": "3/8",
+        "noisy": "6/6"
+      },
+      "deployed_asset_gzip_bytes": 260538,
+      "note": "existing compile-time teacher-expanded sparse BM25; gzip-9 measured from exact deployed Pages asset"
+    },
+    "KV_E5_dense_teacher": {
+      "source_attested_hit_at_5": "46/81",
+      "opened_stress_hit_at_5": {
+        "direct": "10/10",
+        "colloquial": "7/8",
+        "noisy": "6/6"
+      },
+      "note": "dense improves the colloquial stress residual but is materially worse than G1+T3 on the broader source-attested distribution"
+    },
+    "B0_sparse_token_to_concept": {
+      "runtime": "token lookup + IDF-weighted top-4 concept accumulation",
+      "gzip_bytes": 117908,
+      "source_attested_hit_at_5": {"YV": "0/17", "KV": "0/81"},
+      "opened_stress_hit_at_5": {
+        "YV_direct": "1/12",
+        "YV_colloquial": "0/12",
+        "YV_noisy": "0/8",
+        "YV_indirect": "0/8",
+        "KV_direct": "0/10",
+        "KV_colloquial": "0/8",
+        "KV_noisy": "0/6"
+      },
+      "decision": "reject B0 formulation; size succeeds but token-level teacher similarity does not preserve sequence semantics"
+    },
+    "C0_int8_32d_token_student": {
+      "runtime": "static token lookup + mean 32d int8 vectors + dot products",
+      "gzip_bytes": 712990,
+      "source_attested_hit_at_5": {"YV": "0/17", "KV": "6/81"},
+      "opened_stress_hit_at_5": {
+        "YV_direct": "0/12",
+        "YV_colloquial": "0/12",
+        "YV_noisy": "0/8",
+        "YV_indirect": "0/8",
+        "KV_direct": "5/10",
+        "KV_colloquial": "0/8",
+        "KV_noisy": "2/6"
+      },
+      "decision": "reject C0 formulation; low-rank averaging is tiny but loses contextual teacher behavior"
+    },
+    "D0_Model2Vec_static_E5": {
+      "runtime": "Model2Vec static embeddings distilled from pinned E5; 16,384-domain vocabulary, PCA64, int8, SIF",
+      "saved_model_raw_bytes": 26548533,
+      "tar_gzip_bytes": 16804197,
+      "source_attested_hit_at_5": {"YV": "3/17", "KV": "20/81"},
+      "opened_stress_hit_at_5": {
+        "YV_direct": "4/12",
+        "YV_colloquial": "1/12",
+        "YV_noisy": "1/8",
+        "YV_indirect": "1/8",
+        "KV_direct": "9/10",
+        "KV_colloquial": "0/8",
+        "KV_noisy": "4/6"
+      },
+      "decision": "reject D0 under current client constraint; it exceeds 5 MB and does not retain the dense paraphrase lift"
+    }
+  },
+  "round0_conclusion": {
+    "eliminated_formulations": [
+      "B0 token-level sparse E5 similarity table",
+      "C0 PCA32/int8 mean-token E5 student",
+      "D0 generic Model2Vec static E5 distillation under the current client budget"
+    ],
+    "not_eliminated_classes": [
+      "B sequence-supervised sparse feature-to-concept distillation trained from teacher-generated full descriptions and hard negatives",
+      "C sequence-supervised low-rank domain student trained on teacher-generated full descriptions and hard negatives"
+    ],
+    "current_lead": "compile-time sequence-level language expansion into sparse runtime; KV G1+T3 is the existing positive proof-of-concept at about 261 kB gzip and 71/81 source-attested Hit@5",
+    "next_priority": "build the full A teacher/doc2query-style YV+KV expansion corpus without using opened evaluation queries, then replay; only after that train sequence-supervised B/C students from the same frozen corpus",
+    "architectural_interpretation": "the useful teacher signal is contextual and sequence-level; naive token geometry compresses well but discards the semantic behavior we need"
+  },
+  "evidence_warning": "All 17/81 and 88-case measurements are already-opened development/architecture evidence. They may falsify architectures but may not establish independent user accuracy or select a production threshold/fusion."
+}
