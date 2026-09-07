@@ -12,7 +12,6 @@ import os
 import random
 import time
 import urllib.error
-import urllib.parse
 import urllib.request
 from pathlib import Path
 from typing import Any
@@ -116,7 +115,10 @@ def validate_phrases(text: str) -> list[str]:
     else:
         raise RuntimeError(f"expected JSON object or array, got {type(value).__name__}")
     if not isinstance(phrases, list) or len(phrases) != 8:
-        raise RuntimeError(f"expected 8 phrases, got {type(phrases).__name__}/{len(phrases) if isinstance(phrases, list) else 'n/a'}")
+        raise RuntimeError(
+            f"expected 8 phrases, got {type(phrases).__name__}/"
+            f"{len(phrases) if isinstance(phrases, list) else 'n/a'}"
+        )
     out = [str(x).strip() for x in phrases]
     if any(not x for x in out):
         raise RuntimeError("teacher returned blank phrase")
@@ -129,7 +131,7 @@ def call_gemma(api_key: str, prompt: str, *, max_attempts: int = 5) -> tuple[lis
         {
             "contents": [{"role": "user", "parts": [{"text": prompt}]}],
             "generationConfig": {
-                "thinkingConfig": {"thinkingLevel": "minimal"},
+                "thinkingConfig": {"thinkingLevel": "high"},
                 "responseMimeType": "application/json",
                 "temperature": 0.0,
                 "maxOutputTokens": 1500,
@@ -225,7 +227,7 @@ def main() -> int:
     print(json.dumps({
         "status": "exploratory teacher pilot only",
         "model": MODEL,
-        "api": "generateContent + thinkingLevel=minimal + responseMimeType=application/json",
+        "api": "generateContent + thinkingLevel=high + responseMimeType=application/json",
         "cases": len(rows),
         "requests_per_minute_cap": args.requests_per_minute,
         "output": str(out),
