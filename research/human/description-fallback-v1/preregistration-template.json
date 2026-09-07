@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "study_id": "description-fallback-human-v1",
+  "status": "UNFROZEN_TEMPLATE_DO_NOT_COLLECT_YET",
+  "recruitment_source": "REPLACE_BEFORE_FIRST_PARTICIPANT",
+  "sampling_mode": "REPLACE_BEFORE_FIRST_PARTICIPANT",
+  "sample_size_or_stopping_rule": "REPLACE_BEFORE_FIRST_PARTICIPANT",
+  "streams": {
+    "occupation": {
+      "enabled": true,
+      "target_or_stopping_rule": "REPLACE",
+      "language_strata": [],
+      "sector_strata": []
+    },
+    "skill": {
+      "enabled": true,
+      "target_or_stopping_rule": "REPLACE",
+      "language_strata": [],
+      "sector_strata": []
+    }
+  },
+  "inclusion_criteria": [],
+  "exclusion_criteria": [],
+  "elicitation": {
+    "examples_allowed_in_primary_benchmark": false,
+    "participant_instruction": "research/human/description-fallback-v1/participant-instructions-sv.md"
+  },
+  "adjudication": {
+    "instructions": "research/human/description-fallback-v1/adjudicator-instructions.md",
+    "reviewers_per_case": "REPLACE",
+    "conflict_resolution": "REPLACE",
+    "retrieval_blind": true,
+    "cases_used_to_justify_higher_model_complexity_need_stronger_review": true
+  },
+  "need_prevalence": {
+    "production_funnel_enabled": false,
+    "lexical_failure_definition": "REPLACE_OR_EXPLICITLY_MARK_NOT_MEASURED",
+    "raw_free_text_required": false
+  },
+  "data_handling": {
+    "approved_basis": "REPLACE_BEFORE_FIRST_PARTICIPANT",
+    "repository_redaction_process": "REPLACE_BEFORE_FIRST_PARTICIPANT",
+    "raw_identifiable_material_committed_to_repo": false
+  },
+  "freeze": {
+    "frozen_at": null,
+    "frozen_by": null,
+    "sha256": null
+  },
+  "instruction": "Replace every required REPLACE value, freeze this preregistration before the first real participant, and create a new study version if decision-bearing rules change after retrieval is seen."
+}
