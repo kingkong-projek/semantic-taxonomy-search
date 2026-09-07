@@ -1,0 +1,49 @@
+name: Dense source-attested cross-check
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/evaluate_dense_source_attested_crosscheck.py
+      - scripts/evaluate_dense_semantic_candidate_lane.py
+      - research/benchmark/v31/training-skill-fresh-holdout/cases.jsonl
+      - research/benchmark/v31/training-skill-second-holdout/cases.jsonl
+      - research/benchmark/v31/training-skill-third-holdout/cases.jsonl
+      - research/enrichment/v31/model-teacher-kv-top100/phrases.jsonl
+      - research/enrichment/v31/model-teacher-kv-ranks101-200/phrases.jsonl
+      - research/enrichment/v31/model-teacher-kv-ranks201-300/phrases.jsonl
+      - research/enrichment/v31/model-teacher-kv-ranks301-316/phrases.jsonl
+      - .github/workflows/dense-source-attested-crosscheck.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: dense-source-attested-crosscheck-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pinned research dependencies
+        run: python -m pip install --disable-pip-version-check 'sentence-transformers==3.4.1' 'zstandard==0.23.0'
+      - name: Compile-check cross-check
+        run: python -m py_compile scripts/evaluate_dense_source_attested_crosscheck.py
+      - name: Evaluate frozen dense lanes on source-attested text
+        env:
+          TOKENIZERS_PARALLELISM: "false"
+        run: python scripts/evaluate_dense_source_attested_crosscheck.py
+      - name: Upload cross-check
+        uses: actions/upload-artifact@v4
+        with:
+          name: dense-source-attested-crosscheck-v31
+          path: artifacts/dense-source-attested-crosscheck-v31.json
+          if-no-files-found: error
+          retention-days: 30
