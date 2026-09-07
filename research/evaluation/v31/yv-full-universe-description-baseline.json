@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 31,
+  "candidate_id": "YV-description-full-v0-canonical-router",
+  "status": "frozen_for_human_validation",
+  "decision": "Freeze the full-universe canonical occupation ranker plus exact active job-title to typed occupation-parent routing as the minimum YV description candidate. Keep observed ad language and Relevanta-kompetenser lanes diagnostic-only until independent human evidence justifies a fusion rule.",
+  "candidate": {
+    "occupation_target_universe": "all active v31 occupation-name identities",
+    "occupation_target_count": 2105,
+    "active_runtime_lanes": [
+      "canonical occupation BM25: preferred label + distinct canonical definition + canonical alternative labels",
+      "privileged exact active job-title preferred-label route to typed occupation-name parents"
+    ],
+    "inactive_diagnostic_evidence": [
+      "AF occupation-linked observed ad-keyword BM25 lane",
+      "AF Relevanta-kompetenser occupation-context skill BM25 lane"
+    ],
+    "not_promoted": [
+      "fixed slot fusion",
+      "single concatenated canonical+ad+skill BM25 document",
+      "equal-weight RRF",
+      "embeddings/vector retrieval",
+      "neural reranking",
+      "generated teacher text"
+    ]
+  },
+  "build_evidence": {
+    "workflow_run_id": 34117307109,
+    "artifact_id": 10016776331,
+    "artifact_zip_sha256": "ad2198a49c982362f7eb1f3dc87ad51887f46b785bc03e8e9e8fbfc907aded67",
+    "targets": 2105,
+    "canonical_real_definitions": 1636,
+    "job_title_route_surfaces": 9784,
+    "routed_parents": 1583,
+    "observed_ad_language_occupations_compiled_but_inactive": 1051,
+    "observed_ad_language_distinct_terms_compiled_but_inactive": 11085
+  },
+  "frozen_source_truth_regression": {
+    "workflow_run_id": 34118409268,
+    "artifact_id": 10017192311,
+    "benchmark_path": "research/benchmark/v31/p80-source-truth/yv-p80-source-truth.jsonl",
+    "benchmark_sha256": "7bd44757b2eb663e56e2928438caa4789cb0eef064ad01fd3051c9f020de17f9",
+    "cases": 333,
+    "targets": 159,
+    "origin_counts": {
+      "canonical_label": 159,
+      "canonical_definition": 137,
+      "alternative_label": 37
+    },
+    "p80_canonical_159": {
+      "top1": 1.0,
+      "hit_at_5": 1.0,
+      "hit_at_10": 1.0,
+      "mrr": 1.0
+    },
+    "c2_canonical_165": {
+      "top1": 1.0,
+      "hit_at_5": 1.0,
+      "hit_at_10": 1.0,
+      "mrr": 1.0
+    },
+    "full_canonical_2105": {
+      "top1": 1.0,
+      "hit_at_5": 1.0,
+      "hit_at_10": 1.0,
+      "mrr": 1.0
+    },
+    "c2_to_full_rank_regressions": 0,
+    "c2_to_full_rank_improvements": 0,
+    "interpretation": "Full-universe expansion preserves every frozen canonical YV source-truth rank exactly. This is a representation/regression guard, not natural-description accuracy."
+  },
+  "opened_source_attested_description_diagnostic": {
+    "query_source": "Yrkesinformation work_task, evaluation-only; only uniquely explicit active v31 occupation IDs; target occupation/alternative/job-title surface leakage excluded by normalized token-sequence matching",
+    "cases": 17,
+    "unique_targets": 17,
+    "inside_old_165": 2,
+    "outside_old_165": 15,
+    "old_c1_165": {
+      "top1": 0.058824,
+      "hit_at_5": 0.058824,
+      "mrr": 0.059331
+    },
+    "full_canonical_2105": {
+      "top1": 0.352941,
+      "hit_at_5": 0.529412,
+      "mrr": 0.418849
+    },
+    "outside_old_165_full_canonical": {
+      "top1": 0.333333,
+      "hit_at_5": 0.533333,
+      "mrr": 0.407957
+    },
+    "diagnostic_lane_complementarity_at_5": {
+      "canonical_hits": 9,
+      "ad_hits": 5,
+      "ad_rescues_canonical_misses": 4,
+      "canonical_or_ad_hits": 13,
+      "relevant_skill_labels_plus_definitions_hits": 4,
+      "relevant_skill_rescues_canonical_misses": 2,
+      "canonical_or_ad_or_relevant_skill_hits": 15,
+      "remaining_cases": 2,
+      "remaining_targets": [
+        "Arbetsmiljöinspektör",
+        "Bildpedagog"
+      ]
+    },
+    "interpretation": "The old 165-target description universe caused structural false misses. Real AF ad language and occupation-linked skill context are complementary discovery evidence, but this opened 17-case slice is too small and already inspected, so it cannot select a production fusion rule."
+  },
+  "negative_fusion_ablations": {
+    "single_concatenated_document": {
+      "workflow_run_id": 34117814531,
+      "artifact_id": 10016964816,
+      "canonical_hit_at_5": 0.529412,
+      "canonical_top1": 0.352941,
+      "canonical_plus_ad_plus_skills_hit_at_5": 0.647059,
+      "canonical_plus_ad_plus_skills_top1": 0.294118,
+      "decision": "rejected: loses ranking quality and fails to preserve independent-lane complementarity"
+    },
+    "equal_weight_rrf": {
+      "workflow_run_id": 34118060170,
+      "artifact_id": 10017060508,
+      "rrf60_canonical_ad_skills": {
+        "hit_at_5": 0.529412,
+        "top1": 0.176471,
+        "mrr": 0.328975
+      },
+      "rrf10_sensitivity_only": {
+        "hit_at_5": 0.705882,
+        "top1": 0.117647,
+        "mrr": 0.3402
+      },
+      "decision": "standard equal-weight RRF rejected; k=10 is opened-data sensitivity only and must not be promoted or tuned from these cases"
+    },
+    "fixed_slot_fusion": {
+      "decision": "rejected during opened-case diagnostics because static five-slot allocations displaced strong canonical rank-4/5 cases; no candidate promoted"
+    }
+  },
+  "human_gate": {
+    "candidate_gate": "cleared",
+    "collection_started": false,
+    "remaining_before_collection": [
+      "freeze a real preregistration from the existing template",
+      "satisfy the existing approved data-handling and recruitment requirements"
+    ],
+    "decision_bearing_next_evidence": "newly frozen stream-separated human occupation descriptions with blind taxonomy adjudication and rank-sensitive list-quality/abstention metrics"
+  }
+}
