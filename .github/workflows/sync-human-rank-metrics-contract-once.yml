@@ -1,0 +1,80 @@
+name: Sync human rank metrics contract once
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Patch structured contract and protocol
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          contract_path = Path('research/evaluation/v31/description-fallback-human-validation-contract.json')
+          obj = json.loads(contract_path.read_text(encoding='utf-8'))
+          if obj.get('schema_version') != 3:
+              raise SystemExit(f"expected contract schema 3, got {obj.get('schema_version')}")
+          obj['schema_version'] = 4
+          obj['freeze_binding']['score_tool'] = 'scripts/score_human_description_study.py'
+          obj['primary_metrics']['capability'] = [
+              'Top1 acceptable on sufficiently-informative cases with at least one in-envelope acceptable target',
+              'first acceptable rank and mean reciprocal rank (MRR)',
+              'nDCG@5 when multiple acceptable identities exist',
+              'unacceptable-prefix burden before the first acceptable candidate',
+              'candidate-list precision and unacceptable candidates returned over the candidates actually shown',
+              'correct fallback abstention for clarification-needed, unmappable and out-of-scope cases',
+              'participant recognition and acceptable selection/none behavior',
+              'acceptable-target Hit@5 and paired Hit@5 delta versus lexical baseline only as secondary historical recall signals'
+          ]
+          rule = 'Hit@5 is a secondary recall-style signal and must never be reported alone as product/list quality'
+          if rule not in obj['reporting_rules']:
+              obj['reporting_rules'].append(rule)
+          contract_path.write_text(json.dumps(obj, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+          protocol_path = Path('docs/findings/description-fallback-human-validation-protocol-v31.md')
+          text = protocol_path.read_text(encoding='utf-8')
+          old = '**Capability:** acceptable-target Hit@5, paired Hit@5 delta versus ordinary lexical lookup, participant recognition@5, selected-candidate/none rate, and the complete residual distribution. Participant-recognised identities must be a subset of the actually shown fallback top 5.'
+          new = '**Capability:** make list quality rank-sensitive. Primary reporting is Top1 acceptable, first acceptable rank / MRR, nDCG@5 when several identities are acceptable, unacceptable-prefix burden before the first acceptable result, candidate-list precision over the candidates actually shown, unacceptable candidates returned, correct abstention on clarification-needed/unmappable/out-of-scope cases, participant recognition and acceptable selection/none behavior. Keep acceptable-target Hit@5 and paired Hit@5 delta versus ordinary lexical lookup only as secondary historical recall signals. Participant-recognised identities must be a subset of the actually shown fallback top 5.'
+          if old not in text:
+              raise SystemExit('expected protocol capability paragraph not found')
+          protocol_path.write_text(text.replace(old, new, 1), encoding='utf-8')
+
+          check_path = Path('scripts/check_human_description_contract_consistency.py')
+          check = check_path.read_text(encoding='utf-8')
+          check = check.replace(
+              "if obj.get('schema_version') != 3:\n        raise RuntimeError('human validation contract schema_version must be 3')",
+              "if obj.get('schema_version') != 4:\n        raise RuntimeError('human validation contract schema_version must be 4')",
+          )
+          anchor = "    if freeze.get('manifest_overwrite') != 'forbidden':\n        raise RuntimeError('contract must forbid manifest overwrite')\n"
+          insert = anchor + "    if freeze.get('score_tool') != 'scripts/score_human_description_study.py':\n        raise RuntimeError('contract score tool path drift')\n"
+          if anchor not in check:
+              raise SystemExit('consistency checker freeze anchor missing')
+          check = check.replace(anchor, insert, 1)
+          anchor2 = "    recognition_rule = outcomes.get('recognition_rule', '')\n    if 'subset of fallback_top5_ids' not in recognition_rule:\n        raise RuntimeError('structured contract recognition rule drift')\n"
+          insert2 = anchor2 + "\n    capability = obj.get('primary_metrics', {}).get('capability', [])\n    required_metric_markers = ('Top1 acceptable', 'mean reciprocal rank', 'unacceptable-prefix', 'candidate-list precision', 'Hit@5')\n    capability_text = ' '.join(str(item) for item in capability)\n    for marker in required_metric_markers:\n        if marker not in capability_text:\n            raise RuntimeError(f'structured contract missing rank-sensitive metric marker: {marker}')\n    if 'secondary historical recall signals' not in capability_text:\n        raise RuntimeError('structured contract must demote Hit@5 to secondary recall')\n"
+          if anchor2 not in check:
+              raise SystemExit('consistency checker outcome anchor missing')
+          check_path.write_text(check.replace(anchor2, insert2, 1), encoding='utf-8')
+          PY
+      - name: Commit metric contract sync
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add \
+            research/evaluation/v31/description-fallback-human-validation-contract.json \
+            docs/findings/description-fallback-human-validation-protocol-v31.md \
+            scripts/check_human_description_contract_consistency.py
+          git diff --cached --check
+          git commit -m 'research: make human fallback metrics rank-sensitive'
+          git push origin HEAD:main
