@@ -34,9 +34,13 @@ OCC_INFO_URL = (
 
 
 def phrase_present(text: str, surface: str) -> bool:
-    nt = f" {norm(text)} "
-    ns = norm(surface)
-    return bool(ns) and f" {ns} " in nt
+    """Match a complete token sequence, insensitive to punctuation/case."""
+    haystack = tokens(text)
+    needle = tokens(surface)
+    if not needle or len(needle) > len(haystack):
+        return False
+    width = len(needle)
+    return any(haystack[index:index + width] == needle for index in range(len(haystack) - width + 1))
 
 
 def positive_bm25_rank(ranker: BM25, query: str) -> list[str]:
@@ -121,12 +125,9 @@ def main() -> int:
     if len(active_occ) != 2105:
         raise RuntimeError(f"active occupation universe drift: {len(active_occ)}")
 
-    # Canonical lane: all active occupation-name identities, same representation as C1.
     full_ids = sorted(active_occ)
     canonical_ranker, canonical_exact, canonical_surface_tokens = build_c1_index(by_id, full_ids)
 
-    # Observed employer-language lane: keyword strings only, one occurrence per published
-    # keyword surface. Metric weighting is deliberately deferred to a later ablation.
     ad_data = ad_doc.get("data")
     if not isinstance(ad_data, dict) or not isinstance(ad_data.get("occupation_name"), dict):
         raise RuntimeError("ad keyword corpus missing data.occupation_name")
@@ -255,8 +256,9 @@ def main() -> int:
             ),
         },
         "anti_leakage": (
-            "Yrkesinformation work_task is evaluation-only; exclude target preferred/alternative "
-            "label and related active job-title surface leakage"
+            "Yrkesinformation work_task is evaluation-only; normalized token-sequence matching "
+            "excludes target preferred/alternative labels and related active job-title surfaces, "
+            "including next to punctuation"
         ),
         "source_sha256": {
             "taxonomy": taxonomy_sha,
