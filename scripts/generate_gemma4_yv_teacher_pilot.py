@@ -134,7 +134,7 @@ def call_gemma(api_key: str, prompt: str, *, max_attempts: int = 5) -> tuple[lis
                 "thinkingConfig": {"thinkingLevel": "high"},
                 "responseMimeType": "application/json",
                 "temperature": 0.0,
-                "maxOutputTokens": 1500,
+                "maxOutputTokens": 4096,
             },
         },
         ensure_ascii=False,
