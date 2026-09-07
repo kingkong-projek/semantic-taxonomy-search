@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Cheap static contract for the zero-backend semantic fallback demo."""
+"""Cheap static contract for the zero-backend dual YV/KV fallback demo."""
 from __future__ import annotations
 
 import re
@@ -7,7 +7,10 @@ from pathlib import Path
 
 ROOT = Path('demo')
 html = (ROOT / 'index.html').read_text(encoding='utf-8')
-css = (ROOT / 'styles.css').read_text(encoding='utf-8')
+css = '\n'.join((
+    (ROOT / 'styles.css').read_text(encoding='utf-8'),
+    (ROOT / 'stream.css').read_text(encoding='utf-8'),
+))
 app = (ROOT / 'app.js').read_text(encoding='utf-8')
 engine = (ROOT / 'search-engine.js').read_text(encoding='utf-8')
 all_text = '\n'.join((html, css, app, engine))
@@ -15,7 +18,9 @@ all_text = '\n'.join((html, css, app, engine))
 required_html = (
     'id="description"', 'id="search-form"', 'id="results-panel"', 'id="export-button"',
     'id="history"', 'id="main"', 'aria-live="polite"', 'role="radiogroup"',
+    'id="stream-occupation"', 'value="occupation"', 'id="stream-skill"', 'value="skill"',
     'Prototyp för utvärdering', 'Allt stannar i din webbläsare',
+    'Beskriv ditt arbete', 'Mitt yrke', 'En kompetens',
 )
 for token in required_html:
     if token not in html:
@@ -23,26 +28,29 @@ for token in required_html:
 
 for token in (
     'localStorage', 'new Blob', 'URL.createObjectURL',
-    "const MODEL_URL = './assets/kv-g1-t3.json'",
-    "form.addEventListener('submit'", 'const loaded = await ensureEngine();',
+    "occupation: './assets/yv-c2.json'", "skill: './assets/kv-g1-t3.json'",
+    "form.addEventListener('submit'", 'const loaded = await ensureEngine(stream);',
+    "stream: 'mixed'", "schema_version: 2",
 ):
     if token not in app:
-        raise RuntimeError(f'missing local demo behavior: {token}')
+        raise RuntimeError(f'missing local dual-stream demo behavior: {token}')
 
-if app.count('fetch(') != 1 or 'fetch(MODEL_URL' not in app:
-    raise RuntimeError('demo must make exactly one kind of network request: lazy model fetch')
+if app.count('fetch(') != 1 or 'fetch(MODEL_URLS[stream]' not in app:
+    raise RuntimeError('demo must make only the selected relative model fetch lazily')
 
 for token in (
     '@media (max-width: 900px)', '@media (max-width: 640px)', ':focus-visible',
     'prefers-reduced-motion', 'grid-template-columns: minmax(0, 1.72fr)',
+    '.stream-options', '.stream-input:checked + .stream-option',
 ):
     if token not in css:
         raise RuntimeError(f'missing responsive/accessibility CSS contract: {token}')
 
-if 'KV-G1+T3-plain-v1' not in engine or 'Float64Array' not in engine:
-    raise RuntimeError('browser search engine contract drift')
+for token in ('KV-G1+T3-plain-v1', 'YV-C2-plain-v1', 'Float64Array', 'boundedLevenshtein'):
+    if token not in engine:
+        raise RuntimeError(f'browser search engine contract drift: {token}')
 
-# No CDN, tracker, feedback endpoint or remote font/script asset. The model itself is relative.
+# No CDN, tracker, feedback endpoint or remote font/script asset. Model assets are relative.
 external = re.findall(r'(?:src|href)=["\'](https?://[^"\']+)', html, flags=re.I)
 if external:
     raise RuntimeError(f'external page assets are forbidden: {external}')
@@ -52,4 +60,4 @@ for banned in ('google-analytics', 'gtag(', 'segment.', 'sentry.io', 'hotjar', '
     if banned.lower() in all_text.lower():
         raise RuntimeError(f'tracker/telemetry token forbidden: {banned}')
 
-print('demo static contract: ok')
+print('demo dual-stream static contract: ok')

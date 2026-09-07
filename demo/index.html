@@ -6,8 +6,9 @@
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#ffffff">
   <meta name="robots" content="noindex,nofollow">
-  <title>Beskriv din kompetens – prototyp</title>
+  <title>Beskriv ditt arbete – prototyp</title>
   <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./stream.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Hoppa till innehållet</a>
@@ -24,29 +25,51 @@
 
   <main id="main" class="page-shell">
     <section class="intro" aria-labelledby="page-title">
-      <p class="eyebrow">Kompetensväljaren · experiment</p>
-      <h1 id="page-title">Beskriv din kompetens</h1>
-      <p class="intro__lead">Skriv med egna ord vad du gör, vilka verktyg eller metoder du använder och vad du försöker uppnå. Du behöver inte veta vad kompetensen heter.</p>
+      <p class="eyebrow">Yrke och kompetens · beskrivningsfallback</p>
+      <h1 id="page-title">Beskriv ditt arbete</h1>
+      <p class="intro__lead">Skriv med egna ord vad du gör. Välj om du vill hitta vilket yrke beskrivningen motsvarar eller en konkret kompetens som finns i arbetet.</p>
       <div class="privacy-note">
         <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2a5 5 0 0 0-5 5v3H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-2V7a5 5 0 0 0-5-5Zm-3 8V7a3 3 0 1 1 6 0v3H9Zm3 4a2 2 0 0 1 1 3.73V20h-2v-2.27A2 2 0 0 1 12 14Z"/></svg>
-        <span>Allt stannar i din webbläsare tills du själv exporterar filen. Skriv inte personuppgifter eller arbetsgivaruppgifter.</span>
+        <span>Allt stannar i din webbläsare tills du själv exporterar filen. Skriv inte personuppgifter eller identifierande arbetsgivaruppgifter.</span>
       </div>
     </section>
 
     <div class="workspace">
       <div class="workspace__main">
         <section class="panel search-panel" aria-labelledby="search-heading">
-          <div class="panel__header">
+          <fieldset class="stream-picker">
+            <legend>Vad vill du hitta?</legend>
+            <div class="stream-options">
+              <div class="stream-choice">
+                <input class="stream-input" type="radio" name="stream" id="stream-occupation" value="occupation" checked>
+                <label class="stream-option" for="stream-occupation">
+                  <span class="stream-option__tag">YRKE</span>
+                  <span class="stream-option__text"><strong>Mitt yrke</strong><small>Vilket yrke beskriver arbetsuppgifterna?</small></span>
+                  <span class="stream-option__check" aria-hidden="true"></span>
+                </label>
+              </div>
+              <div class="stream-choice">
+                <input class="stream-input" type="radio" name="stream" id="stream-skill" value="skill">
+                <label class="stream-option" for="stream-skill">
+                  <span class="stream-option__tag">KOMPETENS</span>
+                  <span class="stream-option__text"><strong>En kompetens</strong><small>Vilken konkret förmåga, metod eller kunskap beskriver jag?</small></span>
+                  <span class="stream-option__check" aria-hidden="true"></span>
+                </label>
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="panel__header search-copy-header">
             <div>
               <p class="step-label">1 · Beskriv</p>
-              <h2 id="search-heading">Vad kan du göra?</h2>
+              <h2 id="search-heading">Beskriv ditt yrke</h2>
             </div>
             <button id="new-test" class="button button--ghost" type="button" hidden>Nytt test</button>
           </div>
 
           <form id="search-form" novalidate>
-            <label class="field-label" for="description">Beskriv en konkret kompetens</label>
-            <p id="description-help" class="field-help">Beskriv arbetsuppgifter, verktyg eller metoder och vilket resultat du arbetar mot. Använd dina egna ord.</p>
+            <label id="description-label" class="field-label" for="description">Beskriv vad du gör på jobbet</label>
+            <p id="description-help" class="field-help">Beskriv arbetsuppgifter, verktyg eller system, arbetsmiljö och ansvar som känns viktiga. Skriv helst inte yrkestiteln.</p>
             <textarea id="description" name="description" rows="6" maxlength="1200" aria-describedby="description-help description-error" placeholder="Skriv din beskrivning här …" required></textarea>
             <div class="field-meta">
               <span id="description-error" class="field-error" role="alert"></span>
@@ -54,7 +77,7 @@
             </div>
             <div class="actions-row">
               <button id="search-button" class="button button--primary" type="submit">
-                <span>Sök kompetens</span>
+                <span id="search-button-label">Sök yrke</span>
                 <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m21 19-4.35-4.35A8 8 0 1 0 14.65 16L19 21l2-2ZM5 10a5 5 0 1 1 10 0 5 5 0 0 1-10 0Z"/></svg>
               </button>
               <span id="engine-status" class="engine-status" aria-live="polite"></span>
@@ -66,11 +89,11 @@
           <div class="panel__header panel__header--results">
             <div>
               <p class="step-label">2 · Bedöm</p>
-              <h2 id="results-heading">Vilket förslag ligger närmast?</h2>
+              <h2 id="results-heading">Vilket yrke ligger närmast?</h2>
             </div>
             <span id="search-time" class="metric-chip"></span>
           </div>
-          <p class="results-intro">Välj ett förslag om något stämmer. Det är också helt okej om inget passar.</p>
+          <p id="results-intro" class="results-intro">Välj ett yrke om något stämmer. Det är också helt okej om inget passar.</p>
           <div id="results-list" class="results-list" role="radiogroup" aria-label="Sökresultat"></div>
 
           <fieldset class="feedback-fieldset">
@@ -86,7 +109,7 @@
               </button>
               <button class="feedback-button" type="button" data-feedback="none">
                 <span class="feedback-button__icon" aria-hidden="true">×</span>
-                <span><strong>Inget stämmer</strong><small>Jag hittar inte rätt kompetens</small></span>
+                <span><strong>Inget stämmer</strong><small>Jag hittar inte rätt</small></span>
               </button>
             </div>
           </fieldset>
@@ -102,7 +125,7 @@
         <div class="session-panel__sticky">
           <p class="step-label">3 · Exportera</p>
           <h2 id="session-heading">Din testomgång</h2>
-          <p class="session-copy">Testa gärna flera olika formuleringar. Dina svar sparas bara lokalt på den här enheten.</p>
+          <p class="session-copy">Testa gärna både yrken och kompetenser och flera olika formuleringar. Dina svar sparas bara lokalt på den här enheten.</p>
 
           <div class="session-stats">
             <div><strong id="test-count">0</strong><span>tester</span></div>
@@ -110,7 +133,7 @@
           </div>
 
           <div class="session-meta">
-            <span>Demo</span><code id="build-version">laddas vid första sökning</code>
+            <span>Aktiv motor</span><code id="build-version">laddas vid första sökning</code>
           </div>
 
           <div id="history" class="history" aria-label="Tidigare tester"></div>
@@ -119,7 +142,7 @@
             <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M11 3h2v10.17l3.59-3.58L18 11l-6 6-6-6 1.41-1.41L11 13.17V3ZM5 19h14v2H5v-2Z"/></svg>
             Exportera mina tester
           </button>
-          <p class="export-help">När du är klar får du en JSON-fil som du kan skicka vidare för analys.</p>
+          <p class="export-help">När du är klar får du en JSON-fil med både yrkes- och kompetenstester som du kan skicka vidare för analys.</p>
           <button id="clear-button" class="text-button" type="button" disabled>Rensa testomgången</button>
         </div>
       </aside>

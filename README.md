@@ -10,7 +10,9 @@ The repository is the single source of truth for the problem definition, evidenc
 
 ## Demo
 
-`demo/` contains a zero-backend research prototype for the `Beskriv din kompetens` fallback. Search runs locally in the browser using a build-time-compiled deterministic retrieval asset. Test feedback stays local until the tester explicitly exports a JSON file.
+`demo/` contains a zero-backend research prototype for both `Beskriv ditt yrke` and `Beskriv din kompetens`. The tester can use the same work description against either destination. Each deterministic retrieval asset is lazy-loaded separately and search runs locally in the browser. Test feedback from both streams stays local until the tester explicitly exports one JSON file.
+
+The occupation path packages the frozen YV **C2** retriever; the skill path packages the frozen KV **G1+T3** retriever. Packaging/runtime parity is checked in CI and does not create new validation evidence.
 
 The demo is a **research prototype, not an official Arbetsförmedlingen service or publication**.
 

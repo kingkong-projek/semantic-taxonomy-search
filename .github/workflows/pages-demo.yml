@@ -6,8 +6,12 @@ on:
     paths:
       - 'demo/**'
       - 'scripts/build_kv_demo_asset.py'
+      - 'scripts/build_yv_demo_asset.py'
       - 'scripts/check_kv_demo_runtime.mjs'
+      - 'scripts/check_yv_demo_runtime.mjs'
       - 'scripts/check_demo_contract.py'
+      - 'scripts/evaluate_c2_job_title_router.py'
+      - 'scripts/evaluate_pareto_c1.py'
       - 'scripts/evaluate_kv_drop_numeric_expansion_only.py'
       - 'scripts/evaluate_kv_drop_numeric_tokens.py'
       - 'scripts/evaluate_kv_three_lane_fusion.py'
@@ -18,6 +22,8 @@ on:
       - 'research/enrichment/v31/model-teacher-kv-ranks101-200/**'
       - 'research/enrichment/v31/model-teacher-kv-ranks201-300/**'
       - 'research/enrichment/v31/model-teacher-kv-ranks301-316/**'
+      - 'research/benchmark/v31/fresh-natural-holdout/**'
+      - 'research/benchmark/v31/p80-source-truth/**'
       - 'research/coverage/source-adapters.json'
       - 'research/coverage/v31/pareto-demand-aggregate.json'
       - 'README.md'
@@ -39,8 +45,8 @@ concurrency:
 
 jobs:
   build:
-    # Pages delivery must not depend on the availability of the research
-    # self-hosted runner. The same deterministic build/parity contract runs here.
+    # Pages delivery must not depend on the availability of the research self-hosted runner.
+    # Both deterministic engines are rebuilt and parity-checked from frozen source material.
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -53,13 +59,21 @@ jobs:
           node-version: '24'
       - name: Verify zero-backend responsive demo contract
         run: python scripts/check_demo_contract.py
-      - name: Compile plain G1+T3 browser asset
+      - name: Compile frozen YV C2 browser asset
+        run: |
+          python scripts/build_yv_demo_asset.py \
+            --output demo/assets/yv-c2.json \
+            --parity-output artifacts/yv-demo-parity-v1.json \
+            --build-id "$GITHUB_SHA"
+      - name: Verify YV browser runtime parity
+        run: node scripts/check_yv_demo_runtime.mjs demo/assets/yv-c2.json artifacts/yv-demo-parity-v1.json
+      - name: Compile plain KV G1+T3 browser asset
         run: |
           python scripts/build_kv_demo_asset.py \
             --output demo/assets/kv-g1-t3.json \
             --parity-output artifacts/kv-demo-parity-v1.json \
             --build-id "$GITHUB_SHA"
-      - name: Verify browser runtime parity
+      - name: Verify KV browser runtime parity
         run: node scripts/check_kv_demo_runtime.mjs demo/assets/kv-g1-t3.json artifacts/kv-demo-parity-v1.json
       - name: Assemble static site
         run: |
@@ -68,6 +82,7 @@ jobs:
           cp -R demo/. _site/
           touch _site/.nojekyll
           test -s _site/index.html
+          test -s _site/assets/yv-c2.json
           test -s _site/assets/kv-g1-t3.json
           echo "Site bytes: $(du -sb _site | cut -f1)"
       - uses: actions/configure-pages@v5

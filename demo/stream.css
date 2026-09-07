@@ -1,0 +1,149 @@
+.stream-picker {
+  border: 0;
+  margin: 0 0 2rem;
+  padding: 0;
+}
+
+.stream-picker > legend {
+  color: var(--digi--color--text--primary, #333);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: .75rem;
+  padding: 0;
+}
+
+.stream-options {
+  display: grid;
+  gap: .75rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.stream-choice {
+  min-width: 0;
+  position: relative;
+}
+
+.stream-input {
+  height: 1px;
+  margin: -1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+}
+
+.stream-option {
+  align-items: center;
+  background: var(--digi--grayscale-0, #fff);
+  border: 2px solid var(--digi--grayscale-500, #cacaca);
+  border-radius: 8px;
+  cursor: pointer;
+  display: grid;
+  gap: .75rem;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  min-height: 92px;
+  padding: 1rem 1.125rem;
+  transition: border-color 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+}
+
+.stream-option:hover {
+  border-color: var(--digi--global--color--cta--link--base, #1616b2);
+}
+
+.stream-input:focus-visible + .stream-option {
+  outline: 3px solid #000;
+  outline-offset: 3px;
+}
+
+.stream-input:checked + .stream-option {
+  background: #f2f7ff;
+  border-color: var(--digi--global--color--cta--link--base, #1616b2);
+  box-shadow: inset 0 0 0 1px var(--digi--global--color--cta--link--base, #1616b2);
+}
+
+.stream-option__tag,
+.stream-badge {
+  background: #eef0ff;
+  border-radius: 999px;
+  color: #091d54;
+  font-size: .6875rem;
+  font-weight: 700;
+  letter-spacing: .045em;
+  line-height: 1;
+  padding: .45rem .55rem;
+  white-space: nowrap;
+}
+
+.stream-option__text {
+  display: grid;
+  gap: .25rem;
+  min-width: 0;
+}
+
+.stream-option__text strong {
+  color: var(--digi--color--text--primary, #333);
+  font-size: 1.05rem;
+  line-height: 1.25;
+}
+
+.stream-option__text small {
+  color: var(--digi--color--text--secondary, #5c5c5c);
+  font-size: .875rem;
+  line-height: 1.4;
+}
+
+.stream-option__check {
+  align-items: center;
+  border: 2px solid var(--digi--grayscale-600, #acacac);
+  border-radius: 50%;
+  display: flex;
+  height: 22px;
+  justify-content: center;
+  width: 22px;
+}
+
+.stream-input:checked + .stream-option .stream-option__check {
+  border: 7px solid var(--digi--global--color--cta--link--base, #1616b2);
+}
+
+.search-copy-header {
+  border-top: 1px solid var(--digi--grayscale-300, #e4e4e4);
+  padding-top: 1.5rem;
+}
+
+.history-item__meta {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: .45rem;
+}
+
+.stream-badge[data-stream="skill"] {
+  background: #edf7ef;
+  color: #176329;
+}
+
+.history-item__query {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  line-height: 1.35;
+  overflow: hidden;
+}
+
+@media (max-width: 640px) {
+  .stream-options {
+    grid-template-columns: 1fr;
+  }
+
+  .stream-option {
+    min-height: 82px;
+    padding: .875rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stream-option {
+    transition: none;
+  }
+}

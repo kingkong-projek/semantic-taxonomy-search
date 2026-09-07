@@ -1,17 +1,49 @@
 import { createSearchEngine } from './search-engine.js';
 
-const STORAGE_KEY = 'semantic-fallback-demo:skill:v1';
-const MODEL_URL = './assets/kv-g1-t3.json';
+const STORAGE_KEY = 'semantic-fallback-demo:mixed:v2';
+const LEGACY_STORAGE_KEY = 'semantic-fallback-demo:skill:v1';
+const MODEL_URLS = {
+  occupation: './assets/yv-c2.json',
+  skill: './assets/kv-g1-t3.json',
+};
+const STREAM_COPY = {
+  occupation: {
+    name: 'Yrke',
+    heading: 'Beskriv ditt yrke',
+    fieldLabel: 'Beskriv vad du gör på jobbet',
+    help: 'Beskriv arbetsuppgifter, verktyg eller system, arbetsmiljö och ansvar som känns viktiga. Skriv helst inte yrkestiteln.',
+    button: 'Sök yrke',
+    resultsHeading: 'Vilket yrke ligger närmast?',
+    resultsIntro: 'Välj ett yrke om något stämmer. Det är också helt okej om inget passar.',
+    empty: 'Vi hittade inga yrkesförslag för den beskrivningen. Markera gärna ”Inget stämmer” och skriv vad du förväntade dig.',
+  },
+  skill: {
+    name: 'Kompetens',
+    heading: 'Beskriv en kompetens',
+    fieldLabel: 'Beskriv en konkret kompetens',
+    help: 'Beskriv vad du gör, med vilka verktyg eller metoder och vilket resultat du försöker uppnå. Skriv helst inte namnet på kompetensen.',
+    button: 'Sök kompetens',
+    resultsHeading: 'Vilken kompetens ligger närmast?',
+    resultsIntro: 'Välj en kompetens om något stämmer. Det är också helt okej om inget passar.',
+    empty: 'Vi hittade inga kompetensförslag för den beskrivningen. Markera gärna ”Inget stämmer” och skriv vad du förväntade dig.',
+  },
+};
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => [...document.querySelectorAll(selector)];
 
 const form = $('#search-form');
 const description = $('#description');
+const descriptionLabel = $('#description-label');
+const descriptionHelp = $('#description-help');
 const descriptionError = $('#description-error');
 const charCount = $('#char-count');
 const searchButton = $('#search-button');
+const searchButtonLabel = $('#search-button-label');
+const searchHeading = $('#search-heading');
 const engineStatus = $('#engine-status');
 const resultsPanel = $('#results-panel');
+const resultsHeading = $('#results-heading');
+const resultsIntro = $('#results-intro');
 const resultsList = $('#results-list');
 const searchTime = $('#search-time');
 const feedbackStatus = $('#feedback-status');
@@ -26,8 +58,8 @@ const exportButton = $('#export-button');
 const clearButton = $('#clear-button');
 const toast = $('#toast');
 
-let engine = null;
-let enginePromise = null;
+const engines = {};
+const enginePromises = {};
 let currentTestId = null;
 
 function uid() {
@@ -35,13 +67,28 @@ function uid() {
 }
 
 function freshState() {
-  return { schema_version: 1, session_id: uid(), created_at: new Date().toISOString(), stream: 'skill', tests: [] };
+  return { schema_version: 2, session_id: uid(), created_at: new Date().toISOString(), stream: 'mixed', tests: [] };
 }
 
 function loadState() {
   try {
     const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
-    if (parsed?.schema_version === 1 && Array.isArray(parsed.tests)) return parsed;
+    if (parsed?.schema_version === 2 && Array.isArray(parsed.tests)) return parsed;
+  } catch (_) {}
+
+  try {
+    const legacy = JSON.parse(localStorage.getItem(LEGACY_STORAGE_KEY) || 'null');
+    if (legacy?.schema_version === 1 && Array.isArray(legacy.tests)) {
+      return {
+        schema_version: 2,
+        session_id: legacy.session_id || uid(),
+        created_at: legacy.created_at || new Date().toISOString(),
+        updated_at: legacy.updated_at,
+        stream: 'mixed',
+        migrated_from: LEGACY_STORAGE_KEY,
+        tests: legacy.tests.map((test) => ({ ...test, stream: test.stream || 'skill' })),
+      };
+    }
   } catch (_) {}
   return freshState();
 }
@@ -52,6 +99,12 @@ function saveState() {
   state.updated_at = new Date().toISOString();
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   renderSession();
+}
+
+if (!localStorage.getItem(STORAGE_KEY) && state.tests.length) saveState();
+
+function activeStream() {
+  return $('input[name="stream"]:checked')?.value || 'occupation';
 }
 
 function currentTest() {
@@ -69,14 +122,16 @@ function renderSession() {
   clearButton.disabled = state.tests.length === 0;
 
   history.replaceChildren();
-  [...state.tests].reverse().slice(0, 12).forEach((test) => {
+  [...state.tests].reverse().slice(0, 16).forEach((test) => {
     const item = document.createElement('div');
     item.className = 'history-item';
+    const stream = test.stream === 'occupation' ? 'occupation' : 'skill';
     item.innerHTML = `
-      <div class="history-item__top">
-        <span class="history-item__query"></span>
+      <div class="history-item__meta">
+        <span class="stream-badge" data-stream="${stream}">${STREAM_COPY[stream].name}</span>
         <span class="history-item__state" data-reviewed="${Boolean(test.feedback)}" aria-label="${test.feedback ? 'Bedömt' : 'Inte bedömt'}"></span>
       </div>
+      <div class="history-item__query"></div>
       <small></small>`;
     item.querySelector('.history-item__query').textContent = test.description;
     item.querySelector('small').textContent = feedbackLabel(test.feedback);
@@ -91,33 +146,71 @@ function showToast(message) {
   showToast.timer = setTimeout(() => { toast.hidden = true; }, 2600);
 }
 
-async function ensureEngine() {
-  if (engine) return { engine, assetLoadMs: 0 };
-  if (!enginePromise) {
+function renderEngineStatus(stream) {
+  const loaded = engines[stream];
+  if (loaded) {
+    const build = loaded.metadata?.build_id || loaded.name;
+    buildVersion.textContent = `${STREAM_COPY[stream].name}: ${build}`;
+    engineStatus.dataset.state = 'ready';
+    engineStatus.textContent = 'Sökningen körs lokalt i webbläsaren.';
+  } else {
+    buildVersion.textContent = `${STREAM_COPY[stream].name}: laddas vid första sökning`;
+    engineStatus.dataset.state = '';
+    engineStatus.textContent = '';
+  }
+}
+
+async function ensureEngine(stream) {
+  if (engines[stream]) return { engine: engines[stream], assetLoadMs: 0 };
+  if (!enginePromises[stream]) {
     engineStatus.dataset.state = 'loading';
-    engineStatus.textContent = 'Laddar sökdata första gången …';
+    engineStatus.textContent = `Laddar ${STREAM_COPY[stream].name.toLowerCase()}sdata första gången …`;
     const started = performance.now();
-    enginePromise = fetch(MODEL_URL, { cache: 'force-cache' })
+    enginePromises[stream] = fetch(MODEL_URLS[stream], { cache: 'force-cache' })
       .then((response) => {
         if (!response.ok) throw new Error(`Kunde inte ladda sökdata (${response.status}).`);
         return response.json();
       })
       .then((model) => {
-        engine = createSearchEngine(model);
+        const engine = createSearchEngine(model);
+        engines[stream] = engine;
         const assetLoadMs = performance.now() - started;
-        buildVersion.textContent = model.metadata?.build_id || model.engine;
-        engineStatus.dataset.state = 'ready';
-        engineStatus.textContent = 'Sökningen körs lokalt i webbläsaren.';
+        renderEngineStatus(stream);
         return { engine, assetLoadMs };
       })
       .catch((error) => {
-        enginePromise = null;
+        enginePromises[stream] = null;
         engineStatus.dataset.state = 'error';
         engineStatus.textContent = 'Sökdata kunde inte laddas.';
         throw error;
       });
   }
-  return enginePromise;
+  return enginePromises[stream];
+}
+
+function setStreamCopy(stream) {
+  const copy = STREAM_COPY[stream];
+  searchHeading.textContent = copy.heading;
+  descriptionLabel.textContent = copy.fieldLabel;
+  descriptionHelp.textContent = copy.help;
+  searchButtonLabel.textContent = copy.button;
+  resultsHeading.textContent = copy.resultsHeading;
+  resultsIntro.textContent = copy.resultsIntro;
+  resultsList.setAttribute('aria-label', `${copy.name} – sökresultat`);
+  renderEngineStatus(stream);
+}
+
+function hideCurrentResult({ clearDescription = false } = {}) {
+  currentTestId = null;
+  description.removeAttribute('aria-invalid');
+  descriptionError.textContent = '';
+  resultsPanel.hidden = true;
+  newTestButton.hidden = true;
+  feedbackStatus.textContent = '';
+  if (clearDescription) {
+    description.value = '';
+    charCount.textContent = '0 / 1200';
+  }
 }
 
 function setSelectedResult(id) {
@@ -133,11 +226,15 @@ function setSelectedResult(id) {
 }
 
 function renderResults(test) {
+  const stream = test.stream === 'occupation' ? 'occupation' : 'skill';
+  const copy = STREAM_COPY[stream];
+  resultsHeading.textContent = copy.resultsHeading;
+  resultsIntro.textContent = copy.resultsIntro;
   resultsList.replaceChildren();
   if (!test.results.length) {
     const empty = document.createElement('div');
     empty.className = 'empty-results';
-    empty.textContent = 'Vi hittade inga förslag för den beskrivningen. Markera gärna ”Inget stämmer” och skriv vad du förväntade dig.';
+    empty.textContent = copy.empty;
     resultsList.append(empty);
   } else {
     test.results.forEach((result) => {
@@ -162,27 +259,16 @@ function renderResults(test) {
   });
   comment.value = test.comment || '';
   commentCount.textContent = `${comment.value.length} / 1000`;
-  searchTime.textContent = `${test.diagnostics.search_ms.toFixed(1)} ms lokalt`;
+  searchTime.textContent = `${Number(test.diagnostics.search_ms).toFixed(1)} ms lokalt`;
   feedbackStatus.textContent = test.feedback ? 'Bedömningen är sparad lokalt.' : '';
   resultsPanel.hidden = false;
   newTestButton.hidden = false;
 }
 
-function resetComposer() {
-  currentTestId = null;
-  form.reset();
-  description.removeAttribute('aria-invalid');
-  descriptionError.textContent = '';
-  charCount.textContent = '0 / 1200';
-  resultsPanel.hidden = true;
-  newTestButton.hidden = true;
-  feedbackStatus.textContent = '';
-  description.focus();
-}
-
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
   const query = description.value.trim();
+  const stream = activeStream();
   if (query.length < 8) {
     description.setAttribute('aria-invalid', 'true');
     descriptionError.textContent = 'Skriv lite mer så att det finns något att söka på.';
@@ -194,12 +280,12 @@ form.addEventListener('submit', async (event) => {
   searchButton.disabled = true;
 
   try {
-    const loaded = await ensureEngine();
+    const loaded = await ensureEngine(stream);
     const response = loaded.engine.search(query);
     const test = {
       test_id: uid(),
       timestamp: new Date().toISOString(),
-      stream: 'skill',
+      stream,
       description: query,
       results: response.results,
       selected_id: null,
@@ -207,7 +293,7 @@ form.addEventListener('submit', async (event) => {
       comment: '',
       diagnostics: response.diagnostics,
       asset_load_ms: Number(loaded.assetLoadMs.toFixed(3)),
-      engine: 'KV-G1+T3-plain-v1',
+      engine: loaded.engine.name,
       build_id: loaded.engine.metadata?.build_id || null,
       taxonomy_version: loaded.engine.metadata?.taxonomy_version || 31,
     };
@@ -229,6 +315,15 @@ description.addEventListener('input', () => {
     description.removeAttribute('aria-invalid');
     descriptionError.textContent = '';
   }
+});
+
+$$('input[name="stream"]').forEach((input) => {
+  input.addEventListener('change', () => {
+    const stream = activeStream();
+    hideCurrentResult();
+    setStreamCopy(stream);
+    description.focus();
+  });
 });
 
 $$('.feedback-button').forEach((button) => {
@@ -263,16 +358,19 @@ comment.addEventListener('input', () => {
   saveState();
 });
 
-newTestButton.addEventListener('click', resetComposer);
+newTestButton.addEventListener('click', () => {
+  hideCurrentResult({ clearDescription: true });
+  description.focus();
+});
 
 exportButton.addEventListener('click', () => {
   if (!state.tests.length) return;
   const payload = {
-    schema_version: 1,
+    schema_version: 2,
     export_type: 'semantic-fallback-demo-feedback',
     exported_at: new Date().toISOString(),
     session_id: state.session_id,
-    stream: 'skill',
+    stream: 'mixed',
     privacy_note: 'File exported explicitly by tester; demo sends no feedback automatically.',
     tests: state.tests,
   };
@@ -294,9 +392,10 @@ clearButton.addEventListener('click', () => {
   if (!confirm('Rensa alla sparade tester på den här enheten? Det går inte att ångra.')) return;
   state = freshState();
   localStorage.removeItem(STORAGE_KEY);
-  resetComposer();
+  hideCurrentResult({ clearDescription: true });
   renderSession();
   showToast('Testomgången är rensad.');
 });
 
+setStreamCopy(activeStream());
 renderSession();
