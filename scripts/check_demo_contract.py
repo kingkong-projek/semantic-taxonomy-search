@@ -28,6 +28,7 @@ for token in required_html:
 
 for token in (
     'localStorage', 'new Blob', 'URL.createObjectURL',
+    # Stable Pages URL retained even though its engine is no longer the old C2 candidate.
     "occupation: './assets/yv-c2.json'", "skill: './assets/kv-g1-t3.json'",
     "form.addEventListener('submit'", 'const loaded = await ensureEngine(stream);',
     "stream: 'mixed'", "schema_version: 2",
@@ -46,7 +47,7 @@ for token in (
     if token not in css:
         raise RuntimeError(f'missing responsive/accessibility CSS contract: {token}')
 
-for token in ('KV-G1+T3-plain-v1', 'YV-C2-plain-v1', 'Float64Array', 'boundedLevenshtein'):
+for token in ('KV-G1+T3-plain-v1', 'YV-description-full-v0-canonical-router', 'Float64Array', 'boundedLevenshtein'):
     if token not in engine:
         raise RuntimeError(f'browser search engine contract drift: {token}')
 
