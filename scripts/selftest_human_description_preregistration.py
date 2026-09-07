@@ -21,7 +21,7 @@ def expect_failure(label: str, fn) -> None:
 
 def valid_preregistration() -> dict:
     return {
-        'schema_version': 1,
+        'schema_version': 2,
         'study_id': 'contract-selftest',
         'status': 'frozen-before-first-participant',
         'recruitment_source': 'contract self-test only',
@@ -39,6 +39,19 @@ def valid_preregistration() -> dict:
                 'target_or_stopping_rule': 'one schema case',
                 'language_strata': ['sv'],
                 'sector_strata': [],
+            },
+        },
+        'retrieval_freeze': {
+            'repository_commit': '1' * 40,
+            'candidates': {
+                'occupation': {
+                    'candidate_id': 'YV-description-full-v0-canonical-router',
+                    'definition_file': 'research/evaluation/v31/yv-full-universe-description-baseline.json',
+                },
+                'skill': {
+                    'candidate_id': 'KV-G1+T3',
+                    'definition_file': 'research/evaluation/v31/kv-g1-t3-simple-boundary.json',
+                },
             },
         },
         'inclusion_criteria': ['synthetic schema fixture only'],
@@ -100,6 +113,9 @@ def main() -> int:
         )
         assert result['preregistration_status'] == 'frozen-before-first-participant'
         assert result['production_funnel_present'] is True
+        assert result['retrieval_repository_commit'] == '1' * 40
+        assert result['retrieval_candidates']['occupation']['candidate_id'] == 'YV-description-full-v0-canonical-router'
+        assert result['retrieval_candidates']['skill']['candidate_id'] == 'KV-G1+T3'
 
         expect_failure(
             'manifest must not be overwritten',
@@ -122,6 +138,27 @@ def main() -> int:
                 adjudication_path,
                 manifest_path,
             ),
+        )
+
+        tampered_candidate = valid_preregistration()
+        tampered_candidate['retrieval_freeze']['repository_commit'] = '2' * 40
+        preregistration_path.write_text(json.dumps(tampered_candidate, indent=2) + '\n', encoding='utf-8')
+        expect_failure(
+            'retrieval candidate commit is transitively frozen by preregistration hash',
+            lambda: verifier.verify(
+                preregistration_path,
+                elicitation_path,
+                adjudication_path,
+                manifest_path,
+            ),
+        )
+
+        wrong_candidate = valid_preregistration()
+        wrong_candidate['retrieval_freeze']['candidates']['occupation']['candidate_id'] = 'YV-description-full-v0-wrong'
+        preregistration_path.write_text(json.dumps(wrong_candidate, indent=2) + '\n', encoding='utf-8')
+        expect_failure(
+            'enabled stream must name the frozen occupation candidate',
+            lambda: verifier.validate_preregistration(preregistration_path),
         )
 
     print('human-description preregistration binding self-test: PASS')
