@@ -2,9 +2,11 @@ name: Patch current Track2 SSOT once
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
     paths:
-      - '.github/workflows/patch-track2-ssot-once.yml'
+      - scripts/patch_track2_ssot_once.py
+      - .github/workflows/patch-track2-ssot-once.yml
   workflow_dispatch:
 
 permissions:
@@ -12,7 +14,10 @@ permissions:
 
 jobs:
   patch:
-    runs-on: [self-hosted, Linux, X64]
+    runs-on:
+      - self-hosted
+      - Linux
+      - X64
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
@@ -21,40 +26,16 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Patch only the current Track2 decision paragraph
+      - name: Patch SSOT
+        run: python scripts/patch_track2_ssot_once.py
+      - name: Validate patch
+        run: git diff --check
+      - name: Commit SSOT
+        shell: bash
         run: |
-          python - <<'PY'
-          from pathlib import Path
-          p=Path('docs/research-plan.md')
-          text=p.read_text()
-          old_date='**Last updated:** 2026-09-06  '
-          if old_date not in text:
-              raise SystemExit('expected last-updated marker not found')
-          text=text.replace(old_date,'**Last updated:** 2026-09-07  ',1)
-          old='''Current Track-2 result: occupation discovery remains on the simple deterministic C2 boundary because no measured fresh-holdout residual has justified more complexity. Skill discovery has a new independently validated candidate, **`KV-G1-4slot`**: keep canonical C0 at rank 1, then admit up to four candidates from a second deterministic BM25 lane enriched only with other human-mapped AF labour-market-training descriptions. On the first 35-case natural-description holdout, Discovery Hit@5 improves from **31.429% to 88.571%**. On a separately frozen 20-case blind holdout, it improves from **30.0% to 85.0%** (occurrence-proxy weighted **19.639% to 89.331%**) while the frozen 617-case canonical regression remains **100% top-1 and 100% Hit@5**. This is evidence for capability on measured source-attested descriptions, not a production-traffic accuracy claim.
-
-Evidence: `docs/findings/skill-training-language-validated-v31.md` and `research/evaluation/v31/skill-training-language-validated.json`.'''
-          new='''Current Track-2 result: occupation discovery remains on the simple deterministic C2 boundary because no measured fresh-holdout residual has justified more complexity. For skills, **`KV-G1-4slot` remains the independently source-attested base**, while the strongest current low-complexity research candidate is **`KV-G1+T3`**: preserve canonical C0 rank 1, admit one unique candidate from the existing G1 BM25 lane, then admit three unique candidates from a second BM25 view containing the same G1 evidence plus three frozen teacher phrases per P80 skill. Runtime still uses no language model, embeddings/vector index, learned reranker, score calibration or query classifier.
-
-Across the three source-attested AF description sets, G1 reaches **68/81 Hit@5 (83.95%)** and the later G1+T3 candidate reaches **71/81 (87.65%)**, with the canonical guard still **617/617 Top1 and Hit@5**. Those 81 AF cases were already opened during later teacher/fusion development, so 71/81 is development/safety evidence rather than a new blind human accuracy estimate. The final untouched P80 slice, ranks 301–316, was frozen in the order candidate → teacher phrases → queries → retrieval: G1 reaches **2/16**, while plain G1+T3 reaches **11/16 Hit@5**. That slice is temporally prefrozen and target-disjoint but model-authored, so it is generalization/falsification evidence rather than independent user accuracy.
-
-The complexity boundary is now explicit. Teacher-only/C0+teacher representations and a character-4gram lane failed to earn their cost. Removing pure numeric tokens from expansion documents and queries was **rejected** after the prefrozen final gate exposed a new `Svetsteknik` regression from rank 5 to 215 through BM25 document-length normalization. A still smaller query-only integer filter is favorable on already-opened data (71/81 → 72/81, zero opened Hit@5 regressions, canonical 617/617), but **must not be promoted**: a source-only blinded builder found zero remaining unused AF cases satisfying the prefrozen quality/independence criteria and containing a pure integer token. Do not weaken those criteria or manufacture post-hoc synthetic validation.
-
-Therefore **plain G1+T3 is the current simple research boundary and no higher model class is justified now**. Stop retrieval micro-optimization until new independent human/user evidence or a measured product failure identifies a material residual. The next evidence priority is the bounded product hypothesis itself: whether users who fail ordinary lexical lookup can describe tasks/tools/methods/responsibilities well enough to recognise and select the intended canonical candidate from a small fallback result set.
-
-Evidence: `docs/findings/skill-training-language-validated-v31.md`, `research/evaluation/v31/skill-training-language-validated.json`, `docs/findings/kv-g1-t3-simple-boundary-v31.md`, `research/evaluation/v31/kv-g1-t3-simple-boundary.json` and `research/evaluation/v31/kv-query-only-numeric-validation-boundary.json`.'''
-          if text.count(old)!=1:
-              raise SystemExit(f'expected exactly one stale Track2 paragraph, got {text.count(old)}')
-          text=text.replace(old,new,1)
-          p.write_text(text)
-          PY
-          git diff --check
-          git diff -- docs/research-plan.md
-      - name: Commit SSOT patch
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git config user.name github-actions-bot
+          git config user.email github-actions-bot@users.noreply.github.com
           git add docs/research-plan.md
-          git diff --cached --quiet && exit 0
+          if git diff --cached --quiet; then exit 0; fi
           git commit -m 'docs: sync Track2 simple retrieval boundary'
           git push origin HEAD:main
