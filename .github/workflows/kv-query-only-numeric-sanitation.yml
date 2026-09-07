@@ -1,0 +1,31 @@
+name: KV query-only numeric sanitation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/evaluate_kv_query_only_numeric_sanitation.py'
+      - '.github/workflows/kv-query-only-numeric-sanitation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compare current vs query-only numeric sanitation
+        run: python scripts/evaluate_kv_query_only_numeric_sanitation.py
+      - name: Upload development ablation
+        uses: actions/upload-artifact@v4
+        with:
+          name: kv-query-only-numeric-sanitation-v31
+          path: artifacts/kv-query-only-numeric-sanitation-v31.json
+          if-no-files-found: error
+          retention-days: 30
