@@ -1,0 +1,50 @@
+name: Model2Vec tournament D0
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/evaluate_model2vec_tournament_d0.py
+      - scripts/evaluate_compile_time_tournament_round0.py
+      - research/evaluation/v31/opened-live-semantic-stress-v1.json
+      - research/enrichment/v31/model-teacher-kv-top100/phrases.jsonl
+      - research/enrichment/v31/model-teacher-kv-ranks101-200/phrases.jsonl
+      - research/enrichment/v31/model-teacher-kv-ranks201-300/phrases.jsonl
+      - research/enrichment/v31/model-teacher-kv-ranks301-316/phrases.jsonl
+      - .github/workflows/model2vec-tournament-d0.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: model2vec-tournament-d0-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pinned research dependencies
+        run: python -m pip install --disable-pip-version-check 'model2vec[distill]==0.9.0' 'zstandard==0.23.0' 'sentence-transformers==3.4.1'
+      - name: Compile-check D0
+        run: python -m py_compile scripts/evaluate_model2vec_tournament_d0.py
+      - name: Evaluate D0
+        env:
+          TOKENIZERS_PARALLELISM: "false"
+        run: python scripts/evaluate_model2vec_tournament_d0.py
+      - name: Upload D0 result
+        uses: actions/upload-artifact@v4
+        with:
+          name: model2vec-tournament-d0-v31
+          path: |
+            artifacts/model2vec-tournament-d0-v31.json
+            artifacts/model2vec-tournament-d0-model/
+            artifacts/model2vec-tournament-d0-model.tar.gz
+          if-no-files-found: error
+          retention-days: 30
