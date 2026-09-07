@@ -1,6 +1,6 @@
 {
-  "schema_version": 4,
-  "status": "skill_collection_ready_occupation_candidate_not_frozen",
+  "schema_version": 5,
+  "status": "candidates_frozen_preregistration_pending",
   "study_id": "description-fallback-human-v1",
   "research_question": "When ordinary lexical YV/KV lookup is insufficient, can users express their work or competence in ordinary language well enough for a stream-specific simple deterministic fallback candidate to surface a canonical result they recognize and a blind taxonomy adjudicator accepts?",
   "non_claims": [
@@ -13,14 +13,18 @@
   "streams": {
     "occupation": {
       "entrypoint": "Beskriv vad du gör i jobbet",
-      "candidate": "YV-description-full-v0 research build over all active occupation-name identities; it must be evaluated and frozen before occupation participant collection; the current 165-target C2 remains a regression/demo reference only",
-      "collection_status": "blocked_until_full_universe_candidate_is_evaluated_and_frozen",
+      "candidate_id": "YV-description-full-v0-canonical-router",
+      "candidate_definition": "research/evaluation/v31/yv-full-universe-description-baseline.json",
+      "candidate": "all 2,105 active v31 occupation-name identities ranked from canonical preferred label + real definition + canonical alternative labels, plus privileged exact active job-title to typed occupation-parent routing; AF ad-language and Relevanta-kompetenser lanes remain diagnostic-only",
+      "collection_status": "ready_once_preregistration_is_frozen",
       "adjudication_identity": "all active v31 occupation-name identities; do not force job-title context or nearest concept",
       "demand_envelope": "all 2,105 active v31 occupation-name identities; historical P80 membership is a demand-priority stratum, not an eligibility or capability boundary",
       "must_not_infer_from": "KV-G1+T3 results"
     },
     "skill": {
       "entrypoint": "Beskriv vad du kan eller gör",
+      "candidate_id": "KV-G1+T3",
+      "candidate_definition": "research/evaluation/v31/kv-g1-t3-simple-boundary.json",
       "candidate": "plain KV-G1+T3 as frozen in research/evaluation/v31/kv-g1-t3-simple-boundary.json",
       "collection_status": "ready_once_preregistration_is_frozen",
       "adjudication_identity": "skill concept identity",
@@ -29,33 +33,46 @@
     }
   },
   "evidence_order": [
-    "preregistration is completed, placeholder-free, committed and frozen before the first real participant",
+    "preregistration is completed, placeholder-free, pins the exact retrieval repository commit and frozen stream candidate ids, and is committed before the first real participant",
     "participant description captured without retrieval output and without example text naming or strongly cueing a target",
     "description plus minimal non-sensitive metadata frozen",
     "at least one taxonomy-domain adjudicator maps the description to zero, one or multiple acceptable canonical identities while blind to retrieval output; uncertain/unmappable is a valid outcome",
     "adjudication frozen with per-target demand-envelope membership",
-    "manifest records SHA-256 hashes of preregistration, elicitation and adjudication before retrieval",
-    "ordinary lexical baseline and the frozen stream-specific simple fallback candidate are run",
+    "manifest records SHA-256 hashes of preregistration, elicitation and adjudication before retrieval; the preregistration hash transitively freezes the pinned retrieval commit and candidate definitions",
+    "ordinary lexical baseline and the preregistered frozen stream-specific simple fallback candidate are run from the pinned repository commit",
     "participant may then inspect fallback candidate labels and record recognize/select/none",
     "only after outcome freeze may residuals be classified"
   ],
   "preregistration": {
+    "schema_version": 2,
     "template": "research/human/description-fallback-v1/preregistration-template.json",
     "frozen_file": "research/human/description-fallback-v1/preregistration.json",
     "required_status": "frozen-before-first-participant",
     "must_be_placeholder_free": true,
     "must_precede_first_real_participant": true,
+    "retrieval_candidate_binding": {
+      "repository_commit_format": "40-character lowercase hex Git commit",
+      "manifest_binding": "transitive via preregistration_sha256",
+      "required_stream_fields": [
+        "candidate_id",
+        "definition_file"
+      ],
+      "occupation_candidate_id": "YV-description-full-v0-canonical-router",
+      "skill_candidate_id": "KV-G1+T3"
+    },
     "decision_bearing_fields_include": [
       "recruitment source",
       "sampling mode",
       "sample size or stopping rule",
       "enabled occupation/skill streams and strata",
+      "exact retrieval repository commit and frozen candidate id/definition file for each enabled stream",
       "inclusion/exclusion rules",
       "adjudicator count and conflict resolution",
       "need/prevalence lexical-failure definition if measured",
       "data-handling basis and repository redaction process"
     ],
-    "changing_decision_rules_after_retrieval": "starts a new study version; never silently rewrites the frozen study"
+    "changing_decision_rules_after_retrieval": "starts a new study version; never silently rewrites the frozen study",
+    "changing_retrieval_candidate_after_retrieval": "starts a new study version; never silently swaps the candidate behind an existing frozen manifest"
   },
   "freeze_binding": {
     "manifest_schema_version": 2,
@@ -65,6 +82,7 @@
       "elicitation_sha256",
       "adjudication_sha256"
     ],
+    "retrieval_candidate_binding": "preregistration_sha256 transitively binds retrieval_freeze.repository_commit and stream candidate ids/definition files",
     "frozen_before_retrieval": true,
     "freeze_tool": "scripts/freeze_human_description_study_manifest.py",
     "verification_tool": "scripts/verify_human_description_study.py",
