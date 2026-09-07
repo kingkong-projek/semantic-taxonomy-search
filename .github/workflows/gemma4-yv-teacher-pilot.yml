@@ -1,0 +1,38 @@
+name: Gemma 4 YV teacher pilot
+
+on:
+  push:
+    paths:
+      - scripts/generate_gemma4_yv_teacher_pilot.py
+      - .github/workflows/gemma4-yv-teacher-pilot.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pilot:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile-check pilot
+        run: python -m py_compile scripts/generate_gemma4_yv_teacher_pilot.py
+      - name: Generate 8 public-data pilot concepts conservatively
+        run: >-
+          python scripts/generate_gemma4_yv_teacher_pilot.py
+          --cases 8
+          --requests-per-minute 3
+          --output artifacts/gemma4-yv-teacher-pilot.jsonl
+      - name: Upload pilot corpus
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gemma4-yv-teacher-pilot
+          path: artifacts/gemma4-yv-teacher-pilot.jsonl
+          if-no-files-found: warn
