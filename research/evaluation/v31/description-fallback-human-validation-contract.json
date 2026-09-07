@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "status": "prefrozen_before_human_data_collection",
+  "study_id": "description-fallback-human-v1",
+  "research_question": "When ordinary lexical YV/KV lookup is insufficient, can users express their work or competence in ordinary language well enough for the existing simple deterministic fallback candidate to surface a canonical result they recognize and a blind taxonomy adjudicator accepts?",
+  "non_claims": [
+    "semantic fallback is generally needed",
+    "users usually do not know taxonomy vocabulary",
+    "KV evidence transfers to occupation discovery",
+    "model-authored descriptions are user evidence"
+  ],
+  "streams": {
+    "occupation": {
+      "entrypoint": "Beskriv vad du gör i jobbet",
+      "candidate": "current frozen simple C2 occupation-description boundary; ordinary lexical YV remains primary",
+      "adjudication_identity": "current selectable occupation-name identities; do not force job-title context or nearest concept",
+      "demand_envelope": "record whether each independently adjudicated acceptable target is inside the frozen occupation P80 envelope; report in-envelope retrieval separately from out-of-envelope coverage",
+      "must_not_infer_from": "KV-G1+T3 results"
+    },
+    "skill": {
+      "entrypoint": "Beskriv vad du kan eller gör",
+      "candidate": "plain KV-G1+T3 as frozen in research/evaluation/v31/kv-g1-t3-simple-boundary.json",
+      "adjudication_identity": "skill concept identity",
+      "demand_envelope": "316 frozen P80 skills; do not coerce an independently adjudicated out-of-envelope skill to the nearest P80 target",
+      "must_not_promote": "query-only numeric sanitation or any higher-complexity candidate"
+    }
+  },
+  "evidence_order": [
+    "participant description captured without retrieval output and without example text naming or strongly cueing a target",
+    "description plus minimal task context frozen",
+    "at least one taxonomy-domain adjudicator maps the description to zero, one or multiple acceptable canonical identities while blind to retrieval output; uncertain/unmappable is a valid outcome",
+    "adjudication frozen",
+    "ordinary lexical baseline and frozen simple fallback candidate are run",
+    "participant may then inspect candidate labels and record recognize/select/none",
+    "only after outcome freeze may residuals be classified"
+  ],
+  "elicitation": {
+    "occupation_prompt": "Beskriv vad du gör eller gjorde på jobbet utan att skriva yrkestiteln. Beskriv arbetsuppgifter, verktyg eller system, arbetsmiljö och ansvar som känns viktiga.",
+    "skill_prompt": "Beskriv en konkret kompetens du använder i arbete utan att skriva namnet på kompetensen. Berätta vad du gör, med vilka verktyg eller metoder och vilket resultat du försöker uppnå.",
+    "examples_in_primary_benchmark": false,
+    "reason_no_examples": "example text can anchor vocabulary and contaminate the measurement of whether users can naturally express the need",
+    "minimum_information_rule": "do not coach a participant toward a taxonomy term after submission; if the description is insufficient, mark clarification-needed instead of silently enriching it"
+  },
+  "case_fields": [
+    "case_id",
+    "stream",
+    "pseudonymous_participant_id",
+    "raw_description_or_approved_redaction",
+    "language",
+    "self_reported_title_known_yes_no_optional",
+    "lexical_attempt_before_fallback_optional",
+    "adjudication_status",
+    "acceptable_canonical_ids",
+    "in_frozen_demand_envelope",
+    "clarification_needed",
+    "lexical_top5_ids",
+    "fallback_top5_ids",
+    "participant_recognized_ids",
+    "participant_selected_id_or_none"
+  ],
+  "primary_metrics": {
+    "need": [
+      "fraction of observed lexical-failure/retry cases for which the user voluntarily chooses or says they would use description fallback",
+      "fraction of submitted descriptions adjudicated as sufficiently informative without clarification",
+      "fraction whose acceptable target is inside the frozen demand envelope"
+    ],
+    "capability": [
+      "adjudicated acceptable-target Hit@5 on sufficiently-informative in-envelope cases",
+      "paired Hit@5 delta versus ordinary lexical baseline on the same descriptions",
+      "participant recognition@5 and successful selection/none rate",
+      "clarification-needed rate"
+    ],
+    "residual_classification": [
+      "insufficient description",
+      "taxonomy ambiguity",
+      "target outside frozen demand envelope",
+      "source/evidence coverage gap",
+      "retrieval/ranking miss despite adequate in-envelope evidence",
+      "participant rejects adjudicator mapping",
+      "UI/discoverability failure"
+    ]
+  },
+  "reporting_rules": [
+    "occupation and skill results are never pooled into one accuracy number",
+    "report numerator/N and Wilson interval for proportions; do not inflate N with occurrence weights",
+    "report unique participants and unique adjudicated target identities alongside query count",
+    "ambiguous cases with multiple defensible canonical targets use an acceptable target set rather than forcing one label",
+    "unmappable and out-of-envelope cases remain visible in the denominator of need/coverage reporting even when excluded from in-envelope retrieval accuracy",
+    "synthetic/model-authored cases may be used only for regression tests, never to satisfy the human evidence gate"
+  ],
+  "complexity_escalation_gate": {
+    "default": "do not test embeddings/neural reranking merely because one human case misses",
+    "required_before_higher_model_class": [
+      "independent human descriptions are frozen before retrieval",
+      "the acceptable target is adjudicated and inside the current envelope",
+      "the description contains adequate discriminating evidence",
+      "plain simple candidate materially misses across multiple independent cases and target identities",
+      "residual review shows the dominant cause is retrieval semantics rather than taxonomy ambiguity, missing source evidence, UI wording or coverage",
+      "a higher-complexity candidate is then frozen before a new independent holdout"
+    ]
+  },
+  "product_separation": {
+    "primary_lexical_path": "must remain available and privileged for users who know a title/skill term",
+    "fallback": "secondary explicit route; no claim that semantic interpretation should replace ordinary YV/KV",
+    "occupation_plus_location_omnibox": "separate product hypothesis; commuting-municipality parsing/search must not be conflated with semantic occupation classification",
+    "example_modal_test": "separate UX experiment after the no-example expressibility benchmark; examples must be diverse and must not be used to create retrieval ground truth"
+  },
+  "privacy": {
+    "instruction": "participants should not include names, personal identifiers, employer identifiers or unnecessary sensitive personal information",
+    "participant_ids": "pseudonymous",
+    "production_telemetry": "do not store raw free text by default merely to compute funnel metrics; raw research text requires an explicit approved study/data-handling basis",
+    "reporting": "publish only aggregated metrics and carefully redacted examples"
+  },
+  "stop_rules": [
+    "if people cannot naturally provide sufficiently informative descriptions, improve or reconsider the interaction before retrieval complexity",
+    "if most failures are out-of-envelope/source/taxonomy problems, do not solve them with a larger retrieval model",
+    "if simple fallback does not materially improve over lexical baseline on independent human cases, do not ship it merely because synthetic benchmarks are strong",
+    "if simple fallback is already sufficient on independent human evidence, stop model work and focus on discoverability, calibration and safe integration"
+  ]
+}
