@@ -109,11 +109,14 @@ def validate_phrases(text: str) -> list[str]:
         value = json.loads(text)
     except json.JSONDecodeError as exc:
         raise RuntimeError(f"Gemma JSON MIME response was not valid JSON: {text[:700]!r}") from exc
-    if not isinstance(value, dict):
-        raise RuntimeError(f"expected JSON object, got {type(value).__name__}")
-    phrases = value.get("phrases")
+    if isinstance(value, dict):
+        phrases = value.get("phrases")
+    elif isinstance(value, list):
+        phrases = value
+    else:
+        raise RuntimeError(f"expected JSON object or array, got {type(value).__name__}")
     if not isinstance(phrases, list) or len(phrases) != 8:
-        raise RuntimeError(f"expected phrases[8], got {type(phrases).__name__}/{len(phrases) if isinstance(phrases, list) else 'n/a'}")
+        raise RuntimeError(f"expected 8 phrases, got {type(phrases).__name__}/{len(phrases) if isinstance(phrases, list) else 'n/a'}")
     out = [str(x).strip() for x in phrases]
     if any(not x for x in out):
         raise RuntimeError("teacher returned blank phrase")
