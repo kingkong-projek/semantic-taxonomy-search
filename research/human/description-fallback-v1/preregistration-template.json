@@ -27,14 +27,14 @@
   },
   "adjudication": {
     "instructions": "research/human/description-fallback-v1/adjudicator-instructions.md",
-    "reviewers_per_case": "REPLACE",
+    "reviewers_per_case": "REPLACE_WITH_INTEGER",
     "conflict_resolution": "REPLACE",
     "retrieval_blind": true,
     "cases_used_to_justify_higher_model_complexity_need_stronger_review": true
   },
   "need_prevalence": {
     "production_funnel_enabled": false,
-    "lexical_failure_definition": "REPLACE_OR_EXPLICITLY_MARK_NOT_MEASURED",
+    "lexical_failure_definition": "NOT_MEASURED_IN_THIS_STUDY_OR_REPLACE_WITH_PREFROZEN_DEFINITION",
     "raw_free_text_required": false
   },
   "data_handling": {
@@ -44,8 +44,7 @@
   },
   "freeze": {
     "frozen_at": null,
-    "frozen_by": null,
-    "sha256": null
+    "frozen_by": null
   },
-  "instruction": "Replace every required REPLACE value, freeze this preregistration before the first real participant, and create a new study version if decision-bearing rules change after retrieval is seen."
+  "instruction": "Replace every required placeholder, set status to frozen-before-first-participant, set freeze metadata, commit this as preregistration.json before the first real participant, and create a new study version if decision-bearing rules change after retrieval is seen."
 }

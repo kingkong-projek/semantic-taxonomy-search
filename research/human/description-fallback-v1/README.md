@@ -10,7 +10,9 @@ The capability study uses three ordered exports:
 2. `adjudication.jsonl` — blind taxonomy review, still before retrieval.
 3. `outcomes.jsonl` — lexical/fallback results and participant recognition/selection, only after the first two exports are frozen.
 
-A study `manifest.json` must record SHA-256 hashes of the frozen elicitation and adjudication files before outcomes are produced.
+Before the first real participant, copy `preregistration-template.json` to `preregistration.json`, replace every placeholder, set `status` to `frozen-before-first-participant`, set freeze metadata, review it, and commit it. Do not start collection from the template itself.
+
+After elicitation and blind adjudication are frozen, create `manifest.json` with the repository tool. The manifest binds three SHA-256 values: preregistration, elicitation and adjudication. Retrieval must not run before that manifest exists.
 
 Raw identifiable research material is **not** automatically a repository artifact. Repository-bound text must be approved/redacted. Production telemetry must not copy raw free text here merely to measure uptake.
 
@@ -26,7 +28,7 @@ Production prevalence requires an aggregate denominator such as:
 - fallback submissions;
 - selections / `none`.
 
-Those funnel counts do not require raw free text. A recruited or prompted human study may report stated willingness/usefulness, but must not label that as production uptake or prevalence.
+Those funnel counts do not require raw free text. A recruited or prompted human study may report stated willingness/usefulness, but must not label that as production uptake or prevalence. Format: `need-funnel-format.md`.
 
 ## Elicitation record
 
@@ -59,9 +61,23 @@ Status invariants:
 
 Envelope membership is stored **per target**. This matters when an ambiguous description has one defensible identity inside P80 and another outside it. Never invent a single target merely to make Hit@5 calculable.
 
+## Freeze before retrieval
+
+Create the manifest only after preregistration, elicitation and blind adjudication are final:
+
+```bash
+python scripts/freeze_human_description_study_manifest.py \
+  --preregistration <path>/preregistration.json \
+  --elicitation <path>/elicitation.jsonl \
+  --adjudication <path>/adjudication.jsonl \
+  --output <path>/manifest.json
+```
+
+The freeze tool refuses to overwrite an existing manifest.
+
 ## Outcome record
 
-Only after elicitation/adjudication hashes are frozen:
+Only after the manifest exists:
 
 - `case_id`.
 - `lexical_top5_ids`.
@@ -72,24 +88,27 @@ Only after elicitation/adjudication hashes are frozen:
 
 Occupation and skill outcomes are reported separately.
 
-## Validation
+## Verification
 
-Run:
+Verify the complete frozen chain:
 
 ```bash
-python scripts/validate_human_description_study.py \
+python scripts/verify_human_description_study.py \
+  --preregistration <path>/preregistration.json \
   --elicitation <path>/elicitation.jsonl \
   --adjudication <path>/adjudication.jsonl \
   --manifest <path>/manifest.json \
-  [--outcomes <path>/outcomes.jsonl]
+  [--outcomes <path>/outcomes.jsonl] \
+  [--funnel <path>/need-funnel.json]
 ```
 
-The validator enforces stage separation, hash freezes, unique IDs, per-target envelope semantics and adjudication/outcome invariants. It also rejects obvious email addresses and Swedish-style phone-number patterns in repository-bound description text. That regex guard is only a backstop, not a privacy review.
+The staged validator enforces stage separation, hash freezes, unique IDs, per-target envelope semantics and adjudication/outcome invariants. The wrapper additionally proves that the manifest is bound to the frozen preregistration. It also rejects obvious email addresses and Swedish-style phone-number patterns in repository-bound description text. That regex guard is only a backstop, not a privacy review.
 
 Contract self-test fixtures are generated only in a temporary directory and are never research evidence:
 
 ```bash
 python scripts/selftest_human_description_study.py
+python scripts/selftest_human_description_preregistration.py
 ```
 
 Protocol and decision rules live in `docs/findings/description-fallback-human-validation-protocol-v31.md` and `research/evaluation/v31/description-fallback-human-validation-contract.json`.

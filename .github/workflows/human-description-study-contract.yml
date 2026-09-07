@@ -5,7 +5,10 @@ on:
     branches: [main]
     paths:
       - 'scripts/validate_human_description_study.py'
+      - 'scripts/verify_human_description_study.py'
+      - 'scripts/freeze_human_description_study_manifest.py'
       - 'scripts/selftest_human_description_study.py'
+      - 'scripts/selftest_human_description_preregistration.py'
       - 'research/human/description-fallback-v1/**'
       - 'research/evaluation/v31/description-fallback-human-validation-contract.json'
       - 'docs/findings/description-fallback-human-validation-protocol-v31.md'
@@ -24,7 +27,15 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Compile validator
-        run: python -m py_compile scripts/validate_human_description_study.py scripts/selftest_human_description_study.py
+      - name: Compile study tools
+        run: |
+          python -m py_compile \
+            scripts/validate_human_description_study.py \
+            scripts/verify_human_description_study.py \
+            scripts/freeze_human_description_study_manifest.py \
+            scripts/selftest_human_description_study.py \
+            scripts/selftest_human_description_preregistration.py
       - name: Run staged-contract self-test
         run: python scripts/selftest_human_description_study.py
+      - name: Run preregistration-binding self-test
+        run: python scripts/selftest_human_description_preregistration.py
