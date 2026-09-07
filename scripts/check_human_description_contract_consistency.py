@@ -16,8 +16,26 @@ def main() -> int:
         raise RuntimeError('human validation contract schema_version must be 4')
     if obj.get('study_id') != 'description-fallback-human-v1':
         raise RuntimeError('unexpected human validation study_id')
-    if obj.get('status') != 'collection_ready_preregistration_not_frozen':
-        raise RuntimeError('structured contract must reflect current no-data preregistration state')
+    if obj.get('status') != 'skill_collection_ready_occupation_candidate_not_frozen':
+        raise RuntimeError('structured contract must reflect the blocked occupation/full-universe candidate state')
+
+    streams = obj.get('streams')
+    if not isinstance(streams, dict):
+        raise RuntimeError('contract streams section missing')
+    occupation = streams.get('occupation')
+    skill = streams.get('skill')
+    if not isinstance(occupation, dict) or not isinstance(skill, dict):
+        raise RuntimeError('contract must define occupation and skill streams')
+    if occupation.get('collection_status') != 'blocked_until_full_universe_candidate_is_evaluated_and_frozen':
+        raise RuntimeError('occupation collection must remain blocked until the full-universe candidate is frozen')
+    if 'YV-description-full-v0' not in str(occupation.get('candidate', '')):
+        raise RuntimeError('occupation stream must name the full-universe YV research candidate')
+    if '2,105 active v31 occupation-name identities' not in str(occupation.get('demand_envelope', '')):
+        raise RuntimeError('occupation capability universe must be all active v31 occupation-name identities')
+    if 'P80 membership is a demand-priority stratum' not in str(occupation.get('demand_envelope', '')):
+        raise RuntimeError('occupation P80 must be a demand stratum rather than a capability boundary')
+    if skill.get('collection_status') != 'ready_once_preregistration_is_frozen':
+        raise RuntimeError('skill collection status drift')
 
     prereg = obj.get('preregistration')
     if not isinstance(prereg, dict):
@@ -56,6 +74,10 @@ def main() -> int:
         raise RuntimeError('structured contract must keep primary benchmark example-free')
     if set(elicitation.get('entry_modes', [])) != {'observed-voluntary', 'observed-offered', 'study-prompted'}:
         raise RuntimeError('structured contract entry modes drift')
+
+    adjudication = obj.get('adjudication', {})
+    if 'every valid active v31 occupation-name target' not in str(adjudication.get('stream_rule', '')):
+        raise RuntimeError('occupation adjudication must treat the full active target universe as capability-eligible')
 
     outcomes = obj.get('outcomes', {})
     recognition_rule = outcomes.get('recognition_rule', '')
