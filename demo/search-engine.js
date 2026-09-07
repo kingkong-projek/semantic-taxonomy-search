@@ -259,34 +259,34 @@ function createYvEngine(model) {
         scored.push([score, ids[index]]);
       }
       scored.sort((a, b) => (b[0] - a[0]) || compareCodepoint(a[1], b[1]));
-      const c1Ranked = scored.map((row) => row[1]);
-      const c1Positions = rankPositions(c1Ranked);
-      const c1Scores = new Map(scored.map(([score, id]) => [id, score]));
-      const exactCanonical = c1Ranked.filter((id) => exactSet.has(idToIndex.get(id)));
+      const canonicalRanked = scored.map((row) => row[1]);
+      const canonicalPositions = rankPositions(canonicalRanked);
+      const canonicalScores = new Map(scored.map(([score, id]) => [id, score]));
+      const exactCanonical = canonicalRanked.filter((id) => exactSet.has(idToIndex.get(id)));
       const routed = model.job_title_routes[normalized] || [];
       const routedSet = new Set(routed);
       const merged = [];
-      for (const id of [...exactCanonical, ...routed, ...c1Ranked]) {
+      for (const id of [...exactCanonical, ...routed, ...canonicalRanked]) {
         if (!merged.includes(id)) merged.push(id);
       }
       const rankedIds = merged.slice(0, 5);
       const results = rankedIds.map((id, index) => {
         const modelIndex = idToIndex.get(id);
-        const inC1 = modelIndex !== undefined;
-        const supportTerms = inC1
-          ? supportTermsForIndex(model, uniqueTokens, modelIndex, { c1: 1 }).c1
+        const inCanonical = modelIndex !== undefined;
+        const supportTerms = inCanonical
+          ? supportTermsForIndex(model, uniqueTokens, modelIndex, { canonical: 1 }).canonical
           : [];
         return {
           rank: index + 1,
           id,
           label: labelsById[id] || id,
           retrieval_debug: {
-            c2_job_title_route: routedSet.has(id),
-            c1_rank: c1Positions.get(id) || null,
-            c1_score: finiteScore(c1Scores.get(id) || 0),
+            job_title_route: routedSet.has(id),
+            canonical_rank: canonicalPositions.get(id) || null,
+            canonical_score: finiteScore(canonicalScores.get(id) || 0),
             support_terms: supportTerms,
-            exact_canonical_surface: inC1 && exactSet.has(modelIndex),
-            short_query_surface_signal: inC1 && shortQuery ? Number(surfaceSignals[modelIndex]) : null,
+            exact_canonical_surface: inCanonical && exactSet.has(modelIndex),
+            short_query_surface_signal: inCanonical && shortQuery ? Number(surfaceSignals[modelIndex]) : null,
           },
         };
       });
@@ -312,6 +312,6 @@ export function createSearchEngine(model) {
     throw new Error('Ogiltig eller inkompatibel sökmodell.');
   }
   if (model.engine === 'KV-G1+T3-plain-v1') return createKvEngine(model);
-  if (model.engine === 'YV-C2-plain-v1') return createYvEngine(model);
+  if (model.engine === 'YV-description-full-v0-canonical-router') return createYvEngine(model);
   throw new Error(`Okänd sökmotor: ${String(model.engine || 'saknas')}`);
 }
