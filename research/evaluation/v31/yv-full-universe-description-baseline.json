@@ -69,6 +69,23 @@
     "c2_to_full_rank_improvements": 0,
     "interpretation": "Full-universe expansion preserves every frozen canonical YV source-truth rank exactly. This is a representation/regression guard, not natural-description accuracy."
   },
+  "full_universe_job_title_router_regression": {
+    "workflow_run_id": 34118874430,
+    "artifact_id": 10017370535,
+    "artifact_zip_sha256": "9375bb3439e1783ba000d15845d68d89ab8c61721be7118a316fe34b799a4f2d",
+    "sentinel": "frozen previously-unseen excluded-title ranks 21-50",
+    "cases": 30,
+    "observed_volume": 7205252,
+    "route_set_drift_rows": 0,
+    "foreign_exact_canonical_collision_rows": 0,
+    "any_parent_hit_at_5_pct": 100.0,
+    "volume_weighted_any_parent_hit_at_5_pct": 100.0,
+    "all_typed_parents_visible_at_5_pct": 80.0,
+    "volume_weighted_all_typed_parents_visible_at_5_pct": 79.049,
+    "mean_typed_parent_recall_at_5_pct": 92.395,
+    "volume_weighted_typed_parent_recall_at_5_pct": 93.22,
+    "interpretation": "Expanding canonical occupation candidates to all 2,105 identities introduces no exact-surface collision ahead of the typed route and preserves the independent C2 sentinel routing metrics."
+  },
   "opened_source_attested_description_diagnostic": {
     "query_source": "Yrkesinformation work_task, evaluation-only; only uniquely explicit active v31 occupation IDs; target occupation/alternative/job-title surface leakage excluded by normalized token-sequence matching",
     "cases": 17,
