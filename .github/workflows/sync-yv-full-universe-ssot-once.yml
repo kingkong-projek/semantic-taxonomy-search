@@ -1,0 +1,66 @@
+name: Sync YV full-universe SSOT once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/sync-yv-full-universe-ssot-once.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Patch living research plan fail-closed
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          p = Path('docs/research-plan.md')
+          text = p.read_text(encoding='utf-8')
+
+          replacements = [
+              (
+                  """Current Track-2 result: occupation discovery remains on the simple deterministic C2 boundary because no measured fresh-holdout residual has justified more complexity. For skills, **`KV-G1-4slot` remains the independently source-attested base**, while the strongest current low-complexity research candidate is **`KV-G1+T3`**: preserve canonical C0 rank 1, admit one unique candidate from the existing G1 BM25 lane, then admit three unique candidates from a second BM25 view containing the same G1 evidence plus three frozen teacher phrases per P80 skill. Runtime still uses no language model, embeddings/vector index, learned reranker, score calibration or query classifier.""",
+                  """Current Track-2 result: the earlier YV C2 evidence is retained as a bounded P80/router regression result, but **C2 is no longer the occupation-description candidate**. Its arbitrary-description BM25 lane can rank only 165 occupation identities (P80 + six frozen boundary occupations), while the Track-2 occupation target space is the active `occupation-name` universe (**2,105 identities**). A valid active occupation outside those 165 therefore cannot be classified as an out-of-envelope description failure merely because C2 cannot return it. Occupation research is reset to a separate full-universe candidate, `YV-description-full-v0`: all 2,105 active occupation-name identities with canonical label/definition/alternative-label text, exact active job-title→typed occupation-parent routing kept as a separate source-attested route, and AF ad-keyword employer language kept as a separate non-canonical evidence lane. C2 remains a regression/demo reference. No lane fusion, embeddings, neural reranking or generated teacher text is promoted by this correction. For skills, **`KV-G1-4slot` remains the independently source-attested base**, while the strongest current low-complexity research candidate remains **`KV-G1+T3`**: preserve canonical C0 rank 1, admit one unique candidate from the existing G1 BM25 lane, then admit three unique candidates from a second BM25 view containing the same G1 evidence plus three frozen teacher phrases per P80 skill. Runtime still uses no language model, embeddings/vector index, learned reranker, score calibration or query classifier.""",
+              ),
+              (
+                  """The semantic feature is **not required to solve the full taxonomy long tail in v0**. The existing lexical picker remains the complete deterministic fallback over the product's canonical destination universe. Semantic retrieval may start with a narrower confidence envelope and abstain outside it.""",
+                  """The semantic feature is **not required to have equally strong evidence or ranking quality across the full taxonomy long tail in v0**, and P80 remains the demand-priority research stratum. But a research envelope must not silently redefine a valid canonical identity as impossible. For YV description capability, all active v31 `occupation-name` identities remain eligible destinations and confidence/abstention must be distinguished from candidate-universe exclusion. The existing lexical picker remains the complete deterministic product path; semantic retrieval may abstain when evidence is weak, but not because an otherwise valid occupation was omitted from the candidate universe by the old P80 prototype.""",
+              ),
+              (
+                  """**Human-gate status (2026-09-07): collection-ready, not started.** The no-example participant prompt, blind adjudication rules, per-target P80-envelope semantics, staged case validator, preregistration template, preregistration→manifest SHA binding, raw-text-free need/prevalence funnel format and repository stage-order guard are now frozen and self-tested on the `garderob` runner. No real human description, adjudication or outcome file is present in the repository yet. Before the first participant, `preregistration.json` must replace all template placeholders and be committed with status `frozen-before-first-participant`; retrieval may run only after elicitation and blind adjudication are frozen and a manifest binds all three SHA-256 values. A recruited capability study must not be reported as production prevalence without the separate eligible lexical-failure denominator.""",
+                  """**Human-gate status (2026-09-07): skill collection-ready; occupation collection blocked pending a frozen full-universe candidate.** The no-example participant prompt, blind adjudication rules, staged case validator, preregistration template, preregistration→manifest SHA binding, raw-text-free need/prevalence funnel format and repository stage-order guard are in place. The structured contract now treats **all 2,105 active v31 occupation-name identities** as the occupation capability universe; historical P80 membership is a demand-priority stratum, not an occupation eligibility boundary. The skill stream remains ready once preregistration is frozen. The occupation stream must not collect participants until `YV-description-full-v0` has been built, evaluated and frozen. No real human description, adjudication or outcome file is present in the repository yet. Before the first participant in any enabled stream, `preregistration.json` must replace all template placeholders and be committed with status `frozen-before-first-participant`; retrieval may run only after elicitation and blind adjudication are frozen and a manifest binds all three SHA-256 values. A recruited capability study must not be reported as production prevalence without the separate eligible lexical-failure denominator.""",
+              ),
+              (
+                  """**v0 semantic-lane simplification:** YV semantic description search is required initially to emit only the P80 `occupation-name` set. Published job titles remain fully available in the existing lexical picker and may be semantic routing/context vocabulary, but direct semantic `job-title` destinations are deferred until benchmark/telemetry shows material value. KV semantic description search starts with the P80 skill set.""",
+                  """**v0 semantic-lane correction (2026-09-07):** P80 remains the demand-priority benchmark stratum, **not a hard YV occupation-description candidate boundary**. The Track-2 YV capability must be able to return any active v31 `occupation-name` identity (2,105); confidence may still fail closed on weak evidence. Published job titles remain fully available in the ordinary lexical picker and may be semantic routing/context vocabulary, but direct semantic `job-title` destinations remain out of the core occupation target space. KV semantic description research continues to use the P80 skill set until separate skill evidence justifies expansion.""",
+              ),
+              (
+                  """- the **159 P80 occupation-name identities** are the core semantic destination population;""",
+                  """- the **159 P80 occupation-name identities** remain the demand-priority benchmark core, but any independently adjudicated valid active v31 `occupation-name` outside P80 remains capability-eligible; P80 membership cannot make a valid occupation unmappable;""",
+              ),
+          ]
+
+          for old, new in replacements:
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f'expected exactly one SSOT match, got {count}: {old[:120]!r}')
+              text = text.replace(old, new, 1)
+
+          p.write_text(text, encoding='utf-8')
+          PY
+      - name: Commit SSOT update and remove one-shot workflow
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/sync-yv-full-universe-ssot-once.yml
+          git add docs/research-plan.md
+          git diff --cached --exit-code && exit 0
+          git commit -m 'docs: correct YV full-universe description boundary'
+          git push
