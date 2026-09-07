@@ -206,7 +206,8 @@ def main() -> int:
                 labels.append(label)
         relevant_docs.append("passage: " + " | ".join(labels))
 
-    # Existing 81 source-attested KV cases.
+    # Existing 81 source-attested KV cases. These frozen files use an explicit
+    # `target` object rather than the generic must/acceptable benchmark schema.
     kv_cases: list[dict[str, Any]] = []
     for path in KV_PATHS:
         kv_cases.extend(load_jsonl(Path(path)))
@@ -217,20 +218,50 @@ def main() -> int:
     kv_docs = ["passage: " + concept_text(by_id[cid], extra=teacher[cid]) for cid in kv_ids]
     kv_targets = []
     for row in kv_cases:
-        candidates = [*(row.get("must") or []), *(row.get("acceptable") or [])]
-        ids = [str(x["concept_id"]) for x in candidates if isinstance(x, dict) and x.get("concept_id")]
-        if len(set(ids)) != 1:
-            raise RuntimeError(f"KV case must have one scored target: {row.get('id')}")
-        kv_targets.append(ids[0])
+        target = row.get("target")
+        cid = str(target.get("concept_id")) if isinstance(target, dict) and target.get("concept_id") else ""
+        if not cid:
+            candidates = [*(row.get("must") or []), *(row.get("acceptable") or [])]
+            fallback_ids = [
+                str(x["concept_id"])
+                for x in candidates
+                if isinstance(x, dict) and x.get("concept_id")
+            ]
+            if len(set(fallback_ids)) == 1:
+                cid = fallback_ids[0]
+        if not cid or cid not in kv_ids:
+            raise RuntimeError(f"KV case must have one P80 scored target: {row.get('id')}")
+        kv_targets.append(cid)
 
     model = SentenceTransformer(MODEL_NAME, revision=MODEL_REVISION, trust_remote_code=False)
+
     def encode(texts: list[str]) -> np.ndarray:
-        return np.asarray(model.encode(texts, batch_size=args.batch_size, normalize_embeddings=True, show_progress_bar=True), dtype=np.float32)
+        return np.asarray(
+            model.encode(
+                texts,
+                batch_size=args.batch_size,
+                normalize_embeddings=True,
+                show_progress_bar=True,
+            ),
+            dtype=np.float32,
+        )
 
     yv_q = encode(["query: " + row["query"] for row in yv_cases])
-    yv_canonical = rank_metrics(yv_q @ encode(canonical_docs).T, [r["target_id"] for r in yv_cases], occupation_ids)
-    yv_ad = rank_metrics(yv_q @ encode(ad_docs).T, [r["target_id"] for r in yv_cases], ad_ids)
-    yv_relevant = rank_metrics(yv_q @ encode(relevant_docs).T, [r["target_id"] for r in yv_cases], occupation_ids)
+    yv_canonical = rank_metrics(
+        yv_q @ encode(canonical_docs).T,
+        [r["target_id"] for r in yv_cases],
+        occupation_ids,
+    )
+    yv_ad = rank_metrics(
+        yv_q @ encode(ad_docs).T,
+        [r["target_id"] for r in yv_cases],
+        ad_ids,
+    )
+    yv_relevant = rank_metrics(
+        yv_q @ encode(relevant_docs).T,
+        [r["target_id"] for r in yv_cases],
+        occupation_ids,
+    )
 
     kv_q = encode(["query: " + str(row["query"]) for row in kv_cases])
     kv_dense = rank_metrics(kv_q @ encode(kv_docs).T, kv_targets, kv_ids)
@@ -238,7 +269,11 @@ def main() -> int:
     # Oracle union is diagnostic complementarity only, never a fusion rule.
     yv_union_hit5 = 0
     for i in range(len(yv_cases)):
-        ranks = [yv_canonical["rows"][i]["rank"], yv_ad["rows"][i]["rank"], yv_relevant["rows"][i]["rank"]]
+        ranks = [
+            yv_canonical["rows"][i]["rank"],
+            yv_ad["rows"][i]["rank"],
+            yv_relevant["rows"][i]["rank"],
+        ]
         yv_union_hit5 += any(rank is not None and rank <= 5 for rank in ranks)
 
     result = {
@@ -259,13 +294,31 @@ def main() -> int:
     }
     out = Path(args.output)
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    print(json.dumps({
-        "model": result["model"],
-        "yv": {k: {x: v for x, v in value.items() if x != "rows"} if isinstance(value, dict) else value for k, value in result["yv_strict_work_task_17"].items()},
-        "kv": {k: {x: v for x, v in value.items() if x != "rows"} for k, value in result["kv_source_attested_81"].items()},
-        "output": str(out),
-    }, ensure_ascii=False, indent=2, sort_keys=True))
+    out.write_text(
+        json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    print(
+        json.dumps(
+            {
+                "model": result["model"],
+                "yv": {
+                    k: {x: v for x, v in value.items() if x != "rows"}
+                    if isinstance(value, dict)
+                    else value
+                    for k, value in result["yv_strict_work_task_17"].items()
+                },
+                "kv": {
+                    k: {x: v for x, v in value.items() if x != "rows"}
+                    for k, value in result["kv_source_attested_81"].items()
+                },
+                "output": str(out),
+            },
+            ensure_ascii=False,
+            indent=2,
+            sort_keys=True,
+        )
+    )
     return 0
 
 
