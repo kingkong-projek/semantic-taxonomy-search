@@ -40,12 +40,14 @@ def main() -> int:
     ap.add_argument("--version", default="31")
     ap.add_argument("--registry", default="research/coverage/source-adapters.json")
     ap.add_argument("--coverage-aggregate", default="research/coverage/v31/unified-target-coverage-aggregate.json")
+    ap.add_argument("--pareto", default="research/coverage/v31/pareto-demand-aggregate.json")
     ap.add_argument("--output", default="artifacts/yv-full-description-candidate-v31.json")
     args = ap.parse_args()
 
     version = str(args.version)
     registry = json.loads(Path(args.registry).read_text(encoding="utf-8"))
     coverage = json.loads(Path(args.coverage_aggregate).read_text(encoding="utf-8"))
+    pareto = json.loads(Path(args.pareto).read_text(encoding="utf-8"))
     expected_count = int(coverage["target_counts"]["yv_occupation_name"])
 
     taxonomy_url = (
@@ -83,8 +85,13 @@ def main() -> int:
         for surface in sorted(exact_surfaces[cid]):
             exact_index[surface].append(index)
 
-    # Keep the same source-attested exact-title routing semantics as C2, but do not
-    # restrict routed parents to the old 165-target P80 prototype.
+    # Keep the exact-title routing behavior from C2, including deterministic parent
+    # ordering by the same frozen historical occurrence proxy. Only the description
+    # document universe expands from 165 to all active occupation-name identities.
+    occurrence = {
+        str(row["concept_id"]): int(row["occurrences"])
+        for row in pareto["occupation_name"]["ranked_p95"]
+    }
     label_to_parent_ids: dict[str, set[str]] = defaultdict(set)
     label_to_job_ids: dict[str, set[str]] = defaultdict(set)
     for cid, concept in by_id.items():
@@ -99,8 +106,11 @@ def main() -> int:
         label_to_parent_ids[label].update(parents)
         label_to_job_ids[label].add(cid)
 
+    def parent_sort_key(cid: str) -> tuple[int, str, str]:
+        return (-occurrence.get(cid, 0), norm(by_id[cid].get("preferred_label")), cid)
+
     routes = {
-        label: sorted(parent_ids)
+        label: sorted(parent_ids, key=parent_sort_key)
         for label, parent_ids in sorted(label_to_parent_ids.items())
     }
     routed_parent_ids = sorted({cid for parent_ids in routes.values() for cid in parent_ids})
@@ -156,7 +166,10 @@ def main() -> int:
             "surface_tokens": [sorted(surface_tokens[cid]) for cid in occupation_ids],
         },
         "exact_job_title_routes": {
-            "semantics": "active job-title preferred label -> typed occupation-name parents; retrieval vocabulary only",
+            "semantics": (
+                "active job-title preferred label -> typed occupation-name parents; retrieval vocabulary only; "
+                "parent order preserves frozen C2 historical-occurrence ordering"
+            ),
             "routes": routes,
             "matching_job_title_ids": {
                 label: sorted(job_ids) for label, job_ids in sorted(label_to_job_ids.items())
@@ -189,7 +202,7 @@ def main() -> int:
             "observed_ad_language_distinct_term_count": len(distinct_terms),
             "retrieval_contract": (
                 "full active occupation-name destination universe; canonical and observed-language lanes "
-                "remain provenance-separated; no teacher/model-generated text"
+                "remain provenance-separated; exact-title parent ordering preserves C2; no teacher/model-generated text"
             ),
         },
     }
