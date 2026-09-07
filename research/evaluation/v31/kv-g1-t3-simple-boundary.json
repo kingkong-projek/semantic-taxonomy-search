@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 31,
+  "status": "current_simple_boundary",
+  "target_space": "316 P80 skill identities",
+  "recommended_research_candidate": {
+    "name": "KV-G1+T3",
+    "runtime_shape": "deterministic BM25 only: preserve canonical C0 rank1, then admit one unique G1 training-description candidate and three unique G1+teacher candidates with deterministic dedup/backfill",
+    "teacher_representation": "three prefrozen model-authored task/skill phrases per P80 skill appended to the existing G1 evidence for the teacher lane",
+    "models_at_runtime": 0,
+    "vector_index": false,
+    "learned_reranker": false,
+    "score_calibration": false,
+    "query_thresholds": false
+  },
+  "source_attested_AF_opened_evidence": {
+    "queries": 81,
+    "holdouts": [35, 20, 26],
+    "G1_4slot_hit5": 68,
+    "G1_4slot_hit5_pct": 83.951,
+    "G1_T3_hit5": 71,
+    "G1_T3_hit5_pct": 87.654,
+    "evidence_boundary": "The AF descriptions are human/source-attested and retrieval evidence is excluded correctly, but these suites were opened during later teacher/fusion development. Treat the aggregate as development/safety evidence for G1+T3, not a new blind human accuracy estimate."
+  },
+  "canonical_guard": {
+    "top1": 617,
+    "hit5": 617,
+    "n": 617,
+    "pct": 100.0
+  },
+  "prefrozen_model_authored_generalization": {
+    "ranks101_200": {"G1_T3_hit5": 93, "n": 100, "pct": 93.0},
+    "ranks201_300": {"G1_T3_hit5": 96, "n": 100, "pct": 96.0},
+    "ranks301_316_final_untouched": {
+      "G1_4slot_hit5": 2,
+      "G1_T3_hit5": 11,
+      "n": 16,
+      "G1_pct": 12.5,
+      "G1_T3_pct": 68.75,
+      "freeze_order": "candidate and teacher phrases committed before the 16 queries; retrieval first ran after all inputs were frozen",
+      "evidence_boundary": "target-disjoint and temporally prefrozen, but both teacher language and evaluation descriptions are model-authored; useful falsification/generalization evidence, not independent user accuracy"
+    },
+    "final_16_teacher_competition": "adding ranks301-316 teacher entries produced no observed Hit@5 regression on canonical 617, the 81 AF cases, or the already-opened ranks101-300 synthetic suites"
+  },
+  "negative_results_that_bound_complexity": {
+    "teacher_only_or_C0_plus_teacher": "rejected; synthetic gains did not transfer and source-attested AF performance dropped materially",
+    "character_4gram_lane": "rejected; third AF holdout stayed 20/26, with one rescue offset by one regression",
+    "drop_numeric_from_expansion_documents_and_queries": "rejected by the final prefrozen ranks301-316 gate; it fixed the numbered Ekonomistyrning boundary but moved Svetsteknik from fused rank5 to rank215 through global BM25 document-length normalization",
+    "query_only_numeric_sanitation": "promising opened-data development candidate only: 71/81 to 72/81 AF, zero opened Hit@5 regressions, canonical 617/617 and zero rank moves on the opened nonnumeric synthetic suites; not promoted because no unused natural source-attested numeric holdout exists under the frozen quality/independence criteria",
+    "higher_model_class": "not justified by current evidence"
+  },
+  "current_decision": {
+    "runtime_boundary": "keep plain G1+T3 as the strongest simple research candidate; do not add numeric sanitation, subword retrieval, embeddings, neural reranking or another model lane now",
+    "optimization_stop_rule": "stop retrieval micro-optimization until new independent human/user evidence or a measured product failure identifies a material residual",
+    "next_evidence_priority": "validate the bounded description-fallback product hypothesis with independent human/user evidence and end-to-end recognition/selection outcomes; keep ordinary YV/KV lexical selection privileged"
+  },
+  "key_evidence": [
+    "research/evaluation/v31/skill-training-language-validated.json",
+    "research/evaluation/v31/skill-g1-subword-third-holdout.json",
+    "research/evaluation/v31/kv-final-p80-gate.json",
+    "research/evaluation/v31/kv-query-only-numeric-sanitation-development.json",
+    "research/evaluation/v31/kv-query-only-numeric-validation-boundary.json"
+  ]
+}
