@@ -1,8 +1,8 @@
 {
   "schema_version": 4,
-  "status": "collection_ready_preregistration_not_frozen",
+  "status": "skill_collection_ready_occupation_candidate_not_frozen",
   "study_id": "description-fallback-human-v1",
-  "research_question": "When ordinary lexical YV/KV lookup is insufficient, can users express their work or competence in ordinary language well enough for the existing simple deterministic fallback candidate to surface a canonical result they recognize and a blind taxonomy adjudicator accepts?",
+  "research_question": "When ordinary lexical YV/KV lookup is insufficient, can users express their work or competence in ordinary language well enough for a stream-specific simple deterministic fallback candidate to surface a canonical result they recognize and a blind taxonomy adjudicator accepts?",
   "non_claims": [
     "semantic fallback is generally needed",
     "users usually do not know taxonomy vocabulary",
@@ -13,14 +13,16 @@
   "streams": {
     "occupation": {
       "entrypoint": "Beskriv vad du gör i jobbet",
-      "candidate": "current frozen simple C2 occupation-description boundary; ordinary lexical YV remains primary",
-      "adjudication_identity": "current selectable occupation-name identities; do not force job-title context or nearest concept",
-      "demand_envelope": "record envelope membership per independently adjudicated acceptable target; report in-envelope retrieval separately from out-of-envelope coverage",
+      "candidate": "YV-description-full-v0 research build over all active occupation-name identities; it must be evaluated and frozen before occupation participant collection; the current 165-target C2 remains a regression/demo reference only",
+      "collection_status": "blocked_until_full_universe_candidate_is_evaluated_and_frozen",
+      "adjudication_identity": "all active v31 occupation-name identities; do not force job-title context or nearest concept",
+      "demand_envelope": "all 2,105 active v31 occupation-name identities; historical P80 membership is a demand-priority stratum, not an eligibility or capability boundary",
       "must_not_infer_from": "KV-G1+T3 results"
     },
     "skill": {
       "entrypoint": "Beskriv vad du kan eller gör",
       "candidate": "plain KV-G1+T3 as frozen in research/evaluation/v31/kv-g1-t3-simple-boundary.json",
+      "collection_status": "ready_once_preregistration_is_frozen",
       "adjudication_identity": "skill concept identity",
       "demand_envelope": "316 frozen P80 skills; record envelope membership per acceptable target and never coerce an out-of-envelope target to the nearest P80 skill",
       "must_not_promote": "query-only numeric sanitation or any higher-complexity candidate"
@@ -33,7 +35,7 @@
     "at least one taxonomy-domain adjudicator maps the description to zero, one or multiple acceptable canonical identities while blind to retrieval output; uncertain/unmappable is a valid outcome",
     "adjudication frozen with per-target demand-envelope membership",
     "manifest records SHA-256 hashes of preregistration, elicitation and adjudication before retrieval",
-    "ordinary lexical baseline and frozen simple fallback candidate are run",
+    "ordinary lexical baseline and the frozen stream-specific simple fallback candidate are run",
     "participant may then inspect fallback candidate labels and record recognize/select/none",
     "only after outcome freeze may residuals be classified"
   ],
@@ -111,6 +113,7 @@
       "canonical_id": "string",
       "in_frozen_demand_envelope": "boolean"
     },
+    "stream_rule": "for occupation, every valid active v31 occupation-name target is in the frozen capability universe; P80 membership may be recorded separately as a demand stratum but must not exclude the target from occupation capability scoring",
     "status_rules": {
       "mapped": "exactly one acceptable target",
       "ambiguous": "at least two acceptable targets",
@@ -135,7 +138,7 @@
       "production fallback open/submit/select fractions only when an aggregate eligible lexical-failure denominator exists",
       "stated willingness/usefulness in recruited capability studies, clearly labeled as stated rather than observed prevalence",
       "fraction of submitted descriptions adjudicated as sufficiently informative without clarification",
-      "fraction with at least one acceptable target inside the frozen demand envelope"
+      "fraction with at least one acceptable target inside the frozen stream-specific capability universe"
     ],
     "capability": [
       "Top1 acceptable on sufficiently-informative cases with at least one in-envelope acceptable target",
@@ -150,7 +153,7 @@
     "residual_classification": [
       "insufficient description",
       "taxonomy ambiguity",
-      "target outside frozen demand envelope",
+      "target outside frozen stream-specific capability universe",
       "source/evidence coverage gap",
       "retrieval/ranking miss despite adequate in-envelope evidence",
       "participant rejects adjudicator mapping",
@@ -163,6 +166,7 @@
     "report unique participants and unique adjudicated target identities alongside query count",
     "ambiguous cases with multiple defensible canonical targets use an acceptable target set rather than forcing one label",
     "per-target demand-envelope membership is preserved for ambiguous cases",
+    "for occupation, historical P80 membership is reported only as a demand-priority stratum and must not remove a valid active occupation-name target from capability metrics",
     "unmappable and out-of-envelope cases remain visible in need/coverage reporting even when excluded from in-envelope retrieval accuracy",
     "synthetic/model-authored cases may be used only for regression tests, never to satisfy the human evidence gate",
     "Hit@5 is a secondary recall-style signal and must never be reported alone as product/list quality"
@@ -171,7 +175,7 @@
     "default": "do not test embeddings/neural reranking merely because one human case misses",
     "required_before_higher_model_class": [
       "independent human descriptions are frozen before retrieval",
-      "at least one acceptable target is adjudicated and inside the current envelope",
+      "at least one acceptable target is adjudicated and inside the current stream-specific capability universe",
       "the description contains adequate discriminating evidence",
       "plain simple candidate materially misses across multiple independent cases and target identities",
       "residual review shows the dominant cause is retrieval semantics rather than taxonomy ambiguity, missing source evidence, UI wording or coverage",
@@ -192,7 +196,8 @@
   },
   "stop_rules": [
     "if people cannot naturally provide sufficiently informative descriptions, improve or reconsider the interaction before retrieval complexity",
-    "if most failures are out-of-envelope/source/taxonomy problems, do not solve them with a larger retrieval model",
+    "if most failures are source/taxonomy problems or, for the skill stream, outside the frozen skill envelope, do not solve them with a larger retrieval model",
+    "for occupation, a valid active v31 occupation-name outside historical P80 is not an out-of-envelope case",
     "if simple fallback does not materially improve over lexical baseline on independent human cases, do not ship it merely because synthetic benchmarks are strong",
     "if simple fallback is already sufficient on independent human evidence, stop model work and focus on discoverability, calibration and safe integration"
   ]
