@@ -131,10 +131,10 @@ def call_gemma(api_key: str, prompt: str, *, max_attempts: int = 5) -> tuple[lis
         {
             "contents": [{"role": "user", "parts": [{"text": prompt}]}],
             "generationConfig": {
-                "thinkingConfig": {"thinkingLevel": "high"},
+                "thinkingConfig": {"thinkingLevel": "minimal"},
                 "responseMimeType": "application/json",
                 "temperature": 0.0,
-                "maxOutputTokens": 4096,
+                "maxOutputTokens": 1500,
             },
         },
         ensure_ascii=False,
@@ -227,7 +227,7 @@ def main() -> int:
     print(json.dumps({
         "status": "exploratory teacher pilot only",
         "model": MODEL,
-        "api": "generateContent + thinkingLevel=high + responseMimeType=application/json",
+        "api": "generateContent + thinkingLevel=minimal + responseMimeType=application/json",
         "cases": len(rows),
         "requests_per_minute_cap": args.requests_per_minute,
         "output": str(out),
