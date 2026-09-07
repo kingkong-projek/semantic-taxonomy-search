@@ -1,0 +1,43 @@
+name: Sync compile-time tournament SSOT once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/sync_compile_time_tournament_ssot_once.py
+      - .github/workflows/sync-compile-time-tournament-ssot-once.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Patch SSOT
+        run: python scripts/sync_compile_time_tournament_ssot_once.py
+      - name: Verify intended state
+        run: |
+          grep -Fq '**Compile-time semantic tournament (ACTIVE next architecture phase; 2026-09-07).**' docs/research-plan.md
+          grep -Fq '**<=3 MB compressed incremental semantic artifact**' docs/research-plan.md
+          grep -Fq '**>5 MB compressed is a frontend-track failure**' docs/research-plan.md
+          grep -Fq '**A — teacher/doc2query-expanded sparse BM25.**' docs/research-plan.md
+          grep -Fq '**B — teacher-distilled sparse feature→concept index.**' docs/research-plan.md
+          grep -Fq '**C — quantized low-rank domain student.**' docs/research-plan.md
+          grep -Fq 'API is the explicit escape hatch, not a research failure.' docs/research-plan.md
+      - name: Commit SSOT
+        run: |
+          if git diff --quiet -- docs/research-plan.md; then echo 'already synced'; exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add docs/research-plan.md
+          git commit -m 'research: add compile-time semantic tournament to SSOT'
+          git push origin HEAD:main
