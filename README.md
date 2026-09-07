@@ -23,7 +23,9 @@ See:
 - [`DATA_SOURCES_AND_LICENSES.md`](DATA_SOURCES_AND_LICENSES.md) — data sources, provenance and reuse terms.
 - [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) — third-party software/design material, including Arbetsförmedlingen Designsystem (Apache-2.0).
 
-No repository-wide licence for this project's own code has been selected yet. Public visibility on GitHub does not by itself grant additional reuse rights to that code; third-party data/software retain the terms documented above.
+## License
+
+This project's own code and documentation are licensed under the [Apache License 2.0](LICENSE), unless a file or third-party notice states otherwise. External datasets and third-party material retain the terms documented above.
 
 ## Research plan
 
