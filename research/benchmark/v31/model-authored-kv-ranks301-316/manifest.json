@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 31,
+  "product": "KV",
+  "case_count": 16,
+  "target_slice": "P80 skill ranks 301-316",
+  "evidence_class": "synthetic_model_authored_prefrozen_validation",
+  "author_model": "GPT-5.6 Sol",
+  "purpose": "final untouched P80 validation of the already-frozen G1+T3 expansion-only numeric-sanitation candidate",
+  "freeze_order": {
+    "candidate_commit": "ff3cb147dbdfacea8b9b505680e18a1f7d31f223",
+    "teacher_commit": "9b47eb893c1148cf2f159c25901acd8abb04d2f0",
+    "query_commit": "38494a4040c662c4f4ba518df9c74fb95719027b",
+    "candidate_before_teacher": true,
+    "teacher_before_queries": true,
+    "retrieval_before_all_freezes": false
+  },
+  "selection": "exactly one natural-language description for each remaining untouched P80 skill rank 301-316; no retrieval output was consulted during teacher or query authoring",
+  "disjointness_contract": {
+    "target_overlap_with_ranks1_300": 0,
+    "exact_query_overlap_with_prior_synthetic_suites": 0,
+    "exact_teacher_query_overlap": 0,
+    "checks_must_run_before_metric_acceptance": true
+  },
+  "frozen_candidate": {
+    "name": "G1T3-drop-pure-numeric-expansion-only",
+    "fusion": "preserve C0 rank 1; admit one unique G1-single-desc candidate; admit three unique teacher-lane candidates; deterministically backfill duplicates",
+    "token_policy": "C0 and exact surfaces unchanged; pure integer tokens removed only from G1 and teacher BM25 document/query streams",
+    "teacher_representation": "G1 evidence plus three prefrozen teacher phrases per P80 skill",
+    "higher_complexity_additions": false
+  },
+  "evaluation_policy": {
+    "primary_metric": "Hit@5",
+    "report": ["hits/N", "percentage", "95% Wilson interval", "all misses", "paired rescues/regressions"],
+    "compare_against": ["G1-4slot baseline", "G1+T3 current numeric tokenization", "G1+T3 expansion-only numeric sanitation"],
+    "canonical_guard": "617/617 source-truth Top1 and Hit@5 must remain intact",
+    "source_attested_guard": "re-run first35, second20 and third26 AF suites with established evidence exclusions after all 316 teacher entries are present; zero new Hit@5 regressions required",
+    "opened_synthetic_guard": "re-run ranks101-200 and ranks201-300 after all 316 teacher entries are present and report any Hit@5 regression",
+    "no_alternate_policy_search": true,
+    "no_posthoc_query_or_teacher_cleaning": true
+  },
+  "interpretation_boundary": "This final slice is temporally prefrozen and target-disjoint, but both teacher language and evaluation descriptions are model-authored. It can falsify representational generalization and competition safety; it is not independent human/user accuracy evidence."
+}
