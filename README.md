@@ -12,7 +12,7 @@ The repository is the single source of truth for the problem definition, evidenc
 
 `demo/` contains a zero-backend research prototype for both `Beskriv ditt yrke` and `Beskriv din kompetens`. The tester can use the same work description against either destination. Each deterministic retrieval asset is lazy-loaded separately and search runs locally in the browser. Test feedback from both streams stays local until the tester explicitly exports one JSON file.
 
-The occupation path packages the frozen YV **C2** retriever; the skill path packages the frozen KV **G1+T3** retriever. Packaging/runtime parity is checked in CI and does not create new validation evidence.
+The occupation path packages the frozen YV **`YV-description-full-v0-canonical-router`** candidate over all 2,105 active v31 occupation-name identities, with exact active job-title → typed occupation-parent routing. Unpromoted AF ad-language and Relevanta-kompetenser lanes are not active in the demo. The skill path packages the frozen KV **G1+T3** retriever. Packaging/runtime parity is checked in CI and does not create new validation evidence.
 
 The demo is a **research prototype, not an official Arbetsförmedlingen service or publication**.
 
