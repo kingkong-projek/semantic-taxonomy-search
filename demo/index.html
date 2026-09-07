@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Beskriv din kompetens – prototyp</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Hoppa till innehållet</a>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <div class="brand">
+        <span class="brand__mark" aria-hidden="true">A</span>
+        <span class="brand__name">Arbetsförmedlingen</span>
+      </div>
+      <span class="prototype-badge">Prototyp för utvärdering</span>
+    </div>
+  </header>
+
+  <main id="main" class="page-shell">
+    <section class="intro" aria-labelledby="page-title">
+      <p class="eyebrow">Kompetensväljaren · experiment</p>
+      <h1 id="page-title">Beskriv din kompetens</h1>
+      <p class="intro__lead">Skriv med egna ord vad du gör, vilka verktyg eller metoder du använder och vad du försöker uppnå. Du behöver inte veta vad kompetensen heter.</p>
+      <div class="privacy-note">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2a5 5 0 0 0-5 5v3H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-2V7a5 5 0 0 0-5-5Zm-3 8V7a3 3 0 1 1 6 0v3H9Zm3 4a2 2 0 0 1 1 3.73V20h-2v-2.27A2 2 0 0 1 12 14Z"/></svg>
+        <span>Allt stannar i din webbläsare tills du själv exporterar filen. Skriv inte personuppgifter eller arbetsgivaruppgifter.</span>
+      </div>
+    </section>
+
+    <div class="workspace">
+      <div class="workspace__main">
+        <section class="panel search-panel" aria-labelledby="search-heading">
+          <div class="panel__header">
+            <div>
+              <p class="step-label">1 · Beskriv</p>
+              <h2 id="search-heading">Vad kan du göra?</h2>
+            </div>
+            <button id="new-test" class="button button--ghost" type="button" hidden>Nytt test</button>
+          </div>
+
+          <form id="search-form" novalidate>
+            <label class="field-label" for="description">Beskriv en konkret kompetens</label>
+            <p id="description-help" class="field-help">Beskriv arbetsuppgifter, verktyg eller metoder och vilket resultat du arbetar mot. Använd dina egna ord.</p>
+            <textarea id="description" name="description" rows="6" maxlength="1200" aria-describedby="description-help description-error" placeholder="Skriv din beskrivning här …" required></textarea>
+            <div class="field-meta">
+              <span id="description-error" class="field-error" role="alert"></span>
+              <span id="char-count" aria-live="polite">0 / 1200</span>
+            </div>
+            <div class="actions-row">
+              <button id="search-button" class="button button--primary" type="submit">
+                <span>Sök kompetens</span>
+                <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m21 19-4.35-4.35A8 8 0 1 0 14.65 16L19 21l2-2ZM5 10a5 5 0 1 1 10 0 5 5 0 0 1-10 0Z"/></svg>
+              </button>
+              <span id="engine-status" class="engine-status" aria-live="polite"></span>
+            </div>
+          </form>
+        </section>
+
+        <section id="results-panel" class="panel results-panel" aria-labelledby="results-heading" hidden>
+          <div class="panel__header panel__header--results">
+            <div>
+              <p class="step-label">2 · Bedöm</p>
+              <h2 id="results-heading">Vilket förslag ligger närmast?</h2>
+            </div>
+            <span id="search-time" class="metric-chip"></span>
+          </div>
+          <p class="results-intro">Välj ett förslag om något stämmer. Det är också helt okej om inget passar.</p>
+          <div id="results-list" class="results-list" role="radiogroup" aria-label="Sökresultat"></div>
+
+          <fieldset class="feedback-fieldset">
+            <legend>Hur bra blev resultatet?</legend>
+            <div class="feedback-buttons">
+              <button class="feedback-button" type="button" data-feedback="correct">
+                <span class="feedback-button__icon" aria-hidden="true">✓</span>
+                <span><strong>Rätt</strong><small>Jag hittar det jag menar</small></span>
+              </button>
+              <button class="feedback-button" type="button" data-feedback="partial">
+                <span class="feedback-button__icon" aria-hidden="true">≈</span>
+                <span><strong>Delvis rätt</strong><small>Något är nära, men inte helt</small></span>
+              </button>
+              <button class="feedback-button" type="button" data-feedback="none">
+                <span class="feedback-button__icon" aria-hidden="true">×</span>
+                <span><strong>Inget stämmer</strong><small>Jag hittar inte rätt kompetens</small></span>
+              </button>
+            </div>
+          </fieldset>
+
+          <label class="field-label comment-label" for="comment">Kommentar <span class="optional">(valfritt)</span></label>
+          <textarea id="comment" rows="3" maxlength="1000" placeholder="Vad saknas eller blev fel?"></textarea>
+          <div class="field-meta field-meta--right"><span id="comment-count">0 / 1000</span></div>
+          <p id="feedback-status" class="save-status" aria-live="polite"></p>
+        </section>
+      </div>
+
+      <aside class="session-panel panel" aria-labelledby="session-heading">
+        <div class="session-panel__sticky">
+          <p class="step-label">3 · Exportera</p>
+          <h2 id="session-heading">Din testomgång</h2>
+          <p class="session-copy">Testa gärna flera olika formuleringar. Dina svar sparas bara lokalt på den här enheten.</p>
+
+          <div class="session-stats">
+            <div><strong id="test-count">0</strong><span>tester</span></div>
+            <div><strong id="reviewed-count">0</strong><span>bedömda</span></div>
+          </div>
+
+          <div class="session-meta">
+            <span>Demo</span><code id="build-version">laddas vid första sökning</code>
+          </div>
+
+          <div id="history" class="history" aria-label="Tidigare tester"></div>
+
+          <button id="export-button" class="button button--secondary button--full" type="button" disabled>
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M11 3h2v10.17l3.59-3.58L18 11l-6 6-6-6 1.41-1.41L11 13.17V3ZM5 19h14v2H5v-2Z"/></svg>
+            Exportera mina tester
+          </button>
+          <p class="export-help">När du är klar får du en JSON-fil som du kan skicka vidare för analys.</p>
+          <button id="clear-button" class="text-button" type="button" disabled>Rensa testomgången</button>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <span>Semantisk sök · intern prototyp</span>
+      <span>Ingen data skickas automatiskt</span>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

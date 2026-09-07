@@ -1,0 +1,78 @@
+name: Deploy semantic fallback demo
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'demo/**'
+      - 'scripts/build_kv_demo_asset.py'
+      - 'scripts/check_kv_demo_runtime.mjs'
+      - 'scripts/evaluate_kv_drop_numeric_expansion_only.py'
+      - 'scripts/evaluate_kv_drop_numeric_tokens.py'
+      - 'scripts/evaluate_kv_three_lane_fusion.py'
+      - 'scripts/evaluate_p80_lexical_ablation.py'
+      - 'scripts/evaluate_skill_c0_training_validation.py'
+      - 'scripts/evaluate_skill_training_language_enrichment.py'
+      - 'research/enrichment/v31/model-teacher-kv-top100/**'
+      - 'research/enrichment/v31/model-teacher-kv-ranks101-200/**'
+      - 'research/enrichment/v31/model-teacher-kv-ranks201-300/**'
+      - 'research/enrichment/v31/model-teacher-kv-ranks301-316/**'
+      - 'research/coverage/source-adapters.json'
+      - 'research/coverage/v31/pareto-demand-aggregate.json'
+      - '.github/workflows/pages-demo.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: semantic-fallback-demo-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Compile plain G1+T3 browser asset
+        run: |
+          python scripts/build_kv_demo_asset.py \
+            --output demo/assets/kv-g1-t3.json \
+            --parity-output artifacts/kv-demo-parity-v1.json \
+            --build-id "$GITHUB_SHA"
+      - name: Verify browser runtime parity
+        run: node scripts/check_kv_demo_runtime.mjs demo/assets/kv-g1-t3.json artifacts/kv-demo-parity-v1.json
+      - name: Assemble static site
+        run: |
+          rm -rf _site
+          mkdir -p _site
+          cp -R demo/. _site/
+          touch _site/.nojekyll
+          test -s _site/index.html
+          test -s _site/assets/kv-g1-t3.json
+          echo "Site bytes: $(du -sb _site | cut -f1)"
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 5
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
