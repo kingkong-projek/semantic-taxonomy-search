@@ -1,11 +1,13 @@
 # Pareto demand priority — taxonomy v31
 
-**Status:** measured  
+**Status:** measured; YV hard-destination interpretation superseded 2026-09-07  
 **Measured:** 2026-09-06
+
+> **Interpretation update (2026-09-07):** the measured Pareto counts remain valid, but the conclusion that YV description retrieval should be hard-limited to the 159 P80 occupations is superseded. P80 remains the demand-priority benchmark stratum. Track-2 YV description capability now keeps all 2,105 active v31 `occupation-name` identities eligible and treats weak long-tail evidence as a confidence/abstention problem rather than candidate-universe exclusion. The 316-skill P80 boundary remains the current KV research envelope. See `docs/research-plan.md` and the current human-validation contract.
 
 ## Conclusion
 
-The first semantic-search release does not need equal semantic coverage of all 2,105 occupations and 6,752 skills.
+The first semantic-search release does not need equal semantic quality across all 2,105 occupations and 6,752 skills.
 
 Historical API exposes server-side taxonomy occurrence statistics for both `occupation-name` and `skill`. Intersected with active v31 identities, the occurrence mass is strongly concentrated:
 
@@ -17,7 +19,7 @@ Historical API exposes server-side taxonomy occurrence statistics for both `occu
 | 95% | 455 | 976 |
 | 99% | 834 | 1,848 |
 
-The **P80 core is therefore 159 occupation-name identities + 316 skill identities = 475 canonical targets**. P90 and P95 are explicit expansion tiers rather than launch requirements.
+The **P80 priority core is therefore 159 occupation-name identities + 316 skill identities = 475 canonical targets**. P90 and P95 are explicit priority/expansion tiers rather than equal-quality launch requirements.
 
 Active v31 concepts represented in the Historical stats response:
 
@@ -35,21 +37,20 @@ These counts are a **corpus/popularity proxy derived from historical job-ad taxo
 - canonical meaning;
 - a reason to remove tail concepts from the products.
 
-The full lexical picker remains the fallback over the entire product-valid taxonomy. The Pareto set limits only what the first semantic description lane is required to solve well.
+The full lexical picker remains the primary deterministic product path over the entire product-valid taxonomy. P80 prioritises evaluation and quality work; for YV occupation descriptions it no longer excludes valid active destination identities.
 
 YV additionally has real Platsbanken search-frequency evidence. That source remains valuable for query sampling and a later traffic-weighted cross-check, but its free text cannot be fully mapped to canonical destinations automatically. Using Historical occurrence counts gives one simple, explicit concept-level priority proxy shared by YV occupations and KV skills.
 
-## v0 simplification
+## v0 simplification — historical decision and current correction
 
-For the first semantic decision benchmark and prototype:
+The 2026-09-06 prototype decision was:
 
-- **YV semantic destinations:** the 159 P80 `occupation-name` identities;
-- **KV semantic destinations:** the 316 P80 active `skill` identities;
-- **YV job titles:** continue to work through the existing lexical picker and may act as router/retrieval vocabulary, but are not required as direct semantic destinations in v0;
-- a small safety/regression slice still covers multi-parent titles, excluded-title routing, hard negatives and abstention;
-- P90/P95 and the remaining long tail are measured expansion tiers only.
+- YV description ranking over the 159 P80 `occupation-name` identities, later plus six explicit boundary identities in C1/C2;
+- KV semantic destinations over the 316 P80 active `skill` identities;
+- YV job titles retained as lexical/router vocabulary rather than direct semantic destinations;
+- small safety/regression slices for ambiguity, routing, hard negatives and abstention.
 
-This does not change YV's product-valid destination universe. It narrows only the first semantic lane.
+The YV part is now retained only as a bounded prototype/regression result. It was found to conflate demand prioritisation with candidate eligibility: an otherwise valid occupation outside the 165 C1/C2 description documents could never be returned from arbitrary description text. Current Track-2 YV research therefore uses all 2,105 active `occupation-name` identities as the destination universe while preserving P80 as the priority stratum. KV remains on the 316-skill P80 research envelope until separate skill evidence justifies expansion.
 
 ## Top observed occupations
 
