@@ -9,8 +9,10 @@ on:
       - 'scripts/freeze_human_description_study_manifest.py'
       - 'scripts/check_human_description_repository_state.py'
       - 'scripts/check_human_description_contract_consistency.py'
+      - 'scripts/score_human_description_study.py'
       - 'scripts/selftest_human_description_study.py'
       - 'scripts/selftest_human_description_preregistration.py'
+      - 'scripts/selftest_human_description_scorecard.py'
       - 'research/human/description-fallback-v1/**'
       - 'research/evaluation/v31/description-fallback-human-validation-contract.json'
       - 'docs/findings/description-fallback-human-validation-protocol-v31.md'
@@ -37,13 +39,17 @@ jobs:
             scripts/freeze_human_description_study_manifest.py \
             scripts/check_human_description_repository_state.py \
             scripts/check_human_description_contract_consistency.py \
+            scripts/score_human_description_study.py \
             scripts/selftest_human_description_study.py \
-            scripts/selftest_human_description_preregistration.py
+            scripts/selftest_human_description_preregistration.py \
+            scripts/selftest_human_description_scorecard.py
       - name: Check structured contract consistency
         run: python scripts/check_human_description_contract_consistency.py
       - name: Run staged-contract self-test
         run: python scripts/selftest_human_description_study.py
       - name: Run preregistration-binding self-test
         run: python scripts/selftest_human_description_preregistration.py
+      - name: Run rank-sensitive scorecard self-test
+        run: python scripts/selftest_human_description_scorecard.py
       - name: Guard repository study state
         run: python scripts/check_human_description_repository_state.py
