@@ -7,6 +7,7 @@ on:
       - 'demo/**'
       - 'scripts/build_kv_demo_asset.py'
       - 'scripts/check_kv_demo_runtime.mjs'
+      - 'scripts/check_demo_contract.py'
       - 'scripts/evaluate_kv_drop_numeric_expansion_only.py'
       - 'scripts/evaluate_kv_drop_numeric_tokens.py'
       - 'scripts/evaluate_kv_three_lane_fusion.py'
@@ -43,6 +44,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
+      - name: Verify zero-backend responsive demo contract
+        run: python scripts/check_demo_contract.py
       - name: Compile plain G1+T3 browser asset
         run: |
           python scripts/build_kv_demo_asset.py \
