@@ -51,6 +51,22 @@ There are **zero rank regressions** and zero rank improvements from 165 to 2,105
 
 Workflow: `34118409268`. Artifact: `10017192311`. Frozen benchmark SHA-256: `7bd44757b2eb663e56e2928438caa4789cb0eef064ad01fd3051c9f020de17f9`.
 
+## Exact job-title routing also survives the expansion
+
+The independent C2 capability sentinel consists of the previously unseen excluded-title ranks 21–50: 30 source-attested exact job-title queries covering 7.21M observed searches. Replaying the same typed-parent routing on top of the full 2,105 canonical universe gives:
+
+- route-set drift: **0/30**;
+- new foreign exact-canonical collisions ahead of the route: **0/30**;
+- Any-parent Hit@5: **100%**;
+- volume-weighted Any-parent Hit@5: **100%**;
+- mean typed-parent Recall@5: **92.395%**;
+- volume-weighted typed-parent Recall@5: **93.220%**;
+- all typed parents visible at 5: **80.0%** of rows, **79.049%** volume-weighted.
+
+These are the same routing-quality figures that matter from the C2 sentinel; expanding the canonical candidate universe does not crowd routed parents out of the visible list. The first workflow attempt failed only because the sentinel rebuild omitted the generator `SOURCE_COMMIT.txt` marker; the corrected run rebuilt the frozen sentinel successfully and passed all route-integrity assertions.
+
+Workflow: `34118874430`. Artifact: `10017370535`.
+
 ## Real AF evidence is complementary, but fusion is not earned
 
 On the same 17 opened description cases:
