@@ -22,7 +22,7 @@ TAXONOMY_URL = (
     "https://data.jobtechdev.se/taxonomy/version/31/query/"
     "concepts-and-common-relations/concepts-and-common-relations.json"
 )
-MODEL = "gemma-4-31b-it"
+MODEL = "gemma-4-26b-a4b-it"
 
 
 def fetch_json(url: str) -> Any:
@@ -94,16 +94,20 @@ def extract_text(payload: dict[str, Any]) -> str:
 
 def parse_phrases(text: str) -> list[str]:
     candidate = text.strip()
-    if candidate.startswith("```"):
-        lines = candidate.splitlines()
-        if lines and lines[0].startswith("```"):
-            lines = lines[1:]
-        if lines and lines[-1].strip() == "```":
-            lines = lines[:-1]
-        candidate = "\n".join(lines).strip()
-    value = json.loads(candidate)
+    start = candidate.find("[")
+    end = candidate.rfind("]")
+    if start < 0 or end < start:
+        raise RuntimeError(f"teacher response contains no JSON array: {candidate[:500]!r}")
+    candidate = candidate[start : end + 1]
+    try:
+        value = json.loads(candidate)
+    except json.JSONDecodeError as exc:
+        raise RuntimeError(f"teacher JSON parse failed: {candidate[:500]!r}") from exc
     if not isinstance(value, list) or len(value) != 8:
-        raise RuntimeError(f"expected JSON array with 8 items, got {type(value).__name__}/{len(value) if isinstance(value, list) else 'n/a'}")
+        raise RuntimeError(
+            f"expected JSON array with 8 items, got {type(value).__name__}/"
+            f"{len(value) if isinstance(value, list) else 'n/a'}"
+        )
     phrases = [str(x).strip() for x in value]
     if any(not x for x in phrases):
         raise RuntimeError("teacher returned blank phrase")
@@ -118,10 +122,7 @@ def call_gemma(api_key: str, prompt: str, *, max_attempts: int = 5) -> tuple[lis
     body = json.dumps(
         {
             "contents": [{"role": "user", "parts": [{"text": prompt}]}],
-            "generationConfig": {
-                "temperature": 0.8,
-                "maxOutputTokens": 1000,
-            },
+            "generationConfig": {"temperature": 0.8, "maxOutputTokens": 1000},
         },
         ensure_ascii=False,
     ).encode("utf-8")
