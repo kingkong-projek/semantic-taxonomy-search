@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "status": "prefrozen_before_human_data_collection",
   "study_id": "description-fallback-human-v1",
   "research_question": "When ordinary lexical YV/KV lookup is insufficient, can users express their work or competence in ordinary language well enough for the existing simple deterministic fallback candidate to surface a canonical result they recognize and a blind taxonomy adjudicator accepts?",
@@ -7,65 +7,104 @@
     "semantic fallback is generally needed",
     "users usually do not know taxonomy vocabulary",
     "KV evidence transfers to occupation discovery",
-    "model-authored descriptions are user evidence"
+    "model-authored descriptions are user evidence",
+    "a recruited capability study estimates production prevalence"
   ],
   "streams": {
     "occupation": {
       "entrypoint": "Beskriv vad du gör i jobbet",
       "candidate": "current frozen simple C2 occupation-description boundary; ordinary lexical YV remains primary",
       "adjudication_identity": "current selectable occupation-name identities; do not force job-title context or nearest concept",
-      "demand_envelope": "record whether each independently adjudicated acceptable target is inside the frozen occupation P80 envelope; report in-envelope retrieval separately from out-of-envelope coverage",
+      "demand_envelope": "record envelope membership per independently adjudicated acceptable target; report in-envelope retrieval separately from out-of-envelope coverage",
       "must_not_infer_from": "KV-G1+T3 results"
     },
     "skill": {
       "entrypoint": "Beskriv vad du kan eller gör",
       "candidate": "plain KV-G1+T3 as frozen in research/evaluation/v31/kv-g1-t3-simple-boundary.json",
       "adjudication_identity": "skill concept identity",
-      "demand_envelope": "316 frozen P80 skills; do not coerce an independently adjudicated out-of-envelope skill to the nearest P80 target",
+      "demand_envelope": "316 frozen P80 skills; record envelope membership per acceptable target and never coerce an out-of-envelope target to the nearest P80 skill",
       "must_not_promote": "query-only numeric sanitation or any higher-complexity candidate"
     }
   },
   "evidence_order": [
     "participant description captured without retrieval output and without example text naming or strongly cueing a target",
-    "description plus minimal task context frozen",
+    "description plus minimal non-sensitive metadata frozen",
     "at least one taxonomy-domain adjudicator maps the description to zero, one or multiple acceptable canonical identities while blind to retrieval output; uncertain/unmappable is a valid outcome",
-    "adjudication frozen",
+    "adjudication frozen with per-target demand-envelope membership",
+    "manifest records hashes of elicitation and adjudication before retrieval",
     "ordinary lexical baseline and frozen simple fallback candidate are run",
-    "participant may then inspect candidate labels and record recognize/select/none",
+    "participant may then inspect fallback candidate labels and record recognize/select/none",
     "only after outcome freeze may residuals be classified"
   ],
+  "need_measurement": {
+    "production_prevalence": "requires an aggregate funnel denominator outside the human case files: eligible lexical-failure/retry exposures, fallback offers/views, opens, submissions and selections. Raw free text is not required for these counts.",
+    "capability_study": "may report stated willingness/usefulness and completion among recruited/prompted participants, but must not call that production uptake or prevalence.",
+    "separation_rule": "never use N submitted human descriptions as the denominator for prevalence among all lexical failures"
+  },
   "elicitation": {
     "occupation_prompt": "Beskriv vad du gör eller gjorde på jobbet utan att skriva yrkestiteln. Beskriv arbetsuppgifter, verktyg eller system, arbetsmiljö och ansvar som känns viktiga.",
     "skill_prompt": "Beskriv en konkret kompetens du använder i arbete utan att skriva namnet på kompetensen. Berätta vad du gör, med vilka verktyg eller metoder och vilket resultat du försöker uppnå.",
     "examples_in_primary_benchmark": false,
     "reason_no_examples": "example text can anchor vocabulary and contaminate the measurement of whether users can naturally express the need",
-    "minimum_information_rule": "do not coach a participant toward a taxonomy term after submission; if the description is insufficient, mark clarification-needed instead of silently enriching it"
+    "minimum_information_rule": "do not coach a participant toward a taxonomy term after submission; if the description is insufficient, mark clarification-needed instead of silently enriching it",
+    "repository_fields": [
+      "case_id",
+      "stream",
+      "participant_id",
+      "description_redacted",
+      "language",
+      "entry_mode",
+      "title_known_optional",
+      "lexical_attempt_redacted_optional",
+      "fallback_would_use_optional",
+      "recruitment_stratum_optional"
+    ],
+    "entry_modes": [
+      "observed-voluntary",
+      "observed-offered",
+      "study-prompted"
+    ]
   },
-  "case_fields": [
-    "case_id",
-    "stream",
-    "pseudonymous_participant_id",
-    "raw_description_or_approved_redaction",
-    "language",
-    "self_reported_title_known_yes_no_optional",
-    "lexical_attempt_before_fallback_optional",
-    "adjudication_status",
-    "acceptable_canonical_ids",
-    "in_frozen_demand_envelope",
-    "clarification_needed",
-    "lexical_top5_ids",
-    "fallback_top5_ids",
-    "participant_recognized_ids",
-    "participant_selected_id_or_none"
-  ],
+  "adjudication": {
+    "repository_fields": [
+      "case_id",
+      "status",
+      "acceptable_targets",
+      "adjudicator_ids",
+      "retrieval_blind"
+    ],
+    "acceptable_target_shape": {
+      "canonical_id": "string",
+      "in_frozen_demand_envelope": "boolean"
+    },
+    "status_rules": {
+      "mapped": "exactly one acceptable target",
+      "ambiguous": "at least two acceptable targets",
+      "clarification-needed": "zero acceptable targets",
+      "unmappable": "zero acceptable targets",
+      "out-of-scope": "zero acceptable targets"
+    }
+  },
+  "outcomes": {
+    "repository_fields": [
+      "case_id",
+      "lexical_top5_ids",
+      "fallback_top5_ids",
+      "participant_recognized_ids",
+      "participant_selected_id",
+      "clarification_was_offered"
+    ],
+    "recognition_rule": "participant_recognized_ids must be a subset of fallback_top5_ids; participant_selected_id must be null or a recognized fallback candidate"
+  },
   "primary_metrics": {
     "need": [
-      "fraction of observed lexical-failure/retry cases for which the user voluntarily chooses or says they would use description fallback",
+      "production fallback open/submit/select fractions only when an aggregate eligible lexical-failure denominator exists",
+      "stated willingness/usefulness in recruited capability studies, clearly labeled as stated rather than observed prevalence",
       "fraction of submitted descriptions adjudicated as sufficiently informative without clarification",
-      "fraction whose acceptable target is inside the frozen demand envelope"
+      "fraction with at least one acceptable target inside the frozen demand envelope"
     ],
     "capability": [
-      "adjudicated acceptable-target Hit@5 on sufficiently-informative in-envelope cases",
+      "adjudicated acceptable-target Hit@5 on sufficiently-informative cases with at least one in-envelope acceptable target",
       "paired Hit@5 delta versus ordinary lexical baseline on the same descriptions",
       "participant recognition@5 and successful selection/none rate",
       "clarification-needed rate"
@@ -85,14 +124,15 @@
     "report numerator/N and Wilson interval for proportions; do not inflate N with occurrence weights",
     "report unique participants and unique adjudicated target identities alongside query count",
     "ambiguous cases with multiple defensible canonical targets use an acceptable target set rather than forcing one label",
-    "unmappable and out-of-envelope cases remain visible in the denominator of need/coverage reporting even when excluded from in-envelope retrieval accuracy",
+    "per-target demand-envelope membership is preserved for ambiguous cases",
+    "unmappable and out-of-envelope cases remain visible in need/coverage reporting even when excluded from in-envelope retrieval accuracy",
     "synthetic/model-authored cases may be used only for regression tests, never to satisfy the human evidence gate"
   ],
   "complexity_escalation_gate": {
     "default": "do not test embeddings/neural reranking merely because one human case misses",
     "required_before_higher_model_class": [
       "independent human descriptions are frozen before retrieval",
-      "the acceptable target is adjudicated and inside the current envelope",
+      "at least one acceptable target is adjudicated and inside the current envelope",
       "the description contains adequate discriminating evidence",
       "plain simple candidate materially misses across multiple independent cases and target identities",
       "residual review shows the dominant cause is retrieval semantics rather than taxonomy ambiguity, missing source evidence, UI wording or coverage",

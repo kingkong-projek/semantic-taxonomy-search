@@ -1,0 +1,30 @@
+name: Human description study contract
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/validate_human_description_study.py'
+      - 'scripts/selftest_human_description_study.py'
+      - 'research/human/description-fallback-v1/**'
+      - 'research/evaluation/v31/description-fallback-human-validation-contract.json'
+      - 'docs/findings/description-fallback-human-validation-protocol-v31.md'
+      - '.github/workflows/human-description-study-contract.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contract:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile validator
+        run: python -m py_compile scripts/validate_human_description_study.py scripts/selftest_human_description_study.py
+      - name: Run staged-contract self-test
+        run: python scripts/selftest_human_description_study.py
