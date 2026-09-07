@@ -26,6 +26,7 @@ on:
       - 'research/benchmark/v31/p80-source-truth/**'
       - 'research/coverage/source-adapters.json'
       - 'research/coverage/v31/pareto-demand-aggregate.json'
+      - 'research/coverage/v31/unified-target-coverage-aggregate.json'
       - 'README.md'
       - 'LICENSE'
       - 'DATA_SOURCES_AND_LICENSES.md'
@@ -59,8 +60,9 @@ jobs:
           node-version: '24'
       - name: Verify zero-backend responsive demo contract
         run: python scripts/check_demo_contract.py
-      - name: Compile frozen YV C2 browser asset
+      - name: Compile frozen full-universe YV browser asset
         run: |
+          # Keep the legacy filename as the stable Pages URL; engine metadata is authoritative.
           python scripts/build_yv_demo_asset.py \
             --output demo/assets/yv-c2.json \
             --parity-output artifacts/yv-demo-parity-v1.json \
