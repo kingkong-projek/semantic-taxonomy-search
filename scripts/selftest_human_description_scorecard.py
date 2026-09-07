@@ -17,7 +17,7 @@ def main() -> int:
         root = Path(temp_dir)
         elicitation_path, adjudication_path, _, outcomes_path, funnel_path = staged_fixture.build_valid_files(root)
         preregistration_path = root / 'preregistration.json'
-        manifest_path = root / 'manifest.json'
+        manifest_path = root / 'scorecard-frozen-manifest.json'
         preregistration_path.write_text(
             json.dumps(prereg_fixture.valid_preregistration(), indent=2) + '\n',
             encoding='utf-8',
