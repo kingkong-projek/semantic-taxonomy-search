@@ -24,7 +24,8 @@ permissions:
 
 jobs:
   contract:
-    runs-on: [self-hosted, Linux, X64]
+    # Pure Python/schema contract checks should not depend on self-hosted runner availability.
+    runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
