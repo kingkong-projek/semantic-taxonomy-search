@@ -1,0 +1,51 @@
+name: YV full-universe source-truth regression
+
+on:
+  workflow_dispatch:
+    inputs:
+      taxonomy_version:
+        description: Taxonomy target version
+        required: true
+        default: "31"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/evaluate_yv_full_universe_source_truth_regression.py"
+      - "scripts/evaluate_c2_job_title_router.py"
+      - "scripts/evaluate_p80_lexical_ablation.py"
+      - "scripts/evaluate_pareto_c1.py"
+      - "research/coverage/source-adapters.json"
+      - "research/coverage/v31/pareto-demand-aggregate.json"
+      - "research/benchmark/v31/p80-source-truth/yv-p80-source-truth.jsonl"
+      - ".github/workflows/yv-full-universe-source-truth-regression.yml"
+
+concurrency:
+  group: yv-full-universe-source-truth-regression
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile regression
+        run: python -m py_compile scripts/evaluate_yv_full_universe_source_truth_regression.py
+      - name: Run frozen YV source-truth regression
+        env:
+          TAXONOMY_VERSION: ${{ github.event.inputs.taxonomy_version || '31' }}
+        run: |
+          python scripts/evaluate_yv_full_universe_source_truth_regression.py \
+            --version "$TAXONOMY_VERSION" \
+            --output "artifacts/yv-full-universe-source-truth-regression-v${TAXONOMY_VERSION}.json"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: yv-full-universe-source-truth-regression-v${{ github.event.inputs.taxonomy_version || '31' }}
+          path: artifacts/yv-full-universe-source-truth-regression-v${{ github.event.inputs.taxonomy_version || '31' }}.json
+          if-no-files-found: error
