@@ -1,0 +1,31 @@
+name: Diagnose KV numeric Svetsteknik regression
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/diagnose_kv_numeric_svetsteknik.py'
+      - '.github/workflows/kv-diagnose-numeric-svetsteknik.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Explain frozen fresh regression
+        run: python scripts/diagnose_kv_numeric_svetsteknik.py
+      - name: Upload diagnostic
+        uses: actions/upload-artifact@v4
+        with:
+          name: kv-numeric-svetsteknik-diagnostic
+          path: artifacts/kv-numeric-svetsteknik-diagnostic.json
+          if-no-files-found: error
+          retention-days: 30
