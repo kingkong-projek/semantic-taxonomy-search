@@ -21,6 +21,26 @@ function rankLane(scores, ids) {
   return rows.map((row) => row[1]);
 }
 
+function rankPositions(ids) {
+  return new Map(ids.map((id, index) => [id, index + 1]));
+}
+
+function finiteScore(value) {
+  return Number.isFinite(value) ? Number(value.toFixed(6)) : 0;
+}
+
+function supportTermsForIndex(model, uniqueTokens, index, laneColumns) {
+  const support = Object.fromEntries(Object.keys(laneColumns).map((name) => [name, []]));
+  for (const token of uniqueTokens) {
+    const row = (model.postings[token] || []).find((candidate) => candidate[0] === index);
+    if (!row) continue;
+    for (const [name, column] of Object.entries(laneColumns)) {
+      if (Number(row[column]) > 0) support[name].push(token);
+    }
+  }
+  return support;
+}
+
 function fuseKv(c0, g1, teacher) {
   const out = c0.length ? [c0[0]] : [];
   const admit = (source, limit) => {
@@ -78,16 +98,47 @@ function createKvEngine(model) {
       }
 
       const exactRows = model.exact_surfaces[normalizeText(query)] || [];
+      const exactSet = new Set(exactRows);
       for (const index of exactRows) {
         c0[index] += 1_000_000;
         g1[index] += 1_000_000;
         teacher[index] += 1_000_000;
       }
 
-      const rankedIds = fuseKv(rankLane(c0, ids), rankLane(g1, ids), rankLane(teacher, ids)).slice(0, 5);
+      const c0Ranked = rankLane(c0, ids);
+      const g1Ranked = rankLane(g1, ids);
+      const teacherRanked = rankLane(teacher, ids);
+      const c0Positions = rankPositions(c0Ranked);
+      const g1Positions = rankPositions(g1Ranked);
+      const teacherPositions = rankPositions(teacherRanked);
+      const rankedIds = fuseKv(c0Ranked, g1Ranked, teacherRanked).slice(0, 5);
       const results = rankedIds.map((id, index) => {
         const modelIndex = idToIndex.get(id);
-        return { rank: index + 1, id, label: labels[modelIndex] || id };
+        const supportTerms = supportTermsForIndex(
+          model,
+          uniqueTokens,
+          modelIndex,
+          { c0: 1, g1: 2, teacher: 3 },
+        );
+        return {
+          rank: index + 1,
+          id,
+          label: labels[modelIndex] || id,
+          retrieval_debug: {
+            lane_ranks: {
+              c0: c0Positions.get(id) || null,
+              g1: g1Positions.get(id) || null,
+              teacher: teacherPositions.get(id) || null,
+            },
+            lane_scores: {
+              c0: finiteScore(c0[modelIndex]),
+              g1: finiteScore(g1[modelIndex]),
+              teacher: finiteScore(teacher[modelIndex]),
+            },
+            support_terms: supportTerms,
+            exact_surface: exactSet.has(modelIndex),
+          },
+        };
       });
 
       return {
@@ -162,6 +213,7 @@ function yvSurfaceSignal(queryTokens, exactMatch, surfaceTokens) {
 function createYvEngine(model) {
   const ids = model.document_ids;
   const labelsById = model.label_by_id || {};
+  const idToIndex = new Map(ids.map((id, index) => [id, index]));
   const boosts = [0, 2_500, 5_000, 10_000, 1_000_000];
 
   return {
@@ -190,12 +242,14 @@ function createYvEngine(model) {
       const exactSet = new Set(exactRows);
       const shortQuery = queryTokens.length <= 3;
       const scored = [];
+      const surfaceSignals = new Uint8Array(ids.length);
 
       for (let index = 0; index < ids.length; index += 1) {
         const lexical = lexicalScores[index];
         let score = lexical;
         if (shortQuery) {
           const signal = yvSurfaceSignal(queryTokens, exactSet.has(index), model.surface_tokens[index] || []);
+          surfaceSignals[index] = signal;
           if (!signal) continue;
           score += boosts[signal];
         } else {
@@ -206,18 +260,36 @@ function createYvEngine(model) {
       }
       scored.sort((a, b) => (b[0] - a[0]) || compareCodepoint(a[1], b[1]));
       const c1Ranked = scored.map((row) => row[1]);
-      const exactCanonical = c1Ranked.filter((id) => exactSet.has(ids.indexOf(id)));
+      const c1Positions = rankPositions(c1Ranked);
+      const c1Scores = new Map(scored.map(([score, id]) => [id, score]));
+      const exactCanonical = c1Ranked.filter((id) => exactSet.has(idToIndex.get(id)));
       const routed = model.job_title_routes[normalized] || [];
+      const routedSet = new Set(routed);
       const merged = [];
       for (const id of [...exactCanonical, ...routed, ...c1Ranked]) {
         if (!merged.includes(id)) merged.push(id);
       }
       const rankedIds = merged.slice(0, 5);
-      const results = rankedIds.map((id, index) => ({
-        rank: index + 1,
-        id,
-        label: labelsById[id] || id,
-      }));
+      const results = rankedIds.map((id, index) => {
+        const modelIndex = idToIndex.get(id);
+        const inC1 = modelIndex !== undefined;
+        const supportTerms = inC1
+          ? supportTermsForIndex(model, uniqueTokens, modelIndex, { c1: 1 }).c1
+          : [];
+        return {
+          rank: index + 1,
+          id,
+          label: labelsById[id] || id,
+          retrieval_debug: {
+            c2_job_title_route: routedSet.has(id),
+            c1_rank: c1Positions.get(id) || null,
+            c1_score: finiteScore(c1Scores.get(id) || 0),
+            support_terms: supportTerms,
+            exact_canonical_surface: inC1 && exactSet.has(modelIndex),
+            short_query_surface_signal: inC1 && shortQuery ? Number(surfaceSignals[modelIndex]) : null,
+          },
+        };
+      });
 
       return {
         results,
