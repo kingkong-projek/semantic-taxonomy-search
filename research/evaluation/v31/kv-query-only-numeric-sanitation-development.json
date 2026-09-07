@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 31,
+  "status": "development_candidate_frozen_before_any_new_numeric_source_holdout",
+  "candidate": {
+    "name": "G1T3-drop-pure-integer-query-only",
+    "fusion": "C0-top1 + G1-1slot + teacher-3slot",
+    "change": "leave all indexed documents, C0, exact surfaces, teacher representation and fusion unchanged; remove pure integer tokens only from G1 and teacher query token streams",
+    "complexity_delta": "one deterministic query-token predicate in two existing expansion scorers; no index change, model, lane, score calibration, stopword list, stemming, subwords, embeddings or inference"
+  },
+  "opened_evidence": {
+    "source_attested_AF": {
+      "queries": 81,
+      "current_G1T3_hit5": 71,
+      "candidate_hit5": 72,
+      "rescues": 1,
+      "regressions": 0,
+      "known_rescue": {"id": "kv.training-skill-second-holdout.017", "target": "Ekonomistyrning", "current_rank": 6, "candidate_rank": 5}
+    },
+    "canonical": {"top1": 617, "hit5": 617, "n": 617},
+    "synthetic_ranks101_200": {"current_hit5": 93, "candidate_hit5": 93, "rank_moves": 0},
+    "synthetic_ranks201_300": {"current_hit5": 96, "candidate_hit5": 96, "rank_moves": 0},
+    "synthetic_ranks301_316": {"current_hit5": 11, "candidate_hit5": 11, "rank_moves": 0},
+    "known_no_numeric_boundary": {"id": "kv.model-authored-301-316.310", "target": "Svetsteknik", "current_rank": 5, "candidate_rank": 5}
+  },
+  "why_query_only": "The rejected document+query sanitation changed BM25 corpus length normalization and caused the prefrozen Svetsteknik regression despite its query containing no numbers. Query-only sanitation is ranking-identical for no-number queries because neither documents nor their statistics change.",
+  "rejected_broader_candidate": "research/evaluation/v31/kv-final-p80-gate.json",
+  "evidence_boundary": "Every suite above was already opened when this query-only rule was designed. These results nominate the rule but cannot independently validate or promote it.",
+  "decision": "Freeze this exact rule before inspecting any new numeric source-attested holdout. If no natural unused source slice exists, do not manufacture one and do not promote from opened evidence alone.",
+  "workflow_run_id": 34087094350,
+  "artifact_id": 10005570367,
+  "artifact_zip_sha256": "d8e914f28ba5ba69f9fb63e67bf14fc7972a1a6c5bfff5882cc1ef7ede0f8558"
+}
