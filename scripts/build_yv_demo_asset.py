@@ -10,7 +10,9 @@ frozen `YV-description-full-v0-canonical-router` candidate exactly:
 
 Diagnostic AF ad-language and Relevanta-kompetenser lanes are deliberately excluded:
 they were not promoted into the frozen candidate. The compiler emits an authoritative
-parity packet so browser CI must reproduce the Python top five exactly.
+parity packet so browser CI must reproduce the Python top five exactly. Full ranking
+parity uses the frozen 333 source-truth cases, the 30-case natural holdout and a
+stable route sample; the route table itself is checked exhaustively as structure.
 """
 from __future__ import annotations
 
@@ -28,6 +30,7 @@ from evaluate_pareto_c1 import rank_c1
 
 ENGINE_ID = "YV-description-full-v0-canonical-router"
 EXPECTED_TARGET_COUNT = 2105
+ROUTE_PARITY_SAMPLE_SIZE = 128
 
 
 def read_jsonl(path: Path) -> list[dict[str, Any]]:
@@ -51,6 +54,16 @@ def bm25_postings(ranker: Any, ids: list[str]) -> dict[str, list[list[float | in
     return {term: rows for term, rows in sorted(out.items())}
 
 
+def stable_even_sample(values: list[str], size: int) -> list[str]:
+    """Take a deterministic spread across a sorted population, including both ends."""
+    if len(values) <= size:
+        return values
+    if size <= 1:
+        return [values[0]]
+    positions = {round(index * (len(values) - 1) / (size - 1)) for index in range(size)}
+    return [values[index] for index in sorted(positions)]
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--version", default="31")
@@ -59,7 +72,8 @@ def main() -> int:
     ap.add_argument("--pareto", default="research/coverage/v31/pareto-demand-aggregate.json")
     ap.add_argument("--source-truth", default="research/benchmark/v31/p80-source-truth/yv-p80-source-truth.jsonl")
     ap.add_argument("--natural-holdout", default="research/benchmark/v31/fresh-natural-holdout/benchmark.jsonl")
-    ap.add_argument("--output", default="demo/assets/yv-full-v0.json")
+    # Keep the historical filename as the stable Pages URL. Engine metadata is authoritative.
+    ap.add_argument("--output", default="demo/assets/yv-c2.json")
     ap.add_argument("--parity-output", default="artifacts/yv-demo-parity-v1.json")
     ap.add_argument("--build-id", default="local")
     args = ap.parse_args()
@@ -116,6 +130,15 @@ def main() -> int:
         for label, parent_ids in sorted(label_to_parent_ids.items())
     }
     routed_ids = sorted({cid for parent_ids in routes.values() for cid in parent_ids})
+    canonical_id_set = set(ids)
+    for label, parent_ids in routes.items():
+        if not label or not parent_ids:
+            raise RuntimeError("job-title route table contains an empty route")
+        if len(parent_ids) != len(set(parent_ids)):
+            raise RuntimeError(f"job-title route contains duplicate parents: {label}")
+        invalid = [cid for cid in parent_ids if cid not in canonical_id_set]
+        if invalid:
+            raise RuntimeError(f"job-title route leaves active occupation universe: {label}: {invalid}")
 
     def rank_frozen(query: str) -> list[str]:
         canonical_scored = rank_c1(ranker, query, exact_surfaces, surface_tokens)
@@ -174,9 +197,11 @@ def main() -> int:
     for case in natural_holdout:
         query = str(case["query"])
         parity_cases.append({"id": str(case["id"]), "query": query, "expected_top5": rank_frozen(query)[:5]})
-    for index, query in enumerate(routes):
+
+    route_sample = stable_even_sample(list(routes), ROUTE_PARITY_SAMPLE_SIZE)
+    for index, query in enumerate(route_sample):
         parity_cases.append({
-            "id": f"yv.full.route.{index:05d}",
+            "id": f"yv.full.route-sample.{index:03d}",
             "query": query,
             "expected_top5": rank_frozen(query)[:5],
         })
@@ -186,6 +211,9 @@ def main() -> int:
         "engine": asset["engine"],
         "taxonomy_sha256": taxonomy_sha,
         "semantics": "browser packaging parity only; not new validation evidence",
+        "full_route_structure_checked": True,
+        "route_population_count": len(routes),
+        "route_rank_parity_sample_count": len(route_sample),
         "cases": parity_cases,
     }
 
@@ -203,6 +231,7 @@ def main() -> int:
         "job_title_route_surfaces": len(routes),
         "routed_parents": len(routed_ids),
         "parity_cases": len(parity_cases),
+        "route_rank_parity_sample": len(route_sample),
         "asset_bytes": len(raw),
         "asset_gzip_bytes": len(gzip.compress(raw, compresslevel=9)),
         "runtime_dependencies": [],
