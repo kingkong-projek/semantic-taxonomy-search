@@ -1,0 +1,47 @@
+name: Dense semantic candidate lane diagnostic
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/evaluate_dense_semantic_candidate_lane.py
+      - research/evaluation/v31/opened-live-semantic-stress-v1.json
+      - research/enrichment/v31/model-teacher-kv-top100/phrases.jsonl
+      - research/enrichment/v31/model-teacher-kv-ranks101-200/phrases.jsonl
+      - research/enrichment/v31/model-teacher-kv-ranks201-300/phrases.jsonl
+      - research/enrichment/v31/model-teacher-kv-ranks301-316/phrases.jsonl
+      - .github/workflows/dense-semantic-candidate-lane.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: dense-semantic-candidate-lane-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install pinned research dependency
+        run: python -m pip install --disable-pip-version-check 'sentence-transformers==3.4.1'
+      - name: Compile-check diagnostic
+        run: python -m py_compile scripts/evaluate_dense_semantic_candidate_lane.py
+      - name: Evaluate dense candidate lane
+        env:
+          TOKENIZERS_PARALLELISM: "false"
+        run: python scripts/evaluate_dense_semantic_candidate_lane.py
+      - name: Upload diagnostic
+        uses: actions/upload-artifact@v4
+        with:
+          name: dense-semantic-candidate-lane-v31
+          path: artifacts/dense-semantic-candidate-lane-v31.json
+          if-no-files-found: error
+          retention-days: 30
