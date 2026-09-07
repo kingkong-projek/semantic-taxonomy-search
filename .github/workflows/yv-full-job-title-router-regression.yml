@@ -1,0 +1,82 @@
+name: YV full-universe job-title router regression
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/evaluate_yv_full_job_title_router_regression.py"
+      - "scripts/build_compact_yv_profile_safety.py"
+      - "scripts/evaluate_c2_job_title_router.py"
+      - "scripts/evaluate_pareto_c1.py"
+      - "research/coverage/source-adapters.json"
+      - "research/coverage/v31/pareto-demand-aggregate.json"
+      - ".github/workflows/yv-full-job-title-router-regression.yml"
+
+concurrency:
+  group: yv-full-job-title-router-regression
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile regression
+        run: python -m py_compile scripts/evaluate_yv_full_job_title_router_regression.py
+      - name: Checkout pinned Yrkesväljaren generator evidence
+        env:
+          YV_GENERATOR_COMMIT: 6dd9e4737d7db3cb2709f8082808b88e5c89ed6e
+        run: |
+          rm -rf /tmp/yv-generator
+          git init -q /tmp/yv-generator
+          git -C /tmp/yv-generator remote add origin https://gitlab.com/arbetsformedlingen/taxonomy-dev/backend/yrkesvaljaren.git
+          git -C /tmp/yv-generator fetch -q --depth 1 origin "$YV_GENERATOR_COMMIT"
+          git -C /tmp/yv-generator checkout -q --detach FETCH_HEAD
+          test "$(git -C /tmp/yv-generator rev-parse HEAD)" = "$YV_GENERATOR_COMMIT"
+      - name: Rebuild frozen excluded-title ranks 21-50
+        run: |
+          python scripts/build_compact_yv_profile_safety.py \
+            --version 31 \
+            --source-dir /tmp/yv-generator \
+            --multi-parent-limit 20 \
+            --excluded-limit 50 \
+            --output-dir /tmp/compact-safety-50
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          rows=[json.loads(x) for x in Path('/tmp/compact-safety-50/excluded-routing-review.jsonl').read_text(encoding='utf-8').splitlines() if x.strip()]
+          assert len(rows)==50
+          sentinel=rows[20:50]
+          assert [r['id'] for r in sentinel]==[f'yv.safety.excluded-review.{i:03d}' for i in range(21,51)]
+          Path('/tmp/excluded-sentinel-21-50.jsonl').write_text(''.join(json.dumps(r,ensure_ascii=False,sort_keys=True)+'\n' for r in sentinel),encoding='utf-8')
+          PY
+      - name: Evaluate full-universe exact title routing
+        run: |
+          python scripts/evaluate_yv_full_job_title_router_regression.py \
+            --excluded-sentinel /tmp/excluded-sentinel-21-50.jsonl \
+            --output artifacts/yv-full-job-title-router-regression-v31.json
+      - name: Require route integrity
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('artifacts/yv-full-job-title-router-regression-v31.json').read_text(encoding='utf-8'))
+          s=x['sentinel']
+          assert s['rows']==30
+          assert s['route_set_drift_rows']==0
+          assert s['any_parent_hit_at_5_pct']==100.0
+          print(json.dumps({k:v for k,v in s.items() if k!='cases'},indent=2,sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: yv-full-job-title-router-regression-v31
+          path: artifacts/yv-full-job-title-router-regression-v31.json
+          if-no-files-found: error
