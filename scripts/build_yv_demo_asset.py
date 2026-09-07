@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
-"""Compile the frozen deterministic YV C2 retriever for the zero-backend browser demo.
+"""Compile the frozen full-universe YV description candidate for the browser demo.
 
-This is packaging, not a new retrieval experiment. The browser asset mirrors the existing
-C1/C2 research implementation:
-- C1 P80 + six frozen boundary occupation identities;
-- canonical label/definition/alternative-label BM25;
+This is packaging, not a new retrieval experiment. The browser asset mirrors the
+frozen `YV-description-full-v0-canonical-router` candidate exactly:
+- every active v31 occupation-name identity;
+- canonical preferred label + real definition + canonical alternative labels;
 - the frozen short-query surface/component/fuzzy guard and conservative abstention;
-- C2 exact job-title preferred-label -> typed occupation-name parent routing.
+- exact active job-title preferred-label -> typed occupation-name parent routing.
 
-The compiler also emits an authoritative parity packet. Browser CI must reproduce the
-Python C2 top five exactly before the asset can be deployed.
+Diagnostic AF ad-language and Relevanta-kompetenser lanes are deliberately excluded:
+they were not promoted into the frozen candidate. The compiler emits an authoritative
+parity packet so browser CI must reproduce the Python top five exactly.
 """
 from __future__ import annotations
 
@@ -23,7 +24,10 @@ from typing import Any
 
 from evaluate_c2_job_title_router import build_c1_index, relation_parent_ids
 from evaluate_p80_lexical_ablation import expected_hash, fetch, norm
-from evaluate_pareto_c1 import BOUNDARY_IDS, p80_ids, rank_c1
+from evaluate_pareto_c1 import rank_c1
+
+ENGINE_ID = "YV-description-full-v0-canonical-router"
+EXPECTED_TARGET_COUNT = 2105
 
 
 def read_jsonl(path: Path) -> list[dict[str, Any]]:
@@ -51,17 +55,23 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--version", default="31")
     ap.add_argument("--registry", default="research/coverage/source-adapters.json")
+    ap.add_argument("--coverage-aggregate", default="research/coverage/v31/unified-target-coverage-aggregate.json")
     ap.add_argument("--pareto", default="research/coverage/v31/pareto-demand-aggregate.json")
     ap.add_argument("--source-truth", default="research/benchmark/v31/p80-source-truth/yv-p80-source-truth.jsonl")
     ap.add_argument("--natural-holdout", default="research/benchmark/v31/fresh-natural-holdout/benchmark.jsonl")
-    ap.add_argument("--output", default="demo/assets/yv-c2.json")
+    ap.add_argument("--output", default="demo/assets/yv-full-v0.json")
     ap.add_argument("--parity-output", default="artifacts/yv-demo-parity-v1.json")
     ap.add_argument("--build-id", default="local")
     args = ap.parse_args()
 
     registry = json.loads(Path(args.registry).read_text(encoding="utf-8"))
+    coverage = json.loads(Path(args.coverage_aggregate).read_text(encoding="utf-8"))
     pareto = json.loads(Path(args.pareto).read_text(encoding="utf-8"))
     version = str(args.version)
+    expected_count = int(coverage["target_counts"]["yv_occupation_name"])
+    if expected_count != EXPECTED_TARGET_COUNT:
+        raise RuntimeError(f"frozen YV target universe drift: expected {EXPECTED_TARGET_COUNT}, got {expected_count}")
+
     taxonomy_url = (
         "https://data.jobtechdev.se/taxonomy/version/"
         f"{version}/query/concepts-and-common-relations/concepts-and-common-relations.json"
@@ -75,18 +85,20 @@ def main() -> int:
         raise RuntimeError("taxonomy missing concepts")
     by_id = {str(c["id"]): c for c in concepts if isinstance(c, dict) and c.get("id")}
 
-    base_p80 = p80_ids(pareto)
-    ids = sorted(set(base_p80) | BOUNDARY_IDS)
-    if len(ids) != 165:
-        raise RuntimeError(f"C1/C2 target envelope drift: {len(ids)}")
+    ids = sorted(cid for cid, concept in by_id.items() if concept.get("type") == "occupation-name")
+    if len(ids) != expected_count:
+        raise RuntimeError(f"active occupation-name universe drift: expected {expected_count}, got {len(ids)}")
     ranker, exact_surfaces, surface_tokens = build_c1_index(by_id, ids)
 
+    # Preserve the exact C2 routing policy, including deterministic parent ordering by
+    # the same frozen historical occurrence proxy. Only the canonical destination
+    # universe expands to all active occupation-name identities.
     occurrence = {
         str(row["concept_id"]): int(row["occurrences"])
         for row in pareto["occupation_name"]["ranked_p95"]
     }
     label_to_parent_ids: dict[str, set[str]] = defaultdict(set)
-    for cid, concept in by_id.items():
+    for concept in by_id.values():
         if concept.get("type") != "job-title":
             continue
         label = norm(concept.get("preferred_label"))
@@ -103,15 +115,16 @@ def main() -> int:
         label: sorted(parent_ids, key=parent_sort_key)
         for label, parent_ids in sorted(label_to_parent_ids.items())
     }
+    routed_ids = sorted({cid for parent_ids in routes.values() for cid in parent_ids})
 
-    def rank_c2(query: str) -> list[str]:
-        c1_scored = rank_c1(ranker, query, exact_surfaces, surface_tokens)
-        c1_ranked = [cid for cid, _, _ in c1_scored]
+    def rank_frozen(query: str) -> list[str]:
+        canonical_scored = rank_c1(ranker, query, exact_surfaces, surface_tokens)
+        canonical_ranked = [cid for cid, _, _ in canonical_scored]
         nq = norm(query)
-        exact_canonical = [cid for cid in c1_ranked if nq and nq in exact_surfaces[cid]]
+        exact_canonical = [cid for cid in canonical_ranked if nq and nq in exact_surfaces[cid]]
         routed = routes.get(nq, [])
         merged: list[str] = []
-        for cid in [*exact_canonical, *routed, *c1_ranked]:
+        for cid in [*exact_canonical, *routed, *canonical_ranked]:
             if cid not in merged:
                 merged.append(cid)
         return merged
@@ -121,14 +134,13 @@ def main() -> int:
         for surface in sorted(exact_surfaces[cid]):
             exact_index[surface].append(index)
 
-    routed_ids = sorted({cid for parent_ids in routes.values() for cid in parent_ids})
     labels_by_id = {
         cid: str(by_id[cid].get("preferred_label") or cid)
         for cid in sorted(set(ids) | set(routed_ids))
     }
     asset = {
         "schema_version": 1,
-        "engine": "YV-C2-plain-v1",
+        "engine": ENGINE_ID,
         "document_ids": ids,
         "labels": [labels_by_id[cid] for cid in ids],
         "label_by_id": labels_by_id,
@@ -140,13 +152,14 @@ def main() -> int:
             "taxonomy_version": int(version),
             "taxonomy_sha256": taxonomy_sha,
             "target_count": len(ids),
-            "p80_target_count": len(base_p80),
-            "boundary_target_count": len(BOUNDARY_IDS),
             "job_title_route_surface_count": len(routes),
             "routed_parent_count": len(routed_ids),
             "runtime_dependencies": [],
             "build_id": str(args.build_id),
-            "retrieval_contract": "frozen C2 = C1 + exact job-title preferred-label to typed occupation-name parents",
+            "retrieval_contract": (
+                "frozen YV full-universe candidate = canonical BM25 over all active occupation-name identities "
+                "+ exact active job-title preferred-label to typed occupation-name parents; diagnostic lanes excluded"
+            ),
         },
     }
 
@@ -157,15 +170,15 @@ def main() -> int:
         raise RuntimeError(f"YV parity corpus drift: {len(source_truth)}/{len(natural_holdout)}")
     for case in source_truth:
         query = str(case["query"])
-        parity_cases.append({"id": str(case["id"]), "query": query, "expected_top5": rank_c2(query)[:5]})
+        parity_cases.append({"id": str(case["id"]), "query": query, "expected_top5": rank_frozen(query)[:5]})
     for case in natural_holdout:
         query = str(case["query"])
-        parity_cases.append({"id": str(case["id"]), "query": query, "expected_top5": rank_c2(query)[:5]})
+        parity_cases.append({"id": str(case["id"]), "query": query, "expected_top5": rank_frozen(query)[:5]})
     for index, query in enumerate(routes):
         parity_cases.append({
-            "id": f"yv.c2.route.{index:05d}",
+            "id": f"yv.full.route.{index:05d}",
             "query": query,
-            "expected_top5": rank_c2(query)[:5],
+            "expected_top5": rank_frozen(query)[:5],
         })
 
     parity = {
