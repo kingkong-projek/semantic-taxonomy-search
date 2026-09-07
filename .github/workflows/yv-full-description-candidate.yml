@@ -1,0 +1,48 @@
+name: YV full description candidate
+
+on:
+  workflow_dispatch:
+    inputs:
+      taxonomy_version:
+        description: Taxonomy target version
+        required: true
+        default: "31"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/build_yv_full_description_candidate.py"
+      - "scripts/build_yv_demo_asset.py"
+      - "scripts/evaluate_c2_job_title_router.py"
+      - "scripts/evaluate_p80_lexical_ablation.py"
+      - "research/coverage/source-adapters.json"
+      - "research/coverage/v31/unified-target-coverage-aggregate.json"
+      - ".github/workflows/yv-full-description-candidate.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile candidate builder
+        run: python -m py_compile scripts/build_yv_full_description_candidate.py
+      - name: Install pinned decompressor
+        run: python -m pip install --disable-pip-version-check zstandard==0.23.0
+      - name: Build provenance-separated full-universe candidate
+        env:
+          TAXONOMY_VERSION: ${{ github.event.inputs.taxonomy_version || '31' }}
+        run: |
+          python scripts/build_yv_full_description_candidate.py \
+            --version "$TAXONOMY_VERSION" \
+            --output "artifacts/yv-full-description-candidate-v${TAXONOMY_VERSION}.json"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: yv-full-description-candidate-v${{ github.event.inputs.taxonomy_version || '31' }}
+          path: artifacts/yv-full-description-candidate-v${{ github.event.inputs.taxonomy_version || '31' }}.json
+          if-no-files-found: error
