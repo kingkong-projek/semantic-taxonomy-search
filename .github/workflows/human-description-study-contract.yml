@@ -8,6 +8,7 @@ on:
       - 'scripts/verify_human_description_study.py'
       - 'scripts/freeze_human_description_study_manifest.py'
       - 'scripts/check_human_description_repository_state.py'
+      - 'scripts/check_human_description_contract_consistency.py'
       - 'scripts/selftest_human_description_study.py'
       - 'scripts/selftest_human_description_preregistration.py'
       - 'research/human/description-fallback-v1/**'
@@ -35,8 +36,11 @@ jobs:
             scripts/verify_human_description_study.py \
             scripts/freeze_human_description_study_manifest.py \
             scripts/check_human_description_repository_state.py \
+            scripts/check_human_description_contract_consistency.py \
             scripts/selftest_human_description_study.py \
             scripts/selftest_human_description_preregistration.py
+      - name: Check structured contract consistency
+        run: python scripts/check_human_description_contract_consistency.py
       - name: Run staged-contract self-test
         run: python scripts/selftest_human_description_study.py
       - name: Run preregistration-binding self-test
