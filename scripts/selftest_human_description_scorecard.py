@@ -17,7 +17,10 @@ def main() -> int:
         root = Path(temp_dir)
         elicitation_path, adjudication_path, _, outcomes_path, funnel_path = staged_fixture.build_valid_files(root)
         preregistration_path = root / 'preregistration.json'
+        # Do not reuse staged_fixture's already-created manifest.json: overwrite refusal is
+        # a contract invariant, not something this scorecard fixture should bypass.
         manifest_path = root / 'scorecard-frozen-manifest.json'
+        assert not manifest_path.exists()
         preregistration_path.write_text(
             json.dumps(prereg_fixture.valid_preregistration(), indent=2) + '\n',
             encoding='utf-8',
