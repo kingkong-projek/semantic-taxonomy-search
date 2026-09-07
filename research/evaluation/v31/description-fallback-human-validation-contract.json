@@ -1,5 +1,5 @@
 {
-  "schema_version": 3,
+  "schema_version": 4,
   "status": "collection_ready_preregistration_not_frozen",
   "study_id": "description-fallback-human-v1",
   "research_question": "When ordinary lexical YV/KV lookup is insufficient, can users express their work or competence in ordinary language well enough for the existing simple deterministic fallback candidate to surface a canonical result they recognize and a blind taxonomy adjudicator accepts?",
@@ -67,7 +67,8 @@
     "freeze_tool": "scripts/freeze_human_description_study_manifest.py",
     "verification_tool": "scripts/verify_human_description_study.py",
     "repository_stage_guard": "scripts/check_human_description_repository_state.py",
-    "manifest_overwrite": "forbidden"
+    "manifest_overwrite": "forbidden",
+    "score_tool": "scripts/score_human_description_study.py"
   },
   "need_measurement": {
     "production_prevalence": "requires an aggregate funnel denominator outside the human case files: eligible lexical-failure/retry exposures, fallback offers/views, opens, submissions and selections. Raw free text is not required for these counts.",
@@ -137,10 +138,14 @@
       "fraction with at least one acceptable target inside the frozen demand envelope"
     ],
     "capability": [
-      "adjudicated acceptable-target Hit@5 on sufficiently-informative cases with at least one in-envelope acceptable target",
-      "paired Hit@5 delta versus ordinary lexical baseline on the same descriptions",
-      "participant recognition@5 and successful selection/none rate",
-      "clarification-needed rate"
+      "Top1 acceptable on sufficiently-informative cases with at least one in-envelope acceptable target",
+      "first acceptable rank and mean reciprocal rank (MRR)",
+      "nDCG@5 when multiple acceptable identities exist",
+      "unacceptable-prefix burden before the first acceptable candidate",
+      "candidate-list precision and unacceptable candidates returned over the candidates actually shown",
+      "correct fallback abstention for clarification-needed, unmappable and out-of-scope cases",
+      "participant recognition and acceptable selection/none behavior",
+      "acceptable-target Hit@5 and paired Hit@5 delta versus lexical baseline only as secondary historical recall signals"
     ],
     "residual_classification": [
       "insufficient description",
@@ -159,7 +164,8 @@
     "ambiguous cases with multiple defensible canonical targets use an acceptable target set rather than forcing one label",
     "per-target demand-envelope membership is preserved for ambiguous cases",
     "unmappable and out-of-envelope cases remain visible in need/coverage reporting even when excluded from in-envelope retrieval accuracy",
-    "synthetic/model-authored cases may be used only for regression tests, never to satisfy the human evidence gate"
+    "synthetic/model-authored cases may be used only for regression tests, never to satisfy the human evidence gate",
+    "Hit@5 is a secondary recall-style signal and must never be reported alone as product/list quality"
   ],
   "complexity_escalation_gate": {
     "default": "do not test embeddings/neural reranking merely because one human case misses",

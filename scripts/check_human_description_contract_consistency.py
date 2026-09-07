@@ -12,8 +12,8 @@ CONTRACT = Path('research/evaluation/v31/description-fallback-human-validation-c
 
 def main() -> int:
     obj = json.loads(CONTRACT.read_text(encoding='utf-8'))
-    if obj.get('schema_version') != 3:
-        raise RuntimeError('human validation contract schema_version must be 3')
+    if obj.get('schema_version') != 4:
+        raise RuntimeError('human validation contract schema_version must be 4')
     if obj.get('study_id') != 'description-fallback-human-v1':
         raise RuntimeError('unexpected human validation study_id')
     if obj.get('status') != 'collection_ready_preregistration_not_frozen':
@@ -48,6 +48,8 @@ def main() -> int:
         raise RuntimeError('contract repository guard path drift')
     if freeze.get('manifest_overwrite') != 'forbidden':
         raise RuntimeError('contract must forbid manifest overwrite')
+    if freeze.get('score_tool') != 'scripts/score_human_description_study.py':
+        raise RuntimeError('contract score tool path drift')
 
     elicitation = obj.get('elicitation', {})
     if elicitation.get('examples_in_primary_benchmark') is not False:
@@ -59,6 +61,15 @@ def main() -> int:
     recognition_rule = outcomes.get('recognition_rule', '')
     if 'subset of fallback_top5_ids' not in recognition_rule:
         raise RuntimeError('structured contract recognition rule drift')
+
+    capability = obj.get('primary_metrics', {}).get('capability', [])
+    required_metric_markers = ('Top1 acceptable', 'mean reciprocal rank', 'unacceptable-prefix', 'candidate-list precision', 'Hit@5')
+    capability_text = ' '.join(str(item) for item in capability)
+    for marker in required_metric_markers:
+        if marker not in capability_text:
+            raise RuntimeError(f'structured contract missing rank-sensitive metric marker: {marker}')
+    if 'secondary historical recall signals' not in capability_text:
+        raise RuntimeError('structured contract must demote Hit@5 to secondary recall')
 
     print('human-description structured contract consistency: PASS')
     return 0

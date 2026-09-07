@@ -60,7 +60,7 @@ Report two groups of metrics rather than one headline score.
 
 **Need/expressibility:** observed production uptake only when an eligible lexical-failure denominator exists; otherwise stated willingness/usefulness must be labeled as such. Also report sufficiently-informative-description rate, clarification-needed rate and demand-envelope coverage.
 
-**Capability:** acceptable-target Hit@5, paired Hit@5 delta versus ordinary lexical lookup, participant recognition@5, selected-candidate/none rate, and the complete residual distribution. Participant-recognised identities must be a subset of the actually shown fallback top 5.
+**Capability:** make list quality rank-sensitive. Primary reporting is Top1 acceptable, first acceptable rank / MRR, nDCG@5 when several identities are acceptable, unacceptable-prefix burden before the first acceptable result, candidate-list precision over the candidates actually shown, unacceptable candidates returned, correct abstention on clarification-needed/unmappable/out-of-scope cases, participant recognition and acceptable selection/none behavior. Keep acceptable-target Hit@5 and paired Hit@5 delta versus ordinary lexical lookup only as secondary historical recall signals. Participant-recognised identities must be a subset of the actually shown fallback top 5.
 
 Always report numerator/N, unique participants and unique target identities. Wilson intervals may describe uncertainty for proportions; occurrence weights are not independent trials.
 
