@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 31,
+  "status": "independent_validation_unavailable_under_prefrozen_source_criteria",
+  "candidate": {
+    "name": "G1T3-drop-pure-integer-query-only",
+    "frozen_development_evidence": "research/evaluation/v31/kv-query-only-numeric-sanitation-development.json",
+    "candidate_freeze_commit": "53d54b2543d28f7bdea63c08595f8ba1d0549283"
+  },
+  "independent_holdout_attempt": {
+    "builder": "scripts/build_training_skill_numeric_holdout.py",
+    "builder_commit": "ef4ab155be0a294332f5c08a638368e1d71c6c6b",
+    "workflow": ".github/workflows/kv-freeze-numeric-source-holdout-once.yml",
+    "workflow_commit": "6f33ca3a526b66221df68eb1df9b004175a9d537",
+    "workflow_run_id": 34087369901,
+    "job_id": 101633879117,
+    "source": "https://data.arbetsformedlingen.se/utbildningar/mappings/mapping_labour-market-training.json",
+    "source_sha256": "fea97867a1225e078d28ab9b0772f6a37f92b37c3c6c0d0e886ae65e9d79361c",
+    "selection_frozen_before_retrieval": [
+      "exclude every module id and normalized query text already used by the 76-case development set and the 35+20+26 source-attested holdouts",
+      "exactly one mapped target inside the frozen 316-skill P80 envelope",
+      "target preferred label must not occur directly in the description",
+      "description must be non-terse natural source text",
+      "description must contain at least one pure integer token under the same research tokenizer used by the candidate",
+      "include every eligible P80 skill, with at most two deterministic rows per skill",
+      "no retrieval/model/scoring code available to the builder"
+    ],
+    "result": {
+      "eligible_cases": 0,
+      "retrieval_executed": false,
+      "benchmark_committed": false,
+      "terminal_error": "no natural unused source-attested numeric holdout exists under the frozen criteria"
+    }
+  },
+  "decision": {
+    "query_only_numeric_sanitation": "do not promote; opened-data development evidence is promising but no independent natural source-attested validation remains under the defensible prefrozen criteria",
+    "criteria_relaxation": "rejected; do not lower the source-quality/leakage/independence criteria merely to manufacture a validating slice",
+    "synthetic_substitute": "rejected for promotion evidence; do not construct numeric examples after seeing the candidate behavior",
+    "current_low_complexity_recommendation": "plain frozen G1+T3 without numeric sanitation",
+    "revisit_trigger": "new independent human/user or source-attested numeric descriptive queries become available, or a measured production failure makes numeric-token handling material"
+  },
+  "methodological_note": "Failure to obtain an independent holdout is itself a boundary result. It prevents converting a favorable opened-data ablation into an evidence claim stronger than the data supports."
+}
