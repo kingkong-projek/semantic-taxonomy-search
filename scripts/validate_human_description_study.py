@@ -159,6 +159,13 @@ def validate_adjudication(
         if row['status'] not in STATUSES:
             raise RuntimeError(f'adjudication:{case_id}: bad status')
         targets = validate_targets(row['acceptable_targets'], f'adjudication:{case_id}')
+        stream = elicitation[case_id]['stream']
+        if stream == 'occupation' and any(
+            target['in_frozen_demand_envelope'] is not True for target in targets
+        ):
+            raise RuntimeError(
+                f'adjudication:{case_id}: active v31 occupation-name targets are all inside the frozen occupation capability universe'
+            )
         if row['status'] == 'mapped' and len(targets) != 1:
             raise RuntimeError(f'adjudication:{case_id}: mapped requires exactly one target')
         if row['status'] == 'ambiguous' and len(targets) < 2:

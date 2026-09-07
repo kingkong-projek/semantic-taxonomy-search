@@ -59,7 +59,7 @@ Status invariants:
 - `ambiguous` = at least two acceptable targets;
 - `clarification-needed`, `unmappable`, `out-of-scope` = zero targets.
 
-Envelope membership is stored **per target**. This matters when an ambiguous description has one defensible identity inside P80 and another outside it. Never invent a single target merely to make Hit@5 calculable.
+The legacy `in_frozen_demand_envelope` field is stored **per target**, but its meaning is stream-specific. For `skill`, it records membership in the frozen 316-skill P80 capability envelope and mixed inside/outside ambiguous cases are valid. For `occupation`, the frozen capability universe is all **2,105 active v31 `occupation-name` identities**, so every valid active occupation target must set the field to `true`; P80/non-P80 is a separate demand-priority reporting stratum. Never coerce a valid non-P80 occupation to the nearest P80 identity merely to make Hit@5 calculable.
 
 ## Freeze before retrieval
 
@@ -102,7 +102,7 @@ python scripts/verify_human_description_study.py \
   [--funnel <path>/need-funnel.json]
 ```
 
-The staged validator enforces stage separation, hash freezes, unique IDs, per-target envelope semantics and adjudication/outcome invariants. The wrapper additionally proves that the manifest is bound to the frozen preregistration. It also rejects obvious email addresses and Swedish-style phone-number patterns in repository-bound description text. That regex guard is only a backstop, not a privacy review.
+The staged validator enforces stage separation, hash freezes, unique IDs, stream-specific per-target capability-universe semantics and adjudication/outcome invariants. The wrapper additionally proves that the manifest is bound to the frozen preregistration. It also rejects obvious email addresses and Swedish-style phone-number patterns in repository-bound description text. That regex guard is only a backstop, not a privacy review.
 
 Contract self-test fixtures are generated only in a temporary directory and are never research evidence:
 

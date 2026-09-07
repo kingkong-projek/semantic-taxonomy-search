@@ -178,6 +178,13 @@ def main() -> int:
         )
         expect_failure('mapped exactly one target', lambda: validator.validate_adjudication(bad_mapped, elicitation))
 
+        bad_occ_envelope = copy.deepcopy(adjudication_rows)
+        bad_occ_envelope[0]['acceptable_targets'][0]['in_frozen_demand_envelope'] = False
+        expect_failure(
+            'occupation full-universe envelope',
+            lambda: validator.validate_adjudication(bad_occ_envelope, elicitation),
+        )
+
         bad_outcomes = validator.load_jsonl(outcomes_path)
         bad_outcomes[0]['participant_recognized_ids'] = ['not-in-fallback']
         expect_failure(
