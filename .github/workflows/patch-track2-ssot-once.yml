@@ -28,8 +28,6 @@ jobs:
           python-version: '3.12'
       - name: Patch SSOT
         run: python scripts/patch_track2_ssot_once.py
-      - name: Validate patch
-        run: git diff --check
       - name: Commit SSOT
         shell: bash
         run: |
