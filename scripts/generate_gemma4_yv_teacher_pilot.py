@@ -13,7 +13,6 @@ import os
 import random
 import time
 import urllib.error
-import urllib.parse
 import urllib.request
 from pathlib import Path
 from typing import Any
@@ -22,6 +21,7 @@ TAXONOMY_URL = (
     "https://data.jobtechdev.se/taxonomy/version/31/query/"
     "concepts-and-common-relations/concepts-and-common-relations.json"
 )
+INTERACTIONS_URL = "https://generativelanguage.googleapis.com/v1beta/interactions"
 MODEL = "gemma-4-26b-a4b-it"
 
 
@@ -72,72 +72,86 @@ Skriv exakt 8 korta svenska förstapersonsbeskrivningar som en vanlig person sku
 
 Regler:
 - skriv INTE den kanoniska yrkestiteln eller dess uppenbara böjningsform
-- skriv inte metadata eller förklaringar
 - undvik generiska fraser som skulle passa hundratals yrken
 - ingen persondata
 - endast offentlig/syntetisk text
-
-Returnera ENDAST en JSON-array med exakt 8 strängar."""
-
-
-def extract_text(payload: dict[str, Any]) -> str:
-    candidates = payload.get("candidates") or []
-    if not candidates:
-        raise RuntimeError(f"Gemma returned no candidates: {json.dumps(payload, ensure_ascii=False)[:1000]}")
-    parts = candidates[0].get("content", {}).get("parts") or []
-    texts = [str(part.get("text") or "") for part in parts if isinstance(part, dict)]
-    text = "".join(texts).strip()
-    if not text:
-        raise RuntimeError("Gemma returned an empty text response")
-    return text
+"""
 
 
-def parse_phrases(text: str) -> list[str]:
-    candidate = text.strip()
-    start = candidate.find("[")
-    end = candidate.rfind("]")
-    if start < 0 or end < start:
-        raise RuntimeError(f"teacher response contains no JSON array: {candidate[:500]!r}")
-    candidate = candidate[start : end + 1]
+def extract_interaction_text(payload: dict[str, Any]) -> str:
+    for step in reversed(payload.get("steps") or []):
+        if not isinstance(step, dict) or step.get("type") != "model_output":
+            continue
+        texts = [
+            str(part.get("text") or "")
+            for part in (step.get("content") or [])
+            if isinstance(part, dict) and part.get("type") == "text"
+        ]
+        text = "".join(texts).strip()
+        if text:
+            return text
+    raise RuntimeError(f"Gemma interaction has no model text output: {json.dumps(payload, ensure_ascii=False)[:1200]}")
+
+
+def validate_phrases(text: str) -> list[str]:
     try:
-        value = json.loads(candidate)
+        value = json.loads(text)
     except json.JSONDecodeError as exc:
-        raise RuntimeError(f"teacher JSON parse failed: {candidate[:500]!r}") from exc
+        raise RuntimeError(f"structured output was not valid JSON: {text[:500]!r}") from exc
     if not isinstance(value, list) or len(value) != 8:
         raise RuntimeError(
-            f"expected JSON array with 8 items, got {type(value).__name__}/"
+            f"structured output violated 8-string contract: {type(value).__name__}/"
             f"{len(value) if isinstance(value, list) else 'n/a'}"
         )
     phrases = [str(x).strip() for x in value]
     if any(not x for x in phrases):
-        raise RuntimeError("teacher returned blank phrase")
+        raise RuntimeError("structured output contained a blank phrase")
     return phrases
 
 
 def call_gemma(api_key: str, prompt: str, *, max_attempts: int = 5) -> tuple[list[str], dict[str, Any]]:
-    url = (
-        f"https://generativelanguage.googleapis.com/v1beta/models/{MODEL}:generateContent?"
-        + urllib.parse.urlencode({"key": api_key})
-    )
     body = json.dumps(
         {
-            "contents": [{"role": "user", "parts": [{"text": prompt}]}],
-            "generationConfig": {"temperature": 0.8, "maxOutputTokens": 1000},
+            "model": MODEL,
+            "input": prompt,
+            "response_format": [
+                {
+                    "type": "text",
+                    "mime_type": "application/json",
+                    "schema": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "description": "En kort svensk förstapersonsbeskrivning av arbetet utan yrkestiteln.",
+                        },
+                        "minItems": 8,
+                        "maxItems": 8,
+                    },
+                }
+            ],
+            "generation_config": {
+                "max_output_tokens": 1000,
+            },
         },
         ensure_ascii=False,
     ).encode("utf-8")
 
     for attempt in range(max_attempts):
         request = urllib.request.Request(
-            url,
+            INTERACTIONS_URL,
             data=body,
             method="POST",
-            headers={"Content-Type": "application/json"},
+            headers={
+                "Content-Type": "application/json",
+                "x-goog-api-key": api_key,
+            },
         )
         try:
             with urllib.request.urlopen(request, timeout=120) as response:
                 payload = json.load(response)
-            return parse_phrases(extract_text(payload)), payload.get("usageMetadata") or {}
+            if payload.get("status") == "failed":
+                raise RuntimeError(f"Gemma interaction failed: {json.dumps(payload.get('errors') or [], ensure_ascii=False)[:1200]}")
+            return validate_phrases(extract_interaction_text(payload)), payload.get("usage") or {}
         except urllib.error.HTTPError as exc:
             status = int(exc.code)
             detail = exc.read().decode("utf-8", errors="replace")[:1200]
@@ -155,6 +169,14 @@ def call_gemma(api_key: str, prompt: str, *, max_attempts: int = 5) -> tuple[lis
             print(f"transient Gemma network error; retrying in {delay:.1f}s: {exc}", flush=True)
             time.sleep(delay)
     raise AssertionError("unreachable")
+
+
+def usage_tokens(usage: dict[str, Any], *keys: str) -> int:
+    for key in keys:
+        value = usage.get(key)
+        if isinstance(value, int):
+            return value
+    return 0
 
 
 def main() -> int:
@@ -205,8 +227,8 @@ def main() -> int:
                 "label": label,
                 "model": MODEL,
                 "phrases": phrases,
-                "usage_metadata": usage,
-                "provenance": "Gemma 4 teacher; public taxonomy input only; exploratory pilot",
+                "usage": usage,
+                "provenance": "Gemma 4 structured-output teacher; public taxonomy input only; exploratory pilot",
             }
         )
         out.write_text(
@@ -214,14 +236,15 @@ def main() -> int:
             encoding="utf-8",
         )
 
-    total_prompt = sum(int((r["usage_metadata"] or {}).get("promptTokenCount") or 0) for r in rows)
-    total_output = sum(int((r["usage_metadata"] or {}).get("candidatesTokenCount") or 0) for r in rows)
+    total_input = sum(usage_tokens(r["usage"], "input_tokens", "prompt_tokens", "promptTokenCount") for r in rows)
+    total_output = sum(usage_tokens(r["usage"], "output_tokens", "completion_tokens", "candidatesTokenCount") for r in rows)
     print(json.dumps({
         "status": "exploratory teacher pilot only",
         "model": MODEL,
+        "api": "Interactions API with JSON Schema structured output",
         "cases": len(rows),
         "requests_per_minute_cap": args.requests_per_minute,
-        "prompt_tokens_reported": total_prompt,
+        "input_tokens_reported": total_input,
         "output_tokens_reported": total_output,
         "output": str(out),
     }, ensure_ascii=False, indent=2, sort_keys=True))
