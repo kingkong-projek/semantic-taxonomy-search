@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 31,
+  "status": "final_prefrozen_p80_gate_observed",
+  "workflow_run_id": 34086795830,
+  "artifact_id": 10005474385,
+  "artifact_zip_sha256": "af85c1b13d6b80bd4156176d687f42efb38c946951dce6c2e39b693ef89c8e28",
+  "freeze_order": {
+    "numeric_candidate_commit": "ff3cb147dbdfacea8b9b505680e18a1f7d31f223",
+    "teacher_commit": "9b47eb893c1148cf2f159c25901acd8abb04d2f0",
+    "query_commit": "38494a4040c662c4f4ba518df9c74fb95719027b",
+    "retrieval_workflow_commit": "9d36f4ff1dd7208621cc3529a3a23e5aed2e81a0"
+  },
+  "fresh_ranks301_316": {
+    "queries": 16,
+    "G1_4slot_hit5": 2,
+    "G1_4slot_hit5_pct": 12.5,
+    "G1_T3_current_numeric_tokenization_hit5": 11,
+    "G1_T3_current_numeric_tokenization_hit5_pct": 68.8,
+    "G1_T3_drop_numeric_docs_and_queries_hit5": 10,
+    "G1_T3_drop_numeric_docs_and_queries_hit5_pct": 62.5,
+    "numeric_candidate_regression": {
+      "id": "kv.model-authored-301-316.310",
+      "target": "Svetsteknik",
+      "current_fused_rank": 5,
+      "numeric_candidate_fused_rank": 215,
+      "diagnostic_workflow_run_id": 34086959925,
+      "diagnostic_artifact_id": 10005523623,
+      "diagnostic_artifact_zip_sha256": "728f4bd908242b215586cf84b4412ec27b4254ecedb3d3baede2dd355e9c2d7b",
+      "mechanism": "query has no numeric tokens; removing numeric terms from all expansion documents changes BM25 length normalization enough to move Svetsteknik teacher rank 4 to 5. The fixed three-teacher-slot fusion boundary then excludes it from top5. This is a real global side effect, not the original numbered-section artifact."
+    }
+  },
+  "source_attested_guard": {
+    "queries": 81,
+    "G1_4slot_hit5": 68,
+    "G1_T3_current_numeric_tokenization_hit5": 71,
+    "numeric_candidate_hit5": 72,
+    "numeric_candidate_regressions": 0,
+    "last16_teacher_addition_regressions": 0
+  },
+  "canonical_guard": {
+    "top1": 617,
+    "hit5": 617,
+    "n": 617
+  },
+  "prior_synthetic_competition_guard": {
+    "ranks101_200_hit5": 93,
+    "ranks201_300_hit5": 96,
+    "regressions_from_last16_teacher_entries": 0
+  },
+  "decisions": {
+    "teacher_lane": "retain G1+teacher representation and frozen G1+T3 fusion as the low-complexity descriptive-retrieval candidate; the final 16 teacher entries created no observed regression on canonical, AF, or prior synthetic guards",
+    "drop_numeric_documents_and_queries": "reject for promotion: it improves one source-attested boundary case but causes a new prefrozen fresh regression through global BM25 document-length normalization",
+    "higher_complexity_model": "not justified by this result",
+    "next_smallest_hypothesis": "development-test query-only pure-integer removal in G1/teacher ranking while leaving C0, exact surfaces, and all indexed documents unchanged; any promotion requires new independent prefrozen evidence because ranks301-316 are now opened"
+  },
+  "interpretation_boundary": "The 16-case final slice is temporally prefrozen and target-disjoint but model-authored. It is strong falsification evidence for global side effects and cross-target competition, not independent human/user accuracy evidence."
+}
