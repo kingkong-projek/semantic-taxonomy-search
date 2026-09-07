@@ -23,6 +23,10 @@ on:
       - "research/coverage/v31/pareto-demand-aggregate.json"
       - ".github/workflows/yv-full-description-candidate.yml"
 
+concurrency:
+  group: yv-full-description-candidate
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
