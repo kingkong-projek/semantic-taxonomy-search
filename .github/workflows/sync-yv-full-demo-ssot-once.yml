@@ -1,0 +1,39 @@
+name: Sync YV full demo SSOT once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/sync_yv_full_demo_ssot_once.py
+      - .github/workflows/sync-yv-full-demo-ssot-once.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Patch SSOT
+        run: python scripts/sync_yv_full_demo_ssot_once.py
+      - name: Verify intended state
+        run: |
+          grep -Fq '**C2 remains a regression reference only;**' docs/research-plan.md
+          grep -Fq 'public zero-backend demo now packages `YV-description-full-v0-canonical-router` over all 2,105 active occupation-name identities' docs/research-plan.md
+          grep -Fq 'ad-language and Relevanta-kompetenser lanes remain diagnostic-only' docs/research-plan.md
+      - name: Commit SSOT
+        run: |
+          if git diff --quiet -- docs/research-plan.md; then echo 'already synced'; exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add docs/research-plan.md
+          git commit -m 'research: sync full YV demo state into SSOT'
+          git push origin HEAD:main
