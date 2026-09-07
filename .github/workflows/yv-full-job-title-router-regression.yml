@@ -41,6 +41,7 @@ jobs:
           git -C /tmp/yv-generator fetch -q --depth 1 origin "$YV_GENERATOR_COMMIT"
           git -C /tmp/yv-generator checkout -q --detach FETCH_HEAD
           test "$(git -C /tmp/yv-generator rev-parse HEAD)" = "$YV_GENERATOR_COMMIT"
+          printf '%s\n' "$YV_GENERATOR_COMMIT" > /tmp/yv-generator/SOURCE_COMMIT.txt
       - name: Rebuild frozen excluded-title ranks 21-50
         run: |
           python scripts/build_compact_yv_profile_safety.py \
