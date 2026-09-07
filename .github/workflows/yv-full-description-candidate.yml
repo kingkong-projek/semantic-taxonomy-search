@@ -11,11 +11,15 @@ on:
     branches: [main]
     paths:
       - "scripts/build_yv_full_description_candidate.py"
+      - "scripts/evaluate_yv_full_description_canonical.py"
       - "scripts/build_yv_demo_asset.py"
       - "scripts/evaluate_c2_job_title_router.py"
       - "scripts/evaluate_p80_lexical_ablation.py"
+      - "scripts/evaluate_pareto_c1.py"
+      - "scripts/occupational_information_coverage.py"
       - "research/coverage/source-adapters.json"
       - "research/coverage/v31/unified-target-coverage-aggregate.json"
+      - "research/coverage/v31/pareto-demand-aggregate.json"
       - ".github/workflows/yv-full-description-candidate.yml"
 
 permissions:
@@ -30,8 +34,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Compile candidate builder
-        run: python -m py_compile scripts/build_yv_full_description_candidate.py
+      - name: Compile candidate and diagnostic
+        run: |
+          python -m py_compile \
+            scripts/build_yv_full_description_candidate.py \
+            scripts/evaluate_yv_full_description_canonical.py
       - name: Install pinned decompressor
         run: python -m pip install --disable-pip-version-check zstandard==0.23.0
       - name: Build provenance-separated full-universe candidate
@@ -41,8 +48,17 @@ jobs:
           python scripts/build_yv_full_description_candidate.py \
             --version "$TAXONOMY_VERSION" \
             --output "artifacts/yv-full-description-candidate-v${TAXONOMY_VERSION}.json"
+      - name: Compare 165-target baseline with full canonical universe
+        env:
+          TAXONOMY_VERSION: ${{ github.event.inputs.taxonomy_version || '31' }}
+        run: |
+          python scripts/evaluate_yv_full_description_canonical.py \
+            --version "$TAXONOMY_VERSION" \
+            --output "artifacts/yv-full-description-canonical-diagnostic-v${TAXONOMY_VERSION}.json"
       - uses: actions/upload-artifact@v4
         with:
           name: yv-full-description-candidate-v${{ github.event.inputs.taxonomy_version || '31' }}
-          path: artifacts/yv-full-description-candidate-v${{ github.event.inputs.taxonomy_version || '31' }}.json
+          path: |
+            artifacts/yv-full-description-candidate-v${{ github.event.inputs.taxonomy_version || '31' }}.json
+            artifacts/yv-full-description-canonical-diagnostic-v${{ github.event.inputs.taxonomy_version || '31' }}.json
           if-no-files-found: error
