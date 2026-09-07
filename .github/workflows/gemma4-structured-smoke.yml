@@ -1,0 +1,25 @@
+name: Gemma 4 structured-output smoke
+
+on:
+  push:
+    paths:
+      - scripts/gemma4_structured_smoke.py
+      - .github/workflows/gemma4-structured-smoke.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m py_compile scripts/gemma4_structured_smoke.py
+      - run: python scripts/gemma4_structured_smoke.py
