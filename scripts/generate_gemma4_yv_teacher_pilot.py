@@ -50,18 +50,16 @@ def prompt_for(concept: dict[str, Any]) -> str:
         "definition": str(concept.get("definition") or "").strip(),
         "alternative_labels": clean_list(concept.get("alternative_labels")),
     }
-    example = {
-        "phrases": [
-            "kort svensk beskrivning 1",
-            "kort svensk beskrivning 2",
-            "kort svensk beskrivning 3",
-            "kort svensk beskrivning 4",
-            "kort svensk beskrivning 5",
-            "kort svensk beskrivning 6",
-            "kort svensk beskrivning 7",
-            "kort svensk beskrivning 8",
-        ]
-    }
+    example = [
+        "kort svensk beskrivning 1",
+        "kort svensk beskrivning 2",
+        "kort svensk beskrivning 3",
+        "kort svensk beskrivning 4",
+        "kort svensk beskrivning 5",
+        "kort svensk beskrivning 6",
+        "kort svensk beskrivning 7",
+        "kort svensk beskrivning 8",
+    ]
     return f"""Du skapar träningsspråk för en svensk offentlig yrkestaxonomi.
 
 Målkonceptet är ett EXISTERANDE yrke. Använd endast innebörden i evidensen nedan. Hitta inte på arbetsuppgifter som inte rimligen hör till yrket.
@@ -69,7 +67,7 @@ Målkonceptet är ett EXISTERANDE yrke. Använd endast innebörden i evidensen n
 EVIDENS:
 {json.dumps(evidence, ensure_ascii=False, sort_keys=True)}
 
-Skriv exakt 8 korta svenska förstapersonsbeskrivningar som en vanlig person skulle kunna skriva när hen inte känner till taxonomins yrkestitel:
+Skriv exakt 8 korta svenska beskrivningar som en vanlig person skulle kunna skriva när hen inte känner till taxonomins yrkestitel:
 - 2 tydliga arbetsuppgiftsbeskrivningar
 - 2 vardagliga/kolloquiala
 - 1 indirekt men rimligt särskiljande
@@ -77,13 +75,15 @@ Skriv exakt 8 korta svenska förstapersonsbeskrivningar som en vanlig person sku
 - 1 verktyg/metod/ansvar om evidensen stödjer det, annars ytterligare arbetsuppgift
 - 1 försiktig gränsvariant som fortfarande bör kunna leda till yrket
 
+Prioritera konkreta arbetsmoment, objekt, verktyg, miljöer och ansvar som hjälper sökningen att skilja yrket från närliggande yrken. Undvik generiskt språk som bara säger att personen hjälper, stödjer eller jobbar med människor.
+
 Regler:
 - skriv INTE den kanoniska yrkestiteln eller dess uppenbara böjningsform
 - undvik generiska fraser som passar hundratals yrken
 - ingen persondata
 - endast offentlig/syntetisk text
-- returnera endast JSON, ingen markdown och ingen förklaring
-- använd exakt denna form med exakt åtta strängar:
+- returnera endast en JSON-array, ingen markdown, inget objekt och ingen förklaring
+- arrayen ska innehålla exakt åtta strängar, som i detta formexempel:
 {json.dumps(example, ensure_ascii=False)}
 """
 
@@ -108,18 +108,12 @@ def validate_phrases(text: str) -> list[str]:
         value = json.loads(text)
     except json.JSONDecodeError as exc:
         raise RuntimeError(f"Gemma JSON MIME response was not valid JSON: {text[:700]!r}") from exc
-    if isinstance(value, dict):
-        phrases = value.get("phrases")
-    elif isinstance(value, list):
-        phrases = value
-    else:
-        raise RuntimeError(f"expected JSON object or array, got {type(value).__name__}")
-    if not isinstance(phrases, list) or len(phrases) != 8:
+    if not isinstance(value, list) or len(value) != 8:
         raise RuntimeError(
-            f"expected 8 phrases, got {type(phrases).__name__}/"
-            f"{len(phrases) if isinstance(phrases, list) else 'n/a'}"
+            f"expected JSON array with 8 phrases, got {type(value).__name__}/"
+            f"{len(value) if isinstance(value, list) else 'n/a'}: {str(value)[:500]}"
         )
-    out = [str(x).strip() for x in phrases]
+    out = [str(x).strip() for x in value]
     if any(not x for x in out):
         raise RuntimeError("teacher returned blank phrase")
     return out
