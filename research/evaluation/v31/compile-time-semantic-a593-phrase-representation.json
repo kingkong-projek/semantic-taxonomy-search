@@ -1,0 +1,572 @@
+{
+  "corpus": {
+    "cases": 4744,
+    "concepts": 593,
+    "folds": 8,
+    "holdout": "for fold i, phrase slot i is removed from every concept and used as the query",
+    "phrases": 4744
+  },
+  "false_positive_hubs": {
+    "flattened_raw": [
+      {
+        "concept_id": "15e8_KDZ_31Z",
+        "false_top1_count": 192,
+        "label": "SFI-lärare"
+      },
+      {
+        "concept_id": "cRmS_zdM_NEA",
+        "false_top1_count": 31,
+        "label": "Skolvaktmästare"
+      },
+      {
+        "concept_id": "LrrC_U7A_Xus",
+        "false_top1_count": 24,
+        "label": "Automationstekniker, el"
+      },
+      {
+        "concept_id": "JEhg_Dmh_mzv",
+        "false_top1_count": 23,
+        "label": "Distributionsförare"
+      },
+      {
+        "concept_id": "Mg5T_Wi4_5my",
+        "false_top1_count": 20,
+        "label": "Avdelningschef, kommun"
+      },
+      {
+        "concept_id": "rAjz_1xP_f1a",
+        "false_top1_count": 19,
+        "label": "Montör metallprodukter"
+      },
+      {
+        "concept_id": "YAB4_1jM_DAK",
+        "false_top1_count": 19,
+        "label": "Processansvarig, ITIL"
+      },
+      {
+        "concept_id": "k7aW_toR_PPm",
+        "false_top1_count": 19,
+        "label": "Arbetsledare, husbyggnad"
+      },
+      {
+        "concept_id": "mcAc_Xvo_Jp8",
+        "false_top1_count": 19,
+        "label": "Projekteringsingenjör, bygg och anläggning"
+      },
+      {
+        "concept_id": "68DU_3eK_84a",
+        "false_top1_count": 18,
+        "label": "Matros"
+      },
+      {
+        "concept_id": "K68t_jNi_FqQ",
+        "false_top1_count": 18,
+        "label": "Väg- och vattenbyggnadsingenjör"
+      },
+      {
+        "concept_id": "a46P_3cL_149",
+        "false_top1_count": 17,
+        "label": "Elektronikkonstruktör"
+      },
+      {
+        "concept_id": "4p9W_pWH_roy",
+        "false_top1_count": 16,
+        "label": "Chief Information Security Officer"
+      },
+      {
+        "concept_id": "3GKG_7xX_AcT",
+        "false_top1_count": 15,
+        "label": "UI-designer"
+      },
+      {
+        "concept_id": "wQ7H_qrm_hr2",
+        "false_top1_count": 15,
+        "label": "Logistikchef"
+      },
+      {
+        "concept_id": "3C5w_yFv_KP9",
+        "false_top1_count": 15,
+        "label": "Garvare"
+      },
+      {
+        "concept_id": "DHo9_qpj_owx",
+        "false_top1_count": 15,
+        "label": "Personalansvarig"
+      },
+      {
+        "concept_id": "2Eib_vX9_79R",
+        "false_top1_count": 15,
+        "label": "Platschef, försäkringskassa/Områdeschef, försäkringskassa"
+      },
+      {
+        "concept_id": "o7LP_duC_u9Z",
+        "false_top1_count": 15,
+        "label": "Lastbilsmekaniker"
+      },
+      {
+        "concept_id": "hr5f_dci_NcD",
+        "false_top1_count": 15,
+        "label": "Rektor"
+      },
+      {
+        "concept_id": "kxew_SY8_LFZ",
+        "false_top1_count": 15,
+        "label": "Gatuförsäljare"
+      },
+      {
+        "concept_id": "YG1s_tUg_jWJ",
+        "false_top1_count": 14,
+        "label": "Handläggare, offentlig förvaltning/Utredare, offentlig förvaltning"
+      },
+      {
+        "concept_id": "ho3v_5nB_pK4",
+        "false_top1_count": 14,
+        "label": "Företagsjurist"
+      },
+      {
+        "concept_id": "r4G8_gBH_Pug",
+        "false_top1_count": 14,
+        "label": "Civilingenjör, anläggning"
+      },
+      {
+        "concept_id": "ujBX_nic_wuH",
+        "false_top1_count": 14,
+        "label": "Dagbarnvårdare"
+      }
+    ],
+    "flattened_snowball_sv": [
+      {
+        "concept_id": "15e8_KDZ_31Z",
+        "false_top1_count": 169,
+        "label": "SFI-lärare"
+      },
+      {
+        "concept_id": "cRmS_zdM_NEA",
+        "false_top1_count": 31,
+        "label": "Skolvaktmästare"
+      },
+      {
+        "concept_id": "XSDj_JZ2_ugu",
+        "false_top1_count": 27,
+        "label": "Arbetsförmedlare"
+      },
+      {
+        "concept_id": "LrrC_U7A_Xus",
+        "false_top1_count": 22,
+        "label": "Automationstekniker, el"
+      },
+      {
+        "concept_id": "mQAY_wtA_7G2",
+        "false_top1_count": 20,
+        "label": "Biomedicinare"
+      },
+      {
+        "concept_id": "Mg5T_Wi4_5my",
+        "false_top1_count": 19,
+        "label": "Avdelningschef, kommun"
+      },
+      {
+        "concept_id": "a46P_3cL_149",
+        "false_top1_count": 18,
+        "label": "Elektronikkonstruktör"
+      },
+      {
+        "concept_id": "aEF1_qeh_5Qe",
+        "false_top1_count": 18,
+        "label": "Socionom"
+      },
+      {
+        "concept_id": "K68t_jNi_FqQ",
+        "false_top1_count": 17,
+        "label": "Väg- och vattenbyggnadsingenjör"
+      },
+      {
+        "concept_id": "68DU_3eK_84a",
+        "false_top1_count": 16,
+        "label": "Matros"
+      },
+      {
+        "concept_id": "3GKG_7xX_AcT",
+        "false_top1_count": 16,
+        "label": "UI-designer"
+      },
+      {
+        "concept_id": "rAjz_1xP_f1a",
+        "false_top1_count": 15,
+        "label": "Montör metallprodukter"
+      },
+      {
+        "concept_id": "7mFy_ghh_iL6",
+        "false_top1_count": 15,
+        "label": "Copywriter"
+      },
+      {
+        "concept_id": "XSBp_5wD_VaU",
+        "false_top1_count": 15,
+        "label": "Restaurangchef"
+      },
+      {
+        "concept_id": "GrZU_ofe_QAx",
+        "false_top1_count": 14,
+        "label": "Controller"
+      },
+      {
+        "concept_id": "JbJw_as4_S93",
+        "false_top1_count": 14,
+        "label": "Kock à la carte"
+      },
+      {
+        "concept_id": "JEhg_Dmh_mzv",
+        "false_top1_count": 14,
+        "label": "Distributionsförare"
+      },
+      {
+        "concept_id": "YAB4_1jM_DAK",
+        "false_top1_count": 14,
+        "label": "Processansvarig, ITIL"
+      },
+      {
+        "concept_id": "HdcS_g6a_jPk",
+        "false_top1_count": 14,
+        "label": "Träarbetare, utan yrkesbevis/Snickare, utan yrkesbevis"
+      },
+      {
+        "concept_id": "k7aW_toR_PPm",
+        "false_top1_count": 14,
+        "label": "Arbetsledare, husbyggnad"
+      },
+      {
+        "concept_id": "BHdM_TVA_baC",
+        "false_top1_count": 14,
+        "label": "Biträdande butikschef"
+      },
+      {
+        "concept_id": "g5fd_Eyr_bjS",
+        "false_top1_count": 14,
+        "label": "Företagssäljare"
+      },
+      {
+        "concept_id": "kgyb_GN3_qR1",
+        "false_top1_count": 13,
+        "label": "Civilingenjör, byggnadskonstruktion"
+      },
+      {
+        "concept_id": "1aZz_LY7_QYN",
+        "false_top1_count": 13,
+        "label": "HR-strateg"
+      },
+      {
+        "concept_id": "iJfW_Lt2_sQt",
+        "false_top1_count": 13,
+        "label": "Teknisk chef, kommun"
+      }
+    ]
+  },
+  "interpretation_guard": "These 4,744 cases are model-authored and share the frozen teacher prompt distribution. They can compare representation mechanics and mine confusions, but they are not independent user accuracy evidence and must not be mixed with the opened 17/88 suites for tuning.",
+  "paired_vs_flattened_raw": {
+    "flattened_snowball_sv": {
+      "hit5_gain": 360,
+      "hit5_loss": 91,
+      "rank_improved": 982,
+      "rank_same": 1934,
+      "rank_worsened": 1828,
+      "top1_gain": 253,
+      "top1_loss": 106
+    },
+    "phrase_max_raw": {
+      "hit5_gain": 141,
+      "hit5_loss": 425,
+      "rank_improved": 1279,
+      "rank_same": 1305,
+      "rank_worsened": 2160,
+      "top1_gain": 143,
+      "top1_loss": 382
+    }
+  },
+  "schema_version": 1,
+  "status": "A593 corpus-internal architecture diagnostic; no opened evaluation queries used",
+  "variants": {
+    "flattened_raw": {
+      "by_slot": {
+        "cautious_boundary": {
+          "cases": 593,
+          "hit_at_5_count": 239,
+          "hit_at_5_rate": 0.403035,
+          "median_rank": 12,
+          "mrr": 0.281255,
+          "p90_rank": 392,
+          "top1_count": 108,
+          "top1_rate": 0.182125
+        },
+        "colloquial_1": {
+          "cases": 593,
+          "hit_at_5_count": 179,
+          "hit_at_5_rate": 0.301855,
+          "median_rank": 36,
+          "mrr": 0.218293,
+          "p90_rank": 460,
+          "top1_count": 81,
+          "top1_rate": 0.136594
+        },
+        "colloquial_2": {
+          "cases": 593,
+          "hit_at_5_count": 167,
+          "hit_at_5_rate": 0.281619,
+          "median_rank": 54,
+          "mrr": 0.211145,
+          "p90_rank": 466,
+          "top1_count": 84,
+          "top1_rate": 0.141653
+        },
+        "explicit_task_1": {
+          "cases": 593,
+          "hit_at_5_count": 297,
+          "hit_at_5_rate": 0.500843,
+          "median_rank": 5,
+          "mrr": 0.36243,
+          "p90_rank": 317,
+          "top1_count": 146,
+          "top1_rate": 0.246206
+        },
+        "explicit_task_2": {
+          "cases": 593,
+          "hit_at_5_count": 217,
+          "hit_at_5_rate": 0.365936,
+          "median_rank": 14,
+          "mrr": 0.268692,
+          "p90_rank": 386,
+          "top1_count": 101,
+          "top1_rate": 0.17032
+        },
+        "indirect_distinguishing": {
+          "cases": 593,
+          "hit_at_5_count": 170,
+          "hit_at_5_rate": 0.286678,
+          "median_rank": 31,
+          "mrr": 0.216572,
+          "p90_rank": 452,
+          "top1_count": 86,
+          "top1_rate": 0.145025
+        },
+        "telegram_noisy": {
+          "cases": 593,
+          "hit_at_5_count": 322,
+          "hit_at_5_rate": 0.543002,
+          "median_rank": 4,
+          "mrr": 0.424141,
+          "p90_rank": 372,
+          "top1_count": 193,
+          "top1_rate": 0.325464
+        },
+        "tool_method_responsibility": {
+          "cases": 593,
+          "hit_at_5_count": 199,
+          "hit_at_5_rate": 0.335582,
+          "median_rank": 23,
+          "mrr": 0.254006,
+          "p90_rank": 466,
+          "top1_count": 103,
+          "top1_rate": 0.173693
+        }
+      },
+      "overall": {
+        "cases": 4744,
+        "hit_at_5_count": 1790,
+        "hit_at_5_rate": 0.377319,
+        "median_rank": 15.0,
+        "mrr": 0.279567,
+        "p90_rank": 424,
+        "top1_count": 902,
+        "top1_rate": 0.190135
+      }
+    },
+    "flattened_snowball_sv": {
+      "by_slot": {
+        "cautious_boundary": {
+          "cases": 593,
+          "hit_at_5_count": 265,
+          "hit_at_5_rate": 0.44688,
+          "median_rank": 8,
+          "mrr": 0.316733,
+          "p90_rank": 360,
+          "top1_count": 127,
+          "top1_rate": 0.214165
+        },
+        "colloquial_1": {
+          "cases": 593,
+          "hit_at_5_count": 215,
+          "hit_at_5_rate": 0.362563,
+          "median_rank": 18,
+          "mrr": 0.265057,
+          "p90_rank": 427,
+          "top1_count": 103,
+          "top1_rate": 0.173693
+        },
+        "colloquial_2": {
+          "cases": 593,
+          "hit_at_5_count": 204,
+          "hit_at_5_rate": 0.344013,
+          "median_rank": 23,
+          "mrr": 0.254224,
+          "p90_rank": 453,
+          "top1_count": 102,
+          "top1_rate": 0.172007
+        },
+        "explicit_task_1": {
+          "cases": 593,
+          "hit_at_5_count": 332,
+          "hit_at_5_rate": 0.559865,
+          "median_rank": 4,
+          "mrr": 0.40325,
+          "p90_rank": 214,
+          "top1_count": 163,
+          "top1_rate": 0.274874
+        },
+        "explicit_task_2": {
+          "cases": 593,
+          "hit_at_5_count": 239,
+          "hit_at_5_rate": 0.403035,
+          "median_rank": 11,
+          "mrr": 0.286269,
+          "p90_rank": 338,
+          "top1_count": 107,
+          "top1_rate": 0.180438
+        },
+        "indirect_distinguishing": {
+          "cases": 593,
+          "hit_at_5_count": 204,
+          "hit_at_5_rate": 0.344013,
+          "median_rank": 19,
+          "mrr": 0.256353,
+          "p90_rank": 428,
+          "top1_count": 102,
+          "top1_rate": 0.172007
+        },
+        "telegram_noisy": {
+          "cases": 593,
+          "hit_at_5_count": 373,
+          "hit_at_5_rate": 0.629005,
+          "median_rank": 2,
+          "mrr": 0.49538,
+          "p90_rank": 274,
+          "top1_count": 233,
+          "top1_rate": 0.392917
+        },
+        "tool_method_responsibility": {
+          "cases": 593,
+          "hit_at_5_count": 227,
+          "hit_at_5_rate": 0.382799,
+          "median_rank": 16,
+          "mrr": 0.282252,
+          "p90_rank": 441,
+          "top1_count": 112,
+          "top1_rate": 0.18887
+        }
+      },
+      "overall": {
+        "cases": 4744,
+        "hit_at_5_count": 2059,
+        "hit_at_5_rate": 0.434022,
+        "median_rank": 9.0,
+        "mrr": 0.31994,
+        "p90_rank": 381,
+        "top1_count": 1049,
+        "top1_rate": 0.221121
+      }
+    },
+    "phrase_max_raw": {
+      "by_slot": {
+        "cautious_boundary": {
+          "cases": 593,
+          "hit_at_5_count": 170,
+          "hit_at_5_rate": 0.286678,
+          "median_rank": 24,
+          "mrr": 0.18923,
+          "p90_rank": 403,
+          "top1_count": 57,
+          "top1_rate": 0.096121
+        },
+        "colloquial_1": {
+          "cases": 593,
+          "hit_at_5_count": 149,
+          "hit_at_5_rate": 0.251265,
+          "median_rank": 53,
+          "mrr": 0.182168,
+          "p90_rank": 475,
+          "top1_count": 70,
+          "top1_rate": 0.118044
+        },
+        "colloquial_2": {
+          "cases": 593,
+          "hit_at_5_count": 139,
+          "hit_at_5_rate": 0.234401,
+          "median_rank": 62,
+          "mrr": 0.176642,
+          "p90_rank": 466,
+          "top1_count": 69,
+          "top1_rate": 0.116358
+        },
+        "explicit_task_1": {
+          "cases": 593,
+          "hit_at_5_count": 271,
+          "hit_at_5_rate": 0.456998,
+          "median_rank": 7,
+          "mrr": 0.320778,
+          "p90_rank": 291,
+          "top1_count": 124,
+          "top1_rate": 0.209106
+        },
+        "explicit_task_2": {
+          "cases": 593,
+          "hit_at_5_count": 193,
+          "hit_at_5_rate": 0.325464,
+          "median_rank": 19,
+          "mrr": 0.230362,
+          "p90_rank": 396,
+          "top1_count": 79,
+          "top1_rate": 0.133221
+        },
+        "indirect_distinguishing": {
+          "cases": 593,
+          "hit_at_5_count": 125,
+          "hit_at_5_rate": 0.210793,
+          "median_rank": 52,
+          "mrr": 0.143445,
+          "p90_rank": 468,
+          "top1_count": 43,
+          "top1_rate": 0.072513
+        },
+        "telegram_noisy": {
+          "cases": 593,
+          "hit_at_5_count": 296,
+          "hit_at_5_rate": 0.499157,
+          "median_rank": 6,
+          "mrr": 0.357391,
+          "p90_rank": 360,
+          "top1_count": 146,
+          "top1_rate": 0.246206
+        },
+        "tool_method_responsibility": {
+          "cases": 593,
+          "hit_at_5_count": 163,
+          "hit_at_5_rate": 0.274874,
+          "median_rank": 34,
+          "mrr": 0.203808,
+          "p90_rank": 452,
+          "top1_count": 75,
+          "top1_rate": 0.126476
+        }
+      },
+      "overall": {
+        "cases": 4744,
+        "hit_at_5_count": 1506,
+        "hit_at_5_rate": 0.317454,
+        "median_rank": 22.0,
+        "mrr": 0.225478,
+        "p90_rank": 427,
+        "top1_count": 663,
+        "top1_rate": 0.139755
+      }
+    }
+  }
+}
