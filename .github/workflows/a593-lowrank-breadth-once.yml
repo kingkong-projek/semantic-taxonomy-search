@@ -1,0 +1,49 @@
+name: A593 low-rank breadth once
+
+on:
+  push:
+    paths:
+      - .github/workflows/a593-lowrank-breadth-once.yml
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install diagnostic dependencies
+        run: python -m pip install --disable-pip-version-check numpy scipy scikit-learn
+      - name: Download frozen A593 teacher corpus
+        uses: actions/download-artifact@v4
+        with:
+          name: gemma-a593-checkpoint
+          path: artifacts/a593
+          github-token: ${{ github.token }}
+          run-id: 34232985249
+      - name: Compile-check
+        run: python -m py_compile scripts/evaluate_a593_lowrank_breadth.py
+      - name: Run fixed low-rank falsifier
+        run: >-
+          python scripts/evaluate_a593_lowrank_breadth.py
+          --teacher artifacts/a593/gemma-a593-teacher.jsonl
+          --output artifacts/a593-lowrank-breadth.json
+      - name: Freeze result and self-remove
+        run: |
+          cp artifacts/a593-lowrank-breadth.json research/evaluation/v31/compile-time-semantic-a593-lowrank-breadth.json
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          rm .github/workflows/a593-lowrank-breadth-once.yml
+          git add research/evaluation/v31/compile-time-semantic-a593-lowrank-breadth.json .github/workflows/a593-lowrank-breadth-once.yml
+          git commit -m 'research: freeze final simple low-rank breadth result'
+          git fetch origin main
+          git rebase origin/main
+          git push
