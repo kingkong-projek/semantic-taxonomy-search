@@ -1,0 +1,43 @@
+name: Gemma A149 tournament diagnostic
+
+on:
+  push:
+    paths:
+      - scripts/evaluate_gemma_a149.py
+      - .github/workflows/gemma-a149-tournament.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Download frozen Gemma hour-run corpus
+        uses: actions/download-artifact@v4
+        with:
+          name: gemma4-yv-teacher-hour-run
+          path: artifacts/gemma-teacher
+          github-token: ${{ github.token }}
+          run-id: 34189574629
+      - name: Compile-check evaluator
+        run: python -m py_compile scripts/evaluate_gemma_a149.py
+      - name: Evaluate A149 against frozen opened suites
+        run: >-
+          python scripts/evaluate_gemma_a149.py
+          --teacher artifacts/gemma-teacher/gemma4-yv-teacher-hour-run.jsonl
+          --output artifacts/gemma-a149-tournament.json
+      - name: Upload tournament result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gemma-a149-tournament
+          path: artifacts/gemma-a149-tournament.json
+          if-no-files-found: warn
