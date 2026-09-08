@@ -1,0 +1,480 @@
+{
+  "all_4744": {
+    "control": {
+      "cases": 4744,
+      "hit_at_5_count": 2957,
+      "hit_at_5_rate": 0.623314,
+      "median_rank": 3.0,
+      "mrr": 0.464618,
+      "top1_count": 1576,
+      "top1_rate": 0.332209
+    },
+    "sniper": {
+      "cases": 4744,
+      "hit_at_5_count": 2963,
+      "hit_at_5_rate": 0.624578,
+      "median_rank": 3.0,
+      "mrr": 0.465345,
+      "top1_count": 1583,
+      "top1_rate": 0.333685
+    }
+  },
+  "ambiguous_shared_guard": {
+    "at_least_one_pair_top5_count": 20,
+    "both_pair_top5_count": 12,
+    "cases": 24,
+    "details": [
+      {
+        "a_concept_id": "2546_5Ve_4ep",
+        "a_rank": 1,
+        "at_least_one_pair_top5": true,
+        "b_concept_id": "49G8_LRE_73K",
+        "b_rank": 2,
+        "both_pair_top5": true,
+        "text": "Arbetar med kostymer inom teater, film och tv.",
+        "top1_concept_id": "2546_5Ve_4ep",
+        "top1_in_pair": true
+      },
+      {
+        "a_concept_id": "2546_5Ve_4ep",
+        "a_rank": 6,
+        "at_least_one_pair_top5": true,
+        "b_concept_id": "49G8_LRE_73K",
+        "b_rank": 3,
+        "both_pair_top5": false,
+        "text": "Sköter underhåll och skötsel av kläder i en produktion.",
+        "top1_concept_id": "2Sz2_yAG_zwd",
+        "top1_in_pair": false
+      },
+      {
+        "a_concept_id": "31Uw_P9P_AgC",
+        "a_rank": 2,
+        "at_least_one_pair_top5": true,
+        "b_concept_id": "3RP3_h9J_Hc9",
+        "b_rank": 1,
+        "both_pair_top5": true,
+        "text": "Arbetar med att spränga berg vid byggen av tunnlar och vägar.",
+        "top1_concept_id": "3RP3_h9J_Hc9",
+        "top1_in_pair": true
+      },
+      {
+        "a_concept_id": "31Uw_P9P_AgC",
+        "a_rank": 1,
+        "at_least_one_pair_top5": true,
+        "b_concept_id": "3RP3_h9J_Hc9",
+        "b_rank": 2,
+        "both_pair_top5": true,
+        "text": "Använder sprängning för att ta bort berg i samband med anläggningsprojekt.",
+        "top1_concept_id": "31Uw_P9P_AgC",
+        "top1_in_pair": true
+      },
+      {
+        "a_concept_id": "3Uhk_4A8_cy6",
+        "a_rank": 2,
+        "at_least_one_pair_top5": true,
+        "b_concept_id": "5cVu_BVm_nNG",
+        "b_rank": 1,
+        "both_pair_top5": true,
+        "text": "arbetar inom polisen",
+        "top1_concept_id": "5cVu_BVm_nNG",
+        "top1_in_pair": true
+      },
+      {
+        "a_concept_id": "3Uhk_4A8_cy6",
+        "a_rank": 134,
+        "at_least_one_pair_top5": false,
+        "b_concept_id": "5cVu_BVm_nNG",
+        "b_rank": 13,
+        "both_pair_top5": false,
+        "text": "verksam inom rättsväsendet",
+        "top1_concept_id": "8Y3v_LhQ_srX",
+        "top1_in_pair": false
+      },
+      {
+        "a_concept_id": "te5X_YVU_JaR",
+        "a_rank": 1,
+        "at_least_one_pair_top5": true,
+        "b_concept_id": "xBo9_V9m_bfg",
+        "b_rank": 2,
+        "both_pair_top5": true,
+        "text": "utför psykologiska utredningar och bedömningar",
+        "top1_concept_id": "te5X_YVU_JaR",
+        "top1_in_pair": true
+      },
+      {
+        "a_concept_id": "te5X_YVU_JaR",
+        "a_rank": 2,
+        "at_least_one_pair_top5": true,
+        "b_concept_id": "xBo9_V9m_bfg",
+        "b_rank": 12,
+        "both_pair_top5": false,
+        "text": "arbetar med organisationsutveckling och handledning",
+        "top1_concept_id": "s28Q_sya_S2b",
+        "top1_in_pair": false
+      },
+      {
+        "a_concept_id": "1gxo_A2w_5A3",
+        "a_rank": 28,
+        "at_least_one_pair_top5": true,
+        "b_concept_id": "pfiK_oXH_eYR",
+        "b_rank": 5,
+        "both_pair_top5": false,
+        "text": "arbetar med juridisk analys och granskning av rättsliga underlag",
+        "top1_concept_id": "CNqp_v1H_VoC",
+        "top1_in_pair": false
+      },
+      {
+        "a_concept_id": "1gxo_A2w_5A3",
+        "a_rank": 26,
+        "at_least_one_pair_top5": false,
+        "b_concept_id": "pfiK_oXH_eYR",
+        "b_rank": 6,
+        "both_pair_top5": false,
+        "text": "deltar i förhandlingar och arbetar med juridiska ärenden",
+        "top1_concept_id": "EsXb_35r_rTR",
+        "top1_in_pair": false
+      },
+      {
+        "a_concept_id": "3RzT_cHB_vVp",
+        "a_rank": 1,
+        "at_least_one_pair_top5": true,
+        "b_concept_id": "4ve8_yBg_LJZ",
+        "b_rank": 6,
+        "both_pair_top5": false,
+        "text": "Arbetar på en advokatbyrå med juridiska arbetsuppgifter.",
+        "top1_concept_id": "3RzT_cHB_vVp",
+        "top1_in_pair": true
+      },
+      {
+        "a_concept_id": "3RzT_cHB_vVp",
+        "a_rank": 48,
+        "at_least_one_pair_top5": false,
+        "b_concept_id": "4ve8_yBg_LJZ",
+        "b_rank": 7,
+        "both_pair_top5": false,
+        "text": "Hanterar kontakt med klienter och myndigheter i juridiska sammanhang.",
+        "top1_concept_id": "UJuc_Hqm_GQg",
+        "top1_in_pair": false
+      },
+      {
+        "a_concept_id": "7Kxn_MMG_TuY",
+        "a_rank": 1,
+        "at_least_one_pair_top5": true,
+        "b_concept_id": "ckkD_JhH_Sc6",
+        "b_rank": 2,
+        "both_pair_top5": true,
+        "text": "arbetar inom tandvård",
+        "top1_concept_id": "7Kxn_MMG_TuY",
+        "top1_in_pair": true
+      },
+      {
+        "a_concept_id": "7Kxn_MMG_TuY",
+        "a_rank": 13,
+        "at_least_one_pair_top5": false,
+        "b_concept_id": "ckkD_JhH_Sc6",
+        "b_rank": 443,
+        "both_pair_top5": false,
+        "text": "verksam inom den dentala sektorn",
+        "top1_concept_id": "PTD2_6C1_8TJ",
+        "top1_in_pair": false
+      },
+      {
+        "a_concept_id": "2hTu_y9K_CxY",
+        "a_rank": 3,
+        "at_least_one_pair_top5": true,
+        "b_concept_id": "44wU_Cyh_yqp",
+        "b_rank": 1,
+        "both_pair_top5": true,
+        "text": "planerar och justerar belysning vid evenemang",
+        "top1_concept_id": "44wU_Cyh_yqp",
+        "top1_in_pair": true
+      },
+      {
+        "a_concept_id": "2hTu_y9K_CxY",
+        "a_rank": 2,
+        "at_least_one_pair_top5": true,
+        "b_concept_id": "44wU_Cyh_yqp",
+        "b_rank": 1,
+        "both_pair_top5": true,
+        "text": "deltar i riggning och anpassar ljus under produktionens gång",
+        "top1_concept_id": "44wU_Cyh_yqp",
+        "top1_in_pair": true
+      },
+      {
+        "a_concept_id": "E7nX_ux2_hF9",
+        "a_rank": 1,
+        "at_least_one_pair_top5": true,
+        "b_concept_id": "kxKW_LiD_FuW",
+        "b_rank": 2,
+        "both_pair_top5": true,
+        "text": "arbetar med att organisera och bevara fysiska och digitala arkivhandlingar",
+        "top1_concept_id": "E7nX_ux2_hF9",
+        "top1_in_pair": true
+      },
+      {
+        "a_concept_id": "E7nX_ux2_hF9",
+        "a_rank": 2,
+        "at_least_one_pair_top5": true,
+        "b_concept_id": "kxKW_LiD_FuW",
+        "b_rank": 11,
+        "both_pair_top5": false,
+        "text": "hanterar gallring och dokumentation inom offentlig sektor",
+        "top1_concept_id": "PTD2_6C1_8TJ",
+        "top1_in_pair": false
+      },
+      {
+        "a_concept_id": "1Kv4_35e_BX3",
+        "a_rank": 1,
+        "at_least_one_pair_top5": true,
+        "b_concept_id": "4EZJ_3HN_fUK",
+        "b_rank": 2,
+        "both_pair_top5": true,
+        "text": "arbetar med ventilation",
+        "top1_concept_id": "1Kv4_35e_BX3",
+        "top1_in_pair": true
+      },
+      {
+        "a_concept_id": "1Kv4_35e_BX3",
+        "a_rank": 1,
+        "at_least_one_pair_top5": true,
+        "b_concept_id": "4EZJ_3HN_fUK",
+        "b_rank": 6,
+        "both_pair_top5": false,
+        "text": "utför uppgifter inom ventilationsbranschen",
+        "top1_concept_id": "1Kv4_35e_BX3",
+        "top1_in_pair": true
+      },
+      {
+        "a_concept_id": "3MDV_uBQ_6oG",
+        "a_rank": 8,
+        "at_least_one_pair_top5": true,
+        "b_concept_id": "cAYP_wEe_u3D",
+        "b_rank": 5,
+        "both_pair_top5": false,
+        "text": "arbetar med att analysera trafiksystem för ökad säkerhet",
+        "top1_concept_id": "tKCe_Qpx_Thx",
+        "top1_in_pair": false
+      },
+      {
+        "a_concept_id": "3MDV_uBQ_6oG",
+        "a_rank": 1,
+        "at_least_one_pair_top5": true,
+        "b_concept_id": "cAYP_wEe_u3D",
+        "b_rank": 3,
+        "both_pair_top5": true,
+        "text": "framtar åtgärder för att förbättra trafiksäkerheten",
+        "top1_concept_id": "3MDV_uBQ_6oG",
+        "top1_in_pair": true
+      },
+      {
+        "a_concept_id": "HWPy_9jT_TX2",
+        "a_rank": 2,
+        "at_least_one_pair_top5": true,
+        "b_concept_id": "hfq6_Rpw_EKK",
+        "b_rank": 1,
+        "both_pair_top5": true,
+        "text": "Ger rådgivning kring glasögon och kontaktlinser.",
+        "top1_concept_id": "hfq6_Rpw_EKK",
+        "top1_in_pair": true
+      },
+      {
+        "a_concept_id": "HWPy_9jT_TX2",
+        "a_rank": 447,
+        "at_least_one_pair_top5": true,
+        "b_concept_id": "hfq6_Rpw_EKK",
+        "b_rank": 2,
+        "both_pair_top5": false,
+        "text": "Arbetar med kundkontakt i en optikmiljö.",
+        "top1_concept_id": "38iE_Jad_mu6",
+        "top1_in_pair": false
+      }
+    ],
+    "top1_in_pair_count": 14
+  },
+  "delta_all_vs_control": {
+    "hit_at_5_count": 6,
+    "mrr": 0.000727,
+    "top1_count": 7
+  },
+  "delta_targeted_vs_control": {
+    "hit_at_5_count": 3,
+    "mrr": 0.023431,
+    "top1_count": 7
+  },
+  "fixed_design": {
+    "base": "relation-aware clamped hard-negative alpha=0.75",
+    "clamp_negative_weights_to_zero": true,
+    "no_parameter_sweep": true,
+    "opposite_sniper_gamma": 0.25,
+    "own_sniper_beta": 0.5,
+    "shared_ambiguous_used_for_training": false,
+    "topk_features_per_concept": 300
+  },
+  "guard": "Sniper pair selection is A593 confusion-selected, so targeted teacher-holdout gains are development evidence. No opened 17/88 query participates in generation or candidate selection; replay them only after this fixed candidate passes the prefrozen gate.",
+  "opened_replay_gate_passed": true,
+  "pair_deltas": [
+    {
+      "a_concept_id": "31Uw_P9P_AgC",
+      "a_label": "Bergarbetare, bygg och anläggning",
+      "b_concept_id": "3RP3_h9J_Hc9",
+      "b_label": "Bergsprängare",
+      "cases": 16,
+      "control_mrr": 0.666891,
+      "hit5_delta": 1,
+      "sniper_mrr": 0.760524,
+      "top1_delta": 3
+    },
+    {
+      "a_concept_id": "2546_5Ve_4ep",
+      "a_label": "Kostymmästare",
+      "b_concept_id": "49G8_LRE_73K",
+      "b_label": "Kostymtekniker/Påklädare",
+      "cases": 16,
+      "control_mrr": 0.479167,
+      "hit5_delta": 0,
+      "sniper_mrr": 0.564015,
+      "top1_delta": 3
+    },
+    {
+      "a_concept_id": "1gxo_A2w_5A3",
+      "a_label": "Hovrättsråd",
+      "b_concept_id": "pfiK_oXH_eYR",
+      "b_label": "Föredragande/Beredningsjurist",
+      "cases": 16,
+      "control_mrr": 0.660467,
+      "hit5_delta": 3,
+      "sniper_mrr": 0.734049,
+      "top1_delta": 0
+    },
+    {
+      "a_concept_id": "1Kv4_35e_BX3",
+      "a_label": "Arbetsledare, ventilation",
+      "b_concept_id": "4EZJ_3HN_fUK",
+      "b_label": "Ventilationsplåtslagare",
+      "cases": 16,
+      "control_mrr": 0.66065,
+      "hit5_delta": 2,
+      "sniper_mrr": 0.708333,
+      "top1_delta": 1
+    },
+    {
+      "a_concept_id": "2hTu_y9K_CxY",
+      "a_label": "Belysningsmästare",
+      "b_concept_id": "44wU_Cyh_yqp",
+      "b_label": "Ljusdesigner",
+      "cases": 16,
+      "control_mrr": 0.400955,
+      "hit5_delta": 0,
+      "sniper_mrr": 0.445598,
+      "top1_delta": 1
+    },
+    {
+      "a_concept_id": "te5X_YVU_JaR",
+      "a_label": "PTP-psykolog",
+      "b_concept_id": "xBo9_V9m_bfg",
+      "b_label": "Psykolog",
+      "cases": 16,
+      "control_mrr": 0.597711,
+      "hit5_delta": 0,
+      "sniper_mrr": 0.631315,
+      "top1_delta": 1
+    },
+    {
+      "a_concept_id": "3RzT_cHB_vVp",
+      "a_label": "Biträdande jurist",
+      "b_concept_id": "4ve8_yBg_LJZ",
+      "b_label": "Juristassistent/Advokatsekreterare",
+      "cases": 16,
+      "control_mrr": 0.544425,
+      "hit5_delta": 0,
+      "sniper_mrr": 0.551995,
+      "top1_delta": 0
+    },
+    {
+      "a_concept_id": "HWPy_9jT_TX2",
+      "a_label": "Optiker",
+      "b_concept_id": "hfq6_Rpw_EKK",
+      "b_label": "Optikerassistent",
+      "cases": 16,
+      "control_mrr": 0.620888,
+      "hit5_delta": 1,
+      "sniper_mrr": 0.609724,
+      "top1_delta": 0
+    },
+    {
+      "a_concept_id": "E7nX_ux2_hF9",
+      "a_label": "Arkivarie",
+      "b_concept_id": "kxKW_LiD_FuW",
+      "b_label": "Arkivassistent",
+      "cases": 16,
+      "control_mrr": 0.43123,
+      "hit5_delta": 0,
+      "sniper_mrr": 0.414945,
+      "top1_delta": -1
+    },
+    {
+      "a_concept_id": "7Kxn_MMG_TuY",
+      "a_label": "Klinikchef, tandvård/Verksamhetschef, tandvård",
+      "b_concept_id": "ckkD_JhH_Sc6",
+      "b_label": "Tandsköterska",
+      "cases": 16,
+      "control_mrr": 0.687973,
+      "hit5_delta": -1,
+      "sniper_mrr": 0.647396,
+      "top1_delta": 0
+    },
+    {
+      "a_concept_id": "3MDV_uBQ_6oG",
+      "a_label": "Forskare, trafiksäkerhet",
+      "b_concept_id": "cAYP_wEe_u3D",
+      "b_label": "Trafikingenjör",
+      "cases": 16,
+      "control_mrr": 0.663689,
+      "hit5_delta": -3,
+      "sniper_mrr": 0.60389,
+      "top1_delta": -1
+    }
+  ],
+  "schema_version": 1,
+  "selected_candidate": {
+    "artifact": {
+      "feature_count": 10856,
+      "feature_id_storage": "uint16",
+      "includes_idf_float32": true,
+      "nonzero_weight_count": 169226,
+      "runtime_complete_gzip9_bytes": 467688,
+      "runtime_complete_raw_bytes": 605063,
+      "weight_storage": "uint8"
+    },
+    "id": "YV-A593-relation-aware-sniper-v0",
+    "runtime_shape": "char3/4 TF-IDF + uint8 sparse concept weights; pair-specific source-grounded contrast distilled compile-time",
+    "teacher_dependency_at_runtime": false
+  },
+  "status": "A593 sniper-contrast development diagnostic; pair selection is confusion-selected and not independent accuracy evidence",
+  "targeted_teacher_holdouts": {
+    "control": {
+      "cases": 176,
+      "hit_at_5_count": 137,
+      "hit_at_5_rate": 0.778409,
+      "median_rank": 2.0,
+      "mrr": 0.583095,
+      "top1_count": 75,
+      "top1_rate": 0.426136
+    },
+    "sniper": {
+      "cases": 176,
+      "hit_at_5_count": 140,
+      "hit_at_5_rate": 0.795455,
+      "median_rank": 2.0,
+      "mrr": 0.606526,
+      "top1_count": 82,
+      "top1_rate": 0.465909
+    }
+  },
+  "training_data": {
+    "pairs_distinguishable": 11,
+    "pairs_indistinguishable": 1,
+    "pairs_total": 12,
+    "targeted_concepts": 22
+  }
+}
