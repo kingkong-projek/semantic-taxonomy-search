@@ -1,0 +1,410 @@
+{
+  "base_candidate": "YV-A593-char34-centroid-u8-top300-v0",
+  "corpus": {
+    "concepts": 593,
+    "outer_folds": 8,
+    "phrases": 4744
+  },
+  "delta_vs_top300": {
+    "hit_at_5_count": 29,
+    "mrr": 0.010703,
+    "top1_count": 59
+  },
+  "guard": "Selection uses only Gemma-authored outer-fold holdouts. Freeze any winning variant before an opened 17/88 replay; do not tune from opened outcomes.",
+  "hard_negative_mining": {
+    "contrast": "positive centroid feature minus alpha * hub_strength * mean hard-negative query feature; clamp at zero, renormalize, prune top300, uint8",
+    "definition": "top wrong concepts under positive training centroids; target excluded; no opened query used",
+    "hub_strength": "log1p(false-candidate count) normalized by fold maximum",
+    "wrong_candidates_per_training_phrase": 3
+  },
+  "schema_version": 1,
+  "selected_metrics": {
+    "cases": 4744,
+    "hit_at_5_count": 2957,
+    "hit_at_5_rate": 0.623314,
+    "median_rank": 3.0,
+    "mrr": 0.464229,
+    "top1_count": 1574,
+    "top1_rate": 0.331788
+  },
+  "selected_variant": "hard_negative_discount_alpha_0.75",
+  "status": "A593 corpus-internal hard-negative diagnostic; no opened evaluation queries used",
+  "top_directed_hard_negative_pairs": [
+    {
+      "count": 56,
+      "target_concept_id": "57z2_b5A_hAT",
+      "wrong_concept_id": "SDMs_GGu_gf2"
+    },
+    {
+      "count": 56,
+      "target_concept_id": "Mj9N_W8j_bqg",
+      "wrong_concept_id": "QM63_e85_CUC"
+    },
+    {
+      "count": 56,
+      "target_concept_id": "QM63_e85_CUC",
+      "wrong_concept_id": "Mj9N_W8j_bqg"
+    },
+    {
+      "count": 55,
+      "target_concept_id": "3RP3_h9J_Hc9",
+      "wrong_concept_id": "31Uw_P9P_AgC"
+    },
+    {
+      "count": 55,
+      "target_concept_id": "5cVu_BVm_nNG",
+      "wrong_concept_id": "3Uhk_4A8_cy6"
+    },
+    {
+      "count": 55,
+      "target_concept_id": "MQHi_q9J_x2d",
+      "wrong_concept_id": "bpwq_MEr_hvP"
+    },
+    {
+      "count": 55,
+      "target_concept_id": "cAYP_wEe_u3D",
+      "wrong_concept_id": "1awg_QKB_bkw"
+    },
+    {
+      "count": 55,
+      "target_concept_id": "te5X_YVU_JaR",
+      "wrong_concept_id": "xBo9_V9m_bfg"
+    },
+    {
+      "count": 54,
+      "target_concept_id": "1gxo_A2w_5A3",
+      "wrong_concept_id": "pfiK_oXH_eYR"
+    },
+    {
+      "count": 54,
+      "target_concept_id": "3RzT_cHB_vVp",
+      "wrong_concept_id": "4ve8_yBg_LJZ"
+    },
+    {
+      "count": 54,
+      "target_concept_id": "EsXb_35r_rTR",
+      "wrong_concept_id": "ho3v_5nB_pK4"
+    },
+    {
+      "count": 54,
+      "target_concept_id": "QLwS_aMP_Jcu",
+      "wrong_concept_id": "uwYE_D2Z_45B"
+    },
+    {
+      "count": 54,
+      "target_concept_id": "SDMs_GGu_gf2",
+      "wrong_concept_id": "57z2_b5A_hAT"
+    },
+    {
+      "count": 53,
+      "target_concept_id": "6TcC_oXD_QPw",
+      "wrong_concept_id": "47p3_SHB_BaN"
+    },
+    {
+      "count": 53,
+      "target_concept_id": "rnBV_XXP_Uv2",
+      "wrong_concept_id": "CNqp_v1H_VoC"
+    },
+    {
+      "count": 52,
+      "target_concept_id": "2KG5_YmC_TRA",
+      "wrong_concept_id": "2hTu_y9K_CxY"
+    },
+    {
+      "count": 52,
+      "target_concept_id": "47p3_SHB_BaN",
+      "wrong_concept_id": "6TcC_oXD_QPw"
+    },
+    {
+      "count": 52,
+      "target_concept_id": "7Kxn_MMG_TuY",
+      "wrong_concept_id": "ckkD_JhH_Sc6"
+    },
+    {
+      "count": 52,
+      "target_concept_id": "DHo9_qpj_owx",
+      "wrong_concept_id": "1d3z_y59_2Hm"
+    },
+    {
+      "count": 52,
+      "target_concept_id": "b5Re_ALr_2Nq",
+      "wrong_concept_id": "51jM_crG_YQH"
+    },
+    {
+      "count": 50,
+      "target_concept_id": "2546_5Ve_4ep",
+      "wrong_concept_id": "49G8_LRE_73K"
+    },
+    {
+      "count": 50,
+      "target_concept_id": "2hTu_y9K_CxY",
+      "wrong_concept_id": "44wU_Cyh_yqp"
+    },
+    {
+      "count": 50,
+      "target_concept_id": "Mgiv_Xs7_u2r",
+      "wrong_concept_id": "4eaw_x3V_ddY"
+    },
+    {
+      "count": 50,
+      "target_concept_id": "ho3v_5nB_pK4",
+      "wrong_concept_id": "EsXb_35r_rTR"
+    },
+    {
+      "count": 50,
+      "target_concept_id": "kxKW_LiD_FuW",
+      "wrong_concept_id": "E7nX_ux2_hF9"
+    },
+    {
+      "count": 49,
+      "target_concept_id": "1Cjx_ooE_HT9",
+      "wrong_concept_id": "E7nX_ux2_hF9"
+    },
+    {
+      "count": 49,
+      "target_concept_id": "1Kv4_35e_BX3",
+      "wrong_concept_id": "4EZJ_3HN_fUK"
+    },
+    {
+      "count": 49,
+      "target_concept_id": "1YZp_JJt_Nen",
+      "wrong_concept_id": "GujS_MtW_PRH"
+    },
+    {
+      "count": 49,
+      "target_concept_id": "1awg_QKB_bkw",
+      "wrong_concept_id": "cAYP_wEe_u3D"
+    },
+    {
+      "count": 49,
+      "target_concept_id": "23nR_PXa_9br",
+      "wrong_concept_id": "1d3z_y59_2Hm"
+    },
+    {
+      "count": 49,
+      "target_concept_id": "2AGe_heZ_E94",
+      "wrong_concept_id": "YkcC_EmP_nA5"
+    },
+    {
+      "count": 49,
+      "target_concept_id": "3MDV_uBQ_6oG",
+      "wrong_concept_id": "cAYP_wEe_u3D"
+    },
+    {
+      "count": 49,
+      "target_concept_id": "49G8_LRE_73K",
+      "wrong_concept_id": "2546_5Ve_4ep"
+    },
+    {
+      "count": 49,
+      "target_concept_id": "EsXb_35r_rTR",
+      "wrong_concept_id": "CNqp_v1H_VoC"
+    },
+    {
+      "count": 49,
+      "target_concept_id": "HuVd_H4w_ZtF",
+      "wrong_concept_id": "Mg5T_Wi4_5my"
+    },
+    {
+      "count": 49,
+      "target_concept_id": "Mg5T_Wi4_5my",
+      "wrong_concept_id": "HuVd_H4w_ZtF"
+    },
+    {
+      "count": 49,
+      "target_concept_id": "YkcC_EmP_nA5",
+      "wrong_concept_id": "2AGe_heZ_E94"
+    },
+    {
+      "count": 49,
+      "target_concept_id": "hfq6_Rpw_EKK",
+      "wrong_concept_id": "HWPy_9jT_TX2"
+    },
+    {
+      "count": 49,
+      "target_concept_id": "rnBV_XXP_Uv2",
+      "wrong_concept_id": "EsXb_35r_rTR"
+    },
+    {
+      "count": 49,
+      "target_concept_id": "uwYE_D2Z_45B",
+      "wrong_concept_id": "QLwS_aMP_Jcu"
+    }
+  ],
+  "top_false_candidate_hubs": [
+    {
+      "concept_id": "DHo9_qpj_owx",
+      "false_candidate_count": 585
+    },
+    {
+      "concept_id": "2NdT_qer_nQk",
+      "false_candidate_count": 554
+    },
+    {
+      "concept_id": "23nR_PXa_9br",
+      "false_candidate_count": 515
+    },
+    {
+      "concept_id": "1d3z_y59_2Hm",
+      "false_candidate_count": 442
+    },
+    {
+      "concept_id": "iCy6_G72_abh",
+      "false_candidate_count": 439
+    },
+    {
+      "concept_id": "3HoD_9KS_4Lb",
+      "false_candidate_count": 430
+    },
+    {
+      "concept_id": "zmTy_qPb_e9e",
+      "false_candidate_count": 429
+    },
+    {
+      "concept_id": "mcAc_Xvo_Jp8",
+      "false_candidate_count": 424
+    },
+    {
+      "concept_id": "4eYC_a1M_xtL",
+      "false_candidate_count": 394
+    },
+    {
+      "concept_id": "hr5f_dci_NcD",
+      "false_candidate_count": 383
+    },
+    {
+      "concept_id": "NZcr_uB1_6rX",
+      "false_candidate_count": 378
+    },
+    {
+      "concept_id": "DV4C_eEN_VDg",
+      "false_candidate_count": 361
+    },
+    {
+      "concept_id": "JEhg_Dmh_mzv",
+      "false_candidate_count": 360
+    },
+    {
+      "concept_id": "3uZy_tC8_H8X",
+      "false_candidate_count": 359
+    },
+    {
+      "concept_id": "Mg5T_Wi4_5my",
+      "false_candidate_count": 359
+    },
+    {
+      "concept_id": "JERf_eXM_Dyz",
+      "false_candidate_count": 351
+    },
+    {
+      "concept_id": "JbJw_as4_S93",
+      "false_candidate_count": 350
+    },
+    {
+      "concept_id": "333u_QiV_URJ",
+      "false_candidate_count": 350
+    },
+    {
+      "concept_id": "8wmm_Wto_9iG",
+      "false_candidate_count": 350
+    },
+    {
+      "concept_id": "p96L_aTJ_kkG",
+      "false_candidate_count": 349
+    },
+    {
+      "concept_id": "GrZU_ofe_QAx",
+      "false_candidate_count": 348
+    },
+    {
+      "concept_id": "ci6b_Nc2_FmS",
+      "false_candidate_count": 334
+    },
+    {
+      "concept_id": "tsdt_MEd_bUS",
+      "false_candidate_count": 333
+    },
+    {
+      "concept_id": "GtM1_tT6_UUy",
+      "false_candidate_count": 332
+    },
+    {
+      "concept_id": "SgGz_7JC_dtw",
+      "false_candidate_count": 330
+    }
+  ],
+  "variants": {
+    "baseline_char34_top300": {
+      "cases": 4744,
+      "hit_at_5_count": 2928,
+      "hit_at_5_rate": 0.617201,
+      "median_rank": 3.0,
+      "mrr": 0.453526,
+      "top1_count": 1515,
+      "top1_rate": 0.319351
+    },
+    "hard_negative_discount_alpha_0.25": {
+      "cases": 4744,
+      "hit_at_5_count": 2941,
+      "hit_at_5_rate": 0.619941,
+      "median_rank": 3.0,
+      "mrr": 0.458361,
+      "top1_count": 1537,
+      "top1_rate": 0.323988
+    },
+    "hard_negative_discount_alpha_0.5": {
+      "cases": 4744,
+      "hit_at_5_count": 2943,
+      "hit_at_5_rate": 0.620363,
+      "median_rank": 3.0,
+      "mrr": 0.464026,
+      "top1_count": 1575,
+      "top1_rate": 0.331998
+    },
+    "hard_negative_discount_alpha_0.75": {
+      "cases": 4744,
+      "hit_at_5_count": 2957,
+      "hit_at_5_rate": 0.623314,
+      "median_rank": 3.0,
+      "mrr": 0.464229,
+      "top1_count": 1574,
+      "top1_rate": 0.331788
+    },
+    "hard_negative_discount_alpha_1.0": {
+      "cases": 4744,
+      "hit_at_5_count": 2945,
+      "hit_at_5_rate": 0.620784,
+      "median_rank": 3.0,
+      "mrr": 0.462141,
+      "top1_count": 1562,
+      "top1_rate": 0.329258
+    },
+    "score_hub_penalty_lambda_0.15": {
+      "cases": 4744,
+      "hit_at_5_count": 2934,
+      "hit_at_5_rate": 0.618465,
+      "median_rank": 3.0,
+      "mrr": 0.456409,
+      "top1_count": 1531,
+      "top1_rate": 0.322723
+    },
+    "score_hub_penalty_lambda_0.3": {
+      "cases": 4744,
+      "hit_at_5_count": 2938,
+      "hit_at_5_rate": 0.619309,
+      "median_rank": 3.0,
+      "mrr": 0.457783,
+      "top1_count": 1543,
+      "top1_rate": 0.325253
+    },
+    "score_hub_penalty_lambda_0.5": {
+      "cases": 4744,
+      "hit_at_5_count": 2935,
+      "hit_at_5_rate": 0.618676,
+      "median_rank": 3.0,
+      "mrr": 0.458692,
+      "top1_count": 1548,
+      "top1_rate": 0.326307
+    }
+  }
+}
