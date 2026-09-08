@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - scripts/evaluate_gemma_a149.py
+      - scripts/evaluate_gemma_a149_guarded.py
       - .github/workflows/gemma-a149-tournament.yml
   workflow_dispatch:
 
@@ -27,17 +28,17 @@ jobs:
           path: artifacts/gemma-teacher
           github-token: ${{ github.token }}
           run-id: 34189574629
-      - name: Compile-check evaluator
-        run: python -m py_compile scripts/evaluate_gemma_a149.py
-      - name: Evaluate A149 against frozen opened suites
+      - name: Compile-check evaluators
+        run: python -m py_compile scripts/evaluate_gemma_a149.py scripts/evaluate_gemma_a149_guarded.py
+      - name: Evaluate guarded A149 against frozen opened suites
         run: >-
-          python scripts/evaluate_gemma_a149.py
+          python scripts/evaluate_gemma_a149_guarded.py
           --teacher artifacts/gemma-teacher/gemma4-yv-teacher-hour-run.jsonl
-          --output artifacts/gemma-a149-tournament.json
+          --output artifacts/gemma-a149-guarded-tournament.json
       - name: Upload tournament result
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: gemma-a149-tournament
-          path: artifacts/gemma-a149-tournament.json
+          name: gemma-a149-guarded-tournament
+          path: artifacts/gemma-a149-guarded-tournament.json
           if-no-files-found: warn
