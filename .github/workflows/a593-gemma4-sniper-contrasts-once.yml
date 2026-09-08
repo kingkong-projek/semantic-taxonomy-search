@@ -24,12 +24,12 @@ jobs:
           python -m py_compile
           scripts/generate_gemma4_yv_teacher_pilot.py
           scripts/generate_gemma4_yv_sniper_contrasts.py
-      - name: Generate 16 bounded sniper contrasts
+      - name: Generate all 14 available bounded sniper contrasts
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: >-
           python scripts/generate_gemma4_yv_sniper_contrasts.py
-          --pairs 16
+          --pairs 14
           --requests-per-minute 3
       - name: Commit frozen training data and self-remove
         run: |
