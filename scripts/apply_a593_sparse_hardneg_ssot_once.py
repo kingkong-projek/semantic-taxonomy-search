@@ -1,0 +1,17 @@
+#!/usr/bin/env python3
+from pathlib import Path
+
+path = Path('docs/research-plan.md')
+text = path.read_text(encoding='utf-8')
+key = 'A593 sparse paper-note / hard-negative checkpoint'
+marker = 'Tournament entrants, at minimum:'
+if key in text:
+    raise SystemExit('already recorded')
+if marker not in text:
+    raise SystemExit('tournament marker missing')
+addition = """**A593 sparse paper-note / hard-negative checkpoint (2026-09-08): KEEP AS ARCHITECTURE EVIDENCE; DO NOT PROMOTE YET.** The literal paper-note formulation `stemmed-token stability x concept-IDF` is roughly Snowball-level on the frozen 4,744 Gemma phrase-slot holdouts (**22.53% Top1 / 43.09% Hit@5**) and does not justify replacing BM25. A stronger compile-time distillation using **word-boundary character 3/4-gram TF-IDF centroids**, pruned to **300 features per occupation** and globally quantized to uint8, reaches **31.94% Top1 / 61.72% Hit@5 / MRR 0.4535** on those same outer holdouts. The full A593 binary artifact is **560,242 bytes raw / 451,128 bytes gzip-9**, with 10,676 features and 169,061 non-zero weights; runtime is only character n-gram extraction, TF-IDF and sparse dot products, with no teacher/model dependency. However the prefrozen standalone 593-occupation semantic lane transfers much less strongly to the already-opened YV stress replay: **21/40 Hit@5 / 15/40 Top1**, with direct **11/12 Hit@5** but colloquial **3/12**, noisy **5/8** and indirect **2/8**. It abstains on none of the negative stress cases. This is evidence of a **teacher-distribution/generalization gap**: excellent model-authored self-retrieval is not sufficient evidence of user-language quality. Do not tune top-K/features from the opened replay.
+
+A corpus-internal hard-negative extension mines, for each training phrase, its three nearest wrong concepts and discounts concept features that repeatedly attract those false candidates. The best prefrozen variant is **alpha=0.75**, improving the 4,744 outer holdouts from **31.94% -> 33.18% Top1** and **61.72% -> 62.33% Hit@5** (+59 Top1, +29 Hit@5; MRR 0.4535 -> 0.4642). On the subsequent opened replay it leaves Hit@5 at **21/40** but improves Top1 **15/40 -> 18/40**. Thus hard negatives help discrimination but do not solve the colloquial/indirect language-generalization residual. **Keep A2105 paused.** The next bounded A593 work should test a genuinely discriminative sparse student and/or explicit cheap context interactions (signed hard-negative weights and word-pair/bigram features) using only the frozen teacher corpus for selection; opened 17/88 stays replay-only. If those plateau, test training-language diversity rather than simply more identities. Evidence: `research/evaluation/v31/compile-time-semantic-a593-sparse-paper-note.json`, `research/evaluation/v31/compile-time-semantic-tournament-a593-char-centroid.json`, `research/evaluation/v31/compile-time-semantic-a593-hard-negative-distillation.json` and `research/evaluation/v31/compile-time-semantic-tournament-a593-hard-negative.json`.
+
+"""
+path.write_text(text.replace(marker, addition + marker, 1), encoding='utf-8')
