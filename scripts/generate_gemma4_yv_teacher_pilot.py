@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate a tiny Gemma 4 teacher-language pilot for YV.
+"""Generate Gemma 4 teacher-language for a bounded YV experiment.
 
 Exploratory API/quality probe only. Only public taxonomy evidence is sent.
 The opened semantic stress suite is never used as teacher input.
@@ -119,6 +119,10 @@ def validate_phrases(text: str) -> list[str]:
     return out
 
 
+def retry_delay(attempt: int) -> float:
+    return min(60.0, 2.0 ** attempt) + random.uniform(0.0, 1.0)
+
+
 def call_gemma(api_key: str, prompt: str, *, max_attempts: int = 5) -> tuple[list[str], dict[str, Any]]:
     url = f"https://generativelanguage.googleapis.com/v1beta/models/{MODEL}:generateContent"
     body = json.dumps(
@@ -152,14 +156,20 @@ def call_gemma(api_key: str, prompt: str, *, max_attempts: int = 5) -> tuple[lis
                 raise RuntimeError(f"Gemma API HTTP {status}: {detail}") from exc
             if attempt + 1 >= max_attempts:
                 raise RuntimeError(f"Gemma API still failing after retries, HTTP {status}: {detail}") from exc
-            delay = min(60.0, 2.0 ** attempt) + random.uniform(0.0, 1.0)
+            delay = retry_delay(attempt)
             print(f"transient Gemma HTTP {status}; retrying in {delay:.1f}s", flush=True)
             time.sleep(delay)
         except (urllib.error.URLError, TimeoutError) as exc:
             if attempt + 1 >= max_attempts:
-                raise
-            delay = min(60.0, 2.0 ** attempt) + random.uniform(0.0, 1.0)
+                raise RuntimeError(f"Gemma network error after retries: {exc}") from exc
+            delay = retry_delay(attempt)
             print(f"transient Gemma network error; retrying in {delay:.1f}s: {exc}", flush=True)
+            time.sleep(delay)
+        except RuntimeError as exc:
+            if attempt + 1 >= max_attempts:
+                raise
+            delay = retry_delay(attempt)
+            print(f"invalid Gemma response; retrying in {delay:.1f}s: {exc}", flush=True)
             time.sleep(delay)
     raise AssertionError("unreachable")
 
@@ -175,10 +185,10 @@ def main() -> int:
     api_key = os.environ.get("GEMINI_API_KEY", "").strip()
     if not api_key:
         raise RuntimeError("GEMINI_API_KEY is not set")
-    if not (1 <= args.cases <= 20):
-        raise RuntimeError("pilot --cases must be between 1 and 20")
+    if not (1 <= args.cases <= 200):
+        raise RuntimeError("--cases must be between 1 and 200")
     if not (0.2 <= args.requests_per_minute <= 6.0):
-        raise RuntimeError("pilot RPM must stay between 0.2 and 6.0")
+        raise RuntimeError("RPM must stay between 0.2 and 6.0")
 
     taxonomy = fetch_json(TAXONOMY_URL)
     concepts = taxonomy.get("data", {}).get("concepts") or []
@@ -193,25 +203,31 @@ def main() -> int:
         if len(selected) == args.cases:
             break
     if len(selected) != args.cases:
-        raise RuntimeError(f"could only select {len(selected)} pilot occupations")
+        raise RuntimeError(f"could only select {len(selected)} occupations")
 
     out = Path(args.output)
     out.parent.mkdir(parents=True, exist_ok=True)
     interval = 60.0 / args.requests_per_minute
     rows: list[dict[str, Any]] = []
+    failed: list[dict[str, str]] = []
     for index, concept in enumerate(selected):
         if index:
             time.sleep(interval)
         label = str(concept.get("preferred_label") or "").strip()
-        print(f"Gemma pilot {index + 1}/{len(selected)}: {label}", flush=True)
-        phrases, usage = call_gemma(api_key, prompt_for(concept))
+        print(f"Gemma teacher {index + 1}/{len(selected)}: {label}", flush=True)
+        try:
+            phrases, usage = call_gemma(api_key, prompt_for(concept))
+        except RuntimeError as exc:
+            failed.append({"concept_id": str(concept["id"]), "label": label, "error": str(exc)})
+            print(f"skipping {label} after retries: {exc}", flush=True)
+            continue
         rows.append({
             "concept_id": str(concept["id"]),
             "label": label,
             "model": MODEL,
             "phrases": phrases,
             "usage_metadata": usage,
-            "provenance": "Gemma 4 generateContent JSON-MIME teacher; public taxonomy input only; exploratory pilot",
+            "provenance": "Gemma 4 generateContent JSON-MIME teacher; public taxonomy input only; exploratory run",
         })
         out.write_text(
             "".join(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n" for row in rows),
@@ -219,10 +235,13 @@ def main() -> int:
         )
 
     print(json.dumps({
-        "status": "exploratory teacher pilot only",
+        "status": "exploratory teacher run only",
         "model": MODEL,
         "api": "generateContent + thinkingLevel=minimal + responseMimeType=application/json",
-        "cases": len(rows),
+        "requested_cases": len(selected),
+        "successful_cases": len(rows),
+        "failed_cases": len(failed),
+        "failures": failed,
         "requests_per_minute_cap": args.requests_per_minute,
         "output": str(out),
     }, ensure_ascii=False, indent=2, sort_keys=True))

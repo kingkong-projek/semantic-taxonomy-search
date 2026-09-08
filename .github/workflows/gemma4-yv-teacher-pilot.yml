@@ -1,4 +1,4 @@
-name: Gemma 4 YV teacher pilot
+name: Gemma 4 YV teacher hour run
 
 on:
   push:
@@ -11,9 +11,9 @@ permissions:
   contents: read
 
 jobs:
-  pilot:
+  teacher-run:
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 80
     env:
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
     steps:
@@ -21,18 +21,18 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Compile-check pilot
+      - name: Compile-check teacher runner
         run: python -m py_compile scripts/generate_gemma4_yv_teacher_pilot.py
-      - name: Generate 8 public-data pilot concepts conservatively
+      - name: Generate 150 public-data occupations at conservative rate
         run: >-
           python scripts/generate_gemma4_yv_teacher_pilot.py
-          --cases 8
+          --cases 150
           --requests-per-minute 3
-          --output artifacts/gemma4-yv-teacher-pilot.jsonl
-      - name: Upload pilot corpus
+          --output artifacts/gemma4-yv-teacher-hour-run.jsonl
+      - name: Upload generated corpus
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: gemma4-yv-teacher-pilot
-          path: artifacts/gemma4-yv-teacher-pilot.jsonl
+          name: gemma4-yv-teacher-hour-run
+          path: artifacts/gemma4-yv-teacher-hour-run.jsonl
           if-no-files-found: warn
