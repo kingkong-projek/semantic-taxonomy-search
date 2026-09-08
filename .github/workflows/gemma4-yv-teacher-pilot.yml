@@ -1,10 +1,6 @@
-name: Gemma 4 YV teacher hour run
+name: Gemma 4 YV teacher bounded run
 
 on:
-  push:
-    paths:
-      - scripts/generate_gemma4_yv_teacher_pilot.py
-      - .github/workflows/gemma4-yv-teacher-pilot.yml
   workflow_dispatch:
 
 permissions:
@@ -23,9 +19,10 @@ jobs:
           python-version: '3.12'
       - name: Compile-check teacher runner
         run: python -m py_compile scripts/generate_gemma4_yv_teacher_pilot.py
-      - name: Generate 150 public-data occupations at conservative rate
+      - name: Generate bounded public-data corpus
         run: >-
           python scripts/generate_gemma4_yv_teacher_pilot.py
+          --start-rank 1
           --cases 150
           --requests-per-minute 3
           --output artifacts/gemma4-yv-teacher-hour-run.jsonl
