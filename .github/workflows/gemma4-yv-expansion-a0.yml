@@ -1,0 +1,47 @@
+name: Gemma 4 YV expansion A0
+
+on:
+  push:
+    paths:
+      - scripts/evaluate_gemma4_yv_expansion_a0.py
+      - research/enrichment/v31/gemma4-yv-top150/manifest.json
+      - .github/workflows/gemma4-yv-expansion-a0.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile-check evaluator
+        run: python -m py_compile scripts/evaluate_gemma4_yv_expansion_a0.py
+      - name: Download frozen Gemma teacher artifact
+        run: >-
+          gh run download 34189574629
+          --repo "$GITHUB_REPOSITORY"
+          --name gemma4-yv-teacher-hour-run
+          --dir artifacts/gemma4-source
+      - name: Verify frozen teacher corpus
+        run: echo '1a6e26840480d0cd6ffce23e3214d026cefa202397f4e84115e9fe2ac1e1045b  artifacts/gemma4-source/gemma4-yv-teacher-hour-run.jsonl' | sha256sum -c -
+      - name: Evaluate quality and sparse expansion
+        run: >-
+          python scripts/evaluate_gemma4_yv_expansion_a0.py
+          --teacher artifacts/gemma4-source/gemma4-yv-teacher-hour-run.jsonl
+          --output artifacts/gemma4-yv-expansion-a0-v31.json
+      - name: Upload evaluation
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gemma4-yv-expansion-a0-v31
+          path: artifacts/gemma4-yv-expansion-a0-v31.json
+          if-no-files-found: warn
