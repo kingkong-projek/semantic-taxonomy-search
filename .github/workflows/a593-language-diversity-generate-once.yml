@@ -1,0 +1,56 @@
+name: A593 language diversity generate once
+
+on:
+  push:
+    paths:
+      - .github/workflows/a593-language-diversity-generate-once.yml
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  generate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Download frozen A593 teacher corpus
+        uses: actions/download-artifact@v4
+        with:
+          name: gemma-a593-checkpoint
+          path: artifacts/a593
+          github-token: ${{ github.token }}
+          run-id: 34232985249
+      - name: Compile-check
+        run: python -m py_compile scripts/generate_a593_language_diversity_falsifier.py
+      - name: Generate independent training and held-out language
+        run: >-
+          python scripts/generate_a593_language_diversity_falsifier.py
+          --teacher artifacts/a593/gemma-a593-teacher.jsonl
+          --cases 150
+          --batch-size 12
+          --requests-per-minute 6
+          --training-output artifacts/a593-language-diversity-training-v0.jsonl
+          --holdout-output artifacts/a593-language-diversity-holdout-v0.jsonl
+          --summary artifacts/a593-language-diversity-generation-v0.json
+      - name: Freeze corpora and self-remove
+        run: |
+          cp artifacts/a593-language-diversity-training-v0.jsonl research/training/v31/a593-language-diversity-training-v0.jsonl
+          cp artifacts/a593-language-diversity-holdout-v0.jsonl research/evaluation/v31/a593-language-diversity-holdout-v0.jsonl
+          cp artifacts/a593-language-diversity-generation-v0.json research/evaluation/v31/a593-language-diversity-generation-v0.json
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          rm .github/workflows/a593-language-diversity-generate-once.yml
+          git add research/training/v31/a593-language-diversity-training-v0.jsonl research/evaluation/v31/a593-language-diversity-holdout-v0.jsonl research/evaluation/v31/a593-language-diversity-generation-v0.json .github/workflows/a593-language-diversity-generate-once.yml
+          git commit -m 'research: freeze A593 language-diversity corpora'
+          git fetch origin main
+          git rebase origin/main
+          git push
