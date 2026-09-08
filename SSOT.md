@@ -8,26 +8,36 @@ This file is the canonical entrypoint for current project state.
 2. `docs/findings/*` and `research/*` — evidence supporting or falsifying the plan. They do not silently override it.
 3. `docs/findings/field-feedback-findability-2026-09-07.md` + `research/evaluation/v31/field-feedback-findability-2026-09-07.json` — current real-user field-feedback evidence and frozen derived corpus.
 
-## Current amendment — 2026-09-08: Track-2 architecture breadth phase
+## Current amendment — 2026-09-09: Track-2 architecture breadth complete
 
-The latest A593 evidence changes the immediate Track-2 experiment order recorded in the large living plan.
+The short Track-2 architecture breadth phase is complete. **A — teacher-expanded sparse retrieval — is the surviving simple architecture family.**
 
-The explicit source-bound pair-contrast layer is useful on the exact teacher-held-out confusion pairs but does not transfer to the opened user-like/source-attested diagnostics: on 4,744 frozen teacher holdouts it changes Top1 `1576 -> 1586` (+10) and Hit@5 `2957 -> 2965` (+8), while the subsequent opened replay has **zero delta** on targetable40 Top1/Hit@5 and strict17 Top1/Hit@5/MRR.
+The breadth comparison deliberately avoided rescue sweeps and hybrid composition:
 
-Therefore the older research-plan wording that continues local A593 sparse/context tuning before widening the architecture search is now stale. Until folded into `docs/research-plan.md`, the active Track-2 order is:
+- **B supervised sparse** loses to its same-feature centroid control on the fixed 593 teacher holdouts and also trails A on the frozen 66-case hard-confusion gate;
+- **C task/activity representation** reaches only `46/66` Top1 and `50/66` correct confusion-pair side versus A `62/66` and `63/66`;
+- **E rank-64 latent student** fits the frontend-size budget (~0.84 MB gzip estimate) but also reaches only `46/66` Top1 versus A `62/66`, and strongly regresses on the fixed 593 construction holdout;
+- the deferred two-stage **D coarse retrieval -> local discriminator is NOT activated** because the dedicated hard-confusion evidence does not demonstrate a need for another semantic stage.
 
-- **freeze the current A593 expanded-sparse family as the reference;**
-- **keep A2105/full Gemma generation paused;**
-- stop local stemming/hub/hard-negative/pair-rule micro-tuning during architecture selection;
-- freeze one common, source-bound, cross-style transfer proxy that does not use opened 17/88 wording or outcomes;
-- test two deliberately simple single-stage challengers: **B supervised sparse classifier** and **C task/activity representation**;
-- compare A/B/C on the same frozen transfer evidence plus canonical guards and frontend byte/runtime constraints;
-- kill losing architecture families and then optimise only the simplest surviving winner;
-- do not build a coarse-retrieval -> local-discriminator stack unless both single-stage challengers fail and diagnostics specifically justify the extra stage.
+Therefore the active Track-2 execution order is now:
 
-The simplicity contract is explicit: the preferred final shape is **exact/canonical lexical route + one semantic description ranker/index**. Do not combine weak entrants into a hybrid merely to gain benchmark points. A single-stage challenger must earn roughly **>=5 absolute percentage points** on a primary prefrozen transfer metric to justify continued work; a later two-stage semantic architecture must earn roughly **>=10 absolute percentage points over the best surviving single-stage candidate** to justify its added complexity. These are decision bars, not tuning targets.
+- freeze A593 ranker architecture and keep A2105/full Gemma generation paused;
+- do not resume stemming/hub/hard-negative/pair-rule micro-tuning;
+- test **training-language distribution inside A** as the next bounded falsifier;
+- use a separately frozen, source-bound, lexically more distant user-language training corpus and a separate prefrozen transfer proxy;
+- compare current A against A + diversified language over the same A593 candidate universe;
+- opened 17/88 remains replay-only and may not choose the new language/prompt;
+- scale diversified language to all A593 or A2105 only if the bounded transfer gain is material;
+- if language diversity also fails materially, do not build a B/C/E/D hybrid stack merely to chase benchmark gains; reassess the residual against the server/API escape hatch and fresh human evidence.
 
-Detailed frozen decision and machine-readable gate:
+The simplicity contract remains: **exact/canonical lexical route + one semantic description ranker/index**. A second semantic stage remains disallowed absent new evidence that clears the stronger complexity bar.
+
+Detailed closeout evidence:
+
+- `docs/findings/compile-time-architecture-breadth-result-2026-09-09.md`
+- `research/evaluation/v31/compile-time-semantic-architecture-breadth-result.json`
+
+The previous breadth-opening decision is retained as history:
 
 - `docs/findings/compile-time-architecture-breadth-gate-2026-09-08.md`
 - `research/evaluation/v31/compile-time-semantic-architecture-breadth-gate.json`
