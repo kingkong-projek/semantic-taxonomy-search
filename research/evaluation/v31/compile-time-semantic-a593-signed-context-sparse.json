@@ -1,0 +1,138 @@
+{
+  "artifacts": {
+    "char34_bigram_signed_a075_top300": {
+      "feature_count": 13360,
+      "feature_id_storage": "uint16",
+      "hard_negative_mining": {
+        "false_candidate_assignments": 14232,
+        "unique_directed_pairs": 9149
+      },
+      "includes_idf_float32": true,
+      "nonzero_weight_count": 177887,
+      "runtime_complete_gzip9_bytes": 486152,
+      "runtime_complete_raw_bytes": 700067,
+      "weight_storage": "int8"
+    },
+    "char34_bigram_top300": {
+      "feature_count": 13360,
+      "feature_id_storage": "uint16",
+      "includes_idf_float32": true,
+      "nonzero_weight_count": 171826,
+      "runtime_complete_gzip9_bytes": 489810,
+      "runtime_complete_raw_bytes": 681884,
+      "weight_storage": "uint8"
+    },
+    "char34_signed_a075_top300": {
+      "feature_count": 10676,
+      "feature_id_storage": "uint16",
+      "hard_negative_mining": {
+        "false_candidate_assignments": 14232,
+        "unique_directed_pairs": 9127
+      },
+      "includes_idf_float32": true,
+      "nonzero_weight_count": 177882,
+      "runtime_complete_gzip9_bytes": 464702,
+      "runtime_complete_raw_bytes": 650765,
+      "weight_storage": "int8"
+    },
+    "char34_top300_control": {
+      "feature_count": 10676,
+      "feature_id_storage": "uint16",
+      "includes_idf_float32": true,
+      "nonzero_weight_count": 169061,
+      "runtime_complete_gzip9_bytes": 465135,
+      "runtime_complete_raw_bytes": 624302,
+      "weight_storage": "uint8"
+    }
+  },
+  "corpus": {
+    "concepts": 593,
+    "outer_folds": 8,
+    "phrases": 4744
+  },
+  "delta_vs_char34_top300": {
+    "hit_at_5_count": 32,
+    "mrr": 0.008462,
+    "top1_count": 51
+  },
+  "fixed_design": {
+    "base_feature": "word-boundary character 3/4-gram prefixed c:",
+    "context_feature": "adjacent Swedish-Snowball stemmed word bigram prefixed b:",
+    "hard_negative_wrong_candidates_per_phrase": 3,
+    "selection_rule": "highest Hit@5, then MRR, then Top1 among the three predeclared challengers; no opened-query tuning",
+    "signed_alpha": 0.75,
+    "topk_features_per_concept": 300
+  },
+  "guard": "All selection evidence is Gemma-authored outer-fold holdout evidence. Freeze the winning candidate before any opened 17/88 replay; opened outcomes may diagnose/falsify but must not select features or variants.",
+  "schema_version": 1,
+  "selected_candidate": {
+    "artifact": {
+      "feature_count": 13360,
+      "feature_id_storage": "uint16",
+      "hard_negative_mining": {
+        "false_candidate_assignments": 14232,
+        "unique_directed_pairs": 9149
+      },
+      "includes_idf_float32": true,
+      "nonzero_weight_count": 177887,
+      "runtime_complete_gzip9_bytes": 486152,
+      "runtime_complete_raw_bytes": 700067,
+      "weight_storage": "int8"
+    },
+    "context_features": true,
+    "id": "YV-A593-char34-bigram-signed-a075-top300-v0",
+    "runtime_shape": "deterministic sparse TF-IDF feature extraction + int8/uint8 concept dot products",
+    "signed_hard_negative_weights": true,
+    "teacher_dependency_at_runtime": false
+  },
+  "selected_metrics": {
+    "cases": 4744,
+    "hit_at_5_count": 2960,
+    "hit_at_5_rate": 0.623946,
+    "median_rank": 3.0,
+    "mrr": 0.461988,
+    "top1_count": 1566,
+    "top1_rate": 0.330101
+  },
+  "selected_variant": "char34_bigram_signed_a075_top300",
+  "size_accounting_note": "Earlier A593 compact-binary figures stored the feature dictionary and concept weights but omitted IDF values required by runtime TF-IDF. The runtime-complete figures here include float32 IDF for every retained feature; quality metrics are unaffected.",
+  "status": "A593 corpus-internal signed/context sparse diagnostic; no opened evaluation queries used",
+  "variants": {
+    "char34_bigram_signed_a075_top300": {
+      "cases": 4744,
+      "hit_at_5_count": 2960,
+      "hit_at_5_rate": 0.623946,
+      "median_rank": 3.0,
+      "mrr": 0.461988,
+      "top1_count": 1566,
+      "top1_rate": 0.330101
+    },
+    "char34_bigram_top300": {
+      "cases": 4744,
+      "hit_at_5_count": 2908,
+      "hit_at_5_rate": 0.612985,
+      "median_rank": 3.0,
+      "mrr": 0.451979,
+      "top1_count": 1510,
+      "top1_rate": 0.318297
+    },
+    "char34_signed_a075_top300": {
+      "cases": 4744,
+      "hit_at_5_count": 2954,
+      "hit_at_5_rate": 0.622681,
+      "median_rank": 3.0,
+      "mrr": 0.463926,
+      "top1_count": 1572,
+      "top1_rate": 0.331366
+    },
+    "char34_top300_control": {
+      "cases": 4744,
+      "hit_at_5_count": 2928,
+      "hit_at_5_rate": 0.617201,
+      "median_rank": 3.0,
+      "mrr": 0.453526,
+      "top1_count": 1515,
+      "top1_rate": 0.319351
+    }
+  }
+}
