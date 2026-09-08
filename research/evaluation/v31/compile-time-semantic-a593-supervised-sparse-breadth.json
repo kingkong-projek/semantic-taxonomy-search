@@ -1,0 +1,72 @@
+{
+  "candidate": {
+    "id": "YV-A593-supervised-sparse-B-construction-v0",
+    "evidence_class": "construction diagnostic only; not promotion evidence",
+    "representation": "TF-IDF char_wb 3-5 grams",
+    "objective": "multiclass one-vs-rest linear hinge SGD",
+    "runtime_shape": "sparse query features -> signed sparse class weights -> class scores",
+    "opened_17_88_loaded": false
+  },
+  "fixed_split": {
+    "train_slots": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "test_slot": 7,
+    "train_cases": 4151,
+    "test_cases": 593,
+    "concepts": 593
+  },
+  "feature_config": {
+    "max_features": 30000,
+    "actual_features": 18256,
+    "min_df": 2,
+    "top_weights_per_concept": 300
+  },
+  "same_feature_centroid_control_quantized_top300": {
+    "cases": 593,
+    "top1_count": 165,
+    "top1_rate": 0.278246,
+    "hit_at_5_count": 355,
+    "hit_at_5_rate": 0.598651,
+    "mrr": 0.424596,
+    "median_rank": 3.0
+  },
+  "supervised_unpruned": {
+    "cases": 593,
+    "top1_count": 159,
+    "top1_rate": 0.268128,
+    "hit_at_5_count": 267,
+    "hit_at_5_rate": 0.450253,
+    "mrr": 0.349582,
+    "median_rank": 13.0
+  },
+  "supervised_signed_int8_top300": {
+    "cases": 593,
+    "top1_count": 147,
+    "top1_rate": 0.247892,
+    "hit_at_5_count": 249,
+    "hit_at_5_rate": 0.419899,
+    "mrr": 0.326345,
+    "median_rank": 15.0
+  },
+  "delta_pruned_vs_centroid": {
+    "top1_count": -18,
+    "hit_at_5_count": -106,
+    "mrr": -0.098251
+  },
+  "compiled_size_estimate": {
+    "feature_count": 18256,
+    "feature_id_bytes": 2,
+    "nonzero_weight_count": 177900,
+    "compact_binary_raw_bytes_estimate": 639232,
+    "compact_binary_gzip9_bytes_estimate": 46436,
+    "layout_note": "UTF-8 NUL feature dictionary + per-class count + feature id + int8 weight + float32 scale/intercept; gzip estimate uses zero-filled structural payload and is optimistic for ids/weights"
+  },
+  "guard": "Do not select architecture from this teacher-slot diagnostic. Common prefrozen cross-style transfer proxy remains required before B/C comparison."
+}
