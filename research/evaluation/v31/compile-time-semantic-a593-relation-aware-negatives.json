@@ -1,0 +1,464 @@
+{
+  "delta_vs_incumbent": {
+    "hit_at_5_count": 0,
+    "mrr": 0.000389,
+    "top1_count": 2
+  },
+  "fixed_design": {
+    "alpha": 0.75,
+    "hard_negative_k": 3,
+    "opened_replay_gate": "must beat frozen clamped-hard-negative incumbent on MRR and on at least one of Top1 or Hit@5",
+    "protection_cosine": 0.75,
+    "protection_definition": "within each outer fold, do-not-negative if seven-slot normalized char3/4 TF-IDF concept-centroid cosine >= 0.75",
+    "selection_rule": "highest MRR, then Top1, then Hit@5 across two predeclared challengers",
+    "topk_features_per_concept": 300
+  },
+  "fold_protected_pair_count_mean": 19.125,
+  "fold_protected_pair_counts": [
+    15,
+    20,
+    19,
+    19,
+    19,
+    20,
+    21,
+    20
+  ],
+  "full_corpus_protected_examples": [
+    {
+      "left_concept_id": "Mj9N_W8j_bqg",
+      "left_label": "Tak- och tätskiktsmontör, utan yrkesbevis",
+      "right_concept_id": "QM63_e85_CUC",
+      "right_label": "Tak- och tätskiktsmontör",
+      "teacher_centroid_cosine": 0.988361
+    },
+    {
+      "left_concept_id": "57z2_b5A_hAT",
+      "left_label": "Betongarbetare",
+      "right_concept_id": "SDMs_GGu_gf2",
+      "right_label": "Betongarbetare, utan yrkesbevis",
+      "teacher_centroid_cosine": 0.916329
+    },
+    {
+      "left_concept_id": "MQHi_q9J_x2d",
+      "left_label": "Väg- och anläggningsarbetare",
+      "right_concept_id": "bpwq_MEr_hvP",
+      "right_label": "Väg- och anläggningsarbetare, utan yrkesbevis",
+      "teacher_centroid_cosine": 0.914659
+    },
+    {
+      "left_concept_id": "4eaw_x3V_ddY",
+      "left_label": "Golvläggare, utan yrkesbevis",
+      "right_concept_id": "Mgiv_Xs7_u2r",
+      "right_label": "Golvläggare",
+      "teacher_centroid_cosine": 0.894065
+    },
+    {
+      "left_concept_id": "EsXb_35r_rTR",
+      "left_label": "Bolagsjurist",
+      "right_concept_id": "ho3v_5nB_pK4",
+      "right_label": "Företagsjurist",
+      "teacher_centroid_cosine": 0.877176
+    },
+    {
+      "left_concept_id": "EsXb_35r_rTR",
+      "left_label": "Bolagsjurist",
+      "right_concept_id": "rnBV_XXP_Uv2",
+      "right_label": "Affärsjurist",
+      "teacher_centroid_cosine": 0.848579
+    },
+    {
+      "left_concept_id": "CNqp_v1H_VoC",
+      "left_label": "Verksjurist",
+      "right_concept_id": "EsXb_35r_rTR",
+      "right_label": "Bolagsjurist",
+      "teacher_centroid_cosine": 0.840614
+    },
+    {
+      "left_concept_id": "47p3_SHB_BaN",
+      "left_label": "ST-läkare, arbets- och miljömedicin",
+      "right_concept_id": "6TcC_oXD_QPw",
+      "right_label": "ST-läkare, allmänmedicin",
+      "teacher_centroid_cosine": 0.827335
+    },
+    {
+      "left_concept_id": "HuVd_H4w_ZtF",
+      "left_label": "Förvaltningschef, kommun",
+      "right_concept_id": "Mg5T_Wi4_5my",
+      "right_label": "Avdelningschef, kommun",
+      "teacher_centroid_cosine": 0.811786
+    },
+    {
+      "left_concept_id": "1awg_QKB_bkw",
+      "left_label": "Trafikplanerare, offentlig förvaltning",
+      "right_concept_id": "cAYP_wEe_u3D",
+      "right_label": "Trafikingenjör",
+      "teacher_centroid_cosine": 0.806895
+    },
+    {
+      "left_concept_id": "4bkL_eTC_tAq",
+      "left_label": "Projekteringsingenjör elektronik",
+      "right_concept_id": "a46P_3cL_149",
+      "right_label": "Elektronikkonstruktör",
+      "teacher_centroid_cosine": 0.806085
+    },
+    {
+      "left_concept_id": "3uZy_tC8_H8X",
+      "left_label": "Orderassistent",
+      "right_concept_id": "gLtU_eR9_ZcW",
+      "right_label": "Orderadministratör",
+      "teacher_centroid_cosine": 0.804101
+    },
+    {
+      "left_concept_id": "1d3z_y59_2Hm",
+      "left_label": "HR-konsult/PA-konsult",
+      "right_concept_id": "DHo9_qpj_owx",
+      "right_label": "Personalansvarig",
+      "teacher_centroid_cosine": 0.803333
+    },
+    {
+      "left_concept_id": "YfCD_kUE_kck",
+      "left_label": "Universitets- och högskoleadjunkt",
+      "right_concept_id": "dT2w_rhK_JtM",
+      "right_label": "Professor",
+      "teacher_centroid_cosine": 0.795165
+    },
+    {
+      "left_concept_id": "CNqp_v1H_VoC",
+      "left_label": "Verksjurist",
+      "right_concept_id": "rnBV_XXP_Uv2",
+      "right_label": "Affärsjurist",
+      "teacher_centroid_cosine": 0.794948
+    },
+    {
+      "left_concept_id": "GYd6_A2J_kFK",
+      "left_label": "Kemiingenjör",
+      "right_concept_id": "YLjg_Qtf_iqy",
+      "right_label": "Civilingenjör, kemi",
+      "teacher_centroid_cosine": 0.789101
+    },
+    {
+      "left_concept_id": "51jM_crG_YQH",
+      "left_label": "Planeringsingenjör, elektronik",
+      "right_concept_id": "b5Re_ALr_2Nq",
+      "right_label": "Produktionsingenjör, elektronik",
+      "teacher_centroid_cosine": 0.784068
+    },
+    {
+      "left_concept_id": "CNqp_v1H_VoC",
+      "left_label": "Verksjurist",
+      "right_concept_id": "ho3v_5nB_pK4",
+      "right_label": "Företagsjurist",
+      "teacher_centroid_cosine": 0.777386
+    },
+    {
+      "left_concept_id": "73vz_UAk_B8d",
+      "left_label": "Köksmästare",
+      "right_concept_id": "kntm_Uen_7Bn",
+      "right_label": "Kökschef",
+      "teacher_centroid_cosine": 0.776881
+    },
+    {
+      "left_concept_id": "LrrC_U7A_Xus",
+      "left_label": "Automationstekniker, el",
+      "right_concept_id": "rncq_GAq_KMx",
+      "right_label": "Automationsingenjör, maskin",
+      "teacher_centroid_cosine": 0.776334
+    },
+    {
+      "left_concept_id": "Cn7e_qQS_nPF",
+      "left_label": "Biträdande rektor",
+      "right_concept_id": "hr5f_dci_NcD",
+      "right_label": "Rektor",
+      "teacher_centroid_cosine": 0.773265
+    },
+    {
+      "left_concept_id": "1d3z_y59_2Hm",
+      "left_label": "HR-konsult/PA-konsult",
+      "right_concept_id": "23nR_PXa_9br",
+      "right_label": "HR business partner/HR BP",
+      "teacher_centroid_cosine": 0.76969
+    },
+    {
+      "left_concept_id": "ho3v_5nB_pK4",
+      "left_label": "Företagsjurist",
+      "right_concept_id": "rnBV_XXP_Uv2",
+      "right_label": "Affärsjurist",
+      "teacher_centroid_cosine": 0.760114
+    },
+    {
+      "left_concept_id": "2KG5_YmC_TRA",
+      "left_label": "Belysningstekniker: scen, film, TV",
+      "right_concept_id": "2hTu_y9K_CxY",
+      "right_label": "Belysningsmästare",
+      "teacher_centroid_cosine": 0.75815
+    },
+    {
+      "left_concept_id": "QLwS_aMP_Jcu",
+      "left_label": "Säljledare",
+      "right_concept_id": "uwYE_D2Z_45B",
+      "right_label": "Försäljningschef",
+      "teacher_centroid_cosine": 0.756886
+    },
+    {
+      "left_concept_id": "4bkL_eTC_tAq",
+      "left_label": "Projekteringsingenjör elektronik",
+      "right_concept_id": "JWb8_x89_Smp",
+      "right_label": "Serviceingenjör, elektronik",
+      "teacher_centroid_cosine": 0.756326
+    },
+    {
+      "left_concept_id": "NZcr_uB1_6rX",
+      "left_label": "Platschef, bygg",
+      "right_concept_id": "pTTz_5DC_itW",
+      "right_label": "Projektledare, bygg och anläggning",
+      "teacher_centroid_cosine": 0.751249
+    },
+    {
+      "left_concept_id": "2AGe_heZ_E94",
+      "left_label": "Försäkringshandläggare, försäkringskassa",
+      "right_concept_id": "YkcC_EmP_nA5",
+      "right_label": "Försäkringsutredare, försäkringskassa",
+      "teacher_centroid_cosine": 0.751238
+    }
+  ],
+  "guard": "No opened 17/88 query is read. The held-out phrase never participates in fold protection. Do not tune the cosine threshold from opened outcomes.",
+  "incumbent": {
+    "cases": 4744,
+    "hit_at_5_count": 2957,
+    "hit_at_5_rate": 0.623314,
+    "median_rank": 3.0,
+    "mrr": 0.464229,
+    "top1_count": 1574,
+    "top1_rate": 0.331788
+  },
+  "opened_replay_gate_passed": true,
+  "pairwise_training": {
+    "mean_protected_candidates_skipped": 137.875,
+    "mean_update_rate": 0.999518,
+    "mean_updates": 4149
+  },
+  "protected_negative_skips_top": [
+    {
+      "count": 56,
+      "target_concept_id": "57z2_b5A_hAT",
+      "wrong_concept_id": "SDMs_GGu_gf2"
+    },
+    {
+      "count": 56,
+      "target_concept_id": "Mj9N_W8j_bqg",
+      "wrong_concept_id": "QM63_e85_CUC"
+    },
+    {
+      "count": 56,
+      "target_concept_id": "QM63_e85_CUC",
+      "wrong_concept_id": "Mj9N_W8j_bqg"
+    },
+    {
+      "count": 55,
+      "target_concept_id": "EsXb_35r_rTR",
+      "wrong_concept_id": "ho3v_5nB_pK4"
+    },
+    {
+      "count": 55,
+      "target_concept_id": "MQHi_q9J_x2d",
+      "wrong_concept_id": "bpwq_MEr_hvP"
+    },
+    {
+      "count": 54,
+      "target_concept_id": "SDMs_GGu_gf2",
+      "wrong_concept_id": "57z2_b5A_hAT"
+    },
+    {
+      "count": 53,
+      "target_concept_id": "6TcC_oXD_QPw",
+      "wrong_concept_id": "47p3_SHB_BaN"
+    },
+    {
+      "count": 53,
+      "target_concept_id": "ho3v_5nB_pK4",
+      "wrong_concept_id": "EsXb_35r_rTR"
+    },
+    {
+      "count": 52,
+      "target_concept_id": "47p3_SHB_BaN",
+      "wrong_concept_id": "6TcC_oXD_QPw"
+    },
+    {
+      "count": 50,
+      "target_concept_id": "EsXb_35r_rTR",
+      "wrong_concept_id": "CNqp_v1H_VoC"
+    },
+    {
+      "count": 50,
+      "target_concept_id": "Mgiv_Xs7_u2r",
+      "wrong_concept_id": "4eaw_x3V_ddY"
+    },
+    {
+      "count": 49,
+      "target_concept_id": "EsXb_35r_rTR",
+      "wrong_concept_id": "rnBV_XXP_Uv2"
+    },
+    {
+      "count": 49,
+      "target_concept_id": "rnBV_XXP_Uv2",
+      "wrong_concept_id": "EsXb_35r_rTR"
+    },
+    {
+      "count": 48,
+      "target_concept_id": "CNqp_v1H_VoC",
+      "wrong_concept_id": "EsXb_35r_rTR"
+    },
+    {
+      "count": 48,
+      "target_concept_id": "DHo9_qpj_owx",
+      "wrong_concept_id": "1d3z_y59_2Hm"
+    },
+    {
+      "count": 48,
+      "target_concept_id": "bpwq_MEr_hvP",
+      "wrong_concept_id": "MQHi_q9J_x2d"
+    },
+    {
+      "count": 47,
+      "target_concept_id": "4eaw_x3V_ddY",
+      "wrong_concept_id": "Mgiv_Xs7_u2r"
+    },
+    {
+      "count": 43,
+      "target_concept_id": "1d3z_y59_2Hm",
+      "wrong_concept_id": "DHo9_qpj_owx"
+    },
+    {
+      "count": 43,
+      "target_concept_id": "HuVd_H4w_ZtF",
+      "wrong_concept_id": "Mg5T_Wi4_5my"
+    },
+    {
+      "count": 43,
+      "target_concept_id": "Mg5T_Wi4_5my",
+      "wrong_concept_id": "HuVd_H4w_ZtF"
+    },
+    {
+      "count": 42,
+      "target_concept_id": "cAYP_wEe_u3D",
+      "wrong_concept_id": "1awg_QKB_bkw"
+    },
+    {
+      "count": 41,
+      "target_concept_id": "rnBV_XXP_Uv2",
+      "wrong_concept_id": "CNqp_v1H_VoC"
+    },
+    {
+      "count": 37,
+      "target_concept_id": "a46P_3cL_149",
+      "wrong_concept_id": "4bkL_eTC_tAq"
+    },
+    {
+      "count": 37,
+      "target_concept_id": "1awg_QKB_bkw",
+      "wrong_concept_id": "cAYP_wEe_u3D"
+    },
+    {
+      "count": 37,
+      "target_concept_id": "YfCD_kUE_kck",
+      "wrong_concept_id": "dT2w_rhK_JtM"
+    },
+    {
+      "count": 36,
+      "target_concept_id": "4bkL_eTC_tAq",
+      "wrong_concept_id": "a46P_3cL_149"
+    },
+    {
+      "count": 36,
+      "target_concept_id": "CNqp_v1H_VoC",
+      "wrong_concept_id": "rnBV_XXP_Uv2"
+    },
+    {
+      "count": 34,
+      "target_concept_id": "gLtU_eR9_ZcW",
+      "wrong_concept_id": "3uZy_tC8_H8X"
+    },
+    {
+      "count": 33,
+      "target_concept_id": "b5Re_ALr_2Nq",
+      "wrong_concept_id": "51jM_crG_YQH"
+    },
+    {
+      "count": 32,
+      "target_concept_id": "3uZy_tC8_H8X",
+      "wrong_concept_id": "gLtU_eR9_ZcW"
+    }
+  ],
+  "qualitative_interpretation_guard": "Protection means indistinguishable under the frozen training representation, not canonical identity equivalence. Exact taxonomy identities remain separate outputs.",
+  "schema_version": 1,
+  "selected_metrics": {
+    "cases": 4744,
+    "hit_at_5_count": 2957,
+    "hit_at_5_rate": 0.623314,
+    "median_rank": 3.0,
+    "mrr": 0.464618,
+    "top1_count": 1576,
+    "top1_rate": 0.332209
+  },
+  "selected_variant": "relation_aware_clamped_a075",
+  "status": "A593 relation-aware negative diagnostic; no opened evaluation queries used",
+  "variants_exact_identity": {
+    "incumbent_clamped_a075": {
+      "cases": 4744,
+      "hit_at_5_count": 2957,
+      "hit_at_5_rate": 0.623314,
+      "median_rank": 3.0,
+      "mrr": 0.464229,
+      "top1_count": 1574,
+      "top1_rate": 0.331788
+    },
+    "relation_aware_clamped_a075": {
+      "cases": 4744,
+      "hit_at_5_count": 2957,
+      "hit_at_5_rate": 0.623314,
+      "median_rank": 3.0,
+      "mrr": 0.464618,
+      "top1_count": 1576,
+      "top1_rate": 0.332209
+    },
+    "relation_aware_pairwise_pa1": {
+      "cases": 4744,
+      "hit_at_5_count": 2516,
+      "hit_at_5_rate": 0.530354,
+      "median_rank": 4.0,
+      "mrr": 0.407907,
+      "top1_count": 1421,
+      "top1_rate": 0.299536
+    }
+  },
+  "variants_indistinguishability_aware": {
+    "incumbent_clamped_a075": {
+      "cases": 4744,
+      "hit_at_5_count": 2990,
+      "hit_at_5_rate": 0.63027,
+      "median_rank": 3.0,
+      "mrr": 0.477926,
+      "top1_count": 1658,
+      "top1_rate": 0.349494
+    },
+    "relation_aware_clamped_a075": {
+      "cases": 4744,
+      "hit_at_5_count": 2989,
+      "hit_at_5_rate": 0.630059,
+      "median_rank": 3.0,
+      "mrr": 0.478059,
+      "top1_count": 1661,
+      "top1_rate": 0.350126
+    },
+    "relation_aware_pairwise_pa1": {
+      "cases": 4744,
+      "hit_at_5_count": 2565,
+      "hit_at_5_rate": 0.540683,
+      "median_rank": 4.0,
+      "mrr": 0.422519,
+      "top1_count": 1505,
+      "top1_rate": 0.317243
+    }
+  }
+}
