@@ -1,0 +1,47 @@
+name: Sync current A execution plan into SSOT once
+
+on:
+  push:
+    paths:
+      - .github/workflows/sync-a-plan-ssot-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Patch SSOT
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path("docs/research-plan.md")
+          text = path.read_text(encoding="utf-8")
+
+          old = "Next priority is to generate/freeze A for all 2,105 YV identities, measure actual compressed size, and replay the same frozen diagnostics without pruning or tuning on them."
+          new = """Execution order after A149 is now explicit. First use a deterministic coverage checkpoint around **A600** (A149 plus the next roughly 450 identities in the frozen order) and replay the same frozen diagnostics unchanged; this checkpoint tests whether A149's gain survives materially broader coverage and is not a tuning gate. If the signal holds, continue Gemma teacher generation across **all 2,105 active YV occupation identities** so missing teacher coverage is no longer a confounder. Full teacher coverage is an **offline evidence corpus**, not a requirement that every generated phrase must ship to the browser. The first full-coverage falsification is deliberately simple: build and measure an **unpruned A2105** description-lane candidate, including actual compressed bytes and retrieval-noise/regression behavior. Only after that may runtime compilation prune or down-weight low-value long-tail language, and such pruning must not be tuned on the opened 17/88 evaluation queries. Hard-negative mining likewise comes **after broad/full positive coverage**, so remaining near-neighbour confusions can be distinguished from mere missing coverage; mine from taxonomy/source neighbours plus retrieval errors on teacher-generated/public training language, never from opened evaluation queries. Do not pre-build chunking/sharding: introduce it only if measured transfer/init/runtime evidence justifies the extra requests and cache/routing complexity. The current ~256 kB full-universe teacher-map projection is only a projection, but it gives no present reason to shard."""
+          if old not in text:
+              raise SystemExit("A149 next-priority anchor not found")
+          text = text.replace(old, new, 1)
+
+          old = "1. **A — teacher/doc2query-expanded sparse BM25.** Use large teachers offline to generate diverse Swedish user-language descriptions for each canonical concept (task language, colloquial paraphrases, tools/methods, misspellings/noise, indirect narrative forms and hard negatives), then prune/compile the useful language into provenance-separated sparse documents. Runtime remains tokenization + sparse scoring; no model ships to the client."
+          new = "1. **A — teacher/doc2query-expanded sparse BM25.** Use large teachers offline to generate diverse Swedish user-language descriptions for broad/full canonical coverage (task language, colloquial paraphrases, tools/methods, misspellings/noise and indirect narrative forms). After coverage is no longer the confounder, mine hard-negative/confusable evidence from taxonomy/source neighbours and corpus-internal retrieval errors, then prune/compile only language that earns its quality/byte cost into provenance-separated sparse documents. Runtime remains tokenization + sparse scoring; no model ships to the client."
+          if old not in text:
+              raise SystemExit("A entrant anchor not found")
+          text = text.replace(old, new, 1)
+
+          path.write_text(text, encoding="utf-8")
+          PY
+      - name: Commit SSOT and remove one-shot workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/sync-a-plan-ssot-once.yml
+          git add docs/research-plan.md
+          git commit -m "docs: sync A coverage and hard-negative plan"
+          git push origin HEAD:main
