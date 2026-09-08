@@ -1,0 +1,43 @@
+name: A593 Gemma sniper contrasts once
+
+on:
+  push:
+    paths:
+      - .github/workflows/a593-gemma4-sniper-contrasts-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile-check generator
+        run: >-
+          python -m py_compile
+          scripts/generate_gemma4_yv_teacher_pilot.py
+          scripts/generate_gemma4_yv_sniper_contrasts.py
+      - name: Generate 16 bounded sniper contrasts
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: >-
+          python scripts/generate_gemma4_yv_sniper_contrasts.py
+          --pairs 16
+          --requests-per-minute 3
+      - name: Commit frozen training data and self-remove
+        run: |
+          test -s research/training/v31/a593-gemma4-sniper-contrasts-v0.jsonl
+          test -s research/training/v31/a593-gemma4-sniper-contrasts-v0-summary.json
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          rm .github/workflows/a593-gemma4-sniper-contrasts-once.yml
+          git add research/training/v31/a593-gemma4-sniper-contrasts-v0.jsonl research/training/v31/a593-gemma4-sniper-contrasts-v0-summary.json .github/workflows/a593-gemma4-sniper-contrasts-once.yml
+          git commit -m 'research: freeze A593 Gemma sniper contrast training data'
+          git push
