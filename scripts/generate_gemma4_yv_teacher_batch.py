@@ -2,9 +2,11 @@
 """Generate the next deterministic batch of Gemma YV teacher language.
 
 This extends the frozen A-sequence corpus without looking at opened evaluation outcomes.
-Ordering is exactly the existing Pareto-ranked occupation list used by the first pilot;
-`--start-index` selects a contiguous slice. Prompt/model/API behavior is imported from
-`generate_gemma4_yv_teacher_pilot.py` so the teacher contract stays unchanged.
+Ordering preserves the existing Pareto-ranked occupations first (exactly the order used
+by the first pilot), then appends every remaining active occupation-name by stable
+concept-id order. `--start-index` selects a contiguous slice. Prompt/model/API behavior
+is imported from `generate_gemma4_yv_teacher_pilot.py` so the teacher contract stays
+unchanged.
 """
 from __future__ import annotations
 
@@ -42,14 +44,30 @@ def main() -> int:
     taxonomy = pilot.fetch_json(pilot.TAXONOMY_URL)
     concepts = taxonomy.get("data", {}).get("concepts") or []
     by_id = {str(c["id"]): c for c in concepts if isinstance(c, dict) and c.get("id")}
+    active_ids = sorted(
+        cid for cid, concept in by_id.items() if concept.get("type") == "occupation-name"
+    )
+    if len(active_ids) != 2105:
+        raise RuntimeError(f"active YV universe drift: expected 2105, got {len(active_ids)}")
+
     pareto = json.loads(Path(args.pareto).read_text(encoding="utf-8"))
     ranked = pareto.get("occupation_name", {}).get("ranked_p95") or []
 
-    ordered: list[dict[str, Any]] = []
+    ranked_ids: list[str] = []
+    seen: set[str] = set()
     for row in ranked:
-        concept = by_id.get(str(row.get("concept_id") or ""))
-        if concept and concept.get("type") == "occupation-name":
-            ordered.append(concept)
+        cid = str(row.get("concept_id") or "")
+        concept = by_id.get(cid)
+        if concept and concept.get("type") == "occupation-name" and cid not in seen:
+            ranked_ids.append(cid)
+            seen.add(cid)
+
+    # Preserve the frozen Pareto prefix exactly, then deterministically cover the rest
+    # of the active universe without using any opened evaluation outcomes.
+    ordered_ids = ranked_ids + [cid for cid in active_ids if cid not in seen]
+    if len(ordered_ids) != 2105 or len(set(ordered_ids)) != 2105:
+        raise RuntimeError("failed to construct a complete unique YV teacher ordering")
+    ordered = [by_id[cid] for cid in ordered_ids]
 
     end_index = args.start_index + args.cases
     selected = ordered[args.start_index:end_index]
@@ -117,7 +135,12 @@ def main() -> int:
         "model": pilot.MODEL,
         "teacher_contract": "same prompt/model/temperature/API behavior as frozen 150-case pilot",
         "selection": {
-            "ordering": "pareto-demand-aggregate occupation_name.ranked_p95, active occupation-name only",
+            "ordering": (
+                "pareto-demand-aggregate occupation_name.ranked_p95 active occupation-name prefix; "
+                "then remaining active occupation-name concepts in ascending concept-id order"
+            ),
+            "pareto_prefix_cases": len(ranked_ids),
+            "full_order_cases": len(ordered),
             "start_index_zero_based": args.start_index,
             "requested_cases": args.cases,
             "end_index_exclusive": end_index,
