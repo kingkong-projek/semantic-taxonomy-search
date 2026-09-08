@@ -1,0 +1,442 @@
+{
+  "artifacts": {
+    "char34_bigram_pairwise_pa1_top300": {
+      "feature_count": 13310,
+      "feature_id_storage": "uint16",
+      "includes_idf_float32": true,
+      "nonzero_weight_count": 177726,
+      "runtime_complete_gzip9_bytes": 514419,
+      "runtime_complete_raw_bytes": 698916,
+      "training": {
+        "mean_positive_loss_over_updates": 0.980014,
+        "top_hardest_pairs": [
+          {
+            "count": 7,
+            "target_concept_id": "QM63_e85_CUC",
+            "wrong_concept_id": "Mj9N_W8j_bqg"
+          },
+          {
+            "count": 7,
+            "target_concept_id": "3RP3_h9J_Hc9",
+            "wrong_concept_id": "31Uw_P9P_AgC"
+          },
+          {
+            "count": 6,
+            "target_concept_id": "SDMs_GGu_gf2",
+            "wrong_concept_id": "57z2_b5A_hAT"
+          },
+          {
+            "count": 6,
+            "target_concept_id": "57z2_b5A_hAT",
+            "wrong_concept_id": "SDMs_GGu_gf2"
+          },
+          {
+            "count": 6,
+            "target_concept_id": "kxKW_LiD_FuW",
+            "wrong_concept_id": "E7nX_ux2_hF9"
+          },
+          {
+            "count": 6,
+            "target_concept_id": "bpwq_MEr_hvP",
+            "wrong_concept_id": "MQHi_q9J_x2d"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "Mj9N_W8j_bqg",
+            "wrong_concept_id": "QM63_e85_CUC"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "QLwS_aMP_Jcu",
+            "wrong_concept_id": "uwYE_D2Z_45B"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "2KG5_YmC_TRA",
+            "wrong_concept_id": "2hTu_y9K_CxY"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "zjT2_Qw3_XmE",
+            "wrong_concept_id": "Lkio_vzx_RxG"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "3RzT_cHB_vVp",
+            "wrong_concept_id": "4ve8_yBg_LJZ"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "YfCD_kUE_kck",
+            "wrong_concept_id": "dT2w_rhK_JtM"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "1YZp_JJt_Nen",
+            "wrong_concept_id": "GujS_MtW_PRH"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "2hTu_y9K_CxY",
+            "wrong_concept_id": "2KG5_YmC_TRA"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "uXRf_emU_Fou",
+            "wrong_concept_id": "54qK_bhx_bc5"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "3tXK_9La_M3W",
+            "wrong_concept_id": "MMTE_fiP_1Ng"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "rnBV_XXP_Uv2",
+            "wrong_concept_id": "CNqp_v1H_VoC"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "cAYP_wEe_u3D",
+            "wrong_concept_id": "1awg_QKB_bkw"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "zrQ9_1z2_kT3",
+            "wrong_concept_id": "2DVG_WgT_925"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "Mgiv_Xs7_u2r",
+            "wrong_concept_id": "4eaw_x3V_ddY"
+          }
+        ],
+        "training_examples": 4744,
+        "update_rate": 0.999368,
+        "updates": 4741
+      },
+      "weight_storage": "int8"
+    },
+    "char34_pairwise_pa1_top300": {
+      "feature_count": 10654,
+      "feature_id_storage": "uint16",
+      "includes_idf_float32": true,
+      "nonzero_weight_count": 177660,
+      "runtime_complete_gzip9_bytes": 495721,
+      "runtime_complete_raw_bytes": 649857,
+      "training": {
+        "mean_positive_loss_over_updates": 0.994694,
+        "top_hardest_pairs": [
+          {
+            "count": 7,
+            "target_concept_id": "QM63_e85_CUC",
+            "wrong_concept_id": "Mj9N_W8j_bqg"
+          },
+          {
+            "count": 6,
+            "target_concept_id": "SDMs_GGu_gf2",
+            "wrong_concept_id": "57z2_b5A_hAT"
+          },
+          {
+            "count": 6,
+            "target_concept_id": "5cVu_BVm_nNG",
+            "wrong_concept_id": "3Uhk_4A8_cy6"
+          },
+          {
+            "count": 6,
+            "target_concept_id": "57z2_b5A_hAT",
+            "wrong_concept_id": "SDMs_GGu_gf2"
+          },
+          {
+            "count": 6,
+            "target_concept_id": "3RP3_h9J_Hc9",
+            "wrong_concept_id": "31Uw_P9P_AgC"
+          },
+          {
+            "count": 6,
+            "target_concept_id": "kxKW_LiD_FuW",
+            "wrong_concept_id": "E7nX_ux2_hF9"
+          },
+          {
+            "count": 6,
+            "target_concept_id": "Mgiv_Xs7_u2r",
+            "wrong_concept_id": "4eaw_x3V_ddY"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "Mj9N_W8j_bqg",
+            "wrong_concept_id": "QM63_e85_CUC"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "2KG5_YmC_TRA",
+            "wrong_concept_id": "2hTu_y9K_CxY"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "zjT2_Qw3_XmE",
+            "wrong_concept_id": "Lkio_vzx_RxG"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "1YZp_JJt_Nen",
+            "wrong_concept_id": "GujS_MtW_PRH"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "2hTu_y9K_CxY",
+            "wrong_concept_id": "2KG5_YmC_TRA"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "uXRf_emU_Fou",
+            "wrong_concept_id": "54qK_bhx_bc5"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "3tXK_9La_M3W",
+            "wrong_concept_id": "MMTE_fiP_1Ng"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "cAYP_wEe_u3D",
+            "wrong_concept_id": "1awg_QKB_bkw"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "zrQ9_1z2_kT3",
+            "wrong_concept_id": "2DVG_WgT_925"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "6Cr3_nnR_xdd",
+            "wrong_concept_id": "5tLG_3ir_2e5"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "dxsZ_fG8_hvR",
+            "wrong_concept_id": "rAjz_1xP_f1a"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "bpwq_MEr_hvP",
+            "wrong_concept_id": "MQHi_q9J_x2d"
+          },
+          {
+            "count": 4,
+            "target_concept_id": "31Uw_P9P_AgC",
+            "wrong_concept_id": "3RP3_h9J_Hc9"
+          }
+        ],
+        "training_examples": 4744,
+        "update_rate": 0.999368,
+        "updates": 4741
+      },
+      "weight_storage": "int8"
+    }
+  },
+  "corpus": {
+    "concepts": 593,
+    "outer_folds": 8,
+    "phrases": 4744
+  },
+  "delta_vs_incumbent": {
+    "hit_at_5_count": -469,
+    "mrr": -0.060629,
+    "top1_count": -160
+  },
+  "fixed_design": {
+    "algorithm": "one-pass multiclass Passive-Aggressive initialized from positive TF-IDF centroids",
+    "challenger_selection_rule": "highest MRR, then Top1, then Hit@5 across the two predeclared pairwise challengers",
+    "epochs": 1,
+    "hard_negative": "highest-scoring wrong concept under current student for each training phrase",
+    "margin": 1.0,
+    "opened_replay_gate": "challenger must beat frozen clamped-hard-negative incumbent on MRR and on at least one of Top1 or Hit@5",
+    "quantization": "global int8 after per-concept L2 normalization",
+    "topk_features_per_concept": 300
+  },
+  "fold_training_summary": {
+    "char34": {
+      "mean_update_rate": 0.999518,
+      "mean_updates": 4149
+    },
+    "char34_bigram": {
+      "mean_update_rate": 0.999699,
+      "mean_updates": 4149.75
+    }
+  },
+  "guard": "Selection and replay-gate decisions use only frozen Gemma outer-fold evidence plus the previously frozen corpus-internal incumbent metrics. Do not inspect opened 17/88 outcomes unless opened_replay_gate_passed is true.",
+  "incumbent_hard_negative": {
+    "cases": 4744,
+    "hit_at_5_count": 2957,
+    "hit_at_5_rate": 0.623314,
+    "median_rank": 3.0,
+    "mrr": 0.464229,
+    "top1_count": 1574,
+    "top1_rate": 0.331788
+  },
+  "opened_replay_gate_passed": false,
+  "schema_version": 1,
+  "selected_candidate": {
+    "artifact": {
+      "feature_count": 10654,
+      "feature_id_storage": "uint16",
+      "includes_idf_float32": true,
+      "nonzero_weight_count": 177660,
+      "runtime_complete_gzip9_bytes": 495721,
+      "runtime_complete_raw_bytes": 649857,
+      "training": {
+        "mean_positive_loss_over_updates": 0.994694,
+        "top_hardest_pairs": [
+          {
+            "count": 7,
+            "target_concept_id": "QM63_e85_CUC",
+            "wrong_concept_id": "Mj9N_W8j_bqg"
+          },
+          {
+            "count": 6,
+            "target_concept_id": "SDMs_GGu_gf2",
+            "wrong_concept_id": "57z2_b5A_hAT"
+          },
+          {
+            "count": 6,
+            "target_concept_id": "5cVu_BVm_nNG",
+            "wrong_concept_id": "3Uhk_4A8_cy6"
+          },
+          {
+            "count": 6,
+            "target_concept_id": "57z2_b5A_hAT",
+            "wrong_concept_id": "SDMs_GGu_gf2"
+          },
+          {
+            "count": 6,
+            "target_concept_id": "3RP3_h9J_Hc9",
+            "wrong_concept_id": "31Uw_P9P_AgC"
+          },
+          {
+            "count": 6,
+            "target_concept_id": "kxKW_LiD_FuW",
+            "wrong_concept_id": "E7nX_ux2_hF9"
+          },
+          {
+            "count": 6,
+            "target_concept_id": "Mgiv_Xs7_u2r",
+            "wrong_concept_id": "4eaw_x3V_ddY"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "Mj9N_W8j_bqg",
+            "wrong_concept_id": "QM63_e85_CUC"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "2KG5_YmC_TRA",
+            "wrong_concept_id": "2hTu_y9K_CxY"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "zjT2_Qw3_XmE",
+            "wrong_concept_id": "Lkio_vzx_RxG"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "1YZp_JJt_Nen",
+            "wrong_concept_id": "GujS_MtW_PRH"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "2hTu_y9K_CxY",
+            "wrong_concept_id": "2KG5_YmC_TRA"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "uXRf_emU_Fou",
+            "wrong_concept_id": "54qK_bhx_bc5"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "3tXK_9La_M3W",
+            "wrong_concept_id": "MMTE_fiP_1Ng"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "cAYP_wEe_u3D",
+            "wrong_concept_id": "1awg_QKB_bkw"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "zrQ9_1z2_kT3",
+            "wrong_concept_id": "2DVG_WgT_925"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "6Cr3_nnR_xdd",
+            "wrong_concept_id": "5tLG_3ir_2e5"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "dxsZ_fG8_hvR",
+            "wrong_concept_id": "rAjz_1xP_f1a"
+          },
+          {
+            "count": 5,
+            "target_concept_id": "bpwq_MEr_hvP",
+            "wrong_concept_id": "MQHi_q9J_x2d"
+          },
+          {
+            "count": 4,
+            "target_concept_id": "31Uw_P9P_AgC",
+            "wrong_concept_id": "3RP3_h9J_Hc9"
+          }
+        ],
+        "training_examples": 4744,
+        "update_rate": 0.999368,
+        "updates": 4741
+      },
+      "weight_storage": "int8"
+    },
+    "id": "YV-A593-char34-pairwise-pa1-top300-v0",
+    "runtime_shape": "char3/4 TF-IDF with optional adjacent stemmed bigrams + signed int8 sparse concept dot products",
+    "teacher_dependency_at_runtime": false
+  },
+  "selected_metrics": {
+    "cases": 4744,
+    "hit_at_5_count": 2488,
+    "hit_at_5_rate": 0.524452,
+    "median_rank": 5.0,
+    "mrr": 0.4036,
+    "top1_count": 1414,
+    "top1_rate": 0.298061
+  },
+  "selected_variant": "char34_pairwise_pa1_top300",
+  "status": "A593 corpus-internal pairwise sparse-student diagnostic; no opened evaluation queries used",
+  "variants": {
+    "char34_bigram_pairwise_pa1_top300": {
+      "cases": 4744,
+      "hit_at_5_count": 2471,
+      "hit_at_5_rate": 0.520868,
+      "median_rank": 5.0,
+      "mrr": 0.402427,
+      "top1_count": 1413,
+      "top1_rate": 0.29785
+    },
+    "char34_pairwise_pa1_top300": {
+      "cases": 4744,
+      "hit_at_5_count": 2488,
+      "hit_at_5_rate": 0.524452,
+      "median_rank": 5.0,
+      "mrr": 0.4036,
+      "top1_count": 1414,
+      "top1_rate": 0.298061
+    },
+    "char34_top300_control": {
+      "cases": 4744,
+      "hit_at_5_count": 2928,
+      "hit_at_5_rate": 0.617201,
+      "median_rank": 3.0,
+      "mrr": 0.453526,
+      "top1_count": 1515,
+      "top1_rate": 0.319351
+    }
+  }
+}
