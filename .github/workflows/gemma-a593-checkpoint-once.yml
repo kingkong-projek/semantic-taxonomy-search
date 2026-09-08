@@ -11,7 +11,6 @@ permissions:
 
 jobs:
   evaluate:
-    if: github.event.head_commit.message == 'ci: run A593 checkpoint once'
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
@@ -36,8 +35,8 @@ jobs:
           github-token: ${{ github.token }}
           run-id: 34211545225
       - name: Merge frozen corpora by concept id
-        shell: python
         run: |
+          python - <<'PY'
           import hashlib
           import json
           from pathlib import Path
@@ -83,6 +82,7 @@ jobs:
               'phrases': sum(len(row['phrases']) for row in rows),
               'sha256': hashlib.sha256(out.read_bytes()).hexdigest(),
           }, indent=2))
+          PY
       - name: Compile-check frozen evaluator
         run: >-
           python -m py_compile
