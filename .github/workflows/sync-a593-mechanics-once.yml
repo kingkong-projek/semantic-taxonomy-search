@@ -1,0 +1,41 @@
+name: Sync A593 mechanics result once
+
+on: [push]
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    if: github.event.head_commit.message == 'ci: sync A593 mechanics result'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Patch SSOT
+        shell: python
+        run: |
+          from pathlib import Path
+
+          path = Path('docs/research-plan.md')
+          text = path.read_text(encoding='utf-8')
+          marker = "Evidence: `research/evaluation/v31/compile-time-semantic-tournament-a593.json`."
+          if marker not in text:
+              raise RuntimeError('A593 marker missing')
+          if 'A593 representation/morphology diagnostic' in text:
+              raise RuntimeError('mechanics result already recorded')
+          addition = """
+
+**A593 representation/morphology diagnostic (2026-09-08): KEEP FLATTENED PHRASES; SNOWBALL IS PROMISING BUT NOT PROMOTED.** Using only the frozen **593 concepts / 4,744 Gemma phrases**, an 8-fold leave-one-phrase-slot-out diagnostic compared the current flattened BM25 representation with per-phrase max scoring and deterministic Swedish Snowball stemming. The per-phrase max variant is decisively worse than flattened raw BM25 (**Top1 13.98% vs 19.01%; Hit@5 31.75% vs 37.73%**) and is rejected. Swedish Snowball applied only inside the description candidate's lexical BM25 improves the corpus-internal holdout to **22.11% Top1 and 43.40% Hit@5**; paired versus flattened raw it creates **253 Top1 gains / 106 losses** and **360 Hit@5 gains / 91 losses**. The same candidate was selected without using opened evaluation queries and then replayed once on the opened diagnostics: targetable YV stress improves from raw A593 **26/40 -> 30/40 Hit@5** and **15/40 -> 18/40 Top1**; category Hit@5 becomes direct **12/12**, colloquial **6/12**, noisy **8/8**, indirect **4/8**. However the strict source-attested 17 regresses from raw A593 **10/17 -> 9/17 Hit@5**, **5/17 -> 4/17 Top1**, and **MRR 0.424510 -> 0.390739**. Canonical source-truth remains **333/333 Hit@5** and improves raw-description Top1 **331/333 -> 332/333**, while abstention remains unchanged. Therefore Snowball is **mechanistic evidence, not a promoted runtime change**. It confirms that morphology is a material part of the residual but also that a global stemming change shifts ranking trade-offs. Keep A2105 paused. Next exploit the A593 self-retrieval corpus to mine false-positive hubs/confusion pairs and test the smallest provenance-preserving weighting/penalty or hard-negative mechanism; do not hand-tune opened 17/88 queries. The corpus-internal diagnostic already exposes strong hubs, especially `SFI-lärare` (**192 false Top1 wins raw; 169 with Snowball**), so hubness/generic lexical evidence is now a concrete next target. Evidence: `research/evaluation/v31/compile-time-semantic-a593-phrase-representation.json` and `research/evaluation/v31/compile-time-semantic-tournament-a593-snowball.json`.
+"""
+          text = text.replace(marker, marker + addition, 1)
+          path.write_text(text, encoding='utf-8')
+      - name: Commit and self-remove
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          rm .github/workflows/sync-a593-mechanics-once.yml
+          git add docs/research-plan.md .github/workflows/sync-a593-mechanics-once.yml
+          git commit -m 'docs: record A593 mechanics diagnostic'
+          git push
