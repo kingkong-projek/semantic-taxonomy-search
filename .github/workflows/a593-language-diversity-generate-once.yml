@@ -30,10 +30,13 @@ jobs:
           github-token: ${{ github.token }}
           run-id: 34232985249
       - name: Compile-check
-        run: python -m py_compile scripts/generate_a593_language_diversity_falsifier.py
+        run: >-
+          python -m py_compile
+          scripts/generate_a593_language_diversity_falsifier.py
+          scripts/run_a593_language_diversity_falsifier_v2.py
       - name: Generate independent training and held-out language
         run: >-
-          python scripts/generate_a593_language_diversity_falsifier.py
+          python scripts/run_a593_language_diversity_falsifier_v2.py
           --teacher artifacts/a593/gemma-a593-teacher.jsonl
           --cases 150
           --batch-size 12
