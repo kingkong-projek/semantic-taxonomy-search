@@ -1,0 +1,38 @@
+name: Gemma 4 YV teacher quality v2
+
+on:
+  push:
+    paths:
+      - .github/workflows/gemma4-yv-teacher-quality-v2.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  quality-pilot:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile-check hardened teacher runner
+        run: python -m py_compile scripts/generate_gemma4_yv_teacher_pilot.py
+      - name: Generate untouched next-rank quality slice
+        run: >-
+          python scripts/generate_gemma4_yv_teacher_pilot.py
+          --start-rank 151
+          --cases 12
+          --requests-per-minute 3
+          --output artifacts/gemma4-yv-teacher-quality-v2-r151-162.jsonl
+      - name: Upload quality slice
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gemma4-yv-teacher-quality-v2-r151-162
+          path: artifacts/gemma4-yv-teacher-quality-v2-r151-162.jsonl
+          if-no-files-found: warn
