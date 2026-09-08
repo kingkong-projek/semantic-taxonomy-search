@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "status": "opened partial A architecture diagnostic; no runtime promotion",
+  "taxonomy_version": 31,
+  "candidate": {
+    "id": "YV-A149-Gemma4-26B-sequence-expansion-v0",
+    "universe": 2105,
+    "teacher_expanded_concepts": 149,
+    "teacher_phrases": 1192,
+    "teacher_model": "gemma-4-26b-a4b-it",
+    "teacher_jsonl_sha256": "1a6e26840480d0cd6ffce23e3214d026cefa202397f4e84115e9fe2ac1e1045b",
+    "representation": "full canonical YV BM25 plus eight Gemma-generated Swedish description phrases appended to each of 149 concept documents; generated phrases are not exact identity surfaces"
+  },
+  "runs": {
+    "teacher_generation": {
+      "workflow_run_id": 34189574629,
+      "head_sha": "d521562463d0316b01e4e997a15b414732a0a727",
+      "artifact_id": 10042936282,
+      "artifact_digest": "sha256:9c99bdcf2094f5ff260c582b8eee50b3e60d52cc534880cc3a027df301e1d0d6",
+      "requested_concepts": 150,
+      "successful_concepts": 149,
+      "failed_concept": "Mediasäljare"
+    },
+    "a149_evaluation": {
+      "workflow_run_id": 34207219741,
+      "head_sha": "2f8ea9ce2b296658d0cae9dd83c10009ae55f1c5",
+      "artifact_id": 10048263158,
+      "artifact_digest": "sha256:1dbcfa6ec83de96966f4c713b03eab5799c29d49d9348555edba9f748d5235de"
+    }
+  },
+  "coverage": {
+    "strict17_target_concepts_expanded": "2/17",
+    "opened_stress_target_family_coverage": {
+      "direct": "6/12",
+      "colloquial": "7/12",
+      "noisy": "3/8",
+      "indirect": "4/8",
+      "combined_targetable": "20/40"
+    }
+  },
+  "size": {
+    "incremental_compact_teacher_json_raw_bytes": 54825,
+    "incremental_compact_teacher_json_gzip9_bytes": 18103,
+    "rough_linear_full_2105_projection_gzip9_bytes": 255750,
+    "projection_warning": "The 255,750-byte figure is a linear projection from the partial 149-concept corpus, not a measured full-corpus artifact."
+  },
+  "scoreboard": {
+    "strict_source_attested_17": {
+      "baseline_full_canonical": {"top1": "6/17", "hit_at_5": "9/17", "mrr": 0.418849},
+      "gemma_a149": {"top1": "6/17", "hit_at_5": "9/17", "mrr": 0.443722},
+      "interpretation": "Not a useful coverage test of A yet because only 2/17 target concepts were teacher-expanded."
+    },
+    "opened_stress_targetable_40": {
+      "baseline_hit_at_5": "18/40",
+      "gemma_a149_hit_at_5": "24/40",
+      "baseline_top1": "9/40",
+      "gemma_a149_top1": "12/40",
+      "by_category_hit_at_5": {
+        "direct": {"baseline": "8/12", "gemma_a149": "10/12"},
+        "colloquial": {"baseline": "2/12", "gemma_a149": "3/12"},
+        "noisy": {"baseline": "5/8", "gemma_a149": "7/8"},
+        "indirect": {"baseline": "3/8", "gemma_a149": "4/8"}
+      },
+      "negative_behavior": {
+        "ambiguous_negative_correct_empty": {"baseline": "2/5", "gemma_a149": "2/5"},
+        "nonsense_correct_empty": {"baseline": "1/5", "gemma_a149": "1/5"},
+        "out_of_scope_correct_empty": {"baseline": "0/3", "gemma_a149": "0/3"}
+      }
+    },
+    "full_replacement_canonical_source_truth_333": {
+      "baseline": {"top1": "333/333", "hit_at_5": "333/333"},
+      "gemma_a149_raw_single_ranker": {"top1": "330/333", "hit_at_5": "333/333"},
+      "interpretation": "Do not replace the ordinary YV lexical lane with the expanded ranker. Track 1 remains the unchanged privileged selector path; A is a separate description fallback entrypoint. The 333-case suite contains both canonical-label and canonical-definition queries, so query-text heuristics are not the correct lane boundary."
+    }
+  },
+  "decision": {
+    "a_class_status": "continue",
+    "result": "positive partial proof for sequence-level teacher expansion",
+    "reason": "With only 149/2105 concepts expanded and 20/40 stress target families covered, A149 improves opened targetable stress Hit@5 from 18/40 to 24/40 while adding only 18,103 gzip bytes of compact teacher language. This is materially stronger than Round-0 B0/C0/D0 formulations and supports generating the full A corpus.",
+    "next_step": "Generate/freeze Gemma expansion for the full 2,105-occupation universe without using opened evaluation queries, measure the actual compressed artifact, then replay the same frozen diagnostics. Keep ordinary lexical YV/KV calls separate and unchanged.",
+    "abstention_note": "A149 did not improve ambiguous/nonsense/out-of-scope abstention. Abstention remains a separate unresolved residual and must not be tuned on the opened 88-case suite."
+  },
+  "evidence_warning": "The 17-case and 88-input stress suites are already-opened development/architecture evidence. This result can justify continuing or falsifying an architecture class, but cannot establish independent user accuracy or choose production thresholds."
+}
