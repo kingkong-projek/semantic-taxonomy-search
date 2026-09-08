@@ -1,0 +1,24 @@
+{
+  "distinguishable_pairs": 11,
+  "failed_pairs": 2,
+  "failures": [
+    {
+      "a_concept_id": "1Cjx_ooE_HT9",
+      "b_concept_id": "E7nX_ux2_hF9",
+      "error": "invalid Gemma contrast response after retries: expected 0 values for b_cues, got 6"
+    },
+    {
+      "a_concept_id": "1YZp_JJt_Nen",
+      "b_concept_id": "GujS_MtW_PRH",
+      "error": "invalid Gemma contrast response after retries: expected 0 values for b_cues, got 6"
+    }
+  ],
+  "indistinguishable_pairs": 1,
+  "model": "gemma-4-26b-a4b-it",
+  "output_sha256": "f3f8316d218c304e486b713f664cc411d5940ab9d42aec586663bafb351dd749",
+  "requested_pairs": 14,
+  "selection": "top unique unordered directed hard-negative pairs after excluding relation-aware protected pairs; no opened query used",
+  "status": "frozen synthetic training data; not evaluation evidence",
+  "successful_pairs": 12,
+  "teacher_input": "public canonical label + definition + alternative labels for each pair only"
+}
