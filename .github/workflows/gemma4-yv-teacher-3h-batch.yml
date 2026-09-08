@@ -1,0 +1,45 @@
+name: Gemma 4 YV teacher 3h batch
+
+on:
+  push:
+    paths:
+      - scripts/generate_gemma4_yv_teacher_batch.py
+      - .github/workflows/gemma4-yv-teacher-3h-batch.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  teacher-run:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 210
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile-check teacher runners
+        run: >-
+          python -m py_compile
+          scripts/generate_gemma4_yv_teacher_pilot.py
+          scripts/generate_gemma4_yv_teacher_batch.py
+      - name: Generate next 450 occupations at frozen conservative rate
+        run: >-
+          python scripts/generate_gemma4_yv_teacher_batch.py
+          --start-index 150
+          --cases 450
+          --requests-per-minute 3
+          --output artifacts/gemma4-yv-teacher-batch-150-599.jsonl
+          --summary artifacts/gemma4-yv-teacher-batch-150-599-summary.json
+      - name: Upload checkpointed corpus and summary
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gemma4-yv-teacher-batch-150-599
+          path: |
+            artifacts/gemma4-yv-teacher-batch-150-599.jsonl
+            artifacts/gemma4-yv-teacher-batch-150-599-summary.json
+          if-no-files-found: warn
