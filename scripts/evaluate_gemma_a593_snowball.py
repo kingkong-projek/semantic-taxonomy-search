@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
-"""Replay the frozen A593 evaluator with Swedish Snowball token stemming.
+"""Replay the frozen A593 evaluator with Swedish Snowball lexical stemming.
 
 Candidate choice is based only on the frozen A593 corpus-internal 8-fold phrase-slot
 holdout diagnostic. This script is committed before any opened 17/88 replay.
+
+Important boundary: the existing raw baseline and canonical/surface logic remain
+unchanged. Only the lexical BM25 token representation for the A593 candidate is
+stemmed.
 """
 from __future__ import annotations
 
@@ -10,14 +14,73 @@ import argparse
 import json
 import sys
 from pathlib import Path
+from typing import Any
 
 import evaluate_gemma_a149 as base
 import evaluate_pareto_c1 as c1
-from evaluate_gemma_a593_phrase_representation import stemmed_tokens
+from evaluate_gemma_a593_phrase_representation import raw_tokens, stemmed_tokens
 
 EXPECTED_TEACHER_ROWS = 593
 EXPECTED_TEACHER_PHRASES = EXPECTED_TEACHER_ROWS * 8
 CANDIDATE_ID = "YV-A593-Gemma4-26B-sequence-expansion-snowball-v0"
+
+
+def build_ranker(
+    by_id: dict[str, dict[str, Any]],
+    ids: list[str],
+    teacher: dict[str, list[str]] | None = None,
+):
+    teacher = teacher or {}
+    # Baseline stays byte-for-byte equivalent to the frozen raw-token evaluator.
+    tokenizer = stemmed_tokens if teacher else raw_tokens
+    docs: dict[str, list[str]] = {}
+    exact: dict[str, set[str]] = {}
+    surface_tokens: dict[str, set[str]] = {}
+    for cid in ids:
+        concept = by_id[cid]
+        label = str(concept.get("preferred_label") or "").strip()
+        definition = str(concept.get("definition") or "").strip()
+        real_definition = definition if definition and base.norm(definition) != base.norm(label) else ""
+        alternatives = [x for x in base.as_list(concept.get("alternative_labels")) if base.norm(x) != base.norm(label)]
+        canonical_surfaces = [label, *alternatives]
+        extra = teacher.get(cid, [])
+        docs[cid] = tokenizer(" ".join([label, real_definition, *alternatives, *extra]))
+        exact[cid] = {base.norm(x) for x in canonical_surfaces if base.norm(x)}
+        # Surface evidence deliberately stays raw so the only tested intervention is
+        # lexical BM25 stemming in the description representation.
+        surface_tokens[cid] = {t for x in canonical_surfaces for t in raw_tokens(x)}
+    ranker = base.BM25(docs, exact)
+    ranker.query_tokenizer = tokenizer
+    return ranker, exact, surface_tokens
+
+
+def rank_ids(
+    ranker: base.BM25,
+    exact: dict[str, set[str]],
+    surface_tokens: dict[str, set[str]],
+    query: str,
+) -> list[str]:
+    tokenizer = getattr(ranker, "query_tokenizer", raw_tokens)
+    qtokens = tokenizer(query)
+    short_query = len(raw_tokens(query)) <= 3
+    boosts = {4: 1_000_000.0, 3: 10_000.0, 2: 5_000.0, 1: 2_500.0, 0: 0.0}
+    nq = base.norm(query)
+    scored: list[tuple[str, float]] = []
+    for cid in ranker.documents:
+        lexical = ranker.score(qtokens, cid)
+        if short_query:
+            signal, _ = c1.surface_signal(query, exact[cid], surface_tokens[cid])
+            if signal == 0:
+                continue
+            score = lexical + boosts[signal]
+        else:
+            exact_surface = bool(nq and nq in exact[cid])
+            score = lexical + (1_000_000.0 if exact_surface else 0.0)
+            if score <= 0.0:
+                continue
+        scored.append((cid, score))
+    scored.sort(key=lambda item: (-item[1], item[0]))
+    return [cid for cid, _ in scored]
 
 
 def main() -> int:
@@ -31,12 +94,8 @@ def main() -> int:
 
     base.EXPECTED_TEACHER_ROWS = EXPECTED_TEACHER_ROWS
     base.EXPECTED_TEACHER_PHRASES = EXPECTED_TEACHER_PHRASES
-
-    # Freeze the lexical representation change before the opened replay. BM25 documents,
-    # query tokens and canonical surface-token checks use the same deterministic stemmer;
-    # exact full-string canonical surfaces remain unchanged through norm().
-    base.tokens = stemmed_tokens
-    c1.tokens = stemmed_tokens
+    base.build_ranker = build_ranker
+    base.rank_ids = rank_ids
 
     tmp = Path(args.output).with_suffix(".a149-tmp.json")
     old_argv = sys.argv
@@ -61,8 +120,8 @@ def main() -> int:
     candidate = result["candidate"]
     candidate["id"] = CANDIDATE_ID
     candidate["representation"] = (
-        "full canonical YV BM25 + eight Gemma phrases for 593 concepts, with deterministic "
-        "Swedish Snowball stemming for lexical tokens; teacher phrases are not exact surfaces"
+        "full canonical YV BM25 + eight Gemma phrases for 593 concepts; only candidate lexical "
+        "BM25 tokens use deterministic Swedish Snowball stemming; canonical exact/surface logic stays raw"
     )
     candidate["selection_basis"] = (
         "frozen A593 corpus-internal 8-fold phrase-slot holdout only; opened 17/88 outcomes "
