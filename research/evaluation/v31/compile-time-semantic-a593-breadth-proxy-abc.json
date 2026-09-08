@@ -1,0 +1,1415 @@
+{
+  "id": "YV-A593-breadth-ABC-proxy-v0",
+  "evidence_class": "prefrozen synthetic architecture-selection evidence; not human accuracy",
+  "proxy_id": "YV-A593-breadth-proxy-v0",
+  "concepts": 15,
+  "cases": 60,
+  "candidate_universe": "only usable concepts frozen into breadth proxy v0; same universe for A/B/C",
+  "opened_17_88_loaded": false,
+  "entrants": {
+    "A_expanded_sparse_bm25": {
+      "mechanism": "canonical source evidence + 8 frozen A593 teacher phrases flattened per concept; token BM25",
+      "overall": {
+        "cases": 60,
+        "top1_count": 60,
+        "top1_rate": 1.0,
+        "hit_at_5_count": 60,
+        "hit_at_5_rate": 1.0,
+        "mrr": 1.0
+      },
+      "by_style": {
+        "direct_task": {
+          "cases": 15,
+          "top1_count": 15,
+          "top1_rate": 1.0,
+          "hit_at_5_count": 15,
+          "hit_at_5_rate": 1.0,
+          "mrr": 1.0
+        },
+        "colloquial_first_person": {
+          "cases": 15,
+          "top1_count": 15,
+          "top1_rate": 1.0,
+          "hit_at_5_count": 15,
+          "hit_at_5_rate": 1.0,
+          "mrr": 1.0
+        },
+        "indirect_narrative": {
+          "cases": 15,
+          "top1_count": 15,
+          "top1_rate": 1.0,
+          "hit_at_5_count": 15,
+          "hit_at_5_rate": 1.0,
+          "mrr": 1.0
+        },
+        "noisy_telegraphic": {
+          "cases": 15,
+          "top1_count": 15,
+          "top1_rate": 1.0,
+          "hit_at_5_count": 15,
+          "hit_at_5_rate": 1.0,
+          "mrr": 1.0
+        }
+      }
+    },
+    "B_supervised_sparse_v0": {
+      "mechanism": "fixed B-v0 char_wb 3-5 TF-IDF + one-vs-rest hinge SGD; trained on 8 old teacher phrases per concept",
+      "overall": {
+        "cases": 60,
+        "top1_count": 58,
+        "top1_rate": 0.966667,
+        "hit_at_5_count": 60,
+        "hit_at_5_rate": 1.0,
+        "mrr": 0.983333
+      },
+      "by_style": {
+        "direct_task": {
+          "cases": 15,
+          "top1_count": 15,
+          "top1_rate": 1.0,
+          "hit_at_5_count": 15,
+          "hit_at_5_rate": 1.0,
+          "mrr": 1.0
+        },
+        "colloquial_first_person": {
+          "cases": 15,
+          "top1_count": 15,
+          "top1_rate": 1.0,
+          "hit_at_5_count": 15,
+          "hit_at_5_rate": 1.0,
+          "mrr": 1.0
+        },
+        "indirect_narrative": {
+          "cases": 15,
+          "top1_count": 13,
+          "top1_rate": 0.866667,
+          "hit_at_5_count": 15,
+          "hit_at_5_rate": 1.0,
+          "mrr": 0.933333
+        },
+        "noisy_telegraphic": {
+          "cases": 15,
+          "top1_count": 15,
+          "top1_rate": 1.0,
+          "hit_at_5_count": 15,
+          "hit_at_5_rate": 1.0,
+          "mrr": 1.0
+        }
+      }
+    },
+    "C_task_atom_bm25_v0": {
+      "mechanism": "4 independently generated source-bound task atoms per concept; token BM25 over atoms; concept score=max atom score",
+      "overall": {
+        "cases": 60,
+        "top1_count": 60,
+        "top1_rate": 1.0,
+        "hit_at_5_count": 60,
+        "hit_at_5_rate": 1.0,
+        "mrr": 1.0
+      },
+      "by_style": {
+        "direct_task": {
+          "cases": 15,
+          "top1_count": 15,
+          "top1_rate": 1.0,
+          "hit_at_5_count": 15,
+          "hit_at_5_rate": 1.0,
+          "mrr": 1.0
+        },
+        "colloquial_first_person": {
+          "cases": 15,
+          "top1_count": 15,
+          "top1_rate": 1.0,
+          "hit_at_5_count": 15,
+          "hit_at_5_rate": 1.0,
+          "mrr": 1.0
+        },
+        "indirect_narrative": {
+          "cases": 15,
+          "top1_count": 15,
+          "top1_rate": 1.0,
+          "hit_at_5_count": 15,
+          "hit_at_5_rate": 1.0,
+          "mrr": 1.0
+        },
+        "noisy_telegraphic": {
+          "cases": 15,
+          "top1_count": 15,
+          "top1_rate": 1.0,
+          "hit_at_5_count": 15,
+          "hit_at_5_rate": 1.0,
+          "mrr": 1.0
+        }
+      }
+    }
+  },
+  "rows": {
+    "A": [
+      {
+        "concept_id": "73vz_UAk_B8d",
+        "label": "Köksmästare",
+        "style": "direct_task",
+        "query": "Planerar menyer, köper in råvaror, kvalitetssäkrar, leder personal, fördelar arbetsuppgifter, ansvarar för hygien och livsmedelssäkerhet samt hanterar budget och kostnadskontroll.",
+        "rank": 1
+      },
+      {
+        "concept_id": "73vz_UAk_B8d",
+        "label": "Köksmästare",
+        "style": "colloquial_first_person",
+        "query": "Jag planerar menyer, sköter inköp och ser till att kvaliteten håller. Jag leder personalen, fördelar uppgifter och har ansvar för både hygien, livsmedelssäkerhet och budgeten.",
+        "rank": 1
+      },
+      {
+        "concept_id": "73vz_UAk_B8d",
+        "label": "Köksmästare",
+        "style": "indirect_narrative",
+        "query": "Personen leder och organiserar arbetet i ett kök genom att planera menyer, sköta inköp och kvalitetssäkra råvaror. Hen ansvarar för personalledning, arbetsfördelning, hygien, livsmedelssäkerhet samt budget och kostnadskontroll.",
+        "rank": 1
+      },
+      {
+        "concept_id": "73vz_UAk_B8d",
+        "label": "Köksmästare",
+        "style": "noisy_telegraphic",
+        "query": "Planerar menyer, inköp, kvalitetssäkring. Leder personal, fördelar uppgifter. Ansvar för hygien, livsmedelssäkerhet, budget och kostnadskontroll.",
+        "rank": 1
+      },
+      {
+        "concept_id": "1vrZ_JJL_fLC",
+        "label": "Hårdlödare",
+        "style": "direct_task",
+        "query": "Förbereder arbetsstycken och lödmaterial, värmer upp metaller, applicerar lödsmältan och kontrollerar färdiga fogar samt löder rör, komponenter och metalldelar.",
+        "rank": 1
+      },
+      {
+        "concept_id": "1vrZ_JJL_fLC",
+        "label": "Hårdlödare",
+        "style": "colloquial_first_person",
+        "query": "Jag förbereder material, värmer upp metaller och applicerar smält metall för att sammanfoga delar, och sen kollar jag att fogarna blev bra.",
+        "rank": 1
+      },
+      {
+        "concept_id": "1vrZ_JJL_fLC",
+        "label": "Hårdlödare",
+        "style": "indirect_narrative",
+        "query": "Personen förbereder arbetsstycken och lödmaterial, värmer upp metaller och applicerar lödsmältan för att sammanfoga delar, samt kontrollerar de färdiga fogarna.",
+        "rank": 1
+      },
+      {
+        "concept_id": "1vrZ_JJL_fLC",
+        "label": "Hårdlödare",
+        "style": "noisy_telegraphic",
+        "query": "Förbereder arbetsstycken och material. Värmer metaller. Applicerar lödsmälta. Kontrollerar fogar. Lödning av rör och komponenter.",
+        "rank": 1
+      },
+      {
+        "concept_id": "pBhS_6fg_727",
+        "label": "Butikssäljare, dagligvaror/Medarbetare, dagligvaror",
+        "style": "direct_task",
+        "query": "Beställa, packa upp, prismärka och fylla på varor samt informera om och sälja produkter.",
+        "rank": 1
+      },
+      {
+        "concept_id": "pBhS_6fg_727",
+        "label": "Butikssäljare, dagligvaror/Medarbetare, dagligvaror",
+        "style": "colloquial_first_person",
+        "query": "Jag beställer, packar upp och prismärker varor, fyller på hyllor och hjälper kunder med information och försäljning.",
+        "rank": 1
+      },
+      {
+        "concept_id": "pBhS_6fg_727",
+        "label": "Butikssäljare, dagligvaror/Medarbetare, dagligvaror",
+        "style": "indirect_narrative",
+        "query": "Personen arbetar med att beställa, packa upp, prismärka och fylla på varor, samt informerar om och säljer produkter som en del av ett arbetslag.",
+        "rank": 1
+      },
+      {
+        "concept_id": "pBhS_6fg_727",
+        "label": "Butikssäljare, dagligvaror/Medarbetare, dagligvaror",
+        "style": "noisy_telegraphic",
+        "query": "Beställer, packar upp, prismärker, fyller på varor, informerar och säljer produkter.",
+        "rank": 1
+      },
+      {
+        "concept_id": "3ZFj_Cbb_uPL",
+        "label": "Bildproducent",
+        "style": "direct_task",
+        "query": "Styr bildflödet från flera kameror, väljer lämpliga bildvinklar och säkerställer den tekniska och visuella kvaliteten vid direktsändningar, evenemang och TV-produktioner genom att leda och koordinera den visuella bildproduktionen i samarbete med tekniker, regissörer och programledare i kontrollrum.",
+        "rank": 1
+      },
+      {
+        "concept_id": "3ZFj_Cbb_uPL",
+        "label": "Bildproducent",
+        "style": "colloquial_first_person",
+        "query": "Jag styr bildflödet från flera kameror, väljer vinklar och ser till att den tekniska och visuella kvaliteten håller när vi sänder live eller kör evenemang, och jag jobbar i kontrollrummet tillsammans med regissörer och tekniker.",
+        "rank": 1
+      },
+      {
+        "concept_id": "3ZFj_Cbb_uPL",
+        "label": "Bildproducent",
+        "style": "indirect_narrative",
+        "query": "Personen leder och koordinerar den visuella bildproduktionen vid direktsändningar och TV-produktioner genom att styra bildflödet från flera kameror och välja bildvinklar, ofta i samarbete med tekniker och regissörer i ett kontrollrum.",
+        "rank": 1
+      },
+      {
+        "concept_id": "3ZFj_Cbb_uPL",
+        "label": "Bildproducent",
+        "style": "noisy_telegraphic",
+        "query": "Styr bildflöde från flera kameror, väljer bildvinklar, säkerställer teknisk och visuell kvalitet vid sändningar, koordinerar bildproduktion i kontrollrum med tekniker och regissörer.",
+        "rank": 1
+      },
+      {
+        "concept_id": "YqiW_QLd_qHo",
+        "label": "Applikationsingenjör",
+        "style": "direct_task",
+        "query": "Anpassar, utvecklar och inför tekniska lösningar genom kravanalys, teknisk support, testning, konfigurering, integration och driftsättning av produkter, system eller applikationer samt samarbetar med kunder, säljare och utvecklare för att följa upp funktion och prestanda.",
+        "rank": 1
+      },
+      {
+        "concept_id": "YqiW_QLd_qHo",
+        "label": "Applikationsingenjör",
+        "style": "colloquial_first_person",
+        "query": "Jag anpassar och utvecklar tekniska lösningar efter vad kunderna behöver. Jag håller på med allt från kravanalys och support till testning och driftsättning, och samarbetar med både säljare och utvecklare för att se till att allt fungerar som det ska.",
+        "rank": 1
+      },
+      {
+        "concept_id": "YqiW_QLd_qHo",
+        "label": "Applikationsingenjör",
+        "style": "indirect_narrative",
+        "query": "Personen arbetar med att anpassa och införa tekniska lösningar genom att utföra kravanalys, support, testning och integration. Genom samarbete med kunder och andra specialister översätts behov till fungerande system där även funktion och prestanda följs upp.",
+        "rank": 1
+      },
+      {
+        "concept_id": "YqiW_QLd_qHo",
+        "label": "Applikationsingenjör",
+        "style": "noisy_telegraphic",
+        "query": "Anpassar och utvecklar tekniska lösningar. Kravanalys, support, testning, konfigurering och driftsättning. Samarbetar med kunder och utvecklare. Följer upp funktion och prestanda.",
+        "rank": 1
+      },
+      {
+        "concept_id": "5Lm9_jot_RaW",
+        "label": "Industrirobotoperatör",
+        "style": "direct_task",
+        "query": "Övervaka driften av industrirobotar, starta, stoppa och programmera dem, justera inställningar, genomföra rutinmässiga kontroller och enklare underhåll för att se till att produktionen följer planerade processer.",
+        "rank": 1
+      },
+      {
+        "concept_id": "5Lm9_jot_RaW",
+        "label": "Industrirobotoperatör",
+        "style": "colloquial_first_person",
+        "query": "Jag övervakar driften av industrirobotar, startar och stoppar dem, programmerar och justerar inställningar när det behövs, och gör rutinmässiga kontroller och enklare underhåll.",
+        "rank": 1
+      },
+      {
+        "concept_id": "5Lm9_jot_RaW",
+        "label": "Industrirobotoperatör",
+        "style": "indirect_narrative",
+        "query": "Personen övervakar driften av industrirobotar och ser till att produktionen följer planerade processer genom att starta, stoppa och programmera dem, justera inställningar samt utföra rutinmässiga kontroller och enklare underhåll.",
+        "rank": 1
+      },
+      {
+        "concept_id": "5Lm9_jot_RaW",
+        "label": "Industrirobotoperatör",
+        "style": "noisy_telegraphic",
+        "query": "Övervakar industrirobotar. Startar, stoppar, programmerar. Justerar inställningar. Utför rutinmässiga kontroller och enklare underhåll.",
+        "rank": 1
+      },
+      {
+        "concept_id": "aMhb_X7V_KCL",
+        "label": "Brevbärare",
+        "style": "direct_task",
+        "query": "Sorterar och delar ut post och paket till mottagare inom ett bestämt område genom att hämta, sortera och leverera försändelser med bil, cykel, moped eller till fots.",
+        "rank": 1
+      },
+      {
+        "concept_id": "aMhb_X7V_KCL",
+        "label": "Brevbärare",
+        "style": "colloquial_first_person",
+        "query": "Jag sorterar och delar ut post och paket. Jag kör bil, cykel eller moped, eller går, för att leverera försändelser och gör tunga lyft utomhus i olika väder.",
+        "rank": 1
+      },
+      {
+        "concept_id": "aMhb_X7V_KCL",
+        "label": "Brevbärare",
+        "style": "indirect_narrative",
+        "query": "Personen sorterar och levererar försändelser till mottagare i ett visst område. Arbetet utförs utomhus i varierande väder med hjälp av fordon eller till fots och innebär fysisk aktivitet samt tunga lyft.",
+        "rank": 1
+      },
+      {
+        "concept_id": "aMhb_X7V_KCL",
+        "label": "Brevbärare",
+        "style": "noisy_telegraphic",
+        "query": "Sorterar och delar ut post och paket. Hämtar, sorterar, levererar. Bil, cykel, moped eller till fots. Utomhus, varierande väder, tunga lyft.",
+        "rank": 1
+      },
+      {
+        "concept_id": "qzp5_Kmf_JL1",
+        "label": "Järnvägsingenjör",
+        "style": "direct_task",
+        "query": "Projektera, bygga, underhålla och utveckla järnvägsinfrastruktur som spår, växlar, el- och signalsystem, analysera tekniskt tillstånd, identifiera förbättringsbehov, utarbeta åtgärdsförslag, planera och samordna underhålls- och nybyggnadsprojekt, följa upp effekter av åtgärder samt ge tekniskt stöd vid utredningar, investeringar, anläggningskrav, upphandling och säkerhet.",
+        "rank": 1
+      },
+      {
+        "concept_id": "qzp5_Kmf_JL1",
+        "label": "Järnvägsingenjör",
+        "style": "colloquial_first_person",
+        "query": "Jag jobbar med att projektera och underhålla järnvägsinfrastruktur som spår och signalsystem. Jag analyserar tekniskt tillstånd, tar fram åtgärdsförslag och planerar både underhåll och nybyggnationer. Jag följer också upp vad åtgärderna gör och ger tekniskt stöd vid exempelvis upphandling och säkerhetsfrågor.",
+        "rank": 1
+      },
+      {
+        "concept_id": "qzp5_Kmf_JL1",
+        "label": "Järnvägsingenjör",
+        "style": "indirect_narrative",
+        "query": "Personen arbetar med projektering, byggande och underhåll av järnvägsinfrastruktur såsom spår, växlar och el- och signalsystem. Genom att analysera tekniskt tillstånd och identifiera behov utarbetas åtgärdsförslag, samtidigt som underhålls- och nybyggnadsprojekt planeras och samordnas. Rollen innebär även uppföljning av åtgärder samt tekniskt stöd vid utredningar, investeringar, upphandling och säkerhet.",
+        "rank": 1
+      },
+      {
+        "concept_id": "qzp5_Kmf_JL1",
+        "label": "Järnvägsingenjör",
+        "style": "noisy_telegraphic",
+        "query": "Projektera, bygga, underhålla järnvägsinfrastruktur. Spår, växlar, el- och signalsystem. Analysera tekniskt tillstånd, identifiera behov, utarbeta åtgärdsförslag. Planera underhåll och nybyggnad. Följa upp åtgärder. Tekniskt stöd vid utredning, investering, upphandling och säkerhet.",
+        "rank": 1
+      },
+      {
+        "concept_id": "1qgf_mXF_5Xp",
+        "label": "Character artist",
+        "style": "direct_task",
+        "query": "Omvandlar konceptbilder till detaljerade 3D-modeller, skulpterar karaktärsdetaljer, applicerar realistiska eller stiliserade texturer och säkerställer att karaktärer stämmer överens med den visuella stilen och tekniska krav.",
+        "rank": 1
+      },
+      {
+        "concept_id": "1qgf_mXF_5Xp",
+        "label": "Character artist",
+        "style": "colloquial_first_person",
+        "query": "Jag skapar och utvecklar digitala karaktärer för spel och interaktiva medier genom att göra om konceptbilder till 3D-modeller, skulpterar detaljer och lägger på texturer.",
+        "rank": 1
+      },
+      {
+        "concept_id": "1qgf_mXF_5Xp",
+        "label": "Character artist",
+        "style": "indirect_narrative",
+        "query": "Genom att omvandla konceptbilder till detaljerade 3D-modeller och skulptera fram detaljer samt applicera texturer, skapas digitala karaktärer som följer en specifik visuell stil och tekniska krav för spel.",
+        "rank": 1
+      },
+      {
+        "concept_id": "1qgf_mXF_5Xp",
+        "label": "Character artist",
+        "style": "noisy_telegraphic",
+        "query": "Skapar digitala karaktärer för spel. Omvandlar konceptbilder till 3D-modeller. Skulpterar detaljer. Applicerar texturer. Säkerställer visuell stil och tekniska krav.",
+        "rank": 1
+      },
+      {
+        "concept_id": "Ys2U_uQv_V4n",
+        "label": "Byggledare",
+        "style": "direct_task",
+        "query": "Leda byggprocessen, säkerställa att projektet genomförs enligt avtalade tidsramar, ekonomi och kvalitetskrav, medverka i upphandling, fungera som kontaktpunkt mellan entreprenörer, myndigheter och projektledningen samt ansvara för administration, ekonomistyrning och kvalitetssäkring.",
+        "rank": 1
+      },
+      {
+        "concept_id": "Ys2U_uQv_V4n",
+        "label": "Byggledare",
+        "style": "colloquial_first_person",
+        "query": "Jag leder byggprocessen och ser till att projektet håller tidsramar, ekonomi och kvalitet. Jag är byggherrens representant på plats, hjälper till vid upphandling och är kontaktpunkten mellan entreprenörer, myndigheter och projektledningen, samtidigt som jag sköter administration och ekonomistyrning.",
+        "rank": 1
+      },
+      {
+        "concept_id": "Ys2U_uQv_V4n",
+        "label": "Byggledare",
+        "style": "indirect_narrative",
+        "query": "Personen leder byggprocessen och ser till att projektet följer avtalade tidsramar, ekonomi och kvalitetskrav. Som byggherrens representant på byggarbetsplatsen fungerar hen som kontaktpunkt mellan entreprenörer, myndigheter och projektledningen, och ansvarar under byggskedet för administration, ekonomistyrning och kvalitetssäkring.",
+        "rank": 1
+      },
+      {
+        "concept_id": "Ys2U_uQv_V4n",
+        "label": "Byggledare",
+        "style": "noisy_telegraphic",
+        "query": "Leder byggprocess. Säkerställer tidsramar, ekonomi, kvalitet. Byggherrens representant på plats. Kontaktpunkt entreprenörer, myndigheter, projektledning. Ansvarar för administration, ekonomistyrning, kvalitetssäkring.",
+        "rank": 1
+      },
+      {
+        "concept_id": "p96L_aTJ_kkG",
+        "label": "Utbildningskoordinator",
+        "style": "direct_task",
+        "query": "Planerar och samordnar utbildningar och stödverksamheter, sköter schemaläggning, kommunicerar med deltagare och lärare, utför kvalitetsuppföljning, fungerar som kontaktperson, organiserar fysiska träffar med deltagare och externa intressenter samt samordnar specifika projekt.",
+        "rank": 1
+      },
+      {
+        "concept_id": "p96L_aTJ_kkG",
+        "label": "Utbildningskoordinator",
+        "style": "colloquial_first_person",
+        "query": "Jag planerar och samordnar utbildningar, fixar scheman och håller kontakten med både deltagare och lärare. Jag ser till att allt flyter på, gör kvalitetsuppföljningar och ordnar fysiska träffar och projekt.",
+        "rank": 1
+      },
+      {
+        "concept_id": "p96L_aTJ_kkG",
+        "label": "Utbildningskoordinator",
+        "style": "indirect_narrative",
+        "query": "Personen ansvarar för att planera och samordna utbildningar och stödverksamheter. Det innebär att sköta schemaläggning, kommunicera med deltagare och lärare, samt genomföra kvalitetsuppföljning. Rollen innefattar även organisering av fysiska träffar och samordning av projekt.",
+        "rank": 1
+      },
+      {
+        "concept_id": "p96L_aTJ_kkG",
+        "label": "Utbildningskoordinator",
+        "style": "noisy_telegraphic",
+        "query": "Planerar och samordnar utbildningar. Sköter schemaläggning, kommunikation med deltagare och lärare. Kvalitetsuppföljning. Kontaktperson. Organiserar fysiska träffar och projekt.",
+        "rank": 1
+      },
+      {
+        "concept_id": "GaiH_Bzd_mU5",
+        "label": "Elektronikmontör",
+        "style": "direct_task",
+        "query": "Monterar kretskort, elektroniska komponenter och kablar i olika elektroniska produkter samt utför testning och lödning.",
+        "rank": 1
+      },
+      {
+        "concept_id": "GaiH_Bzd_mU5",
+        "label": "Elektronikmontör",
+        "style": "colloquial_first_person",
+        "query": "Jag monterar kretskort, komponenter och kablar i olika produkter och jobbar även med att löda och testa.",
+        "rank": 1
+      },
+      {
+        "concept_id": "GaiH_Bzd_mU5",
+        "label": "Elektronikmontör",
+        "style": "indirect_narrative",
+        "query": "Arbetet innebär att montera kretskort, elektroniska komponenter och kablar i olika produkter, ofta i kombination med testning och lödning.",
+        "rank": 1
+      },
+      {
+        "concept_id": "GaiH_Bzd_mU5",
+        "label": "Elektronikmontör",
+        "style": "noisy_telegraphic",
+        "query": "Monterar kretskort, komponenter, kablar i produkter. Testning och lödning ingår.",
+        "rank": 1
+      },
+      {
+        "concept_id": "ci6b_Nc2_FmS",
+        "label": "Underhållsmekaniker",
+        "style": "direct_task",
+        "query": "Utför förebyggande och avhjälpande underhåll på industrimaskiner och mekanisk utrustning, samt underhåller och felsöker maskiner för att förhindra driftstopp inom tillverkningsindustri med kunskap i robotik, elteknik, mätteknik, hydraulik och svetsteknik.",
+        "rank": 1
+      },
+      {
+        "concept_id": "ci6b_Nc2_FmS",
+        "label": "Underhållsmekaniker",
+        "style": "colloquial_first_person",
+        "query": "Jag håller på med förebyggande och avhjälpande underhåll på industrimaskiner och mekanisk utrustning, och jag felsöker maskiner för att de inte ska stanna i tillverkningsindustrin. Jag kan också en del om robotik, elteknik, mätteknik, hydraulik och svetsteknik.",
+        "rank": 1
+      },
+      {
+        "concept_id": "ci6b_Nc2_FmS",
+        "label": "Underhållsmekaniker",
+        "style": "indirect_narrative",
+        "query": "Personen arbetar med att förebygga och åtgärda fel på industrimaskiner och mekanisk utrustning. Genom att underhålla och felsöka maskiner förhindras driftstopp inom tillverkningsindustrin, och arbetet kräver kunskaper inom bland annat robotik, elteknik, mätteknik, hydraulik och svetsteknik.",
+        "rank": 1
+      },
+      {
+        "concept_id": "ci6b_Nc2_FmS",
+        "label": "Underhållsmekaniker",
+        "style": "noisy_telegraphic",
+        "query": "Förebyggande och avhjälpande underhåll industrimaskiner. Felsöker maskiner för att förhindra driftstopp i tillverkningsindustri. Kunskap robotik, elteknik, mätteknik, hydraulik, svetsteknik.",
+        "rank": 1
+      },
+      {
+        "concept_id": "VpYo_k5f_N9R",
+        "label": "Grafisk formgivare",
+        "style": "direct_task",
+        "query": "Skapa visuellt material som annonser, logotyper, broschyrer och webbplatser genom design, layout och produktion med hjälp av olika mjukvaror och tekniker, samt tillämpa färglära, typografi och designprinciper.",
+        "rank": 1
+      },
+      {
+        "concept_id": "VpYo_k5f_N9R",
+        "label": "Grafisk formgivare",
+        "style": "colloquial_first_person",
+        "query": "Jag skapar visuellt material som logotyper, annonser och webbplatser genom att jobba med design, layout och produktion.",
+        "rank": 1
+      },
+      {
+        "concept_id": "VpYo_k5f_N9R",
+        "label": "Grafisk formgivare",
+        "style": "indirect_narrative",
+        "query": "Personen arbetar med att designa och producera visuellt material såsom broschyrer och logotyper genom att använda färglära, typografi och olika mjukvaror.",
+        "rank": 1
+      },
+      {
+        "concept_id": "VpYo_k5f_N9R",
+        "label": "Grafisk formgivare",
+        "style": "noisy_telegraphic",
+        "query": "Skapar visuellt material, design, layout, produktion av annonser, logotyper, broschyrer och webbplatser.",
+        "rank": 1
+      },
+      {
+        "concept_id": "HFuj_YCt_Ymn",
+        "label": "Försäljningsassistent",
+        "style": "direct_task",
+        "query": "Tar emot ordrar, koordinerar leveranser, uppdaterar försäljningssystem, följer upp offerter, administrerar kunduppgifter, hanterar fakturering och bistår säljare med underlag inför kundmöten med hjälp av affärssystem och digitala verktyg.",
+        "rank": 1
+      },
+      {
+        "concept_id": "HFuj_YCt_Ymn",
+        "label": "Försäljningsassistent",
+        "style": "colloquial_first_person",
+        "query": "Jag hjälper till med administrationen kring försäljningen, som att ta emot ordrar, fixa med leveranser, uppdatera systemen, följa upp offerter och sköta fakturering och kunduppgifter.",
+        "rank": 1
+      },
+      {
+        "concept_id": "HFuj_YCt_Ymn",
+        "label": "Försäljningsassistent",
+        "style": "indirect_narrative",
+        "query": "Personen stöttar försäljningsorganisationen genom att sköta administrativa uppgifter såsom ordermottagning, leveranskoordinering, uppdatering av försäljningssystem och hantering av fakturering och kunduppgifter.",
+        "rank": 1
+      },
+      {
+        "concept_id": "HFuj_YCt_Ymn",
+        "label": "Försäljningsassistent",
+        "style": "noisy_telegraphic",
+        "query": "Tar emot ordrar, koordinerar leveranser, uppdaterar försäljningssystem, följer upp offerter, administrerar kunduppgifter, hanterar fakturering, bistår säljare med underlag.",
+        "rank": 1
+      }
+    ],
+    "B": [
+      {
+        "concept_id": "73vz_UAk_B8d",
+        "label": "Köksmästare",
+        "style": "direct_task",
+        "query": "Planerar menyer, köper in råvaror, kvalitetssäkrar, leder personal, fördelar arbetsuppgifter, ansvarar för hygien och livsmedelssäkerhet samt hanterar budget och kostnadskontroll.",
+        "rank": 1
+      },
+      {
+        "concept_id": "73vz_UAk_B8d",
+        "label": "Köksmästare",
+        "style": "colloquial_first_person",
+        "query": "Jag planerar menyer, sköter inköp och ser till att kvaliteten håller. Jag leder personalen, fördelar uppgifter och har ansvar för både hygien, livsmedelssäkerhet och budgeten.",
+        "rank": 1
+      },
+      {
+        "concept_id": "73vz_UAk_B8d",
+        "label": "Köksmästare",
+        "style": "indirect_narrative",
+        "query": "Personen leder och organiserar arbetet i ett kök genom att planera menyer, sköta inköp och kvalitetssäkra råvaror. Hen ansvarar för personalledning, arbetsfördelning, hygien, livsmedelssäkerhet samt budget och kostnadskontroll.",
+        "rank": 1
+      },
+      {
+        "concept_id": "73vz_UAk_B8d",
+        "label": "Köksmästare",
+        "style": "noisy_telegraphic",
+        "query": "Planerar menyer, inköp, kvalitetssäkring. Leder personal, fördelar uppgifter. Ansvar för hygien, livsmedelssäkerhet, budget och kostnadskontroll.",
+        "rank": 1
+      },
+      {
+        "concept_id": "1vrZ_JJL_fLC",
+        "label": "Hårdlödare",
+        "style": "direct_task",
+        "query": "Förbereder arbetsstycken och lödmaterial, värmer upp metaller, applicerar lödsmältan och kontrollerar färdiga fogar samt löder rör, komponenter och metalldelar.",
+        "rank": 1
+      },
+      {
+        "concept_id": "1vrZ_JJL_fLC",
+        "label": "Hårdlödare",
+        "style": "colloquial_first_person",
+        "query": "Jag förbereder material, värmer upp metaller och applicerar smält metall för att sammanfoga delar, och sen kollar jag att fogarna blev bra.",
+        "rank": 1
+      },
+      {
+        "concept_id": "1vrZ_JJL_fLC",
+        "label": "Hårdlödare",
+        "style": "indirect_narrative",
+        "query": "Personen förbereder arbetsstycken och lödmaterial, värmer upp metaller och applicerar lödsmältan för att sammanfoga delar, samt kontrollerar de färdiga fogarna.",
+        "rank": 1
+      },
+      {
+        "concept_id": "1vrZ_JJL_fLC",
+        "label": "Hårdlödare",
+        "style": "noisy_telegraphic",
+        "query": "Förbereder arbetsstycken och material. Värmer metaller. Applicerar lödsmälta. Kontrollerar fogar. Lödning av rör och komponenter.",
+        "rank": 1
+      },
+      {
+        "concept_id": "pBhS_6fg_727",
+        "label": "Butikssäljare, dagligvaror/Medarbetare, dagligvaror",
+        "style": "direct_task",
+        "query": "Beställa, packa upp, prismärka och fylla på varor samt informera om och sälja produkter.",
+        "rank": 1
+      },
+      {
+        "concept_id": "pBhS_6fg_727",
+        "label": "Butikssäljare, dagligvaror/Medarbetare, dagligvaror",
+        "style": "colloquial_first_person",
+        "query": "Jag beställer, packar upp och prismärker varor, fyller på hyllor och hjälper kunder med information och försäljning.",
+        "rank": 1
+      },
+      {
+        "concept_id": "pBhS_6fg_727",
+        "label": "Butikssäljare, dagligvaror/Medarbetare, dagligvaror",
+        "style": "indirect_narrative",
+        "query": "Personen arbetar med att beställa, packa upp, prismärka och fylla på varor, samt informerar om och säljer produkter som en del av ett arbetslag.",
+        "rank": 2
+      },
+      {
+        "concept_id": "pBhS_6fg_727",
+        "label": "Butikssäljare, dagligvaror/Medarbetare, dagligvaror",
+        "style": "noisy_telegraphic",
+        "query": "Beställer, packar upp, prismärker, fyller på varor, informerar och säljer produkter.",
+        "rank": 1
+      },
+      {
+        "concept_id": "3ZFj_Cbb_uPL",
+        "label": "Bildproducent",
+        "style": "direct_task",
+        "query": "Styr bildflödet från flera kameror, väljer lämpliga bildvinklar och säkerställer den tekniska och visuella kvaliteten vid direktsändningar, evenemang och TV-produktioner genom att leda och koordinera den visuella bildproduktionen i samarbete med tekniker, regissörer och programledare i kontrollrum.",
+        "rank": 1
+      },
+      {
+        "concept_id": "3ZFj_Cbb_uPL",
+        "label": "Bildproducent",
+        "style": "colloquial_first_person",
+        "query": "Jag styr bildflödet från flera kameror, väljer vinklar och ser till att den tekniska och visuella kvaliteten håller när vi sänder live eller kör evenemang, och jag jobbar i kontrollrummet tillsammans med regissörer och tekniker.",
+        "rank": 1
+      },
+      {
+        "concept_id": "3ZFj_Cbb_uPL",
+        "label": "Bildproducent",
+        "style": "indirect_narrative",
+        "query": "Personen leder och koordinerar den visuella bildproduktionen vid direktsändningar och TV-produktioner genom att styra bildflödet från flera kameror och välja bildvinklar, ofta i samarbete med tekniker och regissörer i ett kontrollrum.",
+        "rank": 1
+      },
+      {
+        "concept_id": "3ZFj_Cbb_uPL",
+        "label": "Bildproducent",
+        "style": "noisy_telegraphic",
+        "query": "Styr bildflöde från flera kameror, väljer bildvinklar, säkerställer teknisk och visuell kvalitet vid sändningar, koordinerar bildproduktion i kontrollrum med tekniker och regissörer.",
+        "rank": 1
+      },
+      {
+        "concept_id": "YqiW_QLd_qHo",
+        "label": "Applikationsingenjör",
+        "style": "direct_task",
+        "query": "Anpassar, utvecklar och inför tekniska lösningar genom kravanalys, teknisk support, testning, konfigurering, integration och driftsättning av produkter, system eller applikationer samt samarbetar med kunder, säljare och utvecklare för att följa upp funktion och prestanda.",
+        "rank": 1
+      },
+      {
+        "concept_id": "YqiW_QLd_qHo",
+        "label": "Applikationsingenjör",
+        "style": "colloquial_first_person",
+        "query": "Jag anpassar och utvecklar tekniska lösningar efter vad kunderna behöver. Jag håller på med allt från kravanalys och support till testning och driftsättning, och samarbetar med både säljare och utvecklare för att se till att allt fungerar som det ska.",
+        "rank": 1
+      },
+      {
+        "concept_id": "YqiW_QLd_qHo",
+        "label": "Applikationsingenjör",
+        "style": "indirect_narrative",
+        "query": "Personen arbetar med att anpassa och införa tekniska lösningar genom att utföra kravanalys, support, testning och integration. Genom samarbete med kunder och andra specialister översätts behov till fungerande system där även funktion och prestanda följs upp.",
+        "rank": 1
+      },
+      {
+        "concept_id": "YqiW_QLd_qHo",
+        "label": "Applikationsingenjör",
+        "style": "noisy_telegraphic",
+        "query": "Anpassar och utvecklar tekniska lösningar. Kravanalys, support, testning, konfigurering och driftsättning. Samarbetar med kunder och utvecklare. Följer upp funktion och prestanda.",
+        "rank": 1
+      },
+      {
+        "concept_id": "5Lm9_jot_RaW",
+        "label": "Industrirobotoperatör",
+        "style": "direct_task",
+        "query": "Övervaka driften av industrirobotar, starta, stoppa och programmera dem, justera inställningar, genomföra rutinmässiga kontroller och enklare underhåll för att se till att produktionen följer planerade processer.",
+        "rank": 1
+      },
+      {
+        "concept_id": "5Lm9_jot_RaW",
+        "label": "Industrirobotoperatör",
+        "style": "colloquial_first_person",
+        "query": "Jag övervakar driften av industrirobotar, startar och stoppar dem, programmerar och justerar inställningar när det behövs, och gör rutinmässiga kontroller och enklare underhåll.",
+        "rank": 1
+      },
+      {
+        "concept_id": "5Lm9_jot_RaW",
+        "label": "Industrirobotoperatör",
+        "style": "indirect_narrative",
+        "query": "Personen övervakar driften av industrirobotar och ser till att produktionen följer planerade processer genom att starta, stoppa och programmera dem, justera inställningar samt utföra rutinmässiga kontroller och enklare underhåll.",
+        "rank": 1
+      },
+      {
+        "concept_id": "5Lm9_jot_RaW",
+        "label": "Industrirobotoperatör",
+        "style": "noisy_telegraphic",
+        "query": "Övervakar industrirobotar. Startar, stoppar, programmerar. Justerar inställningar. Utför rutinmässiga kontroller och enklare underhåll.",
+        "rank": 1
+      },
+      {
+        "concept_id": "aMhb_X7V_KCL",
+        "label": "Brevbärare",
+        "style": "direct_task",
+        "query": "Sorterar och delar ut post och paket till mottagare inom ett bestämt område genom att hämta, sortera och leverera försändelser med bil, cykel, moped eller till fots.",
+        "rank": 1
+      },
+      {
+        "concept_id": "aMhb_X7V_KCL",
+        "label": "Brevbärare",
+        "style": "colloquial_first_person",
+        "query": "Jag sorterar och delar ut post och paket. Jag kör bil, cykel eller moped, eller går, för att leverera försändelser och gör tunga lyft utomhus i olika väder.",
+        "rank": 1
+      },
+      {
+        "concept_id": "aMhb_X7V_KCL",
+        "label": "Brevbärare",
+        "style": "indirect_narrative",
+        "query": "Personen sorterar och levererar försändelser till mottagare i ett visst område. Arbetet utförs utomhus i varierande väder med hjälp av fordon eller till fots och innebär fysisk aktivitet samt tunga lyft.",
+        "rank": 1
+      },
+      {
+        "concept_id": "aMhb_X7V_KCL",
+        "label": "Brevbärare",
+        "style": "noisy_telegraphic",
+        "query": "Sorterar och delar ut post och paket. Hämtar, sorterar, levererar. Bil, cykel, moped eller till fots. Utomhus, varierande väder, tunga lyft.",
+        "rank": 1
+      },
+      {
+        "concept_id": "qzp5_Kmf_JL1",
+        "label": "Järnvägsingenjör",
+        "style": "direct_task",
+        "query": "Projektera, bygga, underhålla och utveckla järnvägsinfrastruktur som spår, växlar, el- och signalsystem, analysera tekniskt tillstånd, identifiera förbättringsbehov, utarbeta åtgärdsförslag, planera och samordna underhålls- och nybyggnadsprojekt, följa upp effekter av åtgärder samt ge tekniskt stöd vid utredningar, investeringar, anläggningskrav, upphandling och säkerhet.",
+        "rank": 1
+      },
+      {
+        "concept_id": "qzp5_Kmf_JL1",
+        "label": "Järnvägsingenjör",
+        "style": "colloquial_first_person",
+        "query": "Jag jobbar med att projektera och underhålla järnvägsinfrastruktur som spår och signalsystem. Jag analyserar tekniskt tillstånd, tar fram åtgärdsförslag och planerar både underhåll och nybyggnationer. Jag följer också upp vad åtgärderna gör och ger tekniskt stöd vid exempelvis upphandling och säkerhetsfrågor.",
+        "rank": 1
+      },
+      {
+        "concept_id": "qzp5_Kmf_JL1",
+        "label": "Järnvägsingenjör",
+        "style": "indirect_narrative",
+        "query": "Personen arbetar med projektering, byggande och underhåll av järnvägsinfrastruktur såsom spår, växlar och el- och signalsystem. Genom att analysera tekniskt tillstånd och identifiera behov utarbetas åtgärdsförslag, samtidigt som underhålls- och nybyggnadsprojekt planeras och samordnas. Rollen innebär även uppföljning av åtgärder samt tekniskt stöd vid utredningar, investeringar, upphandling och säkerhet.",
+        "rank": 1
+      },
+      {
+        "concept_id": "qzp5_Kmf_JL1",
+        "label": "Järnvägsingenjör",
+        "style": "noisy_telegraphic",
+        "query": "Projektera, bygga, underhålla järnvägsinfrastruktur. Spår, växlar, el- och signalsystem. Analysera tekniskt tillstånd, identifiera behov, utarbeta åtgärdsförslag. Planera underhåll och nybyggnad. Följa upp åtgärder. Tekniskt stöd vid utredning, investering, upphandling och säkerhet.",
+        "rank": 1
+      },
+      {
+        "concept_id": "1qgf_mXF_5Xp",
+        "label": "Character artist",
+        "style": "direct_task",
+        "query": "Omvandlar konceptbilder till detaljerade 3D-modeller, skulpterar karaktärsdetaljer, applicerar realistiska eller stiliserade texturer och säkerställer att karaktärer stämmer överens med den visuella stilen och tekniska krav.",
+        "rank": 1
+      },
+      {
+        "concept_id": "1qgf_mXF_5Xp",
+        "label": "Character artist",
+        "style": "colloquial_first_person",
+        "query": "Jag skapar och utvecklar digitala karaktärer för spel och interaktiva medier genom att göra om konceptbilder till 3D-modeller, skulpterar detaljer och lägger på texturer.",
+        "rank": 1
+      },
+      {
+        "concept_id": "1qgf_mXF_5Xp",
+        "label": "Character artist",
+        "style": "indirect_narrative",
+        "query": "Genom att omvandla konceptbilder till detaljerade 3D-modeller och skulptera fram detaljer samt applicera texturer, skapas digitala karaktärer som följer en specifik visuell stil och tekniska krav för spel.",
+        "rank": 1
+      },
+      {
+        "concept_id": "1qgf_mXF_5Xp",
+        "label": "Character artist",
+        "style": "noisy_telegraphic",
+        "query": "Skapar digitala karaktärer för spel. Omvandlar konceptbilder till 3D-modeller. Skulpterar detaljer. Applicerar texturer. Säkerställer visuell stil och tekniska krav.",
+        "rank": 1
+      },
+      {
+        "concept_id": "Ys2U_uQv_V4n",
+        "label": "Byggledare",
+        "style": "direct_task",
+        "query": "Leda byggprocessen, säkerställa att projektet genomförs enligt avtalade tidsramar, ekonomi och kvalitetskrav, medverka i upphandling, fungera som kontaktpunkt mellan entreprenörer, myndigheter och projektledningen samt ansvara för administration, ekonomistyrning och kvalitetssäkring.",
+        "rank": 1
+      },
+      {
+        "concept_id": "Ys2U_uQv_V4n",
+        "label": "Byggledare",
+        "style": "colloquial_first_person",
+        "query": "Jag leder byggprocessen och ser till att projektet håller tidsramar, ekonomi och kvalitet. Jag är byggherrens representant på plats, hjälper till vid upphandling och är kontaktpunkten mellan entreprenörer, myndigheter och projektledningen, samtidigt som jag sköter administration och ekonomistyrning.",
+        "rank": 1
+      },
+      {
+        "concept_id": "Ys2U_uQv_V4n",
+        "label": "Byggledare",
+        "style": "indirect_narrative",
+        "query": "Personen leder byggprocessen och ser till att projektet följer avtalade tidsramar, ekonomi och kvalitetskrav. Som byggherrens representant på byggarbetsplatsen fungerar hen som kontaktpunkt mellan entreprenörer, myndigheter och projektledningen, och ansvarar under byggskedet för administration, ekonomistyrning och kvalitetssäkring.",
+        "rank": 1
+      },
+      {
+        "concept_id": "Ys2U_uQv_V4n",
+        "label": "Byggledare",
+        "style": "noisy_telegraphic",
+        "query": "Leder byggprocess. Säkerställer tidsramar, ekonomi, kvalitet. Byggherrens representant på plats. Kontaktpunkt entreprenörer, myndigheter, projektledning. Ansvarar för administration, ekonomistyrning, kvalitetssäkring.",
+        "rank": 1
+      },
+      {
+        "concept_id": "p96L_aTJ_kkG",
+        "label": "Utbildningskoordinator",
+        "style": "direct_task",
+        "query": "Planerar och samordnar utbildningar och stödverksamheter, sköter schemaläggning, kommunicerar med deltagare och lärare, utför kvalitetsuppföljning, fungerar som kontaktperson, organiserar fysiska träffar med deltagare och externa intressenter samt samordnar specifika projekt.",
+        "rank": 1
+      },
+      {
+        "concept_id": "p96L_aTJ_kkG",
+        "label": "Utbildningskoordinator",
+        "style": "colloquial_first_person",
+        "query": "Jag planerar och samordnar utbildningar, fixar scheman och håller kontakten med både deltagare och lärare. Jag ser till att allt flyter på, gör kvalitetsuppföljningar och ordnar fysiska träffar och projekt.",
+        "rank": 1
+      },
+      {
+        "concept_id": "p96L_aTJ_kkG",
+        "label": "Utbildningskoordinator",
+        "style": "indirect_narrative",
+        "query": "Personen ansvarar för att planera och samordna utbildningar och stödverksamheter. Det innebär att sköta schemaläggning, kommunicera med deltagare och lärare, samt genomföra kvalitetsuppföljning. Rollen innefattar även organisering av fysiska träffar och samordning av projekt.",
+        "rank": 1
+      },
+      {
+        "concept_id": "p96L_aTJ_kkG",
+        "label": "Utbildningskoordinator",
+        "style": "noisy_telegraphic",
+        "query": "Planerar och samordnar utbildningar. Sköter schemaläggning, kommunikation med deltagare och lärare. Kvalitetsuppföljning. Kontaktperson. Organiserar fysiska träffar och projekt.",
+        "rank": 1
+      },
+      {
+        "concept_id": "GaiH_Bzd_mU5",
+        "label": "Elektronikmontör",
+        "style": "direct_task",
+        "query": "Monterar kretskort, elektroniska komponenter och kablar i olika elektroniska produkter samt utför testning och lödning.",
+        "rank": 1
+      },
+      {
+        "concept_id": "GaiH_Bzd_mU5",
+        "label": "Elektronikmontör",
+        "style": "colloquial_first_person",
+        "query": "Jag monterar kretskort, komponenter och kablar i olika produkter och jobbar även med att löda och testa.",
+        "rank": 1
+      },
+      {
+        "concept_id": "GaiH_Bzd_mU5",
+        "label": "Elektronikmontör",
+        "style": "indirect_narrative",
+        "query": "Arbetet innebär att montera kretskort, elektroniska komponenter och kablar i olika produkter, ofta i kombination med testning och lödning.",
+        "rank": 1
+      },
+      {
+        "concept_id": "GaiH_Bzd_mU5",
+        "label": "Elektronikmontör",
+        "style": "noisy_telegraphic",
+        "query": "Monterar kretskort, komponenter, kablar i produkter. Testning och lödning ingår.",
+        "rank": 1
+      },
+      {
+        "concept_id": "ci6b_Nc2_FmS",
+        "label": "Underhållsmekaniker",
+        "style": "direct_task",
+        "query": "Utför förebyggande och avhjälpande underhåll på industrimaskiner och mekanisk utrustning, samt underhåller och felsöker maskiner för att förhindra driftstopp inom tillverkningsindustri med kunskap i robotik, elteknik, mätteknik, hydraulik och svetsteknik.",
+        "rank": 1
+      },
+      {
+        "concept_id": "ci6b_Nc2_FmS",
+        "label": "Underhållsmekaniker",
+        "style": "colloquial_first_person",
+        "query": "Jag håller på med förebyggande och avhjälpande underhåll på industrimaskiner och mekanisk utrustning, och jag felsöker maskiner för att de inte ska stanna i tillverkningsindustrin. Jag kan också en del om robotik, elteknik, mätteknik, hydraulik och svetsteknik.",
+        "rank": 1
+      },
+      {
+        "concept_id": "ci6b_Nc2_FmS",
+        "label": "Underhållsmekaniker",
+        "style": "indirect_narrative",
+        "query": "Personen arbetar med att förebygga och åtgärda fel på industrimaskiner och mekanisk utrustning. Genom att underhålla och felsöka maskiner förhindras driftstopp inom tillverkningsindustrin, och arbetet kräver kunskaper inom bland annat robotik, elteknik, mätteknik, hydraulik och svetsteknik.",
+        "rank": 1
+      },
+      {
+        "concept_id": "ci6b_Nc2_FmS",
+        "label": "Underhållsmekaniker",
+        "style": "noisy_telegraphic",
+        "query": "Förebyggande och avhjälpande underhåll industrimaskiner. Felsöker maskiner för att förhindra driftstopp i tillverkningsindustri. Kunskap robotik, elteknik, mätteknik, hydraulik, svetsteknik.",
+        "rank": 1
+      },
+      {
+        "concept_id": "VpYo_k5f_N9R",
+        "label": "Grafisk formgivare",
+        "style": "direct_task",
+        "query": "Skapa visuellt material som annonser, logotyper, broschyrer och webbplatser genom design, layout och produktion med hjälp av olika mjukvaror och tekniker, samt tillämpa färglära, typografi och designprinciper.",
+        "rank": 1
+      },
+      {
+        "concept_id": "VpYo_k5f_N9R",
+        "label": "Grafisk formgivare",
+        "style": "colloquial_first_person",
+        "query": "Jag skapar visuellt material som logotyper, annonser och webbplatser genom att jobba med design, layout och produktion.",
+        "rank": 1
+      },
+      {
+        "concept_id": "VpYo_k5f_N9R",
+        "label": "Grafisk formgivare",
+        "style": "indirect_narrative",
+        "query": "Personen arbetar med att designa och producera visuellt material såsom broschyrer och logotyper genom att använda färglära, typografi och olika mjukvaror.",
+        "rank": 2
+      },
+      {
+        "concept_id": "VpYo_k5f_N9R",
+        "label": "Grafisk formgivare",
+        "style": "noisy_telegraphic",
+        "query": "Skapar visuellt material, design, layout, produktion av annonser, logotyper, broschyrer och webbplatser.",
+        "rank": 1
+      },
+      {
+        "concept_id": "HFuj_YCt_Ymn",
+        "label": "Försäljningsassistent",
+        "style": "direct_task",
+        "query": "Tar emot ordrar, koordinerar leveranser, uppdaterar försäljningssystem, följer upp offerter, administrerar kunduppgifter, hanterar fakturering och bistår säljare med underlag inför kundmöten med hjälp av affärssystem och digitala verktyg.",
+        "rank": 1
+      },
+      {
+        "concept_id": "HFuj_YCt_Ymn",
+        "label": "Försäljningsassistent",
+        "style": "colloquial_first_person",
+        "query": "Jag hjälper till med administrationen kring försäljningen, som att ta emot ordrar, fixa med leveranser, uppdatera systemen, följa upp offerter och sköta fakturering och kunduppgifter.",
+        "rank": 1
+      },
+      {
+        "concept_id": "HFuj_YCt_Ymn",
+        "label": "Försäljningsassistent",
+        "style": "indirect_narrative",
+        "query": "Personen stöttar försäljningsorganisationen genom att sköta administrativa uppgifter såsom ordermottagning, leveranskoordinering, uppdatering av försäljningssystem och hantering av fakturering och kunduppgifter.",
+        "rank": 1
+      },
+      {
+        "concept_id": "HFuj_YCt_Ymn",
+        "label": "Försäljningsassistent",
+        "style": "noisy_telegraphic",
+        "query": "Tar emot ordrar, koordinerar leveranser, uppdaterar försäljningssystem, följer upp offerter, administrerar kunduppgifter, hanterar fakturering, bistår säljare med underlag.",
+        "rank": 1
+      }
+    ],
+    "C": [
+      {
+        "concept_id": "73vz_UAk_B8d",
+        "label": "Köksmästare",
+        "style": "direct_task",
+        "query": "Planerar menyer, köper in råvaror, kvalitetssäkrar, leder personal, fördelar arbetsuppgifter, ansvarar för hygien och livsmedelssäkerhet samt hanterar budget och kostnadskontroll.",
+        "rank": 1
+      },
+      {
+        "concept_id": "73vz_UAk_B8d",
+        "label": "Köksmästare",
+        "style": "colloquial_first_person",
+        "query": "Jag planerar menyer, sköter inköp och ser till att kvaliteten håller. Jag leder personalen, fördelar uppgifter och har ansvar för både hygien, livsmedelssäkerhet och budgeten.",
+        "rank": 1
+      },
+      {
+        "concept_id": "73vz_UAk_B8d",
+        "label": "Köksmästare",
+        "style": "indirect_narrative",
+        "query": "Personen leder och organiserar arbetet i ett kök genom att planera menyer, sköta inköp och kvalitetssäkra råvaror. Hen ansvarar för personalledning, arbetsfördelning, hygien, livsmedelssäkerhet samt budget och kostnadskontroll.",
+        "rank": 1
+      },
+      {
+        "concept_id": "73vz_UAk_B8d",
+        "label": "Köksmästare",
+        "style": "noisy_telegraphic",
+        "query": "Planerar menyer, inköp, kvalitetssäkring. Leder personal, fördelar uppgifter. Ansvar för hygien, livsmedelssäkerhet, budget och kostnadskontroll.",
+        "rank": 1
+      },
+      {
+        "concept_id": "1vrZ_JJL_fLC",
+        "label": "Hårdlödare",
+        "style": "direct_task",
+        "query": "Förbereder arbetsstycken och lödmaterial, värmer upp metaller, applicerar lödsmältan och kontrollerar färdiga fogar samt löder rör, komponenter och metalldelar.",
+        "rank": 1
+      },
+      {
+        "concept_id": "1vrZ_JJL_fLC",
+        "label": "Hårdlödare",
+        "style": "colloquial_first_person",
+        "query": "Jag förbereder material, värmer upp metaller och applicerar smält metall för att sammanfoga delar, och sen kollar jag att fogarna blev bra.",
+        "rank": 1
+      },
+      {
+        "concept_id": "1vrZ_JJL_fLC",
+        "label": "Hårdlödare",
+        "style": "indirect_narrative",
+        "query": "Personen förbereder arbetsstycken och lödmaterial, värmer upp metaller och applicerar lödsmältan för att sammanfoga delar, samt kontrollerar de färdiga fogarna.",
+        "rank": 1
+      },
+      {
+        "concept_id": "1vrZ_JJL_fLC",
+        "label": "Hårdlödare",
+        "style": "noisy_telegraphic",
+        "query": "Förbereder arbetsstycken och material. Värmer metaller. Applicerar lödsmälta. Kontrollerar fogar. Lödning av rör och komponenter.",
+        "rank": 1
+      },
+      {
+        "concept_id": "pBhS_6fg_727",
+        "label": "Butikssäljare, dagligvaror/Medarbetare, dagligvaror",
+        "style": "direct_task",
+        "query": "Beställa, packa upp, prismärka och fylla på varor samt informera om och sälja produkter.",
+        "rank": 1
+      },
+      {
+        "concept_id": "pBhS_6fg_727",
+        "label": "Butikssäljare, dagligvaror/Medarbetare, dagligvaror",
+        "style": "colloquial_first_person",
+        "query": "Jag beställer, packar upp och prismärker varor, fyller på hyllor och hjälper kunder med information och försäljning.",
+        "rank": 1
+      },
+      {
+        "concept_id": "pBhS_6fg_727",
+        "label": "Butikssäljare, dagligvaror/Medarbetare, dagligvaror",
+        "style": "indirect_narrative",
+        "query": "Personen arbetar med att beställa, packa upp, prismärka och fylla på varor, samt informerar om och säljer produkter som en del av ett arbetslag.",
+        "rank": 1
+      },
+      {
+        "concept_id": "pBhS_6fg_727",
+        "label": "Butikssäljare, dagligvaror/Medarbetare, dagligvaror",
+        "style": "noisy_telegraphic",
+        "query": "Beställer, packar upp, prismärker, fyller på varor, informerar och säljer produkter.",
+        "rank": 1
+      },
+      {
+        "concept_id": "3ZFj_Cbb_uPL",
+        "label": "Bildproducent",
+        "style": "direct_task",
+        "query": "Styr bildflödet från flera kameror, väljer lämpliga bildvinklar och säkerställer den tekniska och visuella kvaliteten vid direktsändningar, evenemang och TV-produktioner genom att leda och koordinera den visuella bildproduktionen i samarbete med tekniker, regissörer och programledare i kontrollrum.",
+        "rank": 1
+      },
+      {
+        "concept_id": "3ZFj_Cbb_uPL",
+        "label": "Bildproducent",
+        "style": "colloquial_first_person",
+        "query": "Jag styr bildflödet från flera kameror, väljer vinklar och ser till att den tekniska och visuella kvaliteten håller när vi sänder live eller kör evenemang, och jag jobbar i kontrollrummet tillsammans med regissörer och tekniker.",
+        "rank": 1
+      },
+      {
+        "concept_id": "3ZFj_Cbb_uPL",
+        "label": "Bildproducent",
+        "style": "indirect_narrative",
+        "query": "Personen leder och koordinerar den visuella bildproduktionen vid direktsändningar och TV-produktioner genom att styra bildflödet från flera kameror och välja bildvinklar, ofta i samarbete med tekniker och regissörer i ett kontrollrum.",
+        "rank": 1
+      },
+      {
+        "concept_id": "3ZFj_Cbb_uPL",
+        "label": "Bildproducent",
+        "style": "noisy_telegraphic",
+        "query": "Styr bildflöde från flera kameror, väljer bildvinklar, säkerställer teknisk och visuell kvalitet vid sändningar, koordinerar bildproduktion i kontrollrum med tekniker och regissörer.",
+        "rank": 1
+      },
+      {
+        "concept_id": "YqiW_QLd_qHo",
+        "label": "Applikationsingenjör",
+        "style": "direct_task",
+        "query": "Anpassar, utvecklar och inför tekniska lösningar genom kravanalys, teknisk support, testning, konfigurering, integration och driftsättning av produkter, system eller applikationer samt samarbetar med kunder, säljare och utvecklare för att följa upp funktion och prestanda.",
+        "rank": 1
+      },
+      {
+        "concept_id": "YqiW_QLd_qHo",
+        "label": "Applikationsingenjör",
+        "style": "colloquial_first_person",
+        "query": "Jag anpassar och utvecklar tekniska lösningar efter vad kunderna behöver. Jag håller på med allt från kravanalys och support till testning och driftsättning, och samarbetar med både säljare och utvecklare för att se till att allt fungerar som det ska.",
+        "rank": 1
+      },
+      {
+        "concept_id": "YqiW_QLd_qHo",
+        "label": "Applikationsingenjör",
+        "style": "indirect_narrative",
+        "query": "Personen arbetar med att anpassa och införa tekniska lösningar genom att utföra kravanalys, support, testning och integration. Genom samarbete med kunder och andra specialister översätts behov till fungerande system där även funktion och prestanda följs upp.",
+        "rank": 1
+      },
+      {
+        "concept_id": "YqiW_QLd_qHo",
+        "label": "Applikationsingenjör",
+        "style": "noisy_telegraphic",
+        "query": "Anpassar och utvecklar tekniska lösningar. Kravanalys, support, testning, konfigurering och driftsättning. Samarbetar med kunder och utvecklare. Följer upp funktion och prestanda.",
+        "rank": 1
+      },
+      {
+        "concept_id": "5Lm9_jot_RaW",
+        "label": "Industrirobotoperatör",
+        "style": "direct_task",
+        "query": "Övervaka driften av industrirobotar, starta, stoppa och programmera dem, justera inställningar, genomföra rutinmässiga kontroller och enklare underhåll för att se till att produktionen följer planerade processer.",
+        "rank": 1
+      },
+      {
+        "concept_id": "5Lm9_jot_RaW",
+        "label": "Industrirobotoperatör",
+        "style": "colloquial_first_person",
+        "query": "Jag övervakar driften av industrirobotar, startar och stoppar dem, programmerar och justerar inställningar när det behövs, och gör rutinmässiga kontroller och enklare underhåll.",
+        "rank": 1
+      },
+      {
+        "concept_id": "5Lm9_jot_RaW",
+        "label": "Industrirobotoperatör",
+        "style": "indirect_narrative",
+        "query": "Personen övervakar driften av industrirobotar och ser till att produktionen följer planerade processer genom att starta, stoppa och programmera dem, justera inställningar samt utföra rutinmässiga kontroller och enklare underhåll.",
+        "rank": 1
+      },
+      {
+        "concept_id": "5Lm9_jot_RaW",
+        "label": "Industrirobotoperatör",
+        "style": "noisy_telegraphic",
+        "query": "Övervakar industrirobotar. Startar, stoppar, programmerar. Justerar inställningar. Utför rutinmässiga kontroller och enklare underhåll.",
+        "rank": 1
+      },
+      {
+        "concept_id": "aMhb_X7V_KCL",
+        "label": "Brevbärare",
+        "style": "direct_task",
+        "query": "Sorterar och delar ut post och paket till mottagare inom ett bestämt område genom att hämta, sortera och leverera försändelser med bil, cykel, moped eller till fots.",
+        "rank": 1
+      },
+      {
+        "concept_id": "aMhb_X7V_KCL",
+        "label": "Brevbärare",
+        "style": "colloquial_first_person",
+        "query": "Jag sorterar och delar ut post och paket. Jag kör bil, cykel eller moped, eller går, för att leverera försändelser och gör tunga lyft utomhus i olika väder.",
+        "rank": 1
+      },
+      {
+        "concept_id": "aMhb_X7V_KCL",
+        "label": "Brevbärare",
+        "style": "indirect_narrative",
+        "query": "Personen sorterar och levererar försändelser till mottagare i ett visst område. Arbetet utförs utomhus i varierande väder med hjälp av fordon eller till fots och innebär fysisk aktivitet samt tunga lyft.",
+        "rank": 1
+      },
+      {
+        "concept_id": "aMhb_X7V_KCL",
+        "label": "Brevbärare",
+        "style": "noisy_telegraphic",
+        "query": "Sorterar och delar ut post och paket. Hämtar, sorterar, levererar. Bil, cykel, moped eller till fots. Utomhus, varierande väder, tunga lyft.",
+        "rank": 1
+      },
+      {
+        "concept_id": "qzp5_Kmf_JL1",
+        "label": "Järnvägsingenjör",
+        "style": "direct_task",
+        "query": "Projektera, bygga, underhålla och utveckla järnvägsinfrastruktur som spår, växlar, el- och signalsystem, analysera tekniskt tillstånd, identifiera förbättringsbehov, utarbeta åtgärdsförslag, planera och samordna underhålls- och nybyggnadsprojekt, följa upp effekter av åtgärder samt ge tekniskt stöd vid utredningar, investeringar, anläggningskrav, upphandling och säkerhet.",
+        "rank": 1
+      },
+      {
+        "concept_id": "qzp5_Kmf_JL1",
+        "label": "Järnvägsingenjör",
+        "style": "colloquial_first_person",
+        "query": "Jag jobbar med att projektera och underhålla järnvägsinfrastruktur som spår och signalsystem. Jag analyserar tekniskt tillstånd, tar fram åtgärdsförslag och planerar både underhåll och nybyggnationer. Jag följer också upp vad åtgärderna gör och ger tekniskt stöd vid exempelvis upphandling och säkerhetsfrågor.",
+        "rank": 1
+      },
+      {
+        "concept_id": "qzp5_Kmf_JL1",
+        "label": "Järnvägsingenjör",
+        "style": "indirect_narrative",
+        "query": "Personen arbetar med projektering, byggande och underhåll av järnvägsinfrastruktur såsom spår, växlar och el- och signalsystem. Genom att analysera tekniskt tillstånd och identifiera behov utarbetas åtgärdsförslag, samtidigt som underhålls- och nybyggnadsprojekt planeras och samordnas. Rollen innebär även uppföljning av åtgärder samt tekniskt stöd vid utredningar, investeringar, upphandling och säkerhet.",
+        "rank": 1
+      },
+      {
+        "concept_id": "qzp5_Kmf_JL1",
+        "label": "Järnvägsingenjör",
+        "style": "noisy_telegraphic",
+        "query": "Projektera, bygga, underhålla järnvägsinfrastruktur. Spår, växlar, el- och signalsystem. Analysera tekniskt tillstånd, identifiera behov, utarbeta åtgärdsförslag. Planera underhåll och nybyggnad. Följa upp åtgärder. Tekniskt stöd vid utredning, investering, upphandling och säkerhet.",
+        "rank": 1
+      },
+      {
+        "concept_id": "1qgf_mXF_5Xp",
+        "label": "Character artist",
+        "style": "direct_task",
+        "query": "Omvandlar konceptbilder till detaljerade 3D-modeller, skulpterar karaktärsdetaljer, applicerar realistiska eller stiliserade texturer och säkerställer att karaktärer stämmer överens med den visuella stilen och tekniska krav.",
+        "rank": 1
+      },
+      {
+        "concept_id": "1qgf_mXF_5Xp",
+        "label": "Character artist",
+        "style": "colloquial_first_person",
+        "query": "Jag skapar och utvecklar digitala karaktärer för spel och interaktiva medier genom att göra om konceptbilder till 3D-modeller, skulpterar detaljer och lägger på texturer.",
+        "rank": 1
+      },
+      {
+        "concept_id": "1qgf_mXF_5Xp",
+        "label": "Character artist",
+        "style": "indirect_narrative",
+        "query": "Genom att omvandla konceptbilder till detaljerade 3D-modeller och skulptera fram detaljer samt applicera texturer, skapas digitala karaktärer som följer en specifik visuell stil och tekniska krav för spel.",
+        "rank": 1
+      },
+      {
+        "concept_id": "1qgf_mXF_5Xp",
+        "label": "Character artist",
+        "style": "noisy_telegraphic",
+        "query": "Skapar digitala karaktärer för spel. Omvandlar konceptbilder till 3D-modeller. Skulpterar detaljer. Applicerar texturer. Säkerställer visuell stil och tekniska krav.",
+        "rank": 1
+      },
+      {
+        "concept_id": "Ys2U_uQv_V4n",
+        "label": "Byggledare",
+        "style": "direct_task",
+        "query": "Leda byggprocessen, säkerställa att projektet genomförs enligt avtalade tidsramar, ekonomi och kvalitetskrav, medverka i upphandling, fungera som kontaktpunkt mellan entreprenörer, myndigheter och projektledningen samt ansvara för administration, ekonomistyrning och kvalitetssäkring.",
+        "rank": 1
+      },
+      {
+        "concept_id": "Ys2U_uQv_V4n",
+        "label": "Byggledare",
+        "style": "colloquial_first_person",
+        "query": "Jag leder byggprocessen och ser till att projektet håller tidsramar, ekonomi och kvalitet. Jag är byggherrens representant på plats, hjälper till vid upphandling och är kontaktpunkten mellan entreprenörer, myndigheter och projektledningen, samtidigt som jag sköter administration och ekonomistyrning.",
+        "rank": 1
+      },
+      {
+        "concept_id": "Ys2U_uQv_V4n",
+        "label": "Byggledare",
+        "style": "indirect_narrative",
+        "query": "Personen leder byggprocessen och ser till att projektet följer avtalade tidsramar, ekonomi och kvalitetskrav. Som byggherrens representant på byggarbetsplatsen fungerar hen som kontaktpunkt mellan entreprenörer, myndigheter och projektledningen, och ansvarar under byggskedet för administration, ekonomistyrning och kvalitetssäkring.",
+        "rank": 1
+      },
+      {
+        "concept_id": "Ys2U_uQv_V4n",
+        "label": "Byggledare",
+        "style": "noisy_telegraphic",
+        "query": "Leder byggprocess. Säkerställer tidsramar, ekonomi, kvalitet. Byggherrens representant på plats. Kontaktpunkt entreprenörer, myndigheter, projektledning. Ansvarar för administration, ekonomistyrning, kvalitetssäkring.",
+        "rank": 1
+      },
+      {
+        "concept_id": "p96L_aTJ_kkG",
+        "label": "Utbildningskoordinator",
+        "style": "direct_task",
+        "query": "Planerar och samordnar utbildningar och stödverksamheter, sköter schemaläggning, kommunicerar med deltagare och lärare, utför kvalitetsuppföljning, fungerar som kontaktperson, organiserar fysiska träffar med deltagare och externa intressenter samt samordnar specifika projekt.",
+        "rank": 1
+      },
+      {
+        "concept_id": "p96L_aTJ_kkG",
+        "label": "Utbildningskoordinator",
+        "style": "colloquial_first_person",
+        "query": "Jag planerar och samordnar utbildningar, fixar scheman och håller kontakten med både deltagare och lärare. Jag ser till att allt flyter på, gör kvalitetsuppföljningar och ordnar fysiska träffar och projekt.",
+        "rank": 1
+      },
+      {
+        "concept_id": "p96L_aTJ_kkG",
+        "label": "Utbildningskoordinator",
+        "style": "indirect_narrative",
+        "query": "Personen ansvarar för att planera och samordna utbildningar och stödverksamheter. Det innebär att sköta schemaläggning, kommunicera med deltagare och lärare, samt genomföra kvalitetsuppföljning. Rollen innefattar även organisering av fysiska träffar och samordning av projekt.",
+        "rank": 1
+      },
+      {
+        "concept_id": "p96L_aTJ_kkG",
+        "label": "Utbildningskoordinator",
+        "style": "noisy_telegraphic",
+        "query": "Planerar och samordnar utbildningar. Sköter schemaläggning, kommunikation med deltagare och lärare. Kvalitetsuppföljning. Kontaktperson. Organiserar fysiska träffar och projekt.",
+        "rank": 1
+      },
+      {
+        "concept_id": "GaiH_Bzd_mU5",
+        "label": "Elektronikmontör",
+        "style": "direct_task",
+        "query": "Monterar kretskort, elektroniska komponenter och kablar i olika elektroniska produkter samt utför testning och lödning.",
+        "rank": 1
+      },
+      {
+        "concept_id": "GaiH_Bzd_mU5",
+        "label": "Elektronikmontör",
+        "style": "colloquial_first_person",
+        "query": "Jag monterar kretskort, komponenter och kablar i olika produkter och jobbar även med att löda och testa.",
+        "rank": 1
+      },
+      {
+        "concept_id": "GaiH_Bzd_mU5",
+        "label": "Elektronikmontör",
+        "style": "indirect_narrative",
+        "query": "Arbetet innebär att montera kretskort, elektroniska komponenter och kablar i olika produkter, ofta i kombination med testning och lödning.",
+        "rank": 1
+      },
+      {
+        "concept_id": "GaiH_Bzd_mU5",
+        "label": "Elektronikmontör",
+        "style": "noisy_telegraphic",
+        "query": "Monterar kretskort, komponenter, kablar i produkter. Testning och lödning ingår.",
+        "rank": 1
+      },
+      {
+        "concept_id": "ci6b_Nc2_FmS",
+        "label": "Underhållsmekaniker",
+        "style": "direct_task",
+        "query": "Utför förebyggande och avhjälpande underhåll på industrimaskiner och mekanisk utrustning, samt underhåller och felsöker maskiner för att förhindra driftstopp inom tillverkningsindustri med kunskap i robotik, elteknik, mätteknik, hydraulik och svetsteknik.",
+        "rank": 1
+      },
+      {
+        "concept_id": "ci6b_Nc2_FmS",
+        "label": "Underhållsmekaniker",
+        "style": "colloquial_first_person",
+        "query": "Jag håller på med förebyggande och avhjälpande underhåll på industrimaskiner och mekanisk utrustning, och jag felsöker maskiner för att de inte ska stanna i tillverkningsindustrin. Jag kan också en del om robotik, elteknik, mätteknik, hydraulik och svetsteknik.",
+        "rank": 1
+      },
+      {
+        "concept_id": "ci6b_Nc2_FmS",
+        "label": "Underhållsmekaniker",
+        "style": "indirect_narrative",
+        "query": "Personen arbetar med att förebygga och åtgärda fel på industrimaskiner och mekanisk utrustning. Genom att underhålla och felsöka maskiner förhindras driftstopp inom tillverkningsindustrin, och arbetet kräver kunskaper inom bland annat robotik, elteknik, mätteknik, hydraulik och svetsteknik.",
+        "rank": 1
+      },
+      {
+        "concept_id": "ci6b_Nc2_FmS",
+        "label": "Underhållsmekaniker",
+        "style": "noisy_telegraphic",
+        "query": "Förebyggande och avhjälpande underhåll industrimaskiner. Felsöker maskiner för att förhindra driftstopp i tillverkningsindustri. Kunskap robotik, elteknik, mätteknik, hydraulik, svetsteknik.",
+        "rank": 1
+      },
+      {
+        "concept_id": "VpYo_k5f_N9R",
+        "label": "Grafisk formgivare",
+        "style": "direct_task",
+        "query": "Skapa visuellt material som annonser, logotyper, broschyrer och webbplatser genom design, layout och produktion med hjälp av olika mjukvaror och tekniker, samt tillämpa färglära, typografi och designprinciper.",
+        "rank": 1
+      },
+      {
+        "concept_id": "VpYo_k5f_N9R",
+        "label": "Grafisk formgivare",
+        "style": "colloquial_first_person",
+        "query": "Jag skapar visuellt material som logotyper, annonser och webbplatser genom att jobba med design, layout och produktion.",
+        "rank": 1
+      },
+      {
+        "concept_id": "VpYo_k5f_N9R",
+        "label": "Grafisk formgivare",
+        "style": "indirect_narrative",
+        "query": "Personen arbetar med att designa och producera visuellt material såsom broschyrer och logotyper genom att använda färglära, typografi och olika mjukvaror.",
+        "rank": 1
+      },
+      {
+        "concept_id": "VpYo_k5f_N9R",
+        "label": "Grafisk formgivare",
+        "style": "noisy_telegraphic",
+        "query": "Skapar visuellt material, design, layout, produktion av annonser, logotyper, broschyrer och webbplatser.",
+        "rank": 1
+      },
+      {
+        "concept_id": "HFuj_YCt_Ymn",
+        "label": "Försäljningsassistent",
+        "style": "direct_task",
+        "query": "Tar emot ordrar, koordinerar leveranser, uppdaterar försäljningssystem, följer upp offerter, administrerar kunduppgifter, hanterar fakturering och bistår säljare med underlag inför kundmöten med hjälp av affärssystem och digitala verktyg.",
+        "rank": 1
+      },
+      {
+        "concept_id": "HFuj_YCt_Ymn",
+        "label": "Försäljningsassistent",
+        "style": "colloquial_first_person",
+        "query": "Jag hjälper till med administrationen kring försäljningen, som att ta emot ordrar, fixa med leveranser, uppdatera systemen, följa upp offerter och sköta fakturering och kunduppgifter.",
+        "rank": 1
+      },
+      {
+        "concept_id": "HFuj_YCt_Ymn",
+        "label": "Försäljningsassistent",
+        "style": "indirect_narrative",
+        "query": "Personen stöttar försäljningsorganisationen genom att sköta administrativa uppgifter såsom ordermottagning, leveranskoordinering, uppdatering av försäljningssystem och hantering av fakturering och kunduppgifter.",
+        "rank": 1
+      },
+      {
+        "concept_id": "HFuj_YCt_Ymn",
+        "label": "Försäljningsassistent",
+        "style": "noisy_telegraphic",
+        "query": "Tar emot ordrar, koordinerar leveranser, uppdaterar försäljningssystem, följer upp offerter, administrerar kunduppgifter, hanterar fakturering, bistår säljare med underlag.",
+        "rank": 1
+      }
+    ]
+  },
+  "guard": "Evaluator implementation was frozen before proxy output was inspected. Do not tune from proxy rows; a later larger/fresh proxy or human evidence is required for promotion."
+}
