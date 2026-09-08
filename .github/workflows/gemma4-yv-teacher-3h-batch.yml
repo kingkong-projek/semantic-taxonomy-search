@@ -1,10 +1,6 @@
 name: Gemma 4 YV teacher 3h batch
 
 on:
-  push:
-    paths:
-      - scripts/generate_gemma4_yv_teacher_batch.py
-      - .github/workflows/gemma4-yv-teacher-3h-batch.yml
   workflow_dispatch:
 
 permissions:
