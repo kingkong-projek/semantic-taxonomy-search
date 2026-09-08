@@ -1,0 +1,364 @@
+{
+  "concepts": 22,
+  "contrast_cues_or_descriptions_sent_to_generator": false,
+  "evidence_warning": "Generated task representation for architecture diagnostic only; not taxonomy truth beyond its canonical source evidence.",
+  "id": "YV-A593-confusion-task-atoms-v0",
+  "model": "gemma-4-26b-a4b-it",
+  "opened_17_88_loaded": false,
+  "pairs": 11,
+  "rows": [
+    {
+      "a_atoms": [
+        "tillverka kostymer",
+        "underhålla kostymer",
+        "sköta kostymer",
+        "planera kostymer",
+        "anpassa kostymer",
+        "leda kostymgruppen"
+      ],
+      "a_concept_id": "2546_5Ve_4ep",
+      "b_atoms": [
+        "se till att skådespelare har rätt kostymer och tillbehör",
+        "utföra klädvård",
+        "göra enklare lagningar",
+        "genomföra passningar",
+        "sköta snabba kostymbyten",
+        "hålla ordning i kostymförråd"
+      ],
+      "b_concept_id": "49G8_LRE_73K",
+      "usage_metadata": {
+        "candidatesTokenCount": 162,
+        "promptTokenCount": 561,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 561
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 723
+      }
+    },
+    {
+      "a_atoms": [
+        "borrar berg",
+        "spränger bort berg",
+        "driva tunnlar för väg och järnväg",
+        "avgöra vilken mängd laddning som behövs vid sprängning",
+        "arbeta ovan jord",
+        "arbeta under jord"
+      ],
+      "a_concept_id": "31Uw_P9P_AgC",
+      "b_atoms": [
+        "spränga berg",
+        "spränga stora stenblock",
+        "hantera sprängämnen",
+        "genomföra sprängarbeten",
+        "arbeta i samband med byggen av vägar",
+        "arbeta i samband med byggen av tunnlar"
+      ],
+      "b_concept_id": "3RP3_h9J_Hc9",
+      "usage_metadata": {
+        "candidatesTokenCount": 160,
+        "promptTokenCount": 676,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 676
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 836
+      }
+    },
+    {
+      "a_atoms": [
+        "psykologisk utredning",
+        "psykologisk bedömning",
+        "psykologiska behandlingar",
+        "rådgivning",
+        "metodutveckling",
+        "handledning eller undervisning"
+      ],
+      "a_concept_id": "te5X_YVU_JaR",
+      "b_atoms": [
+        "förebygga psykisk ohälsa",
+        "utreda och diagnostisera psykisk ohälsa",
+        "behandla psykisk ohälsa",
+        "samtalsterapi",
+        "ge ledningsstöd",
+        "arbeta med forskning eller utbildning"
+      ],
+      "b_concept_id": "xBo9_V9m_bfg",
+      "usage_metadata": {
+        "candidatesTokenCount": 151,
+        "promptTokenCount": 634,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 634
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 785
+      }
+    },
+    {
+      "a_atoms": [
+        "granska rättsliga underlag",
+        "leda förhandlingar",
+        "utskriva domar",
+        "tolka och tillämpa lagar och rättspraxis",
+        "avgöra mål och ärenden i andra instansen",
+        "samarbeta inom rättsliga team"
+      ],
+      "a_concept_id": "1gxo_A2w_5A3",
+      "b_atoms": [
+        "förbereda, analysera och föredra rättsliga ärenden",
+        "granska och analysera juridiska handlingar",
+        "föredra mål för avgörande",
+        "upprätta protokoll",
+        "själv avgöra enklare mål",
+        "föreslå utredningsåtgärder"
+      ],
+      "b_concept_id": "pfiK_oXH_eYR",
+      "usage_metadata": {
+        "candidatesTokenCount": 177,
+        "promptTokenCount": 689,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 689
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 866
+      }
+    },
+    {
+      "a_atoms": [
+        "biträda advokater i deras arbete",
+        "genomgå en utbildningsperiod",
+        "samla nödvändig erfarenhet",
+        "hantera egna ärenden",
+        "hantera egna uppdrag",
+        "arbeta under tillsyn av advokater"
+      ],
+      "a_concept_id": "3RzT_cHB_vVp",
+      "b_atoms": [
+        "ge administrativt stöd till jurister och advokater",
+        "utföra administration och dokumenthantering",
+        "upprätta och granska juridiska handlingar",
+        "förbereda underlag till förhandlingar och rättegångar",
+        "sköta kontakthantering med klienter, domstolar och myndigheter",
+        "utföra diarieföring och ärendehantering"
+      ],
+      "b_concept_id": "4ve8_yBg_LJZ",
+      "usage_metadata": {
+        "candidatesTokenCount": 188,
+        "promptTokenCount": 562,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 562
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 750
+      }
+    },
+    {
+      "a_atoms": [
+        "Ingen explicit arbetsaktivitet angiven",
+        "Ingen explicit arbetsaktivitet angiven",
+        "Ingen explicit arbetsaktivitet angiven",
+        "Ingen explicit arbetsaktivitet angiven",
+        "Ingen explicit arbetsaktivitet angiven",
+        "Ingen explicit arbetsaktivitet angiven"
+      ],
+      "a_concept_id": "7Kxn_MMG_TuY",
+      "b_atoms": [
+        "Assistera tandläkare vid undersökningar",
+        "Assistera tandhygienister vid behandlingar",
+        "Förbereda instrument",
+        "Sterilisera instrument",
+        "Röntgenfotografering",
+        "Bedövning"
+      ],
+      "b_concept_id": "ckkD_JhH_Sc6",
+      "usage_metadata": {
+        "candidatesTokenCount": 160,
+        "promptTokenCount": 479,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 479
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 639
+      }
+    },
+    {
+      "a_atoms": [
+        "planera, rigga och styra belysningsutrustning",
+        "utforma belysningskoncept",
+        "välja och placera ljuskällor",
+        "programmera och styra ljusbord",
+        "övervaka och justera ljus under produktionens gång",
+        "ansvara för felsökning, underhåll och logistik kring belysningsutrustning"
+      ],
+      "a_concept_id": "2hTu_y9K_CxY",
+      "b_atoms": [
+        "planera och utforma ljussättningar för miljöer och evenemang",
+        "skapa ljusplaner och projektera teknisk utrustning",
+        "samarbeta med arkitekter, elektriker och andra yrkesgrupper",
+        "delta i planering och riggning av belysning vid evenemang och scenproduktioner",
+        "justera ljusintensitet och färg för att skapa atmosfär",
+        "följa och anpassa belysningen under produktionens gång"
+      ],
+      "b_concept_id": "44wU_Cyh_yqp",
+      "usage_metadata": {
+        "candidatesTokenCount": 242,
+        "promptTokenCount": 683,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 683
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 925
+      }
+    },
+    {
+      "a_atoms": [
+        "hantera information i fysiska arkiv",
+        "hantera information i digitala arkiv",
+        "tillgängliggöra information",
+        "utföra gallring",
+        "arbeta med bevarande",
+        "följa gällande lagar och förordningar"
+      ],
+      "a_concept_id": "E7nX_ux2_hF9",
+      "b_atoms": [
+        "organisera arkivhandlingar",
+        "kategorisera arkivhandlingar",
+        "utföra förteckningsarbete",
+        "insortera akter",
+        "skanna dokument",
+        "utföra formatkonvertering"
+      ],
+      "b_concept_id": "kxKW_LiD_FuW",
+      "usage_metadata": {
+        "candidatesTokenCount": 153,
+        "promptTokenCount": 632,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 632
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 785
+      }
+    },
+    {
+      "a_atoms": [
+        "leda ventilationsarbeten på byggarbetsplatsen",
+        "bevaka att maskiner finns på plats",
+        "bevaka att material finns på plats",
+        "samordna arbetet med entreprenörer",
+        "se till att arbetet utförs enligt ritningar",
+        "se till att säkerhetsföreskrifter följs"
+      ],
+      "a_concept_id": "1Kv4_35e_BX3",
+      "b_atoms": [
+        "arbeta inomhus",
+        "tillverka ventilationskanaler",
+        "montera ventilationskanaler",
+        "tillverka kundanpassade lösningar",
+        "sköta drift av större ventilationsanläggningar",
+        "sköta underhåll av större ventilationsanläggningar"
+      ],
+      "b_concept_id": "4EZJ_3HN_fUK",
+      "usage_metadata": {
+        "candidatesTokenCount": 181,
+        "promptTokenCount": 517,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 517
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 698
+      }
+    },
+    {
+      "a_atoms": [
+        "analysera olyckor",
+        "analysera trafikbeteenden",
+        "analysera trafiksystem",
+        "genomföra datainsamling och statistik",
+        "utföra litteraturstudier och fältstudier",
+        "framställa rapporter och forskningsunderlag"
+      ],
+      "a_concept_id": "3MDV_uBQ_6oG",
+      "b_atoms": [
+        "planera, analysera och utveckla trafiksystem",
+        "utforma väg- och trafikmiljöer",
+        "genomföra trafikflödesanalyser",
+        "utreda kollektivtrafik och hållbara transporter",
+        "handlägga ärenden om lokala trafikföreskrifter och vägvisning",
+        "besluta i ärenden om trafikanordningsplaner och anordningar vid vägarbeten"
+      ],
+      "b_concept_id": "cAYP_wEe_u3D",
+      "usage_metadata": {
+        "candidatesTokenCount": 203,
+        "promptTokenCount": 597,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 597
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 800
+      }
+    },
+    {
+      "a_atoms": [
+        "undersöka synen",
+        "rekommendera glasögon",
+        "anpassa kontaktlinser",
+        "genomföra synundersökningar med mätinstrument",
+        "bedöma ögats hälsostatus",
+        "journalföra undersökningar"
+      ],
+      "a_concept_id": "HWPy_9jT_TX2",
+      "b_atoms": [
+        "biträda optiker med kundkontakter",
+        "ge allmän rådgivning om glasögon",
+        "anpassa glasögon enligt ordination",
+        "lämna ut iordningställda glasögon",
+        "justera iordningställda kontaktlinser",
+        "ge instruktioner om hantering"
+      ],
+      "b_concept_id": "hfq6_Rpw_EKK",
+      "usage_metadata": {
+        "candidatesTokenCount": 178,
+        "promptTokenCount": 557,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 557
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 735
+      }
+    }
+  ],
+  "source": "public canonical v31 label/definition/alternative labels only"
+}
