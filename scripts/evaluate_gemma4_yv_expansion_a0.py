@@ -97,6 +97,13 @@ def rank(v, q):
     return [cid for cid, _, _ in rank_c1(r, q, e, s)]
 
 
+def teacher_rank(ranker: BM25, query: str):
+    q = tokens(query); scored = [(ranker.score(q, cid), cid) for cid in ranker.documents]
+    scored = [(score, cid) for score, cid in scored if score > 0.0]
+    scored.sort(key=lambda x: (-x[0], x[1]))
+    return [cid for _, cid in scored]
+
+
 def pos(ranked, targets):
     vals = [ranked.index(cid)+1 for cid in targets if cid in ranked]
     return min(vals) if vals else None
@@ -158,7 +165,7 @@ def main():
     strict = strict_cases(json.loads(ow), by_id, ids); strict_ranks = {name: [] for name in variants}; oracle17 = 0; covered17 = 0
     for c in strict:
         for name, v in variants.items(): strict_ranks[name].append(pos(rank(v, c["query"]), {c["target"]}))
-        tr = pos(teacher.rank(c["query"]), {c["target"]}) if c["target"] in teacher.documents else None
+        tr = pos(teacher_rank(teacher, c["query"]), {c["target"]}) if c["target"] in teacher.documents else None
         covered17 += c["target"] in teacher.documents
         br = strict_ranks["canonical"][-1]; oracle17 += (br is not None and br <= 5) or (tr is not None and tr <= 5)
 
@@ -181,7 +188,7 @@ def main():
         for name, v in variants.items():
             r = family_rank(rank(v, str(c["query"])), labels, exp); per[name] = r; s = sm[name][cat]
             s["target_cases"] += 1; s["top1"] += r == 1; s["hit5"] += r is not None and r <= 5; s["hit20"] += r is not None and r <= 20
-        tr = family_rank(teacher.rank(str(c["query"])), teacher_labels, exp)
+        tr = family_rank(teacher_rank(teacher, str(c["query"])), teacher_labels, exp)
         o = oracle[cat]; o["target_cases"] += 1; o["hit5"] += (per["canonical"] is not None and per["canonical"] <= 5) or (tr is not None and tr <= 5)
 
     result = {"schema_version": 1, "status": "opened architecture diagnostic; no runtime promotion", "taxonomy_version": 31,
