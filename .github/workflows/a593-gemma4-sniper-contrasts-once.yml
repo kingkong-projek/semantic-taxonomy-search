@@ -37,6 +37,8 @@ jobs:
           test -s research/training/v31/a593-gemma4-sniper-contrasts-v0-summary.json
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git fetch origin main
+          git rebase origin/main
           rm .github/workflows/a593-gemma4-sniper-contrasts-once.yml
           git add research/training/v31/a593-gemma4-sniper-contrasts-v0.jsonl research/training/v31/a593-gemma4-sniper-contrasts-v0-summary.json .github/workflows/a593-gemma4-sniper-contrasts-once.yml
           git commit -m 'research: freeze A593 Gemma sniper contrast training data'
