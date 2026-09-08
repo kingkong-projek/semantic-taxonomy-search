@@ -1,0 +1,2878 @@
+{
+  "activation": {
+    "a": 21913,
+    "b": 20429,
+    "changed_pair_scores": 15931,
+    "neutral": 14586
+  },
+  "all_4744": {
+    "challenger": {
+      "cases": 4744,
+      "hit_at_5_count": 2965,
+      "hit_at_5_rate": 0.625,
+      "median_rank": 3.0,
+      "mrr": 0.466288,
+      "top1_count": 1586,
+      "top1_rate": 0.334317
+    },
+    "control": {
+      "cases": 4744,
+      "hit_at_5_count": 2957,
+      "hit_at_5_rate": 0.623314,
+      "median_rank": 3.0,
+      "mrr": 0.464618,
+      "top1_count": 1576,
+      "top1_rate": 0.332209
+    }
+  },
+  "candidate": {
+    "base": "relation-aware clamped hard-negative alpha=0.75",
+    "decision_rule": "prefer A iff decisive_A similarity is strictly greater than both decisive_B and shared; symmetric for B; otherwise neutral",
+    "global_concept_weight_mutation": false,
+    "id": "YV-A593-explicit-pair-contrast-v0",
+    "mechanism": "base sparse lane determines pair relevance; contrast rule may only swap the pair's two existing base scores",
+    "numeric_pair_boost": false,
+    "teacher_dependency_at_runtime": false
+  },
+  "delta_all_vs_control": {
+    "hit_at_5_count": 8,
+    "mrr": 0.00167,
+    "top1_count": 10
+  },
+  "delta_targeted_vs_control": {
+    "hit_at_5_count": 8,
+    "mrr": 0.045016,
+    "top1_count": 10
+  },
+  "guard": "Pair selection is A593 confusion-selected. This run uses only frozen A593 teacher phrases plus source-bound sniper notes. Opened 17/88 may be replayed only after this fixed gate.",
+  "opened_replay_gate_passed": true,
+  "pair_deltas": [
+    {
+      "a_concept_id": "2546_5Ve_4ep",
+      "a_label": "Kostymmästare",
+      "b_concept_id": "49G8_LRE_73K",
+      "b_label": "Kostymtekniker/Påklädare",
+      "cases": 16,
+      "hit5_delta": 0,
+      "mrr_delta": 0.120833,
+      "top1_delta": 3
+    },
+    {
+      "a_concept_id": "E7nX_ux2_hF9",
+      "a_label": "Arkivarie",
+      "b_concept_id": "kxKW_LiD_FuW",
+      "b_label": "Arkivassistent",
+      "cases": 16,
+      "hit5_delta": 2,
+      "mrr_delta": 0.118676,
+      "top1_delta": 2
+    },
+    {
+      "a_concept_id": "2hTu_y9K_CxY",
+      "a_label": "Belysningsmästare",
+      "b_concept_id": "44wU_Cyh_yqp",
+      "b_label": "Ljusdesigner",
+      "cases": 16,
+      "hit5_delta": 3,
+      "mrr_delta": 0.088155,
+      "top1_delta": 1
+    },
+    {
+      "a_concept_id": "31Uw_P9P_AgC",
+      "a_label": "Bergarbetare, bygg och anläggning",
+      "b_concept_id": "3RP3_h9J_Hc9",
+      "b_label": "Bergsprängare",
+      "cases": 16,
+      "hit5_delta": 0,
+      "mrr_delta": 0.0625,
+      "top1_delta": 2
+    },
+    {
+      "a_concept_id": "7Kxn_MMG_TuY",
+      "a_label": "Klinikchef, tandvård/Verksamhetschef, tandvård",
+      "b_concept_id": "ckkD_JhH_Sc6",
+      "b_label": "Tandsköterska",
+      "cases": 16,
+      "hit5_delta": 0,
+      "mrr_delta": 0.041667,
+      "top1_delta": 1
+    },
+    {
+      "a_concept_id": "HWPy_9jT_TX2",
+      "a_label": "Optiker",
+      "b_concept_id": "hfq6_Rpw_EKK",
+      "b_label": "Optikerassistent",
+      "cases": 16,
+      "hit5_delta": 1,
+      "mrr_delta": 0.024674,
+      "top1_delta": 1
+    },
+    {
+      "a_concept_id": "1Kv4_35e_BX3",
+      "a_label": "Arbetsledare, ventilation",
+      "b_concept_id": "4EZJ_3HN_fUK",
+      "b_label": "Ventilationsplåtslagare",
+      "cases": 16,
+      "hit5_delta": 1,
+      "mrr_delta": 0.020833,
+      "top1_delta": 0
+    },
+    {
+      "a_concept_id": "1gxo_A2w_5A3",
+      "a_label": "Hovrättsråd",
+      "b_concept_id": "pfiK_oXH_eYR",
+      "b_label": "Föredragande/Beredningsjurist",
+      "cases": 16,
+      "hit5_delta": 1,
+      "mrr_delta": 0.013565,
+      "top1_delta": 0
+    },
+    {
+      "a_concept_id": "3RzT_cHB_vVp",
+      "a_label": "Biträdande jurist",
+      "b_concept_id": "4ve8_yBg_LJZ",
+      "b_label": "Juristassistent/Advokatsekreterare",
+      "cases": 16,
+      "hit5_delta": 0,
+      "mrr_delta": 0.00389,
+      "top1_delta": 0
+    },
+    {
+      "a_concept_id": "te5X_YVU_JaR",
+      "a_label": "PTP-psykolog",
+      "b_concept_id": "xBo9_V9m_bfg",
+      "b_label": "Psykolog",
+      "cases": 16,
+      "hit5_delta": 0,
+      "mrr_delta": 0.000386,
+      "top1_delta": 0
+    },
+    {
+      "a_concept_id": "3MDV_uBQ_6oG",
+      "a_label": "Forskare, trafiksäkerhet",
+      "b_concept_id": "cAYP_wEe_u3D",
+      "b_label": "Trafikingenjör",
+      "cases": 16,
+      "hit5_delta": 0,
+      "mrr_delta": 0.0,
+      "top1_delta": 0
+    }
+  ],
+  "rule_guard": {
+    "decisive": {
+      "cases": 198,
+      "correct_side_count": 198,
+      "details": [
+        {
+          "a": "2546_5Ve_4ep",
+          "b": "49G8_LRE_73K",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.10463250017143896,
+            "shared": 0.0021072559622371473
+          },
+          "text": "ansvarar för tillverkning"
+        },
+        {
+          "a": "2546_5Ve_4ep",
+          "b": "49G8_LRE_73K",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.2596344117936434,
+            "shared": 0.23013471416697923
+          },
+          "text": "leder kostymgruppen"
+        },
+        {
+          "a": "2546_5Ve_4ep",
+          "b": "49G8_LRE_73K",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.32447044409481,
+            "shared": 0.5006233888938214
+          },
+          "text": "planera kostymer"
+        },
+        {
+          "a": "2546_5Ve_4ep",
+          "b": "49G8_LRE_73K",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.27601010049768776,
+            "shared": 0.43782744480881375
+          },
+          "text": "anpassa kostymer"
+        },
+        {
+          "a": "2546_5Ve_4ep",
+          "b": "49G8_LRE_73K",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.3259832994753529,
+            "shared": 0.27159959800919514
+          },
+          "text": "samarbeta med kostymdesigner"
+        },
+        {
+          "a": "2546_5Ve_4ep",
+          "b": "49G8_LRE_73K",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.258891233327553,
+            "shared": 0.21629768223219875
+          },
+          "text": "organisera kostymhantering"
+        },
+        {
+          "a": "2546_5Ve_4ep",
+          "b": "49G8_LRE_73K",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.21400976708321606,
+            "shared": 0.270106428591836
+          },
+          "text": "Jag leder gruppen och ansvarar för att tillverka och planera alla kostymer i produktionen."
+        },
+        {
+          "a": "2546_5Ve_4ep",
+          "b": "49G8_LRE_73K",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.21126810108149535,
+            "shared": 0.2570279581674458
+          },
+          "text": "Mitt jobb är att samarbeta med regissören och designern för att anpassa kostymerna."
+        },
+        {
+          "a": "2546_5Ve_4ep",
+          "b": "49G8_LRE_73K",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.22330644457341528,
+            "shared": 0.501809366961505
+          },
+          "text": "Jag har det övergripande ansvaret för tillverkning och skötsel av alla kläder i en filmproduktion."
+        },
+        {
+          "a": "2546_5Ve_4ep",
+          "b": "49G8_LRE_73K",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.3115050664679004,
+            "b": 1.0000000000000002,
+            "shared": 0.20742035625275662
+          },
+          "text": "snabba kostymbyten"
+        },
+        {
+          "a": "2546_5Ve_4ep",
+          "b": "49G8_LRE_73K",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.029589107022166092,
+            "b": 1.0,
+            "shared": 0.015012783477019946
+          },
+          "text": "enklare lagningar"
+        },
+        {
+          "a": "2546_5Ve_4ep",
+          "b": "49G8_LRE_73K",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.11257589689075538,
+            "b": 1.0000000000000002,
+            "shared": 0.1648682290946662
+          },
+          "text": "klädvård"
+        },
+        {
+          "a": "2546_5Ve_4ep",
+          "b": "49G8_LRE_73K",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.3102950118087367,
+            "b": 1.0,
+            "shared": 0.20661462307051667
+          },
+          "text": "hålla ordning i kostymförråd"
+        },
+        {
+          "a": "2546_5Ve_4ep",
+          "b": "49G8_LRE_73K",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.07015927094876329,
+            "b": 1.0,
+            "shared": 0.007784762174057618
+          },
+          "text": "skådespelarnas tillbehör"
+        },
+        {
+          "a": "2546_5Ve_4ep",
+          "b": "49G8_LRE_73K",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.3259832994753529,
+            "b": 1.0,
+            "shared": 0.25108087886904956
+          },
+          "text": "underhålla maskiner för kostymarbete"
+        },
+        {
+          "a": "2546_5Ve_4ep",
+          "b": "49G8_LRE_73K",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.22330644457341528,
+            "b": 1.0,
+            "shared": 0.16059558305992455
+          },
+          "text": "Jag ser till att artisterna har rätt kläder och tillbehör inför varje scen."
+        },
+        {
+          "a": "2546_5Ve_4ep",
+          "b": "49G8_LRE_73K",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.14701212923503532,
+            "b": 1.0,
+            "shared": 0.19266795191525976
+          },
+          "text": "Jag sköter klädvård, enklare lagningar och snabba byten under föreställningar."
+        },
+        {
+          "a": "2546_5Ve_4ep",
+          "b": "49G8_LRE_73K",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.15212527115385321,
+            "b": 0.9999999999999999,
+            "shared": 0.10369671370496508
+          },
+          "text": "Jag håller ordning i förrådet och ser till att utrustningen fungerar under repetitioner."
+        },
+        {
+          "a": "31Uw_P9P_AgC",
+          "b": "3RP3_h9J_Hc9",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0000000000000002,
+            "b": 0.10209292965632576,
+            "shared": 0.24776575001197304
+          },
+          "text": "borrar berg"
+        },
+        {
+          "a": "31Uw_P9P_AgC",
+          "b": "3RP3_h9J_Hc9",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 0.9999999999999999,
+            "b": 0.07437342920203134,
+            "shared": 0.14459631028876752
+          },
+          "text": "skapar förutsättningar för byggen"
+        },
+        {
+          "a": "31Uw_P9P_AgC",
+          "b": "3RP3_h9J_Hc9",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0000000000000002,
+            "b": 0.15738113373238663,
+            "shared": 0.08984419221176228
+          },
+          "text": "hanterar små bergklackar"
+        },
+        {
+          "a": "31Uw_P9P_AgC",
+          "b": "3RP3_h9J_Hc9",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 0.9999999999999999,
+            "b": 0.09137029541225927,
+            "shared": 0.258124778535913
+          },
+          "text": "första på plats vid anläggning"
+        },
+        {
+          "a": "31Uw_P9P_AgC",
+          "b": "3RP3_h9J_Hc9",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0000000000000002,
+            "b": 0.06963510413663608,
+            "shared": 0.09601996251741336
+          },
+          "text": "bedömer bergets egenart"
+        },
+        {
+          "a": "31Uw_P9P_AgC",
+          "b": "3RP3_h9J_Hc9",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 0.9999999999999998,
+            "b": 0.030051677475825392,
+            "shared": 0.03180641018849845
+          },
+          "text": "yrkesbevis efter lärlingsanställning"
+        },
+        {
+          "a": "31Uw_P9P_AgC",
+          "b": "3RP3_h9J_Hc9",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.16404871196818696,
+            "shared": 0.22985191849991968
+          },
+          "text": "Jag borrar och förbereder underlag för hus och broar genom att ta bort berg."
+        },
+        {
+          "a": "31Uw_P9P_AgC",
+          "b": "3RP3_h9J_Hc9",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.3270963629746313,
+            "shared": 0.3776826590526172
+          },
+          "text": "Arbetar med att borra och spränga bort berg för att skapa rätt höjd till konstruktioner."
+        },
+        {
+          "a": "31Uw_P9P_AgC",
+          "b": "3RP3_h9J_Hc9",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0000000000000002,
+            "b": 0.38182514054490424,
+            "shared": 0.3601338014529565
+          },
+          "text": "Jag är ofta först på plats vid vägbyggen för att borra och spränga bort berg."
+        },
+        {
+          "a": "31Uw_P9P_AgC",
+          "b": "3RP3_h9J_Hc9",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.19240439359367406,
+            "b": 1.0,
+            "shared": 0.34067601680472676
+          },
+          "text": "specialist på sprängning"
+        },
+        {
+          "a": "31Uw_P9P_AgC",
+          "b": "3RP3_h9J_Hc9",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.15738113373238663,
+            "b": 1.0000000000000002,
+            "shared": 0.002258866309429598
+          },
+          "text": "hanterar stora stenblock"
+        },
+        {
+          "a": "31Uw_P9P_AgC",
+          "b": "3RP3_h9J_Hc9",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.12546066400174488,
+            "b": 1.0,
+            "shared": 0.14259212707969823
+          },
+          "text": "särskild certifiering för sprängämnen"
+        },
+        {
+          "a": "31Uw_P9P_AgC",
+          "b": "3RP3_h9J_Hc9",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.263342981037469,
+            "b": 1.0,
+            "shared": 0.33473375320260396
+          },
+          "text": "genomför sprängarbeten"
+        },
+        {
+          "a": "31Uw_P9P_AgC",
+          "b": "3RP3_h9J_Hc9",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.16787581789990932,
+            "b": 1.0000000000000002,
+            "shared": 0.32563248373232306
+          },
+          "text": "expert på sprängningsteknik"
+        },
+        {
+          "a": "31Uw_P9P_AgC",
+          "b": "3RP3_h9J_Hc9",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.14531239023002637,
+            "b": 0.9999999999999999,
+            "shared": 0.17325035951832057
+          },
+          "text": "specialiserad utbildning för sprängämnen"
+        },
+        {
+          "a": "31Uw_P9P_AgC",
+          "b": "3RP3_h9J_Hc9",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.38182514054490424,
+            "b": 1.0,
+            "shared": 0.3297335215077708
+          },
+          "text": "Jag är specialist på att spränga bort stora stenblock vid tunnelbyggen."
+        },
+        {
+          "a": "31Uw_P9P_AgC",
+          "b": "3RP3_h9J_Hc9",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.33774532553535347,
+            "b": 1.0,
+            "shared": 0.39575295900353874
+          },
+          "text": "Arbetar med certifierad hantering av sprängämnen för att spränga berg."
+        },
+        {
+          "a": "31Uw_P9P_AgC",
+          "b": "3RP3_h9J_Hc9",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.3249269002689582,
+            "b": 1.0,
+            "shared": 0.21595458583706895
+          },
+          "text": "Jag är en specialist som fokuserar på själva sprängarbetet vid stora konstruktioner."
+        },
+        {
+          "a": "te5X_YVU_JaR",
+          "b": "xBo9_V9m_bfg",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 0.9999999999999999,
+            "b": 0.14225844732084078,
+            "shared": 0.5363672749694564
+          },
+          "text": "arbetar under handledning"
+        },
+        {
+          "a": "te5X_YVU_JaR",
+          "b": "xBo9_V9m_bfg",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 0.9999999999999999,
+            "b": 0.5576621730012237,
+            "shared": 0.03682973872794881
+          },
+          "text": "inför ansökan om legitimation"
+        },
+        {
+          "a": "te5X_YVU_JaR",
+          "b": "xBo9_V9m_bfg",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 0.9999999999999999,
+            "b": 0.45176806625126537,
+            "shared": 0.02891887781973809
+          },
+          "text": "fördjupa kunskaper inför legitimation"
+        },
+        {
+          "a": "te5X_YVU_JaR",
+          "b": "xBo9_V9m_bfg",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 0.9999999999999999,
+            "b": 0.0,
+            "shared": 0.0
+          },
+          "text": "PTP-status"
+        },
+        {
+          "a": "te5X_YVU_JaR",
+          "b": "xBo9_V9m_bfg",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 0.9999999999999998,
+            "b": 0.0863502938261977,
+            "shared": 0.4399372108335952
+          },
+          "text": "under handledning"
+        },
+        {
+          "a": "te5X_YVU_JaR",
+          "b": "xBo9_V9m_bfg",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0000000000000002,
+            "b": 0.10748072406667905,
+            "shared": 0.2676143012778687
+          },
+          "text": "psykologexamen krävs"
+        },
+        {
+          "a": "te5X_YVU_JaR",
+          "b": "xBo9_V9m_bfg",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.5100877616891193,
+            "shared": 0.3828931537691341
+          },
+          "text": "arbetar under handledning för att få legitimation"
+        },
+        {
+          "a": "te5X_YVU_JaR",
+          "b": "xBo9_V9m_bfg",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 0.9999999999999999,
+            "b": 0.03632766857307066,
+            "shared": 0.30660054979353574
+          },
+          "text": "utför utredningar som en del av sin PTP-tjänst"
+        },
+        {
+          "a": "te5X_YVU_JaR",
+          "b": "xBo9_V9m_bfg",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 0.9999999999999999,
+            "b": 0.39144950251771443,
+            "shared": 0.026032299017744308
+          },
+          "text": "fördjupar sina kunskaper inför ansökan om legitimation"
+        },
+        {
+          "a": "te5X_YVU_JaR",
+          "b": "xBo9_V9m_bfg",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.016941613338960243,
+            "b": 1.0,
+            "shared": 0.0
+          },
+          "text": "skyddad titel"
+        },
+        {
+          "a": "te5X_YVU_JaR",
+          "b": "xBo9_V9m_bfg",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.5576621730012237,
+            "b": 1.0,
+            "shared": 0.06969505569811427
+          },
+          "text": "legitimationskrav"
+        },
+        {
+          "a": "te5X_YVU_JaR",
+          "b": "xBo9_V9m_bfg",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.10748072406667905,
+            "b": 0.9999999999999999,
+            "shared": 0.11544520605429451
+          },
+          "text": "diagnostiserar psykisk ohälsa"
+        },
+        {
+          "a": "te5X_YVU_JaR",
+          "b": "xBo9_V9m_bfg",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.09325988700444592,
+            "b": 1.0,
+            "shared": 0.09840314082347722
+          },
+          "text": "främja psykiskt välbefinnande"
+        },
+        {
+          "a": "te5X_YVU_JaR",
+          "b": "xBo9_V9m_bfg",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.2827698176121133,
+            "b": 1.0,
+            "shared": 0.018888066593442276
+          },
+          "text": "legitimerad yrkesutövare"
+        },
+        {
+          "a": "te5X_YVU_JaR",
+          "b": "xBo9_V9m_bfg",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.4489141881400807,
+            "b": 1.0000000000000002,
+            "shared": 0.03155252717446068
+          },
+          "text": "självständig legitimation"
+        },
+        {
+          "a": "te5X_YVU_JaR",
+          "b": "xBo9_V9m_bfg",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.4598460153628099,
+            "b": 0.9999999999999999,
+            "shared": 0.059708531829544866
+          },
+          "text": "har en skyddad titel med legitimation"
+        },
+        {
+          "a": "te5X_YVU_JaR",
+          "b": "xBo9_V9m_bfg",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.09723314914069323,
+            "b": 1.0,
+            "shared": 0.12085154383617433
+          },
+          "text": "diagnostiserar och behandlar psykisk ohälsa"
+        },
+        {
+          "a": "te5X_YVU_JaR",
+          "b": "xBo9_V9m_bfg",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.14225844732084078,
+            "b": 1.0,
+            "shared": 0.11667265346910022
+          },
+          "text": "arbetar med hälsofrämjande insatser och samtalsterapi"
+        },
+        {
+          "a": "1gxo_A2w_5A3",
+          "b": "pfiK_oXH_eYR",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 0.9999999999999999,
+            "b": 0.4395527791462231,
+            "shared": 0.4706050071821474
+          },
+          "text": "leder förhandlingar"
+        },
+        {
+          "a": "1gxo_A2w_5A3",
+          "b": "pfiK_oXH_eYR",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 0.9999999999999999,
+            "b": 0.28920630156543825,
+            "shared": 0.2565828187815784
+          },
+          "text": "avgör mål och ärenden"
+        },
+        {
+          "a": "1gxo_A2w_5A3",
+          "b": "pfiK_oXH_eYR",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.11551302816663035,
+            "shared": 0.0181720071458776
+          },
+          "text": "andra instansen"
+        },
+        {
+          "a": "1gxo_A2w_5A3",
+          "b": "pfiK_oXH_eYR",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.2623208444754882,
+            "shared": 0.030260979754134408
+          },
+          "text": "utskrift av domar"
+        },
+        {
+          "a": "1gxo_A2w_5A3",
+          "b": "pfiK_oXH_eYR",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0000000000000002,
+            "b": 0.20919515224630333,
+            "shared": 0.17200060936608783
+          },
+          "text": "rättsutveckling"
+        },
+        {
+          "a": "1gxo_A2w_5A3",
+          "b": "pfiK_oXH_eYR",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.07028825850580475,
+            "shared": 0.04020807543358049
+          },
+          "text": "beslutsfattande i hovrätten"
+        },
+        {
+          "a": "1gxo_A2w_5A3",
+          "b": "pfiK_oXH_eYR",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.28776870439706814,
+            "shared": 0.30024139674410316
+          },
+          "text": "leder förhandlingar och fattar beslut i mål i andra instansen"
+        },
+        {
+          "a": "1gxo_A2w_5A3",
+          "b": "pfiK_oXH_eYR",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.22919058207190077,
+            "shared": 0.1768471512793472
+          },
+          "text": "ansvarar för att avgöra ärenden och skriva domar i hovrätten"
+        },
+        {
+          "a": "1gxo_A2w_5A3",
+          "b": "pfiK_oXH_eYR",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0000000000000002,
+            "b": 0.15226886368640924,
+            "shared": 0.13147434235643118
+          },
+          "text": "arbetar med att leda processer och tillämpa lagar för att avgöra mål"
+        },
+        {
+          "a": "1gxo_A2w_5A3",
+          "b": "pfiK_oXH_eYR",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.2623208444754882,
+            "b": 1.0000000000000002,
+            "shared": 0.015709012705631176
+          },
+          "text": "föredra mål inför domare"
+        },
+        {
+          "a": "1gxo_A2w_5A3",
+          "b": "pfiK_oXH_eYR",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.28920630156543825,
+            "b": 1.0,
+            "shared": 0.3322841493026208
+          },
+          "text": "förbereda rättsliga ärenden"
+        },
+        {
+          "a": "1gxo_A2w_5A3",
+          "b": "pfiK_oXH_eYR",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.22525000063158396,
+            "b": 1.0000000000000002,
+            "shared": 0.009140867307611582
+          },
+          "text": "bistå domare eller åklagare"
+        },
+        {
+          "a": "1gxo_A2w_5A3",
+          "b": "pfiK_oXH_eYR",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.04651933352040433,
+            "b": 0.9999999999999999,
+            "shared": 0.013498370234269016
+          },
+          "text": "föreslå utredningsåtgärder"
+        },
+        {
+          "a": "1gxo_A2w_5A3",
+          "b": "pfiK_oXH_eYR",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.07581205958873924,
+            "b": 0.9999999999999999,
+            "shared": 0.04392505548647982
+          },
+          "text": "upprätta protokoll"
+        },
+        {
+          "a": "1gxo_A2w_5A3",
+          "b": "pfiK_oXH_eYR",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.3354535163037377,
+            "b": 1.0000000000000002,
+            "shared": 0.5205546516043258
+          },
+          "text": "analysera juridiska handlingar"
+        },
+        {
+          "a": "1gxo_A2w_5A3",
+          "b": "pfiK_oXH_eYR",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.19533676499895605,
+            "b": 1.0,
+            "shared": 0.04043854517729637
+          },
+          "text": "förbereder och föredrar mål inför domare och nämnd"
+        },
+        {
+          "a": "1gxo_A2w_5A3",
+          "b": "pfiK_oXH_eYR",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.25777055665663784,
+            "b": 1.0000000000000002,
+            "shared": 0.25030379161202054
+          },
+          "text": "arbetar med att analysera handlingar och föreslå utredningsåtgärder"
+        },
+        {
+          "a": "1gxo_A2w_5A3",
+          "b": "pfiK_oXH_eYR",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.4395527791462231,
+            "b": 1.0,
+            "shared": 0.29084929623121536
+          },
+          "text": "bistår vid förhandlingar och upprättar protokoll"
+        },
+        {
+          "a": "3RzT_cHB_vVp",
+          "b": "4ve8_yBg_LJZ",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.10299883223888692,
+            "shared": 0.10108970722683835
+          },
+          "text": "juristexamen"
+        },
+        {
+          "a": "3RzT_cHB_vVp",
+          "b": "4ve8_yBg_LJZ",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 0.9999999999999999,
+            "b": 0.07825585246912892,
+            "shared": 0.0
+          },
+          "text": "genomgår utbildningsperiod"
+        },
+        {
+          "a": "3RzT_cHB_vVp",
+          "b": "4ve8_yBg_LJZ",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.019458707467873853,
+            "shared": 0.18308577776954962
+          },
+          "text": "samlar erfarenhet för advokattiteln"
+        },
+        {
+          "a": "3RzT_cHB_vVp",
+          "b": "4ve8_yBg_LJZ",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 0.9999999999999999,
+            "b": 0.11279262658018316,
+            "shared": 0.23406669669614513
+          },
+          "text": "står under tillsyn av advokat"
+        },
+        {
+          "a": "3RzT_cHB_vVp",
+          "b": "4ve8_yBg_LJZ",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 0.9999999999999999,
+            "b": 0.3247632773872819,
+            "shared": 0.014045641500074924
+          },
+          "text": "har egna ärenden"
+        },
+        {
+          "a": "3RzT_cHB_vVp",
+          "b": "4ve8_yBg_LJZ",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.06268919578299757,
+            "shared": 0.2906220479609075
+          },
+          "text": "biträder advokater i deras arbete"
+        },
+        {
+          "a": "3RzT_cHB_vVp",
+          "b": "4ve8_yBg_LJZ",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 0.9999999999999999,
+            "b": 0.20486080182676839,
+            "shared": 0.2723589954490076
+          },
+          "text": "Jag har en juristexamen och arbetar med egna ärenden under tillsyn för att kunna bli advokat."
+        },
+        {
+          "a": "3RzT_cHB_vVp",
+          "b": "4ve8_yBg_LJZ",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.13648999656247723,
+            "shared": 0.3517713928588345
+          },
+          "text": "Jag är en jurist som genomgår en utbildningsperiod på en advokatbyrå."
+        },
+        {
+          "a": "3RzT_cHB_vVp",
+          "b": "4ve8_yBg_LJZ",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 0.9999999999999999,
+            "b": 0.1806976193203022,
+            "shared": 0.23462200694311386
+          },
+          "text": "Jag arbetar med att biträda advokater i deras arbete för att samla nödvändig erfarenhet."
+        },
+        {
+          "a": "3RzT_cHB_vVp",
+          "b": "4ve8_yBg_LJZ",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.031754026866835136,
+            "b": 0.9999999999999999,
+            "shared": 0.015880198231668384
+          },
+          "text": "administrativt stöd"
+        },
+        {
+          "a": "3RzT_cHB_vVp",
+          "b": "4ve8_yBg_LJZ",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.02266881642069679,
+            "b": 1.0,
+            "shared": 0.11710598374055896
+          },
+          "text": "dokumenthantering"
+        },
+        {
+          "a": "3RzT_cHB_vVp",
+          "b": "4ve8_yBg_LJZ",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.004139634408887766,
+            "b": 1.0000000000000002,
+            "shared": 0.0
+          },
+          "text": "diarieföring"
+        },
+        {
+          "a": "3RzT_cHB_vVp",
+          "b": "4ve8_yBg_LJZ",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.3247632773872819,
+            "b": 0.9999999999999999,
+            "shared": 0.11372466373729025
+          },
+          "text": "ärendehantering"
+        },
+        {
+          "a": "3RzT_cHB_vVp",
+          "b": "4ve8_yBg_LJZ",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.038508504754075294,
+            "b": 1.0000000000000002,
+            "shared": 0.008537445119607363
+          },
+          "text": "upprättande av protokoll"
+        },
+        {
+          "a": "3RzT_cHB_vVp",
+          "b": "4ve8_yBg_LJZ",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.11279262658018316,
+            "b": 1.0000000000000002,
+            "shared": 0.01101906281614262
+          },
+          "text": "förbereda underlag till rättegångar"
+        },
+        {
+          "a": "3RzT_cHB_vVp",
+          "b": "4ve8_yBg_LJZ",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.13648999656247723,
+            "b": 1.0,
+            "shared": 0.2632170271972518
+          },
+          "text": "Jag sköter administration, diarieföring och dokumenthantering på en juridisk avdelning."
+        },
+        {
+          "a": "3RzT_cHB_vVp",
+          "b": "4ve8_yBg_LJZ",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.20486080182676839,
+            "b": 1.0000000000000002,
+            "shared": 0.267370740595672
+          },
+          "text": "Jag arbetar med att förbereda underlag till förhandlingar och sköter kontakten med klienter."
+        },
+        {
+          "a": "3RzT_cHB_vVp",
+          "b": "4ve8_yBg_LJZ",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.12227317924400968,
+            "b": 0.9999999999999999,
+            "shared": 0.01439118830881574
+          },
+          "text": "Jag ger administrativt stöd genom att upprätta avtal och protokoll."
+        },
+        {
+          "a": "7Kxn_MMG_TuY",
+          "b": "ckkD_JhH_Sc6",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.0,
+            "shared": 0.21572277931772602
+          },
+          "text": "verksamhetschef"
+        },
+        {
+          "a": "7Kxn_MMG_TuY",
+          "b": "ckkD_JhH_Sc6",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.015763265354009407,
+            "shared": 0.0
+          },
+          "text": "klinikchef"
+        },
+        {
+          "a": "7Kxn_MMG_TuY",
+          "b": "ckkD_JhH_Sc6",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 0.9999999999999999,
+            "b": 0.056173054089308505,
+            "shared": 0.003389888535404325
+          },
+          "text": "ledningsansvar"
+        },
+        {
+          "a": "7Kxn_MMG_TuY",
+          "b": "ckkD_JhH_Sc6",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.011252971010884233,
+            "shared": 0.0028442183234969757
+          },
+          "text": "operativt ansvar"
+        },
+        {
+          "a": "7Kxn_MMG_TuY",
+          "b": "ckkD_JhH_Sc6",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.399374809617578,
+            "shared": 0.6199548976229077
+          },
+          "text": "styrning av tandvård"
+        },
+        {
+          "a": "7Kxn_MMG_TuY",
+          "b": "ckkD_JhH_Sc6",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.0036735054912093563,
+            "shared": 0.013559291443120187
+          },
+          "text": "organisatoriskt ansvar"
+        },
+        {
+          "a": "7Kxn_MMG_TuY",
+          "b": "ckkD_JhH_Sc6",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.22171889802368094,
+            "shared": 0.34460859857267545
+          },
+          "text": "ansvarar för driften och ledningen av en tandvårdsklinik"
+        },
+        {
+          "a": "7Kxn_MMG_TuY",
+          "b": "ckkD_JhH_Sc6",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 0.9999999999999999,
+            "b": 0.3061070489260933,
+            "shared": 0.5234543481193279
+          },
+          "text": "verksamhetschef inom tandvården"
+        },
+        {
+          "a": "7Kxn_MMG_TuY",
+          "b": "ckkD_JhH_Sc6",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.2252546191451766,
+            "shared": 0.38717657333123195
+          },
+          "text": "chef med ansvar för en tandvårdsverksamhet"
+        },
+        {
+          "a": "7Kxn_MMG_TuY",
+          "b": "ckkD_JhH_Sc6",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.14797573617633625,
+            "b": 1.0,
+            "shared": 0.1481312487660445
+          },
+          "text": "assistera tandläkare"
+        },
+        {
+          "a": "7Kxn_MMG_TuY",
+          "b": "ckkD_JhH_Sc6",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.0700371661150177,
+            "b": 0.9999999999999999,
+            "shared": 0.01948770034500618
+          },
+          "text": "sterilisering av instrument"
+        },
+        {
+          "a": "7Kxn_MMG_TuY",
+          "b": "ckkD_JhH_Sc6",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.013923713352368423,
+            "b": 0.9999999999999998,
+            "shared": 0.0
+          },
+          "text": "röntgenfotografering"
+        },
+        {
+          "a": "7Kxn_MMG_TuY",
+          "b": "ckkD_JhH_Sc6",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.04215506810860803,
+            "b": 0.9999999999999999,
+            "shared": 0.0
+          },
+          "text": "bedövning"
+        },
+        {
+          "a": "7Kxn_MMG_TuY",
+          "b": "ckkD_JhH_Sc6",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.03909678995395887,
+            "b": 0.9999999999999999,
+            "shared": 0.0
+          },
+          "text": "tidsbokning"
+        },
+        {
+          "a": "7Kxn_MMG_TuY",
+          "b": "ckkD_JhH_Sc6",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.018270633175953115,
+            "b": 0.9999999999999998,
+            "shared": 0.0
+          },
+          "text": "journalhantering"
+        },
+        {
+          "a": "7Kxn_MMG_TuY",
+          "b": "ckkD_JhH_Sc6",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.04818043750499053,
+            "b": 0.9999999999999998,
+            "shared": 0.01710426850248644
+          },
+          "text": "assisterar vid undersökningar och behandlingar"
+        },
+        {
+          "a": "7Kxn_MMG_TuY",
+          "b": "ckkD_JhH_Sc6",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.03876441495029276,
+            "b": 1.0,
+            "shared": 0.020725152609782686
+          },
+          "text": "jobbar med instrumentförberedelse och röntgen"
+        },
+        {
+          "a": "7Kxn_MMG_TuY",
+          "b": "ckkD_JhH_Sc6",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.399374809617578,
+            "b": 1.0000000000000002,
+            "shared": 0.49090773304808616
+          },
+          "text": "sköter tidsbokning och betalningshantering inom tandvård"
+        },
+        {
+          "a": "2hTu_y9K_CxY",
+          "b": "44wU_Cyh_yqp",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 0.9999999999999998,
+            "b": 0.22440839817163735,
+            "shared": 0.13253354233331496
+          },
+          "text": "styra ljusbord"
+        },
+        {
+          "a": "2hTu_y9K_CxY",
+          "b": "44wU_Cyh_yqp",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 0.9999999999999999,
+            "b": 0.3514091615679405,
+            "shared": 0.3120944888034829
+          },
+          "text": "programmera belysningsutrustning"
+        },
+        {
+          "a": "2hTu_y9K_CxY",
+          "b": "44wU_Cyh_yqp",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 0.9999999999999999,
+            "b": 0.173015946687031,
+            "shared": 0.12931567550420509
+          },
+          "text": "arbetsledning inom ljusteamet"
+        },
+        {
+          "a": "2hTu_y9K_CxY",
+          "b": "44wU_Cyh_yqp",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0000000000000002,
+            "b": 0.41272228987324405,
+            "shared": 0.05358987704895639
+          },
+          "text": "logistik kring utrustning"
+        },
+        {
+          "a": "2hTu_y9K_CxY",
+          "b": "44wU_Cyh_yqp",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 0.9999999999999998,
+            "b": 0.058657775502511,
+            "shared": 0.11442920828421585
+          },
+          "text": "felsökning och underhåll"
+        },
+        {
+          "a": "2hTu_y9K_CxY",
+          "b": "44wU_Cyh_yqp",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.01778095101467973,
+            "shared": 0.15770172761055978
+          },
+          "text": "rigga vid inspelningar"
+        },
+        {
+          "a": "2hTu_y9K_CxY",
+          "b": "44wU_Cyh_yqp",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.20138921566942475,
+            "shared": 0.201419354593432
+          },
+          "text": "ansvarar för att programmera ljusbord och leda ljusteamet under en inspelning"
+        },
+        {
+          "a": "2hTu_y9K_CxY",
+          "b": "44wU_Cyh_yqp",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.23184957340537185,
+            "shared": 0.2451302619425276
+          },
+          "text": "sköter logistik, underhåll och felsökning av all belysningsutrustning"
+        },
+        {
+          "a": "2hTu_y9K_CxY",
+          "b": "44wU_Cyh_yqp",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.17516150108090428,
+            "shared": 0.22200490262413114
+          },
+          "text": "riggar och styr belysningen under pågående teaterföreställning"
+        },
+        {
+          "a": "2hTu_y9K_CxY",
+          "b": "44wU_Cyh_yqp",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.22440839817163735,
+            "b": 0.9999999999999999,
+            "shared": 0.13894974473340505
+          },
+          "text": "skapa ljusplaner"
+        },
+        {
+          "a": "2hTu_y9K_CxY",
+          "b": "44wU_Cyh_yqp",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.41272228987324405,
+            "b": 1.0,
+            "shared": 0.06838457848195752
+          },
+          "text": "projektera teknisk utrustning"
+        },
+        {
+          "a": "2hTu_y9K_CxY",
+          "b": "44wU_Cyh_yqp",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.06645522404661339,
+            "b": 1.0000000000000002,
+            "shared": 0.0042355551742084135
+          },
+          "text": "samarbete med arkitekter"
+        },
+        {
+          "a": "2hTu_y9K_CxY",
+          "b": "44wU_Cyh_yqp",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.057892051706992374,
+            "b": 0.9999999999999999,
+            "shared": 0.06013328806636688
+          },
+          "text": "fokus på estetik och funktion"
+        },
+        {
+          "a": "2hTu_y9K_CxY",
+          "b": "44wU_Cyh_yqp",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.058657775502511,
+            "b": 0.9999999999999999,
+            "shared": 0.034389215245838156
+          },
+          "text": "energieffektivitet och hållbarhet"
+        },
+        {
+          "a": "2hTu_y9K_CxY",
+          "b": "44wU_Cyh_yqp",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.16018430705729986,
+            "b": 0.9999999999999999,
+            "shared": 0.09585436561347739
+          },
+          "text": "ljussättning för inomhus- och utomhusmiljöer"
+        },
+        {
+          "a": "2hTu_y9K_CxY",
+          "b": "44wU_Cyh_yqp",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.2489541805435227,
+            "b": 1.0000000000000002,
+            "shared": 0.14651198013536768
+          },
+          "text": "skapar ljusplaner och projekterar utrustning för permanenta miljöer"
+        },
+        {
+          "a": "2hTu_y9K_CxY",
+          "b": "44wU_Cyh_yqp",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.22044184610790898,
+            "b": 1.0,
+            "shared": 0.2146212912412677
+          },
+          "text": "samarbetar med arkitekter för att utforma belysning med fokus på estetik"
+        },
+        {
+          "a": "2hTu_y9K_CxY",
+          "b": "44wU_Cyh_yqp",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.13876348769188462,
+            "b": 1.0,
+            "shared": 0.12016943424396509
+          },
+          "text": "planerar ljussättning för att säkerställa energieffektivitet i utomhusmiljöer"
+        },
+        {
+          "a": "E7nX_ux2_hF9",
+          "b": "kxKW_LiD_FuW",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.17514188816951837,
+            "shared": 0.07316907341671648
+          },
+          "text": "vetenskapligt arbete"
+        },
+        {
+          "a": "E7nX_ux2_hF9",
+          "b": "kxKW_LiD_FuW",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0000000000000002,
+            "b": 0.1451523407715832,
+            "shared": 0.1284257069464025
+          },
+          "text": "arkivvetenskaplig utbildning"
+        },
+        {
+          "a": "E7nX_ux2_hF9",
+          "b": "kxKW_LiD_FuW",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 0.9999999999999999,
+            "b": 0.16439809598093755,
+            "shared": 0.04532881321896985
+          },
+          "text": "informationssäkerhet"
+        },
+        {
+          "a": "E7nX_ux2_hF9",
+          "b": "kxKW_LiD_FuW",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 0.9999999999999999,
+            "b": 0.0014745866781403858,
+            "shared": 0.2102504336637568
+          },
+          "text": "bevarandeansvar"
+        },
+        {
+          "a": "E7nX_ux2_hF9",
+          "b": "kxKW_LiD_FuW",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.04378252940350777,
+            "shared": 0.08243614602599712
+          },
+          "text": "lagar och förordningar"
+        },
+        {
+          "a": "E7nX_ux2_hF9",
+          "b": "kxKW_LiD_FuW",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 0.9999999999999998,
+            "b": 0.1523992166467985,
+            "shared": 0.04202041139759345
+          },
+          "text": "informationsvetenskap"
+        },
+        {
+          "a": "E7nX_ux2_hF9",
+          "b": "kxKW_LiD_FuW",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0000000000000002,
+            "b": 0.17466364151830974,
+            "shared": 0.20662712780824516
+          },
+          "text": "arbetar med vetenskapligt fokus på bevarande och informationssäkerhet"
+        },
+        {
+          "a": "E7nX_ux2_hF9",
+          "b": "kxKW_LiD_FuW",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.034375959665961145,
+            "shared": 0.27367446213811303
+          },
+          "text": "ansvarar för att handlingar bevaras för framtiden enligt lagar och förordningar"
+        },
+        {
+          "a": "E7nX_ux2_hF9",
+          "b": "kxKW_LiD_FuW",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 0.9999999999999999,
+            "b": 0.12103737588086738,
+            "shared": 0.17333327017228148
+          },
+          "text": "har högskoleutbildning inom arkivvetenskap och hanterar information"
+        },
+        {
+          "a": "E7nX_ux2_hF9",
+          "b": "kxKW_LiD_FuW",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.028714386976224457,
+            "b": 1.0,
+            "shared": 0.0425864841730976
+          },
+          "text": "insortering av akter"
+        },
+        {
+          "a": "E7nX_ux2_hF9",
+          "b": "kxKW_LiD_FuW",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.049130746530106004,
+            "b": 1.0000000000000002,
+            "shared": 0.017045944028566372
+          },
+          "text": "skanning"
+        },
+        {
+          "a": "E7nX_ux2_hF9",
+          "b": "kxKW_LiD_FuW",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.16439809598093755,
+            "b": 0.9999999999999999,
+            "shared": 0.026324337627119047
+          },
+          "text": "formatkonvertering"
+        },
+        {
+          "a": "E7nX_ux2_hF9",
+          "b": "kxKW_LiD_FuW",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.17514188816951837,
+            "b": 0.9999999999999999,
+            "shared": 0.04330508137896101
+          },
+          "text": "förteckningsarbete"
+        },
+        {
+          "a": "E7nX_ux2_hF9",
+          "b": "kxKW_LiD_FuW",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.055805371247834044,
+            "b": 0.9999999999999999,
+            "shared": 0.09750679777327582
+          },
+          "text": "inventering"
+        },
+        {
+          "a": "E7nX_ux2_hF9",
+          "b": "kxKW_LiD_FuW",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.1451523407715832,
+            "b": 0.9999999999999999,
+            "shared": 0.2608268839950031
+          },
+          "text": "systemförvaltning av digitala arkivsystem"
+        },
+        {
+          "a": "E7nX_ux2_hF9",
+          "b": "kxKW_LiD_FuW",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.03726468182197944,
+            "b": 1.0,
+            "shared": 0.18052570203365795
+          },
+          "text": "sköter praktisk insortering av akter och skanning av dokument"
+        },
+        {
+          "a": "E7nX_ux2_hF9",
+          "b": "kxKW_LiD_FuW",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.17466364151830974,
+            "b": 1.0,
+            "shared": 0.11554317826282054
+          },
+          "text": "arbetar med förteckningsarbete och formatkonvertering"
+        },
+        {
+          "a": "E7nX_ux2_hF9",
+          "b": "kxKW_LiD_FuW",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.132304387166749,
+            "b": 1.0,
+            "shared": 0.23959110735127429
+          },
+          "text": "sköter inventering och systemförvaltning av digitala arkivsystem"
+        },
+        {
+          "a": "1Kv4_35e_BX3",
+          "b": "4EZJ_3HN_fUK",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0000000000000002,
+            "b": 0.4919742078474041,
+            "shared": 0.6130456295686981
+          },
+          "text": "leda ventilationsarbeten"
+        },
+        {
+          "a": "1Kv4_35e_BX3",
+          "b": "4EZJ_3HN_fUK",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 0.9999999999999999,
+            "b": 0.030682220102944403,
+            "shared": 0.00652699162611862
+          },
+          "text": "bevaka maskiner och material"
+        },
+        {
+          "a": "1Kv4_35e_BX3",
+          "b": "4EZJ_3HN_fUK",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.020522107381384196,
+            "shared": 0.043731406929434696
+          },
+          "text": "samordna med entreprenörer"
+        },
+        {
+          "a": "1Kv4_35e_BX3",
+          "b": "4EZJ_3HN_fUK",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.10260077047457894,
+            "shared": 0.03232877589985973
+          },
+          "text": "ansvar för ritningar"
+        },
+        {
+          "a": "1Kv4_35e_BX3",
+          "b": "4EZJ_3HN_fUK",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 0.9999999999999999,
+            "b": 0.09297500070377018,
+            "shared": 0.08784160219266922
+          },
+          "text": "följa säkerhetsföreskrifter"
+        },
+        {
+          "a": "1Kv4_35e_BX3",
+          "b": "4EZJ_3HN_fUK",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 0.9999999999999999,
+            "b": 0.07224183719673367,
+            "shared": 0.09191105767489513
+          },
+          "text": "ledarskap på byggarbetsplatsen"
+        },
+        {
+          "a": "1Kv4_35e_BX3",
+          "b": "4EZJ_3HN_fUK",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.16211300003914111,
+            "shared": 0.08219369812312385
+          },
+          "text": "Jag ansvarar för att arbetet följer ritningar och att säkerhetsföreskrifter efterlevs på bygget."
+        },
+        {
+          "a": "1Kv4_35e_BX3",
+          "b": "4EZJ_3HN_fUK",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 0.9999999999999999,
+            "b": 0.08582234082721975,
+            "shared": 0.10732891305854375
+          },
+          "text": "Min roll är att samordna arbetet med andra entreprenörer och se till att material finns på plats."
+        },
+        {
+          "a": "1Kv4_35e_BX3",
+          "b": "4EZJ_3HN_fUK",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0000000000000002,
+            "b": 0.2755465372097169,
+            "shared": 0.3676158209284339
+          },
+          "text": "Jag leder ventilationsarbetena på byggarbetsplatsen och bevakar maskinparken."
+        },
+        {
+          "a": "1Kv4_35e_BX3",
+          "b": "4EZJ_3HN_fUK",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.42620887124022017,
+            "b": 1.0000000000000002,
+            "shared": 0.48769374217346717
+          },
+          "text": "tillverka ventilationskanaler"
+        },
+        {
+          "a": "1Kv4_35e_BX3",
+          "b": "4EZJ_3HN_fUK",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.0951143657266414,
+            "b": 0.9999999999999999,
+            "shared": 0.003459557858963591
+          },
+          "text": "montera kundanpassade lösningar"
+        },
+        {
+          "a": "1Kv4_35e_BX3",
+          "b": "4EZJ_3HN_fUK",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.10525811079522099,
+            "b": 1.0,
+            "shared": 0.22362602986265845
+          },
+          "text": "arbeta i verkstad"
+        },
+        {
+          "a": "1Kv4_35e_BX3",
+          "b": "4EZJ_3HN_fUK",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.09297500070377018,
+            "b": 1.0,
+            "shared": 0.02059176099576318
+          },
+          "text": "sköta drift och underhåll"
+        },
+        {
+          "a": "1Kv4_35e_BX3",
+          "b": "4EZJ_3HN_fUK",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.4919742078474041,
+            "b": 1.0,
+            "shared": 0.48417576078433866
+          },
+          "text": "hantera ventilationsanläggningar"
+        },
+        {
+          "a": "1Kv4_35e_BX3",
+          "b": "4EZJ_3HN_fUK",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.011668871815089623,
+            "b": 1.0000000000000002,
+            "shared": 0.03261085950441509
+          },
+          "text": "montera passbitar"
+        },
+        {
+          "a": "1Kv4_35e_BX3",
+          "b": "4EZJ_3HN_fUK",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.233537645105225,
+            "b": 1.0000000000000002,
+            "shared": 0.2694208263059027
+          },
+          "text": "Jag tillverkar och monterar både standardiserade och kundanpassade ventilationskanaler."
+        },
+        {
+          "a": "1Kv4_35e_BX3",
+          "b": "4EZJ_3HN_fUK",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.3559936216142461,
+            "b": 1.0,
+            "shared": 0.4507452720323372
+          },
+          "text": "Jag arbetar med att sköta drift och underhåll av större ventilationsanläggningar."
+        },
+        {
+          "a": "1Kv4_35e_BX3",
+          "b": "4EZJ_3HN_fUK",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.08402471478004653,
+            "b": 0.9999999999999999,
+            "shared": 0.06680845049928241
+          },
+          "text": "Jag tillverkar kanaler och passbitar i verkstad för montering inomhus."
+        },
+        {
+          "a": "3MDV_uBQ_6oG",
+          "b": "cAYP_wEe_u3D",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.0073421970081692855,
+            "shared": 0.0053051761828069805
+          },
+          "text": "litteraturstudier"
+        },
+        {
+          "a": "3MDV_uBQ_6oG",
+          "b": "cAYP_wEe_u3D",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.0034207014948177896,
+            "shared": 0.0021059370623769656
+          },
+          "text": "fältstudier"
+        },
+        {
+          "a": "3MDV_uBQ_6oG",
+          "b": "cAYP_wEe_u3D",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 0.9999999999999999,
+            "b": 0.06789111756302575,
+            "shared": 0.15917690249143165
+          },
+          "text": "framtagning av forskningsunderlag"
+        },
+        {
+          "a": "3MDV_uBQ_6oG",
+          "b": "cAYP_wEe_u3D",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.34036617121539203,
+            "shared": 0.35792554494153267
+          },
+          "text": "analysera trafikbeteenden"
+        },
+        {
+          "a": "3MDV_uBQ_6oG",
+          "b": "cAYP_wEe_u3D",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.02163492050854174,
+            "shared": 0.0
+          },
+          "text": "statistik"
+        },
+        {
+          "a": "3MDV_uBQ_6oG",
+          "b": "cAYP_wEe_u3D",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 0.9999999999999999,
+            "b": 0.056116496018760835,
+            "shared": 0.37534356310275535
+          },
+          "text": "utvärdering av åtgärder"
+        },
+        {
+          "a": "3MDV_uBQ_6oG",
+          "b": "cAYP_wEe_u3D",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 0.9999999999999999,
+            "b": 0.01733710283176448,
+            "shared": 0.11420575756910287
+          },
+          "text": "arbetar med litteraturstudier och fältstudier för att ta fram ny kunskap"
+        },
+        {
+          "a": "3MDV_uBQ_6oG",
+          "b": "cAYP_wEe_u3D",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.23338938052123812,
+            "shared": 0.24777553059714685
+          },
+          "text": "utför statistik och analyser av trafikbeteenden för att minska dödsfall"
+        },
+        {
+          "a": "3MDV_uBQ_6oG",
+          "b": "cAYP_wEe_u3D",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.08252750024374786,
+            "shared": 0.06680828110951666
+          },
+          "text": "tar fram forskningsunderlag och rapporter baserat på datainsamling"
+        },
+        {
+          "a": "3MDV_uBQ_6oG",
+          "b": "cAYP_wEe_u3D",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.06789111756302575,
+            "b": 0.9999999999999999,
+            "shared": 0.0017060117518900484
+          },
+          "text": "utformning av vägmiljöer"
+        },
+        {
+          "a": "3MDV_uBQ_6oG",
+          "b": "cAYP_wEe_u3D",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.34036617121539203,
+            "b": 1.0000000000000002,
+            "shared": 0.2981865455686141
+          },
+          "text": "trafikflödesanalyser"
+        },
+        {
+          "a": "3MDV_uBQ_6oG",
+          "b": "cAYP_wEe_u3D",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.151145346713035,
+            "b": 1.0,
+            "shared": 0.1355557846513876
+          },
+          "text": "handlägga lokala trafikföreskrifter"
+        },
+        {
+          "a": "3MDV_uBQ_6oG",
+          "b": "cAYP_wEe_u3D",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.19279529146759708,
+            "b": 0.9999999999999998,
+            "shared": 0.16890327778266911
+          },
+          "text": "trafikanordningsplaner"
+        },
+        {
+          "a": "3MDV_uBQ_6oG",
+          "b": "cAYP_wEe_u3D",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.14352559372769289,
+            "b": 1.0,
+            "shared": 0.12711652353597816
+          },
+          "text": "utredningar kring kollektivtrafik"
+        },
+        {
+          "a": "3MDV_uBQ_6oG",
+          "b": "cAYP_wEe_u3D",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.09283208875538349,
+            "b": 0.9999999999999999,
+            "shared": 0.0038758216423619113
+          },
+          "text": "besluta i ärenden om vägvisning"
+        },
+        {
+          "a": "3MDV_uBQ_6oG",
+          "b": "cAYP_wEe_u3D",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.15859153866186287,
+            "b": 0.9999999999999999,
+            "shared": 0.14099831746006986
+          },
+          "text": "planerar och utformar väg- och trafikmiljöer"
+        },
+        {
+          "a": "3MDV_uBQ_6oG",
+          "b": "cAYP_wEe_u3D",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.2005666153890583,
+            "b": 1.0,
+            "shared": 0.11823123228579951
+          },
+          "text": "handlägger ärenden om trafikföreskrifter och vägvisning"
+        },
+        {
+          "a": "3MDV_uBQ_6oG",
+          "b": "cAYP_wEe_u3D",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.25395531277733524,
+            "b": 0.9999999999999999,
+            "shared": 0.22619577630448412
+          },
+          "text": "gör trafikflödesanalyser och utredningar kring hållbara transporter"
+        },
+        {
+          "a": "HWPy_9jT_TX2",
+          "b": "hfq6_Rpw_EKK",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.043367175829818055,
+            "shared": 0.023733888758726927
+          },
+          "text": "genomföra synundersökningar"
+        },
+        {
+          "a": "HWPy_9jT_TX2",
+          "b": "hfq6_Rpw_EKK",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.0,
+            "shared": 0.0
+          },
+          "text": "bedöma ögats hälsostatus"
+        },
+        {
+          "a": "HWPy_9jT_TX2",
+          "b": "hfq6_Rpw_EKK",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 0.9999999999999999,
+            "b": 0.08117174242872037,
+            "shared": 0.04651023389803625
+          },
+          "text": "remittera vid misstanke om ögonsjukdom"
+        },
+        {
+          "a": "HWPy_9jT_TX2",
+          "b": "hfq6_Rpw_EKK",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.047066148639145954,
+            "shared": 0.0
+          },
+          "text": "legitimationskrav"
+        },
+        {
+          "a": "HWPy_9jT_TX2",
+          "b": "hfq6_Rpw_EKK",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.005781806625413146,
+            "shared": 0.0
+          },
+          "text": "skyddad titel"
+        },
+        {
+          "a": "HWPy_9jT_TX2",
+          "b": "hfq6_Rpw_EKK",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.04361384499706534,
+            "shared": 0.011827898611199806
+          },
+          "text": "journalföra undersökningar"
+        },
+        {
+          "a": "HWPy_9jT_TX2",
+          "b": "hfq6_Rpw_EKK",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0000000000000002,
+            "b": 0.10082257976334423,
+            "shared": 0.015428917827287562
+          },
+          "text": "Jag utför synundersökningar och bedömer ögats hälsa."
+        },
+        {
+          "a": "HWPy_9jT_TX2",
+          "b": "hfq6_Rpw_EKK",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 1.0,
+            "b": 0.10020810722081779,
+            "shared": 0.08882400801103096
+          },
+          "text": "Arbetar med att remittera patienter vid misstanke om ögonsjukdom."
+        },
+        {
+          "a": "HWPy_9jT_TX2",
+          "b": "hfq6_Rpw_EKK",
+          "decision": "a",
+          "expected": "a",
+          "similarities": {
+            "a": 0.9999999999999999,
+            "b": 0.06388378537035629,
+            "shared": 0.03093131129489306
+          },
+          "text": "Ansvarar för att journalföra alla synundersökningar."
+        },
+        {
+          "a": "HWPy_9jT_TX2",
+          "b": "hfq6_Rpw_EKK",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.024950431839470155,
+            "b": 1.0,
+            "shared": 0.4290975191821636
+          },
+          "text": "biträder med kundkontakter"
+        },
+        {
+          "a": "HWPy_9jT_TX2",
+          "b": "hfq6_Rpw_EKK",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.047066148639145954,
+            "b": 1.0,
+            "shared": 0.012126360693920398
+          },
+          "text": "anpassa enligt ordination"
+        },
+        {
+          "a": "HWPy_9jT_TX2",
+          "b": "hfq6_Rpw_EKK",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.06740479454298902,
+            "b": 0.9999999999999999,
+            "shared": 0.3694752224740597
+          },
+          "text": "lämna ut glasögon"
+        },
+        {
+          "a": "HWPy_9jT_TX2",
+          "b": "hfq6_Rpw_EKK",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.08117174242872037,
+            "b": 0.9999999999999999,
+            "shared": 0.2813896888845322
+          },
+          "text": "justera iordningställda glasögon"
+        },
+        {
+          "a": "HWPy_9jT_TX2",
+          "b": "hfq6_Rpw_EKK",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.06232084005341469,
+            "b": 1.0000000000000002,
+            "shared": 0.0543691962002292
+          },
+          "text": "instruktioner om hantering"
+        },
+        {
+          "a": "HWPy_9jT_TX2",
+          "b": "hfq6_Rpw_EKK",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.05935895553409837,
+            "b": 1.0000000000000002,
+            "shared": 0.39057429893346746
+          },
+          "text": "allmän rådgivning"
+        },
+        {
+          "a": "HWPy_9jT_TX2",
+          "b": "hfq6_Rpw_EKK",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.10082257976334423,
+            "b": 1.0,
+            "shared": 0.4768448719183865
+          },
+          "text": "Jag hjälper kunder med allmän rådgivning om glasögon."
+        },
+        {
+          "a": "HWPy_9jT_TX2",
+          "b": "hfq6_Rpw_EKK",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.10020810722081779,
+            "b": 1.0,
+            "shared": 0.12244898406881055
+          },
+          "text": "Arbetar med att anpassa linser enligt ordination."
+        },
+        {
+          "a": "HWPy_9jT_TX2",
+          "b": "hfq6_Rpw_EKK",
+          "decision": "b",
+          "expected": "b",
+          "similarities": {
+            "a": 0.04975184494383664,
+            "b": 1.0,
+            "shared": 0.2815165991057023
+          },
+          "text": "Sköter utlämning och justering av färdiga glasögon."
+        }
+      ],
+      "neutral_count": 0,
+      "wrong_side_count": 0
+    },
+    "indistinguishable": {
+      "cases": 2,
+      "details": [
+        {
+          "a": "3Uhk_4A8_cy6",
+          "b": "5cVu_BVm_nNG",
+          "decision": "neutral",
+          "similarities": {
+            "a": 0.0,
+            "b": 0.0,
+            "shared": 0.0
+          },
+          "text": "arbetar inom polisen"
+        },
+        {
+          "a": "3Uhk_4A8_cy6",
+          "b": "5cVu_BVm_nNG",
+          "decision": "neutral",
+          "similarities": {
+            "a": 0.0,
+            "b": 0.0,
+            "shared": 0.0
+          },
+          "text": "verksam inom rättsväsendet"
+        }
+      ],
+      "neutral_count": 2
+    },
+    "shared": {
+      "cases": 24,
+      "details": [
+        {
+          "a": "2546_5Ve_4ep",
+          "b": "49G8_LRE_73K",
+          "decision": "neutral",
+          "similarities": {
+            "a": 0.5006233888938214,
+            "b": 0.25108087886904956,
+            "shared": 0.9999999999999999
+          },
+          "text": "Arbetar med kostymer inom teater, film och tv."
+        },
+        {
+          "a": "2546_5Ve_4ep",
+          "b": "49G8_LRE_73K",
+          "decision": "neutral",
+          "similarities": {
+            "a": 0.501809366961505,
+            "b": 0.19266795191525976,
+            "shared": 1.0
+          },
+          "text": "Sköter underhåll och skötsel av kläder i en produktion."
+        },
+        {
+          "a": "31Uw_P9P_AgC",
+          "b": "3RP3_h9J_Hc9",
+          "decision": "neutral",
+          "similarities": {
+            "a": 0.3776826590526172,
+            "b": 0.39575295900353874,
+            "shared": 0.9999999999999999
+          },
+          "text": "Arbetar med att spränga berg vid byggen av tunnlar och vägar."
+        },
+        {
+          "a": "31Uw_P9P_AgC",
+          "b": "3RP3_h9J_Hc9",
+          "decision": "neutral",
+          "similarities": {
+            "a": 0.3161143030344165,
+            "b": 0.34067601680472676,
+            "shared": 1.0
+          },
+          "text": "Använder sprängning för att ta bort berg i samband med anläggningsprojekt."
+        },
+        {
+          "a": "3Uhk_4A8_cy6",
+          "b": "5cVu_BVm_nNG",
+          "decision": "neutral",
+          "similarities": {
+            "a": 0.0,
+            "b": 0.0,
+            "shared": 0.0
+          },
+          "text": "arbetar inom polisen"
+        },
+        {
+          "a": "3Uhk_4A8_cy6",
+          "b": "5cVu_BVm_nNG",
+          "decision": "neutral",
+          "similarities": {
+            "a": 0.0,
+            "b": 0.0,
+            "shared": 0.0
+          },
+          "text": "verksam inom rättsväsendet"
+        },
+        {
+          "a": "te5X_YVU_JaR",
+          "b": "xBo9_V9m_bfg",
+          "decision": "neutral",
+          "similarities": {
+            "a": 0.30660054979353574,
+            "b": 0.12085154383617433,
+            "shared": 1.0
+          },
+          "text": "utför psykologiska utredningar och bedömningar"
+        },
+        {
+          "a": "te5X_YVU_JaR",
+          "b": "xBo9_V9m_bfg",
+          "decision": "neutral",
+          "similarities": {
+            "a": 0.5363672749694564,
+            "b": 0.11667265346910022,
+            "shared": 1.0
+          },
+          "text": "arbetar med organisationsutveckling och handledning"
+        },
+        {
+          "a": "1gxo_A2w_5A3",
+          "b": "pfiK_oXH_eYR",
+          "decision": "neutral",
+          "similarities": {
+            "a": 0.17200060936608783,
+            "b": 0.3621884276917134,
+            "shared": 1.0
+          },
+          "text": "arbetar med juridisk analys och granskning av rättsliga underlag"
+        },
+        {
+          "a": "1gxo_A2w_5A3",
+          "b": "pfiK_oXH_eYR",
+          "decision": "neutral",
+          "similarities": {
+            "a": 0.4706050071821474,
+            "b": 0.5205546516043258,
+            "shared": 0.9999999999999999
+          },
+          "text": "deltar i förhandlingar och arbetar med juridiska ärenden"
+        },
+        {
+          "a": "3RzT_cHB_vVp",
+          "b": "4ve8_yBg_LJZ",
+          "decision": "neutral",
+          "similarities": {
+            "a": 0.3517713928588345,
+            "b": 0.1882989227322212,
+            "shared": 1.0
+          },
+          "text": "Arbetar på en advokatbyrå med juridiska arbetsuppgifter."
+        },
+        {
+          "a": "3RzT_cHB_vVp",
+          "b": "4ve8_yBg_LJZ",
+          "decision": "neutral",
+          "similarities": {
+            "a": 0.10108970722683835,
+            "b": 0.267370740595672,
+            "shared": 0.9999999999999999
+          },
+          "text": "Hanterar kontakt med klienter och myndigheter i juridiska sammanhang."
+        },
+        {
+          "a": "7Kxn_MMG_TuY",
+          "b": "ckkD_JhH_Sc6",
+          "decision": "neutral",
+          "similarities": {
+            "a": 0.6199548976229077,
+            "b": 0.49090773304808616,
+            "shared": 1.0
+          },
+          "text": "arbetar inom tandvård"
+        },
+        {
+          "a": "7Kxn_MMG_TuY",
+          "b": "ckkD_JhH_Sc6",
+          "decision": "neutral",
+          "similarities": {
+            "a": 0.2834771213745096,
+            "b": 0.08152314359778047,
+            "shared": 0.9999999999999999
+          },
+          "text": "verksam inom den dentala sektorn"
+        },
+        {
+          "a": "2hTu_y9K_CxY",
+          "b": "44wU_Cyh_yqp",
+          "decision": "neutral",
+          "similarities": {
+            "a": 0.3120944888034829,
+            "b": 0.2146212912412677,
+            "shared": 1.0
+          },
+          "text": "planerar och justerar belysning vid evenemang"
+        },
+        {
+          "a": "2hTu_y9K_CxY",
+          "b": "44wU_Cyh_yqp",
+          "decision": "neutral",
+          "similarities": {
+            "a": 0.201419354593432,
+            "b": 0.13894974473340505,
+            "shared": 0.9999999999999999
+          },
+          "text": "deltar i riggning och anpassar ljus under produktionens gång"
+        },
+        {
+          "a": "E7nX_ux2_hF9",
+          "b": "kxKW_LiD_FuW",
+          "decision": "neutral",
+          "similarities": {
+            "a": 0.27367446213811303,
+            "b": 0.2608268839950031,
+            "shared": 1.0
+          },
+          "text": "arbetar med att organisera och bevara fysiska och digitala arkivhandlingar"
+        },
+        {
+          "a": "E7nX_ux2_hF9",
+          "b": "kxKW_LiD_FuW",
+          "decision": "neutral",
+          "similarities": {
+            "a": 0.17333327017228148,
+            "b": 0.18052570203365795,
+            "shared": 1.0000000000000002
+          },
+          "text": "hanterar gallring och dokumentation inom offentlig sektor"
+        },
+        {
+          "a": "1Kv4_35e_BX3",
+          "b": "4EZJ_3HN_fUK",
+          "decision": "neutral",
+          "similarities": {
+            "a": 0.6130456295686981,
+            "b": 0.48769374217346717,
+            "shared": 1.0
+          },
+          "text": "arbetar med ventilation"
+        },
+        {
+          "a": "1Kv4_35e_BX3",
+          "b": "4EZJ_3HN_fUK",
+          "decision": "neutral",
+          "similarities": {
+            "a": 0.35527454825479327,
+            "b": 0.32092095332960824,
+            "shared": 1.0
+          },
+          "text": "utför uppgifter inom ventilationsbranschen"
+        },
+        {
+          "a": "3MDV_uBQ_6oG",
+          "b": "cAYP_wEe_u3D",
+          "decision": "neutral",
+          "similarities": {
+            "a": 0.35792554494153267,
+            "b": 0.2981865455686141,
+            "shared": 1.0
+          },
+          "text": "arbetar med att analysera trafiksystem för ökad säkerhet"
+        },
+        {
+          "a": "3MDV_uBQ_6oG",
+          "b": "cAYP_wEe_u3D",
+          "decision": "neutral",
+          "similarities": {
+            "a": 0.37534356310275535,
+            "b": 0.15789047899230535,
+            "shared": 1.0
+          },
+          "text": "framtar åtgärder för att förbättra trafiksäkerheten"
+        },
+        {
+          "a": "HWPy_9jT_TX2",
+          "b": "hfq6_Rpw_EKK",
+          "decision": "neutral",
+          "similarities": {
+            "a": 0.04651023389803625,
+            "b": 0.4768448719183865,
+            "shared": 1.0000000000000002
+          },
+          "text": "Ger rådgivning kring glasögon och kontaktlinser."
+        },
+        {
+          "a": "HWPy_9jT_TX2",
+          "b": "hfq6_Rpw_EKK",
+          "decision": "neutral",
+          "similarities": {
+            "a": 0.08882400801103096,
+            "b": 0.4290975191821636,
+            "shared": 0.9999999999999999
+          },
+          "text": "Arbetar med kundkontakt i en optikmiljö."
+        }
+      ],
+      "neutral_count": 24
+    }
+  },
+  "runtime_rule_blob": {
+    "gzip9_bytes": 3697,
+    "pairs": 12,
+    "raw_bytes": 10930
+  },
+  "schema_version": 1,
+  "status": "A593 explicit source-bound pairwise contrast-layer development diagnostic; no opened 17/88 queries read",
+  "targeted_teacher_holdouts": {
+    "challenger": {
+      "cases": 176,
+      "hit_at_5_count": 145,
+      "hit_at_5_rate": 0.823864,
+      "median_rank": 2.0,
+      "mrr": 0.628111,
+      "top1_count": 85,
+      "top1_rate": 0.482955
+    },
+    "control": {
+      "cases": 176,
+      "hit_at_5_count": 137,
+      "hit_at_5_rate": 0.778409,
+      "median_rank": 2.0,
+      "mrr": 0.583095,
+      "top1_count": 75,
+      "top1_rate": 0.426136
+    }
+  },
+  "training_data": {
+    "pairs_distinguishable": 11,
+    "pairs_indistinguishable": 1,
+    "pairs_total": 12,
+    "targeted_concepts": 22
+  }
+}
