@@ -1,0 +1,178 @@
+{
+  "content_sha256_without_self_hash": "93a48ce62952dacbc4db578210c0c37c010e9064e260eee7332fbcc3d96576b7",
+  "failures": [
+    {
+      "a_concept_id": "31Uw_P9P_AgC",
+      "b_concept_id": "3RP3_h9J_Hc9",
+      "error": "invalid response after retries: expected 5 non-empty strings for b_decisive_cues"
+    },
+    {
+      "a_concept_id": "te5X_YVU_JaR",
+      "b_concept_id": "xBo9_V9m_bfg",
+      "error": "invalid response after retries: expected 4 non-empty strings for shared_not_negative"
+    }
+  ],
+  "input_guard": "public canonical label/definition/alternative labels only; no A593 teacher phrases; no opened 17/88 queries",
+  "model": "gemma-4-26b-a4b-it",
+  "pairs": [
+    {
+      "a_concept_id": "2546_5Ve_4ep",
+      "a_evidence": {
+        "alternative_labels": [],
+        "canonical_label": "Kostymmästare",
+        "definition": "Kostymmästare ansvarar för tillverkning, underhåll och skötsel av alla kostymer inom en teater-, film- eller tv-produktion samt leder kostymgruppen. \n\nVanliga arbetsuppgifter är planera och anpassa kostymer, organisera kostymhantering under inspelningar och samarbeta med regissör, kostymdesigner och andra i produktionsgruppen.\n\nKälla: Arbetsförmedlingen, Yrkesnämnden för Film och TV"
+      },
+      "a_label": "Kostymmästare",
+      "analysis": {
+        "a_decisive_cues": [
+          "tillverkning av kostymer",
+          "leder kostymgruppen",
+          "planera kostymer",
+          "samarbeta med kostymdesigner",
+          "ansvarar för hela kostymhanteringen i produktionen"
+        ],
+        "ambiguous_do_not_force": [
+          "arbetar med klädvård och underhåll av kostymer i en filmproduktion",
+          "sköter kostymförrådet och ser till att kläderna är i ordning",
+          "utför enklare lagningar och passningar inför en föreställning"
+        ],
+        "anti_overfit_rules": [
+          "Lär inte modellen att 'kostym' ensamt definierar rollen",
+          "Lär inte modellen att 'film och tv' exkluderar den ena rollen",
+          "Lär inte modellen att 'lagning' automatiskt innebär roll B"
+        ],
+        "b_decisive_cues": [
+          "snabba kostymbyten under föreställningar",
+          "assistera skådespelare med påklädning inför scen",
+          "hantera utrustning och maskiner för kostymarbete",
+          "praktiskt stöd vid repetitioner",
+          "se till att artister har rätt tillbehör inför varje scen"
+        ],
+        "distinguishable_from_free_text": true,
+        "hard_negatives_for_a": [
+          "ansvarar för att planera och tillverka alla plagg för en teateruppsättning och leder teamet",
+          "sköter hela processen från designsamarbete till färdigställd kostym för film",
+          "ledare för produktionens klädavdelning med fokus på skrädderi och planering",
+          "expert på att skapa och anpassa kostymer för stora tv-produktioner"
+        ],
+        "hard_negatives_for_b": [
+          "arbetar med klädvård och enklare lagningar i en filmproduktion",
+          "ser till att skådespelarna har rätt kläder och tillbehör redo",
+          "sköter underhåll av kostymer och ordning i förrådet på teatern",
+          "hjälper till med passningar och klädhantering under inspelning"
+        ],
+        "shared_not_negative": [
+          "teater, film eller tv",
+          "kostymhantering",
+          "klädvård",
+          "underhåll av kostymer"
+        ],
+        "why_confusable": "Båda rollerna verkar inom samma miljö (film/teater) och använder identisk terminologi kring 'kostym', 'klädvård' och 'underhåll', men skiljer sig i om fokus ligger på skapande/ledning (A) eller operativt stöd/påklädning (B)."
+      },
+      "b_concept_id": "49G8_LRE_73K",
+      "b_evidence": {
+        "alternative_labels": [
+          "Kostymtekniker",
+          "Påklädare"
+        ],
+        "canonical_label": "Kostymtekniker/Påklädare",
+        "definition": "Kostymtekniker, även kallad påklädare, arbetar i teater, film och tv med att se till att skådespelare och artister har rätt kostymer och tillbehör inför varje scen. \n\nArbetet omfattar klädvård, enklare lagningar, passningar och snabba kostymbyten under repetitioner och föreställningar. Rollen innebär också att hålla ordning i kostymförråd samt sköta och underhålla utrustning och maskiner för kostymarbete.\n\nKälla: div jobbannonser"
+      },
+      "b_label": "Kostymtekniker/Påklädare",
+      "confusion_count_sum": 99,
+      "usage_metadata": {
+        "candidatesTokenCount": 682,
+        "promptTokenCount": 1161,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1161
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 1843
+      }
+    },
+    {
+      "a_concept_id": "3Uhk_4A8_cy6",
+      "a_evidence": {
+        "alternative_labels": [],
+        "canonical_label": "Polissekreterare",
+        "definition": "Polissekreterare"
+      },
+      "a_label": "Polissekreterare",
+      "analysis": {
+        "a_decisive_cues": [
+          "administrativt stöd",
+          "handläggning av ärenden",
+          "dokumentation och arkivering",
+          "stödjande funktion inom myndigheten",
+          "kontorsarbete inom polisen"
+        ],
+        "ambiguous_do_not_force": [
+          "arbetar inom polisen",
+          "en person som jobbar på polisstationen",
+          "anställd inom rättsväsendet med koppling till polisen"
+        ],
+        "anti_overfit_rules": [
+          "Lär inte modellen att ordet 'polis' ensamt definierar rollen",
+          "Lär inte modellen att 'ledarskap' automatiskt exkluderar administrativa roller",
+          "Lär inte modellen att 'myndighet' är en unik signal för en specifik titel"
+        ],
+        "b_decisive_cues": [
+          "operativt ledningsansvar",
+          "strategiskt beslutsfattande",
+          "chef för polisenheten",
+          "tillsyn av polismyndighetens verksamhet",
+          "högre befälsposition"
+        ],
+        "distinguishable_from_free_text": true,
+        "hard_negatives_for_a": [
+          "administrativt stöd med ansvar för polisenhetens dokumentation",
+          "handläggare som sköter pappersarbetet på polisstationen",
+          "kontorspersonal som stöttar den polisiära verksamheten",
+          "person som sköter ärendehantering inom polisen"
+        ],
+        "hard_negatives_for_b": [
+          "högt uppsatt chef inom polisen",
+          "ansvarig för ledningen av den lokala polisenheten",
+          "operativ ledare med ansvar för polisens arbete",
+          "person med strategiskt ansvar inom polismyndigheten"
+        ],
+        "shared_not_negative": [
+          "polis",
+          "polisen",
+          "polismyndigheten",
+          "rättsväsendet"
+        ],
+        "why_confusable": "Båda yrkena delar rotordet 'polis' och verkar inom samma organisation, vilket gör att en lexical sökning ofta missar den fundamentala skillnaden mellan administrativt stöd (A) och operativt ledarskap (B)."
+      },
+      "b_concept_id": "5cVu_BVm_nNG",
+      "b_evidence": {
+        "alternative_labels": [],
+        "canonical_label": "Polismästare",
+        "definition": "Polismästare"
+      },
+      "b_label": "Polismästare",
+      "confusion_count_sum": 55,
+      "usage_metadata": {
+        "candidatesTokenCount": 554,
+        "promptTokenCount": 910,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 910
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 1464
+      }
+    }
+  ],
+  "pairs_requested": 4,
+  "pairs_successful": 2,
+  "schema_version": 1,
+  "selection": "top non-protected A593 corpus-internal hard-negative pairs",
+  "status": "qualitative capability probe; not accuracy evidence and not training data unless separately promoted",
+  "thinking_level": "minimal"
+}
