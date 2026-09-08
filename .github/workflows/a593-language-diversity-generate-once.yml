@@ -33,10 +33,10 @@ jobs:
         run: >-
           python -m py_compile
           scripts/generate_a593_language_diversity_falsifier.py
-          scripts/run_a593_language_diversity_falsifier_v2.py
+          scripts/run_a593_language_diversity_falsifier_v3.py
       - name: Generate independent training and held-out language
         run: >-
-          python scripts/run_a593_language_diversity_falsifier_v2.py
+          python scripts/run_a593_language_diversity_falsifier_v3.py
           --teacher artifacts/a593/gemma-a593-teacher.jsonl
           --cases 150
           --batch-size 12
@@ -44,6 +44,16 @@ jobs:
           --training-output artifacts/a593-language-diversity-training-v0.jsonl
           --holdout-output artifacts/a593-language-diversity-holdout-v0.jsonl
           --summary artifacts/a593-language-diversity-generation-v0.json
+      - name: Preserve generated outputs even if final validation fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: a593-language-diversity-checkpoint-v0
+          path: |
+            artifacts/a593-language-diversity-training-v0.jsonl
+            artifacts/a593-language-diversity-holdout-v0.jsonl
+            artifacts/a593-language-diversity-generation-v0.json
+          if-no-files-found: warn
       - name: Freeze corpora and self-remove
         run: |
           cp artifacts/a593-language-diversity-training-v0.jsonl research/training/v31/a593-language-diversity-training-v0.jsonl
