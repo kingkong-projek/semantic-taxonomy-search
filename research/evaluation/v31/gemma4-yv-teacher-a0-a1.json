@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 31,
+  "status": "opened architecture diagnostic; no runtime promotion",
+  "teacher_source": {
+    "model": "gemma-4-26b-a4b-it",
+    "generation_workflow_run_id": 34189574629,
+    "generation_head_sha": "d521562463d0316b01e4e997a15b414732a0a727",
+    "generation_artifact_id": 10042936282,
+    "jsonl_sha256": "1a6e26840480d0cd6ffce23e3214d026cefa202397f4e84115e9fe2ac1e1045b",
+    "requested_concepts": 150,
+    "successful_concepts": 149,
+    "phrases": 1192
+  },
+  "evaluation_run": {
+    "workflow_run_id": 34197942077,
+    "head_sha": "a1a6de0334e1bf125d29846459dca07dbe29bb74",
+    "artifact_id": 10044647651,
+    "artifact_digest": "sha256:7cdf1c057ffd4fc78bf2c3ece711743d683cea40ac23d05a74f951c83ab2685d"
+  },
+  "quality_audit": {
+    "filtered_phrases": 1179,
+    "short_le_2_tokens": 104,
+    "global_exact_duplicate_values": 7,
+    "global_exact_duplicate_extra_occurrences": 7,
+    "within_concept_duplicate_extra_occurrences": 1,
+    "canonical_or_alternative_surface_leaks": 3,
+    "stereotyped_colloquialisms": 9,
+    "filter_policy": "query-independent: remove within-concept exact duplicates, target preferred/alternative-label surface leaks and a frozen small set of stereotyped colloquial stems; do not use evaluation queries or retrieval outcomes"
+  },
+  "a0_concat": {
+    "definition": "canonical BM25 document plus all teacher phrases for the 149 teacher-covered occupations",
+    "canonical_source_truth_333": {
+      "baseline": {"top1": 333, "hit_at_5": 333, "mrr": 1.0},
+      "raw_concat": {"top1": 330, "hit_at_5": 333, "mrr": 0.994995},
+      "filtered_concat": {"top1": 330, "hit_at_5": 333, "mrr": 0.994995},
+      "rank_changes": 3
+    },
+    "strict_source_attested_17": {
+      "baseline": {"top1": 6, "hit_at_5": 9, "mrr": 0.418849},
+      "filtered_concat": {"top1": 6, "hit_at_5": 9, "mrr": 0.443722},
+      "teacher_covered_targets": 2,
+      "canonical_plus_teacher_lane_oracle_hit_at_5": 10
+    },
+    "opened_stress_hit_at_5": {
+      "baseline": {"direct": "8/12", "colloquial": "2/12", "noisy": "5/8", "indirect": "3/8"},
+      "filtered_concat": {"direct": "10/12", "colloquial": "3/12", "noisy": "7/8", "indirect": "4/8"},
+      "canonical_plus_filtered_teacher_oracle": {"direct": "10/12", "colloquial": "7/12", "noisy": "7/8", "indirect": "5/8"}
+    },
+    "decision": "reject concatenation: teacher language contains complementary signal but extending canonical BM25 documents regresses the frozen canonical Top1 guard and fails to improve strict-source Hit@5"
+  },
+  "a1_guarded_single_slot": {
+    "definition": "canonical rank 1 -> one positive-score filtered teacher-BM25 candidate -> remaining canonical order",
+    "canonical_source_truth_333": {"top1": 333, "hit_at_5": 333, "mrr": 1.0, "rank_changes": 0},
+    "strict_source_attested_17": {
+      "baseline": {"top1": 6, "hit_at_5": 9, "mrr": 0.418849},
+      "a1": {"top1": 6, "hit_at_5": 9, "mrr": 0.433067}
+    },
+    "opened_stress_hit_at_5": {
+      "baseline": {"direct": "8/12", "colloquial": "2/12", "noisy": "5/8", "indirect": "3/8"},
+      "a1": {"direct": "8/12", "colloquial": "3/12", "noisy": "5/8", "indirect": "4/8"}
+    },
+    "negative_or_empty_clarify": {
+      "cases": 13,
+      "teacher_positive_token_match": 11,
+      "examples": [
+        "Jag hjälper människor -> Kock storhushåll",
+        "och av på ut med till för från -> Rekryterare/Rekryteringskonsult",
+        "Min chef är dum och kaffet är slut -> Biträdande rektor"
+      ]
+    },
+    "decision": "reject A1 as a promoted fusion: it preserves canonical behavior but produces no strict-source Hit@5 gain, only small opened-stress gains, and demonstrates an unresolved abstention/calibration failure"
+  },
+  "conclusion": {
+    "retained_evidence": "Gemma-generated sequence-level user language is complementary candidate evidence, especially for colloquial/indirect opened stress cases.",
+    "rejected": [
+      "raw teacher text as canonical truth",
+      "canonical+teacher document concatenation",
+      "one unconditional teacher slot after canonical rank 1"
+    ],
+    "next_action": "improve teacher corpus quality from source-only quality rules, expand teacher coverage beyond the current high-demand 149 concepts, keep teacher evidence provenance-separated, and make abstention/calibration a hard gate before any fusion promotion",
+    "promotion_rule": "no retrieval/fusion/runtime promotion may be selected from these opened cases; fresh independent stream-separated evidence remains required"
+  }
+}
