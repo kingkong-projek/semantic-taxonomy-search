@@ -1,0 +1,69 @@
+{
+  "id": "compile-time-semantic-architecture-breadth-result-v0",
+  "date": "2026-09-09",
+  "decision": {
+    "winner_family": "A_teacher_expanded_sparse",
+    "losers": [
+      "B_supervised_sparse_v0",
+      "C_task_atom_bm25_v0",
+      "E_lowrank64_v0"
+    ],
+    "deferred_D_activated": false,
+    "a2105_generation": "paused",
+    "next_question": "training-language distribution within frozen A593 A-family",
+    "simplicity_contract": "exact/canonical lexical route + one semantic description ranker/index"
+  },
+  "hard_confusion_66": {
+    "A_teacher_expanded_sparse": {
+      "top1": 62,
+      "hit_at_5": 66,
+      "mrr": 0.969697,
+      "pairwise_correct": 63,
+      "pairwise_ties": 0
+    },
+    "B_supervised_sparse_v0": {
+      "top1": 58,
+      "hit_at_5": 63,
+      "mrr": 0.907339,
+      "pairwise_correct": 61,
+      "pairwise_ties": 0
+    },
+    "C_task_atom_bm25_v0": {
+      "top1": 46,
+      "hit_at_5": 55,
+      "mrr": 0.774881,
+      "pairwise_correct": 50,
+      "pairwise_ties": 7
+    },
+    "E_lowrank64_int8_v0": {
+      "top1": 46,
+      "hit_at_5": 63,
+      "mrr": 0.805868,
+      "pairwise_correct": 56,
+      "pairwise_ties": 0,
+      "gzip9_bytes_estimate": 839713
+    }
+  },
+  "construction_diagnostics": {
+    "B_slot7": {
+      "same_feature_centroid_top1": 165,
+      "same_feature_centroid_hit5": 355,
+      "B_signed_int8_top300_top1": 147,
+      "B_signed_int8_top300_hit5": 249
+    },
+    "E_slot7": {
+      "full_centroid_top1": 174,
+      "full_centroid_hit5": 362,
+      "E_int8_top1": 92,
+      "E_int8_hit5": 299,
+      "gzip9_bytes_estimate": 813426
+    }
+  },
+  "evidence": [
+    "research/evaluation/v31/compile-time-semantic-a593-supervised-sparse-breadth.json",
+    "research/evaluation/v31/compile-time-semantic-a593-breadth-proxy-abc.json",
+    "research/evaluation/v31/compile-time-semantic-a593-hard-confusion-breadth-abc.json",
+    "research/evaluation/v31/compile-time-semantic-a593-lowrank-breadth.json"
+  ],
+  "evidence_warning": "Synthetic/model-authored and corpus-internal architecture evidence; not a human/user accuracy estimate. Opened 17/88 did not participate in architecture selection."
+}
