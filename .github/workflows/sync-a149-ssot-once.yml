@@ -50,6 +50,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git rm .github/workflows/sync-a149-ssot-once.yml
           git add docs/research-plan.md
-          git diff --cached --check
           git commit -m "docs: sync A149 tournament decision"
           git push
