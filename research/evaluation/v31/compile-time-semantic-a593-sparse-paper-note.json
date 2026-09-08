@@ -1,0 +1,142 @@
+{
+  "char_centroid_variants": {
+    "char34_centroid_u8_top100": {
+      "cases": 4744,
+      "char_wb_ngram_range": [
+        3,
+        4
+      ],
+      "fold_artifact_gzip9_bytes_mean": 185050,
+      "fold_artifact_raw_bytes_mean": 227930,
+      "fold_feature_count_mean": 10066,
+      "fold_nonzero_weight_count_mean": 59300,
+      "hit_at_5_count": 2695,
+      "hit_at_5_rate": 0.568086,
+      "median_rank": 4.0,
+      "min_phrase_df": 2,
+      "mrr": 0.41662,
+      "quantization": "global uint8 over normalized centroid weights",
+      "top1_count": 1364,
+      "top1_rate": 0.287521,
+      "topk_features_per_concept": 100
+    },
+    "char34_centroid_u8_top200": {
+      "cases": 4744,
+      "char_wb_ngram_range": [
+        3,
+        4
+      ],
+      "fold_artifact_gzip9_bytes_mean": 331460,
+      "fold_artifact_raw_bytes_mean": 404090,
+      "fold_feature_count_mean": 10066,
+      "fold_nonzero_weight_count_mean": 118020,
+      "hit_at_5_count": 2872,
+      "hit_at_5_rate": 0.605396,
+      "median_rank": 3.0,
+      "min_phrase_df": 2,
+      "mrr": 0.44431,
+      "quantization": "global uint8 over normalized centroid weights",
+      "top1_count": 1474,
+      "top1_rate": 0.310708,
+      "topk_features_per_concept": 200
+    },
+    "char34_centroid_u8_top300": {
+      "cases": 4744,
+      "char_wb_ngram_range": [
+        3,
+        4
+      ],
+      "fold_artifact_gzip9_bytes_mean": 429185,
+      "fold_artifact_raw_bytes_mean": 536886,
+      "fold_feature_count_mean": 10066,
+      "fold_nonzero_weight_count_mean": 162285,
+      "hit_at_5_count": 2928,
+      "hit_at_5_rate": 0.617201,
+      "median_rank": 3.0,
+      "min_phrase_df": 2,
+      "mrr": 0.453526,
+      "quantization": "global uint8 over normalized centroid weights",
+      "top1_count": 1515,
+      "top1_rate": 0.319351,
+      "topk_features_per_concept": 300
+    }
+  },
+  "corpus": {
+    "concepts": 593,
+    "folds": 8,
+    "teacher_phrases": 4744
+  },
+  "guard": "Gemma-authored training-distribution evidence only. Freeze this candidate before any opened 17/88 replay; never tune it from those outcomes.",
+  "literal_paper_note": {
+    "definition": "weight = concept-IDF * sqrt(training-phrase-presence / 7)",
+    "id": "stemmed-token-stability-x-concept-idf",
+    "overall": {
+      "cases": 4744,
+      "hit_at_5_count": 2044,
+      "hit_at_5_rate": 0.43086,
+      "median_rank": 9.0,
+      "mrr": 0.320547,
+      "top1_count": 1069,
+      "top1_rate": 0.225337
+    }
+  },
+  "reference": {
+    "flattened_raw": {
+      "cases": 4744,
+      "hit_at_5_count": 1790,
+      "hit_at_5_rate": 0.377319,
+      "median_rank": 15.0,
+      "mrr": 0.279567,
+      "p90_rank": 424,
+      "top1_count": 902,
+      "top1_rate": 0.190135
+    },
+    "flattened_snowball_sv": {
+      "cases": 4744,
+      "hit_at_5_count": 2059,
+      "hit_at_5_rate": 0.434022,
+      "median_rank": 9.0,
+      "mrr": 0.31994,
+      "p90_rank": 381,
+      "top1_count": 1049,
+      "top1_rate": 0.221121
+    }
+  },
+  "schema_version": 1,
+  "selected_candidate": {
+    "full_eight_phrase_artifact": {
+      "binary_layout": "NUL-separated UTF-8 feature dictionary + uint16 feature ids + uint8 weights",
+      "compact_binary_gzip9_bytes": 451128,
+      "compact_binary_raw_bytes": 560242,
+      "feature_count": 10676,
+      "nonzero_weight_count": 169061,
+      "weight_max_before_global_u8_quantization": 0.410378669
+    },
+    "id": "YV-A593-char34-centroid-u8-top300-v0",
+    "runtime_shape": "char_wb 3/4-grams + TF-IDF query + sparse uint8 concept-centroid dot products",
+    "selection_evidence": {
+      "cases": 4744,
+      "char_wb_ngram_range": [
+        3,
+        4
+      ],
+      "fold_artifact_gzip9_bytes_mean": 429185,
+      "fold_artifact_raw_bytes_mean": 536886,
+      "fold_feature_count_mean": 10066,
+      "fold_nonzero_weight_count_mean": 162285,
+      "hit_at_5_count": 2928,
+      "hit_at_5_rate": 0.617201,
+      "median_rank": 3.0,
+      "min_phrase_df": 2,
+      "mrr": 0.453526,
+      "quantization": "global uint8 over normalized centroid weights",
+      "top1_count": 1515,
+      "top1_rate": 0.319351,
+      "topk_features_per_concept": 300
+    },
+    "selection_rule": "highest corpus-internal Hit@5, then MRR, then Top1, then smaller gzip bytes among fixed 100/200/300 candidates",
+    "teacher_dependency_at_runtime": false,
+    "variant": "char34_centroid_u8_top300"
+  },
+  "status": "A593 corpus-internal sparse distillation diagnostic; no opened evaluation queries used"
+}
