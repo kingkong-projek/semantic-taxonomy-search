@@ -42,11 +42,6 @@ jobs:
         run: >-
           cp artifacts/a593-signed-context-sparse.json
           research/evaluation/v31/compile-time-semantic-a593-signed-context-sparse.json
-      - name: Upload result
-        uses: actions/upload-artifact@v4
-        with:
-          name: a593-signed-context-sparse
-          path: artifacts/a593-signed-context-sparse.json
       - name: Commit frozen result and self-remove
         run: |
           git config user.name github-actions[bot]
