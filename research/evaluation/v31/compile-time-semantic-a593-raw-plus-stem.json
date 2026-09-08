@@ -1,0 +1,1283 @@
+{
+  "candidate": {
+    "definition": "preserve every raw token; for a token whose Swedish Snowball stem differs, append exactly one namespaced __svstem_<stem> feature; no weights or tuned parameters",
+    "id": "YV-A593-raw-plus-namespaced-snowball-v0",
+    "selection_boundary": "candidate definition frozen before any opened 17/88 replay"
+  },
+  "corpus": {
+    "cases": 4744,
+    "concepts": 593,
+    "folds": 8,
+    "holdout": "same frozen prompt-slot leave-one-out protocol as prior A593 representation diagnostic",
+    "phrases": 4744
+  },
+  "false_positive_hubs": {
+    "flattened_raw": [
+      {
+        "concept_id": "15e8_KDZ_31Z",
+        "false_top1_count": 192,
+        "label": "SFI-lärare"
+      },
+      {
+        "concept_id": "cRmS_zdM_NEA",
+        "false_top1_count": 31,
+        "label": "Skolvaktmästare"
+      },
+      {
+        "concept_id": "LrrC_U7A_Xus",
+        "false_top1_count": 24,
+        "label": "Automationstekniker, el"
+      },
+      {
+        "concept_id": "JEhg_Dmh_mzv",
+        "false_top1_count": 23,
+        "label": "Distributionsförare"
+      },
+      {
+        "concept_id": "Mg5T_Wi4_5my",
+        "false_top1_count": 20,
+        "label": "Avdelningschef, kommun"
+      },
+      {
+        "concept_id": "rAjz_1xP_f1a",
+        "false_top1_count": 19,
+        "label": "Montör metallprodukter"
+      },
+      {
+        "concept_id": "YAB4_1jM_DAK",
+        "false_top1_count": 19,
+        "label": "Processansvarig, ITIL"
+      },
+      {
+        "concept_id": "k7aW_toR_PPm",
+        "false_top1_count": 19,
+        "label": "Arbetsledare, husbyggnad"
+      },
+      {
+        "concept_id": "mcAc_Xvo_Jp8",
+        "false_top1_count": 19,
+        "label": "Projekteringsingenjör, bygg och anläggning"
+      },
+      {
+        "concept_id": "68DU_3eK_84a",
+        "false_top1_count": 18,
+        "label": "Matros"
+      },
+      {
+        "concept_id": "K68t_jNi_FqQ",
+        "false_top1_count": 18,
+        "label": "Väg- och vattenbyggnadsingenjör"
+      },
+      {
+        "concept_id": "a46P_3cL_149",
+        "false_top1_count": 17,
+        "label": "Elektronikkonstruktör"
+      },
+      {
+        "concept_id": "4p9W_pWH_roy",
+        "false_top1_count": 16,
+        "label": "Chief Information Security Officer"
+      },
+      {
+        "concept_id": "3GKG_7xX_AcT",
+        "false_top1_count": 15,
+        "label": "UI-designer"
+      },
+      {
+        "concept_id": "wQ7H_qrm_hr2",
+        "false_top1_count": 15,
+        "label": "Logistikchef"
+      },
+      {
+        "concept_id": "3C5w_yFv_KP9",
+        "false_top1_count": 15,
+        "label": "Garvare"
+      },
+      {
+        "concept_id": "DHo9_qpj_owx",
+        "false_top1_count": 15,
+        "label": "Personalansvarig"
+      },
+      {
+        "concept_id": "2Eib_vX9_79R",
+        "false_top1_count": 15,
+        "label": "Platschef, försäkringskassa/Områdeschef, försäkringskassa"
+      },
+      {
+        "concept_id": "o7LP_duC_u9Z",
+        "false_top1_count": 15,
+        "label": "Lastbilsmekaniker"
+      },
+      {
+        "concept_id": "hr5f_dci_NcD",
+        "false_top1_count": 15,
+        "label": "Rektor"
+      },
+      {
+        "concept_id": "kxew_SY8_LFZ",
+        "false_top1_count": 15,
+        "label": "Gatuförsäljare"
+      },
+      {
+        "concept_id": "YG1s_tUg_jWJ",
+        "false_top1_count": 14,
+        "label": "Handläggare, offentlig förvaltning/Utredare, offentlig förvaltning"
+      },
+      {
+        "concept_id": "ho3v_5nB_pK4",
+        "false_top1_count": 14,
+        "label": "Företagsjurist"
+      },
+      {
+        "concept_id": "r4G8_gBH_Pug",
+        "false_top1_count": 14,
+        "label": "Civilingenjör, anläggning"
+      },
+      {
+        "concept_id": "ujBX_nic_wuH",
+        "false_top1_count": 14,
+        "label": "Dagbarnvårdare"
+      }
+    ],
+    "flattened_raw_plus_namespaced_snowball": [
+      {
+        "concept_id": "15e8_KDZ_31Z",
+        "false_top1_count": 174,
+        "label": "SFI-lärare"
+      },
+      {
+        "concept_id": "cRmS_zdM_NEA",
+        "false_top1_count": 32,
+        "label": "Skolvaktmästare"
+      },
+      {
+        "concept_id": "LrrC_U7A_Xus",
+        "false_top1_count": 23,
+        "label": "Automationstekniker, el"
+      },
+      {
+        "concept_id": "TT8h_qKk_1iu",
+        "false_top1_count": 22,
+        "label": "Affärskonsult, IT"
+      },
+      {
+        "concept_id": "68DU_3eK_84a",
+        "false_top1_count": 21,
+        "label": "Matros"
+      },
+      {
+        "concept_id": "pahf_9Ek_WVz",
+        "false_top1_count": 20,
+        "label": "Teletekniker"
+      },
+      {
+        "concept_id": "YAB4_1jM_DAK",
+        "false_top1_count": 19,
+        "label": "Processansvarig, ITIL"
+      },
+      {
+        "concept_id": "Mg5T_Wi4_5my",
+        "false_top1_count": 19,
+        "label": "Avdelningschef, kommun"
+      },
+      {
+        "concept_id": "ujBX_nic_wuH",
+        "false_top1_count": 18,
+        "label": "Dagbarnvårdare"
+      },
+      {
+        "concept_id": "4p9W_pWH_roy",
+        "false_top1_count": 18,
+        "label": "Chief Information Security Officer"
+      },
+      {
+        "concept_id": "a46P_3cL_149",
+        "false_top1_count": 17,
+        "label": "Elektronikkonstruktör"
+      },
+      {
+        "concept_id": "mcAc_Xvo_Jp8",
+        "false_top1_count": 17,
+        "label": "Projekteringsingenjör, bygg och anläggning"
+      },
+      {
+        "concept_id": "HdcS_g6a_jPk",
+        "false_top1_count": 17,
+        "label": "Träarbetare, utan yrkesbevis/Snickare, utan yrkesbevis"
+      },
+      {
+        "concept_id": "rAjz_1xP_f1a",
+        "false_top1_count": 16,
+        "label": "Montör metallprodukter"
+      },
+      {
+        "concept_id": "Sbzf_iBA_MAS",
+        "false_top1_count": 16,
+        "label": "Elevassistent"
+      },
+      {
+        "concept_id": "kgyb_GN3_qR1",
+        "false_top1_count": 15,
+        "label": "Civilingenjör, byggnadskonstruktion"
+      },
+      {
+        "concept_id": "XSBp_5wD_VaU",
+        "false_top1_count": 15,
+        "label": "Restaurangchef"
+      },
+      {
+        "concept_id": "gPCx_T6e_6P8",
+        "false_top1_count": 14,
+        "label": "Jobbcoach/Utbildningscoach"
+      },
+      {
+        "concept_id": "JEhg_Dmh_mzv",
+        "false_top1_count": 14,
+        "label": "Distributionsförare"
+      },
+      {
+        "concept_id": "wQ7H_qrm_hr2",
+        "false_top1_count": 14,
+        "label": "Logistikchef"
+      },
+      {
+        "concept_id": "3C5w_yFv_KP9",
+        "false_top1_count": 14,
+        "label": "Garvare"
+      },
+      {
+        "concept_id": "DHo9_qpj_owx",
+        "false_top1_count": 14,
+        "label": "Personalansvarig"
+      },
+      {
+        "concept_id": "uZU6_oxo_Dpd",
+        "false_top1_count": 13,
+        "label": "Industrielektriker"
+      },
+      {
+        "concept_id": "YG1s_tUg_jWJ",
+        "false_top1_count": 13,
+        "label": "Handläggare, offentlig förvaltning/Utredare, offentlig förvaltning"
+      },
+      {
+        "concept_id": "7mFy_ghh_iL6",
+        "false_top1_count": 13,
+        "label": "Copywriter"
+      }
+    ]
+  },
+  "interpretation_guard": "All cases are model-authored from the frozen teacher corpus. This experiment may select representation mechanics and mine hard negatives, but cannot establish user accuracy.",
+  "paired_vs_flattened_raw": {
+    "flattened_raw_plus_namespaced_snowball": {
+      "hit5_gain": 174,
+      "hit5_loss": 188,
+      "rank_improved": 1277,
+      "rank_same": 1749,
+      "rank_worsened": 1718,
+      "top1_gain": 141,
+      "top1_loss": 137
+    },
+    "flattened_snowball_sv": {
+      "hit5_gain": 360,
+      "hit5_loss": 91,
+      "rank_improved": 982,
+      "rank_same": 1934,
+      "rank_worsened": 1828,
+      "top1_gain": 253,
+      "top1_loss": 106
+    }
+  },
+  "schema_version": 1,
+  "status": "A593 corpus-internal morphology diagnostic; no opened evaluation queries used",
+  "top_confusion_pairs": {
+    "flattened_raw": [
+      {
+        "count": 5,
+        "target_concept_id": "57z2_b5A_hAT",
+        "target_label": "Betongarbetare",
+        "wrong_top1_concept_id": "SDMs_GGu_gf2",
+        "wrong_top1_label": "Betongarbetare, utan yrkesbevis"
+      },
+      {
+        "count": 5,
+        "target_concept_id": "HAQu_4kR_S5h",
+        "target_label": "Byggnadskonstruktör",
+        "wrong_top1_concept_id": "kgyb_GN3_qR1",
+        "wrong_top1_label": "Civilingenjör, byggnadskonstruktion"
+      },
+      {
+        "count": 5,
+        "target_concept_id": "NzLu_oTf_S7f",
+        "target_label": "Materialplanerare",
+        "wrong_top1_concept_id": "tyjn_6qY_Ked",
+        "wrong_top1_label": "Inköpsplanerare"
+      },
+      {
+        "count": 5,
+        "target_concept_id": "1yBB_G2R_LGr",
+        "target_label": "Sångpedagog",
+        "wrong_top1_concept_id": "15e8_KDZ_31Z",
+        "wrong_top1_label": "SFI-lärare"
+      },
+      {
+        "count": 4,
+        "target_concept_id": "47p3_SHB_BaN",
+        "target_label": "ST-läkare, arbets- och miljömedicin",
+        "wrong_top1_concept_id": "6TcC_oXD_QPw",
+        "wrong_top1_label": "ST-läkare, allmänmedicin"
+      },
+      {
+        "count": 4,
+        "target_concept_id": "Mg5T_Wi4_5my",
+        "target_label": "Avdelningschef, kommun",
+        "wrong_top1_concept_id": "HuVd_H4w_ZtF",
+        "wrong_top1_label": "Förvaltningschef, kommun"
+      },
+      {
+        "count": 4,
+        "target_concept_id": "PtiU_6mm_yyL",
+        "target_label": "Budbilsförare",
+        "wrong_top1_concept_id": "JEhg_Dmh_mzv",
+        "wrong_top1_label": "Distributionsförare"
+      },
+      {
+        "count": 4,
+        "target_concept_id": "dT2w_rhK_JtM",
+        "target_label": "Professor",
+        "wrong_top1_concept_id": "YfCD_kUE_kck",
+        "wrong_top1_label": "Universitets- och högskoleadjunkt"
+      },
+      {
+        "count": 4,
+        "target_concept_id": "3RP3_h9J_Hc9",
+        "target_label": "Bergsprängare",
+        "wrong_top1_concept_id": "31Uw_P9P_AgC",
+        "wrong_top1_label": "Bergarbetare, bygg och anläggning"
+      },
+      {
+        "count": 4,
+        "target_concept_id": "73vz_UAk_B8d",
+        "target_label": "Köksmästare",
+        "wrong_top1_concept_id": "kntm_Uen_7Bn",
+        "wrong_top1_label": "Kökschef"
+      },
+      {
+        "count": 4,
+        "target_concept_id": "dxsZ_fG8_hvR",
+        "target_label": "Montör träprodukter",
+        "wrong_top1_concept_id": "rAjz_1xP_f1a",
+        "wrong_top1_label": "Montör metallprodukter"
+      },
+      {
+        "count": 4,
+        "target_concept_id": "gPCx_T6e_6P8",
+        "target_label": "Jobbcoach/Utbildningscoach",
+        "wrong_top1_concept_id": "XSDj_JZ2_ugu",
+        "wrong_top1_label": "Arbetsförmedlare"
+      },
+      {
+        "count": 4,
+        "target_concept_id": "4eaw_x3V_ddY",
+        "target_label": "Golvläggare, utan yrkesbevis",
+        "wrong_top1_concept_id": "Mgiv_Xs7_u2r",
+        "wrong_top1_label": "Golvläggare"
+      },
+      {
+        "count": 4,
+        "target_concept_id": "6U5J_pNt_h6t",
+        "target_label": "Danspedagog",
+        "wrong_top1_concept_id": "15e8_KDZ_31Z",
+        "wrong_top1_label": "SFI-lärare"
+      },
+      {
+        "count": 4,
+        "target_concept_id": "Qv4e_brq_Ca5",
+        "target_label": "Plattsättare",
+        "wrong_top1_concept_id": "15e8_KDZ_31Z",
+        "wrong_top1_label": "SFI-lärare"
+      },
+      {
+        "count": 4,
+        "target_concept_id": "tQue_1d4_APA",
+        "target_label": "Ekolog",
+        "wrong_top1_concept_id": "15e8_KDZ_31Z",
+        "wrong_top1_label": "SFI-lärare"
+      },
+      {
+        "count": 4,
+        "target_concept_id": "uwYE_D2Z_45B",
+        "target_label": "Försäljningschef",
+        "wrong_top1_concept_id": "QLwS_aMP_Jcu",
+        "wrong_top1_label": "Säljledare"
+      },
+      {
+        "count": 4,
+        "target_concept_id": "HuVd_H4w_ZtF",
+        "target_label": "Förvaltningschef, kommun",
+        "wrong_top1_concept_id": "Mg5T_Wi4_5my",
+        "wrong_top1_label": "Avdelningschef, kommun"
+      },
+      {
+        "count": 4,
+        "target_concept_id": "SDMs_GGu_gf2",
+        "target_label": "Betongarbetare, utan yrkesbevis",
+        "wrong_top1_concept_id": "57z2_b5A_hAT",
+        "wrong_top1_label": "Betongarbetare"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "1WsA_bfK_QUd",
+        "target_label": "SOS-operatör",
+        "wrong_top1_concept_id": "4GHe_kgB_cAk",
+        "wrong_top1_label": "Larmoperatör"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "1qgf_mXF_5Xp",
+        "target_label": "Character artist",
+        "wrong_top1_concept_id": "64tE_EQA_3g4",
+        "wrong_top1_label": "3D artist"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "2gtP_DKV_nfQ",
+        "target_label": "Miljöinspektör",
+        "wrong_top1_concept_id": "SLfL_nQ3_MnE",
+        "wrong_top1_label": "Miljöhandläggare"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "2hTu_y9K_CxY",
+        "target_label": "Belysningsmästare",
+        "wrong_top1_concept_id": "2KG5_YmC_TRA",
+        "wrong_top1_label": "Belysningstekniker: scen, film, TV"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "3abF_Jyu_WtS",
+        "target_label": "Marknadskoordinator",
+        "wrong_top1_concept_id": "uWwq_jF2_nhq",
+        "wrong_top1_label": "Marknadsassistent"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "3j5w_jGS_use",
+        "target_label": "Försäkringshandläggare",
+        "wrong_top1_concept_id": "2AGe_heZ_E94",
+        "wrong_top1_label": "Försäkringshandläggare, försäkringskassa"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "4p9W_pWH_roy",
+        "target_label": "Chief Information Security Officer",
+        "wrong_top1_concept_id": "JPBx_Vxc_zWM",
+        "wrong_top1_label": "Säkerhetsadministratör, IT"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "51jM_crG_YQH",
+        "target_label": "Planeringsingenjör, elektronik",
+        "wrong_top1_concept_id": "4bkL_eTC_tAq",
+        "wrong_top1_label": "Projekteringsingenjör elektronik"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "51vT_RSZ_sK1",
+        "target_label": "Mekatronikingenjör",
+        "wrong_top1_concept_id": "LrrC_U7A_Xus",
+        "wrong_top1_label": "Automationstekniker, el"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "5XnU_5ZJ_LQN",
+        "target_label": "Fastighetsvärd",
+        "wrong_top1_concept_id": "15e8_KDZ_31Z",
+        "wrong_top1_label": "SFI-lärare"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "8wmm_Wto_9iG",
+        "target_label": "CNC-operatör trä",
+        "wrong_top1_concept_id": "o8dP_hY4_p8p",
+        "wrong_top1_label": "Maskinoperatör ytbehandling av trä"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "GgmE_SvH_mtm",
+        "target_label": "Veterinär",
+        "wrong_top1_concept_id": "8Vew_BX8_97h",
+        "wrong_top1_label": "Djursjukskötare"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "JQ3q_X9q_aTC",
+        "target_label": "Utbildningshandläggare",
+        "wrong_top1_concept_id": "YfCD_kUE_kck",
+        "wrong_top1_label": "Universitets- och högskoleadjunkt"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "JZur_dmf_EPY",
+        "target_label": "Trädgårdsmästare anläggning",
+        "wrong_top1_concept_id": "4Y6u_JPp_jas",
+        "wrong_top1_label": "Park- och trädgårdsarbetare"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "Mgiv_Xs7_u2r",
+        "target_label": "Golvläggare",
+        "wrong_top1_concept_id": "4eaw_x3V_ddY",
+        "wrong_top1_label": "Golvläggare, utan yrkesbevis"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "QQjZ_NAN_bDR",
+        "target_label": "Interaktionsdesigner",
+        "wrong_top1_concept_id": "3GKG_7xX_AcT",
+        "wrong_top1_label": "UI-designer"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "WWXN_Y22_6fy",
+        "target_label": "Fordonsingenjör",
+        "wrong_top1_concept_id": "Fxue_CC5_2Fy",
+        "wrong_top1_label": "Civilingenjör, farkostteknik"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "YLjg_Qtf_iqy",
+        "target_label": "Civilingenjör, kemi",
+        "wrong_top1_concept_id": "GYd6_A2J_kFK",
+        "wrong_top1_label": "Kemiingenjör"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "ZKKT_4bd_Sxs",
+        "target_label": "Enhetschef, hälso- och sjukvård",
+        "wrong_top1_concept_id": "tPPY_hAq_9Cb",
+        "wrong_top1_label": "Avdelningschef, region"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "ZS6E_gwQ_wDF",
+        "target_label": "Möbel- och inredningsmontör",
+        "wrong_top1_concept_id": "rAjz_1xP_f1a",
+        "wrong_top1_label": "Montör metallprodukter"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "b5Re_ALr_2Nq",
+        "target_label": "Produktionsingenjör, elektronik",
+        "wrong_top1_concept_id": "4bkL_eTC_tAq",
+        "wrong_top1_label": "Projekteringsingenjör elektronik"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "bXik_Ys8_w9s",
+        "target_label": "Kommunhandläggare",
+        "wrong_top1_concept_id": "UJuc_Hqm_GQg",
+        "wrong_top1_label": "Förvaltningsjurist"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "dxAK_mLr_bAa",
+        "target_label": "Logistikingenjör",
+        "wrong_top1_concept_id": "wQ7H_qrm_hr2",
+        "wrong_top1_label": "Logistikchef"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "ho3v_5nB_pK4",
+        "target_label": "Företagsjurist",
+        "wrong_top1_concept_id": "EsXb_35r_rTR",
+        "wrong_top1_label": "Bolagsjurist"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "jtGy_ZBL_NEP",
+        "target_label": "Marknadskommunikatör",
+        "wrong_top1_concept_id": "7mFy_ghh_iL6",
+        "wrong_top1_label": "Copywriter"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "k7aW_toR_PPm",
+        "target_label": "Arbetsledare, husbyggnad",
+        "wrong_top1_concept_id": "A6CQ_XVJ_iy4",
+        "wrong_top1_label": "Arbetsledare, anläggning"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "rncq_GAq_KMx",
+        "target_label": "Automationsingenjör, maskin",
+        "wrong_top1_concept_id": "LrrC_U7A_Xus",
+        "wrong_top1_label": "Automationstekniker, el"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "ryH6_MAv_QWb",
+        "target_label": "Upphandlare",
+        "wrong_top1_concept_id": "EbSk_Hv8_qog",
+        "wrong_top1_label": "Inköpschef"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "te5X_YVU_JaR",
+        "target_label": "PTP-psykolog",
+        "wrong_top1_concept_id": "xBo9_V9m_bfg",
+        "wrong_top1_label": "Psykolog"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "tyjn_6qY_Ked",
+        "target_label": "Inköpsplanerare",
+        "wrong_top1_concept_id": "NzLu_oTf_S7f",
+        "wrong_top1_label": "Materialplanerare"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "xGr7_SGS_U3F",
+        "target_label": "Bygg- och anläggningsförare",
+        "wrong_top1_concept_id": "JEhg_Dmh_mzv",
+        "wrong_top1_label": "Distributionsförare"
+      }
+    ],
+    "flattened_raw_plus_namespaced_snowball": [
+      {
+        "count": 6,
+        "target_concept_id": "57z2_b5A_hAT",
+        "target_label": "Betongarbetare",
+        "wrong_top1_concept_id": "SDMs_GGu_gf2",
+        "wrong_top1_label": "Betongarbetare, utan yrkesbevis"
+      },
+      {
+        "count": 5,
+        "target_concept_id": "NzLu_oTf_S7f",
+        "target_label": "Materialplanerare",
+        "wrong_top1_concept_id": "tyjn_6qY_Ked",
+        "wrong_top1_label": "Inköpsplanerare"
+      },
+      {
+        "count": 5,
+        "target_concept_id": "1yBB_G2R_LGr",
+        "target_label": "Sångpedagog",
+        "wrong_top1_concept_id": "15e8_KDZ_31Z",
+        "wrong_top1_label": "SFI-lärare"
+      },
+      {
+        "count": 4,
+        "target_concept_id": "2hTu_y9K_CxY",
+        "target_label": "Belysningsmästare",
+        "wrong_top1_concept_id": "2KG5_YmC_TRA",
+        "wrong_top1_label": "Belysningstekniker: scen, film, TV"
+      },
+      {
+        "count": 4,
+        "target_concept_id": "3uZy_tC8_H8X",
+        "target_label": "Orderassistent",
+        "wrong_top1_concept_id": "gLtU_eR9_ZcW",
+        "wrong_top1_label": "Orderadministratör"
+      },
+      {
+        "count": 4,
+        "target_concept_id": "HAQu_4kR_S5h",
+        "target_label": "Byggnadskonstruktör",
+        "wrong_top1_concept_id": "kgyb_GN3_qR1",
+        "wrong_top1_label": "Civilingenjör, byggnadskonstruktion"
+      },
+      {
+        "count": 4,
+        "target_concept_id": "SDMs_GGu_gf2",
+        "target_label": "Betongarbetare, utan yrkesbevis",
+        "wrong_top1_concept_id": "57z2_b5A_hAT",
+        "wrong_top1_label": "Betongarbetare"
+      },
+      {
+        "count": 4,
+        "target_concept_id": "dxAK_mLr_bAa",
+        "target_label": "Logistikingenjör",
+        "wrong_top1_concept_id": "wQ7H_qrm_hr2",
+        "wrong_top1_label": "Logistikchef"
+      },
+      {
+        "count": 4,
+        "target_concept_id": "4bkL_eTC_tAq",
+        "target_label": "Projekteringsingenjör elektronik",
+        "wrong_top1_concept_id": "a46P_3cL_149",
+        "wrong_top1_label": "Elektronikkonstruktör"
+      },
+      {
+        "count": 4,
+        "target_concept_id": "4eaw_x3V_ddY",
+        "target_label": "Golvläggare, utan yrkesbevis",
+        "wrong_top1_concept_id": "Mgiv_Xs7_u2r",
+        "wrong_top1_label": "Golvläggare"
+      },
+      {
+        "count": 4,
+        "target_concept_id": "Qv4e_brq_Ca5",
+        "target_label": "Plattsättare",
+        "wrong_top1_concept_id": "15e8_KDZ_31Z",
+        "wrong_top1_label": "SFI-lärare"
+      },
+      {
+        "count": 4,
+        "target_concept_id": "tQue_1d4_APA",
+        "target_label": "Ekolog",
+        "wrong_top1_concept_id": "15e8_KDZ_31Z",
+        "wrong_top1_label": "SFI-lärare"
+      },
+      {
+        "count": 4,
+        "target_concept_id": "HuVd_H4w_ZtF",
+        "target_label": "Förvaltningschef, kommun",
+        "wrong_top1_concept_id": "Mg5T_Wi4_5my",
+        "wrong_top1_label": "Avdelningschef, kommun"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "1WsA_bfK_QUd",
+        "target_label": "SOS-operatör",
+        "wrong_top1_concept_id": "4GHe_kgB_cAk",
+        "wrong_top1_label": "Larmoperatör"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "1qgf_mXF_5Xp",
+        "target_label": "Character artist",
+        "wrong_top1_concept_id": "64tE_EQA_3g4",
+        "wrong_top1_label": "3D artist"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "2546_5Ve_4ep",
+        "target_label": "Kostymmästare",
+        "wrong_top1_concept_id": "2Sz2_yAG_zwd",
+        "wrong_top1_label": "Konfektionssömmerska"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "2gtP_DKV_nfQ",
+        "target_label": "Miljöinspektör",
+        "wrong_top1_concept_id": "SLfL_nQ3_MnE",
+        "wrong_top1_label": "Miljöhandläggare"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "3abF_Jyu_WtS",
+        "target_label": "Marknadskoordinator",
+        "wrong_top1_concept_id": "uWwq_jF2_nhq",
+        "wrong_top1_label": "Marknadsassistent"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "3j5w_jGS_use",
+        "target_label": "Försäkringshandläggare",
+        "wrong_top1_concept_id": "2AGe_heZ_E94",
+        "wrong_top1_label": "Försäkringshandläggare, försäkringskassa"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "51vT_RSZ_sK1",
+        "target_label": "Mekatronikingenjör",
+        "wrong_top1_concept_id": "LrrC_U7A_Xus",
+        "wrong_top1_label": "Automationstekniker, el"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "54qK_bhx_bc5",
+        "target_label": "Geodatasamordnare",
+        "wrong_top1_concept_id": "uXRf_emU_Fou",
+        "wrong_top1_label": "GIS-ingenjör"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "6wcp_7D7_GU7",
+        "target_label": "Fordonsmontör",
+        "wrong_top1_concept_id": "rAjz_1xP_f1a",
+        "wrong_top1_label": "Montör metallprodukter"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "8wmm_Wto_9iG",
+        "target_label": "CNC-operatör trä",
+        "wrong_top1_concept_id": "o8dP_hY4_p8p",
+        "wrong_top1_label": "Maskinoperatör ytbehandling av trä"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "GYd6_A2J_kFK",
+        "target_label": "Kemiingenjör",
+        "wrong_top1_concept_id": "YLjg_Qtf_iqy",
+        "wrong_top1_label": "Civilingenjör, kemi"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "JZur_dmf_EPY",
+        "target_label": "Trädgårdsmästare anläggning",
+        "wrong_top1_concept_id": "4Y6u_JPp_jas",
+        "wrong_top1_label": "Park- och trädgårdsarbetare"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "Mg5T_Wi4_5my",
+        "target_label": "Avdelningschef, kommun",
+        "wrong_top1_concept_id": "HuVd_H4w_ZtF",
+        "wrong_top1_label": "Förvaltningschef, kommun"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "Mgiv_Xs7_u2r",
+        "target_label": "Golvläggare",
+        "wrong_top1_concept_id": "4eaw_x3V_ddY",
+        "wrong_top1_label": "Golvläggare, utan yrkesbevis"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "QM63_e85_CUC",
+        "target_label": "Tak- och tätskiktsmontör",
+        "wrong_top1_concept_id": "Mj9N_W8j_bqg",
+        "wrong_top1_label": "Tak- och tätskiktsmontör, utan yrkesbevis"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "WWXN_Y22_6fy",
+        "target_label": "Fordonsingenjör",
+        "wrong_top1_concept_id": "Fxue_CC5_2Fy",
+        "wrong_top1_label": "Civilingenjör, farkostteknik"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "YLjg_Qtf_iqy",
+        "target_label": "Civilingenjör, kemi",
+        "wrong_top1_concept_id": "GYd6_A2J_kFK",
+        "wrong_top1_label": "Kemiingenjör"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "ZKKT_4bd_Sxs",
+        "target_label": "Enhetschef, hälso- och sjukvård",
+        "wrong_top1_concept_id": "tPPY_hAq_9Cb",
+        "wrong_top1_label": "Avdelningschef, region"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "aRp4_qjZ_tPV",
+        "target_label": "Informatör/Kommunikatör",
+        "wrong_top1_concept_id": "7mFy_ghh_iL6",
+        "wrong_top1_label": "Copywriter"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "bXNH_MNX_dUR",
+        "target_label": "Sjuksköterska, grundutbildad",
+        "wrong_top1_concept_id": "szfD_hPZ_y7M",
+        "wrong_top1_label": "Skolsköterska"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "f1zq_tpA_QtN",
+        "target_label": "Specialpedagog",
+        "wrong_top1_concept_id": "dhXy_7Te_Tzb",
+        "wrong_top1_label": "Speciallärare"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "ho3v_5nB_pK4",
+        "target_label": "Företagsjurist",
+        "wrong_top1_concept_id": "EsXb_35r_rTR",
+        "wrong_top1_label": "Bolagsjurist"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "jtGy_ZBL_NEP",
+        "target_label": "Marknadskommunikatör",
+        "wrong_top1_concept_id": "7mFy_ghh_iL6",
+        "wrong_top1_label": "Copywriter"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "k7aW_toR_PPm",
+        "target_label": "Arbetsledare, husbyggnad",
+        "wrong_top1_concept_id": "A6CQ_XVJ_iy4",
+        "wrong_top1_label": "Arbetsledare, anläggning"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "kxew_SY8_LFZ",
+        "target_label": "Gatuförsäljare",
+        "wrong_top1_concept_id": "bUP3_Ztw_VC1",
+        "wrong_top1_label": "Hemförsäljare"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "tyjn_6qY_Ked",
+        "target_label": "Inköpsplanerare",
+        "wrong_top1_concept_id": "NzLu_oTf_S7f",
+        "wrong_top1_label": "Materialplanerare"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "xGr7_SGS_U3F",
+        "target_label": "Bygg- och anläggningsförare",
+        "wrong_top1_concept_id": "JEhg_Dmh_mzv",
+        "wrong_top1_label": "Distributionsförare"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "23nR_PXa_9br",
+        "target_label": "HR business partner/HR BP",
+        "wrong_top1_concept_id": "DHo9_qpj_owx",
+        "wrong_top1_label": "Personalansvarig"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "3tXK_9La_M3W",
+        "target_label": "Beroendeterapeut",
+        "wrong_top1_concept_id": "gPCx_T6e_6P8",
+        "wrong_top1_label": "Jobbcoach/Utbildningscoach"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "5GzE_JXd_gM2",
+        "target_label": "Distributionschef, logistik och transporter",
+        "wrong_top1_concept_id": "wQ7H_qrm_hr2",
+        "wrong_top1_label": "Logistikchef"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "EsXb_35r_rTR",
+        "target_label": "Bolagsjurist",
+        "wrong_top1_concept_id": "ho3v_5nB_pK4",
+        "wrong_top1_label": "Företagsjurist"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "JUu4_wcP_kQG",
+        "target_label": "Lärare i förskoleklass",
+        "wrong_top1_concept_id": "rUcW_z9R_Qsv",
+        "wrong_top1_label": "Förskollärare"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "TRVV_bXp_BG9",
+        "target_label": "Processingenjör, maskin",
+        "wrong_top1_concept_id": "XHyR_e9A_sqQ",
+        "wrong_top1_label": "Produktionstekniker, maskin/Produktionstekniker, verkstad"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "dxsZ_fG8_hvR",
+        "target_label": "Montör träprodukter",
+        "wrong_top1_concept_id": "rAjz_1xP_f1a",
+        "wrong_top1_label": "Montör metallprodukter"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "f1zq_tpA_QtN",
+        "target_label": "Specialpedagog",
+        "wrong_top1_concept_id": "Sbzf_iBA_MAS",
+        "wrong_top1_label": "Elevassistent"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "gLtU_eR9_ZcW",
+        "target_label": "Orderadministratör",
+        "wrong_top1_concept_id": "3uZy_tC8_H8X",
+        "wrong_top1_label": "Orderassistent"
+      },
+      {
+        "count": 3,
+        "target_concept_id": "gPCx_T6e_6P8",
+        "target_label": "Jobbcoach/Utbildningscoach",
+        "wrong_top1_concept_id": "XSDj_JZ2_ugu",
+        "wrong_top1_label": "Arbetsförmedlare"
+      }
+    ]
+  },
+  "variants": {
+    "flattened_raw": {
+      "by_slot": {
+        "cautious_boundary": {
+          "cases": 593,
+          "hit_at_5_count": 239,
+          "hit_at_5_rate": 0.403035,
+          "median_rank": 12,
+          "mrr": 0.281255,
+          "p90_rank": 392,
+          "top1_count": 108,
+          "top1_rate": 0.182125
+        },
+        "colloquial_1": {
+          "cases": 593,
+          "hit_at_5_count": 179,
+          "hit_at_5_rate": 0.301855,
+          "median_rank": 36,
+          "mrr": 0.218293,
+          "p90_rank": 460,
+          "top1_count": 81,
+          "top1_rate": 0.136594
+        },
+        "colloquial_2": {
+          "cases": 593,
+          "hit_at_5_count": 167,
+          "hit_at_5_rate": 0.281619,
+          "median_rank": 54,
+          "mrr": 0.211145,
+          "p90_rank": 466,
+          "top1_count": 84,
+          "top1_rate": 0.141653
+        },
+        "explicit_task_1": {
+          "cases": 593,
+          "hit_at_5_count": 297,
+          "hit_at_5_rate": 0.500843,
+          "median_rank": 5,
+          "mrr": 0.36243,
+          "p90_rank": 317,
+          "top1_count": 146,
+          "top1_rate": 0.246206
+        },
+        "explicit_task_2": {
+          "cases": 593,
+          "hit_at_5_count": 217,
+          "hit_at_5_rate": 0.365936,
+          "median_rank": 14,
+          "mrr": 0.268692,
+          "p90_rank": 386,
+          "top1_count": 101,
+          "top1_rate": 0.17032
+        },
+        "indirect_distinguishing": {
+          "cases": 593,
+          "hit_at_5_count": 170,
+          "hit_at_5_rate": 0.286678,
+          "median_rank": 31,
+          "mrr": 0.216572,
+          "p90_rank": 452,
+          "top1_count": 86,
+          "top1_rate": 0.145025
+        },
+        "telegram_noisy": {
+          "cases": 593,
+          "hit_at_5_count": 322,
+          "hit_at_5_rate": 0.543002,
+          "median_rank": 4,
+          "mrr": 0.424141,
+          "p90_rank": 372,
+          "top1_count": 193,
+          "top1_rate": 0.325464
+        },
+        "tool_method_responsibility": {
+          "cases": 593,
+          "hit_at_5_count": 199,
+          "hit_at_5_rate": 0.335582,
+          "median_rank": 23,
+          "mrr": 0.254006,
+          "p90_rank": 466,
+          "top1_count": 103,
+          "top1_rate": 0.173693
+        }
+      },
+      "overall": {
+        "cases": 4744,
+        "hit_at_5_count": 1790,
+        "hit_at_5_rate": 0.377319,
+        "median_rank": 15.0,
+        "mrr": 0.279567,
+        "p90_rank": 424,
+        "top1_count": 902,
+        "top1_rate": 0.190135
+      }
+    },
+    "flattened_raw_plus_namespaced_snowball": {
+      "by_slot": {
+        "cautious_boundary": {
+          "cases": 593,
+          "hit_at_5_count": 233,
+          "hit_at_5_rate": 0.392917,
+          "median_rank": 10,
+          "mrr": 0.276824,
+          "p90_rank": 392,
+          "top1_count": 102,
+          "top1_rate": 0.172007
+        },
+        "colloquial_1": {
+          "cases": 593,
+          "hit_at_5_count": 191,
+          "hit_at_5_rate": 0.322091,
+          "median_rank": 29,
+          "mrr": 0.234096,
+          "p90_rank": 456,
+          "top1_count": 92,
+          "top1_rate": 0.155143
+        },
+        "colloquial_2": {
+          "cases": 593,
+          "hit_at_5_count": 169,
+          "hit_at_5_rate": 0.284992,
+          "median_rank": 40,
+          "mrr": 0.221444,
+          "p90_rank": 460,
+          "top1_count": 91,
+          "top1_rate": 0.153457
+        },
+        "explicit_task_1": {
+          "cases": 593,
+          "hit_at_5_count": 285,
+          "hit_at_5_rate": 0.480607,
+          "median_rank": 7,
+          "mrr": 0.344826,
+          "p90_rank": 272,
+          "top1_count": 134,
+          "top1_rate": 0.22597
+        },
+        "explicit_task_2": {
+          "cases": 593,
+          "hit_at_5_count": 199,
+          "hit_at_5_rate": 0.335582,
+          "median_rank": 16,
+          "mrr": 0.251898,
+          "p90_rank": 366,
+          "top1_count": 95,
+          "top1_rate": 0.160202
+        },
+        "indirect_distinguishing": {
+          "cases": 593,
+          "hit_at_5_count": 177,
+          "hit_at_5_rate": 0.298482,
+          "median_rank": 27,
+          "mrr": 0.230503,
+          "p90_rank": 449,
+          "top1_count": 93,
+          "top1_rate": 0.15683
+        },
+        "telegram_noisy": {
+          "cases": 593,
+          "hit_at_5_count": 317,
+          "hit_at_5_rate": 0.53457,
+          "median_rank": 4,
+          "mrr": 0.416768,
+          "p90_rank": 339,
+          "top1_count": 189,
+          "top1_rate": 0.318718
+        },
+        "tool_method_responsibility": {
+          "cases": 593,
+          "hit_at_5_count": 205,
+          "hit_at_5_rate": 0.3457,
+          "median_rank": 26,
+          "mrr": 0.261319,
+          "p90_rank": 468,
+          "top1_count": 110,
+          "top1_rate": 0.185497
+        }
+      },
+      "overall": {
+        "cases": 4744,
+        "hit_at_5_count": 1776,
+        "hit_at_5_rate": 0.374368,
+        "median_rank": 14.0,
+        "mrr": 0.27971,
+        "p90_rank": 415,
+        "top1_count": 906,
+        "top1_rate": 0.190978
+      }
+    },
+    "flattened_snowball_sv": {
+      "by_slot": {
+        "cautious_boundary": {
+          "cases": 593,
+          "hit_at_5_count": 265,
+          "hit_at_5_rate": 0.44688,
+          "median_rank": 8,
+          "mrr": 0.316733,
+          "p90_rank": 360,
+          "top1_count": 127,
+          "top1_rate": 0.214165
+        },
+        "colloquial_1": {
+          "cases": 593,
+          "hit_at_5_count": 215,
+          "hit_at_5_rate": 0.362563,
+          "median_rank": 18,
+          "mrr": 0.265057,
+          "p90_rank": 427,
+          "top1_count": 103,
+          "top1_rate": 0.173693
+        },
+        "colloquial_2": {
+          "cases": 593,
+          "hit_at_5_count": 204,
+          "hit_at_5_rate": 0.344013,
+          "median_rank": 23,
+          "mrr": 0.254224,
+          "p90_rank": 453,
+          "top1_count": 102,
+          "top1_rate": 0.172007
+        },
+        "explicit_task_1": {
+          "cases": 593,
+          "hit_at_5_count": 332,
+          "hit_at_5_rate": 0.559865,
+          "median_rank": 4,
+          "mrr": 0.40325,
+          "p90_rank": 214,
+          "top1_count": 163,
+          "top1_rate": 0.274874
+        },
+        "explicit_task_2": {
+          "cases": 593,
+          "hit_at_5_count": 239,
+          "hit_at_5_rate": 0.403035,
+          "median_rank": 11,
+          "mrr": 0.286269,
+          "p90_rank": 338,
+          "top1_count": 107,
+          "top1_rate": 0.180438
+        },
+        "indirect_distinguishing": {
+          "cases": 593,
+          "hit_at_5_count": 204,
+          "hit_at_5_rate": 0.344013,
+          "median_rank": 19,
+          "mrr": 0.256353,
+          "p90_rank": 428,
+          "top1_count": 102,
+          "top1_rate": 0.172007
+        },
+        "telegram_noisy": {
+          "cases": 593,
+          "hit_at_5_count": 373,
+          "hit_at_5_rate": 0.629005,
+          "median_rank": 2,
+          "mrr": 0.49538,
+          "p90_rank": 274,
+          "top1_count": 233,
+          "top1_rate": 0.392917
+        },
+        "tool_method_responsibility": {
+          "cases": 593,
+          "hit_at_5_count": 227,
+          "hit_at_5_rate": 0.382799,
+          "median_rank": 16,
+          "mrr": 0.282252,
+          "p90_rank": 441,
+          "top1_count": 112,
+          "top1_rate": 0.18887
+        }
+      },
+      "overall": {
+        "cases": 4744,
+        "hit_at_5_count": 2059,
+        "hit_at_5_rate": 0.434022,
+        "median_rank": 9.0,
+        "mrr": 0.31994,
+        "p90_rank": 381,
+        "top1_count": 1049,
+        "top1_rate": 0.221121
+      }
+    }
+  }
+}
