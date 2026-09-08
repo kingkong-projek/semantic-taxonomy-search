@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - research/training/v31/a593-gemma4-sniper-contrasts-v0.jsonl
+      - .github/workflows/a593-sniper-contrast-eval-once.yml
 
 permissions:
   contents: write
@@ -48,4 +49,6 @@ jobs:
           rm .github/workflows/a593-sniper-contrast-eval-once.yml
           git add research/evaluation/v31/compile-time-semantic-a593-sniper-contrasts.json .github/workflows/a593-sniper-contrast-eval-once.yml
           git commit -m 'research: freeze A593 sniper contrast diagnostic'
+          git fetch origin main
+          git rebase origin/main
           git push
