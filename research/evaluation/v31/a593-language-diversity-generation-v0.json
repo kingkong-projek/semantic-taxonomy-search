@@ -1,0 +1,342 @@
+{
+  "evidence_warning": "Synthetic/model-authored source-bound architecture evidence only; not human accuracy.",
+  "generation": {
+    "batch_size": 12,
+    "holdout_temperature": 0.7,
+    "old_a593_teacher_phrases_sent_to_model": false,
+    "opened_17_88_loaded": false,
+    "requests_per_minute_cap": 6.0,
+    "training_temperature": 0.55,
+    "validation": "reject title surfaces, source fourgrams, and holdout/new-training fourgram overlap"
+  },
+  "holdout_sha256": "3ddd5f15aaf6d74d9312316da6d637fc8a7ff571e9d50843294c1dd94e1c1f91",
+  "id": "YV-A593-language-diversity-generation-v0",
+  "jointly_usable_concepts": 124,
+  "model": "gemma-4-26b-a4b-it",
+  "requested_concepts": 150,
+  "selection": {
+    "opened_outcomes_used": false,
+    "priority": "all source-rich concepts in frozen distinguishable A593 confusion pairs first",
+    "remainder": "stable SHA256 order among source-rich A593 concepts"
+  },
+  "taxonomy_sha256": "634fd9d848a172747e54e3e487160a912ae6c0fcb8219c50998767c8c9aacbcc",
+  "training_sha256": "b6f86d25fd122292d1cfbc253594e41d927428a4b190b83cd0fc2a20d4e12b67",
+  "usage_metadata": {
+    "holdout": [
+      {
+        "candidatesTokenCount": 1564,
+        "promptTokenCount": 2809,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2809
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 4373
+      },
+      {
+        "candidatesTokenCount": 1653,
+        "promptTokenCount": 2633,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2633
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 4286
+      },
+      {
+        "candidatesTokenCount": 1634,
+        "promptTokenCount": 2553,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2553
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 4187
+      },
+      {
+        "candidatesTokenCount": 1697,
+        "promptTokenCount": 2909,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2909
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 4606
+      },
+      {
+        "candidatesTokenCount": 1619,
+        "promptTokenCount": 2707,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2707
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 4326
+      },
+      {
+        "candidatesTokenCount": 1634,
+        "promptTokenCount": 2665,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2665
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 4299
+      },
+      {
+        "candidatesTokenCount": 1624,
+        "promptTokenCount": 2384,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2384
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 4008
+      },
+      {
+        "candidatesTokenCount": 1677,
+        "promptTokenCount": 2775,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2775
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 4452
+      },
+      {
+        "candidatesTokenCount": 1624,
+        "promptTokenCount": 2848,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2848
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 4472
+      },
+      {
+        "candidatesTokenCount": 1649,
+        "promptTokenCount": 2849,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2849
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 4498
+      },
+      {
+        "candidatesTokenCount": 1595,
+        "promptTokenCount": 2585,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2585
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 4180
+      },
+      {
+        "candidatesTokenCount": 1593,
+        "promptTokenCount": 2758,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2758
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 4351
+      },
+      {
+        "candidatesTokenCount": 852,
+        "promptTokenCount": 1715,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1715
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 2567
+      }
+    ],
+    "training": [
+      {
+        "candidatesTokenCount": 1911,
+        "promptTokenCount": 2906,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2906
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 4817
+      },
+      {
+        "candidatesTokenCount": 1858,
+        "promptTokenCount": 2730,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2730
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 4588
+      },
+      {
+        "candidatesTokenCount": 1707,
+        "promptTokenCount": 2650,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2650
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 4357
+      },
+      {
+        "candidatesTokenCount": 1755,
+        "promptTokenCount": 3006,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 3006
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 4761
+      },
+      {
+        "candidatesTokenCount": 1786,
+        "promptTokenCount": 2804,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2804
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 4590
+      },
+      {
+        "candidatesTokenCount": 1948,
+        "promptTokenCount": 2762,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2762
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 4710
+      },
+      {
+        "candidatesTokenCount": 1838,
+        "promptTokenCount": 2481,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2481
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 4319
+      },
+      {
+        "candidatesTokenCount": 1927,
+        "promptTokenCount": 2872,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2872
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 4799
+      },
+      {
+        "candidatesTokenCount": 1835,
+        "promptTokenCount": 2945,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2945
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 4780
+      },
+      {
+        "candidatesTokenCount": 1925,
+        "promptTokenCount": 2946,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2946
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 4871
+      },
+      {
+        "candidatesTokenCount": 1716,
+        "promptTokenCount": 2682,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2682
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 4398
+      },
+      {
+        "candidatesTokenCount": 1930,
+        "promptTokenCount": 2855,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2855
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 4785
+      },
+      {
+        "candidatesTokenCount": 931,
+        "promptTokenCount": 1812,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1812
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 2743
+      }
+    ]
+  }
+}
