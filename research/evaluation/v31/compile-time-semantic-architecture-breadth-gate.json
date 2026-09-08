@@ -1,0 +1,113 @@
+{
+  "decision_date": "2026-09-08",
+  "status": "active",
+  "decision": "pause local A593 micro-tuning and run a bounded simple-architecture breadth tournament",
+  "baseline": {
+    "family": "A",
+    "description": "frozen expanded sparse A593 family",
+    "latest_local_diagnostic": "YV-A593-explicit-pair-contrast-v0",
+    "teacher_holdouts": {
+      "cases": 4744,
+      "control_top1": 1576,
+      "challenger_top1": 1586,
+      "top1_delta": 10,
+      "control_hit5": 2957,
+      "challenger_hit5": 2965,
+      "hit5_delta": 8,
+      "control_mrr": 0.464618,
+      "challenger_mrr": 0.466288
+    },
+    "opened_transfer_delta_vs_relation_aware": {
+      "targetable40_top1": 0,
+      "targetable40_hit5": 0,
+      "strict17_top1": 0,
+      "strict17_hit5": 0,
+      "strict17_mrr": 0.0
+    },
+    "action": "freeze as reference; no further local weighting/stemming/hub/hard-negative/pair-rule tuning during breadth selection"
+  },
+  "constraints": {
+    "runtime_llm": false,
+    "browser_general_transformer": false,
+    "teacher_build_marginal_cost_sek_max": 10,
+    "source_bound_generated_evidence": true,
+    "opened_17_88_tuning_allowed": false,
+    "preferred_compressed_incremental_mb_max": 3,
+    "compressed_incremental_mb_hard_fail_above": 5,
+    "ordinary_selector_remains_privileged": true
+  },
+  "simplicity_contract": {
+    "default_final_form": "exact/canonical lexical route + one semantic description ranker/index",
+    "combine_weak_entrants": false,
+    "pair_specific_rules_default_allowed": false,
+    "query_type_classifier_default_allowed": false,
+    "second_semantic_stage": "deferred and must earn stronger complexity bar"
+  },
+  "entrants": [
+    {
+      "id": "A",
+      "name": "expanded sparse baseline",
+      "stage_count": 1,
+      "status": "frozen-reference"
+    },
+    {
+      "id": "B",
+      "name": "supervised sparse classifier",
+      "stage_count": 1,
+      "runtime_shape": "query word/character n-grams -> learned concept weights -> top occupations",
+      "status": "next"
+    },
+    {
+      "id": "C",
+      "name": "task/activity representation",
+      "stage_count": 1,
+      "runtime_shape": "query -> sparse task evidence -> occupation aggregation",
+      "status": "next-after-B"
+    },
+    {
+      "id": "D",
+      "name": "coarse retrieval -> local discriminator",
+      "stage_count": 2,
+      "status": "deferred",
+      "entry_condition": "B and C fail single-stage materiality bar and diagnostics show strong candidate recall with systematic within-family confusion"
+    }
+  ],
+  "transfer_proxy": {
+    "must_be_frozen_before_comparison": true,
+    "universe": "A593",
+    "selection_must_not_use_opened_query_outcomes": true,
+    "styles": [
+      "direct-task",
+      "colloquial-first-person",
+      "indirect-narrative",
+      "noisy-telegraphic"
+    ],
+    "source_bound": true,
+    "evidence_class": "synthetic/model-authored architecture evidence, not human accuracy"
+  },
+  "kill_rules": {
+    "single_stage_min_primary_absolute_pp_gain": 5,
+    "two_stage_min_primary_absolute_pp_gain_over_best_single_stage": 10,
+    "primary_metric_preference": "Top1 or first acceptable rank; Hit@5 secondary",
+    "must_improve_colloquial_or_indirect": true,
+    "must_preserve_exact_canonical_guards": true,
+    "must_fit_frontend_boundary": true,
+    "thresholds_are_decision_not_tuning_targets": true
+  },
+  "execution_order": [
+    "freeze breadth decision and keep A2105 paused",
+    "freeze common cross-style transfer proxy",
+    "build and measure minimal B",
+    "build and measure minimal C",
+    "compare A/B/C on same frozen evidence and runtime/byte constraints",
+    "kill losing architecture families",
+    "optimize only simplest surviving winner",
+    "consider D only if failure mechanism justifies second stage",
+    "resume A2105 only if winner requires broader identity coverage"
+  ],
+  "evidence": [
+    "research/evaluation/v31/compile-time-semantic-a593-explicit-contrast-layer.json",
+    "research/evaluation/v31/compile-time-semantic-a593-explicit-contrast-opened-replay.json",
+    "docs/findings/compile-time-architecture-breadth-gate-2026-09-08.md"
+  ]
+}
