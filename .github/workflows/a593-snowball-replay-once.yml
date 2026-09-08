@@ -1,4 +1,5 @@
 name: A593 Snowball opened replay once
+# retry after isolating stemming to the A593 lexical candidate only
 
 on:
   push:
