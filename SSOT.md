@@ -4,6 +4,10 @@ This file is the canonical entrypoint for current project state.
 
 ## Authority order
 
+1. `docs/research-plan.md` — product scope, research architecture, evidence rules, gates and experiment order.
+2. `docs/findings/*` and `research/*` — evidence supporting or falsifying the plan. They do not silently override it.
+3. `docs/findings/field-feedback-findability-2026-09-07.md` + `research/evaluation/v31/field-feedback-findability-2026-09-07.json` — current real-user field-feedback evidence and frozen derived corpus.
+
 ## Current amendment — 2026-09-09: P80-first Track-2 feedback loop
 
 <!-- P80-FIRST-TRACK2-2026-09-09 -->
@@ -13,11 +17,6 @@ Occupation Track 2 now optimizes and evaluates **P80 first: 159 occupations cove
 Current frozen diversified-language overlap is **41/159 P80 occupations**; this does not authorize generating the same synthetic policy for the remaining 118. Broad synthetic scaling remains paused after the mixed full-universe opened replay. The next decision-bearing loop is fresh independent human/user description evidence sampled primarily from P80 under the existing frozen human-study contract. P90/P95/full-tail optimization is deferred until P80 evidence warrants expansion.
 
 Evidence: `docs/findings/p80-track2-priority-2026-09-09.md` and `research/evaluation/v31/p80-track2-priority-coverage.json`.
-
-
-1. `docs/research-plan.md` — product scope, research architecture, evidence rules, gates and experiment order.
-2. `docs/findings/*` and `research/*` — evidence supporting or falsifying the plan. They do not silently override it.
-3. `docs/findings/field-feedback-findability-2026-09-07.md` + `research/evaluation/v31/field-feedback-findability-2026-09-07.json` — current real-user field-feedback evidence and frozen derived corpus.
 
 ## Current amendment — 2026-09-09: A593 language-diversity gate complete
 
