@@ -1,0 +1,88 @@
+{
+  "id": "YV-semantic-display-hard-confusion-v1-preregistration",
+  "status": "frozen before v1 oracle outcomes",
+  "date": "2026-09-09",
+  "question": "Does richer candidate-specific canonical-derived task evidence resolve hard adjacent-role negatives better than the frozen v0 compact evidence without increasing target drops?",
+  "opened_data_policy": {
+    "opened_17_88_loaded_for_design_or_execution": false,
+    "yv01_or_yv02_outcomes_allowed_for_tuning": false,
+    "opened_replay_allowed_only_after_independent_gate": true
+  },
+  "retrieval_boundary": {
+    "retrieval_ranker_changed": false,
+    "production_rank_order_changed": false,
+    "purpose": "candidate-relevance mechanism test only; not a new retrieval architecture"
+  },
+  "hard_confusion_population": {
+    "source_artifact": "research/evaluation/v31/compile-time-semantic-a593-confusion-task-atoms-v0.json",
+    "source_artifact_git_blob_sha": "2a48f4a400a81684e497ae62661bc32d80b88ed5",
+    "pairs": 11,
+    "concepts": 22,
+    "source_contract": "public canonical v31 label/definition/alternative labels only",
+    "generator_received_query_or_varied_descriptions": false,
+    "generator_received_contrast_cues_or_descriptions": false,
+    "generator_received_occupation_names": false,
+    "caveat": "Task atoms are model-derived architecture evidence from canonical source text, not independent taxonomy truth."
+  },
+  "query_evaluation": {
+    "source": "historical Platsbanken natural task text",
+    "year": 2022,
+    "structured_occupation_used_only_as_evaluation_target": true,
+    "headline_used_as_query": false,
+    "target_title_sentences_removed": true,
+    "raw_query_text_committed": false,
+    "max_accepted_ads_per_target_concept": 5,
+    "minimum_total_cases_for_decision": 40,
+    "minimum_pairs_with_at_least_one_case": 8,
+    "reason_for_year": "new independent v1 evaluation year; 2023/2024 were already used by earlier display calibration/oracle work"
+  },
+  "candidate_protocol": {
+    "candidate_set": "the fixed two concepts of the corresponding pre-existing hard-confusion pair",
+    "candidate_order": "deterministically shuffled by case key and protocol version",
+    "teacher_sees_rank": false,
+    "teacher_sees_structured_target": false,
+    "teacher_sees_ssyk": false,
+    "verdicts": ["keep", "uncertain", "drop"],
+    "drop_semantics": "only clearly semantically irrelevant according to supplied evidence",
+    "uncertain_policy": "retained; insufficient evidence is not a drop"
+  },
+  "oracle": {
+    "model": "gemma-4-26b-a4b-it",
+    "prompt_rule": "reuse the frozen conservative v0 keep/uncertain/drop instructions unchanged",
+    "temperature": 0.0
+  },
+  "control_evidence": {
+    "id": "v0-compact",
+    "contract": "canonical label <=12 words; <=3 alternative labels <=12 words; definition <=50 words; <=2 already-frozen A593 task/teacher phrases <=24 words",
+    "purpose": "reproduce the evidence density of semantic display oracle v0 on the same independent hard-confusion cases"
+  },
+  "challenger_evidence": {
+    "id": "v1-rich-canonical-task6",
+    "contract": "same canonical label/alternative-label/definition limits as control plus all six pre-existing canonical-derived task atoms for the candidate, each clipped to <=24 words",
+    "task_atoms_generated_after_opened_failure": false,
+    "task_atoms_may_not_be_regenerated_or_edited": true,
+    "no_pair_specific_negative_rules": true,
+    "no_yv01_yv02_specific_evidence": true
+  },
+  "metrics": {
+    "target_non_drop_retention": "fraction of structured-target candidates judged keep or uncertain",
+    "hard_negative_drop_rate": "fraction of paired non-target candidates judged drop",
+    "target_keep_rate": "reported diagnostic, not primary gate",
+    "uncertain_rate": "reported for target and paired negative separately",
+    "pair_level_negative_drop_rate": "reported for every eligible fixed pair"
+  },
+  "decision_gate": {
+    "sample_valid": "at least 40 cases across at least 8 of the 11 fixed pairs",
+    "target_safety": "challenger target non-drop retention >= 0.98 and no more than one additional target drop versus control",
+    "hard_negative_absolute": "challenger paired hard-negative drop rate >= 0.70",
+    "hard_negative_materiality": "challenger paired hard-negative drop rate improves by >= 0.10 absolute over control",
+    "pass_requires_all": true,
+    "if_pass": "freeze v1 evidence contract; only then replay exact unchanged opened stress as falsifier",
+    "if_fail": "do not replay opened, do not distill, and do not tune from opened; reassess evidence provenance/interaction"
+  },
+  "production_boundary": {
+    "runtime_llm_or_provider_api_allowed": false,
+    "student_distillation_allowed_before_gate": false,
+    "human_relevance_validation_still_required_for_promotion": true
+  }
+}
