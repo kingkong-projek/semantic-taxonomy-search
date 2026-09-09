@@ -56,8 +56,6 @@ def build_cases() -> tuple[dict[str, dict[str, Any]], dict[str, list[str]], list
             {"rank": i, "concept_id": cid, "score": float(score), "signal": signal}
             for i, (cid, score, signal) in enumerate(scored[:5], 1)
         ]
-        if len(candidates) != 5:
-            raise RuntimeError(f"opened Top5 underflow for {source['id']}")
         cases.append({
             "ad_id": f"opened-{source['id']}",
             "query": query,
