@@ -2,7 +2,9 @@
 """One-time opened 17/88 replay for the prefrozen A593 language-diversity candidate.
 
 The candidate, diversified corpus and +5pp gate were frozen before this script reads
-opened diagnostics. This replay must not be used to tune phrases, ranker or thresholds.
+opened diagnostics. The production-shape A family always ranks all 2,105 active YV
+occupation identities; only 593 receive teacher expansion. Results must not tune the
+phrases, ranker or thresholds.
 """
 from __future__ import annotations
 
@@ -79,7 +81,7 @@ def main():
     ap.add_argument("--frozen-result", default="research/evaluation/v31/a593-language-diversity-result-v0.json")
     ap.add_argument("--registry", default="research/coverage/source-adapters.json")
     ap.add_argument("--stress", default="research/evaluation/v31/opened-live-semantic-stress-v1.json")
-    ap.add_argument("--output", default="artifacts/a593-language-diversity-opened-replay.json")
+    ap.add_argument("--output", default="artifacts/a593-language-diversity-opened-replay-full-universe.json")
     args = ap.parse_args()
 
     frozen = json.loads(Path(args.frozen_result).read_text(encoding="utf-8"))
@@ -88,7 +90,7 @@ def main():
     if frozen.get("candidate", {}).get("ranker_changed") is not False:
         raise RuntimeError("candidate ranker design drift")
 
-    ids, old_teacher = lang.load_teacher(Path(args.teacher))
+    teacher_ids, old_teacher = lang.load_teacher(Path(args.teacher))
     diverse, _training_meta = lang.load_diverse_training(Path(args.training))
     challenger_teacher = {cid: list(values) for cid, values in old_teacher.items()}
     for cid, values in diverse.items():
@@ -104,8 +106,9 @@ def main():
     concepts = taxonomy.get("data", {}).get("concepts") or []
     by_id = {str(c["id"]): c for c in concepts if isinstance(c, dict) and c.get("id")}
     active_occ = {cid for cid, c in by_id.items() if c.get("type") == "occupation-name"}
-    if len(active_occ) != 2105 or not set(ids) <= active_occ:
+    if len(active_occ) != 2105 or not set(teacher_ids) <= active_occ:
         raise RuntimeError("occupation universe drift")
+    ids = sorted(active_occ)
 
     control_ranker, control_exact, control_surfaces = base.build_ranker(by_id, ids, old_teacher)
     challenger_ranker, challenger_exact, challenger_surfaces = base.build_ranker(by_id, ids, challenger_teacher)
@@ -123,11 +126,6 @@ def main():
     control_strict = base.rank_metrics(strict, [control_rank(row["query"]) for row in strict])
     challenger_strict = base.rank_metrics(strict, [challenger_rank(row["query"]) for row in strict])
 
-    covered_set = set(ids)
-    covered = [row for row in strict if row["target_id"] in covered_set]
-    control_cov = base.rank_metrics(covered, [control_rank(row["query"]) for row in covered])
-    challenger_cov = base.rank_metrics(covered, [challenger_rank(row["query"]) for row in covered])
-
     stress = json.loads(Path(args.stress).read_text(encoding="utf-8"))
     yv = stress.get("yv") or []
     if len(yv) != 54:
@@ -137,20 +135,45 @@ def main():
     control_targetable = targetable(control_stress)
     challenger_targetable = targetable(challenger_stress)
 
+    expected_strict = (5, 10, 0.42451)
+    actual_strict = (control_strict["top1"], control_strict["hit_at_5"], control_strict["mrr"])
+    if actual_strict != expected_strict:
+        raise RuntimeError(f"A593 strict control parity failed: {actual_strict} != {expected_strict}")
+    expected_targetable = (15, 26)
+    actual_targetable = (control_targetable["top1_family_hit"], control_targetable["top5_family_hit"])
+    if actual_targetable != expected_targetable:
+        raise RuntimeError(f"A593 targetable40 control parity failed: {actual_targetable} != {expected_targetable}")
+
+    covered_set = set(teacher_ids)
+    covered = [row for row in strict if row["target_id"] in covered_set]
+    control_cov = base.rank_metrics(covered, [control_rank(row["query"]) for row in covered])
+    challenger_cov = base.rank_metrics(covered, [challenger_rank(row["query"]) for row in covered])
+
     changed_stress = changed_stress_rows(control_stress, challenger_stress)
     changed_strict = changed_strict_rows(control_strict, challenger_strict)
 
     result = {
-        "schema_version": 1,
-        "status": "one-time opened diagnostic replay of prefrozen A593 language-diversity candidate; no tuning",
-        "candidate": frozen["candidate"],
+        "schema_version": 2,
+        "status": "one-time opened diagnostic replay of prefrozen A593 language-diversity candidate over full 2,105 YV universe; no tuning",
+        "supersedes": "research/evaluation/v31/a593-language-diversity-opened-replay.json (invalid 593-only candidate universe)",
+        "candidate": {
+            **frozen["candidate"],
+            "runtime_candidate_universe": 2105,
+            "teacher_expanded_concepts": len(teacher_ids),
+            "diversified_concepts": len(diverse),
+        },
         "prefrozen_selection": {
             "materiality_gate_passed": True,
             "heldout_delta": frozen["primary_heldout_proxy"]["delta"],
             "hard_confusion_delta": frozen["secondary_hard_confusion_replay"]["delta"],
             "diversified_training": frozen["diversified_training"],
         },
-        "lane_boundary": "standalone 593-occupation semantic description lane; ordinary YV lexical lookup remains separate",
+        "control_parity": {
+            "strict17_expected": {"top1": 5, "hit_at_5": 10, "mrr": 0.42451},
+            "targetable40_expected": {"top1": 15, "hit_at_5": 26},
+            "passed": True,
+        },
+        "lane_boundary": "full 2,105-occupation semantic description lane; ordinary YV exact/canonical lookup remains privileged separately",
         "strict_source_attested_17": {
             "control_all17": control_strict,
             "challenger_all17": challenger_strict,
