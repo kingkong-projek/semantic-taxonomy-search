@@ -1,0 +1,33 @@
+name: P80 frozen linear relevance opened replay
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/p80-display-linear-opened-replay.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  replay:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile-check
+        run: python -m py_compile scripts/replay_p80_display_linear_opened.py
+      - name: Replay frozen model
+        run: python scripts/replay_p80_display_linear_opened.py
+      - name: Freeze replay result
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/evaluation/v31/p80-display-linear-relevance-opened-replay-v0.json
+          git commit -m 'research: freeze linear relevance opened replay'
+          git pull --rebase origin main
+          git push
