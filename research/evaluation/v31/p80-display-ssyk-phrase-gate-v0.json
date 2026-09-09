@@ -1,0 +1,354 @@
+{
+  "calibration_frontier": [
+    {
+      "calibration": {
+        "baseline_hit5": 148,
+        "baseline_tail_hits_rank2_5": 86,
+        "cross_ssyk_non_target_after": 0,
+        "cross_ssyk_non_target_before": 0,
+        "cross_ssyk_non_target_reduction": 1.0,
+        "hit5_retention": 1.0,
+        "hit5_retention_wilson95": [
+          0.974701,
+          1.0
+        ],
+        "mean_displayed_after": 2.820276,
+        "mean_displayed_before": 5.0,
+        "non_target_reduction": 0.456711,
+        "queries": 651,
+        "rank_retention": {
+          "1": {
+            "baseline": 62,
+            "rate": 1.0,
+            "retained": 62
+          },
+          "2": {
+            "baseline": 39,
+            "rate": 1.0,
+            "retained": 39
+          },
+          "3": {
+            "baseline": 20,
+            "rate": 1.0,
+            "retained": 20
+          },
+          "4": {
+            "baseline": 13,
+            "rate": 1.0,
+            "retained": 13
+          },
+          "5": {
+            "baseline": 14,
+            "rate": 1.0,
+            "retained": 14
+          }
+        },
+        "retained_hit5": 148,
+        "retained_tail_hits_rank2_5": 86,
+        "tail_hit_retention": 1.0,
+        "tail_hit_retention_wilson95": [
+          0.957242,
+          1.0
+        ],
+        "zero_result_rate_after": 0.0
+      },
+      "formula": "ratio_phrase_shared_count",
+      "threshold": 0.8272428930893166
+    },
+    {
+      "calibration": {
+        "baseline_hit5": 148,
+        "baseline_tail_hits_rank2_5": 86,
+        "cross_ssyk_non_target_after": 0,
+        "cross_ssyk_non_target_before": 0,
+        "cross_ssyk_non_target_reduction": 1.0,
+        "hit5_retention": 1.0,
+        "hit5_retention_wilson95": [
+          0.974701,
+          1.0
+        ],
+        "mean_displayed_after": 2.840246,
+        "mean_displayed_before": 5.0,
+        "non_target_reduction": 0.452527,
+        "queries": 651,
+        "rank_retention": {
+          "1": {
+            "baseline": 62,
+            "rate": 1.0,
+            "retained": 62
+          },
+          "2": {
+            "baseline": 39,
+            "rate": 1.0,
+            "retained": 39
+          },
+          "3": {
+            "baseline": 20,
+            "rate": 1.0,
+            "retained": 20
+          },
+          "4": {
+            "baseline": 13,
+            "rate": 1.0,
+            "retained": 13
+          },
+          "5": {
+            "baseline": 14,
+            "rate": 1.0,
+            "retained": 14
+          }
+        },
+        "retained_hit5": 148,
+        "retained_tail_hits_rank2_5": 86,
+        "tail_hit_retention": 1.0,
+        "tail_hit_retention_wilson95": [
+          0.957242,
+          1.0
+        ],
+        "zero_result_rate_after": 0.0
+      },
+      "formula": "phrase_idf_mass",
+      "threshold": 0.9497137682368773
+    },
+    {
+      "calibration": {
+        "baseline_hit5": 148,
+        "baseline_tail_hits_rank2_5": 86,
+        "cross_ssyk_non_target_after": 0,
+        "cross_ssyk_non_target_before": 0,
+        "cross_ssyk_non_target_reduction": 1.0,
+        "hit5_retention": 1.0,
+        "hit5_retention_wilson95": [
+          0.974701,
+          1.0
+        ],
+        "mean_displayed_after": 2.843318,
+        "mean_displayed_before": 5.0,
+        "non_target_reduction": 0.451883,
+        "queries": 651,
+        "rank_retention": {
+          "1": {
+            "baseline": 62,
+            "rate": 1.0,
+            "retained": 62
+          },
+          "2": {
+            "baseline": 39,
+            "rate": 1.0,
+            "retained": 39
+          },
+          "3": {
+            "baseline": 20,
+            "rate": 1.0,
+            "retained": 20
+          },
+          "4": {
+            "baseline": 13,
+            "rate": 1.0,
+            "retained": 13
+          },
+          "5": {
+            "baseline": 14,
+            "rate": 1.0,
+            "retained": 14
+          }
+        },
+        "retained_hit5": 148,
+        "retained_tail_hits_rank2_5": 86,
+        "tail_hit_retention": 1.0,
+        "tail_hit_retention_wilson95": [
+          0.957242,
+          1.0
+        ],
+        "zero_result_rate_after": 0.0
+      },
+      "formula": "ratio_phrase_idf_mass",
+      "threshold": 0.7464703268508098
+    },
+    {
+      "calibration": {
+        "baseline_hit5": 148,
+        "baseline_tail_hits_rank2_5": 86,
+        "cross_ssyk_non_target_after": 0,
+        "cross_ssyk_non_target_before": 0,
+        "cross_ssyk_non_target_reduction": 1.0,
+        "hit5_retention": 1.0,
+        "hit5_retention_wilson95": [
+          0.974701,
+          1.0
+        ],
+        "mean_displayed_after": 2.866359,
+        "mean_displayed_before": 5.0,
+        "non_target_reduction": 0.447055,
+        "queries": 651,
+        "rank_retention": {
+          "1": {
+            "baseline": 62,
+            "rate": 1.0,
+            "retained": 62
+          },
+          "2": {
+            "baseline": 39,
+            "rate": 1.0,
+            "retained": 39
+          },
+          "3": {
+            "baseline": 20,
+            "rate": 1.0,
+            "retained": 20
+          },
+          "4": {
+            "baseline": 13,
+            "rate": 1.0,
+            "retained": 13
+          },
+          "5": {
+            "baseline": 14,
+            "rate": 1.0,
+            "retained": 14
+          }
+        },
+        "retained_hit5": 148,
+        "retained_tail_hits_rank2_5": 86,
+        "tail_hit_retention": 1.0,
+        "tail_hit_retention_wilson95": [
+          0.957242,
+          1.0
+        ],
+        "zero_result_rate_after": 0.0
+      },
+      "formula": "phrase_shared_count",
+      "threshold": 1.0
+    }
+  ],
+  "candidate_universe": 2105,
+  "decision_gate": {
+    "if_neither": "reject this simple family+phrase display gate; do not threshold-tune it further",
+    "if_strong_or_promising": "freeze unchanged and replay opened stress diagnostically",
+    "promising": "2024 Hit@5 retention >=95%, rank2-5 retention >=95%, cross-SSYK non-target reduction >=40%",
+    "promising_passed": false,
+    "strong": "2024 Hit@5 retention >=98%, rank2-5 retention >=98%, cross-SSYK non-target reduction >=25%",
+    "strong_passed": false
+  },
+  "evaluation": {
+    "baseline_hit5": 167,
+    "baseline_tail_hits_rank2_5": 87,
+    "cross_ssyk_non_target_after": 0,
+    "cross_ssyk_non_target_before": 0,
+    "cross_ssyk_non_target_reduction": 1.0,
+    "hit5_retention": 0.97006,
+    "hit5_retention_wilson95": [
+      0.931836,
+      0.987145
+    ],
+    "mean_displayed_after": 2.89911,
+    "mean_displayed_before": 5.0,
+    "non_target_reduction": 0.440525,
+    "queries": 674,
+    "rank_retention": {
+      "1": {
+        "baseline": 80,
+        "rate": 1.0,
+        "retained": 80
+      },
+      "2": {
+        "baseline": 37,
+        "rate": 0.945946,
+        "retained": 35
+      },
+      "3": {
+        "baseline": 18,
+        "rate": 0.944444,
+        "retained": 17
+      },
+      "4": {
+        "baseline": 19,
+        "rate": 0.894737,
+        "retained": 17
+      },
+      "5": {
+        "baseline": 13,
+        "rate": 1.0,
+        "retained": 13
+      }
+    },
+    "retained_hit5": 162,
+    "retained_tail_hits_rank2_5": 82,
+    "tail_hit_retention": 0.942529,
+    "tail_hit_retention_wilson95": [
+      0.872426,
+      0.975204
+    ],
+    "zero_result_rate_after": 0.0
+  },
+  "evidence_class": "natural historical Platsbanken task-text proxy; structured target and taxonomy SSYK family, not human relevance judgment",
+  "id": "YV-P80-display-ssyk-phrase-gate-v0",
+  "interpretation_boundary": "Different SSYK is a conservative proxy for likely irrelevance, not a human relevance label. Same-SSYK alternatives are intentionally not counted as false suggestions.",
+  "occupation_names_with_ssyk_code_2012": 0,
+  "opened_17_88_loaded": false,
+  "ranker_changed": false,
+  "sample": {
+    "calibration_concepts": 133,
+    "calibration_queries": 651,
+    "evaluation_concepts": 137,
+    "evaluation_queries": 674,
+    "rescue_source-overlap_ids_excluded": 22
+  },
+  "selected": {
+    "calibration": {
+      "baseline_hit5": 148,
+      "baseline_tail_hits_rank2_5": 86,
+      "cross_ssyk_non_target_after": 0,
+      "cross_ssyk_non_target_before": 0,
+      "cross_ssyk_non_target_reduction": 1.0,
+      "hit5_retention": 1.0,
+      "hit5_retention_wilson95": [
+        0.974701,
+        1.0
+      ],
+      "mean_displayed_after": 2.820276,
+      "mean_displayed_before": 5.0,
+      "non_target_reduction": 0.456711,
+      "queries": 651,
+      "rank_retention": {
+        "1": {
+          "baseline": 62,
+          "rate": 1.0,
+          "retained": 62
+        },
+        "2": {
+          "baseline": 39,
+          "rate": 1.0,
+          "retained": 39
+        },
+        "3": {
+          "baseline": 20,
+          "rate": 1.0,
+          "retained": 20
+        },
+        "4": {
+          "baseline": 13,
+          "rate": 1.0,
+          "retained": 13
+        },
+        "5": {
+          "baseline": 14,
+          "rate": 1.0,
+          "retained": 14
+        }
+      },
+      "retained_hit5": 148,
+      "retained_tail_hits_rank2_5": 86,
+      "tail_hit_retention": 1.0,
+      "tail_hit_retention_wilson95": [
+        0.957242,
+        1.0
+      ],
+      "zero_result_rate_after": 0.0
+    },
+    "formula": "ratio_phrase_shared_count",
+    "threshold": 0.8272428930893166
+  },
+  "selection_contract": "2023 zero baseline-Hit@5 target loss; among frozen phrase formulas minimize visible candidates",
+  "signal": "retain Top-5 candidate when same SSYK-2012 as rank1 OR strong best-single-teacher-phrase support"
+}
