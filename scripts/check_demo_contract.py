@@ -29,7 +29,7 @@ for token in required_html:
 for token in (
     'localStorage', 'new Blob', 'URL.createObjectURL',
     # Stable Pages URL retained even though its engine is no longer the old C2 candidate.
-    "occupation: './assets/yv-c2.json'", "skill: './assets/kv-g1-t3.json'",
+    "occupation: './assets/yv-c2.json?v=a593-cachefix-1'", "skill: './assets/kv-g1-t3.json?v=a593-cachefix-1'",
     "form.addEventListener('submit'", 'const loaded = await ensureEngine(stream);',
     "stream: 'mixed'", "schema_version: 2",
 ):
@@ -38,6 +38,8 @@ for token in (
 
 if app.count('fetch(') != 1 or 'fetch(MODEL_URLS[stream]' not in app:
     raise RuntimeError('demo must make only the selected relative model fetch lazily')
+if "cache: 'no-cache'" not in app or "cache: 'force-cache'" in app:
+    raise RuntimeError('demo model loads must revalidate so runtime/model deploys cannot mix')
 
 for token in (
     '@media (max-width: 900px)', '@media (max-width: 640px)', ':focus-visible',

@@ -1,10 +1,10 @@
-import { createSearchEngine } from './search-engine.js';
+import { createSearchEngine } from './search-engine.js?v=a593-cachefix-1';
 
 const STORAGE_KEY = 'semantic-fallback-demo:mixed:v2';
 const LEGACY_STORAGE_KEY = 'semantic-fallback-demo:skill:v1';
 const MODEL_URLS = {
-  occupation: './assets/yv-c2.json',
-  skill: './assets/kv-g1-t3.json',
+  occupation: './assets/yv-c2.json?v=a593-cachefix-1',
+  skill: './assets/kv-g1-t3.json?v=a593-cachefix-1',
 };
 const STREAM_COPY = {
   occupation: {
@@ -166,7 +166,7 @@ async function ensureEngine(stream) {
     engineStatus.dataset.state = 'loading';
     engineStatus.textContent = `Laddar ${STREAM_COPY[stream].name.toLowerCase()}sdata första gången …`;
     const started = performance.now();
-    enginePromises[stream] = fetch(MODEL_URLS[stream], { cache: 'force-cache' })
+    enginePromises[stream] = fetch(MODEL_URLS[stream], { cache: 'no-cache' })
       .then((response) => {
         if (!response.ok) throw new Error(`Kunde inte ladda sökdata (${response.status}).`);
         return response.json();
