@@ -58,7 +58,7 @@ Hard boundaries:
 - retrieval candidate universe and rank order are unchanged;
 - the semantic teacher is **not** a new retrieval ranker;
 - rank/position is hidden from the teacher; candidate order in the prompt is deterministically shuffled;
-- candidate evidence is source-bound: canonical label/definition plus already-frozen source-bound teacher phrases; insufficient evidence must yield `uncertain`, not invented facts;
+- candidate evidence is source-bound and fixed as `label-alt3-definition50-task2x24-v0`: canonical label, up to 3 alternative labels, definition up to 50 words, and up to 2 already-frozen task phrases of up to 24 words each; insufficient evidence must yield `uncertain`, not invented facts;
 - rank 1 is retained in v0; for ranks 2–5 only a confident `drop` removes a candidate;
 - opened 17/88 user-style rows are never used to choose prompt, model, labels, threshold or decision rule;
 - the teacher is research/oracle evidence only. **No runtime LLM/API is permitted by this experiment.**
@@ -80,10 +80,12 @@ Prefrozen gate for semantic-oracle v0:
 - rank-1 target retention: **100%** by the display contract;
 - overall baseline Hit@5 target retention: **>=99%**;
 - rank-2–5 target retention: **>=98%**;
-- safe different-SSYK4 negative reduction: **>=60%** for a strong pass;
+- safe different-SSYK4 **rank-2–5** negative reduction: **>=60%** for a strong pass;
 - a bounded promising result is `>=98% / >=98% / >=50%` respectively.
 
 Only a strong/promising pass permits an **unchanged diagnostic replay** on the opened user-style stress set. Opened replay may falsify transfer but may never retune the teacher or its rule.
+
+The exact pre-outcome contract is frozen in `research/evaluation/v31/p80-display-semantic-oracle-preregistration-v0.json`.
 
 ### Decision after semantic-oracle v0
 
