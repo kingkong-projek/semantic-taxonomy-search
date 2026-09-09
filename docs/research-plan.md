@@ -1,5 +1,8 @@
 # Semantic Taxonomy Search — living research plan
 
+**P80-first Track-2 priority amendment (2026-09-09) — P80-FIRST-TRACK2-2026-09-09.** Keep the full 2,105-occupation candidate universe, but make the frozen 159-occupation P80 demand stratum the primary short-feedback-loop population for human recruitment, evaluation and quality work. The existing diversified-language corpus covers 41/159 P80 occupations; that overlap is planning metadata, not permission to mass-generate the remaining 118 with the current synthetic Gemma policy. Broad synthetic scaling remains paused. The next decision-bearing gate is fresh independent human/user descriptions, P80-primary, with valid non-P80 targets preserved and a small long-tail safety view reported separately when available. Expand to P90/P95 only after material P80 evidence warrants it. Evidence: `docs/findings/p80-track2-priority-2026-09-09.md` and `research/evaluation/v31/p80-track2-priority-coverage.json`.
+
+
 **Status:** active research  
 **Target taxonomy snapshot:** v31 unless an experiment explicitly says otherwise  
 **Last updated:** 2026-09-09  

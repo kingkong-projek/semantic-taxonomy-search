@@ -1,0 +1,1148 @@
+{
+  "schema": "p80-track2-priority-coverage-v0",
+  "taxonomy": "v31",
+  "decision": {
+    "optimization_priority": "P80-first",
+    "occupation_candidate_universe": 2105,
+    "candidate_universe_policy": "all active v31 occupation-name identities remain eligible",
+    "synthetic_scaling_policy": "paused; do not mass-generate current Gemma diversification policy",
+    "next_decision_bearing_evidence": "fresh independent human/user descriptions, P80-primary",
+    "expansion_order": [
+      "P80",
+      "P90",
+      "P95",
+      "full long tail only when justified"
+    ]
+  },
+  "p80": {
+    "occupation_count": 159,
+    "historical_occurrences": 4396770,
+    "share_of_observed_active_v31_occurrences": 0.8002245914946436,
+    "existing_diversified_v0_count": 41,
+    "missing_diversified_v0_count": 118,
+    "existing_diversified_v0_share_of_p80_count": 0.2578616352201258,
+    "existing_diversified_v0_share_of_p80_occurrence_mass": 0.267233901250236
+  },
+  "existing_diversified_v0": [
+    {
+      "concept_id": "p17k_znk_osi",
+      "label": "Utesäljare",
+      "occurrences": 151017,
+      "rank": 4,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "fg7B_yov_smw",
+      "label": "Systemutvecklare/Programmerare",
+      "occurrences": 108477,
+      "rank": 7,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "jsUx_ngg_Kz2",
+      "label": "Innesäljare",
+      "occurrences": 91098,
+      "rank": 9,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "rUcW_z9R_Qsv",
+      "label": "Förskollärare",
+      "occurrences": 86516,
+      "rank": 10,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "8jrL_5RZ_9Kt",
+      "label": "Account manager/AM",
+      "occurrences": 75021,
+      "rank": 12,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "yXRQ_Ad9_E8V",
+      "label": "Restaurangbiträde",
+      "occurrences": 72897,
+      "rank": 13,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "rGGf_KLs_To7",
+      "label": "Servitör/Servitris",
+      "occurrences": 55569,
+      "rank": 14,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "YG1s_tUg_jWJ",
+      "label": "Handläggare, offentlig förvaltning/Utredare, offentlig förvaltning",
+      "occurrences": 39945,
+      "rank": 24,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "rAjz_1xP_f1a",
+      "label": "Montör metallprodukter",
+      "occurrences": 33320,
+      "rank": 28,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "4Z7F_oBG_vMG",
+      "label": "Träarbetare/Snickare",
+      "occurrences": 28673,
+      "rank": 37,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "LxhG_of8_eMi",
+      "label": "Stödassistent",
+      "occurrences": 27402,
+      "rank": 39,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "xBo9_V9m_bfg",
+      "label": "Psykolog",
+      "occurrences": 25424,
+      "rank": 41,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "dhXy_7Te_Tzb",
+      "label": "Speciallärare",
+      "occurrences": 24649,
+      "rank": 43,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "f1zq_tpA_QtN",
+      "label": "Specialpedagog",
+      "occurrences": 24386,
+      "rank": 44,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "TTDZ_Neo_9GJ",
+      "label": "Key account manager/KAM",
+      "occurrences": 23955,
+      "rank": 45,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "ckkD_JhH_Sc6",
+      "label": "Tandsköterska",
+      "occurrences": 21939,
+      "rank": 48,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "PtiU_6mm_yyL",
+      "label": "Budbilsförare",
+      "occurrences": 19095,
+      "rank": 52,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "rgsj_poi_koz",
+      "label": "Modersmålslärare i grundskolan",
+      "occurrences": 17315,
+      "rank": 59,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "9YaE_Syg_5ZB",
+      "label": "Pizzabagare",
+      "occurrences": 16702,
+      "rank": 61,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "TdvW_S8R_CFH",
+      "label": "Tandläkare",
+      "occurrences": 16656,
+      "rank": 62,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "WCma_2oa_gyZ",
+      "label": "Marknadsförare",
+      "occurrences": 15008,
+      "rank": 69,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "MQHi_q9J_x2d",
+      "label": "Väg- och anläggningsarbetare",
+      "occurrences": 14819,
+      "rank": 71,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "szfD_hPZ_y7M",
+      "label": "Skolsköterska",
+      "occurrences": 14805,
+      "rank": 72,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "Lxas_8K9_W1o",
+      "label": "Systemadministratör",
+      "occurrences": 13413,
+      "rank": 75,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "DEDi_wap_ntF",
+      "label": "Barnmorska",
+      "occurrences": 13343,
+      "rank": 76,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "tuoE_9Nj_fAS",
+      "label": "Frisör",
+      "occurrences": 12928,
+      "rank": 77,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "uwYE_D2Z_45B",
+      "label": "Försäljningschef",
+      "occurrences": 12411,
+      "rank": 83,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "44U4_7Fz_GCy",
+      "label": "Konstruktör, tillverkningsindustri",
+      "occurrences": 12273,
+      "rank": 86,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "pYiF_Z6V_ULQ",
+      "label": "Biståndsbedömare/Biståndshandläggare",
+      "occurrences": 10376,
+      "rank": 101,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "6wcp_7D7_GU7",
+      "label": "Fordonsmontör",
+      "occurrences": 9920,
+      "rank": 106,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "QLwS_aMP_Jcu",
+      "label": "Säljledare",
+      "occurrences": 9836,
+      "rank": 107,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "3vry_gaE_yfQ",
+      "label": "Organisationsutvecklare",
+      "occurrences": 9631,
+      "rank": 112,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "fLps_qRU_1CC",
+      "label": "Bartender",
+      "occurrences": 9084,
+      "rank": 117,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "HWPy_9jT_TX2",
+      "label": "Optiker",
+      "occurrences": 7951,
+      "rank": 131,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "ZnNn_D2K_pTi",
+      "label": "Fritidsledare",
+      "occurrences": 7825,
+      "rank": 135,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "ofiS_5F2_YmV",
+      "label": "HR-assistent",
+      "occurrences": 7743,
+      "rank": 138,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "kx3b_92W_PuD",
+      "label": "Elingenjör",
+      "occurrences": 7099,
+      "rank": 145,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "JECy_3w6_gah",
+      "label": "Kallskänka",
+      "occurrences": 7094,
+      "rank": 146,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "GujS_MtW_PRH",
+      "label": "Bibliotekarie",
+      "occurrences": 6991,
+      "rank": 147,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "9U5Y_9Ji_uJq",
+      "label": "Dataingenjör",
+      "occurrences": 6213,
+      "rank": 157,
+      "already_diversified_v0": true
+    },
+    {
+      "concept_id": "fCCr_Mp8_6oE",
+      "label": "Platschef, anläggning",
+      "occurrences": 6147,
+      "rank": 159,
+      "already_diversified_v0": true
+    }
+  ],
+  "missing_diversified_v0": [
+    {
+      "concept_id": "bXNH_MNX_dUR",
+      "label": "Sjuksköterska, grundutbildad",
+      "occurrences": 434319,
+      "rank": 1,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "eU1q_zvL_9Rf",
+      "label": "Personlig assistent",
+      "occurrences": 285532,
+      "rank": 2,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "8Uhp_XYo_z5f",
+      "label": "Kundtjänstmedarbetare",
+      "occurrences": 175596,
+      "rank": 3,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "ek9W_CmD_y2M",
+      "label": "Butikssäljare, fackhandel",
+      "occurrences": 132215,
+      "rank": 5,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "bUP3_Ztw_VC1",
+      "label": "Hemförsäljare",
+      "occurrences": 110114,
+      "rank": 6,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "WZ2C_vH9_8ek",
+      "label": "Telefonförsäljare",
+      "occurrences": 106067,
+      "rank": 8,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "pBhS_6fg_727",
+      "label": "Butikssäljare, dagligvaror/Medarbetare, dagligvaror",
+      "occurrences": 85209,
+      "rank": 11,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "BK8D_hZe_dtk",
+      "label": "Ekonomiassistent",
+      "occurrences": 54906,
+      "rank": 15,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "rQds_YGd_quU",
+      "label": "Mjukvaruutvecklare",
+      "occurrences": 54534,
+      "rank": 16,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "JbJw_as4_S93",
+      "label": "Kock à la carte",
+      "occurrences": 52306,
+      "rank": 17,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "JEhg_Dmh_mzv",
+      "label": "Distributionsförare",
+      "occurrences": 51794,
+      "rank": 18,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "GQSf_fnq_kjF",
+      "label": "Truckförare",
+      "occurrences": 50677,
+      "rank": 19,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "rM7G_ge7_XhP",
+      "label": "Barnskötare",
+      "occurrences": 50650,
+      "rank": 20,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "8N18_sGB_X4M",
+      "label": "Redovisningsekonom",
+      "occurrences": 48787,
+      "rank": 21,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "FwM7_WYB_qgc",
+      "label": "Socialsekreterare",
+      "occurrences": 47648,
+      "rank": 22,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "PQkQ_Dmk_ZF8",
+      "label": "Undersköterska, vård- och specialavdelning och mottagning",
+      "occurrences": 46196,
+      "rank": 23,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "gPCx_T6e_6P8",
+      "label": "Jobbcoach/Utbildningscoach",
+      "occurrences": 36255,
+      "rank": 25,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "heGV_uHh_o8W",
+      "label": "Arbetsterapeut",
+      "occurrences": 36135,
+      "rank": 26,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "9K3i_XD4_Kyy",
+      "label": "Läkare",
+      "occurrences": 34516,
+      "rank": 27,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "z5AM_ayf_WcL",
+      "label": "Projektledare, IT",
+      "occurrences": 33305,
+      "rank": 29,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "KVVN_sqH_Wpz",
+      "label": "Inköpare",
+      "occurrences": 33200,
+      "rank": 30,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "MMTE_fiP_1Ng",
+      "label": "Behandlingsassistent/Socialpedagog",
+      "occurrences": 32859,
+      "rank": 31,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "Sbzf_iBA_MAS",
+      "label": "Elevassistent",
+      "occurrences": 32168,
+      "rank": 32,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "Vg3d_Azf_p5Y",
+      "label": "Kock storhushåll",
+      "occurrences": 32120,
+      "rank": 33,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "pTTz_5DC_itW",
+      "label": "Projektledare, bygg och anläggning",
+      "occurrences": 31093,
+      "rank": 34,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "n2Tp_B8E_gED",
+      "label": "Distriktssköterska",
+      "occurrences": 29624,
+      "rank": 35,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "aEF1_qeh_5Qe",
+      "label": "Socionom",
+      "occurrences": 28724,
+      "rank": 36,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "oRB5_b7i_Qzv",
+      "label": "Köksbiträde",
+      "occurrences": 28071,
+      "rank": 38,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "QaQC_ozP_Bme",
+      "label": "Rekryterare/Rekryteringskonsult",
+      "occurrences": 27317,
+      "rank": 40,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "GrZU_ofe_QAx",
+      "label": "Controller",
+      "occurrences": 24857,
+      "rank": 42,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "WWVG_4sM_faC",
+      "label": "Butikschef",
+      "occurrences": 23285,
+      "rank": 46,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "s28Q_sya_S2b",
+      "label": "HR-specialist/HR-advisor",
+      "occurrences": 22083,
+      "rank": 47,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "ci6b_Nc2_FmS",
+      "label": "Underhållsmekaniker",
+      "occurrences": 21252,
+      "rank": 49,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "Pgpp_B8P_wot",
+      "label": "Doktorand",
+      "occurrences": 21062,
+      "rank": 50,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "K3iK_iEb_41Y",
+      "label": "Serviceelektriker, installation",
+      "occurrences": 20017,
+      "rank": 51,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "UVrW_krj_vk8",
+      "label": "Psykiatrisjuksköterska",
+      "occurrences": 18699,
+      "rank": 53,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "aRp4_qjZ_tPV",
+      "label": "Informatör/Kommunikatör",
+      "occurrences": 18646,
+      "rank": 54,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "ZKKT_4bd_Sxs",
+      "label": "Enhetschef, hälso- och sjukvård",
+      "occurrences": 18314,
+      "rank": 55,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "YJKc_yXU_DUH",
+      "label": "Operationssjuksköterska",
+      "occurrences": 18305,
+      "rank": 56,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "84Uc_bhA_s47",
+      "label": "Installationselektriker",
+      "occurrences": 17861,
+      "rank": 57,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "rkXK_cb5_Ft9",
+      "label": "Backofficepersonal",
+      "occurrences": 17437,
+      "rank": 58,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "4zLr_jP5_peZ",
+      "label": "Vårdbiträde",
+      "occurrences": 16917,
+      "rank": 60,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "2iBk_N8d_Gm4",
+      "label": "Forskarassistent",
+      "occurrences": 16521,
+      "rank": 63,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "FC86_VDF_rqB",
+      "label": "Teamledare",
+      "occurrences": 16182,
+      "rank": 64,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "Uh7q_DpM_rm3",
+      "label": "Intensivvårdssjuksköterska",
+      "occurrences": 15535,
+      "rank": 65,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "9kWY_X1U_RyC",
+      "label": "Universitets- och högskolelektor",
+      "occurrences": 15382,
+      "rank": 66,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "3kFW_XLk_v9H",
+      "label": "Hotellreceptionist",
+      "occurrences": 15327,
+      "rank": 67,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "4qYQ_tWb_QjD",
+      "label": "Anestesisjuksköterska",
+      "occurrences": 15225,
+      "rank": 68,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "7wdX_4rv_33z",
+      "label": "Backend-utvecklare",
+      "occurrences": 14831,
+      "rank": 70,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "Noad_FWq_mY2",
+      "label": "Enhetschef, offentlig förvaltning",
+      "occurrences": 14135,
+      "rank": 73,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "YpRs_ybt_47a",
+      "label": "Kurator",
+      "occurrences": 13612,
+      "rank": 74,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "w8eg_Ufq_B5X",
+      "label": "Besöksbokare/Kundbokare",
+      "occurrences": 12778,
+      "rank": 78,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "1d3z_y59_2Hm",
+      "label": "HR-konsult/PA-konsult",
+      "occurrences": 12734,
+      "rank": 79,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "GDHs_eoz_uKx",
+      "label": "Frontend-utvecklare",
+      "occurrences": 12706,
+      "rank": 80,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "CQse_CRd_snw",
+      "label": "Civilingenjör, systemutveckling",
+      "occurrences": 12606,
+      "rank": 81,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "AJDU_fpb_ADF",
+      "label": "Elmontör",
+      "occurrences": 12435,
+      "rank": 82,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "hr5f_dci_NcD",
+      "label": "Rektor",
+      "occurrences": 12404,
+      "rank": 84,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "TPRY_Wze_q6x",
+      "label": "Tandhygienist",
+      "occurrences": 12305,
+      "rank": 85,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "8tSq_t1z_MRT",
+      "label": "Business controller",
+      "occurrences": 12251,
+      "rank": 87,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "XHyR_e9A_sqQ",
+      "label": "Produktionstekniker, maskin/Produktionstekniker, verkstad",
+      "occurrences": 12180,
+      "rank": 88,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "57z2_b5A_hAT",
+      "label": "Betongarbetare",
+      "occurrences": 11960,
+      "rank": 89,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "aMhb_X7V_KCL",
+      "label": "Brevbärare",
+      "occurrences": 11852,
+      "rank": 90,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "iCy6_G72_abh",
+      "label": "Ekonomichef",
+      "occurrences": 11538,
+      "rank": 91,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "XSBp_5wD_VaU",
+      "label": "Restaurangchef",
+      "occurrences": 11337,
+      "rank": 92,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "KYPa_Jv8_ZbU",
+      "label": "Studie- och yrkesvägledare/SYV",
+      "occurrences": 11286,
+      "rank": 93,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "nFJR_WkF_ir7",
+      "label": "Systemförvaltare",
+      "occurrences": 11114,
+      "rank": 94,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "A6CQ_XVJ_iy4",
+      "label": "Arbetsledare, anläggning",
+      "occurrences": 10993,
+      "rank": 95,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "Rd3G_bFa_zvR",
+      "label": "Civilingenjör, maskin",
+      "occurrences": 10993,
+      "rank": 96,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "7oRE_Ejt_YWQ",
+      "label": "Logistiker",
+      "occurrences": 10968,
+      "rank": 97,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "YfCD_kUE_kck",
+      "label": "Universitets- och högskoleadjunkt",
+      "occurrences": 10746,
+      "rank": 98,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "Jd8e_1UD_8Vo",
+      "label": "Bilförsäljare",
+      "occurrences": 10427,
+      "rank": 99,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "bhk6_aNU_xRe",
+      "label": "Renhållningsförare",
+      "occurrences": 10389,
+      "rank": 100,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "Pj8T_bST_f7D",
+      "label": "Biomedicinsk analytiker/BMA",
+      "occurrences": 10181,
+      "rank": 102,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "uZU6_oxo_Dpd",
+      "label": "Industrielektriker",
+      "occurrences": 10105,
+      "rank": 103,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "Nkbd_wa9_TZF",
+      "label": "Nätverkstekniker",
+      "occurrences": 10102,
+      "rank": 104,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "3uEE_35U_U6j",
+      "label": "Grovarbetare, bygg och anläggning",
+      "occurrences": 10080,
+      "rank": 105,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "bjDH_v5M_2gn",
+      "label": "Produktionschef, tillverkning",
+      "occurrences": 9833,
+      "rank": 108,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "NSEG_DmQ_waj",
+      "label": "Stödpedagog",
+      "occurrences": 9827,
+      "rank": 109,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "mBMU_HvW_LMY",
+      "label": "IT-strateg",
+      "occurrences": 9766,
+      "rank": 110,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "bXfh_r3N_Wue",
+      "label": "Kundmottagare/Arbetsledare bilverkstad",
+      "occurrences": 9721,
+      "rank": 111,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "kron_xtp_zCz",
+      "label": "Mediasäljare",
+      "occurrences": 9559,
+      "rank": 113,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "gLtU_eR9_ZcW",
+      "label": "Orderadministratör",
+      "occurrences": 9475,
+      "rank": 114,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "ztEq_Vts_77r",
+      "label": "Röntgensjuksköterska",
+      "occurrences": 9278,
+      "rank": 115,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "ZZTi_v6g_4cZ",
+      "label": "VVS-montör",
+      "occurrences": 9175,
+      "rank": 116,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "HdcS_g6a_jPk",
+      "label": "Träarbetare, utan yrkesbevis/Snickare, utan yrkesbevis",
+      "occurrences": 9011,
+      "rank": 118,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "Zwhm_5tT_Zms",
+      "label": "Affärsutvecklare",
+      "occurrences": 8979,
+      "rank": 119,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "Cn7e_qQS_nPF",
+      "label": "Biträdande rektor",
+      "occurrences": 8811,
+      "rank": 120,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "CQBS_ZSZ_ViP",
+      "label": "Barnsjuksköterska",
+      "occurrences": 8686,
+      "rank": 121,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "TT8h_qKk_1iu",
+      "label": "Affärskonsult, IT",
+      "occurrences": 8676,
+      "rank": 122,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "41Vq_aR6_yRb",
+      "label": "Verksamhetschef, hälso- och sjukvård",
+      "occurrences": 8588,
+      "rank": 123,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "GaiH_Bzd_mU5",
+      "label": "Elektronikmontör",
+      "occurrences": 8550,
+      "rank": 124,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "JUu4_wcP_kQG",
+      "label": "Lärare i förskoleklass",
+      "occurrences": 8490,
+      "rank": 125,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "EPe8_EQu_YCL",
+      "label": "Fastighetsförvaltare",
+      "occurrences": 8408,
+      "rank": 126,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "j8X2_KhG_6ty",
+      "label": "Kassapersonal",
+      "occurrences": 8278,
+      "rank": 127,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "y2J4_Kxs_TVQ",
+      "label": "Maskinkonstruktör",
+      "occurrences": 8241,
+      "rank": 128,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "QyBB_mhx_iKS",
+      "label": "Byggnadsingenjör",
+      "occurrences": 8125,
+      "rank": 129,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "1ERY_48v_Q6m",
+      "label": "Administrativ chef",
+      "occurrences": 8114,
+      "rank": 130,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "o7LP_duC_u9Z",
+      "label": "Lastbilsmekaniker",
+      "occurrences": 7900,
+      "rank": 132,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "X7oZ_fbn_TgG",
+      "label": "Servicehandläggare",
+      "occurrences": 7858,
+      "rank": 133,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "pKTY_Kwu_sUw",
+      "label": "Diskare",
+      "occurrences": 7833,
+      "rank": 134,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "rv19_K1B_Fuo",
+      "label": "Målare",
+      "occurrences": 7816,
+      "rank": 136,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "jtGy_ZBL_NEP",
+      "label": "Marknadskommunikatör",
+      "occurrences": 7761,
+      "rank": 137,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "XugJ_6hw_wVV",
+      "label": "Bagare/Konditor",
+      "occurrences": 7713,
+      "rank": 139,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "BNz8_F9J_y2L",
+      "label": "Fjärrbilsförare",
+      "occurrences": 7701,
+      "rank": 140,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "ryH6_MAv_QWb",
+      "label": "Upphandlare",
+      "occurrences": 7682,
+      "rank": 141,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "mobn_aTk_jS6",
+      "label": "Väktare",
+      "occurrences": 7530,
+      "rank": 142,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "SF73_TBz_fhR",
+      "label": "Ledsagare",
+      "occurrences": 7336,
+      "rank": 143,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "zrQ9_1z2_kT3",
+      "label": "Musikpedagog/Musiklärare",
+      "occurrences": 7323,
+      "rank": 144,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "rncq_GAq_KMx",
+      "label": "Automationsingenjör, maskin",
+      "occurrences": 6935,
+      "rank": 148,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "mcAc_Xvo_Jp8",
+      "label": "Projekteringsingenjör, bygg och anläggning",
+      "occurrences": 6888,
+      "rank": 149,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "uWwq_jF2_nhq",
+      "label": "Marknadsassistent",
+      "occurrences": 6854,
+      "rank": 150,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "EGeL_Yk2_ZWE",
+      "label": "Elkonstruktör",
+      "occurrences": 6724,
+      "rank": 151,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "Zfgc_BYU_HM2",
+      "label": "Lärarassistent",
+      "occurrences": 6661,
+      "rank": 152,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "15e8_KDZ_31Z",
+      "label": "SFI-lärare",
+      "occurrences": 6458,
+      "rank": 153,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "CZkP_hCz_KM8",
+      "label": "Applikationsutvecklare",
+      "occurrences": 6418,
+      "rank": 154,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "4ZeS_9Z9_wmL",
+      "label": "Hovmästare",
+      "occurrences": 6379,
+      "rank": 155,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "3abF_Jyu_WtS",
+      "label": "Marknadskoordinator",
+      "occurrences": 6345,
+      "rank": 156,
+      "already_diversified_v0": false
+    },
+    {
+      "concept_id": "CnYS_d4N_CZJ",
+      "label": "Enhetschef inom socialtjänst",
+      "occurrences": 6206,
+      "rank": 158,
+      "already_diversified_v0": false
+    }
+  ],
+  "notes": [
+    "Coverage is planning metadata, not evidence that diversified synthetic language transfers to users.",
+    "The full 2,105 occupation candidate universe remains unchanged.",
+    "P80 is a quality/recruitment/evaluation priority stratum, not an allow-list."
+  ]
+}
