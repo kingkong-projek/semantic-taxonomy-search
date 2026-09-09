@@ -1,0 +1,37 @@
+name: Recover and finish semantic hard-confusion v1
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/recover-and-finish-semantic-hard-confusion-v1.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  recover:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify execution helpers
+        run: python -m py_compile scripts/recover_semantic_hard_confusion_v1_wire_key.py scripts/evaluate_semantic_display_hard_confusion_v1.py
+      - name: Recover the single malformed opaque response key
+        run: python scripts/recover_semantic_hard_confusion_v1_wire_key.py
+      - name: Compute the frozen preregistered gate
+        run: python scripts/evaluate_semantic_display_hard_confusion_v1.py --batch-size 6 --requests-per-minute 3 --single-case-attempts 8
+      - name: Persist decision-bearing state
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/evaluation/v31/semantic-display-hard-confusion-v1-*.json
+          git commit -m 'research: complete semantic hard-confusion v1'
+          git pull --rebase origin main
+          git push
