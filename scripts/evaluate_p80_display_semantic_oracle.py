@@ -334,9 +334,22 @@ def semantic_judge_batches(
         elapsed = time.monotonic() - last_call
         if last_call and elapsed < min_interval:
             time.sleep(min_interval - elapsed)
-        raw, meta = call_semantic_with_quota_retry(api_key, prompt(batch, by_id, phrase_map))
-        last_call = time.monotonic()
-        parsed = parse_response(raw, batch)
+        parsed = None
+        meta = {}
+        batch_prompt = prompt(batch, by_id, phrase_map)
+        for response_attempt in range(5):
+            raw, meta = call_semantic_with_quota_retry(api_key, batch_prompt)
+            last_call = time.monotonic()
+            try:
+                parsed = parse_response(raw, batch)
+                break
+            except RuntimeError as exc:
+                if response_attempt + 1 >= 5:
+                    raise
+                print(f"semantic oracle incomplete batch; retry exact batch ({response_attempt + 1}/5): {exc}", flush=True)
+                time.sleep(5.0)
+        if parsed is None:
+            raise RuntimeError("semantic oracle batch retry exhausted without parsed result")
         all_judgments.update(parsed)
         usage.append(meta)
         print(f"semantic oracle {min(start + len(batch), len(cases))}/{len(cases)}", flush=True)
