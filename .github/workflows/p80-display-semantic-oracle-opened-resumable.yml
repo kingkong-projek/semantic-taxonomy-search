@@ -1,0 +1,113 @@
+name: P80 semantic oracle opened replay durable
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/p80-display-semantic-oracle-opened-resumable.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: p80-display-semantic-oracle-opened-v0
+  cancel-in-progress: false
+
+jobs:
+  replay:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Verify frozen primary and durable replay code
+        run: |
+          python -m py_compile \
+            scripts/evaluate_p80_display_semantic_oracle.py \
+            scripts/run_p80_display_semantic_oracle_resumable.py \
+            scripts/replay_p80_display_semantic_oracle_opened.py \
+            scripts/run_p80_display_semantic_oracle_opened_resumable.py
+          python -m unittest \
+            tests/test_semantic_oracle_contract.py \
+            tests/test_semantic_oracle_resumable.py
+          python - <<'PY'
+          import json
+          p='research/evaluation/v31/p80-display-semantic-oracle-v0.json'
+          r=json.load(open(p, encoding='utf-8'))
+          assert r['id']=='YV-P80-display-semantic-oracle-v0'
+          assert r.get('complete') is True
+          assert r['decision_gate']['strong_passed'] is True
+          print('frozen primary strong pass verified')
+          PY
+
+      - name: Run exact opened replay durably
+        run: |
+          python scripts/run_p80_display_semantic_oracle_opened_resumable.py \
+            --batch-size 6 \
+            --requests-per-minute 3 \
+            --single-case-attempts 8
+
+      - name: Read opened completion
+        id: status
+        if: always()
+        run: |
+          python - <<'PY'
+          import json, os
+          p='research/evaluation/v31/p80-display-semantic-oracle-opened-run-status-v0.json'
+          complete=False
+          if os.path.exists(p):
+              s=json.load(open(p, encoding='utf-8'))
+              complete=bool(s.get('complete'))
+              print(json.dumps(s, ensure_ascii=False, indent=2, sort_keys=True))
+          with open(os.environ['GITHUB_OUTPUT'],'a',encoding='utf-8') as f:
+              f.write(f"complete={'true' if complete else 'false'}\n")
+          PY
+
+      - name: Persist opened replay state/result
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if [ "${{ steps.status.outputs.complete }}" = "true" ]; then
+            git add research/evaluation/v31/p80-display-semantic-oracle-opened-replay-v0.json
+            git rm -f --ignore-unmatch \
+              research/evaluation/v31/p80-display-semantic-oracle-opened-checkpoint-v0.json \
+              research/evaluation/v31/p80-display-semantic-oracle-opened-run-status-v0.json
+            msg='research: freeze opened semantic oracle replay'
+          else
+            git add \
+              research/evaluation/v31/p80-display-semantic-oracle-opened-checkpoint-v0.json \
+              research/evaluation/v31/p80-display-semantic-oracle-opened-run-status-v0.json 2>/dev/null || true
+            msg='research: checkpoint opened semantic oracle replay'
+          fi
+          if git diff --cached --quiet; then
+            echo 'No replay state changes to persist.'
+          else
+            git commit -m "$msg"
+            git pull --rebase origin main
+            git push
+          fi
+
+      - name: Upload opened replay recovery artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p80-display-semantic-oracle-opened-v0
+          path: |
+            research/evaluation/v31/p80-display-semantic-oracle-opened-checkpoint-v0.json
+            research/evaluation/v31/p80-display-semantic-oracle-opened-run-status-v0.json
+            research/evaluation/v31/p80-display-semantic-oracle-opened-replay-v0.json
+          if-no-files-found: warn
+
+      - name: Mark incomplete only after checkpoint is safe
+        if: always() && steps.status.outputs.complete != 'true'
+        run: |
+          echo 'Opened replay incomplete, durable checkpoint persisted.'
+          exit 1
