@@ -1,0 +1,126 @@
+name: Recover frozen A593 teacher corpus
+
+on:
+  push:
+    paths:
+      - '.github/workflows/recover-a593-teacher-once.yml'
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Recover exact frozen corpus from Actions artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EXPECTED_SHA: 7769db2124ef190d74964ddb9f97da1d67137dad9b51e9e534e4e9bd6a24f847
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/a593-artifacts /tmp/a593-unpacked
+          gh api --paginate "repos/${GITHUB_REPOSITORY}/actions/artifacts?per_page=100" \
+            --jq '.artifacts[] | select(.expired == false) | select(.name | contains("gemma4-yv-teacher")) | [.id,.name,.workflow_run.id] | @tsv' \
+            > /tmp/a593-artifacts/list.tsv
+          test -s /tmp/a593-artifacts/list.tsv
+          while IFS=$'\t' read -r id name run_id; do
+            zip="/tmp/a593-artifacts/${id}.zip"
+            dir="/tmp/a593-unpacked/${id}"
+            mkdir -p "$dir"
+            gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts/${id}/zip" > "$zip"
+            unzip -q "$zip" -d "$dir"
+            printf '%s\t%s\t%s\n' "$id" "$name" "$run_id" >> /tmp/a593-artifacts/downloaded.tsv
+          done < /tmp/a593-artifacts/list.tsv
+
+          python - <<'PY'
+          import hashlib, itertools, json, os
+          from pathlib import Path
+
+          expected = os.environ['EXPECTED_SHA']
+          roots = sorted(Path('/tmp/a593-unpacked').glob('*'))
+          files = sorted(p for root in roots for p in root.rglob('*.jsonl'))
+          print('candidate jsonl files:', len(files))
+          for p in files:
+              b = p.read_bytes()
+              print(hashlib.sha256(b).hexdigest(), len(b), p)
+
+          found = None
+          provenance = []
+          # Prefer an exact archived merged corpus if one exists.
+          for p in files:
+              b = p.read_bytes()
+              if hashlib.sha256(b).hexdigest() == expected:
+                  found = b
+                  provenance = [str(p)]
+                  break
+
+          # Historical A593 was A149 + the subsequent batch. Try byte-preserving
+          # concatenations only; never regenerate or reserialize teacher text.
+          if found is None:
+              for a, b in itertools.permutations(files, 2):
+                  ba, bb = a.read_bytes(), b.read_bytes()
+                  candidates = [
+                      ba + bb,
+                      ba.rstrip(b'\r\n') + b'\n' + bb,
+                      ba.rstrip(b'\r\n') + b'\n' + bb.lstrip(b'\r\n'),
+                  ]
+                  for merged in candidates:
+                      if hashlib.sha256(merged).hexdigest() == expected:
+                          found = merged
+                          provenance = [str(a), str(b)]
+                          break
+                  if found is not None:
+                      break
+
+          if found is None:
+              raise SystemExit('Could not reconstruct exact frozen A593 corpus SHA; refusing recovery')
+
+          lines = [line for line in found.splitlines() if line.strip()]
+          rows = [json.loads(line) for line in lines]
+          if len(rows) != 593:
+              raise SystemExit(f'expected 593 rows, got {len(rows)}')
+          ids = [r['concept_id'] for r in rows]
+          if len(set(ids)) != 593:
+              raise SystemExit('concept ids are not unique')
+          phrase_count = 0
+          for r in rows:
+              phrases = r.get('phrases')
+              if not isinstance(phrases, list) or len(phrases) != 8 or not all(isinstance(x, str) and x.strip() for x in phrases):
+                  raise SystemExit(f"invalid eight-phrase row: {r.get('concept_id')}")
+              phrase_count += len(phrases)
+          if phrase_count != 4744:
+              raise SystemExit(f'expected 4744 phrases, got {phrase_count}')
+
+          out = Path('research/enrichment/v31/gemma4-yv-a593')
+          out.mkdir(parents=True, exist_ok=True)
+          corpus = out / 'phrases.jsonl'
+          corpus.write_bytes(found)
+          manifest = {
+              'schema': 'gemma4-yv-a593-frozen-corpus-v0',
+              'candidate_id': 'YV-A593-Gemma4-26B-sequence-expansion-v0',
+              'teacher_model': 'gemma-4-26b-a4b-it',
+              'rows': 593,
+              'phrases': 4744,
+              'sha256': expected,
+              'recovery': 'byte-exact recovery from non-expired historical GitHub Actions artifacts; no regeneration or reserialization',
+              'recovered_from': provenance,
+          }
+          (out / 'manifest.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          print(json.dumps(manifest, ensure_ascii=False, indent=2))
+          PY
+
+          test "$(sha256sum research/enrichment/v31/gemma4-yv-a593/phrases.jsonl | cut -d' ' -f1)" = "$EXPECTED_SHA"
+      - name: Freeze recovered corpus and remove one-shot workflow
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          rm .github/workflows/recover-a593-teacher-once.yml
+          git add research/enrichment/v31/gemma4-yv-a593 .github/workflows/recover-a593-teacher-once.yml
+          git commit -m 'research: recover frozen A593 teacher corpus'
+          git push
