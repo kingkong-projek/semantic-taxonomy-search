@@ -1,0 +1,38 @@
+name: Freeze P80-first Track-2 priority
+
+on:
+  push:
+    paths:
+      - '.github/workflows/p80-track2-priority-once.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  freeze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Measure P80 overlap and sync SSOT
+        run: python scripts/apply_p80_track2_priority.py
+      - name: Freeze result and remove one-shot workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            SSOT.md \
+            docs/research-plan.md \
+            docs/findings/p80-track2-priority-2026-09-09.md \
+            research/evaluation/v31/p80-track2-priority-coverage.json \
+            research/human/description-fallback-v1/p80-occupation-priority-population.json
+          git rm .github/workflows/p80-track2-priority-once.yml
+          git commit -m 'research: freeze P80-first Track-2 priority'
+          git push
