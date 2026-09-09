@@ -1,0 +1,3899 @@
+{
+  "by_category": {
+    "ambiguous": {
+      "cases": 6,
+      "clarification": {
+        "cases": 6,
+        "mean_displayed_after": 3.0,
+        "mean_displayed_before": 3.333
+      },
+      "explicit_abstention": {
+        "cases": 0,
+        "empty_after": 0,
+        "empty_before": 0,
+        "full_five_after": 0,
+        "full_five_before": 0
+      },
+      "full_five_after": 3,
+      "full_five_before": 4,
+      "mean_displayed_after": 3.0,
+      "mean_displayed_before": 3.333,
+      "targetable": {
+        "cases": 1,
+        "hit5_after": 0,
+        "hit5_before": 0,
+        "top1_after": 0,
+        "top1_before": 0
+      }
+    },
+    "colloquial": {
+      "cases": 12,
+      "clarification": {
+        "cases": 0,
+        "mean_displayed_after": 0.0,
+        "mean_displayed_before": 0.0
+      },
+      "explicit_abstention": {
+        "cases": 0,
+        "empty_after": 0,
+        "empty_before": 0,
+        "full_five_after": 0,
+        "full_five_before": 0
+      },
+      "full_five_after": 8,
+      "full_five_before": 12,
+      "mean_displayed_after": 4.667,
+      "mean_displayed_before": 5.0,
+      "targetable": {
+        "cases": 12,
+        "hit5_after": 4,
+        "hit5_before": 4,
+        "top1_after": 0,
+        "top1_before": 0
+      }
+    },
+    "direct": {
+      "cases": 12,
+      "clarification": {
+        "cases": 0,
+        "mean_displayed_after": 0.0,
+        "mean_displayed_before": 0.0
+      },
+      "explicit_abstention": {
+        "cases": 0,
+        "empty_after": 0,
+        "empty_before": 0,
+        "full_five_after": 0,
+        "full_five_before": 0
+      },
+      "full_five_after": 4,
+      "full_five_before": 12,
+      "mean_displayed_after": 3.0,
+      "mean_displayed_before": 5.0,
+      "targetable": {
+        "cases": 12,
+        "hit5_after": 11,
+        "hit5_before": 12,
+        "top1_after": 10,
+        "top1_before": 10
+      }
+    },
+    "indirect": {
+      "cases": 8,
+      "clarification": {
+        "cases": 3,
+        "mean_displayed_after": 4.333,
+        "mean_displayed_before": 5.0
+      },
+      "explicit_abstention": {
+        "cases": 0,
+        "empty_after": 0,
+        "empty_before": 0,
+        "full_five_after": 0,
+        "full_five_before": 0
+      },
+      "full_five_after": 4,
+      "full_five_before": 8,
+      "mean_displayed_after": 4.25,
+      "mean_displayed_before": 5.0,
+      "targetable": {
+        "cases": 8,
+        "hit5_after": 3,
+        "hit5_before": 5,
+        "top1_after": 1,
+        "top1_before": 1
+      }
+    },
+    "noisy": {
+      "cases": 8,
+      "clarification": {
+        "cases": 0,
+        "mean_displayed_after": 0.0,
+        "mean_displayed_before": 0.0
+      },
+      "explicit_abstention": {
+        "cases": 0,
+        "empty_after": 0,
+        "empty_before": 0,
+        "full_five_after": 0,
+        "full_five_before": 0
+      },
+      "full_five_after": 1,
+      "full_five_before": 7,
+      "mean_displayed_after": 1.875,
+      "mean_displayed_before": 4.625,
+      "targetable": {
+        "cases": 8,
+        "hit5_after": 4,
+        "hit5_before": 7,
+        "top1_after": 3,
+        "top1_before": 4
+      }
+    },
+    "nonsense": {
+      "cases": 5,
+      "clarification": {
+        "cases": 0,
+        "mean_displayed_after": 0.0,
+        "mean_displayed_before": 0.0
+      },
+      "explicit_abstention": {
+        "cases": 5,
+        "empty_after": 3,
+        "empty_before": 1,
+        "full_five_after": 2,
+        "full_five_before": 3
+      },
+      "full_five_after": 2,
+      "full_five_before": 3,
+      "mean_displayed_after": 2.0,
+      "mean_displayed_before": 3.2,
+      "targetable": {
+        "cases": 0,
+        "hit5_after": 0,
+        "hit5_before": 0,
+        "top1_after": 0,
+        "top1_before": 0
+      }
+    },
+    "out_of_scope": {
+      "cases": 3,
+      "clarification": {
+        "cases": 0,
+        "mean_displayed_after": 0.0,
+        "mean_displayed_before": 0.0
+      },
+      "explicit_abstention": {
+        "cases": 3,
+        "empty_after": 0,
+        "empty_before": 0,
+        "full_five_after": 0,
+        "full_five_before": 3
+      },
+      "full_five_after": 0,
+      "full_five_before": 3,
+      "mean_displayed_after": 3.0,
+      "mean_displayed_before": 5.0,
+      "targetable": {
+        "cases": 0,
+        "hit5_after": 0,
+        "hit5_before": 0,
+        "top1_after": 0,
+        "top1_before": 0
+      }
+    }
+  },
+  "id": "YV-P80-display-relevance-opened-replay-v0",
+  "interpretation_boundary": "This can diagnose transfer shape and obvious fail-open behavior but cannot promote the rule as human relevance truth.",
+  "opened_rows_used_to_select_rule": false,
+  "overall": {
+    "cases": 54,
+    "clarification": {
+      "cases": 9,
+      "mean_displayed_after": 3.444,
+      "mean_displayed_before": 3.889
+    },
+    "explicit_abstention": {
+      "cases": 8,
+      "empty_after": 3,
+      "empty_before": 1,
+      "full_five_after": 2,
+      "full_five_before": 6
+    },
+    "full_five_after": 22,
+    "full_five_before": 49,
+    "mean_displayed_after": 3.296,
+    "mean_displayed_before": 4.593,
+    "targetable": {
+      "cases": 41,
+      "hit5_after": 22,
+      "hit5_before": 28,
+      "top1_after": 14,
+      "top1_before": 15
+    }
+  },
+  "rows": [
+    {
+      "after": [
+        {
+          "label": "Intensivvårdssjuksköterska",
+          "original_rank": 1
+        },
+        {
+          "label": "Ambulanssjuksköterska",
+          "original_rank": 2
+        },
+        {
+          "label": "Apotekare",
+          "original_rank": 3
+        },
+        {
+          "label": "Receptarie",
+          "original_rank": 4
+        },
+        {
+          "label": "Sjukhusvaktmästare",
+          "original_rank": 5
+        }
+      ],
+      "after_count": 5,
+      "before": [
+        {
+          "idf_coverage": 0.4317,
+          "label": "Intensivvårdssjuksköterska",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 7,
+          "token_coverage": 0.5385
+        },
+        {
+          "idf_coverage": 0.4155,
+          "label": "Ambulanssjuksköterska",
+          "rank": 2,
+          "score_ratio": 0.9783,
+          "shared_count": 8,
+          "token_coverage": 0.6154
+        },
+        {
+          "idf_coverage": 0.3439,
+          "label": "Apotekare",
+          "rank": 3,
+          "score_ratio": 0.9211,
+          "shared_count": 7,
+          "token_coverage": 0.5385
+        },
+        {
+          "idf_coverage": 0.2915,
+          "label": "Receptarie",
+          "rank": 4,
+          "score_ratio": 0.844,
+          "shared_count": 6,
+          "token_coverage": 0.4615
+        },
+        {
+          "idf_coverage": 0.3158,
+          "label": "Sjukhusvaktmästare",
+          "rank": 5,
+          "score_ratio": 0.7816,
+          "shared_count": 7,
+          "token_coverage": 0.5385
+        }
+      ],
+      "before_count": 5,
+      "category": "direct",
+      "expected": [
+        "sjuksköterska"
+      ],
+      "family_rank_after": 1,
+      "family_rank_before": 1,
+      "id": "yv01",
+      "query": "Jag arbetar på sjukhus och tar blodprov, sätter infarter och ger läkemedel till patienter",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Installationselektriker",
+          "original_rank": 1
+        },
+        {
+          "label": "Serviceelektriker, installation",
+          "original_rank": 2
+        },
+        {
+          "label": "Växeltelefonist",
+          "original_rank": 3
+        },
+        {
+          "label": "Elmontör",
+          "original_rank": 4
+        },
+        {
+          "label": "Affärskonsult, IT",
+          "original_rank": 5
+        }
+      ],
+      "after_count": 5,
+      "before": [
+        {
+          "idf_coverage": 0.4274,
+          "label": "Installationselektriker",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 6,
+          "token_coverage": 0.6
+        },
+        {
+          "idf_coverage": 0.4385,
+          "label": "Serviceelektriker, installation",
+          "rank": 2,
+          "score_ratio": 0.9136,
+          "shared_count": 6,
+          "token_coverage": 0.6
+        },
+        {
+          "idf_coverage": 0.1638,
+          "label": "Växeltelefonist",
+          "rank": 3,
+          "score_ratio": 0.6635,
+          "shared_count": 3,
+          "token_coverage": 0.3
+        },
+        {
+          "idf_coverage": 0.3342,
+          "label": "Elmontör",
+          "rank": 4,
+          "score_ratio": 0.6352,
+          "shared_count": 5,
+          "token_coverage": 0.5
+        },
+        {
+          "idf_coverage": 0.225,
+          "label": "Affärskonsult, IT",
+          "rank": 5,
+          "score_ratio": 0.5748,
+          "shared_count": 4,
+          "token_coverage": 0.4
+        }
+      ],
+      "before_count": 5,
+      "category": "direct",
+      "expected": [
+        "elektriker"
+      ],
+      "family_rank_after": 1,
+      "family_rank_before": 1,
+      "id": "yv02",
+      "query": "Jag drar elkabel, kopplar uttag och felsöker elinstallationer i hus",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Bagare/Konditor",
+          "original_rank": 1
+        }
+      ],
+      "after_count": 1,
+      "before": [
+        {
+          "idf_coverage": 0.8457,
+          "label": "Bagare/Konditor",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 10,
+          "token_coverage": 0.9091
+        },
+        {
+          "idf_coverage": 0.2521,
+          "label": "Pizzabagare",
+          "rank": 2,
+          "score_ratio": 0.2355,
+          "shared_count": 6,
+          "token_coverage": 0.5455
+        },
+        {
+          "idf_coverage": 0.1829,
+          "label": "Ugnsmurare",
+          "rank": 3,
+          "score_ratio": 0.2166,
+          "shared_count": 5,
+          "token_coverage": 0.4545
+        },
+        {
+          "idf_coverage": 0.1829,
+          "label": "Kakelugnsmakare",
+          "rank": 4,
+          "score_ratio": 0.1972,
+          "shared_count": 5,
+          "token_coverage": 0.4545
+        },
+        {
+          "idf_coverage": 0.1829,
+          "label": "Underhållsingenjör metallurgi",
+          "rank": 5,
+          "score_ratio": 0.195,
+          "shared_count": 5,
+          "token_coverage": 0.4545
+        }
+      ],
+      "before_count": 5,
+      "category": "direct",
+      "expected": [
+        "bagare",
+        "konditor"
+      ],
+      "family_rank_after": 1,
+      "family_rank_before": 1,
+      "id": "yv03",
+      "query": "Jag bakar bröd och bullar på nätterna och arbetar med degar och ugnar",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Lokförare",
+          "original_rank": 1
+        },
+        {
+          "label": "Trafikvärd",
+          "original_rank": 2
+        },
+        {
+          "label": "Taxiförare",
+          "original_rank": 4
+        }
+      ],
+      "after_count": 3,
+      "before": [
+        {
+          "idf_coverage": 0.2688,
+          "label": "Lokförare",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 5,
+          "token_coverage": 0.4545
+        },
+        {
+          "idf_coverage": 0.3064,
+          "label": "Trafikvärd",
+          "rank": 2,
+          "score_ratio": 0.8869,
+          "shared_count": 4,
+          "token_coverage": 0.3636
+        },
+        {
+          "idf_coverage": 0.1833,
+          "label": "Spårvagnsförare",
+          "rank": 3,
+          "score_ratio": 0.8426,
+          "shared_count": 3,
+          "token_coverage": 0.2727
+        },
+        {
+          "idf_coverage": 0.2385,
+          "label": "Taxiförare",
+          "rank": 4,
+          "score_ratio": 0.8335,
+          "shared_count": 4,
+          "token_coverage": 0.3636
+        },
+        {
+          "idf_coverage": 0.1833,
+          "label": "Bussförare",
+          "rank": 5,
+          "score_ratio": 0.7765,
+          "shared_count": 3,
+          "token_coverage": 0.2727
+        }
+      ],
+      "before_count": 5,
+      "category": "direct",
+      "expected": [
+        "bussförare"
+      ],
+      "family_rank_after": null,
+      "family_rank_before": 5,
+      "id": "yv04",
+      "query": "Jag kör passagerare enligt tidtabell genom stan och stannar vid hållplatser",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Städare",
+          "original_rank": 1
+        }
+      ],
+      "after_count": 1,
+      "before": [
+        {
+          "idf_coverage": 0.2359,
+          "label": "Städare",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 3,
+          "token_coverage": 0.375
+        },
+        {
+          "idf_coverage": 0.1544,
+          "label": "Industristädare",
+          "rank": 2,
+          "score_ratio": 0.9141,
+          "shared_count": 2,
+          "token_coverage": 0.25
+        },
+        {
+          "idf_coverage": 0.1267,
+          "label": "Golvläggare, utan yrkesbevis",
+          "rank": 3,
+          "score_ratio": 0.8311,
+          "shared_count": 2,
+          "token_coverage": 0.25
+        },
+        {
+          "idf_coverage": 0.1267,
+          "label": "Golvläggare",
+          "rank": 4,
+          "score_ratio": 0.8245,
+          "shared_count": 2,
+          "token_coverage": 0.25
+        },
+        {
+          "idf_coverage": 0.1267,
+          "label": "Plattsättare",
+          "rank": 5,
+          "score_ratio": 0.7779,
+          "shared_count": 2,
+          "token_coverage": 0.25
+        }
+      ],
+      "before_count": 5,
+      "category": "direct",
+      "expected": [
+        "städare"
+      ],
+      "family_rank_after": 1,
+      "family_rank_before": 1,
+      "id": "yv05",
+      "query": "Jag dammsuger, moppar golv och städar kontor och toaletter",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Journalist",
+          "original_rank": 1
+        },
+        {
+          "label": "Forskare, humaniora",
+          "original_rank": 2
+        }
+      ],
+      "after_count": 2,
+      "before": [
+        {
+          "idf_coverage": 0.5665,
+          "label": "Journalist",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 7,
+          "token_coverage": 0.6364
+        },
+        {
+          "idf_coverage": 0.2612,
+          "label": "Forskare, humaniora",
+          "rank": 2,
+          "score_ratio": 0.6042,
+          "shared_count": 4,
+          "token_coverage": 0.3636
+        },
+        {
+          "idf_coverage": 0.2478,
+          "label": "Forskare, IT",
+          "rank": 3,
+          "score_ratio": 0.5193,
+          "shared_count": 4,
+          "token_coverage": 0.3636
+        },
+        {
+          "idf_coverage": 0.1681,
+          "label": "Förlagschef, tidning",
+          "rank": 4,
+          "score_ratio": 0.4816,
+          "shared_count": 1,
+          "token_coverage": 0.0909
+        },
+        {
+          "idf_coverage": 0.2157,
+          "label": "Affärsjurist",
+          "rank": 5,
+          "score_ratio": 0.4605,
+          "shared_count": 4,
+          "token_coverage": 0.3636
+        }
+      ],
+      "before_count": 5,
+      "category": "direct",
+      "expected": [
+        "journalist",
+        "reporter"
+      ],
+      "family_rank_after": 1,
+      "family_rank_before": 1,
+      "id": "yv06",
+      "query": "Jag intervjuar människor, granskar uppgifter och skriver artiklar för en tidning",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Biblioteksassistent",
+          "original_rank": 1
+        },
+        {
+          "label": "Bibliotekarie",
+          "original_rank": 2
+        },
+        {
+          "label": "Skidliftvärd",
+          "original_rank": 3
+        }
+      ],
+      "after_count": 3,
+      "before": [
+        {
+          "idf_coverage": 0.5744,
+          "label": "Biblioteksassistent",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 8,
+          "token_coverage": 0.6154
+        },
+        {
+          "idf_coverage": 0.5513,
+          "label": "Bibliotekarie",
+          "rank": 2,
+          "score_ratio": 0.8437,
+          "shared_count": 8,
+          "token_coverage": 0.6154
+        },
+        {
+          "idf_coverage": 0.2435,
+          "label": "Skidliftvärd",
+          "rank": 3,
+          "score_ratio": 0.5622,
+          "shared_count": 6,
+          "token_coverage": 0.4615
+        },
+        {
+          "idf_coverage": 0.252,
+          "label": "Bokförläggare",
+          "rank": 4,
+          "score_ratio": 0.5066,
+          "shared_count": 5,
+          "token_coverage": 0.3846
+        },
+        {
+          "idf_coverage": 0.2507,
+          "label": "Forskarassistent",
+          "rank": 5,
+          "score_ratio": 0.4653,
+          "shared_count": 6,
+          "token_coverage": 0.4615
+        }
+      ],
+      "before_count": 5,
+      "category": "direct",
+      "expected": [
+        "bibliotekarie",
+        "biblioteksassistent"
+      ],
+      "family_rank_after": 1,
+      "family_rank_before": 1,
+      "id": "yv07",
+      "query": "Jag hjälper besökare att hitta och låna böcker och ordnar material i ett bibliotek",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Veterinär",
+          "original_rank": 1
+        },
+        {
+          "label": "Läkare",
+          "original_rank": 2
+        }
+      ],
+      "after_count": 2,
+      "before": [
+        {
+          "idf_coverage": 0.6185,
+          "label": "Veterinär",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 7,
+          "token_coverage": 0.6364
+        },
+        {
+          "idf_coverage": 0.3633,
+          "label": "Läkare",
+          "rank": 2,
+          "score_ratio": 0.5844,
+          "shared_count": 6,
+          "token_coverage": 0.5455
+        },
+        {
+          "idf_coverage": 0.2734,
+          "label": "Smådjursuppfödare",
+          "rank": 3,
+          "score_ratio": 0.5622,
+          "shared_count": 3,
+          "token_coverage": 0.2727
+        },
+        {
+          "idf_coverage": 0.3266,
+          "label": "Barnsjuksköterska",
+          "rank": 4,
+          "score_ratio": 0.5406,
+          "shared_count": 4,
+          "token_coverage": 0.3636
+        },
+        {
+          "idf_coverage": 0.324,
+          "label": "Optiker",
+          "rank": 5,
+          "score_ratio": 0.4881,
+          "shared_count": 5,
+          "token_coverage": 0.4545
+        }
+      ],
+      "before_count": 5,
+      "category": "direct",
+      "expected": [
+        "veterinär"
+      ],
+      "family_rank_after": 1,
+      "family_rank_before": 1,
+      "id": "yv08",
+      "query": "Jag undersöker sjuka hundar och katter, vaccinerar dem och skriver ut behandling",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Backend-utvecklare",
+          "original_rank": 1
+        },
+        {
+          "label": "Systemutvecklare/Programmerare",
+          "original_rank": 2
+        },
+        {
+          "label": "Mjukvaruutvecklare",
+          "original_rank": 3
+        }
+      ],
+      "after_count": 3,
+      "before": [
+        {
+          "idf_coverage": 0.6016,
+          "label": "Backend-utvecklare",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 7,
+          "token_coverage": 0.6364
+        },
+        {
+          "idf_coverage": 0.4159,
+          "label": "Systemutvecklare/Programmerare",
+          "rank": 2,
+          "score_ratio": 0.7438,
+          "shared_count": 6,
+          "token_coverage": 0.5455
+        },
+        {
+          "idf_coverage": 0.4185,
+          "label": "Mjukvaruutvecklare",
+          "rank": 3,
+          "score_ratio": 0.6703,
+          "shared_count": 6,
+          "token_coverage": 0.5455
+        },
+        {
+          "idf_coverage": 0.3315,
+          "label": "Applikationsutvecklare",
+          "rank": 4,
+          "score_ratio": 0.5457,
+          "shared_count": 5,
+          "token_coverage": 0.4545
+        },
+        {
+          "idf_coverage": 0.2789,
+          "label": "HR-controller",
+          "rank": 5,
+          "score_ratio": 0.4279,
+          "shared_count": 4,
+          "token_coverage": 0.3636
+        }
+      ],
+      "before_count": 5,
+      "category": "direct",
+      "expected": [
+        "systemutvecklare",
+        "programmerare"
+      ],
+      "family_rank_after": 2,
+      "family_rank_before": 2,
+      "id": "yv09",
+      "query": "Jag bygger backendtjänster, skriver kod, felsöker program och gör API:er",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Trädgårdsmästare anläggning",
+          "original_rank": 1
+        },
+        {
+          "label": "Växtskötare",
+          "original_rank": 2
+        },
+        {
+          "label": "Park- och trädgårdsarbetare",
+          "original_rank": 3
+        },
+        {
+          "label": "Frisör",
+          "original_rank": 4
+        },
+        {
+          "label": "Väg- och anläggningsarbetare",
+          "original_rank": 5
+        }
+      ],
+      "after_count": 5,
+      "before": [
+        {
+          "idf_coverage": 0.467,
+          "label": "Trädgårdsmästare anläggning",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 5,
+          "token_coverage": 0.5556
+        },
+        {
+          "idf_coverage": 0.336,
+          "label": "Växtskötare",
+          "rank": 2,
+          "score_ratio": 0.9444,
+          "shared_count": 4,
+          "token_coverage": 0.4444
+        },
+        {
+          "idf_coverage": 0.3156,
+          "label": "Park- och trädgårdsarbetare",
+          "rank": 3,
+          "score_ratio": 0.8568,
+          "shared_count": 4,
+          "token_coverage": 0.4444
+        },
+        {
+          "idf_coverage": 0.2432,
+          "label": "Frisör",
+          "rank": 4,
+          "score_ratio": 0.6562,
+          "shared_count": 4,
+          "token_coverage": 0.4444
+        },
+        {
+          "idf_coverage": 0.2466,
+          "label": "Väg- och anläggningsarbetare",
+          "rank": 5,
+          "score_ratio": 0.6087,
+          "shared_count": 4,
+          "token_coverage": 0.4444
+        }
+      ],
+      "before_count": 5,
+      "category": "direct",
+      "expected": [
+        "trädgård",
+        "parkarbetare"
+      ],
+      "family_rank_after": 1,
+      "family_rank_before": 1,
+      "id": "yv10",
+      "query": "Jag klipper häckar, planterar växter, sköter rabatter och parker",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Brandman",
+          "original_rank": 1
+        }
+      ],
+      "after_count": 1,
+      "before": [
+        {
+          "idf_coverage": 0.5152,
+          "label": "Brandman",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 6,
+          "token_coverage": 0.5455
+        },
+        {
+          "idf_coverage": 0.2389,
+          "label": "Forskare, trafiksäkerhet",
+          "rank": 2,
+          "score_ratio": 0.4442,
+          "shared_count": 4,
+          "token_coverage": 0.3636
+        },
+        {
+          "idf_coverage": 0.2234,
+          "label": "Forskarassistent",
+          "rank": 3,
+          "score_ratio": 0.3888,
+          "shared_count": 5,
+          "token_coverage": 0.4545
+        },
+        {
+          "idf_coverage": 0.1913,
+          "label": "Grovarbetare, bygg och anläggning",
+          "rank": 4,
+          "score_ratio": 0.3732,
+          "shared_count": 5,
+          "token_coverage": 0.4545
+        },
+        {
+          "idf_coverage": 0.1913,
+          "label": "Elevassistent",
+          "rank": 5,
+          "score_ratio": 0.3538,
+          "shared_count": 5,
+          "token_coverage": 0.4545
+        }
+      ],
+      "before_count": 5,
+      "category": "direct",
+      "expected": [
+        "brandman"
+      ],
+      "family_rank_after": 1,
+      "family_rank_before": 1,
+      "id": "yv11",
+      "query": "Jag släcker bränder, går in med rökdykarutrustning och hjälper vid trafikolyckor",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Musikpedagog/Musiklärare",
+          "original_rank": 1
+        },
+        {
+          "label": "Modersmålslärare i grundskolan",
+          "original_rank": 2
+        },
+        {
+          "label": "SFI-lärare",
+          "original_rank": 3
+        },
+        {
+          "label": "Ridlärare",
+          "original_rank": 4
+        },
+        {
+          "label": "Skidlärare",
+          "original_rank": 5
+        }
+      ],
+      "after_count": 5,
+      "before": [
+        {
+          "idf_coverage": 0.5363,
+          "label": "Musikpedagog/Musiklärare",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 7,
+          "token_coverage": 0.7
+        },
+        {
+          "idf_coverage": 0.4796,
+          "label": "Modersmålslärare i grundskolan",
+          "rank": 2,
+          "score_ratio": 0.7502,
+          "shared_count": 7,
+          "token_coverage": 0.7
+        },
+        {
+          "idf_coverage": 0.3097,
+          "label": "SFI-lärare",
+          "rank": 3,
+          "score_ratio": 0.7249,
+          "shared_count": 5,
+          "token_coverage": 0.5
+        },
+        {
+          "idf_coverage": 0.34,
+          "label": "Ridlärare",
+          "rank": 4,
+          "score_ratio": 0.6273,
+          "shared_count": 5,
+          "token_coverage": 0.5
+        },
+        {
+          "idf_coverage": 0.3474,
+          "label": "Skidlärare",
+          "rank": 5,
+          "score_ratio": 0.6126,
+          "shared_count": 5,
+          "token_coverage": 0.5
+        }
+      ],
+      "before_count": 5,
+      "category": "direct",
+      "expected": [
+        "grundlärare",
+        "lärare"
+      ],
+      "family_rank_after": 1,
+      "family_rank_before": 1,
+      "id": "yv12",
+      "query": "Jag undervisar barn i lågstadiet i svenska och matematik och planerar lektioner",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Rekryterare/Rekryteringskonsult",
+          "original_rank": 1
+        },
+        {
+          "label": "Tolk",
+          "original_rank": 2
+        },
+        {
+          "label": "Distriktssköterska",
+          "original_rank": 3
+        },
+        {
+          "label": "Entrévärd",
+          "original_rank": 4
+        }
+      ],
+      "after_count": 4,
+      "before": [
+        {
+          "idf_coverage": 0.1661,
+          "label": "Rekryterare/Rekryteringskonsult",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 4,
+          "token_coverage": 0.3077
+        },
+        {
+          "idf_coverage": 0.119,
+          "label": "Tolk",
+          "rank": 2,
+          "score_ratio": 0.8299,
+          "shared_count": 4,
+          "token_coverage": 0.3077
+        },
+        {
+          "idf_coverage": 0.1633,
+          "label": "Distriktssköterska",
+          "rank": 3,
+          "score_ratio": 0.7684,
+          "shared_count": 5,
+          "token_coverage": 0.3846
+        },
+        {
+          "idf_coverage": 0.1279,
+          "label": "Entrévärd",
+          "rank": 4,
+          "score_ratio": 0.7641,
+          "shared_count": 4,
+          "token_coverage": 0.3077
+        },
+        {
+          "idf_coverage": 0.1326,
+          "label": "Gravör, ädelmetall",
+          "rank": 5,
+          "score_ratio": 0.733,
+          "shared_count": 3,
+          "token_coverage": 0.2308
+        }
+      ],
+      "before_count": 5,
+      "category": "colloquial",
+      "expected": [
+        "sjuksköterska",
+        "undersköterska"
+      ],
+      "family_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv13",
+      "query": "Jag sticker folk i armen, kollar dropp och springer mellan salar hela dagarna",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Systemanalytiker/Systemutredare",
+          "original_rank": 2
+        },
+        {
+          "label": "Fordonsmontör",
+          "original_rank": 3
+        },
+        {
+          "label": "Mediasäljare",
+          "original_rank": 4
+        },
+        {
+          "label": "Hemförsäljare",
+          "original_rank": 5
+        }
+      ],
+      "after_count": 4,
+      "before": [
+        {
+          "idf_coverage": 0.1514,
+          "label": "Belysningstekniker: scen, film, TV",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 3,
+          "token_coverage": 0.2727
+        },
+        {
+          "idf_coverage": 0.1941,
+          "label": "Systemanalytiker/Systemutredare",
+          "rank": 2,
+          "score_ratio": 0.9795,
+          "shared_count": 4,
+          "token_coverage": 0.3636
+        },
+        {
+          "idf_coverage": 0.2258,
+          "label": "Fordonsmontör",
+          "rank": 3,
+          "score_ratio": 0.9657,
+          "shared_count": 5,
+          "token_coverage": 0.4545
+        },
+        {
+          "idf_coverage": 0.1965,
+          "label": "Mediasäljare",
+          "rank": 4,
+          "score_ratio": 0.9447,
+          "shared_count": 5,
+          "token_coverage": 0.4545
+        },
+        {
+          "idf_coverage": 0.1965,
+          "label": "Hemförsäljare",
+          "rank": 5,
+          "score_ratio": 0.9409,
+          "shared_count": 5,
+          "token_coverage": 0.4545
+        }
+      ],
+      "before_count": 5,
+      "category": "colloquial",
+      "expected": [
+        "elektriker"
+      ],
+      "family_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv14",
+      "query": "Jag kryper runt i hus och får lampor och vägguttag att funka",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Butikssäljare, dagligvaror/Medarbetare, dagligvaror",
+          "original_rank": 1
+        },
+        {
+          "label": "Bagare/Konditor",
+          "original_rank": 3
+        },
+        {
+          "label": "Entrévärd",
+          "original_rank": 4
+        },
+        {
+          "label": "Bergarbetare, gruva",
+          "original_rank": 5
+        }
+      ],
+      "after_count": 4,
+      "before": [
+        {
+          "idf_coverage": 0.1899,
+          "label": "Butikssäljare, dagligvaror/Medarbetare, dagligvaror",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 5,
+          "token_coverage": 0.3571
+        },
+        {
+          "idf_coverage": 0.1346,
+          "label": "Kassapersonal",
+          "rank": 2,
+          "score_ratio": 0.7741,
+          "shared_count": 4,
+          "token_coverage": 0.2857
+        },
+        {
+          "idf_coverage": 0.1698,
+          "label": "Bagare/Konditor",
+          "rank": 3,
+          "score_ratio": 0.7329,
+          "shared_count": 5,
+          "token_coverage": 0.3571
+        },
+        {
+          "idf_coverage": 0.1551,
+          "label": "Entrévärd",
+          "rank": 4,
+          "score_ratio": 0.6898,
+          "shared_count": 5,
+          "token_coverage": 0.3571
+        },
+        {
+          "idf_coverage": 0.1716,
+          "label": "Bergarbetare, gruva",
+          "rank": 5,
+          "score_ratio": 0.6855,
+          "shared_count": 5,
+          "token_coverage": 0.3571
+        }
+      ],
+      "before_count": 5,
+      "category": "colloquial",
+      "expected": [
+        "bagare",
+        "konditor"
+      ],
+      "family_rank_after": 2,
+      "family_rank_before": 3,
+      "id": "yv15",
+      "query": "Jag står med deg klockan fyra på morgonen och fyller plåtar innan folk vaknar",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Maskinmekaniker",
+          "original_rank": 1
+        },
+        {
+          "label": "Lastbilsmekaniker",
+          "original_rank": 2
+        },
+        {
+          "label": "Arbetsmiljöingenjör",
+          "original_rank": 3
+        },
+        {
+          "label": "Bussmekaniker",
+          "original_rank": 4
+        },
+        {
+          "label": "Fartygsbefäl, utan behörighetsbevis",
+          "original_rank": 5
+        }
+      ],
+      "after_count": 5,
+      "before": [
+        {
+          "idf_coverage": 0.3585,
+          "label": "Maskinmekaniker",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 6,
+          "token_coverage": 0.5
+        },
+        {
+          "idf_coverage": 0.3448,
+          "label": "Lastbilsmekaniker",
+          "rank": 2,
+          "score_ratio": 0.8363,
+          "shared_count": 6,
+          "token_coverage": 0.5
+        },
+        {
+          "idf_coverage": 0.2582,
+          "label": "Arbetsmiljöingenjör",
+          "rank": 3,
+          "score_ratio": 0.7761,
+          "shared_count": 5,
+          "token_coverage": 0.4167
+        },
+        {
+          "idf_coverage": 0.3028,
+          "label": "Bussmekaniker",
+          "rank": 4,
+          "score_ratio": 0.7427,
+          "shared_count": 6,
+          "token_coverage": 0.5
+        },
+        {
+          "idf_coverage": 0.2811,
+          "label": "Fartygsbefäl, utan behörighetsbevis",
+          "rank": 5,
+          "score_ratio": 0.711,
+          "shared_count": 5,
+          "token_coverage": 0.4167
+        }
+      ],
+      "before_count": 5,
+      "category": "colloquial",
+      "expected": [
+        "bussförare"
+      ],
+      "family_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv16",
+      "query": "Jag rattar ett stort fordon fullt med folk som ska till jobbet",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Arbetsmiljöingenjör",
+          "original_rank": 1
+        },
+        {
+          "label": "Ledsagare",
+          "original_rank": 2
+        },
+        {
+          "label": "Ventilationsingenjör",
+          "original_rank": 3
+        },
+        {
+          "label": "Garderobiär",
+          "original_rank": 4
+        },
+        {
+          "label": "Arkitekt",
+          "original_rank": 5
+        }
+      ],
+      "after_count": 5,
+      "before": [
+        {
+          "idf_coverage": 0.3255,
+          "label": "Arbetsmiljöingenjör",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 6,
+          "token_coverage": 0.5455
+        },
+        {
+          "idf_coverage": 0.4681,
+          "label": "Ledsagare",
+          "rank": 2,
+          "score_ratio": 0.934,
+          "shared_count": 8,
+          "token_coverage": 0.7273
+        },
+        {
+          "idf_coverage": 0.3299,
+          "label": "Ventilationsingenjör",
+          "rank": 3,
+          "score_ratio": 0.867,
+          "shared_count": 6,
+          "token_coverage": 0.5455
+        },
+        {
+          "idf_coverage": 0.3329,
+          "label": "Garderobiär",
+          "rank": 4,
+          "score_ratio": 0.8431,
+          "shared_count": 6,
+          "token_coverage": 0.5455
+        },
+        {
+          "idf_coverage": 0.3181,
+          "label": "Arkitekt",
+          "rank": 5,
+          "score_ratio": 0.8381,
+          "shared_count": 6,
+          "token_coverage": 0.5455
+        }
+      ],
+      "before_count": 5,
+      "category": "colloquial",
+      "expected": [
+        "städare",
+        "hotellstädare"
+      ],
+      "family_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv17",
+      "query": "Jag ser till att hotellrum inte ser ut som att någon bott där",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Telefonkommunikatör på intresseorganisation",
+          "original_rank": 1
+        },
+        {
+          "label": "Tulltjänsteman",
+          "original_rank": 2
+        },
+        {
+          "label": "Kurator",
+          "original_rank": 3
+        },
+        {
+          "label": "SOS-operatör",
+          "original_rank": 4
+        },
+        {
+          "label": "Tolk",
+          "original_rank": 5
+        }
+      ],
+      "after_count": 5,
+      "before": [
+        {
+          "idf_coverage": 0.1712,
+          "label": "Telefonkommunikatör på intresseorganisation",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 5,
+          "token_coverage": 0.3333
+        },
+        {
+          "idf_coverage": 0.1942,
+          "label": "Tulltjänsteman",
+          "rank": 2,
+          "score_ratio": 0.8291,
+          "shared_count": 6,
+          "token_coverage": 0.4
+        },
+        {
+          "idf_coverage": 0.2192,
+          "label": "Kurator",
+          "rank": 3,
+          "score_ratio": 0.7508,
+          "shared_count": 5,
+          "token_coverage": 0.3333
+        },
+        {
+          "idf_coverage": 0.192,
+          "label": "SOS-operatör",
+          "rank": 4,
+          "score_ratio": 0.746,
+          "shared_count": 6,
+          "token_coverage": 0.4
+        },
+        {
+          "idf_coverage": 0.1513,
+          "label": "Tolk",
+          "rank": 5,
+          "score_ratio": 0.7445,
+          "shared_count": 5,
+          "token_coverage": 0.3333
+        }
+      ],
+      "before_count": 5,
+      "category": "colloquial",
+      "expected": [
+        "journalist",
+        "reporter"
+      ],
+      "family_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv18",
+      "query": "Jag ringer folk, ställer jobbiga frågor och försöker ta reda på vad som faktiskt hände",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Butikssäljare, fackhandel",
+          "original_rank": 1
+        },
+        {
+          "label": "Arbetsförmedlare",
+          "original_rank": 2
+        },
+        {
+          "label": "Researcher, rekrytering",
+          "original_rank": 3
+        },
+        {
+          "label": "Studie- och yrkesvägledare/SYV",
+          "original_rank": 4
+        },
+        {
+          "label": "Jobbcoach/Utbildningscoach",
+          "original_rank": 5
+        }
+      ],
+      "after_count": 5,
+      "before": [
+        {
+          "idf_coverage": 0.4716,
+          "label": "Butikssäljare, fackhandel",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 8,
+          "token_coverage": 0.5714
+        },
+        {
+          "idf_coverage": 0.3616,
+          "label": "Arbetsförmedlare",
+          "rank": 2,
+          "score_ratio": 0.9611,
+          "shared_count": 8,
+          "token_coverage": 0.5714
+        },
+        {
+          "idf_coverage": 0.2833,
+          "label": "Researcher, rekrytering",
+          "rank": 3,
+          "score_ratio": 0.8284,
+          "shared_count": 6,
+          "token_coverage": 0.4286
+        },
+        {
+          "idf_coverage": 0.3887,
+          "label": "Studie- och yrkesvägledare/SYV",
+          "rank": 4,
+          "score_ratio": 0.7837,
+          "shared_count": 8,
+          "token_coverage": 0.5714
+        },
+        {
+          "idf_coverage": 0.3228,
+          "label": "Jobbcoach/Utbildningscoach",
+          "rank": 5,
+          "score_ratio": 0.7494,
+          "shared_count": 7,
+          "token_coverage": 0.5
+        }
+      ],
+      "before_count": 5,
+      "category": "colloquial",
+      "expected": [
+        "bibliotekarie",
+        "biblioteksassistent"
+      ],
+      "family_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv19",
+      "query": "Jag jobbar bland hyllor med böcker och hjälper folk hitta rätt grej att läsa",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Arbetsmiljöingenjör",
+          "original_rank": 1
+        },
+        {
+          "label": "Kontaktledningstekniker",
+          "original_rank": 2
+        },
+        {
+          "label": "Tulltjänsteman",
+          "original_rank": 3
+        },
+        {
+          "label": "Golvslipare, trä",
+          "original_rank": 4
+        },
+        {
+          "label": "Ledsagare",
+          "original_rank": 5
+        }
+      ],
+      "after_count": 5,
+      "before": [
+        {
+          "idf_coverage": 0.3025,
+          "label": "Arbetsmiljöingenjör",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 5,
+          "token_coverage": 0.5556
+        },
+        {
+          "idf_coverage": 0.1843,
+          "label": "Kontaktledningstekniker",
+          "rank": 2,
+          "score_ratio": 0.7231,
+          "shared_count": 3,
+          "token_coverage": 0.3333
+        },
+        {
+          "idf_coverage": 0.2968,
+          "label": "Tulltjänsteman",
+          "rank": 3,
+          "score_ratio": 0.7166,
+          "shared_count": 4,
+          "token_coverage": 0.4444
+        },
+        {
+          "idf_coverage": 0.1839,
+          "label": "Golvslipare, trä",
+          "rank": 4,
+          "score_ratio": 0.6757,
+          "shared_count": 3,
+          "token_coverage": 0.3333
+        },
+        {
+          "idf_coverage": 0.2719,
+          "label": "Ledsagare",
+          "rank": 5,
+          "score_ratio": 0.6329,
+          "shared_count": 4,
+          "token_coverage": 0.4444
+        }
+      ],
+      "before_count": 5,
+      "category": "colloquial",
+      "expected": [
+        "veterinär"
+      ],
+      "family_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv20",
+      "query": "När katten är sjuk är det mig folk kommer till",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Backend-utvecklare",
+          "original_rank": 1
+        },
+        {
+          "label": "Systemutvecklare/Programmerare",
+          "original_rank": 2
+        },
+        {
+          "label": "Elektronikmontör",
+          "original_rank": 3
+        },
+        {
+          "label": "Mjukvaruutvecklare",
+          "original_rank": 4
+        },
+        {
+          "label": "Konstruktör, tillverkningsindustri",
+          "original_rank": 5
+        }
+      ],
+      "after_count": 5,
+      "before": [
+        {
+          "idf_coverage": 0.2569,
+          "label": "Backend-utvecklare",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 4,
+          "token_coverage": 0.3077
+        },
+        {
+          "idf_coverage": 0.2067,
+          "label": "Systemutvecklare/Programmerare",
+          "rank": 2,
+          "score_ratio": 0.918,
+          "shared_count": 5,
+          "token_coverage": 0.3846
+        },
+        {
+          "idf_coverage": 0.2367,
+          "label": "Elektronikmontör",
+          "rank": 3,
+          "score_ratio": 0.773,
+          "shared_count": 4,
+          "token_coverage": 0.3077
+        },
+        {
+          "idf_coverage": 0.1537,
+          "label": "Mjukvaruutvecklare",
+          "rank": 4,
+          "score_ratio": 0.7637,
+          "shared_count": 4,
+          "token_coverage": 0.3077
+        },
+        {
+          "idf_coverage": 0.244,
+          "label": "Konstruktör, tillverkningsindustri",
+          "rank": 5,
+          "score_ratio": 0.7179,
+          "shared_count": 5,
+          "token_coverage": 0.3846
+        }
+      ],
+      "before_count": 5,
+      "category": "colloquial",
+      "expected": [
+        "systemutvecklare",
+        "programmerare",
+        "drifttekniker",
+        "it-tekniker"
+      ],
+      "family_rank_after": 2,
+      "family_rank_before": 2,
+      "id": "yv21",
+      "query": "Jag sitter mest vid datorn och får andras dåliga kod och servrar att fungera",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Hemförsäljare",
+          "original_rank": 1
+        },
+        {
+          "label": "Butikskonsulent",
+          "original_rank": 2
+        },
+        {
+          "label": "Fältgeotekniker",
+          "original_rank": 3
+        },
+        {
+          "label": "Restaurangchef",
+          "original_rank": 4
+        },
+        {
+          "label": "Bergsingenjör",
+          "original_rank": 5
+        }
+      ],
+      "after_count": 5,
+      "before": [
+        {
+          "idf_coverage": 0.2152,
+          "label": "Hemförsäljare",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 4,
+          "token_coverage": 0.3077
+        },
+        {
+          "idf_coverage": 0.2498,
+          "label": "Butikskonsulent",
+          "rank": 2,
+          "score_ratio": 0.9236,
+          "shared_count": 5,
+          "token_coverage": 0.3846
+        },
+        {
+          "idf_coverage": 0.1751,
+          "label": "Fältgeotekniker",
+          "rank": 3,
+          "score_ratio": 0.9042,
+          "shared_count": 4,
+          "token_coverage": 0.3077
+        },
+        {
+          "idf_coverage": 0.2014,
+          "label": "Restaurangchef",
+          "rank": 4,
+          "score_ratio": 0.8296,
+          "shared_count": 5,
+          "token_coverage": 0.3846
+        },
+        {
+          "idf_coverage": 0.141,
+          "label": "Bergsingenjör",
+          "rank": 5,
+          "score_ratio": 0.7931,
+          "shared_count": 4,
+          "token_coverage": 0.3077
+        }
+      ],
+      "before_count": 5,
+      "category": "colloquial",
+      "expected": [
+        "trädgård",
+        "parkarbetare"
+      ],
+      "family_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv22",
+      "query": "Jag går runt ute hela dagarna med häcksax, spade och jord under naglarna",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Mässman, fartyg",
+          "original_rank": 1
+        },
+        {
+          "label": "Bussförare",
+          "original_rank": 2
+        },
+        {
+          "label": "Barnvakt",
+          "original_rank": 3
+        },
+        {
+          "label": "Undersköterska, vård- och specialavdelning och mottagning",
+          "original_rank": 4
+        }
+      ],
+      "after_count": 4,
+      "before": [
+        {
+          "idf_coverage": 0.1818,
+          "label": "Mässman, fartyg",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 5,
+          "token_coverage": 0.3333
+        },
+        {
+          "idf_coverage": 0.1975,
+          "label": "Bussförare",
+          "rank": 2,
+          "score_ratio": 0.9826,
+          "shared_count": 5,
+          "token_coverage": 0.3333
+        },
+        {
+          "idf_coverage": 0.2159,
+          "label": "Barnvakt",
+          "rank": 3,
+          "score_ratio": 0.8509,
+          "shared_count": 5,
+          "token_coverage": 0.3333
+        },
+        {
+          "idf_coverage": 0.2242,
+          "label": "Undersköterska, vård- och specialavdelning och mottagning",
+          "rank": 4,
+          "score_ratio": 0.7849,
+          "shared_count": 6,
+          "token_coverage": 0.4
+        },
+        {
+          "idf_coverage": 0.1331,
+          "label": "Spårvagnsförare",
+          "rank": 5,
+          "score_ratio": 0.7656,
+          "shared_count": 4,
+          "token_coverage": 0.2667
+        }
+      ],
+      "before_count": 5,
+      "category": "colloquial",
+      "expected": [
+        "undersköterska",
+        "vårdbiträde",
+        "hemtjänst"
+      ],
+      "family_rank_after": 4,
+      "family_rank_before": 4,
+      "id": "yv23",
+      "query": "Jag tar hand om gamla människor hemma, hjälper dem duscha, äta och komma ihåg medicinen",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Kassapersonal",
+          "original_rank": 1
+        },
+        {
+          "label": "Butikssäljare, dagligvaror/Medarbetare, dagligvaror",
+          "original_rank": 2
+        },
+        {
+          "label": "Restaurangbiträde",
+          "original_rank": 3
+        },
+        {
+          "label": "Charkuteriarbetare, butik",
+          "original_rank": 4
+        },
+        {
+          "label": "Gatuförsäljare",
+          "original_rank": 5
+        }
+      ],
+      "after_count": 5,
+      "before": [
+        {
+          "idf_coverage": 0.4477,
+          "label": "Kassapersonal",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 7,
+          "token_coverage": 0.5385
+        },
+        {
+          "idf_coverage": 0.3722,
+          "label": "Butikssäljare, dagligvaror/Medarbetare, dagligvaror",
+          "rank": 2,
+          "score_ratio": 0.9004,
+          "shared_count": 6,
+          "token_coverage": 0.4615
+        },
+        {
+          "idf_coverage": 0.4602,
+          "label": "Restaurangbiträde",
+          "rank": 3,
+          "score_ratio": 0.8554,
+          "shared_count": 7,
+          "token_coverage": 0.5385
+        },
+        {
+          "idf_coverage": 0.4997,
+          "label": "Charkuteriarbetare, butik",
+          "rank": 4,
+          "score_ratio": 0.8471,
+          "shared_count": 7,
+          "token_coverage": 0.5385
+        },
+        {
+          "idf_coverage": 0.2862,
+          "label": "Gatuförsäljare",
+          "rank": 5,
+          "score_ratio": 0.7583,
+          "shared_count": 5,
+          "token_coverage": 0.3846
+        }
+      ],
+      "before_count": 5,
+      "category": "colloquial",
+      "expected": [
+        "butikssäljare",
+        "butiksbiträde"
+      ],
+      "family_rank_after": 2,
+      "family_rank_before": 2,
+      "id": "yv24",
+      "query": "Jag står bakom en disk, tar betalt, fyller på varor och hjälper kunder",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Serviceelektriker, installation",
+          "original_rank": 1
+        },
+        {
+          "label": "Installationselektriker",
+          "original_rank": 2
+        },
+        {
+          "label": "Elmontör",
+          "original_rank": 3
+        }
+      ],
+      "after_count": 3,
+      "before": [
+        {
+          "idf_coverage": 0.2961,
+          "label": "Serviceelektriker, installation",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 3,
+          "token_coverage": 0.3333
+        },
+        {
+          "idf_coverage": 0.2961,
+          "label": "Installationselektriker",
+          "rank": 2,
+          "score_ratio": 0.9165,
+          "shared_count": 3,
+          "token_coverage": 0.3333
+        },
+        {
+          "idf_coverage": 0.2961,
+          "label": "Elmontör",
+          "rank": 3,
+          "score_ratio": 0.8832,
+          "shared_count": 3,
+          "token_coverage": 0.3333
+        },
+        {
+          "idf_coverage": 0.2162,
+          "label": "Teletekniker",
+          "rank": 4,
+          "score_ratio": 0.8457,
+          "shared_count": 2,
+          "token_coverage": 0.2222
+        },
+        {
+          "idf_coverage": 0.1253,
+          "label": "Växeltelefonist",
+          "rank": 5,
+          "score_ratio": 0.7343,
+          "shared_count": 1,
+          "token_coverage": 0.1111
+        }
+      ],
+      "before_count": 5,
+      "category": "noisy",
+      "expected": [
+        "elektriker"
+      ],
+      "family_rank_after": 1,
+      "family_rank_before": 1,
+      "id": "yv25",
+      "query": "drar kablar kopplar uttg felsökr el typ hela dan",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Bagare/Konditor",
+          "original_rank": 1
+        }
+      ],
+      "after_count": 1,
+      "before": [
+        {
+          "idf_coverage": 0.5671,
+          "label": "Bagare/Konditor",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 4,
+          "token_coverage": 0.5714
+        },
+        {
+          "idf_coverage": 0.1341,
+          "label": "Pizzabagare",
+          "rank": 2,
+          "score_ratio": 0.1561,
+          "shared_count": 1,
+          "token_coverage": 0.1429
+        }
+      ],
+      "before_count": 2,
+      "category": "noisy",
+      "expected": [
+        "bagare",
+        "konditor"
+      ],
+      "family_rank_after": 1,
+      "family_rank_before": 1,
+      "id": "yv26",
+      "query": "bakar brö bullar kakor ugn deg jäst",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Backend-utvecklare",
+          "original_rank": 1
+        }
+      ],
+      "after_count": 1,
+      "before": [
+        {
+          "idf_coverage": 0.4442,
+          "label": "Backend-utvecklare",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 3,
+          "token_coverage": 0.4286
+        },
+        {
+          "idf_coverage": 0.2383,
+          "label": "Databasutvecklare",
+          "rank": 2,
+          "score_ratio": 0.6019,
+          "shared_count": 2,
+          "token_coverage": 0.2857
+        },
+        {
+          "idf_coverage": 0.1588,
+          "label": "Mjukvaruutvecklare",
+          "rank": 3,
+          "score_ratio": 0.4512,
+          "shared_count": 1,
+          "token_coverage": 0.1429
+        },
+        {
+          "idf_coverage": 0.1266,
+          "label": "Frontend-utvecklare",
+          "rank": 4,
+          "score_ratio": 0.3382,
+          "shared_count": 1,
+          "token_coverage": 0.1429
+        },
+        {
+          "idf_coverage": 0.1476,
+          "label": "Databasadministratör",
+          "rank": 5,
+          "score_ratio": 0.2542,
+          "shared_count": 1,
+          "token_coverage": 0.1429
+        }
+      ],
+      "before_count": 5,
+      "category": "noisy",
+      "expected": [
+        "systemutvecklare",
+        "programmerare"
+      ],
+      "family_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv27",
+      "query": "kodar backend api databas buggar deploy grejer",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Husdjursrådgivare/Husdjurskonsulent",
+          "original_rank": 1
+        },
+        {
+          "label": "Djursjukskötare",
+          "original_rank": 2
+        }
+      ],
+      "after_count": 2,
+      "before": [
+        {
+          "idf_coverage": 0.3594,
+          "label": "Husdjursrådgivare/Husdjurskonsulent",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 2,
+          "token_coverage": 0.3333
+        },
+        {
+          "idf_coverage": 0.2812,
+          "label": "Djursjukskötare",
+          "rank": 2,
+          "score_ratio": 0.8899,
+          "shared_count": 2,
+          "token_coverage": 0.3333
+        },
+        {
+          "idf_coverage": 0.1731,
+          "label": "Hundförare",
+          "rank": 3,
+          "score_ratio": 0.564,
+          "shared_count": 1,
+          "token_coverage": 0.1667
+        },
+        {
+          "idf_coverage": 0.1231,
+          "label": "Veterinär",
+          "rank": 4,
+          "score_ratio": 0.4764,
+          "shared_count": 1,
+          "token_coverage": 0.1667
+        },
+        {
+          "idf_coverage": 0.1231,
+          "label": "Djurtransportförare",
+          "rank": 5,
+          "score_ratio": 0.4662,
+          "shared_count": 1,
+          "token_coverage": 0.1667
+        }
+      ],
+      "before_count": 5,
+      "category": "noisy",
+      "expected": [
+        "veterinär",
+        "djurvårdare"
+      ],
+      "family_rank_after": null,
+      "family_rank_before": 4,
+      "id": "yv28",
+      "query": "hund katt vaccin operera djur klinik",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Distributionsförare",
+          "original_rank": 1
+        }
+      ],
+      "after_count": 1,
+      "before": [
+        {
+          "idf_coverage": 0.3698,
+          "label": "Distributionsförare",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 3,
+          "token_coverage": 0.4286
+        },
+        {
+          "idf_coverage": 0.1354,
+          "label": "Industristädare",
+          "rank": 2,
+          "score_ratio": 0.7743,
+          "shared_count": 1,
+          "token_coverage": 0.1429
+        },
+        {
+          "idf_coverage": 0.2711,
+          "label": "Budbilsförare",
+          "rank": 3,
+          "score_ratio": 0.6846,
+          "shared_count": 2,
+          "token_coverage": 0.2857
+        },
+        {
+          "idf_coverage": 0.1255,
+          "label": "Scripta",
+          "rank": 4,
+          "score_ratio": 0.6661,
+          "shared_count": 1,
+          "token_coverage": 0.1429
+        },
+        {
+          "idf_coverage": 0.1354,
+          "label": "Mässman, fartyg",
+          "rank": 5,
+          "score_ratio": 0.645,
+          "shared_count": 1,
+          "token_coverage": 0.1429
+        }
+      ],
+      "before_count": 5,
+      "category": "noisy",
+      "expected": [
+        "städare"
+      ],
+      "family_rank_after": null,
+      "family_rank_before": 2,
+      "id": "yv29",
+      "query": "städar skurar moppar toa kontor varje dag",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Journalist",
+          "original_rank": 1
+        },
+        {
+          "label": "Webbredaktör",
+          "original_rank": 2
+        }
+      ],
+      "after_count": 2,
+      "before": [
+        {
+          "idf_coverage": 0.525,
+          "label": "Journalist",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 3,
+          "token_coverage": 0.6
+        },
+        {
+          "idf_coverage": 0.3152,
+          "label": "Webbredaktör",
+          "rank": 2,
+          "score_ratio": 0.632,
+          "shared_count": 2,
+          "token_coverage": 0.4
+        },
+        {
+          "idf_coverage": 0.2097,
+          "label": "Nattchef, redaktion",
+          "rank": 3,
+          "score_ratio": 0.5303,
+          "shared_count": 1,
+          "token_coverage": 0.2
+        },
+        {
+          "idf_coverage": 0.2375,
+          "label": "Videojournalist/Videoreporter",
+          "rank": 4,
+          "score_ratio": 0.5213,
+          "shared_count": 1,
+          "token_coverage": 0.2
+        },
+        {
+          "idf_coverage": 0.2097,
+          "label": "Featurechef",
+          "rank": 5,
+          "score_ratio": 0.4125,
+          "shared_count": 1,
+          "token_coverage": 0.2
+        }
+      ],
+      "before_count": 5,
+      "category": "noisy",
+      "expected": [
+        "journalist",
+        "reporter"
+      ],
+      "family_rank_after": 1,
+      "family_rank_before": 1,
+      "id": "yv30",
+      "query": "intervju skriver artikel nyheter redaktion",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Spårvagnsförare",
+          "original_rank": 1
+        },
+        {
+          "label": "Bokbussförare",
+          "original_rank": 2
+        },
+        {
+          "label": "Bussförare",
+          "original_rank": 3
+        },
+        {
+          "label": "Lokförare",
+          "original_rank": 4
+        },
+        {
+          "label": "Tunnelbaneförare",
+          "original_rank": 5
+        }
+      ],
+      "after_count": 5,
+      "before": [
+        {
+          "idf_coverage": 0.2199,
+          "label": "Spårvagnsförare",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 2,
+          "token_coverage": 0.3333
+        },
+        {
+          "idf_coverage": 0.2776,
+          "label": "Bokbussförare",
+          "rank": 2,
+          "score_ratio": 0.925,
+          "shared_count": 2,
+          "token_coverage": 0.3333
+        },
+        {
+          "idf_coverage": 0.2199,
+          "label": "Bussförare",
+          "rank": 3,
+          "score_ratio": 0.9183,
+          "shared_count": 2,
+          "token_coverage": 0.3333
+        },
+        {
+          "idf_coverage": 0.2199,
+          "label": "Lokförare",
+          "rank": 4,
+          "score_ratio": 0.9133,
+          "shared_count": 2,
+          "token_coverage": 0.3333
+        },
+        {
+          "idf_coverage": 0.2199,
+          "label": "Tunnelbaneförare",
+          "rank": 5,
+          "score_ratio": 0.8412,
+          "shared_count": 2,
+          "token_coverage": 0.3333
+        }
+      ],
+      "before_count": 5,
+      "category": "noisy",
+      "expected": [
+        "bussförare"
+      ],
+      "family_rank_after": 2,
+      "family_rank_before": 2,
+      "id": "yv31",
+      "query": "kör buss hållplats biljett tidtabell passagerare",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [],
+      "after_count": 0,
+      "before": [
+        {
+          "idf_coverage": 0.2786,
+          "label": "Hästskötare",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 2,
+          "token_coverage": 0.2857
+        },
+        {
+          "idf_coverage": 0.2786,
+          "label": "Hovslagare",
+          "rank": 2,
+          "score_ratio": 0.7531,
+          "shared_count": 2,
+          "token_coverage": 0.2857
+        },
+        {
+          "idf_coverage": 0.1421,
+          "label": "Ridlärare",
+          "rank": 3,
+          "score_ratio": 0.4829,
+          "shared_count": 1,
+          "token_coverage": 0.1429
+        },
+        {
+          "idf_coverage": 0.1365,
+          "label": "Gitarrtekniker",
+          "rank": 4,
+          "score_ratio": 0.4282,
+          "shared_count": 1,
+          "token_coverage": 0.1429
+        },
+        {
+          "idf_coverage": 0.0777,
+          "label": "Organisationschef",
+          "rank": 5,
+          "score_ratio": 0.4183,
+          "shared_count": 1,
+          "token_coverage": 0.1429
+        }
+      ],
+      "before_count": 5,
+      "category": "noisy",
+      "expected": [
+        "hästskötare",
+        "stallchef",
+        "ridlärare"
+      ],
+      "family_rank_after": null,
+      "family_rank_before": 1,
+      "id": "yv32",
+      "query": "hästar mockar rider fodrar stall hela dan",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Grovarbetare, bygg och anläggning",
+          "original_rank": 1
+        },
+        {
+          "label": "Utesäljare",
+          "original_rank": 2
+        },
+        {
+          "label": "Mediasäljare",
+          "original_rank": 3
+        },
+        {
+          "label": "Hemförsäljare",
+          "original_rank": 4
+        },
+        {
+          "label": "Vårdbiträde",
+          "original_rank": 5
+        }
+      ],
+      "after_count": 5,
+      "before": [
+        {
+          "idf_coverage": 0.3345,
+          "label": "Grovarbetare, bygg och anläggning",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 4,
+          "token_coverage": 0.5714
+        },
+        {
+          "idf_coverage": 0.2306,
+          "label": "Utesäljare",
+          "rank": 2,
+          "score_ratio": 0.8595,
+          "shared_count": 3,
+          "token_coverage": 0.4286
+        },
+        {
+          "idf_coverage": 0.2306,
+          "label": "Mediasäljare",
+          "rank": 3,
+          "score_ratio": 0.8063,
+          "shared_count": 3,
+          "token_coverage": 0.4286
+        },
+        {
+          "idf_coverage": 0.2306,
+          "label": "Hemförsäljare",
+          "rank": 4,
+          "score_ratio": 0.7811,
+          "shared_count": 3,
+          "token_coverage": 0.4286
+        },
+        {
+          "idf_coverage": 0.1912,
+          "label": "Vårdbiträde",
+          "rank": 5,
+          "score_ratio": 0.7325,
+          "shared_count": 3,
+          "token_coverage": 0.4286
+        }
+      ],
+      "before_count": 5,
+      "category": "indirect",
+      "expected": [
+        "hästskötare",
+        "stallchef",
+        "soldat",
+        "livgardist",
+        "beridare"
+      ],
+      "family_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv33",
+      "query": "Jag rider runt slottet och hjälper kungen",
+      "should_abstain": false,
+      "should_clarify": true
+    },
+    {
+      "after": [
+        {
+          "label": "Byggnadskonstruktör",
+          "original_rank": 1
+        },
+        {
+          "label": "Ledsagare",
+          "original_rank": 2
+        },
+        {
+          "label": "Anläggningsdykare",
+          "original_rank": 3
+        },
+        {
+          "label": "Rekryterare/Rekryteringskonsult",
+          "original_rank": 4
+        },
+        {
+          "label": "Arbetsmiljöingenjör",
+          "original_rank": 5
+        }
+      ],
+      "after_count": 5,
+      "before": [
+        {
+          "idf_coverage": 0.2376,
+          "label": "Byggnadskonstruktör",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 5,
+          "token_coverage": 0.4167
+        },
+        {
+          "idf_coverage": 0.2407,
+          "label": "Ledsagare",
+          "rank": 2,
+          "score_ratio": 0.7696,
+          "shared_count": 6,
+          "token_coverage": 0.5
+        },
+        {
+          "idf_coverage": 0.161,
+          "label": "Anläggningsdykare",
+          "rank": 3,
+          "score_ratio": 0.703,
+          "shared_count": 4,
+          "token_coverage": 0.3333
+        },
+        {
+          "idf_coverage": 0.1543,
+          "label": "Rekryterare/Rekryteringskonsult",
+          "rank": 4,
+          "score_ratio": 0.6945,
+          "shared_count": 4,
+          "token_coverage": 0.3333
+        },
+        {
+          "idf_coverage": 0.1618,
+          "label": "Arbetsmiljöingenjör",
+          "rank": 5,
+          "score_ratio": 0.6858,
+          "shared_count": 4,
+          "token_coverage": 0.3333
+        }
+      ],
+      "before_count": 5,
+      "category": "indirect",
+      "expected": [
+        "elektriker"
+      ],
+      "family_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv34",
+      "query": "Jag ser till att folk kan tända lampan utan att huset brinner ner",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Ventilationsingenjör",
+          "original_rank": 1
+        },
+        {
+          "label": "Byggnadsingenjör",
+          "original_rank": 4
+        },
+        {
+          "label": "Renhållningsförare",
+          "original_rank": 5
+        }
+      ],
+      "after_count": 3,
+      "before": [
+        {
+          "idf_coverage": 0.2624,
+          "label": "Ventilationsingenjör",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 4,
+          "token_coverage": 0.3333
+        },
+        {
+          "idf_coverage": 0.2001,
+          "label": "Bussförare",
+          "rank": 2,
+          "score_ratio": 0.9124,
+          "shared_count": 3,
+          "token_coverage": 0.25
+        },
+        {
+          "idf_coverage": 0.2578,
+          "label": "Strålskyddstekniker",
+          "rank": 3,
+          "score_ratio": 0.8884,
+          "shared_count": 3,
+          "token_coverage": 0.25
+        },
+        {
+          "idf_coverage": 0.2961,
+          "label": "Byggnadsingenjör",
+          "rank": 4,
+          "score_ratio": 0.8774,
+          "shared_count": 5,
+          "token_coverage": 0.4167
+        },
+        {
+          "idf_coverage": 0.2462,
+          "label": "Renhållningsförare",
+          "rank": 5,
+          "score_ratio": 0.8698,
+          "shared_count": 4,
+          "token_coverage": 0.3333
+        }
+      ],
+      "before_count": 5,
+      "category": "indirect",
+      "expected": [
+        "bussförare",
+        "taxiförare",
+        "lokförare",
+        "chaufför"
+      ],
+      "family_rank_after": null,
+      "family_rank_before": 2,
+      "id": "yv35",
+      "query": "Jag får människor från A till B fast de inte kör själva",
+      "should_abstain": false,
+      "should_clarify": true
+    },
+    {
+      "after": [
+        {
+          "label": "Scripta",
+          "original_rank": 1
+        },
+        {
+          "label": "Controller",
+          "original_rank": 2
+        },
+        {
+          "label": "Business controller",
+          "original_rank": 3
+        },
+        {
+          "label": "Statistiker",
+          "original_rank": 4
+        },
+        {
+          "label": "Kostymtekniker/Påklädare",
+          "original_rank": 5
+        }
+      ],
+      "after_count": 5,
+      "before": [
+        {
+          "idf_coverage": 0.2473,
+          "label": "Scripta",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 5,
+          "token_coverage": 0.3846
+        },
+        {
+          "idf_coverage": 0.2671,
+          "label": "Controller",
+          "rank": 2,
+          "score_ratio": 0.8443,
+          "shared_count": 6,
+          "token_coverage": 0.4615
+        },
+        {
+          "idf_coverage": 0.3027,
+          "label": "Business controller",
+          "rank": 3,
+          "score_ratio": 0.8109,
+          "shared_count": 6,
+          "token_coverage": 0.4615
+        },
+        {
+          "idf_coverage": 0.1888,
+          "label": "Statistiker",
+          "rank": 4,
+          "score_ratio": 0.7359,
+          "shared_count": 4,
+          "token_coverage": 0.3077
+        },
+        {
+          "idf_coverage": 0.1895,
+          "label": "Kostymtekniker/Påklädare",
+          "rank": 5,
+          "score_ratio": 0.687,
+          "shared_count": 4,
+          "token_coverage": 0.3077
+        }
+      ],
+      "before_count": 5,
+      "category": "indirect",
+      "expected": [
+        "controller",
+        "redovisningsekonom",
+        "ekonom"
+      ],
+      "family_rank_after": 2,
+      "family_rank_before": 2,
+      "id": "yv36",
+      "query": "Jag gör så att chefen kan se gröna siffror och röda siffror varje månad",
+      "should_abstain": false,
+      "should_clarify": true
+    },
+    {
+      "after": [
+        {
+          "label": "Personlig assistent",
+          "original_rank": 1
+        },
+        {
+          "label": "Isoleringsplåtslagare",
+          "original_rank": 3
+        },
+        {
+          "label": "Skadereglerare",
+          "original_rank": 4
+        }
+      ],
+      "after_count": 3,
+      "before": [
+        {
+          "idf_coverage": 0.3432,
+          "label": "Personlig assistent",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 5,
+          "token_coverage": 0.4545
+        },
+        {
+          "idf_coverage": 0.2282,
+          "label": "Sjukhusvaktmästare",
+          "rank": 2,
+          "score_ratio": 0.8894,
+          "shared_count": 3,
+          "token_coverage": 0.2727
+        },
+        {
+          "idf_coverage": 0.2,
+          "label": "Isoleringsplåtslagare",
+          "rank": 3,
+          "score_ratio": 0.8617,
+          "shared_count": 4,
+          "token_coverage": 0.3636
+        },
+        {
+          "idf_coverage": 0.2928,
+          "label": "Skadereglerare",
+          "rank": 4,
+          "score_ratio": 0.817,
+          "shared_count": 5,
+          "token_coverage": 0.4545
+        },
+        {
+          "idf_coverage": 0.1697,
+          "label": "Djurfysioterapeut",
+          "rank": 5,
+          "score_ratio": 0.7163,
+          "shared_count": 2,
+          "token_coverage": 0.1818
+        }
+      ],
+      "before_count": 5,
+      "category": "indirect",
+      "expected": [
+        "fysioterapeut",
+        "sjukgymnast"
+      ],
+      "family_rank_after": null,
+      "family_rank_before": 5,
+      "id": "yv37",
+      "query": "Jag får trasiga människor att kunna gå ordentligt igen efter operationer",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Installationselektriker",
+          "original_rank": 1
+        },
+        {
+          "label": "IT-samordnare",
+          "original_rank": 2
+        },
+        {
+          "label": "Kvalitetschef",
+          "original_rank": 3
+        },
+        {
+          "label": "Säkerhetschef",
+          "original_rank": 4
+        }
+      ],
+      "after_count": 4,
+      "before": [
+        {
+          "idf_coverage": 0.2781,
+          "label": "Installationselektriker",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 6,
+          "token_coverage": 0.5
+        },
+        {
+          "idf_coverage": 0.1764,
+          "label": "IT-samordnare",
+          "rank": 2,
+          "score_ratio": 0.8524,
+          "shared_count": 4,
+          "token_coverage": 0.3333
+        },
+        {
+          "idf_coverage": 0.1612,
+          "label": "Kvalitetschef",
+          "rank": 3,
+          "score_ratio": 0.8275,
+          "shared_count": 4,
+          "token_coverage": 0.3333
+        },
+        {
+          "idf_coverage": 0.1612,
+          "label": "Säkerhetschef",
+          "rank": 4,
+          "score_ratio": 0.8012,
+          "shared_count": 4,
+          "token_coverage": 0.3333
+        },
+        {
+          "idf_coverage": 0.1531,
+          "label": "Redovisningschef",
+          "rank": 5,
+          "score_ratio": 0.7832,
+          "shared_count": 3,
+          "token_coverage": 0.25
+        }
+      ],
+      "before_count": 5,
+      "category": "indirect",
+      "expected": [
+        "nätverkstekniker",
+        "it-tekniker",
+        "drifttekniker",
+        "systemadministratör"
+      ],
+      "family_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv38",
+      "query": "Jag gör att företagets datorer fortsätter prata med varandra när allt krånglar",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Lackerare",
+          "original_rank": 1
+        },
+        {
+          "label": "Byggnadsingenjör",
+          "original_rank": 2
+        },
+        {
+          "label": "Frisör",
+          "original_rank": 3
+        },
+        {
+          "label": "Studie- och yrkesvägledare/SYV",
+          "original_rank": 4
+        },
+        {
+          "label": "Silversmed",
+          "original_rank": 5
+        }
+      ],
+      "after_count": 5,
+      "before": [
+        {
+          "idf_coverage": 0.3767,
+          "label": "Lackerare",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 3,
+          "token_coverage": 0.375
+        },
+        {
+          "idf_coverage": 0.2835,
+          "label": "Byggnadsingenjör",
+          "rank": 2,
+          "score_ratio": 0.9029,
+          "shared_count": 4,
+          "token_coverage": 0.5
+        },
+        {
+          "idf_coverage": 0.3793,
+          "label": "Frisör",
+          "rank": 3,
+          "score_ratio": 0.9,
+          "shared_count": 3,
+          "token_coverage": 0.375
+        },
+        {
+          "idf_coverage": 0.3,
+          "label": "Studie- och yrkesvägledare/SYV",
+          "rank": 4,
+          "score_ratio": 0.7538,
+          "shared_count": 4,
+          "token_coverage": 0.5
+        },
+        {
+          "idf_coverage": 0.2926,
+          "label": "Silversmed",
+          "rank": 5,
+          "score_ratio": 0.7533,
+          "shared_count": 3,
+          "token_coverage": 0.375
+        }
+      ],
+      "before_count": 5,
+      "category": "indirect",
+      "expected": [
+        "frisör"
+      ],
+      "family_rank_after": 3,
+      "family_rank_before": 3,
+      "id": "yv39",
+      "query": "Jag gör folk fina i håret inför helgen",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Skorstensfejare",
+          "original_rank": 1
+        },
+        {
+          "label": "Byggnadskonstruktör",
+          "original_rank": 2
+        },
+        {
+          "label": "Industrirörmontör",
+          "original_rank": 3
+        },
+        {
+          "label": "Saneringsarbetare",
+          "original_rank": 5
+        }
+      ],
+      "after_count": 4,
+      "before": [
+        {
+          "idf_coverage": 0.187,
+          "label": "Skorstensfejare",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 4,
+          "token_coverage": 0.3077
+        },
+        {
+          "idf_coverage": 0.2055,
+          "label": "Byggnadskonstruktör",
+          "rank": 2,
+          "score_ratio": 0.9028,
+          "shared_count": 4,
+          "token_coverage": 0.3077
+        },
+        {
+          "idf_coverage": 0.1654,
+          "label": "Industrirörmontör",
+          "rank": 3,
+          "score_ratio": 0.7382,
+          "shared_count": 5,
+          "token_coverage": 0.3846
+        },
+        {
+          "idf_coverage": 0.1355,
+          "label": "Kakelugnsmakare",
+          "rank": 4,
+          "score_ratio": 0.7343,
+          "shared_count": 3,
+          "token_coverage": 0.2308
+        },
+        {
+          "idf_coverage": 0.2183,
+          "label": "Saneringsarbetare",
+          "rank": 5,
+          "score_ratio": 0.7246,
+          "shared_count": 5,
+          "token_coverage": 0.3846
+        }
+      ],
+      "before_count": 5,
+      "category": "indirect",
+      "expected": [
+        "skorstensfejare",
+        "skorstensfejartekniker"
+      ],
+      "family_rank_after": 1,
+      "family_rank_before": 1,
+      "id": "yv40",
+      "query": "Jag får bort det som fastnat i skorstenar så huset inte börjar brinna",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [],
+      "after_count": 0,
+      "before": [],
+      "before_count": 0,
+      "category": "ambiguous",
+      "expected": [],
+      "family_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv41",
+      "query": "Jag hjälper människor",
+      "should_abstain": false,
+      "should_clarify": true
+    },
+    {
+      "after": [
+        {
+          "label": "Barnskötare",
+          "original_rank": 1
+        },
+        {
+          "label": "Musikpedagog/Musiklärare",
+          "original_rank": 2
+        },
+        {
+          "label": "Barnsjuksköterska",
+          "original_rank": 3
+        },
+        {
+          "label": "Förskollärare",
+          "original_rank": 4
+        },
+        {
+          "label": "Lekterapeut",
+          "original_rank": 5
+        }
+      ],
+      "after_count": 5,
+      "before": [
+        {
+          "idf_coverage": 1.0,
+          "label": "Barnskötare",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 4,
+          "token_coverage": 1.0
+        },
+        {
+          "idf_coverage": 1.0,
+          "label": "Musikpedagog/Musiklärare",
+          "rank": 2,
+          "score_ratio": 0.9629,
+          "shared_count": 4,
+          "token_coverage": 1.0
+        },
+        {
+          "idf_coverage": 1.0,
+          "label": "Barnsjuksköterska",
+          "rank": 3,
+          "score_ratio": 0.9221,
+          "shared_count": 4,
+          "token_coverage": 1.0
+        },
+        {
+          "idf_coverage": 1.0,
+          "label": "Förskollärare",
+          "rank": 4,
+          "score_ratio": 0.7684,
+          "shared_count": 4,
+          "token_coverage": 1.0
+        },
+        {
+          "idf_coverage": 0.6888,
+          "label": "Lekterapeut",
+          "rank": 5,
+          "score_ratio": 0.7615,
+          "shared_count": 3,
+          "token_coverage": 0.75
+        }
+      ],
+      "before_count": 5,
+      "category": "ambiguous",
+      "expected": [],
+      "family_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv42",
+      "query": "Jag jobbar med barn",
+      "should_abstain": false,
+      "should_clarify": true
+    },
+    {
+      "after": [
+        {
+          "label": "Produktionstekniker, maskin/Produktionstekniker, verkstad",
+          "original_rank": 1
+        },
+        {
+          "label": "Automationsingenjör, maskin",
+          "original_rank": 2
+        },
+        {
+          "label": "Civilingenjör, maskin",
+          "original_rank": 3
+        }
+      ],
+      "after_count": 3,
+      "before": [
+        {
+          "idf_coverage": 0.6105,
+          "label": "Produktionstekniker, maskin/Produktionstekniker, verkstad",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 2,
+          "token_coverage": 0.6667
+        },
+        {
+          "idf_coverage": 0.6105,
+          "label": "Automationsingenjör, maskin",
+          "rank": 2,
+          "score_ratio": 0.9999,
+          "shared_count": 2,
+          "token_coverage": 0.6667
+        },
+        {
+          "idf_coverage": 0.6105,
+          "label": "Civilingenjör, maskin",
+          "rank": 3,
+          "score_ratio": 0.9998,
+          "shared_count": 2,
+          "token_coverage": 0.6667
+        },
+        {
+          "idf_coverage": 0.3049,
+          "label": "Serviceingenjör, maskin",
+          "rank": 4,
+          "score_ratio": 0.9997,
+          "shared_count": 1,
+          "token_coverage": 0.3333
+        },
+        {
+          "idf_coverage": 0.3049,
+          "label": "Produktionsingenjör, maskin",
+          "rank": 5,
+          "score_ratio": 0.9995,
+          "shared_count": 1,
+          "token_coverage": 0.3333
+        }
+      ],
+      "before_count": 5,
+      "category": "ambiguous",
+      "expected": [],
+      "family_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv43",
+      "query": "Jag kör maskiner",
+      "should_abstain": false,
+      "should_clarify": true
+    },
+    {
+      "after": [
+        {
+          "label": "Applikationsutvecklare",
+          "original_rank": 1
+        },
+        {
+          "label": "Systemutvecklare/Programmerare",
+          "original_rank": 2
+        },
+        {
+          "label": "IT-samordnare",
+          "original_rank": 3
+        },
+        {
+          "label": "Bussmekaniker",
+          "original_rank": 4
+        },
+        {
+          "label": "Lastbilsmekaniker",
+          "original_rank": 5
+        }
+      ],
+      "after_count": 5,
+      "before": [
+        {
+          "idf_coverage": 1.0,
+          "label": "Applikationsutvecklare",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 4,
+          "token_coverage": 1.0
+        },
+        {
+          "idf_coverage": 1.0,
+          "label": "Systemutvecklare/Programmerare",
+          "rank": 2,
+          "score_ratio": 0.8967,
+          "shared_count": 4,
+          "token_coverage": 1.0
+        },
+        {
+          "idf_coverage": 0.7163,
+          "label": "IT-samordnare",
+          "rank": 3,
+          "score_ratio": 0.8761,
+          "shared_count": 3,
+          "token_coverage": 0.75
+        },
+        {
+          "idf_coverage": 0.7163,
+          "label": "Bussmekaniker",
+          "rank": 4,
+          "score_ratio": 0.868,
+          "shared_count": 3,
+          "token_coverage": 0.75
+        },
+        {
+          "idf_coverage": 1.0,
+          "label": "Lastbilsmekaniker",
+          "rank": 5,
+          "score_ratio": 0.8459,
+          "shared_count": 4,
+          "token_coverage": 1.0
+        }
+      ],
+      "before_count": 5,
+      "category": "ambiguous",
+      "expected": [],
+      "family_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv44",
+      "query": "Jag jobbar med datorer",
+      "should_abstain": false,
+      "should_clarify": true
+    },
+    {
+      "after": [],
+      "after_count": 0,
+      "before": [],
+      "before_count": 0,
+      "category": "ambiguous",
+      "expected": [],
+      "family_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv45",
+      "query": "Jag säljer saker",
+      "should_abstain": false,
+      "should_clarify": true
+    },
+    {
+      "after": [
+        {
+          "label": "Djursjukskötare",
+          "original_rank": 1
+        },
+        {
+          "label": "Spårvagnsförare",
+          "original_rank": 2
+        },
+        {
+          "label": "Styckare",
+          "original_rank": 3
+        },
+        {
+          "label": "Mässman, fartyg",
+          "original_rank": 4
+        },
+        {
+          "label": "Hundskötare",
+          "original_rank": 5
+        }
+      ],
+      "after_count": 5,
+      "before": [
+        {
+          "idf_coverage": 0.5852,
+          "label": "Djursjukskötare",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 3,
+          "token_coverage": 0.6
+        },
+        {
+          "idf_coverage": 0.5497,
+          "label": "Spårvagnsförare",
+          "rank": 2,
+          "score_ratio": 0.9381,
+          "shared_count": 3,
+          "token_coverage": 0.6
+        },
+        {
+          "idf_coverage": 0.727,
+          "label": "Styckare",
+          "rank": 3,
+          "score_ratio": 0.9268,
+          "shared_count": 3,
+          "token_coverage": 0.6
+        },
+        {
+          "idf_coverage": 0.5497,
+          "label": "Mässman, fartyg",
+          "rank": 4,
+          "score_ratio": 0.8974,
+          "shared_count": 3,
+          "token_coverage": 0.6
+        },
+        {
+          "idf_coverage": 0.5497,
+          "label": "Hundskötare",
+          "rank": 5,
+          "score_ratio": 0.871,
+          "shared_count": 3,
+          "token_coverage": 0.6
+        }
+      ],
+      "before_count": 5,
+      "category": "ambiguous",
+      "expected": [
+        "djurvårdare",
+        "djurskötare",
+        "veterinär",
+        "hästskötare"
+      ],
+      "family_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv46",
+      "query": "Jag tar hand om djur",
+      "should_abstain": false,
+      "should_clarify": true
+    },
+    {
+      "after": [],
+      "after_count": 0,
+      "before": [
+        {
+          "idf_coverage": 0.1667,
+          "label": "Kaféföreståndare",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 1,
+          "token_coverage": 0.1667
+        }
+      ],
+      "before_count": 1,
+      "category": "nonsense",
+      "expected": [],
+      "family_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv47",
+      "query": "banan raket kung kaffe blå tisdag",
+      "should_abstain": true,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Utesäljare",
+          "original_rank": 1
+        },
+        {
+          "label": "Gatuförsäljare",
+          "original_rank": 2
+        },
+        {
+          "label": "Packare",
+          "original_rank": 3
+        },
+        {
+          "label": "Personalutbildare",
+          "original_rank": 4
+        },
+        {
+          "label": "Fritidsledare",
+          "original_rank": 5
+        }
+      ],
+      "after_count": 5,
+      "before": [
+        {
+          "idf_coverage": 0.6202,
+          "label": "Utesäljare",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 6,
+          "token_coverage": 0.75
+        },
+        {
+          "idf_coverage": 0.3891,
+          "label": "Gatuförsäljare",
+          "rank": 2,
+          "score_ratio": 0.925,
+          "shared_count": 4,
+          "token_coverage": 0.5
+        },
+        {
+          "idf_coverage": 0.5624,
+          "label": "Packare",
+          "rank": 3,
+          "score_ratio": 0.8636,
+          "shared_count": 5,
+          "token_coverage": 0.625
+        },
+        {
+          "idf_coverage": 0.4288,
+          "label": "Personalutbildare",
+          "rank": 4,
+          "score_ratio": 0.8362,
+          "shared_count": 4,
+          "token_coverage": 0.5
+        },
+        {
+          "idf_coverage": 0.4965,
+          "label": "Fritidsledare",
+          "rank": 5,
+          "score_ratio": 0.7437,
+          "shared_count": 5,
+          "token_coverage": 0.625
+        }
+      ],
+      "before_count": 5,
+      "category": "nonsense",
+      "expected": [],
+      "family_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv48",
+      "query": "jag gör saker och grejer på jobbet typ",
+      "should_abstain": true,
+      "should_clarify": false
+    },
+    {
+      "after": [],
+      "after_count": 0,
+      "before": [
+        {
+          "idf_coverage": 0.1303,
+          "label": "Redovisningsassistent",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 1,
+          "token_coverage": 0.1667
+        },
+        {
+          "idf_coverage": 0.1781,
+          "label": "Blåsinstrumentmakare",
+          "rank": 2,
+          "score_ratio": 0.974,
+          "shared_count": 1,
+          "token_coverage": 0.1667
+        },
+        {
+          "idf_coverage": 0.1573,
+          "label": "Webbdesigner",
+          "rank": 3,
+          "score_ratio": 0.9293,
+          "shared_count": 1,
+          "token_coverage": 0.1667
+        },
+        {
+          "idf_coverage": 0.1303,
+          "label": "Revisorsassistent",
+          "rank": 4,
+          "score_ratio": 0.8662,
+          "shared_count": 1,
+          "token_coverage": 0.1667
+        },
+        {
+          "idf_coverage": 0.1303,
+          "label": "Redovisningsekonom",
+          "rank": 5,
+          "score_ratio": 0.8284,
+          "shared_count": 1,
+          "token_coverage": 0.1667
+        }
+      ],
+      "before_count": 5,
+      "category": "nonsense",
+      "expected": [],
+      "family_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv49",
+      "query": "potatis internet häst bokföring måne saxofon",
+      "should_abstain": true,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Distributionsförare",
+          "original_rank": 1
+        },
+        {
+          "label": "Distributionschef, logistik och transporter",
+          "original_rank": 2
+        },
+        {
+          "label": "Bussvärd",
+          "original_rank": 3
+        },
+        {
+          "label": "Biluthyrare",
+          "original_rank": 4
+        },
+        {
+          "label": "Styckare",
+          "original_rank": 5
+        }
+      ],
+      "after_count": 5,
+      "before": [
+        {
+          "idf_coverage": 1.0,
+          "label": "Distributionsförare",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 8,
+          "token_coverage": 1.0
+        },
+        {
+          "idf_coverage": 0.9078,
+          "label": "Distributionschef, logistik och transporter",
+          "rank": 2,
+          "score_ratio": 0.9935,
+          "shared_count": 7,
+          "token_coverage": 0.875
+        },
+        {
+          "idf_coverage": 1.0,
+          "label": "Bussvärd",
+          "rank": 3,
+          "score_ratio": 0.9546,
+          "shared_count": 8,
+          "token_coverage": 1.0
+        },
+        {
+          "idf_coverage": 0.7497,
+          "label": "Biluthyrare",
+          "rank": 4,
+          "score_ratio": 0.8739,
+          "shared_count": 7,
+          "token_coverage": 0.875
+        },
+        {
+          "idf_coverage": 1.0,
+          "label": "Styckare",
+          "rank": 5,
+          "score_ratio": 0.873,
+          "shared_count": 8,
+          "token_coverage": 1.0
+        }
+      ],
+      "before_count": 5,
+      "category": "nonsense",
+      "expected": [],
+      "family_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv50",
+      "query": "och av på ut med till för från",
+      "should_abstain": true,
+      "should_clarify": false
+    },
+    {
+      "after": [],
+      "after_count": 0,
+      "before": [],
+      "before_count": 0,
+      "category": "nonsense",
+      "expected": [],
+      "family_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv51",
+      "query": "asdf qwerty blörp fnatt zzz",
+      "should_abstain": true,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Undertaksmontör, utan yrkesbevis",
+          "original_rank": 1
+        },
+        {
+          "label": "Biträdande jurist",
+          "original_rank": 2
+        }
+      ],
+      "after_count": 2,
+      "before": [
+        {
+          "idf_coverage": 0.2508,
+          "label": "Undertaksmontör, utan yrkesbevis",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 3,
+          "token_coverage": 0.375
+        },
+        {
+          "idf_coverage": 0.2408,
+          "label": "Biträdande jurist",
+          "rank": 2,
+          "score_ratio": 0.979,
+          "shared_count": 3,
+          "token_coverage": 0.375
+        },
+        {
+          "idf_coverage": 0.1879,
+          "label": "Piercare",
+          "rank": 3,
+          "score_ratio": 0.8773,
+          "shared_count": 1,
+          "token_coverage": 0.125
+        },
+        {
+          "idf_coverage": 0.1277,
+          "label": "Träarbetare, utan yrkesbevis/Snickare, utan yrkesbevis",
+          "rank": 4,
+          "score_ratio": 0.8737,
+          "shared_count": 2,
+          "token_coverage": 0.25
+        },
+        {
+          "idf_coverage": 0.1277,
+          "label": "Banarbetare, utan behörighetsbevis",
+          "rank": 5,
+          "score_ratio": 0.8098,
+          "shared_count": 2,
+          "token_coverage": 0.25
+        }
+      ],
+      "before_count": 5,
+      "category": "out_of_scope",
+      "expected": [],
+      "family_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv52",
+      "query": "Jag vill bli rik snabbt utan att jobba",
+      "should_abstain": true,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Rabbin",
+          "original_rank": 1
+        },
+        {
+          "label": "Enhetschef, hälso- och sjukvård",
+          "original_rank": 2
+        },
+        {
+          "label": "Specialistsjuksköterska inom palliativ vård",
+          "original_rank": 4
+        }
+      ],
+      "after_count": 3,
+      "before": [
+        {
+          "idf_coverage": 0.2405,
+          "label": "Rabbin",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 3,
+          "token_coverage": 0.4286
+        },
+        {
+          "idf_coverage": 0.3464,
+          "label": "Enhetschef, hälso- och sjukvård",
+          "rank": 2,
+          "score_ratio": 0.8853,
+          "shared_count": 4,
+          "token_coverage": 0.5714
+        },
+        {
+          "idf_coverage": 0.2131,
+          "label": "Arbetsledare, rivning",
+          "rank": 3,
+          "score_ratio": 0.6839,
+          "shared_count": 2,
+          "token_coverage": 0.2857
+        },
+        {
+          "idf_coverage": 0.2405,
+          "label": "Specialistsjuksköterska inom palliativ vård",
+          "rank": 4,
+          "score_ratio": 0.6409,
+          "shared_count": 3,
+          "token_coverage": 0.4286
+        },
+        {
+          "idf_coverage": 0.1116,
+          "label": "Avdelningschef, kommun",
+          "rank": 5,
+          "score_ratio": 0.6269,
+          "shared_count": 2,
+          "token_coverage": 0.2857
+        }
+      ],
+      "before_count": 5,
+      "category": "out_of_scope",
+      "expected": [],
+      "family_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv53",
+      "query": "Min chef är dum och kaffet är slut",
+      "should_abstain": true,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "label": "Arbetsmiljöingenjör",
+          "original_rank": 1
+        },
+        {
+          "label": "Personlig assistent",
+          "original_rank": 2
+        },
+        {
+          "label": "Skogstransportförare",
+          "original_rank": 3
+        },
+        {
+          "label": "Mediatextare",
+          "original_rank": 4
+        }
+      ],
+      "after_count": 4,
+      "before": [
+        {
+          "idf_coverage": 0.2725,
+          "label": "Arbetsmiljöingenjör",
+          "rank": 1,
+          "score_ratio": 1.0,
+          "shared_count": 4,
+          "token_coverage": 0.4444
+        },
+        {
+          "idf_coverage": 0.3964,
+          "label": "Personlig assistent",
+          "rank": 2,
+          "score_ratio": 0.9951,
+          "shared_count": 5,
+          "token_coverage": 0.5556
+        },
+        {
+          "idf_coverage": 0.2774,
+          "label": "Skogstransportförare",
+          "rank": 3,
+          "score_ratio": 0.8575,
+          "shared_count": 4,
+          "token_coverage": 0.4444
+        },
+        {
+          "idf_coverage": 0.2774,
+          "label": "Mediatextare",
+          "rank": 4,
+          "score_ratio": 0.7455,
+          "shared_count": 4,
+          "token_coverage": 0.4444
+        },
+        {
+          "idf_coverage": 0.1934,
+          "label": "Piercare",
+          "rank": 5,
+          "score_ratio": 0.7152,
+          "shared_count": 2,
+          "token_coverage": 0.2222
+        }
+      ],
+      "before_count": 5,
+      "category": "out_of_scope",
+      "expected": [],
+      "family_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv54",
+      "query": "Jag behöver semester och vill inte gå till jobbet",
+      "should_abstain": true,
+      "should_clarify": false
+    }
+  ],
+  "rule_source": "research/evaluation/v31/p80-display-relevance-calibration-v0.json",
+  "selected_rule": {
+    "idf_coverage_min": 0.1,
+    "score_ratio_min": 0.55,
+    "shared_count_min": 2,
+    "token_coverage_min": 0.3
+  },
+  "status": "opened diagnostic replay only; frozen display rule selected without these rows"
+}
