@@ -1,0 +1,86 @@
+name: Hotfix mixed-cache demo deploy
+
+on:
+  push:
+    paths:
+      - '.github/workflows/hotfix-demo-cache-once.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  hotfix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch cache coherence
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          rev = 'a593-cachefix-1'
+
+          app = Path('demo/app.js')
+          s = app.read_text(encoding='utf-8')
+          replacements = {
+              "import { createSearchEngine } from './search-engine.js';": f"import {{ createSearchEngine }} from './search-engine.js?v={rev}';",
+              "occupation: './assets/yv-c2.json',": f"occupation: './assets/yv-c2.json?v={rev}',",
+              "skill: './assets/kv-g1-t3.json',": f"skill: './assets/kv-g1-t3.json?v={rev}',",
+              "fetch(MODEL_URLS[stream], { cache: 'force-cache' })": "fetch(MODEL_URLS[stream], { cache: 'no-cache' })",
+          }
+          for old, new in replacements.items():
+              if old in s:
+                  s = s.replace(old, new, 1)
+              elif new not in s:
+                  raise SystemExit(f'app hotfix anchor drift: {old}')
+          app.write_text(s, encoding='utf-8')
+
+          index = Path('demo/index.html')
+          h = index.read_text(encoding='utf-8')
+          old = '<script type="module" src="./app.js"></script>'
+          new = f'<script type="module" src="./app.js?v={rev}"></script>'
+          if old in h:
+              h = h.replace(old, new, 1)
+          elif new not in h:
+              raise SystemExit('index module anchor drift')
+          index.write_text(h, encoding='utf-8')
+
+          engine = Path('demo/search-engine.js')
+          e = engine.read_text(encoding='utf-8')
+          old = "  if (model.engine === 'YV-description-full-v0-canonical-router' || model.engine === 'YV-A593-Gemma4-26B-sequence-expansion-v0') return createYvEngine(model);"
+          new = "  if (model.engine === 'YV-C2-plain-v1' || model.engine === 'YV-description-full-v0-canonical-router' || model.engine === 'YV-A593-Gemma4-26B-sequence-expansion-v0') return createYvEngine(model);"
+          if old in e:
+              e = e.replace(old, new, 1)
+          elif new not in e:
+              raise SystemExit('engine compatibility anchor drift')
+          engine.write_text(e, encoding='utf-8')
+
+          check = Path('scripts/check_demo_contract.py')
+          c = check.read_text(encoding='utf-8')
+          c = c.replace("occupation: './assets/yv-c2.json'", f"occupation: './assets/yv-c2.json?v={rev}'")
+          c = c.replace("skill: './assets/kv-g1-t3.json'", f"skill: './assets/kv-g1-t3.json?v={rev}'")
+          anchor = "if app.count('fetch(') != 1 or 'fetch(MODEL_URLS[stream]' not in app:\n    raise RuntimeError('demo must make only the selected relative model fetch lazily')\n"
+          addition = anchor + "if \"cache: 'no-cache'\" not in app or \"cache: 'force-cache'\" in app:\n    raise RuntimeError('demo model loads must revalidate so runtime/model deploys cannot mix')\n"
+          if "runtime/model deploys cannot mix" not in c:
+              if anchor not in c:
+                  raise SystemExit('demo contract cache anchor drift')
+              c = c.replace(anchor, addition, 1)
+          check.write_text(c, encoding='utf-8')
+          PY
+      - name: Validate hotfix
+        run: |
+          python scripts/check_demo_contract.py
+          node --check demo/app.js
+          node --check demo/search-engine.js
+      - name: Commit hotfix
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add demo/app.js demo/index.html demo/search-engine.js scripts/check_demo_contract.py
+          if git diff --cached --quiet; then
+            echo 'already patched'
+            exit 0
+          fi
+          git commit -m 'demo: prevent stale YV model/runtime mismatch'
+          git push
