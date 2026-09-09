@@ -25,35 +25,77 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Compile-check semantic oracle
+
+      - name: Verify durable oracle contract
         run: |
           python -m py_compile \
             scripts/evaluate_p80_display_semantic_oracle.py \
+            scripts/run_p80_display_semantic_oracle_resumable.py \
             scripts/replay_p80_display_semantic_oracle_opened.py
-      - name: Run prefrozen 2024 semantic sufficiency test
+          python -m unittest \
+            tests/test_semantic_oracle_contract.py \
+            tests/test_semantic_oracle_resumable.py
+
+      - name: Run prefrozen 2024 semantic sufficiency test durably
+        id: oracle
         run: |
-          # Transport is robust to quota windows, array/object JSON envelopes and
-          # incomplete model batches. Semantic prompt/model/evidence/verdict/gates are unchanged.
-          python scripts/evaluate_p80_display_semantic_oracle.py \
+          # Execution durability only. Prompt/model/evidence/verdict/gates are frozen.
+          # Complete cases are atomically checkpointed. Missing cases are isolated;
+          # no transport failure is converted into a semantic verdict.
+          python scripts/run_p80_display_semantic_oracle_resumable.py \
             --batch-size 6 \
-            --requests-per-minute 3
-      - name: Check primary gate
+            --requests-per-minute 3 \
+            --single-case-attempts 8
+
+      - name: Read completion and primary gate
         id: gate
+        if: always()
         run: |
           python - <<'PY'
           import json, os
-          p='research/evaluation/v31/p80-display-semantic-oracle-v0.json'
-          r=json.load(open(p, encoding='utf-8'))
-          g=r['decision_gate']
-          passed=bool(g['strong_passed'] or g['promising_passed'])
+          status_path='research/evaluation/v31/p80-display-semantic-oracle-run-status-v0.json'
+          complete=False
+          passed=False
+          if os.path.exists(status_path):
+              status=json.load(open(status_path, encoding='utf-8'))
+              complete=bool(status.get('complete'))
+              print(json.dumps(status, indent=2, ensure_ascii=False))
+          if complete:
+              result_path='research/evaluation/v31/p80-display-semantic-oracle-v0.json'
+              if not os.path.exists(result_path):
+                  raise SystemExit('status says complete but final result is missing')
+              result=json.load(open(result_path, encoding='utf-8'))
+              gate=result['decision_gate']
+              passed=bool(gate['strong_passed'] or gate['promising_passed'])
+              print(json.dumps({'strong':gate['strong_passed'],'promising':gate['promising_passed']}, indent=2))
           with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as f:
+              f.write(f"complete={'true' if complete else 'false'}\n")
               f.write(f"passed={'true' if passed else 'false'}\n")
-          print(json.dumps({'strong':g['strong_passed'],'promising':g['promising_passed']}, indent=2))
           PY
+
+      - name: Persist incomplete checkpoint before failing
+        if: always() && steps.gate.outputs.complete != 'true'
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            research/evaluation/v31/p80-display-semantic-oracle-checkpoint-v0.json \
+            research/evaluation/v31/p80-display-semantic-oracle-run-status-v0.json 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo 'No new checkpoint state to persist.'
+          else
+            git commit -m 'research: checkpoint incomplete semantic oracle run'
+            git pull --rebase origin main
+            git push
+          fi
+
       - name: Replay exact frozen oracle on opened user-style stress
-        if: steps.gate.outputs.passed == 'true'
+        if: steps.oracle.outcome == 'success' && steps.gate.outputs.complete == 'true' && steps.gate.outputs.passed == 'true'
         run: python scripts/replay_p80_display_semantic_oracle_opened.py
-      - name: Freeze oracle evidence
+
+      - name: Freeze complete oracle evidence
+        if: steps.oracle.outcome == 'success' && steps.gate.outputs.complete == 'true'
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
@@ -64,16 +106,32 @@ jobs:
           if [ -f research/evaluation/v31/p80-display-semantic-oracle-opened-replay-v0.json ]; then
             git add research/evaluation/v31/p80-display-semantic-oracle-opened-replay-v0.json
           fi
-          git commit -m 'research: freeze semantic Top-5 relevance oracle result'
-          git pull --rebase origin main
-          git push
-      - name: Upload oracle audit artifacts
+          git rm -f --ignore-unmatch \
+            research/evaluation/v31/p80-display-semantic-oracle-checkpoint-v0.json \
+            research/evaluation/v31/p80-display-semantic-oracle-run-status-v0.json
+          if git diff --cached --quiet; then
+            echo 'No complete oracle evidence changes to commit.'
+          else
+            git commit -m 'research: freeze semantic Top-5 relevance oracle result'
+            git pull --rebase origin main
+            git push
+          fi
+
+      - name: Upload oracle audit and recovery artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: p80-display-semantic-oracle-v0
           path: |
+            research/evaluation/v31/p80-display-semantic-oracle-checkpoint-v0.json
+            research/evaluation/v31/p80-display-semantic-oracle-run-status-v0.json
             research/evaluation/v31/p80-display-semantic-oracle-judgments-v0.jsonl
             research/evaluation/v31/p80-display-semantic-oracle-v0.json
             research/evaluation/v31/p80-display-semantic-oracle-opened-replay-v0.json
           if-no-files-found: warn
+
+      - name: Mark incomplete run after checkpoint is safe
+        if: always() && steps.gate.outputs.complete != 'true'
+        run: |
+          echo 'Semantic oracle is incomplete, but durable checkpoint state has been persisted.'
+          exit 1
