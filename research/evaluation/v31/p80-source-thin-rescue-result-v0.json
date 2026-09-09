@@ -1,0 +1,495 @@
+{
+  "candidate": {
+    "candidate_universe": 2105,
+    "challenger": "same ranker/universe + source-enriched diversified phrases for canonical-thin P80 identities",
+    "control": "current frozen P80 challenger over all 2,105 active occupations",
+    "opened_17_88_loaded": false,
+    "ranker_changed": false
+  },
+  "canonical_guard": {
+    "cases": 333,
+    "challenger_hit5": 333,
+    "challenger_top1": 330,
+    "changed": [],
+    "control_hit5": 333,
+    "control_top1": 330,
+    "exact_label_cases": 159,
+    "exact_label_challenger_top1": 159,
+    "exact_label_control_top1": 159
+  },
+  "decision": {
+    "if_fail": "retain current P80 candidate; do not rescue with additional model layers",
+    "if_pass": "keep rescue in the frozen P80 candidate for future human confirmation; no architecture change"
+  },
+  "evidence_class": "prefrozen source-enrichment synthetic mechanism test; not human accuracy",
+  "existing_p80_safety_holdout": {
+    "by_style": {
+      "compressed_note": {
+        "challenger": {
+          "cases": 112,
+          "hit_at_5_count": 105,
+          "hit_at_5_rate": 0.9375,
+          "median_rank": 1,
+          "mrr": 0.863455,
+          "top1_count": 89,
+          "top1_rate": 0.794643
+        },
+        "control": {
+          "cases": 112,
+          "hit_at_5_count": 105,
+          "hit_at_5_rate": 0.9375,
+          "median_rank": 1,
+          "mrr": 0.863901,
+          "top1_count": 89,
+          "top1_rate": 0.794643
+        },
+        "delta": {
+          "hit_at_5_count": 0,
+          "hit_at_5_rate_pp": 0.0,
+          "mrr": -0.000446,
+          "top1_count": 0,
+          "top1_rate_pp": 0.0
+        }
+      },
+      "outcome_context": {
+        "challenger": {
+          "cases": 93,
+          "hit_at_5_count": 87,
+          "hit_at_5_rate": 0.935484,
+          "median_rank": 1,
+          "mrr": 0.854007,
+          "top1_count": 73,
+          "top1_rate": 0.784946
+        },
+        "control": {
+          "cases": 93,
+          "hit_at_5_count": 87,
+          "hit_at_5_rate": 0.935484,
+          "median_rank": 1,
+          "mrr": 0.854007,
+          "top1_count": 73,
+          "top1_rate": 0.784946
+        },
+        "delta": {
+          "hit_at_5_count": 0,
+          "hit_at_5_rate_pp": 0.0,
+          "mrr": 0.0,
+          "top1_count": 0,
+          "top1_rate_pp": 0.0
+        }
+      },
+      "plain_search": {
+        "challenger": {
+          "cases": 106,
+          "hit_at_5_count": 97,
+          "hit_at_5_rate": 0.915094,
+          "median_rank": 1,
+          "mrr": 0.786614,
+          "top1_count": 73,
+          "top1_rate": 0.688679
+        },
+        "control": {
+          "cases": 106,
+          "hit_at_5_count": 97,
+          "hit_at_5_rate": 0.915094,
+          "median_rank": 1,
+          "mrr": 0.789654,
+          "top1_count": 73,
+          "top1_rate": 0.688679
+        },
+        "delta": {
+          "hit_at_5_count": 0,
+          "hit_at_5_rate_pp": 0.0,
+          "mrr": -0.00304,
+          "top1_count": 0,
+          "top1_rate_pp": 0.0
+        }
+      },
+      "shift_story": {
+        "challenger": {
+          "cases": 115,
+          "hit_at_5_count": 66,
+          "hit_at_5_rate": 0.573913,
+          "median_rank": 3,
+          "mrr": 0.46489,
+          "top1_count": 40,
+          "top1_rate": 0.347826
+        },
+        "control": {
+          "cases": 115,
+          "hit_at_5_count": 67,
+          "hit_at_5_rate": 0.582609,
+          "median_rank": 3,
+          "mrr": 0.477828,
+          "top1_count": 42,
+          "top1_rate": 0.365217
+        },
+        "delta": {
+          "hit_at_5_count": -1,
+          "hit_at_5_rate_pp": -0.8696,
+          "mrr": -0.012938,
+          "top1_count": -2,
+          "top1_rate_pp": -1.7391
+        }
+      }
+    },
+    "cases": 426,
+    "challenger": {
+      "cases": 426,
+      "hit_at_5_count": 355,
+      "hit_at_5_rate": 0.833333,
+      "median_rank": 1,
+      "mrr": 0.734678,
+      "top1_count": 275,
+      "top1_rate": 0.64554
+    },
+    "concepts": 117,
+    "control": {
+      "cases": 426,
+      "hit_at_5_count": 356,
+      "hit_at_5_rate": 0.835681,
+      "median_rank": 1,
+      "mrr": 0.739045,
+      "top1_count": 277,
+      "top1_rate": 0.650235
+    },
+    "delta": {
+      "hit_at_5_count": -1,
+      "hit_at_5_rate_pp": -0.2348,
+      "mrr": -0.004367,
+      "top1_count": -2,
+      "top1_rate_pp": -0.4695
+    },
+    "paired_changes": {
+      "hit5_gains": 0,
+      "hit5_losses": 1,
+      "rank_improved": 4,
+      "rank_worsened": 44,
+      "top1_gains": 1,
+      "top1_losses": 3
+    }
+  },
+  "generation": {
+    "evidence_sources": [
+      "relevant-skills",
+      "ad-keyword-corpus"
+    ],
+    "holdout_sha256": "933ffda6dc109b6f5c08fabaf31f05aee6deb659f06f01c87578d5c858450d47",
+    "holdout_temperature": 0.7,
+    "id": "YV-P80-source-thin-rescue-generation-v0",
+    "jointly_usable_concepts": 20,
+    "model": "gemma-4-26b-a4b-it",
+    "opened_17_88_loaded": false,
+    "requested_concepts": 22,
+    "retrieval_outcomes_used": false,
+    "taxonomy_sha256": "634fd9d848a172747e54e3e487160a912ae6c0fcb8219c50998767c8c9aacbcc",
+    "training_sha256": "c132d5bfe09f8bf839bf187bb1028790a7a5d46d81c250deaa56114f19dbeadc",
+    "training_temperature": 0.55,
+    "typed_job_titles_role": "validation-only forbidden surfaces; not generation evidence",
+    "usage_metadata": {
+      "holdout": [
+        {
+          "candidatesTokenCount": 560,
+          "promptTokenCount": 1090,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 1090
+            }
+          ],
+          "serviceTier": "standard",
+          "totalTokenCount": 1650
+        },
+        {
+          "candidatesTokenCount": 516,
+          "promptTokenCount": 1088,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 1088
+            }
+          ],
+          "serviceTier": "standard",
+          "totalTokenCount": 1604
+        },
+        {
+          "candidatesTokenCount": 533,
+          "promptTokenCount": 1070,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 1070
+            }
+          ],
+          "serviceTier": "standard",
+          "totalTokenCount": 1603
+        },
+        {
+          "candidatesTokenCount": 565,
+          "promptTokenCount": 1143,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 1143
+            }
+          ],
+          "serviceTier": "standard",
+          "totalTokenCount": 1708
+        },
+        {
+          "candidatesTokenCount": 502,
+          "promptTokenCount": 1096,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 1096
+            }
+          ],
+          "serviceTier": "standard",
+          "totalTokenCount": 1598
+        },
+        {
+          "candidatesTokenCount": 300,
+          "promptTokenCount": 752,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 752
+            }
+          ],
+          "serviceTier": "standard",
+          "totalTokenCount": 1052
+        }
+      ],
+      "training": [
+        {
+          "candidatesTokenCount": 629,
+          "promptTokenCount": 1165,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 1165
+            }
+          ],
+          "serviceTier": "standard",
+          "totalTokenCount": 1794
+        },
+        {
+          "candidatesTokenCount": 614,
+          "promptTokenCount": 1163,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 1163
+            }
+          ],
+          "serviceTier": "standard",
+          "totalTokenCount": 1777
+        },
+        {
+          "candidatesTokenCount": 656,
+          "promptTokenCount": 1145,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 1145
+            }
+          ],
+          "serviceTier": "standard",
+          "totalTokenCount": 1801
+        },
+        {
+          "candidatesTokenCount": 644,
+          "promptTokenCount": 1218,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 1218
+            }
+          ],
+          "serviceTier": "standard",
+          "totalTokenCount": 1862
+        },
+        {
+          "candidatesTokenCount": 573,
+          "promptTokenCount": 1171,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 1171
+            }
+          ],
+          "serviceTier": "standard",
+          "totalTokenCount": 1744
+        },
+        {
+          "candidatesTokenCount": 334,
+          "promptTokenCount": 827,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 827
+            }
+          ],
+          "serviceTier": "standard",
+          "totalTokenCount": 1161
+        }
+      ]
+    },
+    "warning": "model-authored source-bound mechanism evidence; not human accuracy"
+  },
+  "id": "YV-P80-source-thin-rescue-v0",
+  "materiality_gate": {
+    "passed": true,
+    "rule": "rescue usable>=15; rescue Top1>=+5pp and Hit@5 nonnegative; no style <=-5pp; existing-P80 Top1/Hit@5 each >=-1pp; canonical Hit@5 and exact-label Top1 nonregressing"
+  },
+  "rescue": {
+    "primary_holdout": {
+      "by_style": {
+        "compressed_note": {
+          "challenger": {
+            "cases": 20,
+            "hit_at_5_count": 17,
+            "hit_at_5_rate": 0.85,
+            "median_rank": 1,
+            "mrr": 0.776667,
+            "top1_count": 14,
+            "top1_rate": 0.7
+          },
+          "control": {
+            "cases": 20,
+            "hit_at_5_count": 4,
+            "hit_at_5_rate": 0.2,
+            "median_rank": 277,
+            "mrr": 0.114291,
+            "top1_count": 1,
+            "top1_rate": 0.05
+          },
+          "delta": {
+            "hit_at_5_count": 13,
+            "hit_at_5_rate_pp": 65.0,
+            "mrr": 0.662376,
+            "top1_count": 13,
+            "top1_rate_pp": 65.0
+          }
+        },
+        "outcome_context": {
+          "challenger": {
+            "cases": 15,
+            "hit_at_5_count": 15,
+            "hit_at_5_rate": 1.0,
+            "median_rank": 1,
+            "mrr": 0.933333,
+            "top1_count": 13,
+            "top1_rate": 0.866667
+          },
+          "control": {
+            "cases": 15,
+            "hit_at_5_count": 1,
+            "hit_at_5_rate": 0.066667,
+            "median_rank": 810,
+            "mrr": 0.02875,
+            "top1_count": 0,
+            "top1_rate": 0.0
+          },
+          "delta": {
+            "hit_at_5_count": 14,
+            "hit_at_5_rate_pp": 93.3333,
+            "mrr": 0.904583,
+            "top1_count": 13,
+            "top1_rate_pp": 86.6667
+          }
+        },
+        "plain_search": {
+          "challenger": {
+            "cases": 19,
+            "hit_at_5_count": 19,
+            "hit_at_5_rate": 1.0,
+            "median_rank": 1,
+            "mrr": 0.885965,
+            "top1_count": 15,
+            "top1_rate": 0.789474
+          },
+          "control": {
+            "cases": 19,
+            "hit_at_5_count": 6,
+            "hit_at_5_rate": 0.315789,
+            "median_rank": 31,
+            "mrr": 0.203967,
+            "top1_count": 2,
+            "top1_rate": 0.105263
+          },
+          "delta": {
+            "hit_at_5_count": 13,
+            "hit_at_5_rate_pp": 68.4211,
+            "mrr": 0.681998,
+            "top1_count": 13,
+            "top1_rate_pp": 68.4211
+          }
+        },
+        "shift_story": {
+          "challenger": {
+            "cases": 18,
+            "hit_at_5_count": 18,
+            "hit_at_5_rate": 1.0,
+            "median_rank": 1,
+            "mrr": 0.944444,
+            "top1_count": 16,
+            "top1_rate": 0.888889
+          },
+          "control": {
+            "cases": 18,
+            "hit_at_5_count": 2,
+            "hit_at_5_rate": 0.111111,
+            "median_rank": 1076,
+            "mrr": 0.078547,
+            "top1_count": 1,
+            "top1_rate": 0.055556
+          },
+          "delta": {
+            "hit_at_5_count": 16,
+            "hit_at_5_rate_pp": 88.8889,
+            "mrr": 0.865897,
+            "top1_count": 15,
+            "top1_rate_pp": 83.3333
+          }
+        }
+      },
+      "challenger": {
+        "cases": 72,
+        "hit_at_5_count": 69,
+        "hit_at_5_rate": 0.958333,
+        "median_rank": 1,
+        "mrr": 0.880093,
+        "top1_count": 58,
+        "top1_rate": 0.805556
+      },
+      "control": {
+        "cases": 72,
+        "hit_at_5_count": 13,
+        "hit_at_5_rate": 0.180556,
+        "median_rank": 735,
+        "mrr": 0.111198,
+        "top1_count": 4,
+        "top1_rate": 0.055556
+      },
+      "delta": {
+        "hit_at_5_count": 56,
+        "hit_at_5_rate_pp": 77.7777,
+        "mrr": 0.768895,
+        "top1_count": 54,
+        "top1_rate_pp": 75.0
+      },
+      "paired_changes": {
+        "hit5_gains": 56,
+        "hit5_losses": 0,
+        "rank_improved": 64,
+        "rank_worsened": 0,
+        "top1_gains": 54,
+        "top1_losses": 0
+      }
+    },
+    "requested_concepts": 22,
+    "usable_concepts": 20
+  }
+}

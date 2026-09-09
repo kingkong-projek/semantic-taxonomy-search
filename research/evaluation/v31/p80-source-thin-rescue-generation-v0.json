@@ -1,0 +1,169 @@
+{
+  "evidence_sources": [
+    "relevant-skills",
+    "ad-keyword-corpus"
+  ],
+  "holdout_sha256": "933ffda6dc109b6f5c08fabaf31f05aee6deb659f06f01c87578d5c858450d47",
+  "holdout_temperature": 0.7,
+  "id": "YV-P80-source-thin-rescue-generation-v0",
+  "jointly_usable_concepts": 20,
+  "model": "gemma-4-26b-a4b-it",
+  "opened_17_88_loaded": false,
+  "requested_concepts": 22,
+  "retrieval_outcomes_used": false,
+  "taxonomy_sha256": "634fd9d848a172747e54e3e487160a912ae6c0fcb8219c50998767c8c9aacbcc",
+  "training_sha256": "c132d5bfe09f8bf839bf187bb1028790a7a5d46d81c250deaa56114f19dbeadc",
+  "training_temperature": 0.55,
+  "typed_job_titles_role": "validation-only forbidden surfaces; not generation evidence",
+  "usage_metadata": {
+    "holdout": [
+      {
+        "candidatesTokenCount": 560,
+        "promptTokenCount": 1090,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1090
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 1650
+      },
+      {
+        "candidatesTokenCount": 516,
+        "promptTokenCount": 1088,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1088
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 1604
+      },
+      {
+        "candidatesTokenCount": 533,
+        "promptTokenCount": 1070,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1070
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 1603
+      },
+      {
+        "candidatesTokenCount": 565,
+        "promptTokenCount": 1143,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1143
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 1708
+      },
+      {
+        "candidatesTokenCount": 502,
+        "promptTokenCount": 1096,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1096
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 1598
+      },
+      {
+        "candidatesTokenCount": 300,
+        "promptTokenCount": 752,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 752
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 1052
+      }
+    ],
+    "training": [
+      {
+        "candidatesTokenCount": 629,
+        "promptTokenCount": 1165,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1165
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 1794
+      },
+      {
+        "candidatesTokenCount": 614,
+        "promptTokenCount": 1163,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1163
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 1777
+      },
+      {
+        "candidatesTokenCount": 656,
+        "promptTokenCount": 1145,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1145
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 1801
+      },
+      {
+        "candidatesTokenCount": 644,
+        "promptTokenCount": 1218,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1218
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 1862
+      },
+      {
+        "candidatesTokenCount": 573,
+        "promptTokenCount": 1171,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1171
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 1744
+      },
+      {
+        "candidatesTokenCount": 334,
+        "promptTokenCount": 827,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 827
+          }
+        ],
+        "serviceTier": "standard",
+        "totalTokenCount": 1161
+      }
+    ]
+  },
+  "warning": "model-authored source-bound mechanism evidence; not human accuracy"
+}
