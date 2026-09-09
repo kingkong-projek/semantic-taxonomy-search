@@ -1,0 +1,33 @@
+name: P80 display relevance calibration
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/p80-display-relevance-calibration.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  calibrate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile-check calibration
+        run: python -m py_compile scripts/evaluate_p80_display_relevance_calibration.py
+      - name: Calibrate on frozen P80 holdouts
+        run: python scripts/evaluate_p80_display_relevance_calibration.py
+      - name: Freeze result
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/evaluation/v31/p80-display-relevance-calibration-v0.json
+          git commit -m 'research: freeze P80 display relevance calibration'
+          git push
