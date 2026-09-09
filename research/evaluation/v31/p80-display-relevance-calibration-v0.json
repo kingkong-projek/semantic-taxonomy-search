@@ -1,0 +1,250 @@
+{
+  "calibration_selection": {
+    "calibration": {
+      "baseline_hit5": 263,
+      "baseline_tail_hits_rank2_5": 59,
+      "hit5_retention": 0.992395,
+      "mean_displayed": 3.376206,
+      "mean_irrelevant_displayed_exact_target_proxy": 2.536977,
+      "queries": 311,
+      "rank_retention": {
+        "1": {
+          "baseline": 204,
+          "rate": 0.995098,
+          "retained": 203
+        },
+        "2": {
+          "baseline": 36,
+          "rate": 1.0,
+          "retained": 36
+        },
+        "3": {
+          "baseline": 16,
+          "rate": 1.0,
+          "retained": 16
+        },
+        "4": {
+          "baseline": 3,
+          "rate": 1.0,
+          "retained": 3
+        },
+        "5": {
+          "baseline": 4,
+          "rate": 0.75,
+          "retained": 3
+        }
+      },
+      "retained_hit5": 261,
+      "retained_tail_hits_rank2_5": 58,
+      "tail_hit_retention": 0.983051,
+      "zero_result_rate": 0.016077
+    },
+    "constraint_feasible": true
+  },
+  "candidate_universe": 2105,
+  "decision_gate": {
+    "if_fail": "do not hide results with a cosmetic cutoff; existing ranker signals cannot safely distinguish enough relevant rank2-5 candidates from visible negatives, so test a bounded query-candidate relevance mechanism next",
+    "if_pass": "existing ranker signals are sufficient for a simple display/calibration layer; validate on human relevance when available before production promotion",
+    "passed": true,
+    "rule": "untouched evaluation: overall Hit@5 retention >=98%; rank2-5 target retention >=98%; >=25% exact-target-negative visible-candidate reduction"
+  },
+  "evaluation": {
+    "baseline": {
+      "baseline_hit5": 159,
+      "baseline_tail_hits_rank2_5": 30,
+      "hit5_retention": 1.0,
+      "mean_displayed": 4.983957,
+      "mean_irrelevant_displayed_exact_target_proxy": 4.13369,
+      "queries": 187,
+      "rank_retention": {
+        "1": {
+          "baseline": 129,
+          "rate": 1.0,
+          "retained": 129
+        },
+        "2": {
+          "baseline": 19,
+          "rate": 1.0,
+          "retained": 19
+        },
+        "3": {
+          "baseline": 5,
+          "rate": 1.0,
+          "retained": 5
+        },
+        "4": {
+          "baseline": 3,
+          "rate": 1.0,
+          "retained": 3
+        },
+        "5": {
+          "baseline": 3,
+          "rate": 1.0,
+          "retained": 3
+        }
+      },
+      "retained_hit5": 159,
+      "retained_tail_hits_rank2_5": 30,
+      "tail_hit_retention": 1.0,
+      "zero_result_rate": 0.0
+    },
+    "gated": {
+      "baseline_hit5": 159,
+      "baseline_tail_hits_rank2_5": 30,
+      "hit5_retention": 0.993711,
+      "mean_displayed": 3.395722,
+      "mean_irrelevant_displayed_exact_target_proxy": 2.550802,
+      "queries": 187,
+      "rank_retention": {
+        "1": {
+          "baseline": 129,
+          "rate": 0.992248,
+          "retained": 128
+        },
+        "2": {
+          "baseline": 19,
+          "rate": 1.0,
+          "retained": 19
+        },
+        "3": {
+          "baseline": 5,
+          "rate": 1.0,
+          "retained": 5
+        },
+        "4": {
+          "baseline": 3,
+          "rate": 1.0,
+          "retained": 3
+        },
+        "5": {
+          "baseline": 3,
+          "rate": 1.0,
+          "retained": 3
+        }
+      },
+      "retained_hit5": 158,
+      "retained_tail_hits_rank2_5": 30,
+      "tail_hit_retention": 1.0,
+      "zero_result_rate": 0.016043
+    },
+    "irrelevant_candidate_reduction": 0.382924
+  },
+  "evidence_class": "prefrozen model-authored P80 holdout calibration/evaluation; mechanism evidence only, not human relevance accuracy",
+  "id": "YV-P80-display-relevance-calibration-v0",
+  "label_boundary": "Only the generating target identity is positive. Semantically acceptable siblings count as negatives; precision/removal metrics are therefore conservative proxies.",
+  "opened_17_88_loaded": false,
+  "ranker_changed": false,
+  "rule_family": "per-candidate conjunction of score_ratio, query-token coverage, IDF-weighted query coverage, and shared-term count; no rank cutoff",
+  "selected_rule": {
+    "idf_coverage_min": 0.1,
+    "score_ratio_min": 0.55,
+    "shared_count_min": 2,
+    "token_coverage_min": 0.3
+  },
+  "selection_constraint": "calibration Hit@5 retention >=98% AND calibration rank2-5 target retention >=98%; among feasible rules minimize visible exact-target negatives",
+  "separability": {
+    "calibration_all_top5": {
+      "candidate_rows": 1554,
+      "combined": {
+        "average_precision": 0.718006,
+        "roc_auc": 0.906953
+      },
+      "idf_coverage": {
+        "average_precision": 0.610731,
+        "roc_auc": 0.842136
+      },
+      "positive_rows": 263,
+      "score_ratio": {
+        "average_precision": 0.628842,
+        "roc_auc": 0.916082
+      },
+      "shared_count": {
+        "average_precision": 0.35424,
+        "roc_auc": 0.709757
+      },
+      "token_coverage": {
+        "average_precision": 0.575662,
+        "roc_auc": 0.815981
+      }
+    },
+    "calibration_rank2_5": {
+      "candidate_rows": 1243,
+      "combined": {
+        "average_precision": 0.206572,
+        "roc_auc": 0.799717
+      },
+      "idf_coverage": {
+        "average_precision": 0.146072,
+        "roc_auc": 0.691859
+      },
+      "positive_rows": 59,
+      "score_ratio": {
+        "average_precision": 0.16126,
+        "roc_auc": 0.840186
+      },
+      "shared_count": {
+        "average_precision": 0.091409,
+        "roc_auc": 0.692088
+      },
+      "token_coverage": {
+        "average_precision": 0.136174,
+        "roc_auc": 0.676735
+      }
+    },
+    "evaluation_all_top5": {
+      "candidate_rows": 932,
+      "combined": {
+        "average_precision": 0.737088,
+        "roc_auc": 0.91068
+      },
+      "idf_coverage": {
+        "average_precision": 0.593883,
+        "roc_auc": 0.847177
+      },
+      "positive_rows": 159,
+      "score_ratio": {
+        "average_precision": 0.631327,
+        "roc_auc": 0.923662
+      },
+      "shared_count": {
+        "average_precision": 0.346046,
+        "roc_auc": 0.6954
+      },
+      "token_coverage": {
+        "average_precision": 0.541409,
+        "roc_auc": 0.812887
+      }
+    },
+    "evaluation_rank2_5": {
+      "candidate_rows": 745,
+      "combined": {
+        "average_precision": 0.180658,
+        "roc_auc": 0.789231
+      },
+      "idf_coverage": {
+        "average_precision": 0.110202,
+        "roc_auc": 0.693357
+      },
+      "positive_rows": 30,
+      "score_ratio": {
+        "average_precision": 0.149355,
+        "roc_auc": 0.821119
+      },
+      "shared_count": {
+        "average_precision": 0.089314,
+        "roc_auc": 0.646876
+      },
+      "token_coverage": {
+        "average_precision": 0.106564,
+        "roc_auc": 0.653473
+      }
+    }
+  },
+  "split": {
+    "calibration_concepts": 85,
+    "calibration_queries": 311,
+    "evaluation_concepts": 52,
+    "evaluation_queries": 187,
+    "policy": "concept-level SHA256 split, salt=p80-display-relevance-calibration-v0, 60/40 calibration/evaluation"
+  }
+}
