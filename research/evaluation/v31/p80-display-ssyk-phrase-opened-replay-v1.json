@@ -1,0 +1,5695 @@
+{
+  "by_category": {
+    "ambiguous": {
+      "cases": 6,
+      "clarification": {
+        "cases": 6,
+        "mean_displayed_after": 2.5,
+        "mean_displayed_before": 3.333
+      },
+      "explicit_abstention": {
+        "cases": 0,
+        "empty_after": 0,
+        "empty_before": 0,
+        "full_five_after": 0,
+        "full_five_before": 0
+      },
+      "full_five_after": 2,
+      "full_five_before": 4,
+      "mean_displayed_after": 2.5,
+      "mean_displayed_before": 3.333,
+      "targetable": {
+        "cases": 1,
+        "hit5_after": 0,
+        "hit5_before": 0,
+        "tail_hits_after": 0,
+        "tail_hits_before": 0,
+        "top1_after": 0,
+        "top1_before": 0
+      }
+    },
+    "colloquial": {
+      "cases": 12,
+      "clarification": {
+        "cases": 0,
+        "mean_displayed_after": 0.0,
+        "mean_displayed_before": 0.0
+      },
+      "explicit_abstention": {
+        "cases": 0,
+        "empty_after": 0,
+        "empty_before": 0,
+        "full_five_after": 0,
+        "full_five_before": 0
+      },
+      "full_five_after": 4,
+      "full_five_before": 12,
+      "mean_displayed_after": 3.917,
+      "mean_displayed_before": 5.0,
+      "targetable": {
+        "cases": 12,
+        "hit5_after": 4,
+        "hit5_before": 4,
+        "tail_hits_after": 4,
+        "tail_hits_before": 4,
+        "top1_after": 0,
+        "top1_before": 0
+      }
+    },
+    "direct": {
+      "cases": 12,
+      "clarification": {
+        "cases": 0,
+        "mean_displayed_after": 0.0,
+        "mean_displayed_before": 0.0
+      },
+      "explicit_abstention": {
+        "cases": 0,
+        "empty_after": 0,
+        "empty_before": 0,
+        "full_five_after": 0,
+        "full_five_before": 0
+      },
+      "full_five_after": 1,
+      "full_five_before": 12,
+      "mean_displayed_after": 3.333,
+      "mean_displayed_before": 5.0,
+      "targetable": {
+        "cases": 12,
+        "hit5_after": 11,
+        "hit5_before": 12,
+        "tail_hits_after": 1,
+        "tail_hits_before": 2,
+        "top1_after": 10,
+        "top1_before": 10
+      }
+    },
+    "indirect": {
+      "cases": 8,
+      "clarification": {
+        "cases": 3,
+        "mean_displayed_after": 4.333,
+        "mean_displayed_before": 5.0
+      },
+      "explicit_abstention": {
+        "cases": 0,
+        "empty_after": 0,
+        "empty_before": 0,
+        "full_five_after": 0,
+        "full_five_before": 0
+      },
+      "full_five_after": 3,
+      "full_five_before": 8,
+      "mean_displayed_after": 3.875,
+      "mean_displayed_before": 5.0,
+      "targetable": {
+        "cases": 8,
+        "hit5_after": 3,
+        "hit5_before": 5,
+        "tail_hits_after": 2,
+        "tail_hits_before": 4,
+        "top1_after": 1,
+        "top1_before": 1
+      }
+    },
+    "noisy": {
+      "cases": 8,
+      "clarification": {
+        "cases": 0,
+        "mean_displayed_after": 0.0,
+        "mean_displayed_before": 0.0
+      },
+      "explicit_abstention": {
+        "cases": 0,
+        "empty_after": 0,
+        "empty_before": 0,
+        "full_five_after": 0,
+        "full_five_before": 0
+      },
+      "full_five_after": 0,
+      "full_five_before": 7,
+      "mean_displayed_after": 2.5,
+      "mean_displayed_before": 4.625,
+      "targetable": {
+        "cases": 8,
+        "hit5_after": 5,
+        "hit5_before": 7,
+        "tail_hits_after": 1,
+        "tail_hits_before": 3,
+        "top1_after": 4,
+        "top1_before": 4
+      }
+    },
+    "nonsense": {
+      "cases": 5,
+      "clarification": {
+        "cases": 0,
+        "mean_displayed_after": 0.0,
+        "mean_displayed_before": 0.0
+      },
+      "explicit_abstention": {
+        "cases": 5,
+        "empty_after": 1,
+        "empty_before": 1,
+        "full_five_after": 1,
+        "full_five_before": 3
+      },
+      "full_five_after": 1,
+      "full_five_before": 3,
+      "mean_displayed_after": 2.6,
+      "mean_displayed_before": 3.2,
+      "targetable": {
+        "cases": 0,
+        "hit5_after": 0,
+        "hit5_before": 0,
+        "tail_hits_after": 0,
+        "tail_hits_before": 0,
+        "top1_after": 0,
+        "top1_before": 0
+      }
+    },
+    "out_of_scope": {
+      "cases": 3,
+      "clarification": {
+        "cases": 0,
+        "mean_displayed_after": 0.0,
+        "mean_displayed_before": 0.0
+      },
+      "explicit_abstention": {
+        "cases": 3,
+        "empty_after": 0,
+        "empty_before": 0,
+        "full_five_after": 0,
+        "full_five_before": 3
+      },
+      "full_five_after": 0,
+      "full_five_before": 3,
+      "mean_displayed_after": 2.333,
+      "mean_displayed_before": 5.0,
+      "targetable": {
+        "cases": 0,
+        "hit5_after": 0,
+        "hit5_before": 0,
+        "tail_hits_after": 0,
+        "tail_hits_before": 0,
+        "top1_after": 0,
+        "top1_before": 0
+      }
+    }
+  },
+  "candidate_universe": 2105,
+  "frozen_rule": {
+    "formula": "ratio_phrase_shared_count",
+    "source": "p80-display-ssyk-phrase-gate-v1.json",
+    "threshold": 0.8272428930893166
+  },
+  "id": "YV-P80-display-ssyk-phrase-opened-replay-v1",
+  "interpretation_boundary": "This can falsify transfer and expose qualitative failures. It cannot be used to retune the frozen formula/threshold or claim human relevance precision.",
+  "opened_rows_used_to_select_or_tune_rule": false,
+  "overall": {
+    "cases": 54,
+    "clarification": {
+      "cases": 9,
+      "mean_displayed_after": 3.111,
+      "mean_displayed_before": 3.889
+    },
+    "explicit_abstention": {
+      "cases": 8,
+      "empty_after": 1,
+      "empty_before": 1,
+      "full_five_after": 1,
+      "full_five_before": 6
+    },
+    "full_five_after": 11,
+    "full_five_before": 49,
+    "mean_displayed_after": 3.204,
+    "mean_displayed_before": 4.593,
+    "targetable": {
+      "cases": 41,
+      "hit5_after": 23,
+      "hit5_before": 28,
+      "tail_hits_after": 8,
+      "tail_hits_before": 13,
+      "top1_after": 15,
+      "top1_before": 15
+    }
+  },
+  "rows": [
+    {
+      "after": [
+        {
+          "concept_id": "Uh7q_DpM_rm3",
+          "confidence": 4.0,
+          "label": "Intensivvårdssjuksköterska",
+          "original_rank": 1,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "2228"
+        },
+        {
+          "concept_id": "dAmo_ydH_Fko",
+          "confidence": 2.934782,
+          "label": "Ambulanssjuksköterska",
+          "original_rank": 2,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.978261,
+          "ssyk_code_2012": "2226"
+        },
+        {
+          "concept_id": "uKf3_A5g_w7X",
+          "confidence": 2.344828,
+          "label": "Sjukhusvaktmästare",
+          "original_rank": 5,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.781609,
+          "ssyk_code_2012": "9622"
+        }
+      ],
+      "after_count": 3,
+      "before": [
+        {
+          "concept_id": "Uh7q_DpM_rm3",
+          "confidence": 4.0,
+          "label": "Intensivvårdssjuksköterska",
+          "original_rank": 1,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "2228"
+        },
+        {
+          "concept_id": "dAmo_ydH_Fko",
+          "confidence": 2.934782,
+          "label": "Ambulanssjuksköterska",
+          "original_rank": 2,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.978261,
+          "ssyk_code_2012": "2226"
+        },
+        {
+          "concept_id": "YHfo_Sbx_vzK",
+          "confidence": 0.0,
+          "label": "Apotekare",
+          "original_rank": 3,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.921135,
+          "ssyk_code_2012": "2281"
+        },
+        {
+          "concept_id": "abS5_M7h_pMr",
+          "confidence": 0.0,
+          "label": "Receptarie",
+          "original_rank": 4,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.843975,
+          "ssyk_code_2012": "3213"
+        },
+        {
+          "concept_id": "uKf3_A5g_w7X",
+          "confidence": 2.344828,
+          "label": "Sjukhusvaktmästare",
+          "original_rank": 5,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.781609,
+          "ssyk_code_2012": "9622"
+        }
+      ],
+      "before_count": 5,
+      "category": "direct",
+      "expected": [
+        "sjuksköterska"
+      ],
+      "family_display_rank_after": 1,
+      "family_original_rank_after": 1,
+      "family_rank_before": 1,
+      "id": "yv01",
+      "query": "Jag arbetar på sjukhus och tar blodprov, sätter infarter och ger läkemedel till patienter",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "84Uc_bhA_s47",
+          "confidence": 4.0,
+          "label": "Installationselektriker",
+          "original_rank": 1,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "7411"
+        },
+        {
+          "concept_id": "K3iK_iEb_41Y",
+          "confidence": 1.827105,
+          "label": "Serviceelektriker, installation",
+          "original_rank": 2,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.913552,
+          "ssyk_code_2012": "7411"
+        },
+        {
+          "concept_id": "62xd_b2m_Wbo",
+          "confidence": 1.326962,
+          "label": "Växeltelefonist",
+          "original_rank": 3,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.663481,
+          "ssyk_code_2012": "4223"
+        },
+        {
+          "concept_id": "AJDU_fpb_ADF",
+          "confidence": 1.905698,
+          "label": "Elmontör",
+          "original_rank": 4,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.635233,
+          "ssyk_code_2012": "8212"
+        }
+      ],
+      "after_count": 4,
+      "before": [
+        {
+          "concept_id": "84Uc_bhA_s47",
+          "confidence": 4.0,
+          "label": "Installationselektriker",
+          "original_rank": 1,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "7411"
+        },
+        {
+          "concept_id": "K3iK_iEb_41Y",
+          "confidence": 1.827105,
+          "label": "Serviceelektriker, installation",
+          "original_rank": 2,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.913552,
+          "ssyk_code_2012": "7411"
+        },
+        {
+          "concept_id": "62xd_b2m_Wbo",
+          "confidence": 1.326962,
+          "label": "Växeltelefonist",
+          "original_rank": 3,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.663481,
+          "ssyk_code_2012": "4223"
+        },
+        {
+          "concept_id": "AJDU_fpb_ADF",
+          "confidence": 1.905698,
+          "label": "Elmontör",
+          "original_rank": 4,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.635233,
+          "ssyk_code_2012": "8212"
+        },
+        {
+          "concept_id": "TT8h_qKk_1iu",
+          "confidence": 0.574837,
+          "label": "Affärskonsult, IT",
+          "original_rank": 5,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.574837,
+          "ssyk_code_2012": "2511"
+        }
+      ],
+      "before_count": 5,
+      "category": "direct",
+      "expected": [
+        "elektriker"
+      ],
+      "family_display_rank_after": 1,
+      "family_original_rank_after": 1,
+      "family_rank_before": 1,
+      "id": "yv02",
+      "query": "Jag drar elkabel, kopplar uttag och felsöker elinstallationer i hus",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "XugJ_6hw_wVV",
+          "confidence": 4.0,
+          "label": "Bagare/Konditor",
+          "original_rank": 1,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "7612"
+        }
+      ],
+      "after_count": 1,
+      "before": [
+        {
+          "concept_id": "XugJ_6hw_wVV",
+          "confidence": 4.0,
+          "label": "Bagare/Konditor",
+          "original_rank": 1,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "7612"
+        },
+        {
+          "concept_id": "9YaE_Syg_5ZB",
+          "confidence": 0.706463,
+          "label": "Pizzabagare",
+          "original_rank": 2,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.235488,
+          "ssyk_code_2012": "9411"
+        },
+        {
+          "concept_id": "FZrG_W9Q_fE7",
+          "confidence": 0.0,
+          "label": "Ugnsmurare",
+          "original_rank": 3,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.216597,
+          "ssyk_code_2012": "7112"
+        },
+        {
+          "concept_id": "5DcA_EVV_BHZ",
+          "confidence": 0.394486,
+          "label": "Kakelugnsmakare",
+          "original_rank": 4,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.197243,
+          "ssyk_code_2012": "7112"
+        },
+        {
+          "concept_id": "Saam_Psu_APf",
+          "confidence": 0.0,
+          "label": "Underhållsingenjör metallurgi",
+          "original_rank": 5,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.194958,
+          "ssyk_code_2012": "3116"
+        }
+      ],
+      "before_count": 5,
+      "category": "direct",
+      "expected": [
+        "bagare",
+        "konditor"
+      ],
+      "family_display_rank_after": 1,
+      "family_original_rank_after": 1,
+      "family_rank_before": 1,
+      "id": "yv03",
+      "query": "Jag bakar bröd och bullar på nätterna och arbetar med degar och ugnar",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "WU2H_o2e_rrm",
+          "confidence": 0.0,
+          "label": "Lokförare",
+          "original_rank": 1,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "8311"
+        }
+      ],
+      "after_count": 1,
+      "before": [
+        {
+          "concept_id": "WU2H_o2e_rrm",
+          "confidence": 0.0,
+          "label": "Lokförare",
+          "original_rank": 1,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "8311"
+        },
+        {
+          "concept_id": "YWfW_snc_CTn",
+          "confidence": 0.0,
+          "label": "Trafikvärd",
+          "original_rank": 2,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.886853,
+          "ssyk_code_2012": "4221"
+        },
+        {
+          "concept_id": "GkMH_KEV_QKX",
+          "confidence": 0.0,
+          "label": "Spårvagnsförare",
+          "original_rank": 3,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.842566,
+          "ssyk_code_2012": "8331"
+        },
+        {
+          "concept_id": "7FqZ_2r8_CEN",
+          "confidence": 0.0,
+          "label": "Taxiförare",
+          "original_rank": 4,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.833495,
+          "ssyk_code_2012": "8321"
+        },
+        {
+          "concept_id": "6zL8_YYP_1eR",
+          "confidence": 0.0,
+          "label": "Bussförare",
+          "original_rank": 5,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.776513,
+          "ssyk_code_2012": "8331"
+        }
+      ],
+      "before_count": 5,
+      "category": "direct",
+      "expected": [
+        "bussförare"
+      ],
+      "family_display_rank_after": null,
+      "family_original_rank_after": null,
+      "family_rank_before": 5,
+      "id": "yv04",
+      "query": "Jag kör passagerare enligt tidtabell genom stan och stannar vid hållplatser",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "KF64_AvU_S4N",
+          "confidence": 2.0,
+          "label": "Städare",
+          "original_rank": 1,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "9111"
+        },
+        {
+          "concept_id": "2qmv_BHZ_kuo",
+          "confidence": 1.82828,
+          "label": "Industristädare",
+          "original_rank": 2,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.91414,
+          "ssyk_code_2012": "9111"
+        },
+        {
+          "concept_id": "4eaw_x3V_ddY",
+          "confidence": 1.662147,
+          "label": "Golvläggare, utan yrkesbevis",
+          "original_rank": 3,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.831073,
+          "ssyk_code_2012": "7122"
+        },
+        {
+          "concept_id": "Mgiv_Xs7_u2r",
+          "confidence": 1.64899,
+          "label": "Golvläggare",
+          "original_rank": 4,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.824495,
+          "ssyk_code_2012": "7122"
+        },
+        {
+          "concept_id": "Qv4e_brq_Ca5",
+          "confidence": 1.555745,
+          "label": "Plattsättare",
+          "original_rank": 5,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.777873,
+          "ssyk_code_2012": "7112"
+        }
+      ],
+      "after_count": 5,
+      "before": [
+        {
+          "concept_id": "KF64_AvU_S4N",
+          "confidence": 2.0,
+          "label": "Städare",
+          "original_rank": 1,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "9111"
+        },
+        {
+          "concept_id": "2qmv_BHZ_kuo",
+          "confidence": 1.82828,
+          "label": "Industristädare",
+          "original_rank": 2,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.91414,
+          "ssyk_code_2012": "9111"
+        },
+        {
+          "concept_id": "4eaw_x3V_ddY",
+          "confidence": 1.662147,
+          "label": "Golvläggare, utan yrkesbevis",
+          "original_rank": 3,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.831073,
+          "ssyk_code_2012": "7122"
+        },
+        {
+          "concept_id": "Mgiv_Xs7_u2r",
+          "confidence": 1.64899,
+          "label": "Golvläggare",
+          "original_rank": 4,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.824495,
+          "ssyk_code_2012": "7122"
+        },
+        {
+          "concept_id": "Qv4e_brq_Ca5",
+          "confidence": 1.555745,
+          "label": "Plattsättare",
+          "original_rank": 5,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.777873,
+          "ssyk_code_2012": "7112"
+        }
+      ],
+      "before_count": 5,
+      "category": "direct",
+      "expected": [
+        "städare"
+      ],
+      "family_display_rank_after": 1,
+      "family_original_rank_after": 1,
+      "family_rank_before": 1,
+      "id": "yv05",
+      "query": "Jag dammsuger, moppar golv och städar kontor och toaletter",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "5x47_XP7_zyN",
+          "confidence": 5.0,
+          "label": "Journalist",
+          "original_rank": 1,
+          "phrase_shared_count": 5,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "2642"
+        },
+        {
+          "concept_id": "4oKL_Mvq_iG6",
+          "confidence": 1.812616,
+          "label": "Forskare, humaniora",
+          "original_rank": 2,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.604205,
+          "ssyk_code_2012": "2623"
+        },
+        {
+          "concept_id": "J4Rt_8su_TcY",
+          "confidence": 1.038666,
+          "label": "Forskare, IT",
+          "original_rank": 3,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.519333,
+          "ssyk_code_2012": "2519"
+        },
+        {
+          "concept_id": "rnBV_XXP_Uv2",
+          "confidence": 1.381431,
+          "label": "Affärsjurist",
+          "original_rank": 5,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.460477,
+          "ssyk_code_2012": "2614"
+        }
+      ],
+      "after_count": 4,
+      "before": [
+        {
+          "concept_id": "5x47_XP7_zyN",
+          "confidence": 5.0,
+          "label": "Journalist",
+          "original_rank": 1,
+          "phrase_shared_count": 5,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "2642"
+        },
+        {
+          "concept_id": "4oKL_Mvq_iG6",
+          "confidence": 1.812616,
+          "label": "Forskare, humaniora",
+          "original_rank": 2,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.604205,
+          "ssyk_code_2012": "2623"
+        },
+        {
+          "concept_id": "J4Rt_8su_TcY",
+          "confidence": 1.038666,
+          "label": "Forskare, IT",
+          "original_rank": 3,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.519333,
+          "ssyk_code_2012": "2519"
+        },
+        {
+          "concept_id": "M4Ld_18g_XzK",
+          "confidence": 0.0,
+          "label": "Förlagschef, tidning",
+          "original_rank": 4,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.481582,
+          "ssyk_code_2012": "1590"
+        },
+        {
+          "concept_id": "rnBV_XXP_Uv2",
+          "confidence": 1.381431,
+          "label": "Affärsjurist",
+          "original_rank": 5,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.460477,
+          "ssyk_code_2012": "2614"
+        }
+      ],
+      "before_count": 5,
+      "category": "direct",
+      "expected": [
+        "journalist",
+        "reporter"
+      ],
+      "family_display_rank_after": 1,
+      "family_original_rank_after": 1,
+      "family_rank_before": 1,
+      "id": "yv06",
+      "query": "Jag intervjuar människor, granskar uppgifter och skriver artiklar för en tidning",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "Mx7K_ThX_jz4",
+          "confidence": 0.0,
+          "label": "Biblioteksassistent",
+          "original_rank": 1,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "4410"
+        },
+        {
+          "concept_id": "GujS_MtW_PRH",
+          "confidence": 2.531045,
+          "label": "Bibliotekarie",
+          "original_rank": 2,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.843682,
+          "ssyk_code_2012": "2622"
+        },
+        {
+          "concept_id": "2MYm_KVX_GfS",
+          "confidence": 1.013152,
+          "label": "Bokförläggare",
+          "original_rank": 4,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.506576,
+          "ssyk_code_2012": "1120"
+        }
+      ],
+      "after_count": 3,
+      "before": [
+        {
+          "concept_id": "Mx7K_ThX_jz4",
+          "confidence": 0.0,
+          "label": "Biblioteksassistent",
+          "original_rank": 1,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "4410"
+        },
+        {
+          "concept_id": "GujS_MtW_PRH",
+          "confidence": 2.531045,
+          "label": "Bibliotekarie",
+          "original_rank": 2,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.843682,
+          "ssyk_code_2012": "2622"
+        },
+        {
+          "concept_id": "GpE8_Cy4_zL8",
+          "confidence": 0.0,
+          "label": "Skidliftvärd",
+          "original_rank": 3,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.562197,
+          "ssyk_code_2012": "9629"
+        },
+        {
+          "concept_id": "2MYm_KVX_GfS",
+          "confidence": 1.013152,
+          "label": "Bokförläggare",
+          "original_rank": 4,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.506576,
+          "ssyk_code_2012": "1120"
+        },
+        {
+          "concept_id": "2iBk_N8d_Gm4",
+          "confidence": 0.465314,
+          "label": "Forskarassistent",
+          "original_rank": 5,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.465314,
+          "ssyk_code_2012": "2313"
+        }
+      ],
+      "before_count": 5,
+      "category": "direct",
+      "expected": [
+        "bibliotekarie",
+        "biblioteksassistent"
+      ],
+      "family_display_rank_after": 1,
+      "family_original_rank_after": 1,
+      "family_rank_before": 1,
+      "id": "yv07",
+      "query": "Jag hjälper besökare att hitta och låna böcker och ordnar material i ett bibliotek",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "GgmE_SvH_mtm",
+          "confidence": 4.0,
+          "label": "Veterinär",
+          "original_rank": 1,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "2250"
+        },
+        {
+          "concept_id": "9K3i_XD4_Kyy",
+          "confidence": 2.337701,
+          "label": "Läkare",
+          "original_rank": 2,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.584425,
+          "ssyk_code_2012": "2219"
+        },
+        {
+          "concept_id": "CQBS_ZSZ_ViP",
+          "confidence": 1.621933,
+          "label": "Barnsjuksköterska",
+          "original_rank": 4,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.540644,
+          "ssyk_code_2012": "2232"
+        },
+        {
+          "concept_id": "HWPy_9jT_TX2",
+          "confidence": 1.952513,
+          "label": "Optiker",
+          "original_rank": 5,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.488128,
+          "ssyk_code_2012": "2284"
+        }
+      ],
+      "after_count": 4,
+      "before": [
+        {
+          "concept_id": "GgmE_SvH_mtm",
+          "confidence": 4.0,
+          "label": "Veterinär",
+          "original_rank": 1,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "2250"
+        },
+        {
+          "concept_id": "9K3i_XD4_Kyy",
+          "confidence": 2.337701,
+          "label": "Läkare",
+          "original_rank": 2,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.584425,
+          "ssyk_code_2012": "2219"
+        },
+        {
+          "concept_id": "sFXn_bQg_36b",
+          "confidence": 0.0,
+          "label": "Smådjursuppfödare",
+          "original_rank": 3,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.5622,
+          "ssyk_code_2012": "6122"
+        },
+        {
+          "concept_id": "CQBS_ZSZ_ViP",
+          "confidence": 1.621933,
+          "label": "Barnsjuksköterska",
+          "original_rank": 4,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.540644,
+          "ssyk_code_2012": "2232"
+        },
+        {
+          "concept_id": "HWPy_9jT_TX2",
+          "confidence": 1.952513,
+          "label": "Optiker",
+          "original_rank": 5,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.488128,
+          "ssyk_code_2012": "2284"
+        }
+      ],
+      "before_count": 5,
+      "category": "direct",
+      "expected": [
+        "veterinär"
+      ],
+      "family_display_rank_after": 1,
+      "family_original_rank_after": 1,
+      "family_rank_before": 1,
+      "id": "yv08",
+      "query": "Jag undersöker sjuka hundar och katter, vaccinerar dem och skriver ut behandling",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "7wdX_4rv_33z",
+          "confidence": 3.0,
+          "label": "Backend-utvecklare",
+          "original_rank": 1,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "2512"
+        },
+        {
+          "concept_id": "fg7B_yov_smw",
+          "confidence": 2.975297,
+          "label": "Systemutvecklare/Programmerare",
+          "original_rank": 2,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.743824,
+          "ssyk_code_2012": "2512"
+        },
+        {
+          "concept_id": "rQds_YGd_quU",
+          "confidence": 2.681041,
+          "label": "Mjukvaruutvecklare",
+          "original_rank": 3,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.67026,
+          "ssyk_code_2012": "2512"
+        },
+        {
+          "concept_id": "CZkP_hCz_KM8",
+          "confidence": 2.182794,
+          "label": "Applikationsutvecklare",
+          "original_rank": 4,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.545698,
+          "ssyk_code_2012": "2512"
+        }
+      ],
+      "after_count": 4,
+      "before": [
+        {
+          "concept_id": "7wdX_4rv_33z",
+          "confidence": 3.0,
+          "label": "Backend-utvecklare",
+          "original_rank": 1,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "2512"
+        },
+        {
+          "concept_id": "fg7B_yov_smw",
+          "confidence": 2.975297,
+          "label": "Systemutvecklare/Programmerare",
+          "original_rank": 2,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.743824,
+          "ssyk_code_2012": "2512"
+        },
+        {
+          "concept_id": "rQds_YGd_quU",
+          "confidence": 2.681041,
+          "label": "Mjukvaruutvecklare",
+          "original_rank": 3,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.67026,
+          "ssyk_code_2012": "2512"
+        },
+        {
+          "concept_id": "CZkP_hCz_KM8",
+          "confidence": 2.182794,
+          "label": "Applikationsutvecklare",
+          "original_rank": 4,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.545698,
+          "ssyk_code_2012": "2512"
+        },
+        {
+          "concept_id": "TMQA_DYj_srP",
+          "confidence": 0.0,
+          "label": "HR-controller",
+          "original_rank": 5,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.427884,
+          "ssyk_code_2012": "2412"
+        }
+      ],
+      "before_count": 5,
+      "category": "direct",
+      "expected": [
+        "systemutvecklare",
+        "programmerare"
+      ],
+      "family_display_rank_after": 2,
+      "family_original_rank_after": 2,
+      "family_rank_before": 2,
+      "id": "yv09",
+      "query": "Jag bygger backendtjänster, skriver kod, felsöker program och gör API:er",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "JZur_dmf_EPY",
+          "confidence": 3.0,
+          "label": "Trädgårdsmästare anläggning",
+          "original_rank": 1,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "6113"
+        },
+        {
+          "concept_id": "4Y6u_JPp_jas",
+          "confidence": 2.570363,
+          "label": "Park- och trädgårdsarbetare",
+          "original_rank": 3,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.856788,
+          "ssyk_code_2012": "6113"
+        },
+        {
+          "concept_id": "tuoE_9Nj_fAS",
+          "confidence": 1.96868,
+          "label": "Frisör",
+          "original_rank": 4,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.656227,
+          "ssyk_code_2012": "5141"
+        },
+        {
+          "concept_id": "MQHi_q9J_x2d",
+          "confidence": 1.82609,
+          "label": "Väg- och anläggningsarbetare",
+          "original_rank": 5,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.608697,
+          "ssyk_code_2012": "7114"
+        }
+      ],
+      "after_count": 4,
+      "before": [
+        {
+          "concept_id": "JZur_dmf_EPY",
+          "confidence": 3.0,
+          "label": "Trädgårdsmästare anläggning",
+          "original_rank": 1,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "6113"
+        },
+        {
+          "concept_id": "V1QR_VzZ_vbj",
+          "confidence": 0.0,
+          "label": "Växtskötare",
+          "original_rank": 2,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.944401,
+          "ssyk_code_2012": "9210"
+        },
+        {
+          "concept_id": "4Y6u_JPp_jas",
+          "confidence": 2.570363,
+          "label": "Park- och trädgårdsarbetare",
+          "original_rank": 3,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.856788,
+          "ssyk_code_2012": "6113"
+        },
+        {
+          "concept_id": "tuoE_9Nj_fAS",
+          "confidence": 1.96868,
+          "label": "Frisör",
+          "original_rank": 4,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.656227,
+          "ssyk_code_2012": "5141"
+        },
+        {
+          "concept_id": "MQHi_q9J_x2d",
+          "confidence": 1.82609,
+          "label": "Väg- och anläggningsarbetare",
+          "original_rank": 5,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.608697,
+          "ssyk_code_2012": "7114"
+        }
+      ],
+      "before_count": 5,
+      "category": "direct",
+      "expected": [
+        "trädgård",
+        "parkarbetare"
+      ],
+      "family_display_rank_after": 1,
+      "family_original_rank_after": 1,
+      "family_rank_before": 1,
+      "id": "yv10",
+      "query": "Jag klipper häckar, planterar växter, sköter rabatter och parker",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "sgib_x6a_wnW",
+          "confidence": 4.0,
+          "label": "Brandman",
+          "original_rank": 1,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "5411"
+        },
+        {
+          "concept_id": "3MDV_uBQ_6oG",
+          "confidence": 0.888393,
+          "label": "Forskare, trafiksäkerhet",
+          "original_rank": 2,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.444196,
+          "ssyk_code_2012": "2149"
+        },
+        {
+          "concept_id": "3uEE_35U_U6j",
+          "confidence": 1.492964,
+          "label": "Grovarbetare, bygg och anläggning",
+          "original_rank": 4,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.373241,
+          "ssyk_code_2012": "9310"
+        },
+        {
+          "concept_id": "Sbzf_iBA_MAS",
+          "confidence": 1.415231,
+          "label": "Elevassistent",
+          "original_rank": 5,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.353808,
+          "ssyk_code_2012": "5312"
+        }
+      ],
+      "after_count": 4,
+      "before": [
+        {
+          "concept_id": "sgib_x6a_wnW",
+          "confidence": 4.0,
+          "label": "Brandman",
+          "original_rank": 1,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "5411"
+        },
+        {
+          "concept_id": "3MDV_uBQ_6oG",
+          "confidence": 0.888393,
+          "label": "Forskare, trafiksäkerhet",
+          "original_rank": 2,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.444196,
+          "ssyk_code_2012": "2149"
+        },
+        {
+          "concept_id": "2iBk_N8d_Gm4",
+          "confidence": 0.777647,
+          "label": "Forskarassistent",
+          "original_rank": 3,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.388823,
+          "ssyk_code_2012": "2313"
+        },
+        {
+          "concept_id": "3uEE_35U_U6j",
+          "confidence": 1.492964,
+          "label": "Grovarbetare, bygg och anläggning",
+          "original_rank": 4,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.373241,
+          "ssyk_code_2012": "9310"
+        },
+        {
+          "concept_id": "Sbzf_iBA_MAS",
+          "confidence": 1.415231,
+          "label": "Elevassistent",
+          "original_rank": 5,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.353808,
+          "ssyk_code_2012": "5312"
+        }
+      ],
+      "before_count": 5,
+      "category": "direct",
+      "expected": [
+        "brandman"
+      ],
+      "family_display_rank_after": 1,
+      "family_original_rank_after": 1,
+      "family_rank_before": 1,
+      "id": "yv11",
+      "query": "Jag släcker bränder, går in med rökdykarutrustning och hjälper vid trafikolyckor",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "zrQ9_1z2_kT3",
+          "confidence": 3.0,
+          "label": "Musikpedagog/Musiklärare",
+          "original_rank": 1,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "2359"
+        },
+        {
+          "concept_id": "rgsj_poi_koz",
+          "confidence": 2.250482,
+          "label": "Modersmålslärare i grundskolan",
+          "original_rank": 2,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.750161,
+          "ssyk_code_2012": "2341"
+        },
+        {
+          "concept_id": "15e8_KDZ_31Z",
+          "confidence": 2.174575,
+          "label": "SFI-lärare",
+          "original_rank": 3,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.724858,
+          "ssyk_code_2012": "2359"
+        }
+      ],
+      "after_count": 3,
+      "before": [
+        {
+          "concept_id": "zrQ9_1z2_kT3",
+          "confidence": 3.0,
+          "label": "Musikpedagog/Musiklärare",
+          "original_rank": 1,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "2359"
+        },
+        {
+          "concept_id": "rgsj_poi_koz",
+          "confidence": 2.250482,
+          "label": "Modersmålslärare i grundskolan",
+          "original_rank": 2,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.750161,
+          "ssyk_code_2012": "2341"
+        },
+        {
+          "concept_id": "15e8_KDZ_31Z",
+          "confidence": 2.174575,
+          "label": "SFI-lärare",
+          "original_rank": 3,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.724858,
+          "ssyk_code_2012": "2359"
+        },
+        {
+          "concept_id": "H9ej_iRx_9G6",
+          "confidence": 0.0,
+          "label": "Ridlärare",
+          "original_rank": 4,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.627294,
+          "ssyk_code_2012": "3422"
+        },
+        {
+          "concept_id": "zBWk_kpm_25V",
+          "confidence": 0.0,
+          "label": "Skidlärare",
+          "original_rank": 5,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.61265,
+          "ssyk_code_2012": "3422"
+        }
+      ],
+      "before_count": 5,
+      "category": "direct",
+      "expected": [
+        "grundlärare",
+        "lärare"
+      ],
+      "family_display_rank_after": 1,
+      "family_original_rank_after": 1,
+      "family_rank_before": 1,
+      "id": "yv12",
+      "query": "Jag undervisar barn i lågstadiet i svenska och matematik och planerar lektioner",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "QaQC_ozP_Bme",
+          "confidence": 1.0,
+          "label": "Rekryterare/Rekryteringskonsult",
+          "original_rank": 1,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "2423"
+        },
+        {
+          "concept_id": "vaEY_R9R_LjB",
+          "confidence": 1.659777,
+          "label": "Tolk",
+          "original_rank": 2,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.829889,
+          "ssyk_code_2012": "2643"
+        },
+        {
+          "concept_id": "n2Tp_B8E_gED",
+          "confidence": 2.305278,
+          "label": "Distriktssköterska",
+          "original_rank": 3,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.768426,
+          "ssyk_code_2012": "2224"
+        },
+        {
+          "concept_id": "3wHJ_rrt_WDK",
+          "confidence": 3.056455,
+          "label": "Entrévärd",
+          "original_rank": 4,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.764114,
+          "ssyk_code_2012": "9629"
+        }
+      ],
+      "after_count": 4,
+      "before": [
+        {
+          "concept_id": "QaQC_ozP_Bme",
+          "confidence": 1.0,
+          "label": "Rekryterare/Rekryteringskonsult",
+          "original_rank": 1,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "2423"
+        },
+        {
+          "concept_id": "vaEY_R9R_LjB",
+          "confidence": 1.659777,
+          "label": "Tolk",
+          "original_rank": 2,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.829889,
+          "ssyk_code_2012": "2643"
+        },
+        {
+          "concept_id": "n2Tp_B8E_gED",
+          "confidence": 2.305278,
+          "label": "Distriktssköterska",
+          "original_rank": 3,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.768426,
+          "ssyk_code_2012": "2224"
+        },
+        {
+          "concept_id": "3wHJ_rrt_WDK",
+          "confidence": 3.056455,
+          "label": "Entrévärd",
+          "original_rank": 4,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.764114,
+          "ssyk_code_2012": "9629"
+        },
+        {
+          "concept_id": "93t8_g4b_yeL",
+          "confidence": 0.0,
+          "label": "Gravör, ädelmetall",
+          "original_rank": 5,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.732951,
+          "ssyk_code_2012": "7312"
+        }
+      ],
+      "before_count": 5,
+      "category": "colloquial",
+      "expected": [
+        "sjuksköterska",
+        "undersköterska"
+      ],
+      "family_display_rank_after": null,
+      "family_original_rank_after": null,
+      "family_rank_before": 21,
+      "id": "yv13",
+      "query": "Jag sticker folk i armen, kollar dropp och springer mellan salar hela dagarna",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "2KG5_YmC_TRA",
+          "confidence": 2.0,
+          "label": "Belysningstekniker: scen, film, TV",
+          "original_rank": 1,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "3522"
+        },
+        {
+          "concept_id": "7YaM_bPu_c1T",
+          "confidence": 0.979539,
+          "label": "Systemanalytiker/Systemutredare",
+          "original_rank": 2,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.979539,
+          "ssyk_code_2012": "2511"
+        },
+        {
+          "concept_id": "6wcp_7D7_GU7",
+          "confidence": 1.931361,
+          "label": "Fordonsmontör",
+          "original_rank": 3,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.96568,
+          "ssyk_code_2012": "8211"
+        },
+        {
+          "concept_id": "kron_xtp_zCz",
+          "confidence": 3.778969,
+          "label": "Mediasäljare",
+          "original_rank": 4,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.944742,
+          "ssyk_code_2012": "3339"
+        },
+        {
+          "concept_id": "bUP3_Ztw_VC1",
+          "confidence": 2.822642,
+          "label": "Hemförsäljare",
+          "original_rank": 5,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.940881,
+          "ssyk_code_2012": "5241"
+        }
+      ],
+      "after_count": 5,
+      "before": [
+        {
+          "concept_id": "2KG5_YmC_TRA",
+          "confidence": 2.0,
+          "label": "Belysningstekniker: scen, film, TV",
+          "original_rank": 1,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "3522"
+        },
+        {
+          "concept_id": "7YaM_bPu_c1T",
+          "confidence": 0.979539,
+          "label": "Systemanalytiker/Systemutredare",
+          "original_rank": 2,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.979539,
+          "ssyk_code_2012": "2511"
+        },
+        {
+          "concept_id": "6wcp_7D7_GU7",
+          "confidence": 1.931361,
+          "label": "Fordonsmontör",
+          "original_rank": 3,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.96568,
+          "ssyk_code_2012": "8211"
+        },
+        {
+          "concept_id": "kron_xtp_zCz",
+          "confidence": 3.778969,
+          "label": "Mediasäljare",
+          "original_rank": 4,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.944742,
+          "ssyk_code_2012": "3339"
+        },
+        {
+          "concept_id": "bUP3_Ztw_VC1",
+          "confidence": 2.822642,
+          "label": "Hemförsäljare",
+          "original_rank": 5,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.940881,
+          "ssyk_code_2012": "5241"
+        }
+      ],
+      "before_count": 5,
+      "category": "colloquial",
+      "expected": [
+        "elektriker"
+      ],
+      "family_display_rank_after": null,
+      "family_original_rank_after": null,
+      "family_rank_before": 7,
+      "id": "yv14",
+      "query": "Jag kryper runt i hus och får lampor och vägguttag att funka",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "pBhS_6fg_727",
+          "confidence": 3.0,
+          "label": "Butikssäljare, dagligvaror/Medarbetare, dagligvaror",
+          "original_rank": 1,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "5222"
+        },
+        {
+          "concept_id": "XugJ_6hw_wVV",
+          "confidence": 2.198607,
+          "label": "Bagare/Konditor",
+          "original_rank": 3,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.732869,
+          "ssyk_code_2012": "7612"
+        },
+        {
+          "concept_id": "3wHJ_rrt_WDK",
+          "confidence": 1.379596,
+          "label": "Entrévärd",
+          "original_rank": 4,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.689798,
+          "ssyk_code_2012": "9629"
+        }
+      ],
+      "after_count": 3,
+      "before": [
+        {
+          "concept_id": "pBhS_6fg_727",
+          "confidence": 3.0,
+          "label": "Butikssäljare, dagligvaror/Medarbetare, dagligvaror",
+          "original_rank": 1,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "5222"
+        },
+        {
+          "concept_id": "j8X2_KhG_6ty",
+          "confidence": 0.774084,
+          "label": "Kassapersonal",
+          "original_rank": 2,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.774084,
+          "ssyk_code_2012": "5230"
+        },
+        {
+          "concept_id": "XugJ_6hw_wVV",
+          "confidence": 2.198607,
+          "label": "Bagare/Konditor",
+          "original_rank": 3,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.732869,
+          "ssyk_code_2012": "7612"
+        },
+        {
+          "concept_id": "3wHJ_rrt_WDK",
+          "confidence": 1.379596,
+          "label": "Entrévärd",
+          "original_rank": 4,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.689798,
+          "ssyk_code_2012": "9629"
+        },
+        {
+          "concept_id": "Ls8r_yKQ_MQ4",
+          "confidence": 0.0,
+          "label": "Bergarbetare, gruva",
+          "original_rank": 5,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.685539,
+          "ssyk_code_2012": "8111"
+        }
+      ],
+      "before_count": 5,
+      "category": "colloquial",
+      "expected": [
+        "bagare",
+        "konditor"
+      ],
+      "family_display_rank_after": 2,
+      "family_original_rank_after": 3,
+      "family_rank_before": 3,
+      "id": "yv15",
+      "query": "Jag står med deg klockan fyra på morgonen och fyller plåtar innan folk vaknar",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "J63w_XYr_isZ",
+          "confidence": 0.0,
+          "label": "Maskinmekaniker",
+          "original_rank": 1,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "7231"
+        },
+        {
+          "concept_id": "o7LP_duC_u9Z",
+          "confidence": 2.508887,
+          "label": "Lastbilsmekaniker",
+          "original_rank": 2,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.836296,
+          "ssyk_code_2012": "7231"
+        },
+        {
+          "concept_id": "tKCe_Qpx_Thx",
+          "confidence": 1.552198,
+          "label": "Arbetsmiljöingenjör",
+          "original_rank": 3,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.776099,
+          "ssyk_code_2012": "2181"
+        },
+        {
+          "concept_id": "Qq5v_QZ3_EE9",
+          "confidence": 0.742659,
+          "label": "Bussmekaniker",
+          "original_rank": 4,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.742659,
+          "ssyk_code_2012": "7231"
+        }
+      ],
+      "after_count": 4,
+      "before": [
+        {
+          "concept_id": "J63w_XYr_isZ",
+          "confidence": 0.0,
+          "label": "Maskinmekaniker",
+          "original_rank": 1,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "7231"
+        },
+        {
+          "concept_id": "o7LP_duC_u9Z",
+          "confidence": 2.508887,
+          "label": "Lastbilsmekaniker",
+          "original_rank": 2,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.836296,
+          "ssyk_code_2012": "7231"
+        },
+        {
+          "concept_id": "tKCe_Qpx_Thx",
+          "confidence": 1.552198,
+          "label": "Arbetsmiljöingenjör",
+          "original_rank": 3,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.776099,
+          "ssyk_code_2012": "2181"
+        },
+        {
+          "concept_id": "Qq5v_QZ3_EE9",
+          "confidence": 0.742659,
+          "label": "Bussmekaniker",
+          "original_rank": 4,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.742659,
+          "ssyk_code_2012": "7231"
+        },
+        {
+          "concept_id": "5knr_Aw3_sqw",
+          "confidence": 0.710987,
+          "label": "Fartygsbefäl, utan behörighetsbevis",
+          "original_rank": 5,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.710987,
+          "ssyk_code_2012": "3152"
+        }
+      ],
+      "before_count": 5,
+      "category": "colloquial",
+      "expected": [
+        "bussförare"
+      ],
+      "family_display_rank_after": null,
+      "family_original_rank_after": null,
+      "family_rank_before": 427,
+      "id": "yv16",
+      "query": "Jag rattar ett stort fordon fullt med folk som ska till jobbet",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "tKCe_Qpx_Thx",
+          "confidence": 4.0,
+          "label": "Arbetsmiljöingenjör",
+          "original_rank": 1,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "2181"
+        },
+        {
+          "concept_id": "SF73_TBz_fhR",
+          "confidence": 4.670231,
+          "label": "Ledsagare",
+          "original_rank": 2,
+          "phrase_shared_count": 5,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.934046,
+          "ssyk_code_2012": "5343"
+        },
+        {
+          "concept_id": "XMWR_V22_WS1",
+          "confidence": 0.838133,
+          "label": "Arkitekt",
+          "original_rank": 5,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.838133,
+          "ssyk_code_2012": "2161"
+        }
+      ],
+      "after_count": 3,
+      "before": [
+        {
+          "concept_id": "tKCe_Qpx_Thx",
+          "confidence": 4.0,
+          "label": "Arbetsmiljöingenjör",
+          "original_rank": 1,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "2181"
+        },
+        {
+          "concept_id": "SF73_TBz_fhR",
+          "confidence": 4.670231,
+          "label": "Ledsagare",
+          "original_rank": 2,
+          "phrase_shared_count": 5,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.934046,
+          "ssyk_code_2012": "5343"
+        },
+        {
+          "concept_id": "uuA6_a4j_BGg",
+          "confidence": 0.0,
+          "label": "Ventilationsingenjör",
+          "original_rank": 3,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.866964,
+          "ssyk_code_2012": "3114"
+        },
+        {
+          "concept_id": "YfiC_FN1_dzY",
+          "confidence": 0.0,
+          "label": "Garderobiär",
+          "original_rank": 4,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.843088,
+          "ssyk_code_2012": "9622"
+        },
+        {
+          "concept_id": "XMWR_V22_WS1",
+          "confidence": 0.838133,
+          "label": "Arkitekt",
+          "original_rank": 5,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.838133,
+          "ssyk_code_2012": "2161"
+        }
+      ],
+      "before_count": 5,
+      "category": "colloquial",
+      "expected": [
+        "städare",
+        "hotellstädare"
+      ],
+      "family_display_rank_after": null,
+      "family_original_rank_after": null,
+      "family_rank_before": 367,
+      "id": "yv17",
+      "query": "Jag ser till att hotellrum inte ser ut som att någon bott där",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "6FAe_TXj_2vw",
+          "confidence": 2.0,
+          "label": "Telefonkommunikatör på intresseorganisation",
+          "original_rank": 1,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "5242"
+        },
+        {
+          "concept_id": "3N52_wtb_L2r",
+          "confidence": 2.487418,
+          "label": "Tulltjänsteman",
+          "original_rank": 2,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.829139,
+          "ssyk_code_2012": "3351"
+        },
+        {
+          "concept_id": "YpRs_ybt_47a",
+          "confidence": 3.003224,
+          "label": "Kurator",
+          "original_rank": 3,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.750806,
+          "ssyk_code_2012": "2662"
+        },
+        {
+          "concept_id": "vaEY_R9R_LjB",
+          "confidence": 2.233513,
+          "label": "Tolk",
+          "original_rank": 5,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.744504,
+          "ssyk_code_2012": "2643"
+        }
+      ],
+      "after_count": 4,
+      "before": [
+        {
+          "concept_id": "6FAe_TXj_2vw",
+          "confidence": 2.0,
+          "label": "Telefonkommunikatör på intresseorganisation",
+          "original_rank": 1,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "5242"
+        },
+        {
+          "concept_id": "3N52_wtb_L2r",
+          "confidence": 2.487418,
+          "label": "Tulltjänsteman",
+          "original_rank": 2,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.829139,
+          "ssyk_code_2012": "3351"
+        },
+        {
+          "concept_id": "YpRs_ybt_47a",
+          "confidence": 3.003224,
+          "label": "Kurator",
+          "original_rank": 3,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.750806,
+          "ssyk_code_2012": "2662"
+        },
+        {
+          "concept_id": "1WsA_bfK_QUd",
+          "confidence": 0.746032,
+          "label": "SOS-operatör",
+          "original_rank": 4,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.746032,
+          "ssyk_code_2012": "5414"
+        },
+        {
+          "concept_id": "vaEY_R9R_LjB",
+          "confidence": 2.233513,
+          "label": "Tolk",
+          "original_rank": 5,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.744504,
+          "ssyk_code_2012": "2643"
+        }
+      ],
+      "before_count": 5,
+      "category": "colloquial",
+      "expected": [
+        "journalist",
+        "reporter"
+      ],
+      "family_display_rank_after": null,
+      "family_original_rank_after": null,
+      "family_rank_before": 212,
+      "id": "yv18",
+      "query": "Jag ringer folk, ställer jobbiga frågor och försöker ta reda på vad som faktiskt hände",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "ek9W_CmD_y2M",
+          "confidence": 6.0,
+          "label": "Butikssäljare, fackhandel",
+          "original_rank": 1,
+          "phrase_shared_count": 6,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "5223"
+        },
+        {
+          "concept_id": "XSDj_JZ2_ugu",
+          "confidence": 4.805652,
+          "label": "Arbetsförmedlare",
+          "original_rank": 2,
+          "phrase_shared_count": 5,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.96113,
+          "ssyk_code_2012": "3333"
+        },
+        {
+          "concept_id": "uiqh_Drm_XGr",
+          "confidence": 3.313688,
+          "label": "Researcher, rekrytering",
+          "original_rank": 3,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.828422,
+          "ssyk_code_2012": "2423"
+        },
+        {
+          "concept_id": "KYPa_Jv8_ZbU",
+          "confidence": 3.918528,
+          "label": "Studie- och yrkesvägledare/SYV",
+          "original_rank": 4,
+          "phrase_shared_count": 5,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.783706,
+          "ssyk_code_2012": "2352"
+        },
+        {
+          "concept_id": "gPCx_T6e_6P8",
+          "confidence": 2.997595,
+          "label": "Jobbcoach/Utbildningscoach",
+          "original_rank": 5,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.749399,
+          "ssyk_code_2012": "3333"
+        }
+      ],
+      "after_count": 5,
+      "before": [
+        {
+          "concept_id": "ek9W_CmD_y2M",
+          "confidence": 6.0,
+          "label": "Butikssäljare, fackhandel",
+          "original_rank": 1,
+          "phrase_shared_count": 6,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "5223"
+        },
+        {
+          "concept_id": "XSDj_JZ2_ugu",
+          "confidence": 4.805652,
+          "label": "Arbetsförmedlare",
+          "original_rank": 2,
+          "phrase_shared_count": 5,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.96113,
+          "ssyk_code_2012": "3333"
+        },
+        {
+          "concept_id": "uiqh_Drm_XGr",
+          "confidence": 3.313688,
+          "label": "Researcher, rekrytering",
+          "original_rank": 3,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.828422,
+          "ssyk_code_2012": "2423"
+        },
+        {
+          "concept_id": "KYPa_Jv8_ZbU",
+          "confidence": 3.918528,
+          "label": "Studie- och yrkesvägledare/SYV",
+          "original_rank": 4,
+          "phrase_shared_count": 5,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.783706,
+          "ssyk_code_2012": "2352"
+        },
+        {
+          "concept_id": "gPCx_T6e_6P8",
+          "confidence": 2.997595,
+          "label": "Jobbcoach/Utbildningscoach",
+          "original_rank": 5,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.749399,
+          "ssyk_code_2012": "3333"
+        }
+      ],
+      "before_count": 5,
+      "category": "colloquial",
+      "expected": [
+        "bibliotekarie",
+        "biblioteksassistent"
+      ],
+      "family_display_rank_after": null,
+      "family_original_rank_after": null,
+      "family_rank_before": 17,
+      "id": "yv19",
+      "query": "Jag jobbar bland hyllor med böcker och hjälper folk hitta rätt grej att läsa",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "tKCe_Qpx_Thx",
+          "confidence": 3.0,
+          "label": "Arbetsmiljöingenjör",
+          "original_rank": 1,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "2181"
+        },
+        {
+          "concept_id": "SF73_TBz_fhR",
+          "confidence": 1.265726,
+          "label": "Ledsagare",
+          "original_rank": 5,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.632863,
+          "ssyk_code_2012": "5343"
+        }
+      ],
+      "after_count": 2,
+      "before": [
+        {
+          "concept_id": "tKCe_Qpx_Thx",
+          "confidence": 3.0,
+          "label": "Arbetsmiljöingenjör",
+          "original_rank": 1,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "2181"
+        },
+        {
+          "concept_id": "E6hM_rR1_nye",
+          "confidence": 0.0,
+          "label": "Kontaktledningstekniker",
+          "original_rank": 2,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.723096,
+          "ssyk_code_2012": "7413"
+        },
+        {
+          "concept_id": "3N52_wtb_L2r",
+          "confidence": 0.716592,
+          "label": "Tulltjänsteman",
+          "original_rank": 3,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.716592,
+          "ssyk_code_2012": "3351"
+        },
+        {
+          "concept_id": "UUQD_UFi_9hX",
+          "confidence": 0.0,
+          "label": "Golvslipare, trä",
+          "original_rank": 4,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.675676,
+          "ssyk_code_2012": "7122"
+        },
+        {
+          "concept_id": "SF73_TBz_fhR",
+          "confidence": 1.265726,
+          "label": "Ledsagare",
+          "original_rank": 5,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.632863,
+          "ssyk_code_2012": "5343"
+        }
+      ],
+      "before_count": 5,
+      "category": "colloquial",
+      "expected": [
+        "veterinär"
+      ],
+      "family_display_rank_after": null,
+      "family_original_rank_after": null,
+      "family_rank_before": 318,
+      "id": "yv20",
+      "query": "När katten är sjuk är det mig folk kommer till",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "7wdX_4rv_33z",
+          "confidence": 3.0,
+          "label": "Backend-utvecklare",
+          "original_rank": 1,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "2512"
+        },
+        {
+          "concept_id": "fg7B_yov_smw",
+          "confidence": 3.672031,
+          "label": "Systemutvecklare/Programmerare",
+          "original_rank": 2,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.918008,
+          "ssyk_code_2012": "2512"
+        },
+        {
+          "concept_id": "GaiH_Bzd_mU5",
+          "confidence": 3.092104,
+          "label": "Elektronikmontör",
+          "original_rank": 3,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.773026,
+          "ssyk_code_2012": "8212"
+        },
+        {
+          "concept_id": "rQds_YGd_quU",
+          "confidence": 2.291166,
+          "label": "Mjukvaruutvecklare",
+          "original_rank": 4,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.763722,
+          "ssyk_code_2012": "2512"
+        },
+        {
+          "concept_id": "44U4_7Fz_GCy",
+          "confidence": 2.871503,
+          "label": "Konstruktör, tillverkningsindustri",
+          "original_rank": 5,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.717876,
+          "ssyk_code_2012": "3114"
+        }
+      ],
+      "after_count": 5,
+      "before": [
+        {
+          "concept_id": "7wdX_4rv_33z",
+          "confidence": 3.0,
+          "label": "Backend-utvecklare",
+          "original_rank": 1,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "2512"
+        },
+        {
+          "concept_id": "fg7B_yov_smw",
+          "confidence": 3.672031,
+          "label": "Systemutvecklare/Programmerare",
+          "original_rank": 2,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.918008,
+          "ssyk_code_2012": "2512"
+        },
+        {
+          "concept_id": "GaiH_Bzd_mU5",
+          "confidence": 3.092104,
+          "label": "Elektronikmontör",
+          "original_rank": 3,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.773026,
+          "ssyk_code_2012": "8212"
+        },
+        {
+          "concept_id": "rQds_YGd_quU",
+          "confidence": 2.291166,
+          "label": "Mjukvaruutvecklare",
+          "original_rank": 4,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.763722,
+          "ssyk_code_2012": "2512"
+        },
+        {
+          "concept_id": "44U4_7Fz_GCy",
+          "confidence": 2.871503,
+          "label": "Konstruktör, tillverkningsindustri",
+          "original_rank": 5,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.717876,
+          "ssyk_code_2012": "3114"
+        }
+      ],
+      "before_count": 5,
+      "category": "colloquial",
+      "expected": [
+        "systemutvecklare",
+        "programmerare",
+        "drifttekniker",
+        "it-tekniker"
+      ],
+      "family_display_rank_after": 2,
+      "family_original_rank_after": 2,
+      "family_rank_before": 2,
+      "id": "yv21",
+      "query": "Jag sitter mest vid datorn och får andras dåliga kod och servrar att fungera",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "bUP3_Ztw_VC1",
+          "confidence": 3.0,
+          "label": "Hemförsäljare",
+          "original_rank": 1,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "5241"
+        },
+        {
+          "concept_id": "Zfsr_ZV8_NTA",
+          "confidence": 2.770816,
+          "label": "Butikskonsulent",
+          "original_rank": 2,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.923605,
+          "ssyk_code_2012": "3339"
+        },
+        {
+          "concept_id": "XSBp_5wD_VaU",
+          "confidence": 1.659178,
+          "label": "Restaurangchef",
+          "original_rank": 4,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.829589,
+          "ssyk_code_2012": "1720"
+        },
+        {
+          "concept_id": "6Jyi_QHU_LKn",
+          "confidence": 1.586121,
+          "label": "Bergsingenjör",
+          "original_rank": 5,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.793061,
+          "ssyk_code_2012": "2146"
+        }
+      ],
+      "after_count": 4,
+      "before": [
+        {
+          "concept_id": "bUP3_Ztw_VC1",
+          "confidence": 3.0,
+          "label": "Hemförsäljare",
+          "original_rank": 1,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "5241"
+        },
+        {
+          "concept_id": "Zfsr_ZV8_NTA",
+          "confidence": 2.770816,
+          "label": "Butikskonsulent",
+          "original_rank": 2,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.923605,
+          "ssyk_code_2012": "3339"
+        },
+        {
+          "concept_id": "qKE5_dUi_zg9",
+          "confidence": 0.0,
+          "label": "Fältgeotekniker",
+          "original_rank": 3,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.904212,
+          "ssyk_code_2012": "3119"
+        },
+        {
+          "concept_id": "XSBp_5wD_VaU",
+          "confidence": 1.659178,
+          "label": "Restaurangchef",
+          "original_rank": 4,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.829589,
+          "ssyk_code_2012": "1720"
+        },
+        {
+          "concept_id": "6Jyi_QHU_LKn",
+          "confidence": 1.586121,
+          "label": "Bergsingenjör",
+          "original_rank": 5,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.793061,
+          "ssyk_code_2012": "2146"
+        }
+      ],
+      "before_count": 5,
+      "category": "colloquial",
+      "expected": [
+        "trädgård",
+        "parkarbetare"
+      ],
+      "family_display_rank_after": null,
+      "family_original_rank_after": null,
+      "family_rank_before": 85,
+      "id": "yv22",
+      "query": "Jag går runt ute hela dagarna med häcksax, spade och jord under naglarna",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "HuYB_gtA_7jL",
+          "confidence": 0.0,
+          "label": "Mässman, fartyg",
+          "original_rank": 1,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "5131"
+        },
+        {
+          "concept_id": "d9nv_iUm_Jyg",
+          "confidence": 0.850919,
+          "label": "Barnvakt",
+          "original_rank": 3,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.850919,
+          "ssyk_code_2012": "9119"
+        },
+        {
+          "concept_id": "PQkQ_Dmk_ZF8",
+          "confidence": 2.35469,
+          "label": "Undersköterska, vård- och specialavdelning och mottagning",
+          "original_rank": 4,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.784897,
+          "ssyk_code_2012": "5323"
+        }
+      ],
+      "after_count": 3,
+      "before": [
+        {
+          "concept_id": "HuYB_gtA_7jL",
+          "confidence": 0.0,
+          "label": "Mässman, fartyg",
+          "original_rank": 1,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "5131"
+        },
+        {
+          "concept_id": "6zL8_YYP_1eR",
+          "confidence": 0.0,
+          "label": "Bussförare",
+          "original_rank": 2,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.982626,
+          "ssyk_code_2012": "8331"
+        },
+        {
+          "concept_id": "d9nv_iUm_Jyg",
+          "confidence": 0.850919,
+          "label": "Barnvakt",
+          "original_rank": 3,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.850919,
+          "ssyk_code_2012": "9119"
+        },
+        {
+          "concept_id": "PQkQ_Dmk_ZF8",
+          "confidence": 2.35469,
+          "label": "Undersköterska, vård- och specialavdelning och mottagning",
+          "original_rank": 4,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.784897,
+          "ssyk_code_2012": "5323"
+        },
+        {
+          "concept_id": "GkMH_KEV_QKX",
+          "confidence": 0.0,
+          "label": "Spårvagnsförare",
+          "original_rank": 5,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.76557,
+          "ssyk_code_2012": "8331"
+        }
+      ],
+      "before_count": 5,
+      "category": "colloquial",
+      "expected": [
+        "undersköterska",
+        "vårdbiträde",
+        "hemtjänst"
+      ],
+      "family_display_rank_after": 3,
+      "family_original_rank_after": 4,
+      "family_rank_before": 4,
+      "id": "yv23",
+      "query": "Jag tar hand om gamla människor hemma, hjälper dem duscha, äta och komma ihåg medicinen",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "j8X2_KhG_6ty",
+          "confidence": 3.0,
+          "label": "Kassapersonal",
+          "original_rank": 1,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "5230"
+        },
+        {
+          "concept_id": "pBhS_6fg_727",
+          "confidence": 3.601591,
+          "label": "Butikssäljare, dagligvaror/Medarbetare, dagligvaror",
+          "original_rank": 2,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.900398,
+          "ssyk_code_2012": "5222"
+        },
+        {
+          "concept_id": "yXRQ_Ad9_E8V",
+          "confidence": 2.566253,
+          "label": "Restaurangbiträde",
+          "original_rank": 3,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.855418,
+          "ssyk_code_2012": "9412"
+        },
+        {
+          "concept_id": "RGNc_B6x_1A8",
+          "confidence": 2.541348,
+          "label": "Charkuteriarbetare, butik",
+          "original_rank": 4,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.847116,
+          "ssyk_code_2012": "5222"
+        },
+        {
+          "concept_id": "kxew_SY8_LFZ",
+          "confidence": 2.274776,
+          "label": "Gatuförsäljare",
+          "original_rank": 5,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.758259,
+          "ssyk_code_2012": "9520"
+        }
+      ],
+      "after_count": 5,
+      "before": [
+        {
+          "concept_id": "j8X2_KhG_6ty",
+          "confidence": 3.0,
+          "label": "Kassapersonal",
+          "original_rank": 1,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "5230"
+        },
+        {
+          "concept_id": "pBhS_6fg_727",
+          "confidence": 3.601591,
+          "label": "Butikssäljare, dagligvaror/Medarbetare, dagligvaror",
+          "original_rank": 2,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.900398,
+          "ssyk_code_2012": "5222"
+        },
+        {
+          "concept_id": "yXRQ_Ad9_E8V",
+          "confidence": 2.566253,
+          "label": "Restaurangbiträde",
+          "original_rank": 3,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.855418,
+          "ssyk_code_2012": "9412"
+        },
+        {
+          "concept_id": "RGNc_B6x_1A8",
+          "confidence": 2.541348,
+          "label": "Charkuteriarbetare, butik",
+          "original_rank": 4,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.847116,
+          "ssyk_code_2012": "5222"
+        },
+        {
+          "concept_id": "kxew_SY8_LFZ",
+          "confidence": 2.274776,
+          "label": "Gatuförsäljare",
+          "original_rank": 5,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.758259,
+          "ssyk_code_2012": "9520"
+        }
+      ],
+      "before_count": 5,
+      "category": "colloquial",
+      "expected": [
+        "butikssäljare",
+        "butiksbiträde"
+      ],
+      "family_display_rank_after": 2,
+      "family_original_rank_after": 2,
+      "family_rank_before": 2,
+      "id": "yv24",
+      "query": "Jag står bakom en disk, tar betalt, fyller på varor och hjälper kunder",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "K3iK_iEb_41Y",
+          "confidence": 2.0,
+          "label": "Serviceelektriker, installation",
+          "original_rank": 1,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "7411"
+        },
+        {
+          "concept_id": "84Uc_bhA_s47",
+          "confidence": 1.832971,
+          "label": "Installationselektriker",
+          "original_rank": 2,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.916485,
+          "ssyk_code_2012": "7411"
+        },
+        {
+          "concept_id": "AJDU_fpb_ADF",
+          "confidence": 2.649703,
+          "label": "Elmontör",
+          "original_rank": 3,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.883234,
+          "ssyk_code_2012": "8212"
+        },
+        {
+          "concept_id": "pahf_9Ek_WVz",
+          "confidence": 1.691345,
+          "label": "Teletekniker",
+          "original_rank": 4,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.845673,
+          "ssyk_code_2012": "7420"
+        }
+      ],
+      "after_count": 4,
+      "before": [
+        {
+          "concept_id": "K3iK_iEb_41Y",
+          "confidence": 2.0,
+          "label": "Serviceelektriker, installation",
+          "original_rank": 1,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "7411"
+        },
+        {
+          "concept_id": "84Uc_bhA_s47",
+          "confidence": 1.832971,
+          "label": "Installationselektriker",
+          "original_rank": 2,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.916485,
+          "ssyk_code_2012": "7411"
+        },
+        {
+          "concept_id": "AJDU_fpb_ADF",
+          "confidence": 2.649703,
+          "label": "Elmontör",
+          "original_rank": 3,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.883234,
+          "ssyk_code_2012": "8212"
+        },
+        {
+          "concept_id": "pahf_9Ek_WVz",
+          "confidence": 1.691345,
+          "label": "Teletekniker",
+          "original_rank": 4,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.845673,
+          "ssyk_code_2012": "7420"
+        },
+        {
+          "concept_id": "62xd_b2m_Wbo",
+          "confidence": 0.734344,
+          "label": "Växeltelefonist",
+          "original_rank": 5,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.734344,
+          "ssyk_code_2012": "4223"
+        }
+      ],
+      "before_count": 5,
+      "category": "noisy",
+      "expected": [
+        "elektriker"
+      ],
+      "family_display_rank_after": 1,
+      "family_original_rank_after": 1,
+      "family_rank_before": 1,
+      "id": "yv25",
+      "query": "drar kablar kopplar uttg felsökr el typ hela dan",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "XugJ_6hw_wVV",
+          "confidence": 2.0,
+          "label": "Bagare/Konditor",
+          "original_rank": 1,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "7612"
+        }
+      ],
+      "after_count": 1,
+      "before": [
+        {
+          "concept_id": "XugJ_6hw_wVV",
+          "confidence": 2.0,
+          "label": "Bagare/Konditor",
+          "original_rank": 1,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "7612"
+        },
+        {
+          "concept_id": "9YaE_Syg_5ZB",
+          "confidence": 0.15613,
+          "label": "Pizzabagare",
+          "original_rank": 2,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.15613,
+          "ssyk_code_2012": "9411"
+        }
+      ],
+      "before_count": 2,
+      "category": "noisy",
+      "expected": [
+        "bagare",
+        "konditor"
+      ],
+      "family_display_rank_after": 1,
+      "family_original_rank_after": 1,
+      "family_rank_before": 1,
+      "id": "yv26",
+      "query": "bakar brö bullar kakor ugn deg jäst",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "7wdX_4rv_33z",
+          "confidence": 1.0,
+          "label": "Backend-utvecklare",
+          "original_rank": 1,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "2512"
+        },
+        {
+          "concept_id": "rz2m_96d_vyF",
+          "confidence": 1.203835,
+          "label": "Databasutvecklare",
+          "original_rank": 2,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.601918,
+          "ssyk_code_2012": "2512"
+        },
+        {
+          "concept_id": "rQds_YGd_quU",
+          "confidence": 0.451179,
+          "label": "Mjukvaruutvecklare",
+          "original_rank": 3,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.451179,
+          "ssyk_code_2012": "2512"
+        },
+        {
+          "concept_id": "GDHs_eoz_uKx",
+          "confidence": 0.338161,
+          "label": "Frontend-utvecklare",
+          "original_rank": 4,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.338161,
+          "ssyk_code_2012": "2512"
+        }
+      ],
+      "after_count": 4,
+      "before": [
+        {
+          "concept_id": "7wdX_4rv_33z",
+          "confidence": 1.0,
+          "label": "Backend-utvecklare",
+          "original_rank": 1,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "2512"
+        },
+        {
+          "concept_id": "rz2m_96d_vyF",
+          "confidence": 1.203835,
+          "label": "Databasutvecklare",
+          "original_rank": 2,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.601918,
+          "ssyk_code_2012": "2512"
+        },
+        {
+          "concept_id": "rQds_YGd_quU",
+          "confidence": 0.451179,
+          "label": "Mjukvaruutvecklare",
+          "original_rank": 3,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.451179,
+          "ssyk_code_2012": "2512"
+        },
+        {
+          "concept_id": "GDHs_eoz_uKx",
+          "confidence": 0.338161,
+          "label": "Frontend-utvecklare",
+          "original_rank": 4,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.338161,
+          "ssyk_code_2012": "2512"
+        },
+        {
+          "concept_id": "y763_SQh_71J",
+          "confidence": 0.254182,
+          "label": "Databasadministratör",
+          "original_rank": 5,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.254182,
+          "ssyk_code_2012": "3513"
+        }
+      ],
+      "before_count": 5,
+      "category": "noisy",
+      "expected": [
+        "systemutvecklare",
+        "programmerare"
+      ],
+      "family_display_rank_after": null,
+      "family_original_rank_after": null,
+      "family_rank_before": 8,
+      "id": "yv27",
+      "query": "kodar backend api databas buggar deploy grejer",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "6FK9_Dya_PEL",
+          "confidence": 2.0,
+          "label": "Husdjursrådgivare/Husdjurskonsulent",
+          "original_rank": 1,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "2134"
+        },
+        {
+          "concept_id": "8Vew_BX8_97h",
+          "confidence": 1.779819,
+          "label": "Djursjukskötare",
+          "original_rank": 2,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.88991,
+          "ssyk_code_2012": "3240"
+        }
+      ],
+      "after_count": 2,
+      "before": [
+        {
+          "concept_id": "6FK9_Dya_PEL",
+          "confidence": 2.0,
+          "label": "Husdjursrådgivare/Husdjurskonsulent",
+          "original_rank": 1,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "2134"
+        },
+        {
+          "concept_id": "8Vew_BX8_97h",
+          "confidence": 1.779819,
+          "label": "Djursjukskötare",
+          "original_rank": 2,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.88991,
+          "ssyk_code_2012": "3240"
+        },
+        {
+          "concept_id": "Geiy_N5y_GLi",
+          "confidence": 0.0,
+          "label": "Hundförare",
+          "original_rank": 3,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.564021,
+          "ssyk_code_2012": "5413"
+        },
+        {
+          "concept_id": "GgmE_SvH_mtm",
+          "confidence": 0.476376,
+          "label": "Veterinär",
+          "original_rank": 4,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.476376,
+          "ssyk_code_2012": "2250"
+        },
+        {
+          "concept_id": "gobw_eRi_v1F",
+          "confidence": 0.0,
+          "label": "Djurtransportförare",
+          "original_rank": 5,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.466197,
+          "ssyk_code_2012": "8332"
+        }
+      ],
+      "before_count": 5,
+      "category": "noisy",
+      "expected": [
+        "veterinär",
+        "djurvårdare"
+      ],
+      "family_display_rank_after": null,
+      "family_original_rank_after": null,
+      "family_rank_before": 4,
+      "id": "yv28",
+      "query": "hund katt vaccin operera djur klinik",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "JEhg_Dmh_mzv",
+          "confidence": 1.0,
+          "label": "Distributionsförare",
+          "original_rank": 1,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "8332"
+        }
+      ],
+      "after_count": 1,
+      "before": [
+        {
+          "concept_id": "JEhg_Dmh_mzv",
+          "confidence": 1.0,
+          "label": "Distributionsförare",
+          "original_rank": 1,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "8332"
+        },
+        {
+          "concept_id": "2qmv_BHZ_kuo",
+          "confidence": 0.774271,
+          "label": "Industristädare",
+          "original_rank": 2,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.774271,
+          "ssyk_code_2012": "9111"
+        },
+        {
+          "concept_id": "PtiU_6mm_yyL",
+          "confidence": 0.0,
+          "label": "Budbilsförare",
+          "original_rank": 3,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.684562,
+          "ssyk_code_2012": "8329"
+        },
+        {
+          "concept_id": "48KV_oBC_Ffd",
+          "confidence": 0.666074,
+          "label": "Scripta",
+          "original_rank": 4,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.666074,
+          "ssyk_code_2012": "3433"
+        },
+        {
+          "concept_id": "HuYB_gtA_7jL",
+          "confidence": 0.0,
+          "label": "Mässman, fartyg",
+          "original_rank": 5,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.645004,
+          "ssyk_code_2012": "5131"
+        }
+      ],
+      "before_count": 5,
+      "category": "noisy",
+      "expected": [
+        "städare"
+      ],
+      "family_display_rank_after": null,
+      "family_original_rank_after": null,
+      "family_rank_before": 2,
+      "id": "yv29",
+      "query": "städar skurar moppar toa kontor varje dag",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "5x47_XP7_zyN",
+          "confidence": 1.0,
+          "label": "Journalist",
+          "original_rank": 1,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "2642"
+        },
+        {
+          "concept_id": "b3Jk_Gfs_oo9",
+          "confidence": 0.631972,
+          "label": "Webbredaktör",
+          "original_rank": 2,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.631972,
+          "ssyk_code_2012": "2642"
+        },
+        {
+          "concept_id": "WYdq_yJR_JnE",
+          "confidence": 0.0,
+          "label": "Nattchef, redaktion",
+          "original_rank": 3,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.530287,
+          "ssyk_code_2012": "2642"
+        },
+        {
+          "concept_id": "7EQu_8Xg_9SD",
+          "confidence": 0.0,
+          "label": "Videojournalist/Videoreporter",
+          "original_rank": 4,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.521325,
+          "ssyk_code_2012": "2642"
+        }
+      ],
+      "after_count": 4,
+      "before": [
+        {
+          "concept_id": "5x47_XP7_zyN",
+          "confidence": 1.0,
+          "label": "Journalist",
+          "original_rank": 1,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "2642"
+        },
+        {
+          "concept_id": "b3Jk_Gfs_oo9",
+          "confidence": 0.631972,
+          "label": "Webbredaktör",
+          "original_rank": 2,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.631972,
+          "ssyk_code_2012": "2642"
+        },
+        {
+          "concept_id": "WYdq_yJR_JnE",
+          "confidence": 0.0,
+          "label": "Nattchef, redaktion",
+          "original_rank": 3,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.530287,
+          "ssyk_code_2012": "2642"
+        },
+        {
+          "concept_id": "7EQu_8Xg_9SD",
+          "confidence": 0.0,
+          "label": "Videojournalist/Videoreporter",
+          "original_rank": 4,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.521325,
+          "ssyk_code_2012": "2642"
+        },
+        {
+          "concept_id": "yyM2_7Vy_Fda",
+          "confidence": 0.0,
+          "label": "Featurechef",
+          "original_rank": 5,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.41251,
+          "ssyk_code_2012": "1590"
+        }
+      ],
+      "before_count": 5,
+      "category": "noisy",
+      "expected": [
+        "journalist",
+        "reporter"
+      ],
+      "family_display_rank_after": 1,
+      "family_original_rank_after": 1,
+      "family_rank_before": 1,
+      "id": "yv30",
+      "query": "intervju skriver artikel nyheter redaktion",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "GkMH_KEV_QKX",
+          "confidence": 0.0,
+          "label": "Spårvagnsförare",
+          "original_rank": 1,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "8331"
+        },
+        {
+          "concept_id": "6zL8_YYP_1eR",
+          "confidence": 0.0,
+          "label": "Bussförare",
+          "original_rank": 3,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.918255,
+          "ssyk_code_2012": "8331"
+        }
+      ],
+      "after_count": 2,
+      "before": [
+        {
+          "concept_id": "GkMH_KEV_QKX",
+          "confidence": 0.0,
+          "label": "Spårvagnsförare",
+          "original_rank": 1,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "8331"
+        },
+        {
+          "concept_id": "JiE6_FnP_qXP",
+          "confidence": 0.0,
+          "label": "Bokbussförare",
+          "original_rank": 2,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.924996,
+          "ssyk_code_2012": "8332"
+        },
+        {
+          "concept_id": "6zL8_YYP_1eR",
+          "confidence": 0.0,
+          "label": "Bussförare",
+          "original_rank": 3,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.918255,
+          "ssyk_code_2012": "8331"
+        },
+        {
+          "concept_id": "WU2H_o2e_rrm",
+          "confidence": 0.0,
+          "label": "Lokförare",
+          "original_rank": 4,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.913264,
+          "ssyk_code_2012": "8311"
+        },
+        {
+          "concept_id": "Eh9j_7Ud_Diu",
+          "confidence": 0.0,
+          "label": "Tunnelbaneförare",
+          "original_rank": 5,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.841249,
+          "ssyk_code_2012": "8311"
+        }
+      ],
+      "before_count": 5,
+      "category": "noisy",
+      "expected": [
+        "bussförare"
+      ],
+      "family_display_rank_after": 2,
+      "family_original_rank_after": 3,
+      "family_rank_before": 2,
+      "id": "yv31",
+      "query": "kör buss hållplats biljett tidtabell passagerare",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "7MTK_RiL_Vde",
+          "confidence": 0.0,
+          "label": "Hästskötare",
+          "original_rank": 1,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "6121"
+        },
+        {
+          "concept_id": "Tufb_JbW_wS6",
+          "confidence": 0.0,
+          "label": "Hovslagare",
+          "original_rank": 2,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.753135,
+          "ssyk_code_2012": "6121"
+        }
+      ],
+      "after_count": 2,
+      "before": [
+        {
+          "concept_id": "7MTK_RiL_Vde",
+          "confidence": 0.0,
+          "label": "Hästskötare",
+          "original_rank": 1,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "6121"
+        },
+        {
+          "concept_id": "Tufb_JbW_wS6",
+          "confidence": 0.0,
+          "label": "Hovslagare",
+          "original_rank": 2,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.753135,
+          "ssyk_code_2012": "6121"
+        },
+        {
+          "concept_id": "H9ej_iRx_9G6",
+          "confidence": 0.0,
+          "label": "Ridlärare",
+          "original_rank": 3,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.482876,
+          "ssyk_code_2012": "3422"
+        },
+        {
+          "concept_id": "F9MR_v8m_FT3",
+          "confidence": 0.0,
+          "label": "Gitarrtekniker",
+          "original_rank": 4,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.428204,
+          "ssyk_code_2012": "7319"
+        },
+        {
+          "concept_id": "4REQ_8b1_Nee",
+          "confidence": 0.418338,
+          "label": "Organisationschef",
+          "original_rank": 5,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.418338,
+          "ssyk_code_2012": "1113"
+        }
+      ],
+      "before_count": 5,
+      "category": "noisy",
+      "expected": [
+        "hästskötare",
+        "stallchef",
+        "ridlärare"
+      ],
+      "family_display_rank_after": 1,
+      "family_original_rank_after": 1,
+      "family_rank_before": 1,
+      "id": "yv32",
+      "query": "hästar mockar rider fodrar stall hela dan",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "3uEE_35U_U6j",
+          "confidence": 4.0,
+          "label": "Grovarbetare, bygg och anläggning",
+          "original_rank": 1,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "9310"
+        },
+        {
+          "concept_id": "p17k_znk_osi",
+          "confidence": 1.71899,
+          "label": "Utesäljare",
+          "original_rank": 2,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.859495,
+          "ssyk_code_2012": "3322"
+        },
+        {
+          "concept_id": "kron_xtp_zCz",
+          "confidence": 2.418924,
+          "label": "Mediasäljare",
+          "original_rank": 3,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.806308,
+          "ssyk_code_2012": "3339"
+        },
+        {
+          "concept_id": "bUP3_Ztw_VC1",
+          "confidence": 1.562246,
+          "label": "Hemförsäljare",
+          "original_rank": 4,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.781123,
+          "ssyk_code_2012": "5241"
+        },
+        {
+          "concept_id": "4zLr_jP5_peZ",
+          "confidence": 2.197362,
+          "label": "Vårdbiträde",
+          "original_rank": 5,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.732454,
+          "ssyk_code_2012": "5330"
+        }
+      ],
+      "after_count": 5,
+      "before": [
+        {
+          "concept_id": "3uEE_35U_U6j",
+          "confidence": 4.0,
+          "label": "Grovarbetare, bygg och anläggning",
+          "original_rank": 1,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "9310"
+        },
+        {
+          "concept_id": "p17k_znk_osi",
+          "confidence": 1.71899,
+          "label": "Utesäljare",
+          "original_rank": 2,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.859495,
+          "ssyk_code_2012": "3322"
+        },
+        {
+          "concept_id": "kron_xtp_zCz",
+          "confidence": 2.418924,
+          "label": "Mediasäljare",
+          "original_rank": 3,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.806308,
+          "ssyk_code_2012": "3339"
+        },
+        {
+          "concept_id": "bUP3_Ztw_VC1",
+          "confidence": 1.562246,
+          "label": "Hemförsäljare",
+          "original_rank": 4,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.781123,
+          "ssyk_code_2012": "5241"
+        },
+        {
+          "concept_id": "4zLr_jP5_peZ",
+          "confidence": 2.197362,
+          "label": "Vårdbiträde",
+          "original_rank": 5,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.732454,
+          "ssyk_code_2012": "5330"
+        }
+      ],
+      "before_count": 5,
+      "category": "indirect",
+      "expected": [
+        "hästskötare",
+        "stallchef",
+        "soldat",
+        "livgardist",
+        "beridare"
+      ],
+      "family_display_rank_after": null,
+      "family_original_rank_after": null,
+      "family_rank_before": 497,
+      "id": "yv33",
+      "query": "Jag rider runt slottet och hjälper kungen",
+      "should_abstain": false,
+      "should_clarify": true
+    },
+    {
+      "after": [
+        {
+          "concept_id": "HAQu_4kR_S5h",
+          "confidence": 4.0,
+          "label": "Byggnadskonstruktör",
+          "original_rank": 1,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "3112"
+        },
+        {
+          "concept_id": "SF73_TBz_fhR",
+          "confidence": 3.078281,
+          "label": "Ledsagare",
+          "original_rank": 2,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.76957,
+          "ssyk_code_2012": "5343"
+        },
+        {
+          "concept_id": "QaQC_ozP_Bme",
+          "confidence": 1.388958,
+          "label": "Rekryterare/Rekryteringskonsult",
+          "original_rank": 4,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.694479,
+          "ssyk_code_2012": "2423"
+        },
+        {
+          "concept_id": "tKCe_Qpx_Thx",
+          "confidence": 2.743389,
+          "label": "Arbetsmiljöingenjör",
+          "original_rank": 5,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.685847,
+          "ssyk_code_2012": "2181"
+        }
+      ],
+      "after_count": 4,
+      "before": [
+        {
+          "concept_id": "HAQu_4kR_S5h",
+          "confidence": 4.0,
+          "label": "Byggnadskonstruktör",
+          "original_rank": 1,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "3112"
+        },
+        {
+          "concept_id": "SF73_TBz_fhR",
+          "confidence": 3.078281,
+          "label": "Ledsagare",
+          "original_rank": 2,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.76957,
+          "ssyk_code_2012": "5343"
+        },
+        {
+          "concept_id": "TgZD_Mvj_nQh",
+          "confidence": 0.0,
+          "label": "Anläggningsdykare",
+          "original_rank": 3,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.703007,
+          "ssyk_code_2012": "7115"
+        },
+        {
+          "concept_id": "QaQC_ozP_Bme",
+          "confidence": 1.388958,
+          "label": "Rekryterare/Rekryteringskonsult",
+          "original_rank": 4,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.694479,
+          "ssyk_code_2012": "2423"
+        },
+        {
+          "concept_id": "tKCe_Qpx_Thx",
+          "confidence": 2.743389,
+          "label": "Arbetsmiljöingenjör",
+          "original_rank": 5,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.685847,
+          "ssyk_code_2012": "2181"
+        }
+      ],
+      "before_count": 5,
+      "category": "indirect",
+      "expected": [
+        "elektriker"
+      ],
+      "family_display_rank_after": null,
+      "family_original_rank_after": null,
+      "family_rank_before": 87,
+      "id": "yv34",
+      "query": "Jag ser till att folk kan tända lampan utan att huset brinner ner",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "uuA6_a4j_BGg",
+          "confidence": 0.0,
+          "label": "Ventilationsingenjör",
+          "original_rank": 1,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "3114"
+        },
+        {
+          "concept_id": "QyBB_mhx_iKS",
+          "confidence": 1.754794,
+          "label": "Byggnadsingenjör",
+          "original_rank": 4,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.877397,
+          "ssyk_code_2012": "3112"
+        },
+        {
+          "concept_id": "bhk6_aNU_xRe",
+          "confidence": 1.739512,
+          "label": "Renhållningsförare",
+          "original_rank": 5,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.869756,
+          "ssyk_code_2012": "8332"
+        }
+      ],
+      "after_count": 3,
+      "before": [
+        {
+          "concept_id": "uuA6_a4j_BGg",
+          "confidence": 0.0,
+          "label": "Ventilationsingenjör",
+          "original_rank": 1,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "3114"
+        },
+        {
+          "concept_id": "6zL8_YYP_1eR",
+          "confidence": 0.0,
+          "label": "Bussförare",
+          "original_rank": 2,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.912438,
+          "ssyk_code_2012": "8331"
+        },
+        {
+          "concept_id": "77wX_fg5_rMa",
+          "confidence": 0.0,
+          "label": "Strålskyddstekniker",
+          "original_rank": 3,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.888421,
+          "ssyk_code_2012": "3354"
+        },
+        {
+          "concept_id": "QyBB_mhx_iKS",
+          "confidence": 1.754794,
+          "label": "Byggnadsingenjör",
+          "original_rank": 4,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.877397,
+          "ssyk_code_2012": "3112"
+        },
+        {
+          "concept_id": "bhk6_aNU_xRe",
+          "confidence": 1.739512,
+          "label": "Renhållningsförare",
+          "original_rank": 5,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.869756,
+          "ssyk_code_2012": "8332"
+        }
+      ],
+      "before_count": 5,
+      "category": "indirect",
+      "expected": [
+        "bussförare",
+        "taxiförare",
+        "lokförare",
+        "chaufför"
+      ],
+      "family_display_rank_after": null,
+      "family_original_rank_after": null,
+      "family_rank_before": 2,
+      "id": "yv35",
+      "query": "Jag får människor från A till B fast de inte kör själva",
+      "should_abstain": false,
+      "should_clarify": true
+    },
+    {
+      "after": [
+        {
+          "concept_id": "48KV_oBC_Ffd",
+          "confidence": 3.0,
+          "label": "Scripta",
+          "original_rank": 1,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "3433"
+        },
+        {
+          "concept_id": "GrZU_ofe_QAx",
+          "confidence": 3.37717,
+          "label": "Controller",
+          "original_rank": 2,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.844293,
+          "ssyk_code_2012": "2412"
+        },
+        {
+          "concept_id": "8tSq_t1z_MRT",
+          "confidence": 4.05454,
+          "label": "Business controller",
+          "original_rank": 3,
+          "phrase_shared_count": 5,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.810908,
+          "ssyk_code_2012": "2412"
+        },
+        {
+          "concept_id": "5bYa_vBF_REN",
+          "confidence": 2.207575,
+          "label": "Statistiker",
+          "original_rank": 4,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.735858,
+          "ssyk_code_2012": "2122"
+        },
+        {
+          "concept_id": "49G8_LRE_73K",
+          "confidence": 1.373916,
+          "label": "Kostymtekniker/Påklädare",
+          "original_rank": 5,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.686958,
+          "ssyk_code_2012": "7531"
+        }
+      ],
+      "after_count": 5,
+      "before": [
+        {
+          "concept_id": "48KV_oBC_Ffd",
+          "confidence": 3.0,
+          "label": "Scripta",
+          "original_rank": 1,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "3433"
+        },
+        {
+          "concept_id": "GrZU_ofe_QAx",
+          "confidence": 3.37717,
+          "label": "Controller",
+          "original_rank": 2,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.844293,
+          "ssyk_code_2012": "2412"
+        },
+        {
+          "concept_id": "8tSq_t1z_MRT",
+          "confidence": 4.05454,
+          "label": "Business controller",
+          "original_rank": 3,
+          "phrase_shared_count": 5,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.810908,
+          "ssyk_code_2012": "2412"
+        },
+        {
+          "concept_id": "5bYa_vBF_REN",
+          "confidence": 2.207575,
+          "label": "Statistiker",
+          "original_rank": 4,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.735858,
+          "ssyk_code_2012": "2122"
+        },
+        {
+          "concept_id": "49G8_LRE_73K",
+          "confidence": 1.373916,
+          "label": "Kostymtekniker/Påklädare",
+          "original_rank": 5,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.686958,
+          "ssyk_code_2012": "7531"
+        }
+      ],
+      "before_count": 5,
+      "category": "indirect",
+      "expected": [
+        "controller",
+        "redovisningsekonom",
+        "ekonom"
+      ],
+      "family_display_rank_after": 2,
+      "family_original_rank_after": 2,
+      "family_rank_before": 2,
+      "id": "yv36",
+      "query": "Jag gör så att chefen kan se gröna siffror och röda siffror varje månad",
+      "should_abstain": false,
+      "should_clarify": true
+    },
+    {
+      "after": [
+        {
+          "concept_id": "eU1q_zvL_9Rf",
+          "confidence": 3.0,
+          "label": "Personlig assistent",
+          "original_rank": 1,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "5343"
+        },
+        {
+          "concept_id": "uKf3_A5g_w7X",
+          "confidence": 0.889411,
+          "label": "Sjukhusvaktmästare",
+          "original_rank": 2,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.889411,
+          "ssyk_code_2012": "9622"
+        },
+        {
+          "concept_id": "4HnZ_K23_35y",
+          "confidence": 1.63396,
+          "label": "Skadereglerare",
+          "original_rank": 4,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.81698,
+          "ssyk_code_2012": "3314"
+        }
+      ],
+      "after_count": 3,
+      "before": [
+        {
+          "concept_id": "eU1q_zvL_9Rf",
+          "confidence": 3.0,
+          "label": "Personlig assistent",
+          "original_rank": 1,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "5343"
+        },
+        {
+          "concept_id": "uKf3_A5g_w7X",
+          "confidence": 0.889411,
+          "label": "Sjukhusvaktmästare",
+          "original_rank": 2,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.889411,
+          "ssyk_code_2012": "9622"
+        },
+        {
+          "concept_id": "rAgy_tQu_JC1",
+          "confidence": 0.0,
+          "label": "Isoleringsplåtslagare",
+          "original_rank": 3,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.861739,
+          "ssyk_code_2012": "7123"
+        },
+        {
+          "concept_id": "4HnZ_K23_35y",
+          "confidence": 1.63396,
+          "label": "Skadereglerare",
+          "original_rank": 4,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.81698,
+          "ssyk_code_2012": "3314"
+        },
+        {
+          "concept_id": "qnF9_wC7_zTq",
+          "confidence": 0.0,
+          "label": "Djurfysioterapeut",
+          "original_rank": 5,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.716252,
+          "ssyk_code_2012": "2272"
+        }
+      ],
+      "before_count": 5,
+      "category": "indirect",
+      "expected": [
+        "fysioterapeut",
+        "sjukgymnast"
+      ],
+      "family_display_rank_after": null,
+      "family_original_rank_after": null,
+      "family_rank_before": 5,
+      "id": "yv37",
+      "query": "Jag får trasiga människor att kunna gå ordentligt igen efter operationer",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "84Uc_bhA_s47",
+          "confidence": 2.0,
+          "label": "Installationselektriker",
+          "original_rank": 1,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "7411"
+        },
+        {
+          "concept_id": "AQ8y_9XL_Jvv",
+          "confidence": 1.704734,
+          "label": "IT-samordnare",
+          "original_rank": 2,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.852367,
+          "ssyk_code_2012": "2515"
+        },
+        {
+          "concept_id": "9YXJ_Rz2_MeV",
+          "confidence": 1.65491,
+          "label": "Kvalitetschef",
+          "original_rank": 3,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.827455,
+          "ssyk_code_2012": "1290"
+        }
+      ],
+      "after_count": 3,
+      "before": [
+        {
+          "concept_id": "84Uc_bhA_s47",
+          "confidence": 2.0,
+          "label": "Installationselektriker",
+          "original_rank": 1,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "7411"
+        },
+        {
+          "concept_id": "AQ8y_9XL_Jvv",
+          "confidence": 1.704734,
+          "label": "IT-samordnare",
+          "original_rank": 2,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.852367,
+          "ssyk_code_2012": "2515"
+        },
+        {
+          "concept_id": "9YXJ_Rz2_MeV",
+          "confidence": 1.65491,
+          "label": "Kvalitetschef",
+          "original_rank": 3,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.827455,
+          "ssyk_code_2012": "1290"
+        },
+        {
+          "concept_id": "gfzz_zS3_TLa",
+          "confidence": 0.801207,
+          "label": "Säkerhetschef",
+          "original_rank": 4,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.801207,
+          "ssyk_code_2012": "1290"
+        },
+        {
+          "concept_id": "Ld9h_41y_zvw",
+          "confidence": 0.783196,
+          "label": "Redovisningschef",
+          "original_rank": 5,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.783196,
+          "ssyk_code_2012": "1210"
+        }
+      ],
+      "before_count": 5,
+      "category": "indirect",
+      "expected": [
+        "nätverkstekniker",
+        "it-tekniker",
+        "drifttekniker",
+        "systemadministratör"
+      ],
+      "family_display_rank_after": null,
+      "family_original_rank_after": null,
+      "family_rank_before": 55,
+      "id": "yv38",
+      "query": "Jag gör att företagets datorer fortsätter prata med varandra när allt krånglar",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "v2HV_VNh_D7s",
+          "confidence": 2.0,
+          "label": "Lackerare",
+          "original_rank": 1,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "7132"
+        },
+        {
+          "concept_id": "QyBB_mhx_iKS",
+          "confidence": 2.708588,
+          "label": "Byggnadsingenjör",
+          "original_rank": 2,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.902863,
+          "ssyk_code_2012": "3112"
+        },
+        {
+          "concept_id": "tuoE_9Nj_fAS",
+          "confidence": 0.899995,
+          "label": "Frisör",
+          "original_rank": 3,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.899995,
+          "ssyk_code_2012": "5141"
+        },
+        {
+          "concept_id": "KYPa_Jv8_ZbU",
+          "confidence": 1.507597,
+          "label": "Studie- och yrkesvägledare/SYV",
+          "original_rank": 4,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.753798,
+          "ssyk_code_2012": "2352"
+        },
+        {
+          "concept_id": "4jr9_Ywm_6J1",
+          "confidence": 1.506525,
+          "label": "Silversmed",
+          "original_rank": 5,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.753262,
+          "ssyk_code_2012": "7312"
+        }
+      ],
+      "after_count": 5,
+      "before": [
+        {
+          "concept_id": "v2HV_VNh_D7s",
+          "confidence": 2.0,
+          "label": "Lackerare",
+          "original_rank": 1,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "7132"
+        },
+        {
+          "concept_id": "QyBB_mhx_iKS",
+          "confidence": 2.708588,
+          "label": "Byggnadsingenjör",
+          "original_rank": 2,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.902863,
+          "ssyk_code_2012": "3112"
+        },
+        {
+          "concept_id": "tuoE_9Nj_fAS",
+          "confidence": 0.899995,
+          "label": "Frisör",
+          "original_rank": 3,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.899995,
+          "ssyk_code_2012": "5141"
+        },
+        {
+          "concept_id": "KYPa_Jv8_ZbU",
+          "confidence": 1.507597,
+          "label": "Studie- och yrkesvägledare/SYV",
+          "original_rank": 4,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.753798,
+          "ssyk_code_2012": "2352"
+        },
+        {
+          "concept_id": "4jr9_Ywm_6J1",
+          "confidence": 1.506525,
+          "label": "Silversmed",
+          "original_rank": 5,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.753262,
+          "ssyk_code_2012": "7312"
+        }
+      ],
+      "before_count": 5,
+      "category": "indirect",
+      "expected": [
+        "frisör"
+      ],
+      "family_display_rank_after": 3,
+      "family_original_rank_after": 3,
+      "family_rank_before": 3,
+      "id": "yv39",
+      "query": "Jag gör folk fina i håret inför helgen",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "RxYj_fc9_z7L",
+          "confidence": 0.0,
+          "label": "Skorstensfejare",
+          "original_rank": 1,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "7133"
+        },
+        {
+          "concept_id": "HAQu_4kR_S5h",
+          "confidence": 1.805662,
+          "label": "Byggnadskonstruktör",
+          "original_rank": 2,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.902831,
+          "ssyk_code_2012": "3112"
+        },
+        {
+          "concept_id": "mvnD_QKo_UPh",
+          "confidence": 1.476385,
+          "label": "Industrirörmontör",
+          "original_rank": 3,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.738193,
+          "ssyk_code_2012": "7125"
+        }
+      ],
+      "after_count": 3,
+      "before": [
+        {
+          "concept_id": "RxYj_fc9_z7L",
+          "confidence": 0.0,
+          "label": "Skorstensfejare",
+          "original_rank": 1,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "7133"
+        },
+        {
+          "concept_id": "HAQu_4kR_S5h",
+          "confidence": 1.805662,
+          "label": "Byggnadskonstruktör",
+          "original_rank": 2,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.902831,
+          "ssyk_code_2012": "3112"
+        },
+        {
+          "concept_id": "mvnD_QKo_UPh",
+          "confidence": 1.476385,
+          "label": "Industrirörmontör",
+          "original_rank": 3,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.738193,
+          "ssyk_code_2012": "7125"
+        },
+        {
+          "concept_id": "5DcA_EVV_BHZ",
+          "confidence": 0.734253,
+          "label": "Kakelugnsmakare",
+          "original_rank": 4,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.734253,
+          "ssyk_code_2012": "7112"
+        },
+        {
+          "concept_id": "2eTw_69k_MEy",
+          "confidence": 0.724595,
+          "label": "Saneringsarbetare",
+          "original_rank": 5,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.724595,
+          "ssyk_code_2012": "7134"
+        }
+      ],
+      "before_count": 5,
+      "category": "indirect",
+      "expected": [
+        "skorstensfejare",
+        "skorstensfejartekniker"
+      ],
+      "family_display_rank_after": 1,
+      "family_original_rank_after": 1,
+      "family_rank_before": 1,
+      "id": "yv40",
+      "query": "Jag får bort det som fastnat i skorstenar så huset inte börjar brinna",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    {
+      "after": [],
+      "after_count": 0,
+      "before": [],
+      "before_count": 0,
+      "category": "ambiguous",
+      "expected": [],
+      "family_display_rank_after": null,
+      "family_original_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv41",
+      "query": "Jag hjälper människor",
+      "should_abstain": false,
+      "should_clarify": true
+    },
+    {
+      "after": [
+        {
+          "concept_id": "rM7G_ge7_XhP",
+          "confidence": 3.0,
+          "label": "Barnskötare",
+          "original_rank": 1,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "5311"
+        },
+        {
+          "concept_id": "zrQ9_1z2_kT3",
+          "confidence": 2.888848,
+          "label": "Musikpedagog/Musiklärare",
+          "original_rank": 2,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.962949,
+          "ssyk_code_2012": "2359"
+        },
+        {
+          "concept_id": "CQBS_ZSZ_ViP",
+          "confidence": 2.766312,
+          "label": "Barnsjuksköterska",
+          "original_rank": 3,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.922104,
+          "ssyk_code_2012": "2232"
+        },
+        {
+          "concept_id": "4mUk_ow8_wji",
+          "confidence": 1.522923,
+          "label": "Lekterapeut",
+          "original_rank": 5,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.761462,
+          "ssyk_code_2012": "2343"
+        }
+      ],
+      "after_count": 4,
+      "before": [
+        {
+          "concept_id": "rM7G_ge7_XhP",
+          "confidence": 3.0,
+          "label": "Barnskötare",
+          "original_rank": 1,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "5311"
+        },
+        {
+          "concept_id": "zrQ9_1z2_kT3",
+          "confidence": 2.888848,
+          "label": "Musikpedagog/Musiklärare",
+          "original_rank": 2,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.962949,
+          "ssyk_code_2012": "2359"
+        },
+        {
+          "concept_id": "CQBS_ZSZ_ViP",
+          "confidence": 2.766312,
+          "label": "Barnsjuksköterska",
+          "original_rank": 3,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.922104,
+          "ssyk_code_2012": "2232"
+        },
+        {
+          "concept_id": "rUcW_z9R_Qsv",
+          "confidence": 0.768369,
+          "label": "Förskollärare",
+          "original_rank": 4,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.768369,
+          "ssyk_code_2012": "2343"
+        },
+        {
+          "concept_id": "4mUk_ow8_wji",
+          "confidence": 1.522923,
+          "label": "Lekterapeut",
+          "original_rank": 5,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.761462,
+          "ssyk_code_2012": "2343"
+        }
+      ],
+      "before_count": 5,
+      "category": "ambiguous",
+      "expected": [],
+      "family_display_rank_after": null,
+      "family_original_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv42",
+      "query": "Jag jobbar med barn",
+      "should_abstain": false,
+      "should_clarify": true
+    },
+    {
+      "after": [
+        {
+          "concept_id": "XHyR_e9A_sqQ",
+          "confidence": 2.0,
+          "label": "Produktionstekniker, maskin/Produktionstekniker, verkstad",
+          "original_rank": 1,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "3114"
+        },
+        {
+          "concept_id": "rncq_GAq_KMx",
+          "confidence": 1.999813,
+          "label": "Automationsingenjör, maskin",
+          "original_rank": 2,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.999907,
+          "ssyk_code_2012": "3114"
+        },
+        {
+          "concept_id": "Rd3G_bFa_zvR",
+          "confidence": 0.999819,
+          "label": "Civilingenjör, maskin",
+          "original_rank": 3,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.999819,
+          "ssyk_code_2012": "2144"
+        },
+        {
+          "concept_id": "2NdT_qer_nQk",
+          "confidence": 0.99967,
+          "label": "Serviceingenjör, maskin",
+          "original_rank": 4,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.99967,
+          "ssyk_code_2012": "3114"
+        },
+        {
+          "concept_id": "iJwC_kdU_cu7",
+          "confidence": 0.999481,
+          "label": "Produktionsingenjör, maskin",
+          "original_rank": 5,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.999481,
+          "ssyk_code_2012": "3114"
+        }
+      ],
+      "after_count": 5,
+      "before": [
+        {
+          "concept_id": "XHyR_e9A_sqQ",
+          "confidence": 2.0,
+          "label": "Produktionstekniker, maskin/Produktionstekniker, verkstad",
+          "original_rank": 1,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "3114"
+        },
+        {
+          "concept_id": "rncq_GAq_KMx",
+          "confidence": 1.999813,
+          "label": "Automationsingenjör, maskin",
+          "original_rank": 2,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.999907,
+          "ssyk_code_2012": "3114"
+        },
+        {
+          "concept_id": "Rd3G_bFa_zvR",
+          "confidence": 0.999819,
+          "label": "Civilingenjör, maskin",
+          "original_rank": 3,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.999819,
+          "ssyk_code_2012": "2144"
+        },
+        {
+          "concept_id": "2NdT_qer_nQk",
+          "confidence": 0.99967,
+          "label": "Serviceingenjör, maskin",
+          "original_rank": 4,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.99967,
+          "ssyk_code_2012": "3114"
+        },
+        {
+          "concept_id": "iJwC_kdU_cu7",
+          "confidence": 0.999481,
+          "label": "Produktionsingenjör, maskin",
+          "original_rank": 5,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.999481,
+          "ssyk_code_2012": "3114"
+        }
+      ],
+      "before_count": 5,
+      "category": "ambiguous",
+      "expected": [],
+      "family_display_rank_after": null,
+      "family_original_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv43",
+      "query": "Jag kör maskiner",
+      "should_abstain": false,
+      "should_clarify": true
+    },
+    {
+      "after": [
+        {
+          "concept_id": "CZkP_hCz_KM8",
+          "confidence": 1.0,
+          "label": "Applikationsutvecklare",
+          "original_rank": 1,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "2512"
+        },
+        {
+          "concept_id": "fg7B_yov_smw",
+          "confidence": 0.89674,
+          "label": "Systemutvecklare/Programmerare",
+          "original_rank": 2,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.89674,
+          "ssyk_code_2012": "2512"
+        },
+        {
+          "concept_id": "AQ8y_9XL_Jvv",
+          "confidence": 1.752165,
+          "label": "IT-samordnare",
+          "original_rank": 3,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.876082,
+          "ssyk_code_2012": "2515"
+        },
+        {
+          "concept_id": "Qq5v_QZ3_EE9",
+          "confidence": 0.867999,
+          "label": "Bussmekaniker",
+          "original_rank": 4,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.867999,
+          "ssyk_code_2012": "7231"
+        },
+        {
+          "concept_id": "o7LP_duC_u9Z",
+          "confidence": 1.691755,
+          "label": "Lastbilsmekaniker",
+          "original_rank": 5,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.845877,
+          "ssyk_code_2012": "7231"
+        }
+      ],
+      "after_count": 5,
+      "before": [
+        {
+          "concept_id": "CZkP_hCz_KM8",
+          "confidence": 1.0,
+          "label": "Applikationsutvecklare",
+          "original_rank": 1,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "2512"
+        },
+        {
+          "concept_id": "fg7B_yov_smw",
+          "confidence": 0.89674,
+          "label": "Systemutvecklare/Programmerare",
+          "original_rank": 2,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.89674,
+          "ssyk_code_2012": "2512"
+        },
+        {
+          "concept_id": "AQ8y_9XL_Jvv",
+          "confidence": 1.752165,
+          "label": "IT-samordnare",
+          "original_rank": 3,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.876082,
+          "ssyk_code_2012": "2515"
+        },
+        {
+          "concept_id": "Qq5v_QZ3_EE9",
+          "confidence": 0.867999,
+          "label": "Bussmekaniker",
+          "original_rank": 4,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.867999,
+          "ssyk_code_2012": "7231"
+        },
+        {
+          "concept_id": "o7LP_duC_u9Z",
+          "confidence": 1.691755,
+          "label": "Lastbilsmekaniker",
+          "original_rank": 5,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.845877,
+          "ssyk_code_2012": "7231"
+        }
+      ],
+      "before_count": 5,
+      "category": "ambiguous",
+      "expected": [],
+      "family_display_rank_after": null,
+      "family_original_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv44",
+      "query": "Jag jobbar med datorer",
+      "should_abstain": false,
+      "should_clarify": true
+    },
+    {
+      "after": [],
+      "after_count": 0,
+      "before": [],
+      "before_count": 0,
+      "category": "ambiguous",
+      "expected": [],
+      "family_display_rank_after": null,
+      "family_original_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv45",
+      "query": "Jag säljer saker",
+      "should_abstain": false,
+      "should_clarify": true
+    },
+    {
+      "after": [
+        {
+          "concept_id": "8Vew_BX8_97h",
+          "confidence": 2.0,
+          "label": "Djursjukskötare",
+          "original_rank": 1,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "3240"
+        }
+      ],
+      "after_count": 1,
+      "before": [
+        {
+          "concept_id": "8Vew_BX8_97h",
+          "confidence": 2.0,
+          "label": "Djursjukskötare",
+          "original_rank": 1,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "3240"
+        },
+        {
+          "concept_id": "GkMH_KEV_QKX",
+          "confidence": 0.0,
+          "label": "Spårvagnsförare",
+          "original_rank": 2,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.938067,
+          "ssyk_code_2012": "8331"
+        },
+        {
+          "concept_id": "rYYJ_Khq_Mre",
+          "confidence": 0.0,
+          "label": "Styckare",
+          "original_rank": 3,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.926845,
+          "ssyk_code_2012": "7611"
+        },
+        {
+          "concept_id": "HuYB_gtA_7jL",
+          "confidence": 0.0,
+          "label": "Mässman, fartyg",
+          "original_rank": 4,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.89738,
+          "ssyk_code_2012": "5131"
+        },
+        {
+          "concept_id": "SRpJ_Wci_3qU",
+          "confidence": 0.0,
+          "label": "Hundskötare",
+          "original_rank": 5,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.870966,
+          "ssyk_code_2012": "6122"
+        }
+      ],
+      "before_count": 5,
+      "category": "ambiguous",
+      "expected": [
+        "djurvårdare",
+        "djurskötare",
+        "veterinär",
+        "hästskötare"
+      ],
+      "family_display_rank_after": null,
+      "family_original_rank_after": null,
+      "family_rank_before": 11,
+      "id": "yv46",
+      "query": "Jag tar hand om djur",
+      "should_abstain": false,
+      "should_clarify": true
+    },
+    {
+      "after": [
+        {
+          "concept_id": "rynG_URT_erJ",
+          "confidence": 0.0,
+          "label": "Kaféföreståndare",
+          "original_rank": 1,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "5221"
+        }
+      ],
+      "after_count": 1,
+      "before": [
+        {
+          "concept_id": "rynG_URT_erJ",
+          "confidence": 0.0,
+          "label": "Kaféföreståndare",
+          "original_rank": 1,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "5221"
+        }
+      ],
+      "before_count": 1,
+      "category": "nonsense",
+      "expected": [],
+      "family_display_rank_after": null,
+      "family_original_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv47",
+      "query": "banan raket kung kaffe blå tisdag",
+      "should_abstain": true,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "p17k_znk_osi",
+          "confidence": 2.0,
+          "label": "Utesäljare",
+          "original_rank": 1,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "3322"
+        },
+        {
+          "concept_id": "kxew_SY8_LFZ",
+          "confidence": 1.850043,
+          "label": "Gatuförsäljare",
+          "original_rank": 2,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.925022,
+          "ssyk_code_2012": "9520"
+        },
+        {
+          "concept_id": "YDvo_JCY_pDR",
+          "confidence": 1.727136,
+          "label": "Packare",
+          "original_rank": 3,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.863568,
+          "ssyk_code_2012": "9320"
+        },
+        {
+          "concept_id": "LX5L_e6N_4jS",
+          "confidence": 1.67242,
+          "label": "Personalutbildare",
+          "original_rank": 4,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.83621,
+          "ssyk_code_2012": "3449"
+        },
+        {
+          "concept_id": "ZnNn_D2K_pTi",
+          "confidence": 2.97468,
+          "label": "Fritidsledare",
+          "original_rank": 5,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.74367,
+          "ssyk_code_2012": "3423"
+        }
+      ],
+      "after_count": 5,
+      "before": [
+        {
+          "concept_id": "p17k_znk_osi",
+          "confidence": 2.0,
+          "label": "Utesäljare",
+          "original_rank": 1,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "3322"
+        },
+        {
+          "concept_id": "kxew_SY8_LFZ",
+          "confidence": 1.850043,
+          "label": "Gatuförsäljare",
+          "original_rank": 2,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.925022,
+          "ssyk_code_2012": "9520"
+        },
+        {
+          "concept_id": "YDvo_JCY_pDR",
+          "confidence": 1.727136,
+          "label": "Packare",
+          "original_rank": 3,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.863568,
+          "ssyk_code_2012": "9320"
+        },
+        {
+          "concept_id": "LX5L_e6N_4jS",
+          "confidence": 1.67242,
+          "label": "Personalutbildare",
+          "original_rank": 4,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.83621,
+          "ssyk_code_2012": "3449"
+        },
+        {
+          "concept_id": "ZnNn_D2K_pTi",
+          "confidence": 2.97468,
+          "label": "Fritidsledare",
+          "original_rank": 5,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.74367,
+          "ssyk_code_2012": "3423"
+        }
+      ],
+      "before_count": 5,
+      "category": "nonsense",
+      "expected": [],
+      "family_display_rank_after": null,
+      "family_original_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv48",
+      "query": "jag gör saker och grejer på jobbet typ",
+      "should_abstain": true,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "MZ9T_JuJ_FxU",
+          "confidence": 1.0,
+          "label": "Redovisningsassistent",
+          "original_rank": 1,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "4111"
+        },
+        {
+          "concept_id": "PTs4_wYQ_zDP",
+          "confidence": 0.929271,
+          "label": "Webbdesigner",
+          "original_rank": 3,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.929271,
+          "ssyk_code_2012": "2173"
+        },
+        {
+          "concept_id": "Bbpr_AMz_nzt",
+          "confidence": 0.866178,
+          "label": "Revisorsassistent",
+          "original_rank": 4,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.866178,
+          "ssyk_code_2012": "3313"
+        },
+        {
+          "concept_id": "8N18_sGB_X4M",
+          "confidence": 0.828374,
+          "label": "Redovisningsekonom",
+          "original_rank": 5,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.828374,
+          "ssyk_code_2012": "3313"
+        }
+      ],
+      "after_count": 4,
+      "before": [
+        {
+          "concept_id": "MZ9T_JuJ_FxU",
+          "confidence": 1.0,
+          "label": "Redovisningsassistent",
+          "original_rank": 1,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "4111"
+        },
+        {
+          "concept_id": "Y9x5_F4p_HYf",
+          "confidence": 0.0,
+          "label": "Blåsinstrumentmakare",
+          "original_rank": 2,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.974034,
+          "ssyk_code_2012": "7319"
+        },
+        {
+          "concept_id": "PTs4_wYQ_zDP",
+          "confidence": 0.929271,
+          "label": "Webbdesigner",
+          "original_rank": 3,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.929271,
+          "ssyk_code_2012": "2173"
+        },
+        {
+          "concept_id": "Bbpr_AMz_nzt",
+          "confidence": 0.866178,
+          "label": "Revisorsassistent",
+          "original_rank": 4,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.866178,
+          "ssyk_code_2012": "3313"
+        },
+        {
+          "concept_id": "8N18_sGB_X4M",
+          "confidence": 0.828374,
+          "label": "Redovisningsekonom",
+          "original_rank": 5,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.828374,
+          "ssyk_code_2012": "3313"
+        }
+      ],
+      "before_count": 5,
+      "category": "nonsense",
+      "expected": [],
+      "family_display_rank_after": null,
+      "family_original_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv49",
+      "query": "potatis internet häst bokföring måne saxofon",
+      "should_abstain": true,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "JEhg_Dmh_mzv",
+          "confidence": 4.0,
+          "label": "Distributionsförare",
+          "original_rank": 1,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "8332"
+        },
+        {
+          "concept_id": "5GzE_JXd_gM2",
+          "confidence": 2.980537,
+          "label": "Distributionschef, logistik och transporter",
+          "original_rank": 2,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.993512,
+          "ssyk_code_2012": "1320"
+        },
+        {
+          "concept_id": "XPL2_squ_8rj",
+          "confidence": 2.621677,
+          "label": "Biluthyrare",
+          "original_rank": 4,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.873892,
+          "ssyk_code_2012": "5226"
+        }
+      ],
+      "after_count": 3,
+      "before": [
+        {
+          "concept_id": "JEhg_Dmh_mzv",
+          "confidence": 4.0,
+          "label": "Distributionsförare",
+          "original_rank": 1,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "8332"
+        },
+        {
+          "concept_id": "5GzE_JXd_gM2",
+          "confidence": 2.980537,
+          "label": "Distributionschef, logistik och transporter",
+          "original_rank": 2,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.993512,
+          "ssyk_code_2012": "1320"
+        },
+        {
+          "concept_id": "o5p1_ZUZ_pab",
+          "confidence": 0.0,
+          "label": "Bussvärd",
+          "original_rank": 3,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.954612,
+          "ssyk_code_2012": "5112"
+        },
+        {
+          "concept_id": "XPL2_squ_8rj",
+          "confidence": 2.621677,
+          "label": "Biluthyrare",
+          "original_rank": 4,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.873892,
+          "ssyk_code_2012": "5226"
+        },
+        {
+          "concept_id": "rYYJ_Khq_Mre",
+          "confidence": 0.0,
+          "label": "Styckare",
+          "original_rank": 5,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.872966,
+          "ssyk_code_2012": "7611"
+        }
+      ],
+      "before_count": 5,
+      "category": "nonsense",
+      "expected": [],
+      "family_display_rank_after": null,
+      "family_original_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv50",
+      "query": "och av på ut med till för från",
+      "should_abstain": true,
+      "should_clarify": false
+    },
+    {
+      "after": [],
+      "after_count": 0,
+      "before": [],
+      "before_count": 0,
+      "category": "nonsense",
+      "expected": [],
+      "family_display_rank_after": null,
+      "family_original_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv51",
+      "query": "asdf qwerty blörp fnatt zzz",
+      "should_abstain": true,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "sEgy_V9K_1AF",
+          "confidence": 0.0,
+          "label": "Undertaksmontör, utan yrkesbevis",
+          "original_rank": 1,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "7121"
+        },
+        {
+          "concept_id": "3RzT_cHB_vVp",
+          "confidence": 1.958068,
+          "label": "Biträdande jurist",
+          "original_rank": 2,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.979034,
+          "ssyk_code_2012": "2619"
+        },
+        {
+          "concept_id": "HdcS_g6a_jPk",
+          "confidence": 0.873706,
+          "label": "Träarbetare, utan yrkesbevis/Snickare, utan yrkesbevis",
+          "original_rank": 4,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.873706,
+          "ssyk_code_2012": "7111"
+        }
+      ],
+      "after_count": 3,
+      "before": [
+        {
+          "concept_id": "sEgy_V9K_1AF",
+          "confidence": 0.0,
+          "label": "Undertaksmontör, utan yrkesbevis",
+          "original_rank": 1,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "7121"
+        },
+        {
+          "concept_id": "3RzT_cHB_vVp",
+          "confidence": 1.958068,
+          "label": "Biträdande jurist",
+          "original_rank": 2,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.979034,
+          "ssyk_code_2012": "2619"
+        },
+        {
+          "concept_id": "GBys_6Zx_25W",
+          "confidence": 0.0,
+          "label": "Piercare",
+          "original_rank": 3,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.877252,
+          "ssyk_code_2012": "5149"
+        },
+        {
+          "concept_id": "HdcS_g6a_jPk",
+          "confidence": 0.873706,
+          "label": "Träarbetare, utan yrkesbevis/Snickare, utan yrkesbevis",
+          "original_rank": 4,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.873706,
+          "ssyk_code_2012": "7111"
+        },
+        {
+          "concept_id": "ryWZ_9B8_KME",
+          "confidence": 0.0,
+          "label": "Banarbetare, utan behörighetsbevis",
+          "original_rank": 5,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.809769,
+          "ssyk_code_2012": "7114"
+        }
+      ],
+      "before_count": 5,
+      "category": "out_of_scope",
+      "expected": [],
+      "family_display_rank_after": null,
+      "family_original_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv52",
+      "query": "Jag vill bli rik snabbt utan att jobba",
+      "should_abstain": true,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "Xuko_NMb_NL1",
+          "confidence": 0.0,
+          "label": "Rabbin",
+          "original_rank": 1,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "2671"
+        },
+        {
+          "concept_id": "ZKKT_4bd_Sxs",
+          "confidence": 1.770512,
+          "label": "Enhetschef, hälso- och sjukvård",
+          "original_rank": 2,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.885256,
+          "ssyk_code_2012": "1510"
+        }
+      ],
+      "after_count": 2,
+      "before": [
+        {
+          "concept_id": "Xuko_NMb_NL1",
+          "confidence": 0.0,
+          "label": "Rabbin",
+          "original_rank": 1,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "2671"
+        },
+        {
+          "concept_id": "ZKKT_4bd_Sxs",
+          "confidence": 1.770512,
+          "label": "Enhetschef, hälso- och sjukvård",
+          "original_rank": 2,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.885256,
+          "ssyk_code_2012": "1510"
+        },
+        {
+          "concept_id": "c9pz_dJG_ikv",
+          "confidence": 0.0,
+          "label": "Arbetsledare, rivning",
+          "original_rank": 3,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.683875,
+          "ssyk_code_2012": "3121"
+        },
+        {
+          "concept_id": "3PX6_gqv_WJW",
+          "confidence": 0.640855,
+          "label": "Specialistsjuksköterska inom palliativ vård",
+          "original_rank": 4,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.640855,
+          "ssyk_code_2012": "2239"
+        },
+        {
+          "concept_id": "Mg5T_Wi4_5my",
+          "confidence": 0.62694,
+          "label": "Avdelningschef, kommun",
+          "original_rank": 5,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.62694,
+          "ssyk_code_2012": "1230"
+        }
+      ],
+      "before_count": 5,
+      "category": "out_of_scope",
+      "expected": [],
+      "family_display_rank_after": null,
+      "family_original_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv53",
+      "query": "Min chef är dum och kaffet är slut",
+      "should_abstain": true,
+      "should_clarify": false
+    },
+    {
+      "after": [
+        {
+          "concept_id": "tKCe_Qpx_Thx",
+          "confidence": 1.0,
+          "label": "Arbetsmiljöingenjör",
+          "original_rank": 1,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "2181"
+        },
+        {
+          "concept_id": "eU1q_zvL_9Rf",
+          "confidence": 2.985262,
+          "label": "Personlig assistent",
+          "original_rank": 2,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.995087,
+          "ssyk_code_2012": "5343"
+        }
+      ],
+      "after_count": 2,
+      "before": [
+        {
+          "concept_id": "tKCe_Qpx_Thx",
+          "confidence": 1.0,
+          "label": "Arbetsmiljöingenjör",
+          "original_rank": 1,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "2181"
+        },
+        {
+          "concept_id": "eU1q_zvL_9Rf",
+          "confidence": 2.985262,
+          "label": "Personlig assistent",
+          "original_rank": 2,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.995087,
+          "ssyk_code_2012": "5343"
+        },
+        {
+          "concept_id": "6nKy_pXY_CRv",
+          "confidence": 0.0,
+          "label": "Skogstransportförare",
+          "original_rank": 3,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.857528,
+          "ssyk_code_2012": "8332"
+        },
+        {
+          "concept_id": "S2QW_12u_Pj1",
+          "confidence": 0.0,
+          "label": "Mediatextare",
+          "original_rank": 4,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.745485,
+          "ssyk_code_2012": "2643"
+        },
+        {
+          "concept_id": "GBys_6Zx_25W",
+          "confidence": 0.0,
+          "label": "Piercare",
+          "original_rank": 5,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.715219,
+          "ssyk_code_2012": "5149"
+        }
+      ],
+      "before_count": 5,
+      "category": "out_of_scope",
+      "expected": [],
+      "family_display_rank_after": null,
+      "family_original_rank_after": null,
+      "family_rank_before": null,
+      "id": "yv54",
+      "query": "Jag behöver semester och vill inte gå till jobbet",
+      "should_abstain": true,
+      "should_clarify": false
+    }
+  ],
+  "spot_checks": {
+    "yv01": {
+      "after": [
+        {
+          "concept_id": "Uh7q_DpM_rm3",
+          "confidence": 4.0,
+          "label": "Intensivvårdssjuksköterska",
+          "original_rank": 1,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "2228"
+        },
+        {
+          "concept_id": "dAmo_ydH_Fko",
+          "confidence": 2.934782,
+          "label": "Ambulanssjuksköterska",
+          "original_rank": 2,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.978261,
+          "ssyk_code_2012": "2226"
+        },
+        {
+          "concept_id": "uKf3_A5g_w7X",
+          "confidence": 2.344828,
+          "label": "Sjukhusvaktmästare",
+          "original_rank": 5,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.781609,
+          "ssyk_code_2012": "9622"
+        }
+      ],
+      "after_count": 3,
+      "before": [
+        {
+          "concept_id": "Uh7q_DpM_rm3",
+          "confidence": 4.0,
+          "label": "Intensivvårdssjuksköterska",
+          "original_rank": 1,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "2228"
+        },
+        {
+          "concept_id": "dAmo_ydH_Fko",
+          "confidence": 2.934782,
+          "label": "Ambulanssjuksköterska",
+          "original_rank": 2,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.978261,
+          "ssyk_code_2012": "2226"
+        },
+        {
+          "concept_id": "YHfo_Sbx_vzK",
+          "confidence": 0.0,
+          "label": "Apotekare",
+          "original_rank": 3,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.921135,
+          "ssyk_code_2012": "2281"
+        },
+        {
+          "concept_id": "abS5_M7h_pMr",
+          "confidence": 0.0,
+          "label": "Receptarie",
+          "original_rank": 4,
+          "phrase_shared_count": 0,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.843975,
+          "ssyk_code_2012": "3213"
+        },
+        {
+          "concept_id": "uKf3_A5g_w7X",
+          "confidence": 2.344828,
+          "label": "Sjukhusvaktmästare",
+          "original_rank": 5,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.781609,
+          "ssyk_code_2012": "9622"
+        }
+      ],
+      "before_count": 5,
+      "category": "direct",
+      "expected": [
+        "sjuksköterska"
+      ],
+      "family_display_rank_after": 1,
+      "family_original_rank_after": 1,
+      "family_rank_before": 1,
+      "id": "yv01",
+      "query": "Jag arbetar på sjukhus och tar blodprov, sätter infarter och ger läkemedel till patienter",
+      "should_abstain": false,
+      "should_clarify": false
+    },
+    "yv02": {
+      "after": [
+        {
+          "concept_id": "84Uc_bhA_s47",
+          "confidence": 4.0,
+          "label": "Installationselektriker",
+          "original_rank": 1,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "7411"
+        },
+        {
+          "concept_id": "K3iK_iEb_41Y",
+          "confidence": 1.827105,
+          "label": "Serviceelektriker, installation",
+          "original_rank": 2,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.913552,
+          "ssyk_code_2012": "7411"
+        },
+        {
+          "concept_id": "62xd_b2m_Wbo",
+          "confidence": 1.326962,
+          "label": "Växeltelefonist",
+          "original_rank": 3,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.663481,
+          "ssyk_code_2012": "4223"
+        },
+        {
+          "concept_id": "AJDU_fpb_ADF",
+          "confidence": 1.905698,
+          "label": "Elmontör",
+          "original_rank": 4,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.635233,
+          "ssyk_code_2012": "8212"
+        }
+      ],
+      "after_count": 4,
+      "before": [
+        {
+          "concept_id": "84Uc_bhA_s47",
+          "confidence": 4.0,
+          "label": "Installationselektriker",
+          "original_rank": 1,
+          "phrase_shared_count": 4,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 1.0,
+          "ssyk_code_2012": "7411"
+        },
+        {
+          "concept_id": "K3iK_iEb_41Y",
+          "confidence": 1.827105,
+          "label": "Serviceelektriker, installation",
+          "original_rank": 2,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": true,
+          "score_ratio": 0.913552,
+          "ssyk_code_2012": "7411"
+        },
+        {
+          "concept_id": "62xd_b2m_Wbo",
+          "confidence": 1.326962,
+          "label": "Växeltelefonist",
+          "original_rank": 3,
+          "phrase_shared_count": 2,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.663481,
+          "ssyk_code_2012": "4223"
+        },
+        {
+          "concept_id": "AJDU_fpb_ADF",
+          "confidence": 1.905698,
+          "label": "Elmontör",
+          "original_rank": 4,
+          "phrase_shared_count": 3,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.635233,
+          "ssyk_code_2012": "8212"
+        },
+        {
+          "concept_id": "TT8h_qKk_1iu",
+          "confidence": 0.574837,
+          "label": "Affärskonsult, IT",
+          "original_rank": 5,
+          "phrase_shared_count": 1,
+          "same_ssyk_as_top1": false,
+          "score_ratio": 0.574837,
+          "ssyk_code_2012": "2511"
+        }
+      ],
+      "before_count": 5,
+      "category": "direct",
+      "expected": [
+        "elektriker"
+      ],
+      "family_display_rank_after": 1,
+      "family_original_rank_after": 1,
+      "family_rank_before": 1,
+      "id": "yv02",
+      "query": "Jag drar elkabel, kopplar uttag och felsöker elinstallationer i hus",
+      "should_abstain": false,
+      "should_clarify": false
+    }
+  },
+  "status": "opened diagnostic only; frozen rule replayed without retuning"
+}
