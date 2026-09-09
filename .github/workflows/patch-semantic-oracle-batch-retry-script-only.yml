@@ -1,0 +1,39 @@
+name: Patch semantic oracle incomplete-batch retry script only
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/patch-semantic-oracle-batch-retry-script-only.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Retry exact batch on incomplete semantic response
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('scripts/evaluate_p80_display_semantic_oracle.py')
+          s=p.read_text(encoding='utf-8')
+          old='''        raw, meta = call_semantic_with_quota_retry(api_key, prompt(batch, by_id, phrase_map))\n        last_call = time.monotonic()\n        parsed = parse_response(raw, batch)\n        all_judgments.update(parsed)\n        usage.append(meta)\n        print(f"semantic oracle {min(start + len(batch), len(cases))}/{len(cases)}", flush=True)\n'''
+          new='''        parsed = None\n        meta = {}\n        batch_prompt = prompt(batch, by_id, phrase_map)\n        for response_attempt in range(5):\n            raw, meta = call_semantic_with_quota_retry(api_key, batch_prompt)\n            last_call = time.monotonic()\n            try:\n                parsed = parse_response(raw, batch)\n                break\n            except RuntimeError as exc:\n                if response_attempt + 1 >= 5:\n                    raise\n                print(f"semantic oracle incomplete batch; retry exact batch ({response_attempt + 1}/5): {exc}", flush=True)\n                time.sleep(5.0)\n        if parsed is None:\n            raise RuntimeError("semantic oracle batch retry exhausted without parsed result")\n        all_judgments.update(parsed)\n        usage.append(meta)\n        print(f"semantic oracle {min(start + len(batch), len(cases))}/{len(cases)}", flush=True)\n'''
+          if old not in s:
+              raise SystemExit('semantic batch block drift')
+          s=s.replace(old,new,1)
+          p.write_text(s, encoding='utf-8')
+          PY
+          python -m py_compile scripts/evaluate_p80_display_semantic_oracle.py scripts/replay_p80_display_semantic_oracle_opened.py
+      - name: Commit transport-only retry patch
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add scripts/evaluate_p80_display_semantic_oracle.py
+          git commit -m 'research: retry incomplete semantic oracle batches'
+          git pull --rebase origin main
+          git push
