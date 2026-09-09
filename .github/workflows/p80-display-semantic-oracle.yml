@@ -17,7 +17,7 @@ concurrency:
 jobs:
   evaluate:
     runs-on: ubuntu-24.04
-    timeout-minutes: 45
+    timeout-minutes: 60
     env:
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
     steps:
@@ -32,9 +32,11 @@ jobs:
             scripts/replay_p80_display_semantic_oracle_opened.py
       - name: Run prefrozen 2024 semantic sufficiency test
         run: |
+          # First attempt produced zero judgments and hit only the free-tier input-token quota.
+          # Evidence payload is now deterministically compacted; semantic contract/gates are unchanged.
           python scripts/evaluate_p80_display_semantic_oracle.py \
             --batch-size 6 \
-            --requests-per-minute 6
+            --requests-per-minute 3
       - name: Check primary gate
         id: gate
         run: |
