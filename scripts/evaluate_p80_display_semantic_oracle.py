@@ -150,7 +150,7 @@ def prompt(batch: list[dict[str, Any]], by_id: dict[str, dict[str, Any]], phrase
     return INSTRUCTIONS + "\nCASES:\n" + json.dumps(payload, ensure_ascii=False, sort_keys=True)
 
 
-def parse_response(value: dict[str, Any], batch: list[dict[str, Any]]) -> dict[str, dict[str, str]]:
+def parse_response(value: dict[str, Any], batch: list[dict[str, Any]], *, require_all: bool = True) -> dict[str, dict[str, str]]:
     expected = {case_key(case): {str(c["concept_id"]) for c in case["candidates"]} for case in batch}
     items = value.get("items")
     if not isinstance(items, list):
@@ -175,7 +175,7 @@ def parse_response(value: dict[str, Any], batch: list[dict[str, Any]]) -> dict[s
                 current[cid] = verdict
         if set(current) == expected[key]:
             out[key] = current
-    if set(out) != set(expected):
+    if require_all and set(out) != set(expected):
         missing = sorted(set(expected) - set(out))
         raise RuntimeError(f"semantic oracle response case mismatch: {missing[:5]} count={len(missing)}")
     return out
@@ -334,22 +334,21 @@ def semantic_judge_batches(
         elapsed = time.monotonic() - last_call
         if last_call and elapsed < min_interval:
             time.sleep(min_interval - elapsed)
-        parsed = None
+        pending = list(batch)
+        parsed: dict[str, dict[str, str]] = {}
         meta = {}
-        batch_prompt = prompt(batch, by_id, phrase_map)
         for response_attempt in range(5):
-            raw, meta = call_semantic_with_quota_retry(api_key, batch_prompt)
+            raw, meta = call_semantic_with_quota_retry(api_key, prompt(pending, by_id, phrase_map))
             last_call = time.monotonic()
-            try:
-                parsed = parse_response(raw, batch)
+            partial = parse_response(raw, pending, require_all=False)
+            parsed.update(partial)
+            pending = [case for case in pending if case_key(case) not in parsed]
+            if not pending:
                 break
-            except RuntimeError as exc:
-                if response_attempt + 1 >= 5:
-                    raise
-                print(f"semantic oracle incomplete batch; retry exact batch ({response_attempt + 1}/5): {exc}", flush=True)
-                time.sleep(5.0)
-        if parsed is None:
-            raise RuntimeError("semantic oracle batch retry exhausted without parsed result")
+            print(f"semantic oracle incomplete batch; retry only {len(pending)} missing case(s) ({response_attempt + 1}/5)", flush=True)
+            time.sleep(5.0)
+        if pending:
+            raise RuntimeError(f"semantic oracle missing-case retry exhausted: {[case_key(c) for c in pending[:5]]} count={len(pending)}")
         all_judgments.update(parsed)
         usage.append(meta)
         print(f"semantic oracle {min(start + len(batch), len(cases))}/{len(cases)}", flush=True)
