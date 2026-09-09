@@ -94,7 +94,7 @@ def fetch_cases(by_id: dict[str, dict[str, Any]], pairs: list[dict[str, Any]], *
                 for i, x in enumerate(ordered)
             ]
             cases.append({
-                "ad_id": str(row["ad_id"]),
+                "ad_id": f"hc-{pair_id}-{cid}-{row["ad_id"]}",
                 "query": str(row["query"]),
                 "query_sha256": str(row["query_sha256"]),
                 "query_word_count": int(row["query_word_count"]),
@@ -238,7 +238,7 @@ def main() -> int:
             "id": "YV-semantic-display-hard-confusion-v1-result",
             "status": "inconclusive: preregistered sample floor not met",
             "sample": {"cases": len(cases), "pairs": pair_coverage, "sha256": sample_fingerprint},
-            "decision_gate_passed": false
+            "decision_gate_passed": False
         })
         return 0
 
