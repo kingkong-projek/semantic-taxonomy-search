@@ -1,0 +1,33 @@
+name: P80 lane validation on historical ads
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/p80-display-lane-historical-ads.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile-check
+        run: python -m py_compile scripts/evaluate_p80_display_lane_historical_ads.py
+      - name: Validate frozen lane rule on 2025 historical ad language
+        run: python scripts/evaluate_p80_display_lane_historical_ads.py
+      - name: Freeze result
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/evaluation/v31/p80-display-lane-historical-ads-v0.json
+          git commit -m 'research: freeze P80 lane historical-ad validation'
+          git push
