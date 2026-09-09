@@ -1,0 +1,6788 @@
+{
+  "candidate_for_source_bound_rescue": 22,
+  "evidence_class": "source coverage audit; no retrieval outcomes and no opened 17/88",
+  "id": "YV-P80-source-thin-evidence-audit-v0",
+  "note": "Nearby occupations are reported only as diagnostic context and are not direct target facts for generation.",
+  "rescue_rule": ">=5 relevant skills OR >=10 ad keywords OR >=5 typed job-title labels; frozen before retrieval evaluation",
+  "rows": [
+    {
+      "candidate_for_source_bound_rescue": true,
+      "canonical_definition_tokens": 0,
+      "concept_id": "QaQC_ozP_Bme",
+      "direct_source_counts": {
+        "ad_keywords": 200,
+        "relevant_skills": 30,
+        "total": 265,
+        "typed_job_titles": 35
+      },
+      "label": "Rekryterare/Rekryteringskonsult",
+      "nearby_occupations_diagnostic_only": [
+        {
+          "id": "uiqh_Drm_XGr",
+          "label": "Researcher, rekrytering"
+        },
+        {
+          "id": "DHo9_qpj_owx",
+          "label": "Personalansvarig"
+        },
+        {
+          "id": "ofiS_5F2_YmV",
+          "label": "HR-assistent"
+        },
+        {
+          "id": "1d3z_y59_2Hm",
+          "label": "HR-konsult/PA-konsult"
+        },
+        {
+          "id": "jsUx_ngg_Kz2",
+          "label": "Innesäljare"
+        },
+        {
+          "id": "QLwS_aMP_Jcu",
+          "label": "Säljledare"
+        },
+        {
+          "id": "Zwhm_5tT_Zms",
+          "label": "Affärsutvecklare"
+        },
+        {
+          "id": "s28Q_sya_S2b",
+          "label": "HR-specialist/HR-advisor"
+        },
+        {
+          "id": "TTDZ_Neo_9GJ",
+          "label": "Key account manager/KAM"
+        },
+        {
+          "id": "g5fd_Eyr_bjS",
+          "label": "Företagssäljare"
+        }
+      ],
+      "occurrences": null,
+      "p80_rank": null,
+      "top_ad_keywords_bm25": [
+        {
+          "BM25": 0.23,
+          "RCA": 31.57,
+          "TFIDF": 0.23,
+          "term": "rekrytering",
+          "weighted_frequency": 7202.82
+        },
+        {
+          "BM25": 0.14,
+          "RCA": 87.07,
+          "TFIDF": 0.08,
+          "term": "annonsering",
+          "weighted_frequency": 1007.13
+        },
+        {
+          "BM25": 0.1,
+          "RCA": 232.25,
+          "TFIDF": 0.05,
+          "term": "rekryteringsuppdrag",
+          "weighted_frequency": 488.42
+        },
+        {
+          "BM25": 0.1,
+          "RCA": 123.25,
+          "TFIDF": 0.05,
+          "term": "personalvetenskap",
+          "weighted_frequency": 583.2
+        },
+        {
+          "BM25": 0.09,
+          "RCA": 153.51,
+          "TFIDF": 0.05,
+          "term": "rekryteringsarbete",
+          "weighted_frequency": 484.24
+        },
+        {
+          "BM25": 0.09,
+          "RCA": 48.37,
+          "TFIDF": 0.05,
+          "term": "telefonintervju",
+          "weighted_frequency": 635.81
+        },
+        {
+          "BM25": 0.09,
+          "RCA": 43.44,
+          "TFIDF": 0.05,
+          "term": "rekryteringsbranschen",
+          "weighted_frequency": 707.99
+        },
+        {
+          "BM25": 0.09,
+          "RCA": 11.47,
+          "TFIDF": 0.08,
+          "term": "försäljning",
+          "weighted_frequency": 2236.27
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 21.77,
+          "TFIDF": 0.04,
+          "term": "brand",
+          "weighted_frequency": 618.06
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 17.55,
+          "TFIDF": 0.05,
+          "term": "beteendevetenskap",
+          "weighted_frequency": 775.07
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 258.25,
+          "TFIDF": 0.03,
+          "term": "headhunting",
+          "weighted_frequency": 271.55
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 146.04,
+          "TFIDF": 0.03,
+          "term": "testverktyg",
+          "weighted_frequency": 307.13
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 435.67,
+          "TFIDF": 0.03,
+          "term": "volymrekrytering",
+          "weighted_frequency": 229.05
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 202.72,
+          "TFIDF": 0.02,
+          "term": "personbedömning",
+          "weighted_frequency": 213.16
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 196.83,
+          "TFIDF": 0.02,
+          "term": "annonsskrivning",
+          "weighted_frequency": 206.97
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 41.12,
+          "TFIDF": 0.03,
+          "term": "personlighetstest",
+          "weighted_frequency": 302.69
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 7.25,
+          "TFIDF": 0.04,
+          "term": "personalansvar",
+          "weighted_frequency": 949.71
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 38.34,
+          "TFIDF": 0.02,
+          "term": "hr-området",
+          "weighted_frequency": 221.73
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 30.31,
+          "TFIDF": 0.02,
+          "term": "konsultbranschen",
+          "weighted_frequency": 302.74
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 23.36,
+          "TFIDF": 0.02,
+          "term": "avtalsskrivning",
+          "weighted_frequency": 294.8
+        }
+      ],
+      "top_relevant_skills": [
+        {
+          "id": "cDU5_op5_Tuk",
+          "label": "Rekryteringsvana",
+          "relevance_points": 94.0
+        },
+        {
+          "id": "RUsW_e6S_wKZ",
+          "label": "Bakgrundskontroll vid rekrytering",
+          "relevance_points": 34.0
+        },
+        {
+          "id": "RwCa_yJR_Y5V",
+          "label": "Akutrekrytering",
+          "relevance_points": 30.0
+        },
+        {
+          "id": "t59S_14G_MhK",
+          "label": "Personalekonomi",
+          "relevance_points": 30.0
+        },
+        {
+          "id": "m4zm_ts4_Wy5",
+          "label": "Personalsociala bokslut",
+          "relevance_points": 30.0
+        },
+        {
+          "id": "Y3B6_QRV_zGk",
+          "label": "Personaluthyrningsvana",
+          "relevance_points": 30.0
+        },
+        {
+          "id": "eThQ_HCv_mY6",
+          "label": "Personalplanering",
+          "relevance_points": 28.0
+        },
+        {
+          "id": "DfC4_KjK_LTC",
+          "label": "Jämställdhetsfrågor, personalarbete",
+          "relevance_points": 24.0
+        },
+        {
+          "id": "HxKb_aYu_Sif",
+          "label": "Löneförhandlingar",
+          "relevance_points": 22.0
+        },
+        {
+          "id": "91Ef_58Y_jX4",
+          "label": "Coaching/Coachning",
+          "relevance_points": 20.0
+        },
+        {
+          "id": "nt4p_6kN_Lt2",
+          "label": "Anställningsavtal, utformning",
+          "relevance_points": 18.0
+        },
+        {
+          "id": "fiLT_BSW_HCb",
+          "label": "Arbetsrätt",
+          "relevance_points": 18.0
+        },
+        {
+          "id": "q7Mx_gjU_F9q",
+          "label": "Förhandlingsvana",
+          "relevance_points": 18.0
+        },
+        {
+          "id": "z7wE_9xb_3jX",
+          "label": "Kollektivavtal",
+          "relevance_points": 18.0
+        },
+        {
+          "id": "jfd3_4zS_fjt",
+          "label": "Kommunala avtal",
+          "relevance_points": 18.0
+        }
+      ],
+      "typed_job_titles": [
+        {
+          "id": "2zVL_BHs_8Dc",
+          "label": "Affärsansvarig rekryterare"
+        },
+        {
+          "id": "MX9B_6gq_WVy",
+          "label": "Akutrekryterare"
+        },
+        {
+          "id": "4z5j_zBu_if5",
+          "label": "Chefsrekryterare"
+        },
+        {
+          "id": "jQXu_EFN_iSF",
+          "label": "Gig-manager"
+        },
+        {
+          "id": "DpfT_jWm_Eu5",
+          "label": "Headhunter"
+        },
+        {
+          "id": "hiaJ_Aqx_vDd",
+          "label": "Headhuntingtrainee"
+        },
+        {
+          "id": "5BUi_Vo9_AKf",
+          "label": "HR- och Talent Acquisition"
+        },
+        {
+          "id": "HPny_rCa_Cgr",
+          "label": "IT-rekryterare"
+        },
+        {
+          "id": "QTF9_UDa_FrS",
+          "label": "Konsultchef"
+        },
+        {
+          "id": "ADcr_x1W_BbY",
+          "label": "Konsultchefsassistent"
+        },
+        {
+          "id": "wWFM_Yik_wra",
+          "label": "Konsultrekryterare"
+        },
+        {
+          "id": "YWft_bBn_Jyt",
+          "label": "Personalvetare"
+        },
+        {
+          "id": "QAWU_RRH_biD",
+          "label": "Recruiter"
+        },
+        {
+          "id": "uKVG_yiZ_gEk",
+          "label": "Recruiting manager"
+        },
+        {
+          "id": "N6Cs_kxs_Csa",
+          "label": "Recruitment manager"
+        },
+        {
+          "id": "fE6b_c7b_NVY",
+          "label": "Recruitment-consultant manager"
+        },
+        {
+          "id": "kHiW_piu_zF9",
+          "label": "Rekryteringshandläggare"
+        },
+        {
+          "id": "WYWy_aZS_9E8",
+          "label": "Rekryteringskollega"
+        },
+        {
+          "id": "KWC4_8Bq_sHG",
+          "label": "Rekryteringskoordinator"
+        },
+        {
+          "id": "uoVV_15x_oVD",
+          "label": "Rekrythandläggare"
+        },
+        {
+          "id": "S2c5_fqJ_kVW",
+          "label": "Searchkonsult"
+        },
+        {
+          "id": "vYCa_VNd_Na6",
+          "label": "Studentrekryterare"
+        },
+        {
+          "id": "VGJs_7ni_fK8",
+          "label": "Studentrekrytering"
+        },
+        {
+          "id": "r91Q_Qr5_QbE",
+          "label": "Talent acquisition"
+        },
+        {
+          "id": "3Jho_GrU_yEg",
+          "label": "Talent acquisition consultant"
+        },
+        {
+          "id": "wHLw_pFn_QKo",
+          "label": "Talent acquisition lead"
+        },
+        {
+          "id": "YrV9_y9p_2rs",
+          "label": "Talent acquisition manager"
+        },
+        {
+          "id": "xt6Q_HTS_tL3",
+          "label": "Talent acquisition partner"
+        },
+        {
+          "id": "FyGg_ss6_nXp",
+          "label": "Talent acquisition specialist"
+        },
+        {
+          "id": "No1j_4qo_TpC",
+          "label": "Talent coordinator"
+        }
+      ]
+    },
+    {
+      "candidate_for_source_bound_rescue": true,
+      "canonical_definition_tokens": 0,
+      "concept_id": "Pgpp_B8P_wot",
+      "direct_source_counts": {
+        "ad_keywords": 200,
+        "relevant_skills": 5,
+        "total": 207,
+        "typed_job_titles": 2
+      },
+      "label": "Doktorand",
+      "nearby_occupations_diagnostic_only": [
+        {
+          "id": "Lijw_Sfh_7vt",
+          "label": "Forskare, samhällsvetenskap"
+        },
+        {
+          "id": "DrU2_d7W_Ana",
+          "label": "Civilingenjör, teknisk fysik"
+        },
+        {
+          "id": "HtLv_4EJ_o5r",
+          "label": "Kemist"
+        },
+        {
+          "id": "SMii_y8Z_VmX",
+          "label": "Biokemist"
+        },
+        {
+          "id": "9U5Y_9Ji_uJq",
+          "label": "Dataingenjör"
+        },
+        {
+          "id": "pjhd_Z3X_TBJ",
+          "label": "Laborant inom kemi och biologi"
+        },
+        {
+          "id": "bVd9_PdQ_nxv",
+          "label": "Utvecklingsingenjör elektronik"
+        },
+        {
+          "id": "CQse_CRd_snw",
+          "label": "Civilingenjör, systemutveckling"
+        },
+        {
+          "id": "GuRB_LaM_Adb",
+          "label": "Civilingenjör inom elektroteknik"
+        },
+        {
+          "id": "QzuH_dfZ_jxx",
+          "label": "Laboratorieingenjör inom kemi och biologi"
+        }
+      ],
+      "occurrences": null,
+      "p80_rank": null,
+      "top_ad_keywords_bm25": [
+        {
+          "BM25": 0.25,
+          "RCA": 127.63,
+          "TFIDF": 0.15,
+          "term": "forskarutbildning",
+          "weighted_frequency": 1755.38
+        },
+        {
+          "BM25": 0.19,
+          "RCA": 28.6,
+          "TFIDF": 0.14,
+          "term": "forskning",
+          "weighted_frequency": 2876.09
+        },
+        {
+          "BM25": 0.18,
+          "RCA": 791.34,
+          "TFIDF": 0.09,
+          "term": "institutionsarbete",
+          "weighted_frequency": 750.62
+        },
+        {
+          "BM25": 0.16,
+          "RCA": 31.88,
+          "TFIDF": 0.11,
+          "term": "undervisning",
+          "weighted_frequency": 1875.0
+        },
+        {
+          "BM25": 0.14,
+          "RCA": 142.31,
+          "TFIDF": 0.07,
+          "term": "examensarbete",
+          "weighted_frequency": 742.41
+        },
+        {
+          "BM25": 0.13,
+          "RCA": 540.14,
+          "TFIDF": 0.06,
+          "term": "institutionstjänstgöring",
+          "weighted_frequency": 512.35
+        },
+        {
+          "BM25": 0.13,
+          "RCA": 41.98,
+          "TFIDF": 0.08,
+          "term": "forskningsprojekt",
+          "weighted_frequency": 1055.16
+        },
+        {
+          "BM25": 0.08,
+          "RCA": 628.27,
+          "TFIDF": 0.04,
+          "term": "doktorandutbildning",
+          "weighted_frequency": 297.97
+        },
+        {
+          "BM25": 0.08,
+          "RCA": 30.96,
+          "TFIDF": 0.05,
+          "term": "masterexamen",
+          "weighted_frequency": 660.72
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 60.29,
+          "TFIDF": 0.04,
+          "term": "maskininlärning",
+          "weighted_frequency": 371.69
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 50.6,
+          "TFIDF": 0.04,
+          "term": "forskningsområden",
+          "weighted_frequency": 431.95
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 48.41,
+          "TFIDF": 0.04,
+          "term": "tidskrifter",
+          "weighted_frequency": 459.17
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 27.62,
+          "TFIDF": 0.04,
+          "term": "teknisk fysik",
+          "weighted_frequency": 510.88
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 19.65,
+          "TFIDF": 0.04,
+          "term": "matematik",
+          "weighted_frequency": 587.0
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 18.81,
+          "TFIDF": 0.04,
+          "term": "fysik",
+          "weighted_frequency": 660.12
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 53.87,
+          "TFIDF": 0.03,
+          "term": "geovetenskap",
+          "weighted_frequency": 306.6
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 18.14,
+          "TFIDF": 0.04,
+          "term": "modellering",
+          "weighted_frequency": 542.02
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 15.29,
+          "TFIDF": 0.04,
+          "term": "civilingenjörsexamen",
+          "weighted_frequency": 543.87
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 14.62,
+          "TFIDF": 0.03,
+          "term": "kemi",
+          "weighted_frequency": 513.05
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 12.49,
+          "TFIDF": 0.04,
+          "term": "examensbevis",
+          "weighted_frequency": 586.46
+        }
+      ],
+      "top_relevant_skills": [
+        {
+          "id": "ezVu_GhE_b3b",
+          "label": "Publicera forskningsresultat",
+          "relevance_points": 50.5
+        },
+        {
+          "id": "c2YE_oK3_f1u",
+          "label": "Forskningsdokumentation",
+          "relevance_points": 32.5
+        },
+        {
+          "id": "TB7B_ewe_qsW",
+          "label": "Forskningsfinansiering",
+          "relevance_points": 8.5
+        },
+        {
+          "id": "hDvV_ryY_gUm",
+          "label": "Studiebrevsgranskning",
+          "relevance_points": 5.5
+        },
+        {
+          "id": "uwXg_zmB_Pdk",
+          "label": "Pedagogik, undervisning högskolenivå",
+          "relevance_points": 5.0
+        }
+      ],
+      "typed_job_titles": [
+        {
+          "id": "ZRE3_zJy_D7X",
+          "label": "Industridoktorand"
+        },
+        {
+          "id": "njW7_abw_29p",
+          "label": "Kommundoktorand"
+        }
+      ]
+    },
+    {
+      "candidate_for_source_bound_rescue": true,
+      "canonical_definition_tokens": 0,
+      "concept_id": "2iBk_N8d_Gm4",
+      "direct_source_counts": {
+        "ad_keywords": 200,
+        "relevant_skills": 14,
+        "total": 216,
+        "typed_job_titles": 2
+      },
+      "label": "Forskarassistent",
+      "nearby_occupations_diagnostic_only": [
+        {
+          "id": "mUD2_7si_XaE",
+          "label": "Nutritionist/Näringsfysiolog"
+        },
+        {
+          "id": "gmx1_BCX_EEe",
+          "label": "Molekylärbiolog"
+        },
+        {
+          "id": "ZNyx_1tG_w4E",
+          "label": "Biolog"
+        },
+        {
+          "id": "SMii_y8Z_VmX",
+          "label": "Biokemist"
+        },
+        {
+          "id": "xaQL_Wbc_6su",
+          "label": "Bioinformatiker"
+        },
+        {
+          "id": "HtLv_4EJ_o5r",
+          "label": "Kemist"
+        },
+        {
+          "id": "DrU2_d7W_Ana",
+          "label": "Civilingenjör, teknisk fysik"
+        },
+        {
+          "id": "PiQ3_Wzy_U1X",
+          "label": "Mikrobiolog"
+        },
+        {
+          "id": "pjhd_Z3X_TBJ",
+          "label": "Laborant inom kemi och biologi"
+        },
+        {
+          "id": "Uc39_yCn_Vka",
+          "label": "Civilingenjör, bioteknik"
+        }
+      ],
+      "occurrences": null,
+      "p80_rank": null,
+      "top_ad_keywords_bm25": [
+        {
+          "BM25": 0.3,
+          "RCA": 110.05,
+          "TFIDF": 0.18,
+          "term": "doktorsexamen",
+          "weighted_frequency": 1963.91
+        },
+        {
+          "BM25": 0.22,
+          "RCA": 33.3,
+          "TFIDF": 0.16,
+          "term": "forskning",
+          "weighted_frequency": 2739.07
+        },
+        {
+          "BM25": 0.13,
+          "RCA": 42.82,
+          "TFIDF": 0.08,
+          "term": "forskningsprojekt",
+          "weighted_frequency": 880.37
+        },
+        {
+          "BM25": 0.12,
+          "RCA": 23.94,
+          "TFIDF": 0.08,
+          "term": "undervisning",
+          "weighted_frequency": 1151.54
+        },
+        {
+          "BM25": 0.11,
+          "RCA": 110.78,
+          "TFIDF": 0.06,
+          "term": "geovetenskap",
+          "weighted_frequency": 515.71
+        },
+        {
+          "BM25": 0.1,
+          "RCA": 72.44,
+          "TFIDF": 0.05,
+          "term": "datainsamling",
+          "weighted_frequency": 477.71
+        },
+        {
+          "BM25": 0.1,
+          "RCA": 64.17,
+          "TFIDF": 0.06,
+          "term": "miljövetenskap",
+          "weighted_frequency": 522.75
+        },
+        {
+          "BM25": 0.09,
+          "RCA": 77.65,
+          "TFIDF": 0.05,
+          "term": "forskningsarbete",
+          "weighted_frequency": 421.74
+        },
+        {
+          "BM25": 0.08,
+          "RCA": 51.73,
+          "TFIDF": 0.04,
+          "term": "tidskrifter",
+          "weighted_frequency": 401.37
+        },
+        {
+          "BM25": 0.08,
+          "RCA": 23.5,
+          "TFIDF": 0.05,
+          "term": "matematik",
+          "weighted_frequency": 574.44
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 58.13,
+          "TFIDF": 0.04,
+          "term": "avlagd doktorsexamen",
+          "weighted_frequency": 315.69
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 12.38,
+          "TFIDF": 0.05,
+          "term": "handledning",
+          "weighted_frequency": 840.79
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 21.43,
+          "TFIDF": 0.04,
+          "term": "dataanalys",
+          "weighted_frequency": 407.45
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 20.48,
+          "TFIDF": 0.03,
+          "term": "masterexamen",
+          "weighted_frequency": 357.6
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 14.44,
+          "TFIDF": 0.04,
+          "term": "python",
+          "weighted_frequency": 464.91
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 8.73,
+          "TFIDF": 0.06,
+          "term": "analys",
+          "weighted_frequency": 1226.51
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 99.33,
+          "TFIDF": 0.03,
+          "term": "stata",
+          "weighted_frequency": 192.67
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 35.32,
+          "TFIDF": 0.03,
+          "term": "molekylärbiologi",
+          "weighted_frequency": 260.31
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 34.5,
+          "TFIDF": 0.03,
+          "term": "bioinformatik",
+          "weighted_frequency": 227.52
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 13.3,
+          "TFIDF": 0.03,
+          "term": "datavetenskap",
+          "weighted_frequency": 350.86
+        }
+      ],
+      "top_relevant_skills": [
+        {
+          "id": "ezVu_GhE_b3b",
+          "label": "Publicera forskningsresultat",
+          "relevance_points": 164.0
+        },
+        {
+          "id": "c2YE_oK3_f1u",
+          "label": "Forskningsdokumentation",
+          "relevance_points": 148.0
+        },
+        {
+          "id": "uwXg_zmB_Pdk",
+          "label": "Pedagogik, undervisning högskolenivå",
+          "relevance_points": 32.0
+        },
+        {
+          "id": "oLnc_YZn_3bm",
+          "label": "Utbildningsplanering",
+          "relevance_points": 26.0
+        },
+        {
+          "id": "TB7B_ewe_qsW",
+          "label": "Forskningsfinansiering",
+          "relevance_points": 24.0
+        },
+        {
+          "id": "hDvV_ryY_gUm",
+          "label": "Studiebrevsgranskning",
+          "relevance_points": 14.0
+        },
+        {
+          "id": "C3Fc_BSX_rpH",
+          "label": "Specialpedagogik",
+          "relevance_points": 8.4
+        },
+        {
+          "id": "7Y6d_qDZ_Eyt",
+          "label": "Lärplattformar, erfarenhet",
+          "relevance_points": 6.0
+        },
+        {
+          "id": "V5EN_xw2_itk",
+          "label": "e-lärande, erfarenhet",
+          "relevance_points": 5.0
+        },
+        {
+          "id": "gN4Z_uRf_LQp",
+          "label": "Geografiska fältstudier",
+          "relevance_points": 5.0
+        },
+        {
+          "id": "1yZu_wTp_WPs",
+          "label": "Studerandeverksamhet",
+          "relevance_points": 4.0
+        },
+        {
+          "id": "ZuiC_nRu_EFE",
+          "label": "Pedagogiskt utvecklingsarbete",
+          "relevance_points": 3.6
+        },
+        {
+          "id": "1dVh_cZS_Exw",
+          "label": "Arkiv- och informationshantering, erfarenhet",
+          "relevance_points": 3.2
+        },
+        {
+          "id": "puvJ_R8K_8e6",
+          "label": "IT-forskning",
+          "relevance_points": 3.2
+        }
+      ],
+      "typed_job_titles": [
+        {
+          "id": "YBMk_rmD_BpR",
+          "label": "Forskningsamanuens"
+        },
+        {
+          "id": "u3Kv_nGD_o53",
+          "label": "Undervisningsassistent"
+        }
+      ]
+    },
+    {
+      "candidate_for_source_bound_rescue": true,
+      "canonical_definition_tokens": 0,
+      "concept_id": "FC86_VDF_rqB",
+      "direct_source_counts": {
+        "ad_keywords": 200,
+        "relevant_skills": 30,
+        "total": 244,
+        "typed_job_titles": 14
+      },
+      "label": "Teamledare",
+      "nearby_occupations_diagnostic_only": [
+        {
+          "id": "uwYE_D2Z_45B",
+          "label": "Försäljningschef"
+        },
+        {
+          "id": "WWVG_4sM_faC",
+          "label": "Butikschef"
+        },
+        {
+          "id": "wtxi_ss9_8Cj",
+          "label": "Kundtjänstchef"
+        },
+        {
+          "id": "5seg_CMk_FtK",
+          "label": "Affärsområdeschef"
+        },
+        {
+          "id": "hX12_2Ab_w5g",
+          "label": "Regionchef, butik"
+        },
+        {
+          "id": "nvUH_JLD_s4F",
+          "label": "Verkställande direktör/VD"
+        },
+        {
+          "id": "1ERY_48v_Q6m",
+          "label": "Administrativ chef"
+        },
+        {
+          "id": "ek9W_CmD_y2M",
+          "label": "Butikssäljare, fackhandel"
+        },
+        {
+          "id": "tPp6_tmB_EsY",
+          "label": "Uthyrningschef"
+        },
+        {
+          "id": "d8Kq_mRD_TvK",
+          "label": "Städchef"
+        }
+      ],
+      "occurrences": null,
+      "p80_rank": null,
+      "top_ad_keywords_bm25": [
+        {
+          "BM25": 0.17,
+          "RCA": 22.49,
+          "TFIDF": 0.15,
+          "term": "försäljning",
+          "weighted_frequency": 2308.3
+        },
+        {
+          "BM25": 0.13,
+          "RCA": 60.36,
+          "TFIDF": 0.08,
+          "term": "säljteam",
+          "weighted_frequency": 534.34
+        },
+        {
+          "BM25": 0.1,
+          "RCA": 14.11,
+          "TFIDF": 0.1,
+          "term": "ledarskap",
+          "weighted_frequency": 1756.56
+        },
+        {
+          "BM25": 0.09,
+          "RCA": 13.2,
+          "TFIDF": 0.07,
+          "term": "personalansvar",
+          "weighted_frequency": 909.06
+        },
+        {
+          "BM25": 0.08,
+          "RCA": 361.69,
+          "TFIDF": 0.04,
+          "term": "sportevenemang",
+          "weighted_frequency": 200.12
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 13.71,
+          "TFIDF": 0.05,
+          "term": "coachning",
+          "weighted_frequency": 474.19
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 9.72,
+          "TFIDF": 0.05,
+          "term": "kundservice",
+          "weighted_frequency": 613.28
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 110.0,
+          "TFIDF": 0.03,
+          "term": "försäljningsverksamhet",
+          "weighted_frequency": 152.15
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 57.75,
+          "TFIDF": 0.03,
+          "term": "fältförsäljning",
+          "weighted_frequency": 175.73
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 48.01,
+          "TFIDF": 0.03,
+          "term": "telemarketing",
+          "weighted_frequency": 185.95
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 17.0,
+          "TFIDF": 0.04,
+          "term": "ledarskapsutbildning",
+          "weighted_frequency": 347.91
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 9.91,
+          "TFIDF": 0.03,
+          "term": "feedback",
+          "weighted_frequency": 348.12
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 289.59,
+          "TFIDF": 0.02,
+          "term": "ledarskapsarbete",
+          "weighted_frequency": 80.11
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 161.86,
+          "TFIDF": 0.02,
+          "term": "vikarieplanering",
+          "weighted_frequency": 89.55
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 112.77,
+          "TFIDF": 0.02,
+          "term": "städmetoder",
+          "weighted_frequency": 93.59
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 107.76,
+          "TFIDF": 0.02,
+          "term": "frånvarorapportering",
+          "weighted_frequency": 89.43
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 21.11,
+          "TFIDF": 0.03,
+          "term": "stål",
+          "weighted_frequency": 175.24
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 12.34,
+          "TFIDF": 0.03,
+          "term": "personlig utveckling",
+          "weighted_frequency": 221.98
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 7.56,
+          "TFIDF": 0.02,
+          "term": "butik",
+          "weighted_frequency": 236.32
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 7.0,
+          "TFIDF": 0.03,
+          "term": "schemaläggning",
+          "weighted_frequency": 280.79
+        }
+      ],
+      "top_relevant_skills": [
+        {
+          "id": "eThQ_HCv_mY6",
+          "label": "Personalplanering",
+          "relevance_points": 68.0
+        },
+        {
+          "id": "r2MT_yTq_xZu",
+          "label": "Växtodling, lantbruk",
+          "relevance_points": 26.6
+        },
+        {
+          "id": "SfoE_zq7_ADN",
+          "label": "Social service och omsorg, områdeskunskap",
+          "relevance_points": 22.4
+        },
+        {
+          "id": "Gt5f_wdi_FSJ",
+          "label": "Budgetansvar",
+          "relevance_points": 18.0
+        },
+        {
+          "id": "G7Qq_r7L_5Jo",
+          "label": "Verksamhetsanalys",
+          "relevance_points": 17.4
+        },
+        {
+          "id": "DXNc_cU4_j4N",
+          "label": "Marknadsföring/Marknadskommunikation",
+          "relevance_points": 15.0
+        },
+        {
+          "id": "VfP9_2xd_g2h",
+          "label": "Företagsekonomi",
+          "relevance_points": 14.0
+        },
+        {
+          "id": "ZzN5_m7B_5CY",
+          "label": "Personalansvar",
+          "relevance_points": 12.0
+        },
+        {
+          "id": "cDU5_op5_Tuk",
+          "label": "Rekryteringsvana",
+          "relevance_points": 11.4
+        },
+        {
+          "id": "WStg_Eag_4oi",
+          "label": "Grönsaksodling, friland",
+          "relevance_points": 10.6
+        },
+        {
+          "id": "LR78_eaw_bMu",
+          "label": "Potatisodling",
+          "relevance_points": 10.6
+        },
+        {
+          "id": "E13X_ZF3_PAb",
+          "label": "Fysisk arbetsmiljö och ergonomi",
+          "relevance_points": 10.2
+        },
+        {
+          "id": "5PjX_999_uLZ",
+          "label": "Pedagogiskt ledarskap",
+          "relevance_points": 9.9
+        },
+        {
+          "id": "HYth_uQt_hAk",
+          "label": "Foderväxtodling",
+          "relevance_points": 9.8
+        },
+        {
+          "id": "Betk_ZCh_mY9",
+          "label": "Personalutveckling",
+          "relevance_points": 8.4
+        }
+      ],
+      "typed_job_titles": [
+        {
+          "id": "GaQ8_5JH_DFB",
+          "label": "Acting group manager"
+        },
+        {
+          "id": "S1VH_aK5_j4w",
+          "label": "Acting manager"
+        },
+        {
+          "id": "dL7q_tx7_WjG",
+          "label": "Administration manager"
+        },
+        {
+          "id": "JaZd_Ji6_vKZ",
+          "label": "Administrationsansvarig"
+        },
+        {
+          "id": "HsQC_Pkt_4Wd",
+          "label": "Administrativ arbetsledare"
+        },
+        {
+          "id": "kXk8_LVL_tih",
+          "label": "Administrativ enhetschef"
+        },
+        {
+          "id": "2VcZ_Yrd_F6z",
+          "label": "Administrativ gruppchef"
+        },
+        {
+          "id": "Bb7E_5Me_8yV",
+          "label": "Administrativ teamledare"
+        },
+        {
+          "id": "rBos_a5W_9rK",
+          "label": "Administrative business manager"
+        },
+        {
+          "id": "Wotm_zBV_8wZ",
+          "label": "Administrative manager"
+        },
+        {
+          "id": "v4t6_Ta4_JjE",
+          "label": "Business operations manager"
+        },
+        {
+          "id": "jAEb_naE_b1n",
+          "label": "Business team manager"
+        },
+        {
+          "id": "BNX3_1mQ_wXb",
+          "label": "Business unit manager"
+        },
+        {
+          "id": "Pd9d_JQc_yBe",
+          "label": "Teamleader"
+        }
+      ]
+    },
+    {
+      "candidate_for_source_bound_rescue": true,
+      "canonical_definition_tokens": 0,
+      "concept_id": "9kWY_X1U_RyC",
+      "direct_source_counts": {
+        "ad_keywords": 200,
+        "relevant_skills": 17,
+        "total": 220,
+        "typed_job_titles": 3
+      },
+      "label": "Universitets- och högskolelektor",
+      "nearby_occupations_diagnostic_only": [
+        {
+          "id": "ShAW_k4b_3PD",
+          "label": "Biträdande universitetslektor/Biträdande högskolelektor"
+        },
+        {
+          "id": "Lijw_Sfh_7vt",
+          "label": "Forskare, samhällsvetenskap"
+        },
+        {
+          "id": "DrU2_d7W_Ana",
+          "label": "Civilingenjör, teknisk fysik"
+        },
+        {
+          "id": "YG1s_tUg_jWJ",
+          "label": "Handläggare, offentlig förvaltning/Utredare, offentlig förvaltning"
+        },
+        {
+          "id": "yhF2_vDD_WB9",
+          "label": "Undervisningsråd"
+        },
+        {
+          "id": "3vry_gaE_yfQ",
+          "label": "Organisationsutvecklare"
+        },
+        {
+          "id": "fUJp_V4d_ueo",
+          "label": "Verksamhetsutvecklare"
+        },
+        {
+          "id": "SFZw_QVx_MU7",
+          "label": "Vårdutvecklare"
+        },
+        {
+          "id": "1DSQ_YqU_AMs",
+          "label": "EU-handläggare"
+        },
+        {
+          "id": "JvRi_WQd_NP3",
+          "label": "Utredningssekreterare"
+        }
+      ],
+      "occurrences": null,
+      "p80_rank": null,
+      "top_ad_keywords_bm25": [
+        {
+          "BM25": 0.46,
+          "RCA": 168.33,
+          "TFIDF": 0.28,
+          "term": "doktorsexamen",
+          "weighted_frequency": 3941.12
+        },
+        {
+          "BM25": 0.36,
+          "RCA": 71.37,
+          "TFIDF": 0.24,
+          "term": "undervisning",
+          "weighted_frequency": 4504.49
+        },
+        {
+          "BM25": 0.25,
+          "RCA": 382.99,
+          "TFIDF": 0.14,
+          "term": "yrkesskicklighet",
+          "weighted_frequency": 1364.54
+        },
+        {
+          "BM25": 0.24,
+          "RCA": 361.63,
+          "TFIDF": 0.13,
+          "term": "kursutveckling",
+          "weighted_frequency": 1288.44
+        },
+        {
+          "BM25": 0.24,
+          "RCA": 37.15,
+          "TFIDF": 0.18,
+          "term": "forskning",
+          "weighted_frequency": 4009.05
+        },
+        {
+          "BM25": 0.23,
+          "RCA": 38.15,
+          "TFIDF": 0.16,
+          "term": "handledning",
+          "weighted_frequency": 3398.14
+        },
+        {
+          "BM25": 0.21,
+          "RCA": 425.5,
+          "TFIDF": 0.11,
+          "term": "kursansvar",
+          "weighted_frequency": 1082.87
+        },
+        {
+          "BM25": 0.12,
+          "RCA": 122.52,
+          "TFIDF": 0.06,
+          "term": "examensarbete",
+          "weighted_frequency": 685.94
+        },
+        {
+          "BM25": 0.1,
+          "RCA": 198.09,
+          "TFIDF": 0.05,
+          "term": "forskningsmedel",
+          "weighted_frequency": 504.13
+        },
+        {
+          "BM25": 0.1,
+          "RCA": 130.3,
+          "TFIDF": 0.05,
+          "term": "kursadministration",
+          "weighted_frequency": 530.56
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 56.42,
+          "TFIDF": 0.04,
+          "term": "avlagd doktorsexamen",
+          "weighted_frequency": 402.07
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 29.92,
+          "TFIDF": 0.03,
+          "term": "forskarutbildning",
+          "weighted_frequency": 441.58
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 20.84,
+          "TFIDF": 0.04,
+          "term": "forskningsprojekt",
+          "weighted_frequency": 562.14
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 7.5,
+          "TFIDF": 0.05,
+          "term": "utvecklingsarbete",
+          "weighted_frequency": 1385.48
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 196.12,
+          "TFIDF": 0.02,
+          "term": "uppsatshandledning",
+          "weighted_frequency": 199.65
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 108.27,
+          "TFIDF": 0.02,
+          "term": "litteraturvetenskap",
+          "weighted_frequency": 220.43
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 58.19,
+          "TFIDF": 0.03,
+          "term": "undervisningsmetoder",
+          "weighted_frequency": 296.19
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 54.95,
+          "TFIDF": 0.03,
+          "term": "ledningsuppdrag",
+          "weighted_frequency": 279.68
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 49.66,
+          "TFIDF": 0.03,
+          "term": "undervisningserfarenhet",
+          "weighted_frequency": 303.3
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 42.44,
+          "TFIDF": 0.03,
+          "term": "uppdragsutbildning",
+          "weighted_frequency": 302.45
+        }
+      ],
+      "top_relevant_skills": [
+        {
+          "id": "ezVu_GhE_b3b",
+          "label": "Publicera forskningsresultat",
+          "relevance_points": 99.0
+        },
+        {
+          "id": "oLnc_YZn_3bm",
+          "label": "Utbildningsplanering",
+          "relevance_points": 38.0
+        },
+        {
+          "id": "c2YE_oK3_f1u",
+          "label": "Forskningsdokumentation",
+          "relevance_points": 31.0
+        },
+        {
+          "id": "TB7B_ewe_qsW",
+          "label": "Forskningsfinansiering",
+          "relevance_points": 13.0
+        },
+        {
+          "id": "hDvV_ryY_gUm",
+          "label": "Studiebrevsgranskning",
+          "relevance_points": 10.0
+        },
+        {
+          "id": "V5EN_xw2_itk",
+          "label": "e-lärande, erfarenhet",
+          "relevance_points": 9.0
+        },
+        {
+          "id": "7Y6d_qDZ_Eyt",
+          "label": "Lärplattformar, erfarenhet",
+          "relevance_points": 6.0
+        },
+        {
+          "id": "Fiyw_2Zs_fJk",
+          "label": "Fritidspedagogik",
+          "relevance_points": 5.4
+        },
+        {
+          "id": "aD6t_MtR_9dH",
+          "label": "Fritidspedagogiska området",
+          "relevance_points": 5.4
+        },
+        {
+          "id": "iYou_UMi_bMe",
+          "label": "Hem- och konsumentkunskap, undervisning",
+          "relevance_points": 5.4
+        },
+        {
+          "id": "ooLP_cHi_X9L",
+          "label": "Lajvpedagogik",
+          "relevance_points": 5.4
+        },
+        {
+          "id": "1dHC_SwK_1ge",
+          "label": "Reggio Emila-pedagogik, erfarenhet",
+          "relevance_points": 5.4
+        },
+        {
+          "id": "C3Fc_BSX_rpH",
+          "label": "Specialpedagogik",
+          "relevance_points": 5.4
+        },
+        {
+          "id": "G8KJ_TwR_R1C",
+          "label": "Utomhuspedagogik",
+          "relevance_points": 5.4
+        },
+        {
+          "id": "5PjX_999_uLZ",
+          "label": "Pedagogiskt ledarskap",
+          "relevance_points": 4.8
+        }
+      ],
+      "typed_job_titles": [
+        {
+          "id": "QHNg_diu_Tez",
+          "label": "Högskolelektor"
+        },
+        {
+          "id": "EfmM_Q3i_YcW",
+          "label": "Lektor"
+        },
+        {
+          "id": "Pm1g_u63_47C",
+          "label": "Universitetslektor"
+        }
+      ]
+    },
+    {
+      "candidate_for_source_bound_rescue": true,
+      "canonical_definition_tokens": 0,
+      "concept_id": "7wdX_4rv_33z",
+      "direct_source_counts": {
+        "ad_keywords": 200,
+        "relevant_skills": 30,
+        "total": 249,
+        "typed_job_titles": 19
+      },
+      "label": "Backend-utvecklare",
+      "nearby_occupations_diagnostic_only": [
+        {
+          "id": "fg7B_yov_smw",
+          "label": "Systemutvecklare/Programmerare"
+        },
+        {
+          "id": "rQds_YGd_quU",
+          "label": "Mjukvaruutvecklare"
+        },
+        {
+          "id": "CQse_CRd_snw",
+          "label": "Civilingenjör, systemutveckling"
+        },
+        {
+          "id": "i1F4_cZZ_PJu",
+          "label": "Systemarkitekt"
+        },
+        {
+          "id": "CZkP_hCz_KM8",
+          "label": "Applikationsutvecklare"
+        },
+        {
+          "id": "GDHs_eoz_uKx",
+          "label": "Frontend-utvecklare"
+        },
+        {
+          "id": "rz2m_96d_vyF",
+          "label": "Databasutvecklare"
+        },
+        {
+          "id": "eSph_tp4_T7Z",
+          "label": "IT-arkitekt"
+        },
+        {
+          "id": "7YaM_bPu_c1T",
+          "label": "Systemanalytiker/Systemutredare"
+        },
+        {
+          "id": "KXaA_48Y_gKe",
+          "label": "Systemtestare/Funktionstestare"
+        }
+      ],
+      "occurrences": null,
+      "p80_rank": null,
+      "top_ad_keywords_bm25": [
+        {
+          "BM25": 0.37,
+          "RCA": 219.68,
+          "TFIDF": 0.21,
+          "term": ".net",
+          "weighted_frequency": 1390.77
+        },
+        {
+          "BM25": 0.29,
+          "RCA": 137.12,
+          "TFIDF": 0.17,
+          "term": "java",
+          "weighted_frequency": 1169.98
+        },
+        {
+          "BM25": 0.27,
+          "RCA": 139.07,
+          "TFIDF": 0.16,
+          "term": "c#",
+          "weighted_frequency": 1071.85
+        },
+        {
+          "BM25": 0.26,
+          "RCA": 224.78,
+          "TFIDF": 0.14,
+          "term": "back end",
+          "weighted_frequency": 866.21
+        },
+        {
+          "BM25": 0.15,
+          "RCA": 157.42,
+          "TFIDF": 0.08,
+          "term": "react",
+          "weighted_frequency": 476.63
+        },
+        {
+          "BM25": 0.14,
+          "RCA": 78.32,
+          "TFIDF": 0.08,
+          "term": "javascript",
+          "weighted_frequency": 560.5
+        },
+        {
+          "BM25": 0.12,
+          "RCA": 71.67,
+          "TFIDF": 0.07,
+          "term": "api",
+          "weighted_frequency": 453.71
+        },
+        {
+          "BM25": 0.12,
+          "RCA": 41.2,
+          "TFIDF": 0.07,
+          "term": "systemutveckling",
+          "weighted_frequency": 589.66
+        },
+        {
+          "BM25": 0.11,
+          "RCA": 85.49,
+          "TFIDF": 0.06,
+          "term": "docker",
+          "weighted_frequency": 376.49
+        },
+        {
+          "BM25": 0.11,
+          "RCA": 61.45,
+          "TFIDF": 0.06,
+          "term": "git",
+          "weighted_frequency": 405.94
+        },
+        {
+          "BM25": 0.11,
+          "RCA": 44.88,
+          "TFIDF": 0.07,
+          "term": "microsoft azure",
+          "weighted_frequency": 506.48
+        },
+        {
+          "BM25": 0.11,
+          "RCA": 39.33,
+          "TFIDF": 0.06,
+          "term": "sql",
+          "weighted_frequency": 487.21
+        },
+        {
+          "BM25": 0.1,
+          "RCA": 72.97,
+          "TFIDF": 0.05,
+          "term": "kubernetes",
+          "weighted_frequency": 341.43
+        },
+        {
+          "BM25": 0.1,
+          "RCA": 70.35,
+          "TFIDF": 0.06,
+          "term": "amazon web services",
+          "weighted_frequency": 348.57
+        },
+        {
+          "BM25": 0.09,
+          "RCA": 225.6,
+          "TFIDF": 0.05,
+          "term": "spring boot",
+          "weighted_frequency": 248.39
+        },
+        {
+          "BM25": 0.09,
+          "RCA": 144.9,
+          "TFIDF": 0.05,
+          "term": "node",
+          "weighted_frequency": 239.31
+        },
+        {
+          "BM25": 0.09,
+          "RCA": 117.57,
+          "TFIDF": 0.05,
+          "term": "typescript",
+          "weighted_frequency": 258.89
+        },
+        {
+          "BM25": 0.09,
+          "RCA": 109.59,
+          "TFIDF": 0.05,
+          "term": "rest",
+          "weighted_frequency": 271.5
+        },
+        {
+          "BM25": 0.09,
+          "RCA": 69.9,
+          "TFIDF": 0.05,
+          "term": "front end",
+          "weighted_frequency": 307.85
+        },
+        {
+          "BM25": 0.08,
+          "RCA": 164.21,
+          "TFIDF": 0.04,
+          "term": "backend",
+          "weighted_frequency": 226.0
+        }
+      ],
+      "top_relevant_skills": [
+        {
+          "id": "5q4a_wi4_WYk",
+          "label": "Molnteknik",
+          "relevance_points": 214.0
+        },
+        {
+          "id": "iUew_moc_BRk",
+          "label": "Programmering",
+          "relevance_points": 60.0
+        },
+        {
+          "id": "D7Ns_RG6_hD2",
+          "label": "Systemutveckling",
+          "relevance_points": 60.0
+        },
+        {
+          "id": "Ss2A_BH7_YrK",
+          "label": "Systemintegrering",
+          "relevance_points": 32.0
+        },
+        {
+          "id": "HFbY_VZ4_iAh",
+          "label": "Databasdesign",
+          "relevance_points": 28.0
+        },
+        {
+          "id": "kraG_fcm_3Mo",
+          "label": "Felsökningsverktyg, IT",
+          "relevance_points": 26.0
+        },
+        {
+          "id": "Utw1_tLL_sS2",
+          "label": "Kravhantering, systemutveckling",
+          "relevance_points": 26.0
+        },
+        {
+          "id": "mPE9_cBb_5ua",
+          "label": "Säkerhetsanalys, datasäkerhet",
+          "relevance_points": 24.0
+        },
+        {
+          "id": "pDfQ_nZ5_Z3j",
+          "label": "MS-600: Building Applications and Solutions with Microsoft 365 Core Services",
+          "relevance_points": 22.0
+        },
+        {
+          "id": "wT7X_BJD_MfQ",
+          "label": "Cybersäkerhet, moln",
+          "relevance_points": 20.0
+        },
+        {
+          "id": "z62J_goq_xqc",
+          "label": "Databasarkitektur",
+          "relevance_points": 14.0
+        },
+        {
+          "id": "kJyW_TcC_r2e",
+          "label": "Tjänsteorienterande arkitektur/SOA",
+          "relevance_points": 14.0
+        },
+        {
+          "id": "AfJ4_Pvv_YBa",
+          "label": "Webbutveckling",
+          "relevance_points": 14.0
+        },
+        {
+          "id": "TMVb_DnH_etF",
+          "label": "Agila arbetsmetoder",
+          "relevance_points": 12.0
+        },
+        {
+          "id": "Hg5q_Rqp_uZw",
+          "label": "Grunt, systemutvecklingsverktyg",
+          "relevance_points": 12.0
+        }
+      ],
+      "typed_job_titles": [
+        {
+          "id": "v8qE_eS5_aAe",
+          "label": ".Net-utvecklare"
+        },
+        {
+          "id": "Ko2P_S16_Tey",
+          "label": "Abap-programmerare"
+        },
+        {
+          "id": "Synv_5iC_WSS",
+          "label": "Agentprogrammerare"
+        },
+        {
+          "id": "eiA1_RjP_5Tc",
+          "label": "API-utvecklare"
+        },
+        {
+          "id": "KkTy_oqi_fS3",
+          "label": "ASP-programmerare"
+        },
+        {
+          "id": "cD9x_CbL_LB6",
+          "label": "Backbone-utvecklare"
+        },
+        {
+          "id": "cN5A_3dP_LGA",
+          "label": "Baseband developer"
+        },
+        {
+          "id": "Da8c_sbH_2bV",
+          "label": "Batchtekniker"
+        },
+        {
+          "id": "bVZd_pkH_kgi",
+          "label": "End-utvecklare"
+        },
+        {
+          "id": "DgCo_EWd_DpZ",
+          "label": "Iseries-utvecklare"
+        },
+        {
+          "id": "yz75_op1_CpA",
+          "label": "Java backend developer"
+        },
+        {
+          "id": "F8PV_jpm_qwT",
+          "label": "Javautvecklare"
+        },
+        {
+          "id": "QoiQ_MDU_aqT",
+          "label": "Jee-utvecklare"
+        },
+        {
+          "id": "GQcS_8Xg_acg",
+          "label": "Ruby-utvecklare"
+        },
+        {
+          "id": "sSwD_fG3_tT1",
+          "label": "Salesforce-utvecklare"
+        },
+        {
+          "id": "cGxS_4dx_cDB",
+          "label": "VBA-utvecklare"
+        },
+        {
+          "id": "gdVd_uxq_7hN",
+          "label": "Warehouse-utvecklare"
+        },
+        {
+          "id": "gwqA_1H1_P6j",
+          "label": "Webbserviceutvecklare"
+        },
+        {
+          "id": "3X4u_LSS_7MS",
+          "label": "Zend-utvecklare"
+        }
+      ]
+    },
+    {
+      "candidate_for_source_bound_rescue": true,
+      "canonical_definition_tokens": 0,
+      "concept_id": "1d3z_y59_2Hm",
+      "direct_source_counts": {
+        "ad_keywords": 200,
+        "relevant_skills": 30,
+        "total": 243,
+        "typed_job_titles": 13
+      },
+      "label": "HR-konsult/PA-konsult",
+      "nearby_occupations_diagnostic_only": [
+        {
+          "id": "s28Q_sya_S2b",
+          "label": "HR-specialist/HR-advisor"
+        },
+        {
+          "id": "Ygok_j9c_uke",
+          "label": "Personalutvecklare"
+        },
+        {
+          "id": "DHo9_qpj_owx",
+          "label": "Personalansvarig"
+        },
+        {
+          "id": "ofiS_5F2_YmV",
+          "label": "HR-assistent"
+        },
+        {
+          "id": "QaQC_ozP_Bme",
+          "label": "Rekryterare/Rekryteringskonsult"
+        },
+        {
+          "id": "uiqh_Drm_XGr",
+          "label": "Researcher, rekrytering"
+        },
+        {
+          "id": "7YVF_kE4_aPm",
+          "label": "Ombudsman"
+        },
+        {
+          "id": "ojEj_nt6_PCa",
+          "label": "Löneadministratör/Lönekonsult"
+        },
+        {
+          "id": "fUJp_V4d_ueo",
+          "label": "Verksamhetsutvecklare"
+        },
+        {
+          "id": "3vry_gaE_yfQ",
+          "label": "Organisationsutvecklare"
+        }
+      ],
+      "occurrences": null,
+      "p80_rank": null,
+      "top_ad_keywords_bm25": [
+        {
+          "BM25": 0.39,
+          "RCA": 443.98,
+          "TFIDF": 0.22,
+          "term": "hr-arbete",
+          "weighted_frequency": 1411.49
+        },
+        {
+          "BM25": 0.35,
+          "RCA": 362.99,
+          "TFIDF": 0.19,
+          "term": "hr-området",
+          "weighted_frequency": 1269.41
+        },
+        {
+          "BM25": 0.23,
+          "RCA": 208.41,
+          "TFIDF": 0.13,
+          "term": "hr-frågor",
+          "weighted_frequency": 861.35
+        },
+        {
+          "BM25": 0.22,
+          "RCA": 62.67,
+          "TFIDF": 0.13,
+          "term": "arbetsrätt",
+          "weighted_frequency": 1295.02
+        },
+        {
+          "BM25": 0.14,
+          "RCA": 38.07,
+          "TFIDF": 0.08,
+          "term": "rehabilitering",
+          "weighted_frequency": 822.99
+        },
+        {
+          "BM25": 0.11,
+          "RCA": 43.24,
+          "TFIDF": 0.07,
+          "term": "kompetensförsörjning",
+          "weighted_frequency": 577.34
+        },
+        {
+          "BM25": 0.1,
+          "RCA": 243.82,
+          "TFIDF": 0.05,
+          "term": "lönebildning",
+          "weighted_frequency": 310.05
+        },
+        {
+          "BM25": 0.1,
+          "RCA": 112.48,
+          "TFIDF": 0.05,
+          "term": "hr-system",
+          "weighted_frequency": 357.59
+        },
+        {
+          "BM25": 0.09,
+          "RCA": 107.3,
+          "TFIDF": 0.05,
+          "term": "personalområdet",
+          "weighted_frequency": 307.01
+        },
+        {
+          "BM25": 0.09,
+          "RCA": 103.17,
+          "TFIDF": 0.05,
+          "term": "arbetsrättsliga frågor",
+          "weighted_frequency": 328.0
+        },
+        {
+          "BM25": 0.08,
+          "RCA": 92.7,
+          "TFIDF": 0.04,
+          "term": "personalvetenskap",
+          "weighted_frequency": 265.23
+        },
+        {
+          "BM25": 0.08,
+          "RCA": 11.06,
+          "TFIDF": 0.08,
+          "term": "rekrytering",
+          "weighted_frequency": 1526.1
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 91.33,
+          "TFIDF": 0.03,
+          "term": "personalärenden",
+          "weighted_frequency": 203.25
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 72.77,
+          "TFIDF": 0.03,
+          "term": "hr-administration",
+          "weighted_frequency": 208.22
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 30.36,
+          "TFIDF": 0.03,
+          "term": "personaladministration",
+          "weighted_frequency": 260.57
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 218.75,
+          "TFIDF": 0.03,
+          "term": "löneöversyn",
+          "weighted_frequency": 139.09
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 7.95,
+          "TFIDF": 0.04,
+          "term": "personalansvar",
+          "weighted_frequency": 629.13
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 6.96,
+          "TFIDF": 0.05,
+          "term": "arbetsmiljö",
+          "weighted_frequency": 1055.39
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 78.2,
+          "TFIDF": 0.02,
+          "term": "rehabiliteringsärenden",
+          "weighted_frequency": 124.3
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 72.69,
+          "TFIDF": 0.02,
+          "term": "lönerevision",
+          "weighted_frequency": 138.65
+        }
+      ],
+      "top_relevant_skills": [
+        {
+          "id": "cDU5_op5_Tuk",
+          "label": "Rekryteringsvana",
+          "relevance_points": 106.0
+        },
+        {
+          "id": "HxKb_aYu_Sif",
+          "label": "Löneförhandlingar",
+          "relevance_points": 32.0
+        },
+        {
+          "id": "q7Mx_gjU_F9q",
+          "label": "Förhandlingsvana",
+          "relevance_points": 30.0
+        },
+        {
+          "id": "DfC4_KjK_LTC",
+          "label": "Jämställdhetsfrågor, personalarbete",
+          "relevance_points": 30.0
+        },
+        {
+          "id": "Betk_ZCh_mY9",
+          "label": "Personalutveckling",
+          "relevance_points": 30.0
+        },
+        {
+          "id": "RwCa_yJR_Y5V",
+          "label": "Akutrekrytering",
+          "relevance_points": 26.0
+        },
+        {
+          "id": "nt4p_6kN_Lt2",
+          "label": "Anställningsavtal, utformning",
+          "relevance_points": 26.0
+        },
+        {
+          "id": "fiLT_BSW_HCb",
+          "label": "Arbetsrätt",
+          "relevance_points": 26.0
+        },
+        {
+          "id": "RUsW_e6S_wKZ",
+          "label": "Bakgrundskontroll vid rekrytering",
+          "relevance_points": 26.0
+        },
+        {
+          "id": "z7wE_9xb_3jX",
+          "label": "Kollektivavtal",
+          "relevance_points": 26.0
+        },
+        {
+          "id": "jfd3_4zS_fjt",
+          "label": "Kommunala avtal",
+          "relevance_points": 26.0
+        },
+        {
+          "id": "fmGj_KZi_C9x",
+          "label": "Privata avtal",
+          "relevance_points": 26.0
+        },
+        {
+          "id": "Ggsm_7px_yvJ",
+          "label": "Samtalsmetodik",
+          "relevance_points": 26.0
+        },
+        {
+          "id": "yfTA_ncB_DSc",
+          "label": "Statliga avtal",
+          "relevance_points": 26.0
+        },
+        {
+          "id": "2Mtp_uhe_wmS",
+          "label": "Tjänstemannaavtal",
+          "relevance_points": 26.0
+        }
+      ],
+      "typed_job_titles": [
+        {
+          "id": "wEDA_Xti_4JT",
+          "label": "Arbetsgivarkonsult"
+        },
+        {
+          "id": "3nJR_WEZ_cN2",
+          "label": "Bemanningscontroller"
+        },
+        {
+          "id": "tmog_xxh_r5Q",
+          "label": "Bemanningskonsult"
+        },
+        {
+          "id": "F7Vg_36t_roE",
+          "label": "Bemanningsledare"
+        },
+        {
+          "id": "uUbz_P9j_Ghm",
+          "label": "Bemanningsspecialist"
+        },
+        {
+          "id": "BQ5r_AiN_8Bj",
+          "label": "Benefits-specialist"
+        },
+        {
+          "id": "fnhW_EBh_bfJ",
+          "label": "Beteendevetare"
+        },
+        {
+          "id": "yDnY_DV7_8an",
+          "label": "HR-projektedare"
+        },
+        {
+          "id": "o1BN_7uN_NNz",
+          "label": "HRIS-konsult"
+        },
+        {
+          "id": "F5ja_wFi_2rN",
+          "label": "Konsultansvarig"
+        },
+        {
+          "id": "nNP4_8nW_ayo",
+          "label": "Konsultkoordinator"
+        },
+        {
+          "id": "YWft_bBn_Jyt",
+          "label": "Personalvetare"
+        },
+        {
+          "id": "EEB3_CiA_icu",
+          "label": "Researchkonsult"
+        }
+      ]
+    },
+    {
+      "candidate_for_source_bound_rescue": true,
+      "canonical_definition_tokens": 0,
+      "concept_id": "GDHs_eoz_uKx",
+      "direct_source_counts": {
+        "ad_keywords": 200,
+        "relevant_skills": 30,
+        "total": 240,
+        "typed_job_titles": 10
+      },
+      "label": "Frontend-utvecklare",
+      "nearby_occupations_diagnostic_only": [
+        {
+          "id": "fg7B_yov_smw",
+          "label": "Systemutvecklare/Programmerare"
+        },
+        {
+          "id": "7wdX_4rv_33z",
+          "label": "Backend-utvecklare"
+        },
+        {
+          "id": "rQds_YGd_quU",
+          "label": "Mjukvaruutvecklare"
+        },
+        {
+          "id": "CZkP_hCz_KM8",
+          "label": "Applikationsutvecklare"
+        },
+        {
+          "id": "i1F4_cZZ_PJu",
+          "label": "Systemarkitekt"
+        },
+        {
+          "id": "CQse_CRd_snw",
+          "label": "Civilingenjör, systemutveckling"
+        },
+        {
+          "id": "QQjZ_NAN_bDR",
+          "label": "Interaktionsdesigner"
+        },
+        {
+          "id": "9jYT_DS5_6JE",
+          "label": "Systemdesigner"
+        },
+        {
+          "id": "rz2m_96d_vyF",
+          "label": "Databasutvecklare"
+        },
+        {
+          "id": "7YaM_bPu_c1T",
+          "label": "Systemanalytiker/Systemutredare"
+        }
+      ],
+      "occurrences": null,
+      "p80_rank": null,
+      "top_ad_keywords_bm25": [
+        {
+          "BM25": 0.89,
+          "RCA": 927.81,
+          "TFIDF": 0.49,
+          "term": "react",
+          "weighted_frequency": 2527.11
+        },
+        {
+          "BM25": 0.74,
+          "RCA": 1000.89,
+          "TFIDF": 0.4,
+          "term": "typescript",
+          "weighted_frequency": 1982.65
+        },
+        {
+          "BM25": 0.55,
+          "RCA": 1316.88,
+          "TFIDF": 0.29,
+          "term": "open source",
+          "weighted_frequency": 1304.3
+        },
+        {
+          "BM25": 0.38,
+          "RCA": 293.4,
+          "TFIDF": 0.21,
+          "term": "front end",
+          "weighted_frequency": 1162.39
+        },
+        {
+          "BM25": 0.35,
+          "RCA": 190.18,
+          "TFIDF": 0.2,
+          "term": "javascript",
+          "weighted_frequency": 1224.38
+        },
+        {
+          "BM25": 0.26,
+          "RCA": 146.66,
+          "TFIDF": 0.15,
+          "term": "css",
+          "weighted_frequency": 907.84
+        },
+        {
+          "BM25": 0.22,
+          "RCA": 253.26,
+          "TFIDF": 0.12,
+          "term": "angularjs",
+          "weighted_frequency": 627.11
+        },
+        {
+          "BM25": 0.21,
+          "RCA": 112.87,
+          "TFIDF": 0.12,
+          "term": "html",
+          "weighted_frequency": 726.63
+        },
+        {
+          "BM25": 0.17,
+          "RCA": 282.09,
+          "TFIDF": 0.09,
+          "term": "vue",
+          "weighted_frequency": 419.1
+        },
+        {
+          "BM25": 0.16,
+          "RCA": 96.48,
+          "TFIDF": 0.09,
+          "term": "ux",
+          "weighted_frequency": 549.46
+        },
+        {
+          "BM25": 0.11,
+          "RCA": 195.75,
+          "TFIDF": 0.06,
+          "term": "node",
+          "weighted_frequency": 290.82
+        },
+        {
+          "BM25": 0.11,
+          "RCA": 65.17,
+          "TFIDF": 0.06,
+          "term": "git",
+          "weighted_frequency": 387.27
+        },
+        {
+          "BM25": 0.1,
+          "RCA": 34.82,
+          "TFIDF": 0.06,
+          "term": "webbutveckling",
+          "weighted_frequency": 422.43
+        },
+        {
+          "BM25": 0.09,
+          "RCA": 80.15,
+          "TFIDF": 0.05,
+          "term": "back end",
+          "weighted_frequency": 277.86
+        },
+        {
+          "BM25": 0.09,
+          "RCA": 52.68,
+          "TFIDF": 0.05,
+          "term": ".net",
+          "weighted_frequency": 300.01
+        },
+        {
+          "BM25": 0.08,
+          "RCA": 331.15,
+          "TFIDF": 0.04,
+          "term": "sass",
+          "weighted_frequency": 163.99
+        },
+        {
+          "BM25": 0.08,
+          "RCA": 140.23,
+          "TFIDF": 0.04,
+          "term": "html5",
+          "weighted_frequency": 208.34
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 134.84,
+          "TFIDF": 0.04,
+          "term": "jquery",
+          "weighted_frequency": 166.93
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 92.85,
+          "TFIDF": 0.04,
+          "term": "php",
+          "weighted_frequency": 183.93
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 80.27,
+          "TFIDF": 0.04,
+          "term": "rest",
+          "weighted_frequency": 178.88
+        }
+      ],
+      "top_relevant_skills": [
+        {
+          "id": "iUew_moc_BRk",
+          "label": "Programmering",
+          "relevance_points": 100.0
+        },
+        {
+          "id": "euH8_yAp_hiG",
+          "label": "CSS, stilmall",
+          "relevance_points": 61.0
+        },
+        {
+          "id": "WzP2_nW8_gXH",
+          "label": "Configuration Management/CM",
+          "relevance_points": 60.0
+        },
+        {
+          "id": "D7Ns_RG6_hD2",
+          "label": "Systemutveckling",
+          "relevance_points": 60.0
+        },
+        {
+          "id": "DHhX_uVf_y6X",
+          "label": "JavaScript, programmeringsspråk",
+          "relevance_points": 50.0
+        },
+        {
+          "id": "cZe5_zc1_v8j",
+          "label": "CASE-verktyg",
+          "relevance_points": 34.0
+        },
+        {
+          "id": "Bpkg_wnB_ahU",
+          "label": "Xcode, integrerad utvecklingsmiljö",
+          "relevance_points": 34.0
+        },
+        {
+          "id": "AfJ4_Pvv_YBa",
+          "label": "Webbutveckling",
+          "relevance_points": 32.0
+        },
+        {
+          "id": "4xND_QRk_GnJ",
+          "label": "Visual Studio, integrerad utvecklingsmiljö",
+          "relevance_points": 30.0
+        },
+        {
+          "id": "7pQ1_pc6_qRD",
+          "label": "Datalog, programmeringsspråk",
+          "relevance_points": 28.0
+        },
+        {
+          "id": "kraG_fcm_3Mo",
+          "label": "Felsökningsverktyg, IT",
+          "relevance_points": 28.0
+        },
+        {
+          "id": "Fyzv_4ku_Cse",
+          "label": "Unix-script, programmeringsspråk",
+          "relevance_points": 28.0
+        },
+        {
+          "id": "bWM7_zqG_ipJ",
+          "label": "Visual Basic, programmeringsspråk",
+          "relevance_points": 28.0
+        },
+        {
+          "id": "eGDx_hg4_CTe",
+          "label": "Lisp, programmeringsspråk",
+          "relevance_points": 26.0
+        },
+        {
+          "id": "5Vk5_FW2_ceH",
+          "label": "Grafiska gränssnitt/GUI",
+          "relevance_points": 24.0
+        }
+      ],
+      "typed_job_titles": [
+        {
+          "id": "bVZd_pkH_kgi",
+          "label": "End-utvecklare"
+        },
+        {
+          "id": "XgQ9_XoM_A2V",
+          "label": "Flutterutvecklare"
+        },
+        {
+          "id": "ZTvW_tkE_RLk",
+          "label": "Javascript-utvecklare"
+        },
+        {
+          "id": "rpnq_Yqk_sd1",
+          "label": "JS-utvecklare"
+        },
+        {
+          "id": "sSwD_fG3_tT1",
+          "label": "Salesforce-utvecklare"
+        },
+        {
+          "id": "cYuo_dCU_cWC",
+          "label": "UI-utvecklare"
+        },
+        {
+          "id": "TYhh_3UW_bmb",
+          "label": "Webbklientutvecklare"
+        },
+        {
+          "id": "oB5o_eSY_PQd",
+          "label": "Webbtekniker"
+        },
+        {
+          "id": "URP5_iwe_oGE",
+          "label": "Webbutvecklare"
+        },
+        {
+          "id": "dxTf_H3u_oEf",
+          "label": "Wordpress-utvecklare"
+        }
+      ]
+    },
+    {
+      "candidate_for_source_bound_rescue": true,
+      "canonical_definition_tokens": 0,
+      "concept_id": "CQse_CRd_snw",
+      "direct_source_counts": {
+        "ad_keywords": 200,
+        "relevant_skills": 30,
+        "total": 236,
+        "typed_job_titles": 6
+      },
+      "label": "Civilingenjör, systemutveckling",
+      "nearby_occupations_diagnostic_only": [
+        {
+          "id": "rQds_YGd_quU",
+          "label": "Mjukvaruutvecklare"
+        },
+        {
+          "id": "fg7B_yov_smw",
+          "label": "Systemutvecklare/Programmerare"
+        },
+        {
+          "id": "i1F4_cZZ_PJu",
+          "label": "Systemarkitekt"
+        },
+        {
+          "id": "7wdX_4rv_33z",
+          "label": "Backend-utvecklare"
+        },
+        {
+          "id": "bVd9_PdQ_nxv",
+          "label": "Utvecklingsingenjör elektronik"
+        },
+        {
+          "id": "9jYT_DS5_6JE",
+          "label": "Systemdesigner"
+        },
+        {
+          "id": "GuRB_LaM_Adb",
+          "label": "Civilingenjör inom elektroteknik"
+        },
+        {
+          "id": "7YaM_bPu_c1T",
+          "label": "Systemanalytiker/Systemutredare"
+        },
+        {
+          "id": "KXaA_48Y_gKe",
+          "label": "Systemtestare/Funktionstestare"
+        },
+        {
+          "id": "YqiW_QLd_qHo",
+          "label": "Applikationsingenjör"
+        }
+      ],
+      "occurrences": null,
+      "p80_rank": null,
+      "top_ad_keywords_bm25": [
+        {
+          "BM25": 0.12,
+          "RCA": 54.54,
+          "TFIDF": 0.07,
+          "term": "c++",
+          "weighted_frequency": 394.35
+        },
+        {
+          "BM25": 0.12,
+          "RCA": 44.5,
+          "TFIDF": 0.07,
+          "term": "mjukvaruutveckling",
+          "weighted_frequency": 419.3
+        },
+        {
+          "BM25": 0.12,
+          "RCA": 39.71,
+          "TFIDF": 0.07,
+          "term": "systemutveckling",
+          "weighted_frequency": 452.4
+        },
+        {
+          "BM25": 0.09,
+          "RCA": 48.8,
+          "TFIDF": 0.05,
+          "term": "c#",
+          "weighted_frequency": 299.41
+        },
+        {
+          "BM25": 0.09,
+          "RCA": 22.75,
+          "TFIDF": 0.06,
+          "term": "python",
+          "weighted_frequency": 413.72
+        },
+        {
+          "BM25": 0.08,
+          "RCA": 50.58,
+          "TFIDF": 0.05,
+          "term": "embedded system",
+          "weighted_frequency": 243.82
+        },
+        {
+          "BM25": 0.08,
+          "RCA": 39.6,
+          "TFIDF": 0.05,
+          "term": "java",
+          "weighted_frequency": 269.0
+        },
+        {
+          "BM25": 0.08,
+          "RCA": 18.36,
+          "TFIDF": 0.06,
+          "term": "mjukvara",
+          "weighted_frequency": 418.33
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 40.12,
+          "TFIDF": 0.04,
+          "term": ".net",
+          "weighted_frequency": 202.17
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 27.84,
+          "TFIDF": 0.04,
+          "term": "teknisk fysik",
+          "weighted_frequency": 237.92
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 25.63,
+          "TFIDF": 0.04,
+          "term": "datateknik",
+          "weighted_frequency": 252.69
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 21.73,
+          "TFIDF": 0.04,
+          "term": "verifiering",
+          "weighted_frequency": 295.26
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 11.15,
+          "TFIDF": 0.05,
+          "term": "programmering",
+          "weighted_frequency": 439.83
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 20.38,
+          "TFIDF": 0.03,
+          "term": "sql",
+          "weighted_frequency": 200.93
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 10.91,
+          "TFIDF": 0.04,
+          "term": "elektronik",
+          "weighted_frequency": 337.06
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 49.64,
+          "TFIDF": 0.03,
+          "term": "embedded",
+          "weighted_frequency": 130.51
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 27.81,
+          "TFIDF": 0.03,
+          "term": "javascript",
+          "weighted_frequency": 158.41
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 20.52,
+          "TFIDF": 0.03,
+          "term": "mekatronik",
+          "weighted_frequency": 184.33
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 17.18,
+          "TFIDF": 0.03,
+          "term": "elektroteknik",
+          "weighted_frequency": 176.93
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 14.42,
+          "TFIDF": 0.03,
+          "term": "arkitektur",
+          "weighted_frequency": 180.11
+        }
+      ],
+      "top_relevant_skills": [
+        {
+          "id": "D7Ns_RG6_hD2",
+          "label": "Systemutveckling",
+          "relevance_points": 75.0
+        },
+        {
+          "id": "iUew_moc_BRk",
+          "label": "Programmering",
+          "relevance_points": 66.0
+        },
+        {
+          "id": "kraG_fcm_3Mo",
+          "label": "Felsökningsverktyg, IT",
+          "relevance_points": 46.0
+        },
+        {
+          "id": "Ss2A_BH7_YrK",
+          "label": "Systemintegrering",
+          "relevance_points": 35.0
+        },
+        {
+          "id": "WzP2_nW8_gXH",
+          "label": "Configuration Management/CM",
+          "relevance_points": 33.0
+        },
+        {
+          "id": "5q4a_wi4_WYk",
+          "label": "Molnteknik",
+          "relevance_points": 25.0
+        },
+        {
+          "id": "cZe5_zc1_v8j",
+          "label": "CASE-verktyg",
+          "relevance_points": 20.0
+        },
+        {
+          "id": "Bpkg_wnB_ahU",
+          "label": "Xcode, integrerad utvecklingsmiljö",
+          "relevance_points": 20.0
+        },
+        {
+          "id": "4xND_QRk_GnJ",
+          "label": "Visual Studio, integrerad utvecklingsmiljö",
+          "relevance_points": 16.0
+        },
+        {
+          "id": "7pQ1_pc6_qRD",
+          "label": "Datalog, programmeringsspråk",
+          "relevance_points": 14.0
+        },
+        {
+          "id": "bWM7_zqG_ipJ",
+          "label": "Visual Basic, programmeringsspråk",
+          "relevance_points": 14.0
+        },
+        {
+          "id": "A5HJ_aMw_BQt",
+          "label": "Mjukvaruutveckling",
+          "relevance_points": 13.0
+        },
+        {
+          "id": "Pk2j_jXV_Y3j",
+          "label": "Projektledning, IT",
+          "relevance_points": 13.0
+        },
+        {
+          "id": "eGDx_hg4_CTe",
+          "label": "Lisp, programmeringsspråk",
+          "relevance_points": 12.0
+        },
+        {
+          "id": "iyK1_MZu_aym",
+          "label": "Ada, programmeringsspråk",
+          "relevance_points": 11.0
+        }
+      ],
+      "typed_job_titles": [
+        {
+          "id": "nts5_zVf_yLG",
+          "label": "Produktionstestingenjör"
+        },
+        {
+          "id": "shEi_H8w_A6C",
+          "label": "Programutvecklingsingenjör"
+        },
+        {
+          "id": "Zn2Z_1VS_SGk",
+          "label": "Programvaruingenjör"
+        },
+        {
+          "id": "qMmA_Ci9_aXa",
+          "label": "Programvarukonstruktör"
+        },
+        {
+          "id": "rJKB_CuN_MfJ",
+          "label": "Qlik-konsult"
+        },
+        {
+          "id": "bjF4_M9Q_LQV",
+          "label": "System engineer"
+        }
+      ]
+    },
+    {
+      "candidate_for_source_bound_rescue": true,
+      "canonical_definition_tokens": 0,
+      "concept_id": "hr5f_dci_NcD",
+      "direct_source_counts": {
+        "ad_keywords": 200,
+        "relevant_skills": 29,
+        "total": 234,
+        "typed_job_titles": 5
+      },
+      "label": "Rektor",
+      "nearby_occupations_diagnostic_only": [
+        {
+          "id": "Cn7e_qQS_nPF",
+          "label": "Biträdande rektor"
+        },
+        {
+          "id": "DdMT_ukX_LGq",
+          "label": "Skolchef/Skoldirektör/Skolledare"
+        },
+        {
+          "id": "xUfR_QAo_B3a",
+          "label": "Förskolerektor"
+        },
+        {
+          "id": "8L4Z_dVu_PaL",
+          "label": "Utbildningschef"
+        },
+        {
+          "id": "E6Ts_Gns_DjW",
+          "label": "Biträdande förskolerektor"
+        },
+        {
+          "id": "Mg5T_Wi4_5my",
+          "label": "Avdelningschef, kommun"
+        },
+        {
+          "id": "Noad_FWq_mY2",
+          "label": "Enhetschef, offentlig förvaltning"
+        },
+        {
+          "id": "1ERY_48v_Q6m",
+          "label": "Administrativ chef"
+        },
+        {
+          "id": "PTD2_6C1_8TJ",
+          "label": "Sektionschef, offentlig förvaltning"
+        },
+        {
+          "id": "5zDe_ZGc_x89",
+          "label": "Avdelningschef, statlig"
+        }
+      ],
+      "occurrences": null,
+      "p80_rank": null,
+      "top_ad_keywords_bm25": [
+        {
+          "BM25": 0.53,
+          "RCA": 719.15,
+          "TFIDF": 0.29,
+          "term": "rektorsutbildning",
+          "weighted_frequency": 1943.07
+        },
+        {
+          "BM25": 0.18,
+          "RCA": 37.69,
+          "TFIDF": 0.12,
+          "term": "styrdokument",
+          "weighted_frequency": 1374.71
+        },
+        {
+          "BM25": 0.17,
+          "RCA": 84.71,
+          "TFIDF": 0.1,
+          "term": "skolutveckling",
+          "weighted_frequency": 829.7
+        },
+        {
+          "BM25": 0.11,
+          "RCA": 42.97,
+          "TFIDF": 0.06,
+          "term": "grundskolan",
+          "weighted_frequency": 580.45
+        },
+        {
+          "BM25": 0.11,
+          "RCA": 25.07,
+          "TFIDF": 0.07,
+          "term": "förskola",
+          "weighted_frequency": 812.92
+        },
+        {
+          "BM25": 0.1,
+          "RCA": 34.61,
+          "TFIDF": 0.06,
+          "term": "grundskola",
+          "weighted_frequency": 561.03
+        },
+        {
+          "BM25": 0.1,
+          "RCA": 17.08,
+          "TFIDF": 0.07,
+          "term": "kvalitetsarbete",
+          "weighted_frequency": 1020.92
+        },
+        {
+          "BM25": 0.09,
+          "RCA": 11.89,
+          "TFIDF": 0.09,
+          "term": "ledarskap",
+          "weighted_frequency": 1807.07
+        },
+        {
+          "BM25": 0.08,
+          "RCA": 41.34,
+          "TFIDF": 0.04,
+          "term": "elevhälsa",
+          "weighted_frequency": 363.04
+        },
+        {
+          "BM25": 0.08,
+          "RCA": 12.23,
+          "TFIDF": 0.06,
+          "term": "personalansvar",
+          "weighted_frequency": 1028.47
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 67.42,
+          "TFIDF": 0.04,
+          "term": "pedagogiskt ledarskap",
+          "weighted_frequency": 296.02
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 63.11,
+          "TFIDF": 0.04,
+          "term": "elevhälsoarbete",
+          "weighted_frequency": 298.41
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 33.53,
+          "TFIDF": 0.04,
+          "term": "fritidshem",
+          "weighted_frequency": 317.06
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 26.47,
+          "TFIDF": 0.04,
+          "term": "pedagogisk verksamhet",
+          "weighted_frequency": 357.61
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 13.47,
+          "TFIDF": 0.05,
+          "term": "arbetsmiljöansvar",
+          "weighted_frequency": 573.01
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 10.05,
+          "TFIDF": 0.07,
+          "term": "ekonomi",
+          "weighted_frequency": 1601.41
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 20.7,
+          "TFIDF": 0.04,
+          "term": "vuxenutbildning",
+          "weighted_frequency": 370.52
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 211.94,
+          "TFIDF": 0.03,
+          "term": "skolledarerfarenhet",
+          "weighted_frequency": 143.16
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 22.91,
+          "TFIDF": 0.03,
+          "term": "skollagen",
+          "weighted_frequency": 278.61
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 22.28,
+          "TFIDF": 0.03,
+          "term": "gymnasieskola",
+          "weighted_frequency": 255.81
+        }
+      ],
+      "top_relevant_skills": [
+        {
+          "id": "oLnc_YZn_3bm",
+          "label": "Utbildningsplanering",
+          "relevance_points": 524.0
+        },
+        {
+          "id": "echN_F9u_bRp",
+          "label": "Områdesansvar, utbildningsfrågor",
+          "relevance_points": 202.0
+        },
+        {
+          "id": "5PjX_999_uLZ",
+          "label": "Pedagogiskt ledarskap",
+          "relevance_points": 193.0
+        },
+        {
+          "id": "azTh_4zW_Tfb",
+          "label": "Utbildning och skola, områdeskunskap",
+          "relevance_points": 180.0
+        },
+        {
+          "id": "zXNU_zXR_hGd",
+          "label": "Strategisk planering",
+          "relevance_points": 169.0
+        },
+        {
+          "id": "Gt5f_wdi_FSJ",
+          "label": "Budgetansvar",
+          "relevance_points": 128.0
+        },
+        {
+          "id": "eThQ_HCv_mY6",
+          "label": "Personalplanering",
+          "relevance_points": 128.0
+        },
+        {
+          "id": "s5SS_7bW_1Gh",
+          "label": "Resultatanalys",
+          "relevance_points": 60.0
+        },
+        {
+          "id": "YS7V_c8n_MrS",
+          "label": "Verksamhetsansvar",
+          "relevance_points": 52.0
+        },
+        {
+          "id": "7VsB_78P_sGW",
+          "label": "Verksamhetsledning, grundskola",
+          "relevance_points": 38.0
+        },
+        {
+          "id": "Ju2P_fHA_n5B",
+          "label": "Verksamhetsledning, gymnasieskolan",
+          "relevance_points": 38.0
+        },
+        {
+          "id": "JKxk_2A6_ZYt",
+          "label": "Verksamhetsledning, folkhögskola",
+          "relevance_points": 28.0
+        },
+        {
+          "id": "pMsw_qiZ_eNz",
+          "label": "Verksamhetsledning, anpassad grundskola",
+          "relevance_points": 18.0
+        },
+        {
+          "id": "VVFX_crE_dzw",
+          "label": "Verksamhetsledning, träningsskola",
+          "relevance_points": 18.0
+        },
+        {
+          "id": "UH9g_R5v_MCx",
+          "label": "Budgetuppföljning",
+          "relevance_points": 16.0
+        }
+      ],
+      "typed_job_titles": [
+        {
+          "id": "QYLp_JQr_HTe",
+          "label": "Grundskolerektor"
+        },
+        {
+          "id": "ZSrG_ypE_6p6",
+          "label": "Gymnasierektor"
+        },
+        {
+          "id": "x76a_TFs_1e9",
+          "label": "Programrektor"
+        },
+        {
+          "id": "seU3_NZX_fEd",
+          "label": "Rektortjänst"
+        },
+        {
+          "id": "cy9N_Vop_tNE",
+          "label": "Skolområdeschef"
+        }
+      ]
+    },
+    {
+      "candidate_for_source_bound_rescue": true,
+      "canonical_definition_tokens": 0,
+      "concept_id": "iCy6_G72_abh",
+      "direct_source_counts": {
+        "ad_keywords": 200,
+        "relevant_skills": 30,
+        "total": 242,
+        "typed_job_titles": 12
+      },
+      "label": "Ekonomichef",
+      "nearby_occupations_diagnostic_only": [
+        {
+          "id": "Ld9h_41y_zvw",
+          "label": "Redovisningschef"
+        },
+        {
+          "id": "MZ9T_JuJ_FxU",
+          "label": "Redovisningsassistent"
+        },
+        {
+          "id": "jgo4_iYd_cr6",
+          "label": "Ekonomidirektör/Finanschef"
+        },
+        {
+          "id": "BK8D_hZe_dtk",
+          "label": "Ekonomiassistent"
+        },
+        {
+          "id": "1ERY_48v_Q6m",
+          "label": "Administrativ chef"
+        },
+        {
+          "id": "DXve_c4C_QMg",
+          "label": "Kanslichef"
+        },
+        {
+          "id": "nvUH_JLD_s4F",
+          "label": "Verkställande direktör/VD"
+        },
+        {
+          "id": "5seg_CMk_FtK",
+          "label": "Affärsområdeschef"
+        },
+        {
+          "id": "5zDe_ZGc_x89",
+          "label": "Avdelningschef, statlig"
+        },
+        {
+          "id": "Noad_FWq_mY2",
+          "label": "Enhetschef, offentlig förvaltning"
+        }
+      ],
+      "occurrences": null,
+      "p80_rank": null,
+      "top_ad_keywords_bm25": [
+        {
+          "BM25": 0.28,
+          "RCA": 72.27,
+          "TFIDF": 0.18,
+          "term": "redovisning",
+          "weighted_frequency": 2483.86
+        },
+        {
+          "BM25": 0.18,
+          "RCA": 136.93,
+          "TFIDF": 0.1,
+          "term": "årsbokslut",
+          "weighted_frequency": 977.95
+        },
+        {
+          "BM25": 0.17,
+          "RCA": 100.86,
+          "TFIDF": 0.1,
+          "term": "bokslut",
+          "weighted_frequency": 1035.43
+        },
+        {
+          "BM25": 0.15,
+          "RCA": 96.38,
+          "TFIDF": 0.08,
+          "term": "årsredovisning",
+          "weighted_frequency": 860.42
+        },
+        {
+          "BM25": 0.13,
+          "RCA": 111.38,
+          "TFIDF": 0.07,
+          "term": "månadsbokslut",
+          "weighted_frequency": 696.0
+        },
+        {
+          "BM25": 0.12,
+          "RCA": 57.58,
+          "TFIDF": 0.07,
+          "term": "ekonomiarbete",
+          "weighted_frequency": 822.52
+        },
+        {
+          "BM25": 0.11,
+          "RCA": 39.98,
+          "TFIDF": 0.07,
+          "term": "ekonomistyrning",
+          "weighted_frequency": 820.95
+        },
+        {
+          "BM25": 0.1,
+          "RCA": 13.6,
+          "TFIDF": 0.1,
+          "term": "ekonomi",
+          "weighted_frequency": 2864.38
+        },
+        {
+          "BM25": 0.08,
+          "RCA": 68.81,
+          "TFIDF": 0.05,
+          "term": "löpande bokföring",
+          "weighted_frequency": 460.72
+        },
+        {
+          "BM25": 0.08,
+          "RCA": 50.43,
+          "TFIDF": 0.04,
+          "term": "ekonomiområdet",
+          "weighted_frequency": 450.2
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 81.75,
+          "TFIDF": 0.04,
+          "term": "koncernredovisning",
+          "weighted_frequency": 364.9
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 71.44,
+          "TFIDF": 0.04,
+          "term": "ekonomifunktion",
+          "weighted_frequency": 350.79
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 65.86,
+          "TFIDF": 0.04,
+          "term": "deklaration",
+          "weighted_frequency": 352.76
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 58.12,
+          "TFIDF": 0.04,
+          "term": "leverantörsreskontra",
+          "weighted_frequency": 415.07
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 20.61,
+          "TFIDF": 0.05,
+          "term": "prognoser",
+          "weighted_frequency": 634.91
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 10.41,
+          "TFIDF": 0.06,
+          "term": "personalansvar",
+          "weighted_frequency": 1157.02
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 10.12,
+          "TFIDF": 0.06,
+          "term": "budget",
+          "weighted_frequency": 1205.95
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 50.79,
+          "TFIDF": 0.03,
+          "term": "moms",
+          "weighted_frequency": 294.7
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 44.1,
+          "TFIDF": 0.03,
+          "term": "kundreskontra",
+          "weighted_frequency": 354.36
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 14.15,
+          "TFIDF": 0.04,
+          "term": "budgetarbete",
+          "weighted_frequency": 530.51
+        }
+      ],
+      "top_relevant_skills": [
+        {
+          "id": "QKMc_eKX_sUE",
+          "label": "Kreditbedömning",
+          "relevance_points": 154.0
+        },
+        {
+          "id": "eox4_5Lc_W7C",
+          "label": "Ekonomisk rådgivning",
+          "relevance_points": 117.0
+        },
+        {
+          "id": "W7Qf_aRY_FEo",
+          "label": "Ekonomisk analys",
+          "relevance_points": 114.0
+        },
+        {
+          "id": "FYk9_RXp_7c5",
+          "label": "Redovisning",
+          "relevance_points": 112.0
+        },
+        {
+          "id": "VfP9_2xd_g2h",
+          "label": "Företagsekonomi",
+          "relevance_points": 78.0
+        },
+        {
+          "id": "DWsz_s47_DrL",
+          "label": "Kapitalförvaltning",
+          "relevance_points": 66.0
+        },
+        {
+          "id": "EhH5_quw_XQK",
+          "label": "Skatter och avgifter",
+          "relevance_points": 63.0
+        },
+        {
+          "id": "zXNU_zXR_hGd",
+          "label": "Strategisk planering",
+          "relevance_points": 61.0
+        },
+        {
+          "id": "bHQT_Bhn_w3S",
+          "label": "Riskhantering/Risk management",
+          "relevance_points": 60.0
+        },
+        {
+          "id": "7tVG_9zf_7mw",
+          "label": "Kostnads- och intäktsanalys",
+          "relevance_points": 42.0
+        },
+        {
+          "id": "4fRg_DA4_Dj3",
+          "label": "Avtalsutformning/Kontraktsutformning",
+          "relevance_points": 40.0
+        },
+        {
+          "id": "1dVh_cZS_Exw",
+          "label": "Arkiv- och informationshantering, erfarenhet",
+          "relevance_points": 36.0
+        },
+        {
+          "id": "q7Mx_gjU_F9q",
+          "label": "Förhandlingsvana",
+          "relevance_points": 36.0
+        },
+        {
+          "id": "G7Qq_r7L_5Jo",
+          "label": "Verksamhetsanalys",
+          "relevance_points": 33.0
+        },
+        {
+          "id": "awjU_C3D_XEJ",
+          "label": "Ekonomistyrning",
+          "relevance_points": 30.0
+        }
+      ],
+      "typed_job_titles": [
+        {
+          "id": "C9zN_Gjo_bFs",
+          "label": "Chef produktionsekonom"
+        },
+        {
+          "id": "muAo_XuG_hRv",
+          "label": "Chefsekonom"
+        },
+        {
+          "id": "bek1_fmM_iMR",
+          "label": "Chief financial officer/CFO"
+        },
+        {
+          "id": "vK6S_MGV_uni",
+          "label": "Controllerinriktad ekonomichef"
+        },
+        {
+          "id": "eBQs_p5w_Jkj",
+          "label": "Ekonomiansvarig"
+        },
+        {
+          "id": "c4Nt_B2k_eEw",
+          "label": "Ekonomiansvarig chef"
+        },
+        {
+          "id": "R7CP_R6m_G73",
+          "label": "Ekonomiansvarig gruppchef"
+        },
+        {
+          "id": "1Uk9_WZe_1XF",
+          "label": "Ekonomiledare"
+        },
+        {
+          "id": "hNpf_Vk4_Div",
+          "label": "Förbundsekonom"
+        },
+        {
+          "id": "ayxE_9oz_DZe",
+          "label": "Head of controlling"
+        },
+        {
+          "id": "g5we_BCH_Szv",
+          "label": "Koncernekonomichef"
+        },
+        {
+          "id": "Nuew_qoL_nAP",
+          "label": "Stiftskamrer"
+        }
+      ]
+    },
+    {
+      "candidate_for_source_bound_rescue": true,
+      "canonical_definition_tokens": 0,
+      "concept_id": "XSBp_5wD_VaU",
+      "direct_source_counts": {
+        "ad_keywords": 200,
+        "relevant_skills": 10,
+        "total": 220,
+        "typed_job_titles": 10
+      },
+      "label": "Restaurangchef",
+      "nearby_occupations_diagnostic_only": [
+        {
+          "id": "4ZeS_9Z9_wmL",
+          "label": "Hovmästare"
+        },
+        {
+          "id": "yXRQ_Ad9_E8V",
+          "label": "Restaurangbiträde"
+        },
+        {
+          "id": "kntm_Uen_7Bn",
+          "label": "Kökschef"
+        },
+        {
+          "id": "rGGf_KLs_To7",
+          "label": "Servitör/Servitris"
+        },
+        {
+          "id": "RnSZ_Ub1_DiV",
+          "label": "Servitör, fartyg/Servitris, fartyg"
+        },
+        {
+          "id": "pKTY_Kwu_sUw",
+          "label": "Diskare"
+        },
+        {
+          "id": "rynG_URT_erJ",
+          "label": "Kaféföreståndare"
+        },
+        {
+          "id": "oRB5_b7i_Qzv",
+          "label": "Köksbiträde"
+        },
+        {
+          "id": "JbJw_as4_S93",
+          "label": "Kock à la carte"
+        },
+        {
+          "id": "JECy_3w6_gah",
+          "label": "Kallskänka"
+        }
+      ],
+      "occurrences": null,
+      "p80_rank": null,
+      "top_ad_keywords_bm25": [
+        {
+          "BM25": 0.24,
+          "RCA": 54.9,
+          "TFIDF": 0.15,
+          "term": "restaurang",
+          "weighted_frequency": 1507.84
+        },
+        {
+          "BM25": 0.22,
+          "RCA": 84.85,
+          "TFIDF": 0.13,
+          "term": "restaurangbranschen",
+          "weighted_frequency": 1030.26
+        },
+        {
+          "BM25": 0.15,
+          "RCA": 33.33,
+          "TFIDF": 0.1,
+          "term": "mat",
+          "weighted_frequency": 992.39
+        },
+        {
+          "BM25": 0.15,
+          "RCA": 27.6,
+          "TFIDF": 0.1,
+          "term": "schemaläggning",
+          "weighted_frequency": 1156.95
+        },
+        {
+          "BM25": 0.14,
+          "RCA": 52.63,
+          "TFIDF": 0.09,
+          "term": "dryck",
+          "weighted_frequency": 684.75
+        },
+        {
+          "BM25": 0.13,
+          "RCA": 122.68,
+          "TFIDF": 0.07,
+          "term": "baren",
+          "weighted_frequency": 461.09
+        },
+        {
+          "BM25": 0.11,
+          "RCA": 16.67,
+          "TFIDF": 0.09,
+          "term": "personalansvar",
+          "weighted_frequency": 1200.01
+        },
+        {
+          "BM25": 0.1,
+          "RCA": 234.42,
+          "TFIDF": 0.05,
+          "term": "ledarskapsprogram",
+          "weighted_frequency": 271.08
+        },
+        {
+          "BM25": 0.09,
+          "RCA": 169.31,
+          "TFIDF": 0.05,
+          "term": "personalkostnader",
+          "weighted_frequency": 244.74
+        },
+        {
+          "BM25": 0.08,
+          "RCA": 233.57,
+          "TFIDF": 0.04,
+          "term": "försäljningsutveckling",
+          "weighted_frequency": 202.58
+        },
+        {
+          "BM25": 0.08,
+          "RCA": 154.45,
+          "TFIDF": 0.04,
+          "term": "espresso",
+          "weighted_frequency": 223.26
+        },
+        {
+          "BM25": 0.08,
+          "RCA": 78.1,
+          "TFIDF": 0.04,
+          "term": "house",
+          "weighted_frequency": 270.94
+        },
+        {
+          "BM25": 0.08,
+          "RCA": 23.91,
+          "TFIDF": 0.05,
+          "term": "hotell",
+          "weighted_frequency": 463.22
+        },
+        {
+          "BM25": 0.08,
+          "RCA": 22.36,
+          "TFIDF": 0.05,
+          "term": "arbetsrätt",
+          "weighted_frequency": 420.13
+        },
+        {
+          "BM25": 0.08,
+          "RCA": 20.27,
+          "TFIDF": 0.05,
+          "term": "servicebranschen",
+          "weighted_frequency": 445.42
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 206.8,
+          "TFIDF": 0.04,
+          "term": "snabbmatsbranschen",
+          "weighted_frequency": 179.36
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 177.03,
+          "TFIDF": 0.04,
+          "term": "resultatutveckling",
+          "weighted_frequency": 204.72
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 21.55,
+          "TFIDF": 0.04,
+          "term": "kök",
+          "weighted_frequency": 373.88
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 9.57,
+          "TFIDF": 0.06,
+          "term": "försäljning",
+          "weighted_frequency": 1026.19
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 139.28,
+          "TFIDF": 0.03,
+          "term": "ledarkunskaper",
+          "weighted_frequency": 161.06
+        }
+      ],
+      "top_relevant_skills": [
+        {
+          "id": "kdSa_Bi6_q6E",
+          "label": "Utbilda personal i att minska matsvinn",
+          "relevance_points": 41.0
+        },
+        {
+          "id": "SJaZ_pXy_771",
+          "label": "Restaurangekonomi",
+          "relevance_points": 40.0
+        },
+        {
+          "id": "Gt5f_wdi_FSJ",
+          "label": "Budgetansvar",
+          "relevance_points": 36.0
+        },
+        {
+          "id": "ZzN5_m7B_5CY",
+          "label": "Personalansvar",
+          "relevance_points": 30.0
+        },
+        {
+          "id": "TLkF_mvM_acW",
+          "label": "Butiksledning, dagligvaror",
+          "relevance_points": 12.0
+        },
+        {
+          "id": "J8PY_9yw_D5M",
+          "label": "Butiksledning, fackhandel",
+          "relevance_points": 12.0
+        },
+        {
+          "id": "2wd8_VUk_YSq",
+          "label": "Kundanalys",
+          "relevance_points": 6.0
+        },
+        {
+          "id": "5yDE_FiQ_bMn",
+          "label": "Marknadsföring/PR",
+          "relevance_points": 6.0
+        },
+        {
+          "id": "eKuz_edm_kmi",
+          "label": "Inköpsvana",
+          "relevance_points": 5.4
+        },
+        {
+          "id": "G7Qq_r7L_5Jo",
+          "label": "Verksamhetsanalys",
+          "relevance_points": 3.6
+        }
+      ],
+      "typed_job_titles": [
+        {
+          "id": "tac4_m2R_7ja",
+          "label": "Cateringchef"
+        },
+        {
+          "id": "zXKs_J7L_xax",
+          "label": "Matsalschef"
+        },
+        {
+          "id": "Uzc7_n8s_d1L",
+          "label": "Restaurangansvarig"
+        },
+        {
+          "id": "EkJ8_CEp_xm7",
+          "label": "Restaurangchefsassistent"
+        },
+        {
+          "id": "eXpU_8A6_7q1",
+          "label": "Restaurangchefstrainee"
+        },
+        {
+          "id": "GxrC_Xdh_wzC",
+          "label": "Restaurangledare"
+        },
+        {
+          "id": "SwH3_39b_H49",
+          "label": "Restaurangmanager"
+        },
+        {
+          "id": "ns8i_eYJ_qhG",
+          "label": "Restaurant manager"
+        },
+        {
+          "id": "qkYn_ks5_uEB",
+          "label": "Restaurant service manager"
+        },
+        {
+          "id": "Gv2q_DMp_Nye",
+          "label": "Serveringschef"
+        }
+      ]
+    },
+    {
+      "candidate_for_source_bound_rescue": true,
+      "canonical_definition_tokens": 0,
+      "concept_id": "YfCD_kUE_kck",
+      "direct_source_counts": {
+        "ad_keywords": 200,
+        "relevant_skills": 13,
+        "total": 221,
+        "typed_job_titles": 8
+      },
+      "label": "Universitets- och högskoleadjunkt",
+      "nearby_occupations_diagnostic_only": [
+        {
+          "id": "mUD2_7si_XaE",
+          "label": "Nutritionist/Näringsfysiolog"
+        },
+        {
+          "id": "z5se_M6P_58t",
+          "label": "Fysiker"
+        },
+        {
+          "id": "gmx1_BCX_EEe",
+          "label": "Molekylärbiolog"
+        },
+        {
+          "id": "ZNyx_1tG_w4E",
+          "label": "Biolog"
+        },
+        {
+          "id": "HtLv_4EJ_o5r",
+          "label": "Kemist"
+        },
+        {
+          "id": "xaQL_Wbc_6su",
+          "label": "Bioinformatiker"
+        },
+        {
+          "id": "SMii_y8Z_VmX",
+          "label": "Biokemist"
+        },
+        {
+          "id": "yhF2_vDD_WB9",
+          "label": "Undervisningsråd"
+        },
+        {
+          "id": "DrU2_d7W_Ana",
+          "label": "Civilingenjör, teknisk fysik"
+        },
+        {
+          "id": "YG1s_tUg_jWJ",
+          "label": "Handläggare, offentlig förvaltning/Utredare, offentlig förvaltning"
+        }
+      ],
+      "occurrences": null,
+      "p80_rank": null,
+      "top_ad_keywords_bm25": [
+        {
+          "BM25": 0.43,
+          "RCA": 84.96,
+          "TFIDF": 0.29,
+          "term": "undervisning",
+          "weighted_frequency": 3254.44
+        },
+        {
+          "BM25": 0.24,
+          "RCA": 121.94,
+          "TFIDF": 0.14,
+          "term": "magisterexamen",
+          "weighted_frequency": 1054.83
+        },
+        {
+          "BM25": 0.22,
+          "RCA": 428.18,
+          "TFIDF": 0.12,
+          "term": "kursansvar",
+          "weighted_frequency": 661.39
+        },
+        {
+          "BM25": 0.22,
+          "RCA": 326.34,
+          "TFIDF": 0.12,
+          "term": "kursutveckling",
+          "weighted_frequency": 705.72
+        },
+        {
+          "BM25": 0.19,
+          "RCA": 31.19,
+          "TFIDF": 0.13,
+          "term": "handledning",
+          "weighted_frequency": 1686.43
+        },
+        {
+          "BM25": 0.16,
+          "RCA": 239.95,
+          "TFIDF": 0.09,
+          "term": "yrkesskicklighet",
+          "weighted_frequency": 518.91
+        },
+        {
+          "BM25": 0.13,
+          "RCA": 19.8,
+          "TFIDF": 0.1,
+          "term": "forskning",
+          "weighted_frequency": 1296.88
+        },
+        {
+          "BM25": 0.09,
+          "RCA": 114.73,
+          "TFIDF": 0.05,
+          "term": "kursadministration",
+          "weighted_frequency": 283.54
+        },
+        {
+          "BM25": 0.09,
+          "RCA": 93.86,
+          "TFIDF": 0.05,
+          "term": "examensarbete",
+          "weighted_frequency": 318.95
+        },
+        {
+          "BM25": 0.09,
+          "RCA": 85.56,
+          "TFIDF": 0.05,
+          "term": "undervisningserfarenhet",
+          "weighted_frequency": 317.17
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 61.94,
+          "TFIDF": 0.04,
+          "term": "uppdragsutbildning",
+          "weighted_frequency": 267.9
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 27.01,
+          "TFIDF": 0.04,
+          "term": "doktorsexamen",
+          "weighted_frequency": 383.81
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 66.45,
+          "TFIDF": 0.03,
+          "term": "undervisningsmetoder",
+          "weighted_frequency": 205.29
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 30.62,
+          "TFIDF": 0.03,
+          "term": "ämneskunskaper",
+          "weighted_frequency": 245.93
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 61.29,
+          "TFIDF": 0.03,
+          "term": "distansundervisning",
+          "weighted_frequency": 170.42
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 38.29,
+          "TFIDF": 0.03,
+          "term": "pedagogiskt utvecklingsarbete",
+          "weighted_frequency": 212.93
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 33.52,
+          "TFIDF": 0.03,
+          "term": "kursplaner",
+          "weighted_frequency": 196.73
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 29.87,
+          "TFIDF": 0.03,
+          "term": "lärarexamen",
+          "weighted_frequency": 230.72
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 27.04,
+          "TFIDF": 0.03,
+          "term": "forskarutbildning",
+          "weighted_frequency": 242.29
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 26.85,
+          "TFIDF": 0.03,
+          "term": "lärarutbildning",
+          "weighted_frequency": 240.54
+        }
+      ],
+      "top_relevant_skills": [
+        {
+          "id": "ezVu_GhE_b3b",
+          "label": "Publicera forskningsresultat",
+          "relevance_points": 43.0
+        },
+        {
+          "id": "oLnc_YZn_3bm",
+          "label": "Utbildningsplanering",
+          "relevance_points": 41.0
+        },
+        {
+          "id": "V5EN_xw2_itk",
+          "label": "e-lärande, erfarenhet",
+          "relevance_points": 11.0
+        },
+        {
+          "id": "c2YE_oK3_f1u",
+          "label": "Forskningsdokumentation",
+          "relevance_points": 10.0
+        },
+        {
+          "id": "TB7B_ewe_qsW",
+          "label": "Forskningsfinansiering",
+          "relevance_points": 6.0
+        },
+        {
+          "id": "7Y6d_qDZ_Eyt",
+          "label": "Lärplattformar, erfarenhet",
+          "relevance_points": 5.0
+        },
+        {
+          "id": "Fiyw_2Zs_fJk",
+          "label": "Fritidspedagogik",
+          "relevance_points": 3.3
+        },
+        {
+          "id": "aD6t_MtR_9dH",
+          "label": "Fritidspedagogiska området",
+          "relevance_points": 3.3
+        },
+        {
+          "id": "iYou_UMi_bMe",
+          "label": "Hem- och konsumentkunskap, undervisning",
+          "relevance_points": 3.3
+        },
+        {
+          "id": "ooLP_cHi_X9L",
+          "label": "Lajvpedagogik",
+          "relevance_points": 3.3
+        },
+        {
+          "id": "1dHC_SwK_1ge",
+          "label": "Reggio Emila-pedagogik, erfarenhet",
+          "relevance_points": 3.3
+        },
+        {
+          "id": "C3Fc_BSX_rpH",
+          "label": "Specialpedagogik",
+          "relevance_points": 3.3
+        },
+        {
+          "id": "G8KJ_TwR_R1C",
+          "label": "Utomhuspedagogik",
+          "relevance_points": 3.3
+        }
+      ],
+      "typed_job_titles": [
+        {
+          "id": "ZfhM_VD8_cVi",
+          "label": "Adjunkt"
+        },
+        {
+          "id": "SQGb_fTz_QNS",
+          "label": "Högskoleadjunkt"
+        },
+        {
+          "id": "HR1h_VU7_VK8",
+          "label": "Klinisk adjunkt"
+        },
+        {
+          "id": "sf37_e2C_Bqm",
+          "label": "Programområdesansvarig"
+        },
+        {
+          "id": "aPq9_aww_b5w",
+          "label": "Skrivhandledare"
+        },
+        {
+          "id": "MHUb_2gP_UGx",
+          "label": "Texthandledare"
+        },
+        {
+          "id": "dz3T_e4P_WCg",
+          "label": "Universitetsadjunkt"
+        },
+        {
+          "id": "sczL_FCS_bNW",
+          "label": "Universitetslärare"
+        }
+      ]
+    },
+    {
+      "candidate_for_source_bound_rescue": true,
+      "canonical_definition_tokens": 0,
+      "concept_id": "bjDH_v5M_2gn",
+      "direct_source_counts": {
+        "ad_keywords": 200,
+        "relevant_skills": 30,
+        "total": 241,
+        "typed_job_titles": 11
+      },
+      "label": "Produktionschef, tillverkning",
+      "nearby_occupations_diagnostic_only": [
+        {
+          "id": "DV4C_eEN_VDg",
+          "label": "Gruppchef, teknik"
+        },
+        {
+          "id": "P5d3_vV8_gXq",
+          "label": "Produktionschef, anläggning"
+        },
+        {
+          "id": "1ERY_48v_Q6m",
+          "label": "Administrativ chef"
+        },
+        {
+          "id": "9YXJ_Rz2_MeV",
+          "label": "Kvalitetschef"
+        },
+        {
+          "id": "nvUH_JLD_s4F",
+          "label": "Verkställande direktör/VD"
+        },
+        {
+          "id": "wtxi_ss9_8Cj",
+          "label": "Kundtjänstchef"
+        },
+        {
+          "id": "fCCr_Mp8_6oE",
+          "label": "Platschef, anläggning"
+        },
+        {
+          "id": "9dXK_Zi5_MSH",
+          "label": "Driftchef, energi"
+        },
+        {
+          "id": "FC86_VDF_rqB",
+          "label": "Teamledare"
+        },
+        {
+          "id": "tPp6_tmB_EsY",
+          "label": "Uthyrningschef"
+        }
+      ],
+      "occurrences": null,
+      "p80_rank": null,
+      "top_ad_keywords_bm25": [
+        {
+          "BM25": 0.1,
+          "RCA": 14.05,
+          "TFIDF": 0.07,
+          "term": "personalansvar",
+          "weighted_frequency": 922.77
+        },
+        {
+          "BM25": 0.09,
+          "RCA": 49.01,
+          "TFIDF": 0.05,
+          "term": "produktionsledning",
+          "weighted_frequency": 310.24
+        },
+        {
+          "BM25": 0.09,
+          "RCA": 22.26,
+          "TFIDF": 0.06,
+          "term": "lean",
+          "weighted_frequency": 499.0
+        },
+        {
+          "BM25": 0.08,
+          "RCA": 28.95,
+          "TFIDF": 0.05,
+          "term": "produktionsteknik",
+          "weighted_frequency": 358.92
+        },
+        {
+          "BM25": 0.08,
+          "RCA": 10.69,
+          "TFIDF": 0.08,
+          "term": "ledarskap",
+          "weighted_frequency": 1269.02
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 16.03,
+          "TFIDF": 0.04,
+          "term": "produktionsprocesser",
+          "weighted_frequency": 287.58
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 8.1,
+          "TFIDF": 0.05,
+          "term": "industri",
+          "weighted_frequency": 719.53
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 15.61,
+          "TFIDF": 0.03,
+          "term": "produktionsplanering",
+          "weighted_frequency": 218.25
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 8.11,
+          "TFIDF": 0.04,
+          "term": "ständiga förbättringar",
+          "weighted_frequency": 408.34
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 6.74,
+          "TFIDF": 0.04,
+          "term": "förbättringsarbete",
+          "weighted_frequency": 617.08
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 13.75,
+          "TFIDF": 0.02,
+          "term": "förbättringsprojekt",
+          "weighted_frequency": 181.37
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 9.29,
+          "TFIDF": 0.03,
+          "term": "tillverkningsindustrin",
+          "weighted_frequency": 247.43
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 7.73,
+          "TFIDF": 0.03,
+          "term": "säkerhetsskydd",
+          "weighted_frequency": 242.58
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 7.41,
+          "TFIDF": 0.03,
+          "term": "arbetsmiljöansvar",
+          "weighted_frequency": 246.38
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 6.96,
+          "TFIDF": 0.02,
+          "term": "ledarerfarenhet",
+          "weighted_frequency": 224.02
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 6.4,
+          "TFIDF": 0.03,
+          "term": "tillverkning",
+          "weighted_frequency": 332.4
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 6.34,
+          "TFIDF": 0.03,
+          "term": "budgetansvar",
+          "weighted_frequency": 279.28
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 6.06,
+          "TFIDF": 0.03,
+          "term": "affärssystem",
+          "weighted_frequency": 321.5
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 5.99,
+          "TFIDF": 0.03,
+          "term": "logistik",
+          "weighted_frequency": 428.45
+        },
+        {
+          "BM25": 0.03,
+          "RCA": 222.18,
+          "TFIDF": 0.01,
+          "term": "tillverkningsutrustning",
+          "weighted_frequency": 58.6
+        }
+      ],
+      "top_relevant_skills": [
+        {
+          "id": "FfJq_b4n_DMM",
+          "label": "Verksamhetsledning, värmeverk",
+          "relevance_points": 164.0
+        },
+        {
+          "id": "fF3d_pwB_naQ",
+          "label": "Verksamhetsledning, verkstad",
+          "relevance_points": 150.0
+        },
+        {
+          "id": "AepF_hH2_pT7",
+          "label": "Produktionsledning, tillverkning",
+          "relevance_points": 136.0
+        },
+        {
+          "id": "Gt5f_wdi_FSJ",
+          "label": "Budgetansvar",
+          "relevance_points": 102.0
+        },
+        {
+          "id": "7xQ7_Waf_rdY",
+          "label": "Driftansvar, bioraffinaderi",
+          "relevance_points": 78.0
+        },
+        {
+          "id": "zXNU_zXR_hGd",
+          "label": "Strategisk planering",
+          "relevance_points": 78.0
+        },
+        {
+          "id": "6Ut4_H2i_tMx",
+          "label": "Verksamhetsledning, tillverkningsindustri",
+          "relevance_points": 70.0
+        },
+        {
+          "id": "VfP9_2xd_g2h",
+          "label": "Företagsekonomi",
+          "relevance_points": 64.0
+        },
+        {
+          "id": "s5SS_7bW_1Gh",
+          "label": "Resultatanalys",
+          "relevance_points": 40.0
+        },
+        {
+          "id": "muf8_Fom_6F4",
+          "label": "Verksamhetsledning, vattenverk",
+          "relevance_points": 38.0
+        },
+        {
+          "id": "nkor_VBn_U64",
+          "label": "Vattenförsörjningsteknik",
+          "relevance_points": 37.0
+        },
+        {
+          "id": "NVJp_Q2G_4nF",
+          "label": "Verksamhetsledning, elverk",
+          "relevance_points": 28.0
+        },
+        {
+          "id": "qAPk_7uX_SAU",
+          "label": "Driftansvar, elkraft",
+          "relevance_points": 24.0
+        },
+        {
+          "id": "CbKj_Tme_k2U",
+          "label": "Driftansvar, VA",
+          "relevance_points": 24.0
+        },
+        {
+          "id": "q7Mx_gjU_F9q",
+          "label": "Förhandlingsvana",
+          "relevance_points": 24.0
+        }
+      ],
+      "typed_job_titles": [
+        {
+          "id": "pdW3_rPU_spx",
+          "label": "Avdelningschef, industri"
+        },
+        {
+          "id": "FCrS_Amr_4bx",
+          "label": "Fabrikschef, tillverkning"
+        },
+        {
+          "id": "EEru_WX7_nb9",
+          "label": "Gruppchef, produktion"
+        },
+        {
+          "id": "v6S7_xhn_5Kc",
+          "label": "Gruppchef, tillverkning"
+        },
+        {
+          "id": "NYH3_WXk_9Ce",
+          "label": "Industrialiseringsledare"
+        },
+        {
+          "id": "Lvyd_9SU_uQD",
+          "label": "Konstruktionschef"
+        },
+        {
+          "id": "ES89_xQ5_kMu",
+          "label": "Linjechef"
+        },
+        {
+          "id": "QpRa_KDF_7Ys",
+          "label": "Platschef, tillverkning"
+        },
+        {
+          "id": "3oJa_UL6_6ip",
+          "label": "Produktionsdirektör"
+        },
+        {
+          "id": "sf31_Sn5_FVV",
+          "label": "Produktionsteknisk chef"
+        },
+        {
+          "id": "R11C_X2e_BA6",
+          "label": "Produktionsverkstadschef"
+        }
+      ]
+    },
+    {
+      "candidate_for_source_bound_rescue": true,
+      "canonical_definition_tokens": 0,
+      "concept_id": "mBMU_HvW_LMY",
+      "direct_source_counts": {
+        "ad_keywords": 200,
+        "relevant_skills": 30,
+        "total": 236,
+        "typed_job_titles": 6
+      },
+      "label": "IT-strateg",
+      "nearby_occupations_diagnostic_only": [
+        {
+          "id": "AQ8y_9XL_Jvv",
+          "label": "IT-samordnare"
+        },
+        {
+          "id": "wNG8_Rsg_RQc",
+          "label": "Systemansvarig"
+        },
+        {
+          "id": "6CfM_iwp_hDJ",
+          "label": "Verksamhetskonsult, IT"
+        },
+        {
+          "id": "z5AM_ayf_WcL",
+          "label": "Projektledare, IT"
+        },
+        {
+          "id": "YAB4_1jM_DAK",
+          "label": "Processansvarig, ITIL"
+        },
+        {
+          "id": "nFJR_WkF_ir7",
+          "label": "Systemförvaltare"
+        },
+        {
+          "id": "7YaM_bPu_c1T",
+          "label": "Systemanalytiker/Systemutredare"
+        },
+        {
+          "id": "3Zo3_ez5_Kdx",
+          "label": "Verksamhetskonsult"
+        },
+        {
+          "id": "i1F4_cZZ_PJu",
+          "label": "Systemarkitekt"
+        },
+        {
+          "id": "eSph_tp4_T7Z",
+          "label": "IT-arkitekt"
+        }
+      ],
+      "occurrences": null,
+      "p80_rank": null,
+      "top_ad_keywords_bm25": [
+        {
+          "BM25": 0.08,
+          "RCA": 12.67,
+          "TFIDF": 0.06,
+          "term": "digitalisering",
+          "weighted_frequency": 475.45
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 34.14,
+          "TFIDF": 0.04,
+          "term": "itil",
+          "weighted_frequency": 176.06
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 22.33,
+          "TFIDF": 0.04,
+          "term": "it-branschen",
+          "weighted_frequency": 202.5
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 19.01,
+          "TFIDF": 0.04,
+          "term": "systemvetenskap",
+          "weighted_frequency": 209.58
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 15.3,
+          "TFIDF": 0.04,
+          "term": "informationssäkerhet",
+          "weighted_frequency": 195.93
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 14.35,
+          "TFIDF": 0.04,
+          "term": "förändringsledning",
+          "weighted_frequency": 224.54
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 8.72,
+          "TFIDF": 0.04,
+          "term": "förvaltning",
+          "weighted_frequency": 319.38
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 42.59,
+          "TFIDF": 0.03,
+          "term": "it-projekt",
+          "weighted_frequency": 121.18
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 36.9,
+          "TFIDF": 0.03,
+          "term": "pm3",
+          "weighted_frequency": 111.54
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 23.06,
+          "TFIDF": 0.03,
+          "term": "it-infrastruktur",
+          "weighted_frequency": 123.04
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 20.41,
+          "TFIDF": 0.03,
+          "term": "it-miljö",
+          "weighted_frequency": 141.57
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 17.94,
+          "TFIDF": 0.03,
+          "term": "it-säkerhet",
+          "weighted_frequency": 162.72
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 16.23,
+          "TFIDF": 0.03,
+          "term": "systemutveckling",
+          "weighted_frequency": 150.08
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 7.4,
+          "TFIDF": 0.04,
+          "term": "verksamhetsutveckling",
+          "weighted_frequency": 286.94
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 6.25,
+          "TFIDF": 0.04,
+          "term": "projektledning",
+          "weighted_frequency": 429.33
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 18.74,
+          "TFIDF": 0.02,
+          "term": "systemförvaltning",
+          "weighted_frequency": 89.95
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 17.23,
+          "TFIDF": 0.02,
+          "term": "it-lösningar",
+          "weighted_frequency": 104.2
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 15.66,
+          "TFIDF": 0.02,
+          "term": "microsoft azure",
+          "weighted_frequency": 114.18
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 8.26,
+          "TFIDF": 0.02,
+          "term": "kravställning",
+          "weighted_frequency": 133.74
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 6.83,
+          "TFIDF": 0.03,
+          "term": "infrastruktur",
+          "weighted_frequency": 214.9
+        }
+      ],
+      "top_relevant_skills": [
+        {
+          "id": "Pk2j_jXV_Y3j",
+          "label": "Projektledning, IT",
+          "relevance_points": 27.0
+        },
+        {
+          "id": "Utw1_tLL_sS2",
+          "label": "Kravhantering, systemutveckling",
+          "relevance_points": 23.0
+        },
+        {
+          "id": "TMVb_DnH_etF",
+          "label": "Agila arbetsmetoder",
+          "relevance_points": 20.0
+        },
+        {
+          "id": "G7Qq_r7L_5Jo",
+          "label": "Verksamhetsanalys",
+          "relevance_points": 18.0
+        },
+        {
+          "id": "jYaA_Cwa_Yyf",
+          "label": "Acceptanstestning",
+          "relevance_points": 17.0
+        },
+        {
+          "id": "nau9_s74_1oe",
+          "label": "Människa-datorinteraktion/MDI",
+          "relevance_points": 15.0
+        },
+        {
+          "id": "D7Ns_RG6_hD2",
+          "label": "Systemutveckling",
+          "relevance_points": 12.5
+        },
+        {
+          "id": "Hg5q_Rqp_uZw",
+          "label": "Grunt, systemutvecklingsverktyg",
+          "relevance_points": 11.0
+        },
+        {
+          "id": "dQoJ_GY7_n5Z",
+          "label": "JIRA, systemutvecklingsverktyg",
+          "relevance_points": 11.0
+        },
+        {
+          "id": "mRpj_JZE_DxB",
+          "label": "Kanban, systemutvecklingsverktyg",
+          "relevance_points": 11.0
+        },
+        {
+          "id": "trJM_HZA_Hjp",
+          "label": "Testlink, systemutvecklingsverktyg",
+          "relevance_points": 11.0
+        },
+        {
+          "id": "RVvx_tdf_Dfk",
+          "label": "Prototyping",
+          "relevance_points": 9.0
+        },
+        {
+          "id": "Gt5f_wdi_FSJ",
+          "label": "Budgetansvar",
+          "relevance_points": 8.5
+        },
+        {
+          "id": "Bbj8_8y7_XJ5",
+          "label": "Projektplanering",
+          "relevance_points": 6.5
+        },
+        {
+          "id": "HSLB_jpT_B1X",
+          "label": "Appium, systemutvecklingsverktyg",
+          "relevance_points": 5.5
+        }
+      ],
+      "typed_job_titles": [
+        {
+          "id": "Grve_QjC_rkT",
+          "label": "Digital strategist"
+        },
+        {
+          "id": "eRPn_Eig_uYZ",
+          "label": "Digitaliseringsrådgivare"
+        },
+        {
+          "id": "HZCX_fLJ_3e7",
+          "label": "Digitaliseringsstrateg"
+        },
+        {
+          "id": "dxss_bDk_wZT",
+          "label": "Digitaliseringsutvecklare"
+        },
+        {
+          "id": "sRVH_u42_AH3",
+          "label": "Digitalstrateg"
+        },
+        {
+          "id": "N7wD_gcS_SYh",
+          "label": "Systemstrateg"
+        }
+      ]
+    },
+    {
+      "candidate_for_source_bound_rescue": true,
+      "canonical_definition_tokens": 0,
+      "concept_id": "Cn7e_qQS_nPF",
+      "direct_source_counts": {
+        "ad_keywords": 200,
+        "relevant_skills": 13,
+        "total": 214,
+        "typed_job_titles": 1
+      },
+      "label": "Biträdande rektor",
+      "nearby_occupations_diagnostic_only": [
+        {
+          "id": "hr5f_dci_NcD",
+          "label": "Rektor"
+        },
+        {
+          "id": "DdMT_ukX_LGq",
+          "label": "Skolchef/Skoldirektör/Skolledare"
+        },
+        {
+          "id": "xUfR_QAo_B3a",
+          "label": "Förskolerektor"
+        },
+        {
+          "id": "8L4Z_dVu_PaL",
+          "label": "Utbildningschef"
+        },
+        {
+          "id": "E6Ts_Gns_DjW",
+          "label": "Biträdande förskolerektor"
+        },
+        {
+          "id": "Mg5T_Wi4_5my",
+          "label": "Avdelningschef, kommun"
+        },
+        {
+          "id": "Noad_FWq_mY2",
+          "label": "Enhetschef, offentlig förvaltning"
+        },
+        {
+          "id": "1ERY_48v_Q6m",
+          "label": "Administrativ chef"
+        },
+        {
+          "id": "PTD2_6C1_8TJ",
+          "label": "Sektionschef, offentlig förvaltning"
+        },
+        {
+          "id": "gfTT_a2J_3wX",
+          "label": "Kontorschef, offentlig förvaltning"
+        }
+      ],
+      "occurrences": null,
+      "p80_rank": null,
+      "top_ad_keywords_bm25": [
+        {
+          "BM25": 0.34,
+          "RCA": 460.05,
+          "TFIDF": 0.19,
+          "term": "rektorsutbildning",
+          "weighted_frequency": 985.76
+        },
+        {
+          "BM25": 0.2,
+          "RCA": 42.5,
+          "TFIDF": 0.13,
+          "term": "styrdokument",
+          "weighted_frequency": 1229.31
+        },
+        {
+          "BM25": 0.17,
+          "RCA": 87.72,
+          "TFIDF": 0.1,
+          "term": "skolutveckling",
+          "weighted_frequency": 681.38
+        },
+        {
+          "BM25": 0.15,
+          "RCA": 21.87,
+          "TFIDF": 0.12,
+          "term": "personalansvar",
+          "weighted_frequency": 1458.49
+        },
+        {
+          "BM25": 0.13,
+          "RCA": 51.0,
+          "TFIDF": 0.08,
+          "term": "grundskolan",
+          "weighted_frequency": 546.4
+        },
+        {
+          "BM25": 0.12,
+          "RCA": 61.05,
+          "TFIDF": 0.07,
+          "term": "fritidshem",
+          "weighted_frequency": 457.88
+        },
+        {
+          "BM25": 0.1,
+          "RCA": 88.83,
+          "TFIDF": 0.06,
+          "term": "elevhälsoarbete",
+          "weighted_frequency": 333.08
+        },
+        {
+          "BM25": 0.1,
+          "RCA": 50.08,
+          "TFIDF": 0.06,
+          "term": "lärarlegitimation",
+          "weighted_frequency": 415.85
+        },
+        {
+          "BM25": 0.1,
+          "RCA": 33.7,
+          "TFIDF": 0.06,
+          "term": "grundskola",
+          "weighted_frequency": 433.3
+        },
+        {
+          "BM25": 0.1,
+          "RCA": 16.44,
+          "TFIDF": 0.07,
+          "term": "kvalitetsarbete",
+          "weighted_frequency": 779.49
+        },
+        {
+          "BM25": 0.09,
+          "RCA": 369.26,
+          "TFIDF": 0.04,
+          "term": "skolledarerfarenhet",
+          "weighted_frequency": 197.81
+        },
+        {
+          "BM25": 0.09,
+          "RCA": 16.19,
+          "TFIDF": 0.06,
+          "term": "schemaläggning",
+          "weighted_frequency": 628.82
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 134.08,
+          "TFIDF": 0.04,
+          "term": "ledarutvecklingsprogram",
+          "weighted_frequency": 179.55
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 60.53,
+          "TFIDF": 0.04,
+          "term": "pedagogiskt ledarskap",
+          "weighted_frequency": 210.78
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 49.75,
+          "TFIDF": 0.04,
+          "term": "ledaruppdrag",
+          "weighted_frequency": 226.52
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 35.67,
+          "TFIDF": 0.04,
+          "term": "elevhälsa",
+          "weighted_frequency": 248.37
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 15.14,
+          "TFIDF": 0.05,
+          "term": "pedagogik",
+          "weighted_frequency": 421.67
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 14.9,
+          "TFIDF": 0.04,
+          "term": "förskola",
+          "weighted_frequency": 383.08
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 13.63,
+          "TFIDF": 0.05,
+          "term": "arbetsmiljöansvar",
+          "weighted_frequency": 459.89
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 256.56,
+          "TFIDF": 0.03,
+          "term": "samverkansfrågor",
+          "weighted_frequency": 137.44
+        }
+      ],
+      "top_relevant_skills": [
+        {
+          "id": "oLnc_YZn_3bm",
+          "label": "Utbildningsplanering",
+          "relevance_points": 126.0
+        },
+        {
+          "id": "azTh_4zW_Tfb",
+          "label": "Utbildning och skola, områdeskunskap",
+          "relevance_points": 44.0
+        },
+        {
+          "id": "5PjX_999_uLZ",
+          "label": "Pedagogiskt ledarskap",
+          "relevance_points": 42.0
+        },
+        {
+          "id": "echN_F9u_bRp",
+          "label": "Områdesansvar, utbildningsfrågor",
+          "relevance_points": 40.0
+        },
+        {
+          "id": "Gt5f_wdi_FSJ",
+          "label": "Budgetansvar",
+          "relevance_points": 26.0
+        },
+        {
+          "id": "eThQ_HCv_mY6",
+          "label": "Personalplanering",
+          "relevance_points": 26.0
+        },
+        {
+          "id": "Ju2P_fHA_n5B",
+          "label": "Verksamhetsledning, gymnasieskolan",
+          "relevance_points": 22.0
+        },
+        {
+          "id": "YS7V_c8n_MrS",
+          "label": "Verksamhetsansvar",
+          "relevance_points": 21.0
+        },
+        {
+          "id": "s5SS_7bW_1Gh",
+          "label": "Resultatanalys",
+          "relevance_points": 18.0
+        },
+        {
+          "id": "zXNU_zXR_hGd",
+          "label": "Strategisk planering",
+          "relevance_points": 15.0
+        },
+        {
+          "id": "7VsB_78P_sGW",
+          "label": "Verksamhetsledning, grundskola",
+          "relevance_points": 10.0
+        },
+        {
+          "id": "AoxD_Exi_qzp",
+          "label": "Verksamhetsledning, utbildningsföretag",
+          "relevance_points": 6.0
+        },
+        {
+          "id": "Betk_ZCh_mY9",
+          "label": "Personalutveckling",
+          "relevance_points": 3.4
+        }
+      ],
+      "typed_job_titles": [
+        {
+          "id": "bwcF_6L7_NVy",
+          "label": "Bitr. rektor"
+        }
+      ]
+    },
+    {
+      "candidate_for_source_bound_rescue": true,
+      "canonical_definition_tokens": 0,
+      "concept_id": "TT8h_qKk_1iu",
+      "direct_source_counts": {
+        "ad_keywords": 200,
+        "relevant_skills": 10,
+        "total": 212,
+        "typed_job_titles": 2
+      },
+      "label": "Affärskonsult, IT",
+      "nearby_occupations_diagnostic_only": [
+        {
+          "id": "6CfM_iwp_hDJ",
+          "label": "Verksamhetskonsult, IT"
+        },
+        {
+          "id": "7YaM_bPu_c1T",
+          "label": "Systemanalytiker/Systemutredare"
+        },
+        {
+          "id": "mBMU_HvW_LMY",
+          "label": "IT-strateg"
+        },
+        {
+          "id": "wNG8_Rsg_RQc",
+          "label": "Systemansvarig"
+        },
+        {
+          "id": "i1F4_cZZ_PJu",
+          "label": "Systemarkitekt"
+        },
+        {
+          "id": "rz2m_96d_vyF",
+          "label": "Databasutvecklare"
+        },
+        {
+          "id": "z5AM_ayf_WcL",
+          "label": "Projektledare, IT"
+        },
+        {
+          "id": "eSph_tp4_T7Z",
+          "label": "IT-arkitekt"
+        },
+        {
+          "id": "CQse_CRd_snw",
+          "label": "Civilingenjör, systemutveckling"
+        },
+        {
+          "id": "3Zo3_ez5_Kdx",
+          "label": "Verksamhetskonsult"
+        }
+      ],
+      "occurrences": null,
+      "p80_rank": null,
+      "top_ad_keywords_bm25": [
+        {
+          "BM25": 0.15,
+          "RCA": 124.74,
+          "TFIDF": 0.08,
+          "term": "affärsprocesser",
+          "weighted_frequency": 207.94
+        },
+        {
+          "BM25": 0.1,
+          "RCA": 198.47,
+          "TFIDF": 0.05,
+          "term": "implementationsprojekt",
+          "weighted_frequency": 110.28
+        },
+        {
+          "BM25": 0.09,
+          "RCA": 111.18,
+          "TFIDF": 0.05,
+          "term": "microsoft dynamics",
+          "weighted_frequency": 111.21
+        },
+        {
+          "BM25": 0.09,
+          "RCA": 13.81,
+          "TFIDF": 0.06,
+          "term": "affärssystem",
+          "weighted_frequency": 308.4
+        },
+        {
+          "BM25": 0.08,
+          "RCA": 603.27,
+          "TFIDF": 0.04,
+          "term": "slutanvändarutbildning",
+          "weighted_frequency": 67.04
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 540.46,
+          "TFIDF": 0.03,
+          "term": "finansprocesser",
+          "weighted_frequency": 60.06
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 207.86,
+          "TFIDF": 0.04,
+          "term": "processanalys",
+          "weighted_frequency": 69.3
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 23.94,
+          "TFIDF": 0.04,
+          "term": "sql",
+          "weighted_frequency": 119.72
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 111.59,
+          "TFIDF": 0.03,
+          "term": "verksamhetsanalys",
+          "weighted_frequency": 62.01
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 39.13,
+          "TFIDF": 0.03,
+          "term": "bi",
+          "weighted_frequency": 91.33
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 34.42,
+          "TFIDF": 0.04,
+          "term": "konfigurering",
+          "weighted_frequency": 99.45
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 21.78,
+          "TFIDF": 0.03,
+          "term": "microsoft azure",
+          "weighted_frequency": 99.23
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 18.75,
+          "TFIDF": 0.04,
+          "term": "systemvetenskap",
+          "weighted_frequency": 129.21
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 105.43,
+          "TFIDF": 0.03,
+          "term": "superuser",
+          "weighted_frequency": 58.58
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 34.35,
+          "TFIDF": 0.03,
+          "term": "kritiska",
+          "weighted_frequency": 68.72
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 47.87,
+          "TFIDF": 0.02,
+          "term": "business intelligence",
+          "weighted_frequency": 53.2
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 35.72,
+          "TFIDF": 0.02,
+          "term": "supply chain management",
+          "weighted_frequency": 51.6
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 26.54,
+          "TFIDF": 0.02,
+          "term": "värdeskapande",
+          "weighted_frequency": 58.99
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 21.05,
+          "TFIDF": 0.02,
+          "term": "systemkunskaper",
+          "weighted_frequency": 63.16
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 20.88,
+          "TFIDF": 0.02,
+          "term": "ifs",
+          "weighted_frequency": 69.6
+        }
+      ],
+      "top_relevant_skills": [
+        {
+          "id": "Pk2j_jXV_Y3j",
+          "label": "Projektledning, IT",
+          "relevance_points": 30.0
+        },
+        {
+          "id": "Utw1_tLL_sS2",
+          "label": "Kravhantering, systemutveckling",
+          "relevance_points": 29.0
+        },
+        {
+          "id": "G7Qq_r7L_5Jo",
+          "label": "Verksamhetsanalys",
+          "relevance_points": 26.0
+        },
+        {
+          "id": "wynY_a5Q_F6t",
+          "label": "IT-konsultuppdrag, erfarenhet",
+          "relevance_points": 11.0
+        },
+        {
+          "id": "LLQd_jDh_gdd",
+          "label": "Förändringsledning",
+          "relevance_points": 9.0
+        },
+        {
+          "id": "TEum_xLY_t4z",
+          "label": "Datautvinning",
+          "relevance_points": 7.0
+        },
+        {
+          "id": "pBbD_2p1_4cP",
+          "label": "Systemanalys",
+          "relevance_points": 6.5
+        },
+        {
+          "id": "5JuE_fKM_Bqn",
+          "label": "Informationsmodellering",
+          "relevance_points": 5.0
+        },
+        {
+          "id": "jYaA_Cwa_Yyf",
+          "label": "Acceptanstestning",
+          "relevance_points": 4.5
+        },
+        {
+          "id": "zXNU_zXR_hGd",
+          "label": "Strategisk planering",
+          "relevance_points": 4.3
+        }
+      ],
+      "typed_job_titles": [
+        {
+          "id": "CjU9_Jws_VRm",
+          "label": "Business consultant digital"
+        },
+        {
+          "id": "xAzK_Spz_zoU",
+          "label": "Cloud transformation manager"
+        }
+      ]
+    },
+    {
+      "candidate_for_source_bound_rescue": true,
+      "canonical_definition_tokens": 0,
+      "concept_id": "41Vq_aR6_yRb",
+      "direct_source_counts": {
+        "ad_keywords": 200,
+        "relevant_skills": 6,
+        "total": 221,
+        "typed_job_titles": 15
+      },
+      "label": "Verksamhetschef, hälso- och sjukvård",
+      "nearby_occupations_diagnostic_only": [
+        {
+          "id": "ZKKT_4bd_Sxs",
+          "label": "Enhetschef, hälso- och sjukvård"
+        },
+        {
+          "id": "tPPY_hAq_9Cb",
+          "label": "Avdelningschef, region"
+        },
+        {
+          "id": "GLvv_qyx_iMK",
+          "label": "Områdeschef, omsorg"
+        },
+        {
+          "id": "Mg5T_Wi4_5my",
+          "label": "Avdelningschef, kommun"
+        },
+        {
+          "id": "zR5y_K7c_TNp",
+          "label": "Enhetschef inom social omsorg/Föreståndare inom social omsorg"
+        },
+        {
+          "id": "Noad_FWq_mY2",
+          "label": "Enhetschef, offentlig förvaltning"
+        },
+        {
+          "id": "y114_8sx_SXk",
+          "label": "Äldreomsorgschef"
+        },
+        {
+          "id": "qDLi_VEY_DDJ",
+          "label": "Sektionschef, sjukhus"
+        },
+        {
+          "id": "9rvw_tBz_kFG",
+          "label": "Enhetschef, hemtjänst"
+        },
+        {
+          "id": "PTD2_6C1_8TJ",
+          "label": "Sektionschef, offentlig förvaltning"
+        }
+      ],
+      "occurrences": null,
+      "p80_rank": null,
+      "top_ad_keywords_bm25": [
+        {
+          "BM25": 0.18,
+          "RCA": 33.94,
+          "TFIDF": 0.12,
+          "term": "hälsovård",
+          "weighted_frequency": 1125.16
+        },
+        {
+          "BM25": 0.17,
+          "RCA": 23.98,
+          "TFIDF": 0.14,
+          "term": "sjukvård",
+          "weighted_frequency": 1882.11
+        },
+        {
+          "BM25": 0.15,
+          "RCA": 56.98,
+          "TFIDF": 0.09,
+          "term": "primärvård",
+          "weighted_frequency": 649.34
+        },
+        {
+          "BM25": 0.12,
+          "RCA": 30.46,
+          "TFIDF": 0.07,
+          "term": "chefserfarenhet",
+          "weighted_frequency": 607.53
+        },
+        {
+          "BM25": 0.09,
+          "RCA": 12.29,
+          "TFIDF": 0.09,
+          "term": "ledarskap",
+          "weighted_frequency": 1432.35
+        },
+        {
+          "BM25": 0.08,
+          "RCA": 11.46,
+          "TFIDF": 0.06,
+          "term": "personalansvar",
+          "weighted_frequency": 739.33
+        },
+        {
+          "BM25": 0.08,
+          "RCA": 10.67,
+          "TFIDF": 0.08,
+          "term": "ekonomi",
+          "weighted_frequency": 1304.72
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 19.23,
+          "TFIDF": 0.03,
+          "term": "äldreomsorg",
+          "weighted_frequency": 254.06
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 16.55,
+          "TFIDF": 0.04,
+          "term": "ledarskapsutbildning",
+          "weighted_frequency": 317.18
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 14.16,
+          "TFIDF": 0.04,
+          "term": "resultatansvar",
+          "weighted_frequency": 348.29
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 11.11,
+          "TFIDF": 0.04,
+          "term": "omsorg",
+          "weighted_frequency": 422.82
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 10.99,
+          "TFIDF": 0.04,
+          "term": "ledarerfarenhet",
+          "weighted_frequency": 347.32
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 87.62,
+          "TFIDF": 0.03,
+          "term": "vårdverksamhet",
+          "weighted_frequency": 136.16
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 61.71,
+          "TFIDF": 0.02,
+          "term": "hälsoområdet",
+          "weighted_frequency": 127.86
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 28.87,
+          "TFIDF": 0.03,
+          "term": "social omsorg",
+          "weighted_frequency": 157.04
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 23.54,
+          "TFIDF": 0.03,
+          "term": "chefskap",
+          "weighted_frequency": 201.18
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 15.44,
+          "TFIDF": 0.03,
+          "term": "lss",
+          "weighted_frequency": 247.92
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 9.2,
+          "TFIDF": 0.04,
+          "term": "budgetansvar",
+          "weighted_frequency": 397.96
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 8.12,
+          "TFIDF": 0.04,
+          "term": "verksamhetsutveckling",
+          "weighted_frequency": 458.49
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 7.72,
+          "TFIDF": 0.04,
+          "term": "verksamhetsområden",
+          "weighted_frequency": 415.71
+        }
+      ],
+      "top_relevant_skills": [
+        {
+          "id": "HdYx_psN_F8h",
+          "label": "Verksamhetsledning, vård",
+          "relevance_points": 56.0
+        },
+        {
+          "id": "zXNU_zXR_hGd",
+          "label": "Strategisk planering",
+          "relevance_points": 24.0
+        },
+        {
+          "id": "Gt5f_wdi_FSJ",
+          "label": "Budgetansvar",
+          "relevance_points": 18.0
+        },
+        {
+          "id": "A3Fj_o8U_Twq",
+          "label": "Områdesansvar, hälso- och sjukvård",
+          "relevance_points": 18.0
+        },
+        {
+          "id": "gHBQ_WJe_ijx",
+          "label": "Hälso- och sjukvård, områdeskunskap",
+          "relevance_points": 12.0
+        },
+        {
+          "id": "s5SS_7bW_1Gh",
+          "label": "Resultatanalys",
+          "relevance_points": 5.4
+        }
+      ],
+      "typed_job_titles": [
+        {
+          "id": "sUfk_jph_hEf",
+          "label": "Avdelningschef, mottagning"
+        },
+        {
+          "id": "Ha6a_WZZ_8Qy",
+          "label": "Avdelningschef, vårdavdelning"
+        },
+        {
+          "id": "rxML_nRL_1kV",
+          "label": "Beställarchef"
+        },
+        {
+          "id": "cyt6_oJC_ytP",
+          "label": "Habiliteringschef"
+        },
+        {
+          "id": "DX3K_M8j_cWk",
+          "label": "Hsl-chef"
+        },
+        {
+          "id": "gHsz_oRm_Kc8",
+          "label": "Medical director"
+        },
+        {
+          "id": "sf4B_WdJ_M8K",
+          "label": "Närsjukvårdsdirektör"
+        },
+        {
+          "id": "Kets_Qec_4rp",
+          "label": "Primärvårdschef"
+        },
+        {
+          "id": "LEEe_Sab_zbe",
+          "label": "Servicechef, hälso- och sjukvård"
+        },
+        {
+          "id": "2a5L_QBV_PRJ",
+          "label": "Sjukhemschef"
+        },
+        {
+          "id": "XCVr_p7k_Mb5",
+          "label": "Sjukvårdschef"
+        },
+        {
+          "id": "okvK_Niy_PQQ",
+          "label": "Sjukvårdsdirektör"
+        },
+        {
+          "id": "Ncgy_X7y_Xez",
+          "label": "Vårdcentralföreståndare"
+        },
+        {
+          "id": "Eyf7_emF_GdD",
+          "label": "Vårdcentralschef"
+        },
+        {
+          "id": "5Aju_6CW_YGY",
+          "label": "Vårdchef"
+        }
+      ]
+    },
+    {
+      "candidate_for_source_bound_rescue": true,
+      "canonical_definition_tokens": 0,
+      "concept_id": "1ERY_48v_Q6m",
+      "direct_source_counts": {
+        "ad_keywords": 200,
+        "relevant_skills": 13,
+        "total": 224,
+        "typed_job_titles": 11
+      },
+      "label": "Administrativ chef",
+      "nearby_occupations_diagnostic_only": [
+        {
+          "id": "Noad_FWq_mY2",
+          "label": "Enhetschef, offentlig förvaltning"
+        },
+        {
+          "id": "5zDe_ZGc_x89",
+          "label": "Avdelningschef, statlig"
+        },
+        {
+          "id": "Mg5T_Wi4_5my",
+          "label": "Avdelningschef, kommun"
+        },
+        {
+          "id": "DXve_c4C_QMg",
+          "label": "Kanslichef"
+        },
+        {
+          "id": "5seg_CMk_FtK",
+          "label": "Affärsområdeschef"
+        },
+        {
+          "id": "nvUH_JLD_s4F",
+          "label": "Verkställande direktör/VD"
+        },
+        {
+          "id": "qbYy_xKX_aip",
+          "label": "Organisationschef, kommun"
+        },
+        {
+          "id": "wtxi_ss9_8Cj",
+          "label": "Kundtjänstchef"
+        },
+        {
+          "id": "RHmb_Bgh_VTm",
+          "label": "Boendechef, kommun"
+        },
+        {
+          "id": "tPPY_hAq_9Cb",
+          "label": "Avdelningschef, region"
+        }
+      ],
+      "occurrences": null,
+      "p80_rank": null,
+      "top_ad_keywords_bm25": [
+        {
+          "BM25": 0.14,
+          "RCA": 20.39,
+          "TFIDF": 0.11,
+          "term": "personalansvar",
+          "weighted_frequency": 1098.93
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 18.86,
+          "TFIDF": 0.05,
+          "term": "chefserfarenhet",
+          "weighted_frequency": 314.22
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 9.39,
+          "TFIDF": 0.07,
+          "term": "ledarskap",
+          "weighted_frequency": 914.7
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 12.27,
+          "TFIDF": 0.04,
+          "term": "arbetsmiljöansvar",
+          "weighted_frequency": 334.44
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 10.67,
+          "TFIDF": 0.04,
+          "term": "budgetansvar",
+          "weighted_frequency": 385.67
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 8.78,
+          "TFIDF": 0.07,
+          "term": "ekonomi",
+          "weighted_frequency": 896.41
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 8.01,
+          "TFIDF": 0.04,
+          "term": "budget",
+          "weighted_frequency": 463.01
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 9.26,
+          "TFIDF": 0.03,
+          "term": "ledarerfarenhet",
+          "weighted_frequency": 244.37
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 35.36,
+          "TFIDF": 0.02,
+          "term": "fastighetsfrågor",
+          "weighted_frequency": 91.83
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 23.66,
+          "TFIDF": 0.03,
+          "term": "personaladministration",
+          "weighted_frequency": 138.26
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 10.98,
+          "TFIDF": 0.03,
+          "term": "verksamhetsansvar",
+          "weighted_frequency": 194.79
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 8.94,
+          "TFIDF": 0.02,
+          "term": "budgetarbete",
+          "weighted_frequency": 162.5
+        },
+        {
+          "BM25": 0.04,
+          "RCA": 6.4,
+          "TFIDF": 0.03,
+          "term": "förändringsarbete",
+          "weighted_frequency": 325.59
+        },
+        {
+          "BM25": 0.03,
+          "RCA": 81.2,
+          "TFIDF": 0.01,
+          "term": "uppföljningsprocessen",
+          "weighted_frequency": 52.72
+        },
+        {
+          "BM25": 0.03,
+          "RCA": 29.95,
+          "TFIDF": 0.02,
+          "term": "lokalfrågor",
+          "weighted_frequency": 71.28
+        },
+        {
+          "BM25": 0.03,
+          "RCA": 13.29,
+          "TFIDF": 0.02,
+          "term": "vaktmästeri",
+          "weighted_frequency": 89.13
+        },
+        {
+          "BM25": 0.03,
+          "RCA": 11.23,
+          "TFIDF": 0.02,
+          "term": "arkiv",
+          "weighted_frequency": 97.22
+        },
+        {
+          "BM25": 0.03,
+          "RCA": 9.77,
+          "TFIDF": 0.02,
+          "term": "verksamhetsplanering",
+          "weighted_frequency": 107.84
+        },
+        {
+          "BM25": 0.03,
+          "RCA": 8.83,
+          "TFIDF": 0.02,
+          "term": "ekonomifrågor",
+          "weighted_frequency": 103.21
+        },
+        {
+          "BM25": 0.03,
+          "RCA": 7.45,
+          "TFIDF": 0.02,
+          "term": "resultatansvar",
+          "weighted_frequency": 153.07
+        }
+      ],
+      "top_relevant_skills": [
+        {
+          "id": "Gt5f_wdi_FSJ",
+          "label": "Budgetansvar",
+          "relevance_points": 28.0
+        },
+        {
+          "id": "5PjX_999_uLZ",
+          "label": "Pedagogiskt ledarskap",
+          "relevance_points": 22.0
+        },
+        {
+          "id": "zXNU_zXR_hGd",
+          "label": "Strategisk planering",
+          "relevance_points": 20.0
+        },
+        {
+          "id": "ZzN5_m7B_5CY",
+          "label": "Personalansvar",
+          "relevance_points": 18.0
+        },
+        {
+          "id": "E13X_ZF3_PAb",
+          "label": "Fysisk arbetsmiljö och ergonomi",
+          "relevance_points": 6.6
+        },
+        {
+          "id": "DWsz_s47_DrL",
+          "label": "Kapitalförvaltning",
+          "relevance_points": 6.0
+        },
+        {
+          "id": "Lq2i_vZo_BEx",
+          "label": "Bokslut",
+          "relevance_points": 4.8
+        },
+        {
+          "id": "NFFS_CHg_kHG",
+          "label": "Bokslut vid börsnoterat företag",
+          "relevance_points": 4.8
+        },
+        {
+          "id": "ocfq_A1f_wsR",
+          "label": "Delårsbokslut",
+          "relevance_points": 4.8
+        },
+        {
+          "id": "1dVh_cZS_Exw",
+          "label": "Arkiv- och informationshantering, erfarenhet",
+          "relevance_points": 4.2
+        },
+        {
+          "id": "cDU5_op5_Tuk",
+          "label": "Rekryteringsvana",
+          "relevance_points": 4.2
+        },
+        {
+          "id": "NLvg_4MQ_jaa",
+          "label": "Utvecklingssamtal, ledning av",
+          "relevance_points": 3.6
+        },
+        {
+          "id": "K5j7_sjo_LYB",
+          "label": "Utvecklingssamtal, metodutveckling",
+          "relevance_points": 3.6
+        }
+      ],
+      "typed_job_titles": [
+        {
+          "id": "v3gd_atB_x6u",
+          "label": "Administration director"
+        },
+        {
+          "id": "Xp2r_cea_VVU",
+          "label": "Administrationschef"
+        },
+        {
+          "id": "vCZE_apR_55f",
+          "label": "Administrativ direktör"
+        },
+        {
+          "id": "Pxxx_NVs_Q7f",
+          "label": "Administrativ ledare"
+        },
+        {
+          "id": "igt6_iSd_JVB",
+          "label": "Analyschef"
+        },
+        {
+          "id": "w17e_tfU_bqH",
+          "label": "Backoffice-chef"
+        },
+        {
+          "id": "FXR7_B38_o9V",
+          "label": "Chef projektutveckling"
+        },
+        {
+          "id": "mHuB_yv1_Jo1",
+          "label": "Chef Verksamhetsstöd"
+        },
+        {
+          "id": "EhLE_h9i_PXg",
+          "label": "Chefsadministratör"
+        },
+        {
+          "id": "pZg2_hLK_jua",
+          "label": "Projektutvecklingschef"
+        },
+        {
+          "id": "jcMb_yHT_3kr",
+          "label": "Stabschef"
+        }
+      ]
+    },
+    {
+      "candidate_for_source_bound_rescue": true,
+      "canonical_definition_tokens": 0,
+      "concept_id": "zrQ9_1z2_kT3",
+      "direct_source_counts": {
+        "ad_keywords": 200,
+        "relevant_skills": 30,
+        "total": 267,
+        "typed_job_titles": 37
+      },
+      "label": "Musikpedagog/Musiklärare",
+      "nearby_occupations_diagnostic_only": [
+        {
+          "id": "f5ea_EuN_EfJ",
+          "label": "Lärare i kulturskolan"
+        },
+        {
+          "id": "PecC_mHt_1Cj",
+          "label": "Grundlärare, förskoleklass och 1–3"
+        },
+        {
+          "id": "1yBB_G2R_LGr",
+          "label": "Sångpedagog"
+        },
+        {
+          "id": "743P_CSD_tF8",
+          "label": "Grundlärare, 4–6"
+        },
+        {
+          "id": "wypk_7S7_snv",
+          "label": "Ämneslärare, 7–9"
+        },
+        {
+          "id": "86sy_hBf_exW",
+          "label": "Ämneslärare, gymnasieskolan"
+        },
+        {
+          "id": "JUu4_wcP_kQG",
+          "label": "Lärare i förskoleklass"
+        },
+        {
+          "id": "Zfgc_BYU_HM2",
+          "label": "Lärarassistent"
+        },
+        {
+          "id": "jUbF_gem_LC8",
+          "label": "Bildpedagog"
+        },
+        {
+          "id": "QhS4_HKc_T2v",
+          "label": "Teaterpedagog"
+        }
+      ],
+      "occurrences": null,
+      "p80_rank": null,
+      "top_ad_keywords_bm25": [
+        {
+          "BM25": 0.53,
+          "RCA": 184.3,
+          "TFIDF": 0.32,
+          "term": "musik",
+          "weighted_frequency": 1317.2
+        },
+        {
+          "BM25": 0.37,
+          "RCA": 72.91,
+          "TFIDF": 0.25,
+          "term": "undervisning",
+          "weighted_frequency": 1318.62
+        },
+        {
+          "BM25": 0.28,
+          "RCA": 423.77,
+          "TFIDF": 0.15,
+          "term": "piano",
+          "weighted_frequency": 432.66
+        },
+        {
+          "BM25": 0.19,
+          "RCA": 586.39,
+          "TFIDF": 0.1,
+          "term": "gitarr",
+          "weighted_frequency": 256.59
+        },
+        {
+          "BM25": 0.19,
+          "RCA": 27.15,
+          "TFIDF": 0.14,
+          "term": "barn",
+          "weighted_frequency": 966.33
+        },
+        {
+          "BM25": 0.17,
+          "RCA": 85.9,
+          "TFIDF": 0.1,
+          "term": "kulturskola",
+          "weighted_frequency": 363.34
+        },
+        {
+          "BM25": 0.16,
+          "RCA": 483.85,
+          "TFIDF": 0.08,
+          "term": "musikundervisning",
+          "weighted_frequency": 211.72
+        },
+        {
+          "BM25": 0.16,
+          "RCA": 78.08,
+          "TFIDF": 0.1,
+          "term": "lärarlegitimation",
+          "weighted_frequency": 353.06
+        },
+        {
+          "BM25": 0.14,
+          "RCA": 126.16,
+          "TFIDF": 0.08,
+          "term": "sång",
+          "weighted_frequency": 239.22
+        },
+        {
+          "BM25": 0.13,
+          "RCA": 388.82,
+          "TFIDF": 0.07,
+          "term": "orkester",
+          "weighted_frequency": 170.13
+        },
+        {
+          "BM25": 0.12,
+          "RCA": 26.36,
+          "TFIDF": 0.08,
+          "term": "instrument",
+          "weighted_frequency": 376.82
+        },
+        {
+          "BM25": 0.11,
+          "RCA": 161.42,
+          "TFIDF": 0.06,
+          "term": "gruppundervisning",
+          "weighted_frequency": 164.81
+        },
+        {
+          "BM25": 0.1,
+          "RCA": 308.02,
+          "TFIDF": 0.05,
+          "term": "fiol",
+          "weighted_frequency": 134.78
+        },
+        {
+          "BM25": 0.1,
+          "RCA": 38.38,
+          "TFIDF": 0.06,
+          "term": "grundskolan",
+          "weighted_frequency": 223.92
+        },
+        {
+          "BM25": 0.08,
+          "RCA": 344.51,
+          "TFIDF": 0.04,
+          "term": "biinstrument",
+          "weighted_frequency": 100.5
+        },
+        {
+          "BM25": 0.08,
+          "RCA": 330.55,
+          "TFIDF": 0.04,
+          "term": "cello",
+          "weighted_frequency": 96.42
+        },
+        {
+          "BM25": 0.08,
+          "RCA": 230.78,
+          "TFIDF": 0.04,
+          "term": "pop",
+          "weighted_frequency": 100.98
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 315.76,
+          "TFIDF": 0.04,
+          "term": "saxofon",
+          "weighted_frequency": 92.11
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 302.94,
+          "TFIDF": 0.04,
+          "term": "rock",
+          "weighted_frequency": 88.37
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 302.19,
+          "TFIDF": 0.04,
+          "term": "musikskolan",
+          "weighted_frequency": 88.15
+        }
+      ],
+      "top_relevant_skills": [
+        {
+          "id": "oLnc_YZn_3bm",
+          "label": "Utbildningsplanering",
+          "relevance_points": 120.0
+        },
+        {
+          "id": "8kWs_pQb_7ek",
+          "label": "Afroamerikansk musik, undervisningsvana",
+          "relevance_points": 36.0
+        },
+        {
+          "id": "pcME_EVx_dvv",
+          "label": "Altfiol, undervisning musikskola",
+          "relevance_points": 36.0
+        },
+        {
+          "id": "U5qa_Ztp_cJQ",
+          "label": "Bastuba, undervisning musikskola",
+          "relevance_points": 36.0
+        },
+        {
+          "id": "bTEw_zCS_SyR",
+          "label": "Cello, undervisning musikskola",
+          "relevance_points": 36.0
+        },
+        {
+          "id": "66jU_Dqo_EXF",
+          "label": "Cembalo, undervisning musikskola",
+          "relevance_points": 36.0
+        },
+        {
+          "id": "yew9_egj_cis",
+          "label": "Dragspel, undervisning musikskola",
+          "relevance_points": 36.0
+        },
+        {
+          "id": "EXu6_HF5_bX4",
+          "label": "Elgitarr, undervisning musikskola",
+          "relevance_points": 36.0
+        },
+        {
+          "id": "Wqgy_GW1_GcW",
+          "label": "Fagott, undervisning musikskola",
+          "relevance_points": 36.0
+        },
+        {
+          "id": "eR21_C9o_cfV",
+          "label": "Folkmusik, undervisningsvana",
+          "relevance_points": 36.0
+        },
+        {
+          "id": "gMXh_Wst_f3P",
+          "label": "Gitarr, undervisning musikskola",
+          "relevance_points": 36.0
+        },
+        {
+          "id": "2Ap2_M9U_ysh",
+          "label": "Harpa, undervisning musikskola",
+          "relevance_points": 36.0
+        },
+        {
+          "id": "k6MA_ohd_SJ3",
+          "label": "Hip hop, undervisning",
+          "relevance_points": 36.0
+        },
+        {
+          "id": "PNjY_HiX_R8u",
+          "label": "Keyboard, undervisning musikskola",
+          "relevance_points": 36.0
+        },
+        {
+          "id": "v2C1_xKm_7c3",
+          "label": "Konstmusik, undervisningsvana",
+          "relevance_points": 36.0
+        }
+      ],
+      "typed_job_titles": [
+        {
+          "id": "aeG8_yZ5_SFU",
+          "label": "Bleckblåslärare"
+        },
+        {
+          "id": "heNZ_cwt_RQS",
+          "label": "Bleckblåspedagog"
+        },
+        {
+          "id": "JWsz_7Nf_4Wj",
+          "label": "Blockflöjtslärare"
+        },
+        {
+          "id": "bixn_jnb_z3d",
+          "label": "Blockflöjtspedagog"
+        },
+        {
+          "id": "PHxm_yqX_BFw",
+          "label": "Brasslärare"
+        },
+        {
+          "id": "Y8yz_JFZ_qE1",
+          "label": "Brasspedagog"
+        },
+        {
+          "id": "cLTs_Gdz_GjJ",
+          "label": "Cellolärare"
+        },
+        {
+          "id": "yYtC_ByH_Xvm",
+          "label": "Cellopedagog"
+        },
+        {
+          "id": "xRbB_qR3_ePA",
+          "label": "Dragspelslärare"
+        },
+        {
+          "id": "L2UR_wJf_YXE",
+          "label": "Elbaslärare"
+        },
+        {
+          "id": "LCAb_LhH_m84",
+          "label": "Fiollärare"
+        },
+        {
+          "id": "WCRw_swf_vP3",
+          "label": "Fiolpedagog"
+        },
+        {
+          "id": "MjSb_zzQ_2Mv",
+          "label": "Gitarrledare"
+        },
+        {
+          "id": "aABj_ts7_QGA",
+          "label": "Gitarrlärare"
+        },
+        {
+          "id": "dGBC_rEP_UUW",
+          "label": "Gitarrpedagog"
+        },
+        {
+          "id": "39Mv_oev_vyH",
+          "label": "Instrumentalpedagog"
+        },
+        {
+          "id": "FuRR_W2B_Cfa",
+          "label": "Keyboardpedagog"
+        },
+        {
+          "id": "dWUE_R47_Uqk",
+          "label": "Klarinettlärare"
+        },
+        {
+          "id": "Cmsp_soR_K96",
+          "label": "Klaviaturlärare"
+        },
+        {
+          "id": "VJUa_UvJ_ScU",
+          "label": "Körpedagog"
+        },
+        {
+          "id": "Lc32_rUh_NJS",
+          "label": "Rocklärare"
+        },
+        {
+          "id": "LBqC_QGB_P6H",
+          "label": "Rytmiklärare"
+        },
+        {
+          "id": "3VZQ_1jd_wwa",
+          "label": "Rytmikpedagog"
+        },
+        {
+          "id": "w8ax_N3t_2AF",
+          "label": "Saxofonlärare"
+        },
+        {
+          "id": "ybNP_fWQ_Ri8",
+          "label": "Saxofonpedagog"
+        },
+        {
+          "id": "qdVK_DYf_GBJ",
+          "label": "Slagverkslärare"
+        },
+        {
+          "id": "eRif_6Rv_cTX",
+          "label": "Slagverkspedagog"
+        },
+        {
+          "id": "8ioB_xfK_RYL",
+          "label": "Stråklärare"
+        },
+        {
+          "id": "pC4A_d88_tRZ",
+          "label": "Stråkpedagog"
+        },
+        {
+          "id": "ajkF_kUN_hkP",
+          "label": "Trumlärare"
+        }
+      ]
+    },
+    {
+      "candidate_for_source_bound_rescue": true,
+      "canonical_definition_tokens": 0,
+      "concept_id": "15e8_KDZ_31Z",
+      "direct_source_counts": {
+        "ad_keywords": 182,
+        "relevant_skills": 30,
+        "total": 216,
+        "typed_job_titles": 4
+      },
+      "label": "SFI-lärare",
+      "nearby_occupations_diagnostic_only": [
+        {
+          "id": "86sy_hBf_exW",
+          "label": "Ämneslärare, gymnasieskolan"
+        },
+        {
+          "id": "kJEw_Qzp_bkK",
+          "label": "Folkhögskolelärare"
+        },
+        {
+          "id": "PecC_mHt_1Cj",
+          "label": "Grundlärare, förskoleklass och 1–3"
+        },
+        {
+          "id": "wypk_7S7_snv",
+          "label": "Ämneslärare, 7–9"
+        },
+        {
+          "id": "743P_CSD_tF8",
+          "label": "Grundlärare, 4–6"
+        },
+        {
+          "id": "sETD_6ca_PbW",
+          "label": "Yrkeslärare"
+        },
+        {
+          "id": "JUu4_wcP_kQG",
+          "label": "Lärare i förskoleklass"
+        },
+        {
+          "id": "Zfgc_BYU_HM2",
+          "label": "Lärarassistent"
+        },
+        {
+          "id": "P9Et_5en_uwo",
+          "label": "Modersmålslärare i gymnasieskolan"
+        },
+        {
+          "id": "zrQ9_1z2_kT3",
+          "label": "Musikpedagog/Musiklärare"
+        }
+      ],
+      "occurrences": null,
+      "p80_rank": null,
+      "top_ad_keywords_bm25": [
+        {
+          "BM25": 0.63,
+          "RCA": 296.15,
+          "TFIDF": 0.37,
+          "term": "sfi",
+          "weighted_frequency": 1117.25
+        },
+        {
+          "BM25": 0.53,
+          "RCA": 199.36,
+          "TFIDF": 0.32,
+          "term": "svenska som andraspråk",
+          "weighted_frequency": 1034.17
+        },
+        {
+          "BM25": 0.37,
+          "RCA": 73.56,
+          "TFIDF": 0.25,
+          "term": "undervisning",
+          "weighted_frequency": 1075.36
+        },
+        {
+          "BM25": 0.36,
+          "RCA": 349.9,
+          "TFIDF": 0.2,
+          "term": "svenska för invandrare",
+          "weighted_frequency": 495.02
+        },
+        {
+          "BM25": 0.29,
+          "RCA": 93.98,
+          "TFIDF": 0.17,
+          "term": "vuxenutbildning",
+          "weighted_frequency": 587.21
+        },
+        {
+          "BM25": 0.25,
+          "RCA": 117.95,
+          "TFIDF": 0.14,
+          "term": "lärarlegitimation",
+          "weighted_frequency": 431.08
+        },
+        {
+          "BM25": 0.2,
+          "RCA": 847.99,
+          "TFIDF": 0.1,
+          "term": "yrkessvenska",
+          "weighted_frequency": 199.95
+        },
+        {
+          "BM25": 0.11,
+          "RCA": 22.17,
+          "TFIDF": 0.07,
+          "term": "hjälpmedel",
+          "weighted_frequency": 305.78
+        },
+        {
+          "BM25": 0.1,
+          "RCA": 57.95,
+          "TFIDF": 0.06,
+          "term": "lärarexamen",
+          "weighted_frequency": 170.79
+        },
+        {
+          "BM25": 0.09,
+          "RCA": 378.46,
+          "TFIDF": 0.05,
+          "term": "språkinlärning",
+          "weighted_frequency": 89.24
+        },
+        {
+          "BM25": 0.09,
+          "RCA": 173.97,
+          "TFIDF": 0.05,
+          "term": "språkundervisning",
+          "weighted_frequency": 102.55
+        },
+        {
+          "BM25": 0.09,
+          "RCA": 47.11,
+          "TFIDF": 0.05,
+          "term": "lärplattform",
+          "weighted_frequency": 161.08
+        },
+        {
+          "BM25": 0.08,
+          "RCA": 600.51,
+          "TFIDF": 0.04,
+          "term": "sfi-undervisning",
+          "weighted_frequency": 70.8
+        },
+        {
+          "BM25": 0.08,
+          "RCA": 132.29,
+          "TFIDF": 0.04,
+          "term": "skrivinlärning",
+          "weighted_frequency": 93.58
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 119.43,
+          "TFIDF": 0.04,
+          "term": "läsinlärning",
+          "weighted_frequency": 84.48
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 15.11,
+          "TFIDF": 0.05,
+          "term": "styrdokument",
+          "weighted_frequency": 192.44
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 99.94,
+          "TFIDF": 0.03,
+          "term": "vuxnas lärande",
+          "weighted_frequency": 70.7
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 39.56,
+          "TFIDF": 0.03,
+          "term": "kursplaner",
+          "weighted_frequency": 88.62
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 385.9,
+          "TFIDF": 0.02,
+          "term": "samhällsliv",
+          "weighted_frequency": 45.5
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 384.8,
+          "TFIDF": 0.02,
+          "term": "språkanpassning",
+          "weighted_frequency": 45.37
+        }
+      ],
+      "top_relevant_skills": [
+        {
+          "id": "oLnc_YZn_3bm",
+          "label": "Utbildningsplanering",
+          "relevance_points": 31.0
+        },
+        {
+          "id": "SpRR_JX9_6o6",
+          "label": "Bedömning av reell kompetens/Valideringsbedömning",
+          "relevance_points": 13.0
+        },
+        {
+          "id": "2AJo_aNK_WaH",
+          "label": "Svenska för invandrare, undervisning",
+          "relevance_points": 11.0
+        },
+        {
+          "id": "1kW6_GKK_Uxp",
+          "label": "Språk och språkutveckling, undervisning",
+          "relevance_points": 9.0
+        },
+        {
+          "id": "US4W_Foa_CSg",
+          "label": "Utbildningsadministration",
+          "relevance_points": 9.0
+        },
+        {
+          "id": "C3Fc_BSX_rpH",
+          "label": "Specialpedagogik",
+          "relevance_points": 8.0
+        },
+        {
+          "id": "dAz5_TeD_2t5",
+          "label": "Övriga språk, undervisning",
+          "relevance_points": 7.8
+        },
+        {
+          "id": "V5EN_xw2_itk",
+          "label": "e-lärande, erfarenhet",
+          "relevance_points": 6.5
+        },
+        {
+          "id": "3qpX_AHB_j2m",
+          "label": "Moderna språk, undervisning grundskolenivå",
+          "relevance_points": 6.3
+        },
+        {
+          "id": "6MbJ_1ZU_u79",
+          "label": "Moderna språk, undervisning gymnasienivå",
+          "relevance_points": 6.3
+        },
+        {
+          "id": "Mt3F_4Xm_z1i",
+          "label": "Dyslexi, specialpedagogik",
+          "relevance_points": 5.5
+        },
+        {
+          "id": "fC19_bPk_8Ta",
+          "label": "Matematiksvårigheter, specialpedagogik/Dyskalkyli, specialpedagogik",
+          "relevance_points": 5.5
+        },
+        {
+          "id": "NNNL_6SE_hok",
+          "label": "Modersmål, undervisning grundskolenivå",
+          "relevance_points": 4.8
+        },
+        {
+          "id": "YjTj_gJp_QtG",
+          "label": "Modersmål, undervisning gymnasienivå",
+          "relevance_points": 4.8
+        },
+        {
+          "id": "7Y6d_qDZ_Eyt",
+          "label": "Lärplattformar, erfarenhet",
+          "relevance_points": 4.0
+        }
+      ],
+      "typed_job_titles": [
+        {
+          "id": "e8JY_7RY_XQR",
+          "label": "Andraspråkslärare"
+        },
+        {
+          "id": "xqbk_1wY_EcX",
+          "label": "SFI-samordnare"
+        },
+        {
+          "id": "5ofh_GVz_MaL",
+          "label": "Språktränare"
+        },
+        {
+          "id": "j3ep_8vv_nLH",
+          "label": "Teacher"
+        }
+      ]
+    },
+    {
+      "candidate_for_source_bound_rescue": true,
+      "canonical_definition_tokens": 0,
+      "concept_id": "CnYS_d4N_CZJ",
+      "direct_source_counts": {
+        "ad_keywords": 200,
+        "relevant_skills": 14,
+        "total": 215,
+        "typed_job_titles": 1
+      },
+      "label": "Enhetschef inom socialtjänst",
+      "nearby_occupations_diagnostic_only": [
+        {
+          "id": "BUnV_RWN_xvi",
+          "label": "Socialchef/Socialdirektör"
+        },
+        {
+          "id": "Mg5T_Wi4_5my",
+          "label": "Avdelningschef, kommun"
+        },
+        {
+          "id": "zR5y_K7c_TNp",
+          "label": "Enhetschef inom social omsorg/Föreståndare inom social omsorg"
+        },
+        {
+          "id": "RHmb_Bgh_VTm",
+          "label": "Boendechef, kommun"
+        },
+        {
+          "id": "PTD2_6C1_8TJ",
+          "label": "Sektionschef, offentlig förvaltning"
+        },
+        {
+          "id": "Noad_FWq_mY2",
+          "label": "Enhetschef, offentlig förvaltning"
+        },
+        {
+          "id": "SDk3_uMJ_8an",
+          "label": "Boendeföreståndare"
+        },
+        {
+          "id": "GLvv_qyx_iMK",
+          "label": "Områdeschef, omsorg"
+        },
+        {
+          "id": "gfTT_a2J_3wX",
+          "label": "Kontorschef, offentlig förvaltning"
+        },
+        {
+          "id": "5zDe_ZGc_x89",
+          "label": "Avdelningschef, statlig"
+        }
+      ],
+      "occurrences": null,
+      "p80_rank": null,
+      "top_ad_keywords_bm25": [
+        {
+          "BM25": 0.23,
+          "RCA": 100.98,
+          "TFIDF": 0.14,
+          "term": "socionomexamen",
+          "weighted_frequency": 779.52
+        },
+        {
+          "BM25": 0.23,
+          "RCA": 60.85,
+          "TFIDF": 0.15,
+          "term": "myndighetsutövning",
+          "weighted_frequency": 1004.66
+        },
+        {
+          "BM25": 0.17,
+          "RCA": 38.46,
+          "TFIDF": 0.11,
+          "term": "socialtjänst",
+          "weighted_frequency": 758.75
+        },
+        {
+          "BM25": 0.12,
+          "RCA": 23.05,
+          "TFIDF": 0.08,
+          "term": "arbetsmiljöansvar",
+          "weighted_frequency": 622.81
+        },
+        {
+          "BM25": 0.1,
+          "RCA": 24.68,
+          "TFIDF": 0.06,
+          "term": "chefserfarenhet",
+          "weighted_frequency": 407.49
+        },
+        {
+          "BM25": 0.1,
+          "RCA": 14.44,
+          "TFIDF": 0.08,
+          "term": "personalansvar",
+          "weighted_frequency": 770.72
+        },
+        {
+          "BM25": 0.09,
+          "RCA": 23.57,
+          "TFIDF": 0.06,
+          "term": "verksamhetsansvar",
+          "weighted_frequency": 414.49
+        },
+        {
+          "BM25": 0.09,
+          "RCA": 21.66,
+          "TFIDF": 0.06,
+          "term": "socialt arbete",
+          "weighted_frequency": 436.52
+        },
+        {
+          "BM25": 0.09,
+          "RCA": 15.04,
+          "TFIDF": 0.06,
+          "term": "budgetansvar",
+          "weighted_frequency": 538.44
+        },
+        {
+          "BM25": 0.09,
+          "RCA": 12.85,
+          "TFIDF": 0.07,
+          "term": "barn",
+          "weighted_frequency": 672.06
+        },
+        {
+          "BM25": 0.08,
+          "RCA": 49.13,
+          "TFIDF": 0.04,
+          "term": "individomsorgen",
+          "weighted_frequency": 221.25
+        },
+        {
+          "BM25": 0.08,
+          "RCA": 24.9,
+          "TFIDF": 0.05,
+          "term": "lss",
+          "weighted_frequency": 331.09
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 71.41,
+          "TFIDF": 0.04,
+          "term": "ekonomiskt bistånd",
+          "weighted_frequency": 168.44
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 26.65,
+          "TFIDF": 0.04,
+          "term": "socialtjänstlagen",
+          "weighted_frequency": 240.01
+        },
+        {
+          "BM25": 0.07,
+          "RCA": 9.8,
+          "TFIDF": 0.07,
+          "term": "ledarskap",
+          "weighted_frequency": 945.19
+        },
+        {
+          "BM25": 0.06,
+          "RCA": 9.6,
+          "TFIDF": 0.05,
+          "term": "verksamhetsområden",
+          "weighted_frequency": 428.16
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 37.56,
+          "TFIDF": 0.03,
+          "term": "lvu",
+          "weighted_frequency": 120.82
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 29.44,
+          "TFIDF": 0.03,
+          "term": "familjeomsorg",
+          "weighted_frequency": 157.81
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 22.5,
+          "TFIDF": 0.03,
+          "term": "öppenvård",
+          "weighted_frequency": 154.37
+        },
+        {
+          "BM25": 0.05,
+          "RCA": 13.7,
+          "TFIDF": 0.03,
+          "term": "ledarskapsutbildning",
+          "weighted_frequency": 217.32
+        }
+      ],
+      "top_relevant_skills": [
+        {
+          "id": "SfoE_zq7_ADN",
+          "label": "Social service och omsorg, områdeskunskap",
+          "relevance_points": 196.0
+        },
+        {
+          "id": "5PjX_999_uLZ",
+          "label": "Pedagogiskt ledarskap",
+          "relevance_points": 18.0
+        },
+        {
+          "id": "X9Kc_p8a_1FB",
+          "label": "Statlig förvaltning",
+          "relevance_points": 16.0
+        },
+        {
+          "id": "zXNU_zXR_hGd",
+          "label": "Strategisk planering",
+          "relevance_points": 16.0
+        },
+        {
+          "id": "Nksx_4oe_fEQ",
+          "label": "Arbetsmiljöansvar",
+          "relevance_points": 12.0
+        },
+        {
+          "id": "Gt5f_wdi_FSJ",
+          "label": "Budgetansvar",
+          "relevance_points": 12.0
+        },
+        {
+          "id": "ZzN5_m7B_5CY",
+          "label": "Personalansvar",
+          "relevance_points": 12.0
+        },
+        {
+          "id": "s5SS_7bW_1Gh",
+          "label": "Resultatanalys",
+          "relevance_points": 12.0
+        },
+        {
+          "id": "vrSj_Kp4_iQT",
+          "label": "Områdesansvar, socialt arbete",
+          "relevance_points": 10.3
+        },
+        {
+          "id": "RGVP_7PH_Zx6",
+          "label": "Områdesansvar, socialförsäkringsfrågor",
+          "relevance_points": 8.0
+        },
+        {
+          "id": "eThQ_HCv_mY6",
+          "label": "Personalplanering",
+          "relevance_points": 8.0
+        },
+        {
+          "id": "YS7V_c8n_MrS",
+          "label": "Verksamhetsansvar",
+          "relevance_points": 8.0
+        },
+        {
+          "id": "Wd87_ePw_Py2",
+          "label": "Områdesansvar, räddningstjänst",
+          "relevance_points": 6.3
+        },
+        {
+          "id": "sGky_Wqy_QvZ",
+          "label": "Utbildning av nya kollegor",
+          "relevance_points": 3.6
+        }
+      ],
+      "typed_job_titles": [
+        {
+          "id": "7sBY_w8H_nVP",
+          "label": "Ifo-chef"
+        }
+      ]
+    }
+  ],
+  "source_hashes": {
+    "ad_keywords_wire_sha256": "2fb4be00e42a89dca97f23547942b128820fe3b794ff5e25ac0f872978fe5b00",
+    "nearby_occupations_sha256": "1f476198bea046c88d18fc8a09c80fbb88107bcb046644b95ffdc441db679396",
+    "relevant_skills_wire_sha256": "e66679cdb48af23700734bcf26d8d6531d842cbdad2cba80c67baa71ceb3a897"
+  },
+  "source_thin_concepts": 22,
+  "taxonomy_sha256": "634fd9d848a172747e54e3e487160a912ae6c0fcb8219c50998767c8c9aacbcc",
+  "with_ad_keywords": 22,
+  "with_relevant_skills": 22,
+  "with_typed_job_titles": 22
+}
