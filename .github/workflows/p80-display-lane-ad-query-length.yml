@@ -1,0 +1,34 @@
+name: P80 lane historical-ad query-length diagnostic
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/p80-display-lane-ad-query-length.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile-check
+        run: python -m py_compile scripts/diagnose_p80_display_lane_ad_query_length.py
+      - name: Diagnose frozen lane rule at 20 and 40 words
+        run: python scripts/diagnose_p80_display_lane_ad_query_length.py
+      - name: Freeze diagnostics
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/evaluation/v31/p80-display-lane-historical-ads-20w-diagnostic-v0.json
+          git add research/evaluation/v31/p80-display-lane-historical-ads-40w-diagnostic-v0.json
+          git commit -m 'research: freeze lane query-length diagnostics'
+          git push
