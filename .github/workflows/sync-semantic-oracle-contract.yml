@@ -1,0 +1,49 @@
+name: Sync exact semantic oracle contract
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/sync-semantic-oracle-contract.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Make SSOT match frozen preregistration
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('SSOT.md')
+          s=p.read_text(encoding='utf-8')
+          old='candidate evidence is source-bound: canonical label/definition plus already-frozen source-bound teacher phrases; insufficient evidence must yield `uncertain`, not invented facts;'
+          new='candidate evidence is source-bound and fixed as `label-alt3-definition50-task2x24-v0`: canonical label, up to 3 alternative labels, definition up to 50 words, and up to 2 already-frozen task phrases of up to 24 words each; insufficient evidence must yield `uncertain`, not invented facts;'
+          if old not in s:
+              raise SystemExit('evidence-contract wording drift')
+          s=s.replace(old,new,1)
+          old2='safe different-SSYK4 negative reduction: **>=60%** for a strong pass;'
+          new2='safe different-SSYK4 **rank-2–5** negative reduction: **>=60%** for a strong pass;'
+          if old2 not in s:
+              raise SystemExit('gate wording drift')
+          s=s.replace(old2,new2,1)
+          anchor='Only a strong/promising pass permits an **unchanged diagnostic replay** on the opened user-style stress set. Opened replay may falsify transfer but may never retune the teacher or its rule.\n'
+          addition='\nThe exact pre-outcome contract is frozen in `research/evaluation/v31/p80-display-semantic-oracle-preregistration-v0.json`.\n'
+          if addition.strip() not in s:
+              if anchor not in s:
+                  raise SystemExit('prereg anchor drift')
+              s=s.replace(anchor,anchor+addition,1)
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit exact SSOT contract
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add SSOT.md
+          git commit -m 'docs: align SSOT with frozen semantic oracle contract'
+          git pull --rebase origin main
+          git push
