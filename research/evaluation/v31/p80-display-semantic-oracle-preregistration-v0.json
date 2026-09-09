@@ -1,0 +1,79 @@
+{
+  "id": "YV-P80-display-semantic-oracle-preregistration-v0",
+  "frozen_before_any_parsed_or_saved_oracle_judgments": true,
+  "date": "2026-09-09",
+  "purpose": "Test whether genuinely semantic candidate-level information is sufficient to remove clearly irrelevant visible Top-5 occupations while preserving useful lower-ranked targets. This is a research oracle, not a runtime design.",
+  "retrieval": {
+    "architecture": "current frozen P80 A-family sparse/BM25 candidate",
+    "candidate_universe": 2105,
+    "top_k_given_to_oracle": 5,
+    "ranker_changed": false,
+    "rank_order_changed": false
+  },
+  "teacher": {
+    "model": "gemma-4-26b-a4b-it",
+    "prompt_version": "yv-p80-semantic-display-oracle-v0",
+    "prompt_sha256": "21f7287d556586869eea81e3079c96b82485557556615563b0389b096f9f25ff",
+    "temperature": 0.0,
+    "verdicts": ["keep", "uncertain", "drop"],
+    "rank_hidden": true,
+    "structured_target_hidden": true,
+    "ssyk_hidden": true,
+    "candidate_order": "deterministically shuffled per query",
+    "semantic_policy": "drop only when clearly semantically irrelevant under supplied source-bound evidence; insufficient or ambiguous evidence => uncertain"
+  },
+  "candidate_evidence": {
+    "version": "label-alt3-definition50-task2x24-v0",
+    "source_bound_only": true,
+    "canonical_label_max_words": 12,
+    "alternative_labels_max_count": 3,
+    "alternative_label_max_words_each": 12,
+    "definition_max_words": 50,
+    "frozen_task_phrases_max_count": 2,
+    "task_phrase_max_words_each": 24,
+    "note": "The compact evidence payload was fixed after two zero-outcome transport failures: first free-tier input-token quota exhaustion, then an array-vs-object JSON envelope parse failure. No parsed/saved oracle judgments existed before this version was frozen. Prompt, model, verdict policy and gates were unchanged."
+  },
+  "display_contract": {
+    "rank_1": "always retain",
+    "ranks_2_to_5": "retain keep and uncertain; remove only drop",
+    "fixed_top_n_truncation": false
+  },
+  "primary_evaluation": {
+    "source": "natural historical 2024 Platsbanken task snippets",
+    "target": "structured occupation-name",
+    "rescue_target_ids_excluded": 22,
+    "candidate_competition": 2105,
+    "positive": "structured target when present in Top5",
+    "safe_negative": "non-target Top5 candidate in a different SSYK4 from the structured target",
+    "same_ssyk4_non_target": "unlabeled for precision accounting",
+    "opened_17_88_available_to_selection": false
+  },
+  "primary_gate": {
+    "strong": {
+      "overall_baseline_hit5_target_retention_min": 0.99,
+      "rank_2_to_5_target_retention_min": 0.98,
+      "safe_cross_ssyk_tail_negative_reduction_min": 0.60
+    },
+    "promising": {
+      "overall_baseline_hit5_target_retention_min": 0.98,
+      "rank_2_to_5_target_retention_min": 0.98,
+      "safe_cross_ssyk_tail_negative_reduction_min": 0.50
+    },
+    "only_if_strong_or_promising": "Replay exact frozen oracle unchanged on opened user-style stress. No retuning."
+  },
+  "opened_replay_acceptance": {
+    "targetable_hit5_after_min": 27,
+    "targetable_hit5_before_expected": 28,
+    "rank_2_to_5_targets_after_min": 12,
+    "rank_2_to_5_targets_before_expected": 13,
+    "mean_visible_list_max": 3.5,
+    "yv01": "remove at least two of Apotekare, Receptarie, Sjukhusvaktmästare while retaining a sjukskoterska-family result",
+    "yv02": "remove both Vaxeltelefonist and Affarskonsult, IT while retaining an elektriker-family result",
+    "interpretation": "diagnostic transfer acceptance/falsification only; never a human accuracy estimate or tuning set"
+  },
+  "post_gate_decision": {
+    "if_primary_and_opened_pass": "Semantic information has earned a bounded distillation/compilation experiment into a small deterministic runtime-compatible student. Runtime provider LLM/API remains forbidden.",
+    "if_primary_fails": "Do not distill. Reassess semantic evidence/product interaction; do not add another lexical heuristic stack.",
+    "if_opened_fails": "Do not distill from this oracle. Treat proxy-to-user-style transfer as falsified without retuning opened rows."
+  }
+}
