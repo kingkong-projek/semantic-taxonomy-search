@@ -1,0 +1,88 @@
+name: Semantic display hard-confusion v1
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/semantic-display-hard-confusion-v1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: semantic-display-hard-confusion-v1
+  cancel-in-progress: false
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify frozen v1 protocol
+        run: |
+          python -m py_compile scripts/evaluate_semantic_display_hard_confusion_v1.py
+          python - <<'PY'
+          import json
+          p=json.load(open('research/evaluation/v31/semantic-display-hard-confusion-v1-preregistration.json',encoding='utf-8'))
+          assert p['status']=='frozen before v1 oracle outcomes'
+          assert p['opened_data_policy']['opened_17_88_loaded_for_design_or_execution'] is False
+          assert p['query_evaluation']['year']==2022
+          print('v1 preregistration verified')
+          PY
+      - name: Run independent 2022 hard-confusion test durably
+        run: |
+          python scripts/evaluate_semantic_display_hard_confusion_v1.py \
+            --batch-size 6 \
+            --requests-per-minute 3 \
+            --single-case-attempts 8
+      - name: Persist result or resumable checkpoints
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for f in \
+            research/evaluation/v31/semantic-display-hard-confusion-v1-result.json \
+            research/evaluation/v31/semantic-display-hard-confusion-v1-control-checkpoint.json \
+            research/evaluation/v31/semantic-display-hard-confusion-v1-control-status.json \
+            research/evaluation/v31/semantic-display-hard-confusion-v1-challenger-checkpoint.json \
+            research/evaluation/v31/semantic-display-hard-confusion-v1-challenger-status.json; do
+            if [ -f "$f" ]; then git add "$f"; fi
+          done
+          if git diff --cached --quiet; then
+            echo 'No v1 state changes to persist.'
+          else
+            git commit -m 'research: persist semantic hard-confusion v1 state'
+            git pull --rebase origin main
+            git push
+          fi
+      - name: Upload v1 recovery artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: semantic-display-hard-confusion-v1
+          path: |
+            research/evaluation/v31/semantic-display-hard-confusion-v1-result.json
+            research/evaluation/v31/semantic-display-hard-confusion-v1-control-checkpoint.json
+            research/evaluation/v31/semantic-display-hard-confusion-v1-control-status.json
+            research/evaluation/v31/semantic-display-hard-confusion-v1-challenger-checkpoint.json
+            research/evaluation/v31/semantic-display-hard-confusion-v1-challenger-status.json
+          if-no-files-found: warn
+      - name: Require a decision-bearing result after state is safe
+        if: always()
+        run: |
+          python - <<'PY'
+          import json, os
+          p='research/evaluation/v31/semantic-display-hard-confusion-v1-result.json'
+          if not os.path.exists(p):
+              raise SystemExit('v1 incomplete; durable checkpoints were persisted')
+          r=json.load(open(p,encoding='utf-8'))
+          print(json.dumps({k:r.get(k) for k in ('status','hard_negative_drop_improvement','decision_gate')},indent=2,ensure_ascii=False))
+          PY
