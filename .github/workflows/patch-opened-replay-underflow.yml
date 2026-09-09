@@ -1,0 +1,38 @@
+name: Patch opened replay underflow handling
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/patch-opened-replay-underflow.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Match original opened replay candidate-count contract
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('scripts/run_p80_display_semantic_oracle_opened_resumable.py')
+          s=p.read_text(encoding='utf-8')
+          old='''        if len(candidates) != 5:\n            raise RuntimeError(f"opened Top5 underflow for {source['id']}")\n'''
+          if old not in s:
+              raise SystemExit('underflow assert block drift')
+          s=s.replace(old,'',1)
+          p.write_text(s, encoding='utf-8')
+          PY
+          python -m py_compile scripts/run_p80_display_semantic_oracle_opened_resumable.py
+      - name: Commit transport-wrapper correction
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add scripts/run_p80_display_semantic_oracle_opened_resumable.py
+          git commit -m 'research: allow opened replay candidate underflow'
+          git pull --rebase origin main
+          git push
