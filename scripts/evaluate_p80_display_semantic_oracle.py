@@ -27,6 +27,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
@@ -44,7 +45,8 @@ from evaluate_pareto_c1 import rank_c1
 MODEL = gemma.MODEL
 PROMPT_VERSION = "yv-p80-semantic-display-oracle-v0"
 VERDICTS = {"keep", "uncertain", "drop"}
-MAX_TASK_PHRASES = 8
+MAX_TASK_PHRASES = 2
+EVIDENCE_VERSION = "label-alt3-definition50-task2x24-v0"
 
 INSTRUCTIONS = """Du är en KONSERVATIV semantisk relevansdomare för svensk yrkessökning.
 
@@ -86,16 +88,20 @@ def clean_strings(value: Any, limit: int | None = None) -> list[str]:
     return out
 
 
+def clip_words(text: Any, limit: int) -> str:
+    return " ".join(str(text or "").split()[:limit])
+
+
 def candidate_evidence(concept: dict[str, Any], phrases: list[str]) -> dict[str, Any]:
     label = str(concept.get("preferred_label") or "").strip()
     definition = str(concept.get("definition") or "").strip()
     if norm(definition) == norm(label):
         definition = ""
     return {
-        "canonical_label": label,
-        "alternative_labels": clean_strings(concept.get("alternative_labels"), limit=5),
-        "definition": definition,
-        "task_evidence": clean_strings(phrases, limit=MAX_TASK_PHRASES),
+        "canonical_label": clip_words(label, 12),
+        "alternative_labels": [clip_words(x, 12) for x in clean_strings(concept.get("alternative_labels"), limit=3)],
+        "definition": clip_words(definition, 50),
+        "task_evidence": [clip_words(x, 24) for x in clean_strings(phrases, limit=MAX_TASK_PHRASES)],
     }
 
 
@@ -267,6 +273,26 @@ def load_system() -> tuple[dict[str, dict[str, Any]], list[str], dict[str, str],
     return by_id, ids, ssyk4, ranker, exact, surfaces, phrase_map, primary_ids
 
 
+def call_semantic_with_quota_retry(api_key: str, prompt_text: str) -> tuple[dict[str, Any], dict[str, Any]]:
+    # Execution-only handling for the free-tier input-token window. The first run
+    # produced zero judgments and failed before outcomes, so this does not change
+    # prompt/model/verdict/gates. It only waits for the quota window instead of
+    # exhausting generic short retries.
+    for attempt in range(12):
+        try:
+            return gemma.call_json(api_key, prompt_text, temperature=0.0, max_attempts=1)
+        except RuntimeError as exc:
+            message = str(exc)
+            if "429" not in message and "RESOURCE_EXHAUSTED" not in message:
+                raise
+            match = re.search(r"retry in ([0-9.]+)s", message, re.IGNORECASE)
+            wait = (float(match.group(1)) + 3.0) if match else 35.0
+            wait = max(25.0, min(wait, 90.0))
+            print(f"semantic oracle quota window; wait {wait:.1f}s", flush=True)
+            time.sleep(wait)
+    raise RuntimeError("semantic oracle quota remained exhausted after 12 quota-aware retries")
+
+
 def semantic_judge_batches(
     cases: list[dict[str, Any]],
     by_id: dict[str, dict[str, Any]],
@@ -285,7 +311,7 @@ def semantic_judge_batches(
         elapsed = time.monotonic() - last_call
         if last_call and elapsed < min_interval:
             time.sleep(min_interval - elapsed)
-        raw, meta = gemma.call_json(api_key, prompt(batch, by_id, phrase_map), temperature=0.0)
+        raw, meta = call_semantic_with_quota_retry(api_key, prompt(batch, by_id, phrase_map))
         last_call = time.monotonic()
         parsed = parse_response(raw, batch)
         all_judgments.update(parsed)
@@ -297,7 +323,7 @@ def semantic_judge_batches(
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--batch-size", type=int, default=6)
-    ap.add_argument("--requests-per-minute", type=float, default=6.0)
+    ap.add_argument("--requests-per-minute", type=float, default=3.0)
     ap.add_argument("--search-limit", type=int, default=25)
     ap.add_argument("--ads-per-concept", type=int, default=5)
     ap.add_argument("--judgments-output", default="research/evaluation/v31/p80-display-semantic-oracle-judgments-v0.jsonl")
@@ -396,7 +422,8 @@ def main() -> int:
             "ssyk_hidden": True,
         },
         "display_contract": "rank1 always retained; ranks2-5 retained for keep/uncertain and removed only for drop",
-        "evidence_contract": "canonical label/alternative labels/definition plus at most 8 already-frozen source-bound task phrases; no candidate facts may be invented",
+        "evidence_contract": "fixed compact source-bound payload: canonical label, <=3 alternative labels, definition <=50 words, <=2 already-frozen task phrases <=24 words each; no candidate facts may be invented",
+        "evidence_version": EVIDENCE_VERSION,
         "sample": {
             "year": EVAL_YEAR,
             "queries": len(rows),

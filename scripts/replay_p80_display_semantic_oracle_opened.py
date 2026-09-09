@@ -117,7 +117,7 @@ def main() -> int:
         cases, by_id, phrase_map,
         api_key=api_key,
         batch_size=6,
-        requests_per_minute=6.0,
+        requests_per_minute=3.0,
     )
 
     rows: list[dict[str, Any]] = []
