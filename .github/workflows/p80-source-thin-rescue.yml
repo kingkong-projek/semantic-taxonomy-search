@@ -35,7 +35,7 @@ jobs:
       - name: Generate source-thin rescue training and independent holdout
         run: |
           python scripts/generate_p80_source_thin_rescue.py \
-            --batch-size 11 \
+            --batch-size 4 \
             --requests-per-minute 6
       - name: Evaluate rescue over full 2105-candidate universe
         run: python scripts/evaluate_p80_source_thin_rescue.py
