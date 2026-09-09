@@ -1,0 +1,217 @@
+{
+  "candidate_universe": 2105,
+  "decision_gate": {
+    "if_neither": "stop hand-built/linear display discrimination; reassess whether additional semantic evidence is required",
+    "if_strong_or_promising": "freeze unchanged and replay opened user-style stress diagnostically",
+    "promising": "2024 Hit@5 retention >=95%, rank2-5 retention >=95%, safe cross-SSYK negative reduction >=50%",
+    "promising_passed": false,
+    "strong": "2024 Hit@5 retention >=98%, rank2-5 retention >=98%, safe cross-SSYK negative reduction >=35%",
+    "strong_passed": true
+  },
+  "display_rule": {
+    "calibration": {
+      "baseline_hit5": 25,
+      "baseline_tail_hits_rank2_5": 18,
+      "hit5_retention": 1.0,
+      "hit5_retention_wilson95": [
+        0.866808,
+        1.0
+      ],
+      "mean_displayed_after": 2.774648,
+      "mean_displayed_before": 5.0,
+      "queries": 142,
+      "rank_retention": {
+        "1": {
+          "baseline": 7,
+          "rate": 1.0,
+          "retained": 7
+        },
+        "2": {
+          "baseline": 8,
+          "rate": 1.0,
+          "retained": 8
+        },
+        "3": {
+          "baseline": 3,
+          "rate": 1.0,
+          "retained": 3
+        },
+        "4": {
+          "baseline": 3,
+          "rate": 1.0,
+          "retained": 3
+        },
+        "5": {
+          "baseline": 4,
+          "rate": 1.0,
+          "retained": 4
+        }
+      },
+      "retained_hit5": 25,
+      "retained_tail_hits_rank2_5": 18,
+      "safe_cross_ssyk_negative_after": 345,
+      "safe_cross_ssyk_negative_before": 658,
+      "safe_cross_ssyk_negative_reduction": 0.475684,
+      "tail_hit_retention": 1.0,
+      "tail_hit_retention_wilson95": [
+        0.824121,
+        1.0
+      ],
+      "zero_result_rate_after": 0.0
+    },
+    "calibration_cross_family_targets": 14,
+    "rule": "keep when same SSYK4 as rank1 OR linear relevance probability >= threshold",
+    "threshold": 0.1860028109473419,
+    "threshold_selection": "minimum probability among 2023 calibration targets not protected by rank1 SSYK4"
+  },
+  "evaluation": {
+    "baseline_hit5": 167,
+    "baseline_tail_hits_rank2_5": 87,
+    "hit5_retention": 1.0,
+    "hit5_retention_wilson95": [
+      0.977514,
+      1.0
+    ],
+    "mean_displayed_after": 2.78635,
+    "mean_displayed_before": 5.0,
+    "queries": 674,
+    "rank_retention": {
+      "1": {
+        "baseline": 80,
+        "rate": 1.0,
+        "retained": 80
+      },
+      "2": {
+        "baseline": 37,
+        "rate": 1.0,
+        "retained": 37
+      },
+      "3": {
+        "baseline": 18,
+        "rate": 1.0,
+        "retained": 18
+      },
+      "4": {
+        "baseline": 19,
+        "rate": 1.0,
+        "retained": 19
+      },
+      "5": {
+        "baseline": 13,
+        "rate": 1.0,
+        "retained": 13
+      }
+    },
+    "retained_hit5": 167,
+    "retained_tail_hits_rank2_5": 87,
+    "safe_cross_ssyk_negative_after": 1557,
+    "safe_cross_ssyk_negative_before": 3021,
+    "safe_cross_ssyk_negative_reduction": 0.484608,
+    "tail_hit_retention": 1.0,
+    "tail_hit_retention_wilson95": [
+      0.957712,
+      1.0
+    ],
+    "zero_result_rate_after": 0.0
+  },
+  "evidence_class": "natural historical Platsbanken task-text proxy with structured target; safe negatives are different-SSYK4 only",
+  "feature_contract": {
+    "features": [
+      "score_ratio",
+      "idf_coverage",
+      "token_coverage",
+      "shared_count_scaled",
+      "phrase_idf_coverage",
+      "phrase_token_coverage",
+      "phrase_shared_count_scaled",
+      "unit_tfidf_cosine",
+      "unit_idf_dice",
+      "ssyk_group_count_scaled",
+      "ssyk_group_mass_fraction"
+    ],
+    "rank_feature_used": false,
+    "same_ssyk_as_top1_is_model_feature": false
+  },
+  "id": "YV-P80-display-linear-relevance-v0",
+  "interpretation_boundary": "Structured ad target plus cross-SSYK safe negatives are stronger than generic non-target proxies but are still not human judgments of every visible suggestion.",
+  "label_contract": {
+    "ignored": "same-SSYK4 non-target candidate",
+    "positive": "structured target when present in Top5",
+    "safe_negative": "non-target Top5 candidate in different SSYK4 from structured target"
+  },
+  "model": {
+    "bias": -1.345556432742,
+    "features": [
+      "score_ratio",
+      "idf_coverage",
+      "token_coverage",
+      "shared_count_scaled",
+      "phrase_idf_coverage",
+      "phrase_token_coverage",
+      "phrase_shared_count_scaled",
+      "unit_tfidf_cosine",
+      "unit_idf_dice",
+      "ssyk_group_count_scaled",
+      "ssyk_group_mass_fraction"
+    ],
+    "fit_positive_examples": 123,
+    "fit_safe_negative_examples": 2292,
+    "l2": 0.01,
+    "learning_rate": 0.05,
+    "means": [
+      0.864988620115,
+      0.139651465128,
+      0.288216446131,
+      1.109937888199,
+      0.024684437055,
+      0.041959388249,
+      0.15950310559,
+      0.098363282141,
+      0.106892113646,
+      0.229399585921,
+      0.229570236876
+    ],
+    "positive_class_weight": 18.634146341463413,
+    "scales": [
+      0.125871923072,
+      0.042535194691,
+      0.062620866264,
+      0.262273457945,
+      0.033556652979,
+      0.051892614363,
+      0.19381684779,
+      0.049806473468,
+      0.032271412502,
+      0.086793893078,
+      0.094589863263
+    ],
+    "steps": 800,
+    "weights": [
+      0.179597718915,
+      0.573576885804,
+      -0.289000217329,
+      0.28128805013,
+      0.453326000613,
+      0.072039636081,
+      0.277257095176,
+      0.872300430313,
+      -0.695503594956,
+      0.023212218125,
+      0.334045638198
+    ]
+  },
+  "opened_17_88_loaded": false,
+  "rank_order_changed": false,
+  "ranker_changed": false,
+  "split": {
+    "calibration": "2023 deterministic concept hash bucket 0/5",
+    "calibration_concepts": 29,
+    "calibration_queries": 142,
+    "evaluation": "all accepted 2024 natural task snippets",
+    "evaluation_concepts": 137,
+    "evaluation_queries": 674,
+    "fit": "2023 deterministic concept hash buckets 1-4/5",
+    "fit_concepts": 104,
+    "fit_queries": 509
+  }
+}
