@@ -1,0 +1,153 @@
+{
+  "candidate_universe": 2105,
+  "decision_gate": {
+    "if_fail": "do not add a lane-aware display layer",
+    "if_pass": "freeze rule then replay opened stress diagnostically without changing it",
+    "passed": false,
+    "rule": "untouched evaluation overall Hit@5 retention >=98%; rank2-5 retention >=98%; >=25% exact-target-negative reduction"
+  },
+  "evaluation": {
+    "baseline": {
+      "baseline_hit5": 159,
+      "baseline_tail_hits": 30,
+      "hit5_retention": 1.0,
+      "mean_displayed": 4.983957,
+      "mean_exact_target_negative_displayed": 4.13369,
+      "queries": 187,
+      "rank_retention": {
+        "1": {
+          "baseline": 129,
+          "rate": 1.0,
+          "retained": 129
+        },
+        "2": {
+          "baseline": 19,
+          "rate": 1.0,
+          "retained": 19
+        },
+        "3": {
+          "baseline": 5,
+          "rate": 1.0,
+          "retained": 5
+        },
+        "4": {
+          "baseline": 3,
+          "rate": 1.0,
+          "retained": 3
+        },
+        "5": {
+          "baseline": 3,
+          "rate": 1.0,
+          "retained": 3
+        }
+      },
+      "retained_hit5": 159,
+      "retained_tail_hits": 30,
+      "tail_hit_retention": 1.0,
+      "zero_result_rate": 0.0
+    },
+    "gated": {
+      "baseline_hit5": 159,
+      "baseline_tail_hits": 30,
+      "hit5_retention": 0.993711,
+      "mean_displayed": 3.213904,
+      "mean_exact_target_negative_displayed": 2.368984,
+      "queries": 187,
+      "rank_retention": {
+        "1": {
+          "baseline": 129,
+          "rate": 1.0,
+          "retained": 129
+        },
+        "2": {
+          "baseline": 19,
+          "rate": 1.0,
+          "retained": 19
+        },
+        "3": {
+          "baseline": 5,
+          "rate": 0.8,
+          "retained": 4
+        },
+        "4": {
+          "baseline": 3,
+          "rate": 1.0,
+          "retained": 3
+        },
+        "5": {
+          "baseline": 3,
+          "rate": 1.0,
+          "retained": 3
+        }
+      },
+      "retained_hit5": 158,
+      "retained_tail_hits": 29,
+      "tail_hit_retention": 0.966667,
+      "zero_result_rate": 0.026738
+    },
+    "negative_reduction": 0.426908
+  },
+  "evidence_class": "prefrozen model-authored P80 holdout; candidate-level mechanism evidence, not human relevance accuracy",
+  "experiment": "preserve phrase-level enrichment evidence separately for display calibration only",
+  "id": "YV-P80-display-lane-calibration-v0",
+  "opened_17_88_loaded": false,
+  "ranker_changed": false,
+  "rule_family": [
+    "merged",
+    "phrase",
+    "ratio_phrase",
+    "ratio_max_support",
+    "ratio_mean_support"
+  ],
+  "selected": {
+    "calibration": {
+      "baseline_hit5": 263,
+      "baseline_tail_hits": 59,
+      "hit5_retention": 0.992395,
+      "mean_displayed": 3.356913,
+      "mean_exact_target_negative_displayed": 2.517685,
+      "queries": 311,
+      "rank_retention": {
+        "1": {
+          "baseline": 204,
+          "rate": 0.995098,
+          "retained": 203
+        },
+        "2": {
+          "baseline": 36,
+          "rate": 0.972222,
+          "retained": 35
+        },
+        "3": {
+          "baseline": 16,
+          "rate": 1.0,
+          "retained": 16
+        },
+        "4": {
+          "baseline": 3,
+          "rate": 1.0,
+          "retained": 3
+        },
+        "5": {
+          "baseline": 4,
+          "rate": 1.0,
+          "retained": 4
+        }
+      },
+      "retained_hit5": 261,
+      "retained_tail_hits": 58,
+      "tail_hit_retention": 0.983051,
+      "zero_result_rate": 0.016077
+    },
+    "formula": "ratio_mean_support",
+    "threshold": 0.12
+  },
+  "selection_constraint": "calibration overall and rank2-5 target retention >=98%; minimize exact-target-negative visible candidates",
+  "split": {
+    "calibration_concepts": 85,
+    "calibration_queries": 311,
+    "evaluation_concepts": 52,
+    "evaluation_queries": 187,
+    "policy": "same deterministic concept split as p80-display-relevance-calibration-v0"
+  }
+}
