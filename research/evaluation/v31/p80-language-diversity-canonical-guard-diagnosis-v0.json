@@ -1,0 +1,91 @@
+{
+  "candidate_universe": 2105,
+  "changed_cases": 3,
+  "changes": [
+    {
+      "case_id": "yv.p80.0036",
+      "challenger_rank": 2,
+      "challenger_top5": [
+        "SDMs_GGu_gf2",
+        "57z2_b5A_hAT",
+        "cQd3_2n5_cpN",
+        "Mgiv_Xs7_u2r",
+        "Qv4e_brq_Ca5"
+      ],
+      "control_rank": 1,
+      "control_top5": [
+        "57z2_b5A_hAT",
+        "SDMs_GGu_gf2",
+        "cQd3_2n5_cpN",
+        "Mgiv_Xs7_u2r",
+        "Qv4e_brq_Ca5"
+      ],
+      "query_origin": "canonical_definition",
+      "strata": [
+        "long_description"
+      ],
+      "target_id": "57z2_b5A_hAT",
+      "target_label": "Betongarbetare",
+      "top1_gain": false,
+      "top1_regression": true
+    },
+    {
+      "case_id": "yv.p80.0092",
+      "challenger_rank": 1,
+      "challenger_top5": [
+        "pBhS_6fg_727",
+        "ek9W_CmD_y2M",
+        "g5fd_Eyr_bjS",
+        "8jrL_5RZ_9Kt",
+        "YDvo_JCY_pDR"
+      ],
+      "control_rank": 2,
+      "control_top5": [
+        "ek9W_CmD_y2M",
+        "pBhS_6fg_727",
+        "g5fd_Eyr_bjS",
+        "8jrL_5RZ_9Kt",
+        "YDvo_JCY_pDR"
+      ],
+      "query_origin": "canonical_definition",
+      "strata": [
+        "long_description"
+      ],
+      "target_id": "pBhS_6fg_727",
+      "target_label": "Butikssäljare, dagligvaror/Medarbetare, dagligvaror",
+      "top1_gain": true,
+      "top1_regression": false
+    },
+    {
+      "case_id": "yv.p80.0098",
+      "challenger_rank": 2,
+      "challenger_top5": [
+        "NZcr_uB1_6rX",
+        "fCCr_Mp8_6oE",
+        "n9AC_sTq_NAH",
+        "Ys2U_uQv_V4n",
+        "r4G8_gBH_Pug"
+      ],
+      "control_rank": 1,
+      "control_top5": [
+        "fCCr_Mp8_6oE",
+        "NZcr_uB1_6rX",
+        "n9AC_sTq_NAH",
+        "r4G8_gBH_Pug",
+        "Ys2U_uQv_V4n"
+      ],
+      "query_origin": "canonical_definition",
+      "strata": [
+        "long_description"
+      ],
+      "target_id": "fCCr_Mp8_6oE",
+      "target_label": "Platschef, anläggning",
+      "top1_gain": false,
+      "top1_regression": true
+    }
+  ],
+  "id": "YV-A593-P80-language-canonical-guard-diagnosis-v0",
+  "opened_17_88_loaded": false,
+  "top1_gains": 1,
+  "top1_regressions": 2
+}
