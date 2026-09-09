@@ -7,17 +7,23 @@ on:
       - 'demo/**'
       - 'scripts/build_kv_demo_asset.py'
       - 'scripts/build_yv_demo_asset.py'
+      - 'scripts/build_yv_demo_asset_a593.py'
       - 'scripts/check_kv_demo_runtime.mjs'
       - 'scripts/check_yv_demo_runtime.mjs'
+      - 'scripts/check_yv_demo_a593_runtime.mjs'
       - 'scripts/check_demo_contract.py'
       - 'scripts/evaluate_c2_job_title_router.py'
       - 'scripts/evaluate_pareto_c1.py'
+      - 'scripts/evaluate_gemma_a149.py'
+      - 'scripts/evaluate_gemma_a593.py'
       - 'scripts/evaluate_kv_drop_numeric_expansion_only.py'
       - 'scripts/evaluate_kv_drop_numeric_tokens.py'
       - 'scripts/evaluate_kv_three_lane_fusion.py'
       - 'scripts/evaluate_p80_lexical_ablation.py'
       - 'scripts/evaluate_skill_c0_training_validation.py'
       - 'scripts/evaluate_skill_training_language_enrichment.py'
+      - 'research/enrichment/v31/gemma4-yv-a593/**'
+      - 'research/evaluation/v31/compile-time-semantic-tournament-a593.json'
       - 'research/enrichment/v31/model-teacher-kv-top100/**'
       - 'research/enrichment/v31/model-teacher-kv-ranks101-200/**'
       - 'research/enrichment/v31/model-teacher-kv-ranks201-300/**'
@@ -60,15 +66,30 @@ jobs:
           node-version: '24'
       - name: Verify zero-backend responsive demo contract
         run: python scripts/check_demo_contract.py
-      - name: Compile frozen full-universe YV browser asset
+      - name: Reproduce frozen A593 research checkpoint
+        run: |
+          python scripts/evaluate_gemma_a593.py \
+            --teacher research/enrichment/v31/gemma4-yv-a593/phrases.jsonl \
+            --output artifacts/a593-reproduction.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          frozen = json.loads(Path('research/evaluation/v31/compile-time-semantic-tournament-a593.json').read_text())
+          replay = json.loads(Path('artifacts/a593-reproduction.json').read_text())
+          for key in ('candidate', 'coverage', 'size', 'strict_source_attested_17', 'opened_stress_54', 'canonical_source_truth_333'):
+              if replay[key] != frozen[key]:
+                  raise SystemExit(f'A593 frozen parity drift in {key}')
+          print('A593 frozen checkpoint reproduced exactly')
+          PY
+      - name: Compile frozen A593 YV browser asset
         run: |
           # Keep the legacy filename as the stable Pages URL; engine metadata is authoritative.
-          python scripts/build_yv_demo_asset.py \
+          python scripts/build_yv_demo_asset_a593.py \
             --output demo/assets/yv-c2.json \
             --parity-output artifacts/yv-demo-parity-v1.json \
             --build-id "$GITHUB_SHA"
-      - name: Verify YV browser runtime parity
-        run: node scripts/check_yv_demo_runtime.mjs demo/assets/yv-c2.json artifacts/yv-demo-parity-v1.json
+      - name: Verify A593 YV browser runtime parity
+        run: node scripts/check_yv_demo_a593_runtime.mjs demo/assets/yv-c2.json artifacts/yv-demo-parity-v1.json
       - name: Compile plain KV G1+T3 browser asset
         run: |
           python scripts/build_kv_demo_asset.py \
