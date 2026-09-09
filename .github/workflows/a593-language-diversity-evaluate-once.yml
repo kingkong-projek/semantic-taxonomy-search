@@ -3,6 +3,7 @@ name: A593 language diversity evaluate once
 on:
   push:
     paths:
+      - .github/workflows/a593-language-diversity-evaluate-once.yml
       - research/evaluation/v31/a593-language-diversity-generation-v0.json
       - research/training/v31/a593-language-diversity-training-v0.jsonl
       - research/evaluation/v31/a593-language-diversity-holdout-v0.jsonl
