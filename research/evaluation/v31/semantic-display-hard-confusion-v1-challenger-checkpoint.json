@@ -331,7 +331,7 @@
     "hc-pair-11-HWPy_9jT_TX2-ab0a1a8f706891ccd469051f253d7a2d8f34608c:88184f7bc390e326": {
       "attempts_this_run": 8,
       "last_error": "single-case response omitted case",
-      "runs_failed": 1
+      "runs_failed": 2
     }
   },
   "usage_metadata": [
@@ -610,6 +610,114 @@
       ],
       "serviceTier": "standard",
       "totalTokenCount": 1084
+    },
+    {
+      "candidatesTokenCount": 83,
+      "promptTokenCount": 939,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 939
+        }
+      ],
+      "serviceTier": "standard",
+      "totalTokenCount": 1022
+    },
+    {
+      "candidatesTokenCount": 83,
+      "promptTokenCount": 939,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 939
+        }
+      ],
+      "serviceTier": "standard",
+      "totalTokenCount": 1022
+    },
+    {
+      "candidatesTokenCount": 83,
+      "promptTokenCount": 939,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 939
+        }
+      ],
+      "serviceTier": "standard",
+      "totalTokenCount": 1022
+    },
+    {
+      "candidatesTokenCount": 83,
+      "promptTokenCount": 939,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 939
+        }
+      ],
+      "serviceTier": "standard",
+      "totalTokenCount": 1022
+    },
+    {
+      "candidatesTokenCount": 83,
+      "promptTokenCount": 939,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 939
+        }
+      ],
+      "serviceTier": "standard",
+      "totalTokenCount": 1022
+    },
+    {
+      "candidatesTokenCount": 83,
+      "promptTokenCount": 939,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 939
+        }
+      ],
+      "serviceTier": "standard",
+      "totalTokenCount": 1022
+    },
+    {
+      "candidatesTokenCount": 83,
+      "promptTokenCount": 939,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 939
+        }
+      ],
+      "serviceTier": "standard",
+      "totalTokenCount": 1022
+    },
+    {
+      "candidatesTokenCount": 83,
+      "promptTokenCount": 939,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 939
+        }
+      ],
+      "serviceTier": "standard",
+      "totalTokenCount": 1022
+    },
+    {
+      "candidatesTokenCount": 83,
+      "promptTokenCount": 939,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 939
+        }
+      ],
+      "serviceTier": "standard",
+      "totalTokenCount": 1022
     }
   ]
 }
