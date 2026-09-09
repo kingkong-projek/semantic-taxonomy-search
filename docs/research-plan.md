@@ -1,5 +1,24 @@
 # Semantic Taxonomy Search — living research plan
 
+**Semantic display relevance amendment (2026-09-09) — ACTIVE PRIMARY RESIDUAL.**
+
+<!-- SEMANTIC-DISPLAY-RELEVANCE-2026-09-09 -->
+
+Occupation retrieval remains on the simple A-family boundary and is **not** being reopened: privileged exact/canonical lexical routing plus one teacher-expanded sparse/BM25 description ranker over all 2,105 active occupation-name identities. P80 remains a 159-occupation demand-priority stratum; the P80-enriched candidate is research-only pending independent human/user confirmation.
+
+The primary active residual is now **Top-5 display precision**. Correct targets often sit at ranks 2–5, so fixed Top-N truncation is invalid. Multiple prefrozen display mechanisms have been falsified on user-style transfer: merged BM25 thresholds, coverage/phrase gates, local lexical contrast, SSYK+phrase heuristics, coherent-unit lexical similarity, and a tiny linear classifier over those lexical/SSYK-derived features. The linear classifier is the decisive falsifier: untouched 2024 natural-task proxy retained 167/167 Hit@5 and 87/87 rank-2–5 targets while reducing safe negatives 48.46%, but exact frozen opened replay fell 28->24 Hit@5 and 13->9 lower-rank hits while obvious junk remained. Do not retune these families from opened rows.
+
+This evidence now clears the complexity bar for **one bounded candidate-level semantic-sufficiency experiment**, without promoting a second production ranker. Retrieval/order remain frozen. Research-only Gemma judges each already-retrieved Top-5 candidate as `keep`, `uncertain`, or `drop` from source-bound candidate evidence; it sees no rank, target or SSYK and candidate order is deterministically shuffled. Rank 1 remains visible; ranks 2–5 are removed only on a confident `drop`. Opened 17/88 is not available to prompt/model/rule selection.
+
+Primary v0 evidence is natural historical 2024 Platsbanken task text with the structured occupation as target and different-SSYK4 non-targets as conservative safe negatives; the 22 source-thin rescue target identities are excluded from this primary proxy to avoid source-overlap ambiguity. Prefrozen strong gate: overall baseline-Hit@5 target retention >=99%, rank-2–5 retention >=98%, and >=60% safe cross-SSYK tail-negative reduction. Promising gate: >=98%, >=98%, >=50%. Only a pass permits exact unchanged opened replay.
+
+If semantic-oracle v0 transfers to opened user-style stress under its prefrozen acceptance checks, the next research step is **distillation/compilation into a small deterministic runtime-compatible student**. Runtime LLM/provider API remains out of scope. If the semantic oracle itself fails, do not build a student or another heuristic stack; reassess candidate evidence and product interaction. Fresh human/domain-expert relevance judgments remain decisive when available.
+
+This amendment supersedes older lower sections that say a second semantic stage is categorically disallowed. The correct current rule is narrower: **no second production semantic stage without evidence; one bounded candidate-level semantic sufficiency experiment is now explicitly authorized by the reproduced display-precision residual.**
+
+Evidence and current execution state: `SSOT.md`, `research/evaluation/v31/p80-display-linear-relevance-v0.json`, and `research/evaluation/v31/p80-display-linear-relevance-opened-replay-v0.json`.
+
+
 **P80-first Track-2 priority amendment (2026-09-09) — P80-FIRST-TRACK2-2026-09-09.** Keep the full 2,105-occupation candidate universe and the frozen 159-occupation P80 demand stratum as the short-feedback-loop priority. The bounded P80 language expansion is complete using the unchanged A-family ranker and the frozen A593 language-diversity policy: 118 previously missing P80 identities were attempted, 96 had source-rich canonical evidence, and source-thin identities were left unmanufactured. On the separately generated full-2,105 competition holdout (117 P80 concepts / 426 queries), A593 -> P80 challenger moves **53.99% -> 65.02% Top1 (+11.03 pp)** and **77.70% -> 83.57% Hit@5 (+5.87 pp)**; demand-weighted Top1 is likewise **+11.03 pp**. The strict canonical no-regression clause formally fails at `331/333 -> 330/333` Top1 while Hit@5 stays `333/333`; diagnosis confines the change to three long canonical-definition rows (two `1->2`, one `2->1`) with no exact-label regression. **Do not promote yet and do not add architecture. Next gate: small independent human P80-primary confirmation against the frozen A593 control and P80 challenger.** P90/P95/full-tail expansion remains deferred. Evidence: `docs/findings/p80-language-diversity-result-2026-09-09.md` and `research/evaluation/v31/p80-language-diversity-result-v0.json`.
 
 
