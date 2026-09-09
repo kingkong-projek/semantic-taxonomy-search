@@ -1,0 +1,13 @@
+{
+  "schema": "gemma4-yv-a593-frozen-corpus-v0",
+  "candidate_id": "YV-A593-Gemma4-26B-sequence-expansion-v0",
+  "teacher_model": "gemma-4-26b-a4b-it",
+  "rows": 593,
+  "phrases": 4744,
+  "sha256": "7769db2124ef190d74964ddb9f97da1d67137dad9b51e9e534e4e9bd6a24f847",
+  "recovery": "exact frozen-byte reconstruction from historical GitHub Actions artifacts; hash-gated; no model regeneration",
+  "recovered_from": [
+    "/tmp/a593-unpacked/10042936282/gemma4-yv-teacher-hour-run.jsonl",
+    "/tmp/a593-unpacked/10056248686/gemma4-yv-teacher-batch-150-599.jsonl"
+  ]
+}
