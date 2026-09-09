@@ -1,0 +1,759 @@
+{
+  "challenger": {
+    "evidence_version": "label-alt3-definition50-canonical-task6x24-v1",
+    "metrics": {
+      "by_pair": {
+        "pair-02": {
+          "cases": 4,
+          "hard_negative_drop_rate": 0.0,
+          "negative_drop": 0,
+          "target_drop": 0,
+          "target_non_drop_rate": 1.0
+        },
+        "pair-03": {
+          "cases": 10,
+          "hard_negative_drop_rate": 0.0,
+          "negative_drop": 0,
+          "target_drop": 0,
+          "target_non_drop_rate": 1.0
+        },
+        "pair-04": {
+          "cases": 5,
+          "hard_negative_drop_rate": 0.4,
+          "negative_drop": 2,
+          "target_drop": 0,
+          "target_non_drop_rate": 1.0
+        },
+        "pair-05": {
+          "cases": 5,
+          "hard_negative_drop_rate": 0.0,
+          "negative_drop": 0,
+          "target_drop": 0,
+          "target_non_drop_rate": 1.0
+        },
+        "pair-06": {
+          "cases": 10,
+          "hard_negative_drop_rate": 0.4,
+          "negative_drop": 4,
+          "target_drop": 0,
+          "target_non_drop_rate": 1.0
+        },
+        "pair-07": {
+          "cases": 10,
+          "hard_negative_drop_rate": 0.3,
+          "negative_drop": 3,
+          "target_drop": 0,
+          "target_non_drop_rate": 1.0
+        },
+        "pair-08": {
+          "cases": 10,
+          "hard_negative_drop_rate": 0.0,
+          "negative_drop": 0,
+          "target_drop": 0,
+          "target_non_drop_rate": 1.0
+        },
+        "pair-09": {
+          "cases": 10,
+          "hard_negative_drop_rate": 0.4,
+          "negative_drop": 4,
+          "target_drop": 0,
+          "target_non_drop_rate": 1.0
+        },
+        "pair-10": {
+          "cases": 5,
+          "hard_negative_drop_rate": 0.0,
+          "negative_drop": 0,
+          "target_drop": 0,
+          "target_non_drop_rate": 1.0
+        },
+        "pair-11": {
+          "cases": 10,
+          "hard_negative_drop_rate": 0.0,
+          "negative_drop": 0,
+          "target_drop": 0,
+          "target_non_drop_rate": 1.0
+        }
+      },
+      "cases": 79,
+      "hard_negative_drop": 13,
+      "hard_negative_drop_rate": 0.164557,
+      "hard_negative_keep": 20,
+      "hard_negative_uncertain": 46,
+      "target_drop": 0,
+      "target_keep": 55,
+      "target_keep_rate": 0.696203,
+      "target_non_drop": 79,
+      "target_non_drop_rate": 1.0,
+      "target_uncertain": 24
+    }
+  },
+  "control": {
+    "evidence_version": "label-alt3-definition50-task2x24-v0",
+    "metrics": {
+      "by_pair": {
+        "pair-02": {
+          "cases": 4,
+          "hard_negative_drop_rate": 0.0,
+          "negative_drop": 0,
+          "target_drop": 0,
+          "target_non_drop_rate": 1.0
+        },
+        "pair-03": {
+          "cases": 10,
+          "hard_negative_drop_rate": 0.0,
+          "negative_drop": 0,
+          "target_drop": 0,
+          "target_non_drop_rate": 1.0
+        },
+        "pair-04": {
+          "cases": 5,
+          "hard_negative_drop_rate": 0.0,
+          "negative_drop": 0,
+          "target_drop": 0,
+          "target_non_drop_rate": 1.0
+        },
+        "pair-05": {
+          "cases": 5,
+          "hard_negative_drop_rate": 0.0,
+          "negative_drop": 0,
+          "target_drop": 0,
+          "target_non_drop_rate": 1.0
+        },
+        "pair-06": {
+          "cases": 10,
+          "hard_negative_drop_rate": 0.8,
+          "negative_drop": 8,
+          "target_drop": 0,
+          "target_non_drop_rate": 1.0
+        },
+        "pair-07": {
+          "cases": 10,
+          "hard_negative_drop_rate": 0.3,
+          "negative_drop": 3,
+          "target_drop": 0,
+          "target_non_drop_rate": 1.0
+        },
+        "pair-08": {
+          "cases": 10,
+          "hard_negative_drop_rate": 0.0,
+          "negative_drop": 0,
+          "target_drop": 1,
+          "target_non_drop_rate": 0.9
+        },
+        "pair-09": {
+          "cases": 10,
+          "hard_negative_drop_rate": 0.4,
+          "negative_drop": 4,
+          "target_drop": 0,
+          "target_non_drop_rate": 1.0
+        },
+        "pair-10": {
+          "cases": 5,
+          "hard_negative_drop_rate": 0.0,
+          "negative_drop": 0,
+          "target_drop": 0,
+          "target_non_drop_rate": 1.0
+        },
+        "pair-11": {
+          "cases": 10,
+          "hard_negative_drop_rate": 0.1,
+          "negative_drop": 1,
+          "target_drop": 0,
+          "target_non_drop_rate": 1.0
+        }
+      },
+      "cases": 79,
+      "hard_negative_drop": 16,
+      "hard_negative_drop_rate": 0.202532,
+      "hard_negative_keep": 22,
+      "hard_negative_uncertain": 41,
+      "target_drop": 1,
+      "target_keep": 53,
+      "target_keep_rate": 0.670886,
+      "target_non_drop": 78,
+      "target_non_drop_rate": 0.987342,
+      "target_uncertain": 25
+    }
+  },
+  "decision_gate": {
+    "hard_negative_absolute_passed": false,
+    "hard_negative_materiality_passed": false,
+    "if_fail": "do not replay opened and do not distill; reassess independent evidence mechanism",
+    "if_pass": "freeze v1 evidence contract, then replay unchanged opened stress only as falsifier",
+    "passed": false,
+    "sample_valid": true,
+    "target_safety_passed": true
+  },
+  "hard_negative_drop_improvement": -0.037975,
+  "id": "YV-semantic-display-hard-confusion-v1-result",
+  "interpretation_boundary": "Historical structured occupation is a proxy target and task atoms are canonical-derived model representations, not human relevance truth. Human validation remains required for promotion.",
+  "model": "gemma-4-26b-a4b-it",
+  "opened_17_88_loaded": false,
+  "preregistration": "research/evaluation/v31/semantic-display-hard-confusion-v1-preregistration.json",
+  "prompt_sha256": "21f7287d556586869eea81e3079c96b82485557556615563b0389b096f9f25ff",
+  "prompt_version": "yv-p80-semantic-display-oracle-v0",
+  "query_year": 2022,
+  "raw_query_text_committed": false,
+  "sample": {
+    "case_rows": [
+      {
+        "case_key": "hc-pair-02-3RP3_h9J_Hc9-5645113db1c1991f359aa41fb1f313e991baf445:db8dd4183325741e",
+        "pair_id": "pair-02",
+        "paired_negative_concept_id": "31Uw_P9P_AgC",
+        "query_sha256": "db8dd4183325741e839a869871eb2ef41de80255c1e5396610791f5f51f63736",
+        "target_concept_id": "3RP3_h9J_Hc9"
+      },
+      {
+        "case_key": "hc-pair-02-3RP3_h9J_Hc9-6cf3e5a7cfecf422fe2bbfb1a3e8a6178f91fbf2:6873836413abc686",
+        "pair_id": "pair-02",
+        "paired_negative_concept_id": "31Uw_P9P_AgC",
+        "query_sha256": "6873836413abc686cd8065a28648dd14bd9baaf2c045b656ac0bde2144b0e4d6",
+        "target_concept_id": "3RP3_h9J_Hc9"
+      },
+      {
+        "case_key": "hc-pair-02-3RP3_h9J_Hc9-9119f7d9e6c6ee0c7179bf9afeb566fa867c752a:49e2c9648abdd0bc",
+        "pair_id": "pair-02",
+        "paired_negative_concept_id": "31Uw_P9P_AgC",
+        "query_sha256": "49e2c9648abdd0bcc80207018829e2430ed23bf70fae6cc5bdb6b01a9fa0c61d",
+        "target_concept_id": "3RP3_h9J_Hc9"
+      },
+      {
+        "case_key": "hc-pair-02-3RP3_h9J_Hc9-d211c9dce7fc487543bd894ae7c95c57eadd0436:a30bcfd7b19f8f30",
+        "pair_id": "pair-02",
+        "paired_negative_concept_id": "31Uw_P9P_AgC",
+        "query_sha256": "a30bcfd7b19f8f3099ce097ee5cb68a9ea140b79c0317036b482da188ea759e2",
+        "target_concept_id": "3RP3_h9J_Hc9"
+      },
+      {
+        "case_key": "hc-pair-03-te5X_YVU_JaR-0275d7642f26ca1d10190d748da7b95052f35034:19bb4b212706b9f9",
+        "pair_id": "pair-03",
+        "paired_negative_concept_id": "xBo9_V9m_bfg",
+        "query_sha256": "19bb4b212706b9f9ed0f947bb2c3542cbf6a9f69d6aeee485e82691f13a270c4",
+        "target_concept_id": "te5X_YVU_JaR"
+      },
+      {
+        "case_key": "hc-pair-03-te5X_YVU_JaR-2d653dc8d05245efee7e483bc17337b724b81af3:db785c9e4d55fa59",
+        "pair_id": "pair-03",
+        "paired_negative_concept_id": "xBo9_V9m_bfg",
+        "query_sha256": "db785c9e4d55fa59c169d2c48e91663ce52d7f50d33fb278609ac8c1c51a86ca",
+        "target_concept_id": "te5X_YVU_JaR"
+      },
+      {
+        "case_key": "hc-pair-03-te5X_YVU_JaR-358f4c1dcdb8c85aac20fd9348336e2190dcce52:178991fda3bb264c",
+        "pair_id": "pair-03",
+        "paired_negative_concept_id": "xBo9_V9m_bfg",
+        "query_sha256": "178991fda3bb264cc737fea208267166764b19f899982e7ef19ad30a4ea77903",
+        "target_concept_id": "te5X_YVU_JaR"
+      },
+      {
+        "case_key": "hc-pair-03-te5X_YVU_JaR-3b68ae317e0c17739d9a5bcadd50945d00a13a1e:3e44d25612825886",
+        "pair_id": "pair-03",
+        "paired_negative_concept_id": "xBo9_V9m_bfg",
+        "query_sha256": "3e44d256128258867757eb11f09ef3ab4a2f88dfff021ef7a1e1800fdf43d444",
+        "target_concept_id": "te5X_YVU_JaR"
+      },
+      {
+        "case_key": "hc-pair-03-te5X_YVU_JaR-3ed2454ce11f7c9fc88117ecaaed4ee25fe3ef90:519e201ab60d5fe9",
+        "pair_id": "pair-03",
+        "paired_negative_concept_id": "xBo9_V9m_bfg",
+        "query_sha256": "519e201ab60d5fe9172335d1ad6c16b6accaf385dd33a0ff1403fc4134792864",
+        "target_concept_id": "te5X_YVU_JaR"
+      },
+      {
+        "case_key": "hc-pair-03-xBo9_V9m_bfg-2ba90a7151b1456f7aa5db9e7d9bdb3688b73bed:37643c89551bcfd5",
+        "pair_id": "pair-03",
+        "paired_negative_concept_id": "te5X_YVU_JaR",
+        "query_sha256": "37643c89551bcfd5da6c83af152f6d98a4fb1fda3d4affd59c7e954da9e17f84",
+        "target_concept_id": "xBo9_V9m_bfg"
+      },
+      {
+        "case_key": "hc-pair-03-xBo9_V9m_bfg-4f9afef8ad7e6373afccf934053a132c4450f6ed:06c9680e775eafe4",
+        "pair_id": "pair-03",
+        "paired_negative_concept_id": "te5X_YVU_JaR",
+        "query_sha256": "06c9680e775eafe4c4ff24079e217389aa47c451db3ebcee8c2e577936530707",
+        "target_concept_id": "xBo9_V9m_bfg"
+      },
+      {
+        "case_key": "hc-pair-03-xBo9_V9m_bfg-5ec7a5b29d6bc473858cc6dd6ae47b047520a57b:5a13dca3e5ffd397",
+        "pair_id": "pair-03",
+        "paired_negative_concept_id": "te5X_YVU_JaR",
+        "query_sha256": "5a13dca3e5ffd39793c21d7e7d5ef526f2ca03a4b6f2beeea74432fc7894017d",
+        "target_concept_id": "xBo9_V9m_bfg"
+      },
+      {
+        "case_key": "hc-pair-03-xBo9_V9m_bfg-65469f6bed469b69b180364f9773c5bb45aca070:d95d1dd4352badc6",
+        "pair_id": "pair-03",
+        "paired_negative_concept_id": "te5X_YVU_JaR",
+        "query_sha256": "d95d1dd4352badc69df3cf89a7a1de5698b5f98ae7198c6086ce6b03be6890c4",
+        "target_concept_id": "xBo9_V9m_bfg"
+      },
+      {
+        "case_key": "hc-pair-03-xBo9_V9m_bfg-87508c7991a0bf0744da2cbfa36df901768d750f:4a53b4305fe419ae",
+        "pair_id": "pair-03",
+        "paired_negative_concept_id": "te5X_YVU_JaR",
+        "query_sha256": "4a53b4305fe419ae6730220e076fcf45d68905f2db43cd21f1cac1691e597a41",
+        "target_concept_id": "xBo9_V9m_bfg"
+      },
+      {
+        "case_key": "hc-pair-04-pfiK_oXH_eYR-029011a3223681aae214fcc7a8a8a1e1ac95b9c4:55fbc0652a18f720",
+        "pair_id": "pair-04",
+        "paired_negative_concept_id": "1gxo_A2w_5A3",
+        "query_sha256": "55fbc0652a18f720103e6d7ab93da800ab9397c2ced2ca1f9c5e332f3cf22bbb",
+        "target_concept_id": "pfiK_oXH_eYR"
+      },
+      {
+        "case_key": "hc-pair-04-pfiK_oXH_eYR-11775ea282758a337ec74218921365ec71cb3b54:e760a5a7fbf46eaa",
+        "pair_id": "pair-04",
+        "paired_negative_concept_id": "1gxo_A2w_5A3",
+        "query_sha256": "e760a5a7fbf46eaaafd7d7866eba5f3d0a1028fb51ade34e01fd58ead67e88d6",
+        "target_concept_id": "pfiK_oXH_eYR"
+      },
+      {
+        "case_key": "hc-pair-04-pfiK_oXH_eYR-11931323847e643876a361e402666e6c89bfff30:06049f8fd66eed61",
+        "pair_id": "pair-04",
+        "paired_negative_concept_id": "1gxo_A2w_5A3",
+        "query_sha256": "06049f8fd66eed61ac1bb32050d8ac0d1847cc079d45caa67802407d301b16f6",
+        "target_concept_id": "pfiK_oXH_eYR"
+      },
+      {
+        "case_key": "hc-pair-04-pfiK_oXH_eYR-218eb2e831065363fcff2d82d948d238a6be8b66:8bb5312c4a53479e",
+        "pair_id": "pair-04",
+        "paired_negative_concept_id": "1gxo_A2w_5A3",
+        "query_sha256": "8bb5312c4a53479e4a1a056341638c285ec8ebfd79da140f53674c13f2c326c2",
+        "target_concept_id": "pfiK_oXH_eYR"
+      },
+      {
+        "case_key": "hc-pair-04-pfiK_oXH_eYR-2b8eb7d1e385effea61c35aa9ccb6d4208c8fdbe:cdfc9fa012f8d929",
+        "pair_id": "pair-04",
+        "paired_negative_concept_id": "1gxo_A2w_5A3",
+        "query_sha256": "cdfc9fa012f8d929edd726f78a3a44c32fc1ae11a1721a9de6d213e752bbaffe",
+        "target_concept_id": "pfiK_oXH_eYR"
+      },
+      {
+        "case_key": "hc-pair-05-3RzT_cHB_vVp-07240c5d6fdee08927c84fa5c75e3b999b394985:08d785e0aad1cc64",
+        "pair_id": "pair-05",
+        "paired_negative_concept_id": "4ve8_yBg_LJZ",
+        "query_sha256": "08d785e0aad1cc645eb2e7909fa039a99d7e883285bbce67a2a9363b0b35f154",
+        "target_concept_id": "3RzT_cHB_vVp"
+      },
+      {
+        "case_key": "hc-pair-05-3RzT_cHB_vVp-1817608cc1b6f5f8b6f5616ec7b5bf78c58eb570:2d00c432cf30610c",
+        "pair_id": "pair-05",
+        "paired_negative_concept_id": "4ve8_yBg_LJZ",
+        "query_sha256": "2d00c432cf30610c5e95358f55aa695a6c45984d786db1316acd498509d32f6f",
+        "target_concept_id": "3RzT_cHB_vVp"
+      },
+      {
+        "case_key": "hc-pair-05-3RzT_cHB_vVp-1ccb5ff3141680014b29b0f03bbc4d67cb21766e:08d785e0aad1cc64",
+        "pair_id": "pair-05",
+        "paired_negative_concept_id": "4ve8_yBg_LJZ",
+        "query_sha256": "08d785e0aad1cc645eb2e7909fa039a99d7e883285bbce67a2a9363b0b35f154",
+        "target_concept_id": "3RzT_cHB_vVp"
+      },
+      {
+        "case_key": "hc-pair-05-3RzT_cHB_vVp-1d766e66af534d8ceb840072c39e69bede206514:9f87f6002d5ec780",
+        "pair_id": "pair-05",
+        "paired_negative_concept_id": "4ve8_yBg_LJZ",
+        "query_sha256": "9f87f6002d5ec78056bbe5867a76f7e11724b004082afa927acff53006eb70e1",
+        "target_concept_id": "3RzT_cHB_vVp"
+      },
+      {
+        "case_key": "hc-pair-05-3RzT_cHB_vVp-1de5ef6866d616ae5674c91d41d65fb9338fa620:9ca9c398cb5fa7c8",
+        "pair_id": "pair-05",
+        "paired_negative_concept_id": "4ve8_yBg_LJZ",
+        "query_sha256": "9ca9c398cb5fa7c848f1fbb73a548c1234a55fcab523a86c7f4badc18932535e",
+        "target_concept_id": "3RzT_cHB_vVp"
+      },
+      {
+        "case_key": "hc-pair-06-7Kxn_MMG_TuY-037eb1338cc7bc6ad955e02c64d6852c76fcf722:b6c648e57233ae0b",
+        "pair_id": "pair-06",
+        "paired_negative_concept_id": "ckkD_JhH_Sc6",
+        "query_sha256": "b6c648e57233ae0bc593bd5957b070f1976f489a99435e44e5a6d2628eb8dcdc",
+        "target_concept_id": "7Kxn_MMG_TuY"
+      },
+      {
+        "case_key": "hc-pair-06-7Kxn_MMG_TuY-115bbecfb1046b3aedafcf4506da895b46e4c6e7:f72b411507b095d5",
+        "pair_id": "pair-06",
+        "paired_negative_concept_id": "ckkD_JhH_Sc6",
+        "query_sha256": "f72b411507b095d5433f2c2b0328bda67e6634a3a9b1f46ba3ae81f208c93716",
+        "target_concept_id": "7Kxn_MMG_TuY"
+      },
+      {
+        "case_key": "hc-pair-06-7Kxn_MMG_TuY-1e86fc6b8c5bfcd9d906aa66deed13e081d2a00e:6ae32493d3dd90b9",
+        "pair_id": "pair-06",
+        "paired_negative_concept_id": "ckkD_JhH_Sc6",
+        "query_sha256": "6ae32493d3dd90b98522f0f5b630ad350055c746b92d79e34e8cbafc37715fcb",
+        "target_concept_id": "7Kxn_MMG_TuY"
+      },
+      {
+        "case_key": "hc-pair-06-7Kxn_MMG_TuY-22f41b0c8254e93cee8288d0fa50901102bb676b:c4352c08ba160bf7",
+        "pair_id": "pair-06",
+        "paired_negative_concept_id": "ckkD_JhH_Sc6",
+        "query_sha256": "c4352c08ba160bf7059be9a41cc50a2a0da7b0ebf8a84577885205258d31887c",
+        "target_concept_id": "7Kxn_MMG_TuY"
+      },
+      {
+        "case_key": "hc-pair-06-7Kxn_MMG_TuY-260d6cd5f17056ee3cb22715794d41e4dcad967f:c4adb5784ed30874",
+        "pair_id": "pair-06",
+        "paired_negative_concept_id": "ckkD_JhH_Sc6",
+        "query_sha256": "c4adb5784ed308746d1f68ac8971f1e2447bb7291a8d5015344a280dab07a309",
+        "target_concept_id": "7Kxn_MMG_TuY"
+      },
+      {
+        "case_key": "hc-pair-06-ckkD_JhH_Sc6-120f1165c195fcffbfc9e6f96f1209b64a2897ff:00eb6ade2e68bda8",
+        "pair_id": "pair-06",
+        "paired_negative_concept_id": "7Kxn_MMG_TuY",
+        "query_sha256": "00eb6ade2e68bda81d7572f0229356f7304184a420985889479de2e335ecab4b",
+        "target_concept_id": "ckkD_JhH_Sc6"
+      },
+      {
+        "case_key": "hc-pair-06-ckkD_JhH_Sc6-13ee4b0c6a38eba0ce4d6780cc430e210f350bf5:60064fa109bd2f4e",
+        "pair_id": "pair-06",
+        "paired_negative_concept_id": "7Kxn_MMG_TuY",
+        "query_sha256": "60064fa109bd2f4e0de7f4909e2eef3a0be0f3057fd9f50df6b7b2d817d5ffe0",
+        "target_concept_id": "ckkD_JhH_Sc6"
+      },
+      {
+        "case_key": "hc-pair-06-ckkD_JhH_Sc6-1e684731609fc45c5895fee56a56efdcbd997d51:d0b4062cb29a5931",
+        "pair_id": "pair-06",
+        "paired_negative_concept_id": "7Kxn_MMG_TuY",
+        "query_sha256": "d0b4062cb29a5931cbe3761a93871ed5659bfe790a1ee96f7769909a6d4f4707",
+        "target_concept_id": "ckkD_JhH_Sc6"
+      },
+      {
+        "case_key": "hc-pair-06-ckkD_JhH_Sc6-388e7aead7fc27e80365ec2159767ac1d151221d:32703bb6cdf4555e",
+        "pair_id": "pair-06",
+        "paired_negative_concept_id": "7Kxn_MMG_TuY",
+        "query_sha256": "32703bb6cdf4555e30a14a0b8e53f65c32081cd160a6d44f2bbf475234c1ac17",
+        "target_concept_id": "ckkD_JhH_Sc6"
+      },
+      {
+        "case_key": "hc-pair-06-ckkD_JhH_Sc6-3d4ba83b09ac6d409a556432c1d12d2a8a1ef882:fcf73639efdeb77a",
+        "pair_id": "pair-06",
+        "paired_negative_concept_id": "7Kxn_MMG_TuY",
+        "query_sha256": "fcf73639efdeb77a8b2dd2bc1cca75c91cc9245cebb538b38b307282a18b0fff",
+        "target_concept_id": "ckkD_JhH_Sc6"
+      },
+      {
+        "case_key": "hc-pair-07-2hTu_y9K_CxY-2a4ddd9d134cedcb8f3323bee25c815518d507b7:897209954fe5baa2",
+        "pair_id": "pair-07",
+        "paired_negative_concept_id": "44wU_Cyh_yqp",
+        "query_sha256": "897209954fe5baa2e017afcf2ac25be59f5db26d3eca2b22fa24784f884f9b80",
+        "target_concept_id": "2hTu_y9K_CxY"
+      },
+      {
+        "case_key": "hc-pair-07-2hTu_y9K_CxY-506412c218cac3ae6e5be41a52b66a7b9ee3e428:961b17b2004edde2",
+        "pair_id": "pair-07",
+        "paired_negative_concept_id": "44wU_Cyh_yqp",
+        "query_sha256": "961b17b2004edde26eee591dd7e9fe6e27f405971ced6c3369a8f73f474bc39d",
+        "target_concept_id": "2hTu_y9K_CxY"
+      },
+      {
+        "case_key": "hc-pair-07-2hTu_y9K_CxY-74b09621a3d3e654dbcba803536199d3f381a926:897209954fe5baa2",
+        "pair_id": "pair-07",
+        "paired_negative_concept_id": "44wU_Cyh_yqp",
+        "query_sha256": "897209954fe5baa2e017afcf2ac25be59f5db26d3eca2b22fa24784f884f9b80",
+        "target_concept_id": "2hTu_y9K_CxY"
+      },
+      {
+        "case_key": "hc-pair-07-2hTu_y9K_CxY-75aaa4397df0a861088e45cd7fbfc97d11adbd30:ac23dea43dd44dc9",
+        "pair_id": "pair-07",
+        "paired_negative_concept_id": "44wU_Cyh_yqp",
+        "query_sha256": "ac23dea43dd44dc910915594c64eeb19f9ec3429c66b14a5075c2c90952bb410",
+        "target_concept_id": "2hTu_y9K_CxY"
+      },
+      {
+        "case_key": "hc-pair-07-2hTu_y9K_CxY-9a534e9cd8eb21460316e327d3e2c655c36fbb67:2e122d81023eeb40",
+        "pair_id": "pair-07",
+        "paired_negative_concept_id": "44wU_Cyh_yqp",
+        "query_sha256": "2e122d81023eeb403237d04b587f5a8333a2da46638e1e78047f2e2bf0ab3342",
+        "target_concept_id": "2hTu_y9K_CxY"
+      },
+      {
+        "case_key": "hc-pair-07-44wU_Cyh_yqp-08ce46d87707fd5d1f24c771b4ce16a0568aba56:65b754425a016f9f",
+        "pair_id": "pair-07",
+        "paired_negative_concept_id": "2hTu_y9K_CxY",
+        "query_sha256": "65b754425a016f9fa640d5a9b798c98e59fac127e8f15e879c0580ce6a0843e9",
+        "target_concept_id": "44wU_Cyh_yqp"
+      },
+      {
+        "case_key": "hc-pair-07-44wU_Cyh_yqp-11243597b997daae426c6da4d8e658c74e56a866:c7d0c9ba23edc98b",
+        "pair_id": "pair-07",
+        "paired_negative_concept_id": "2hTu_y9K_CxY",
+        "query_sha256": "c7d0c9ba23edc98b572250fdf98dacd068781faf2c33c01e7c22e704bd0f9c05",
+        "target_concept_id": "44wU_Cyh_yqp"
+      },
+      {
+        "case_key": "hc-pair-07-44wU_Cyh_yqp-1309644a8c3c1bd10fcc8e81b45ea7b50e58e16b:15430c7695680fa4",
+        "pair_id": "pair-07",
+        "paired_negative_concept_id": "2hTu_y9K_CxY",
+        "query_sha256": "15430c7695680fa47679516002cb239d69a79b781e6ff9b1901f47b76573faaa",
+        "target_concept_id": "44wU_Cyh_yqp"
+      },
+      {
+        "case_key": "hc-pair-07-44wU_Cyh_yqp-1e16bcb1ff6fa1f6b14ca91882e97f2d1eb07f5e:99e4bd298f9a5fb1",
+        "pair_id": "pair-07",
+        "paired_negative_concept_id": "2hTu_y9K_CxY",
+        "query_sha256": "99e4bd298f9a5fb13429430c07a3426fb76fb54756d5971aae07b52ce65c78b6",
+        "target_concept_id": "44wU_Cyh_yqp"
+      },
+      {
+        "case_key": "hc-pair-07-44wU_Cyh_yqp-257462691e35975e477e78af3cd7238c43a8d619:ed075fc507db532b",
+        "pair_id": "pair-07",
+        "paired_negative_concept_id": "2hTu_y9K_CxY",
+        "query_sha256": "ed075fc507db532b5b7db5df65009df524540c7a33e20f71ab128a5e756c5ebe",
+        "target_concept_id": "44wU_Cyh_yqp"
+      },
+      {
+        "case_key": "hc-pair-08-E7nX_ux2_hF9-00d39a34ce2e85a32c0cdf10f10dd1f9af057717:235ab889032719be",
+        "pair_id": "pair-08",
+        "paired_negative_concept_id": "kxKW_LiD_FuW",
+        "query_sha256": "235ab889032719be0f76b5debc0f52a1dbad63f2954e30f5047a019356b417ad",
+        "target_concept_id": "E7nX_ux2_hF9"
+      },
+      {
+        "case_key": "hc-pair-08-E7nX_ux2_hF9-02c9d725483aa3ed42d9b39497755557feeaebfb:58ecd8c2102ab44b",
+        "pair_id": "pair-08",
+        "paired_negative_concept_id": "kxKW_LiD_FuW",
+        "query_sha256": "58ecd8c2102ab44bc58d37e7204c0ff06740ee37c29911b11a9ac602ede7676a",
+        "target_concept_id": "E7nX_ux2_hF9"
+      },
+      {
+        "case_key": "hc-pair-08-E7nX_ux2_hF9-04fc13e75a5c6cd61b1bb0228d846b9d2d97fa7f:c27ead191182326e",
+        "pair_id": "pair-08",
+        "paired_negative_concept_id": "kxKW_LiD_FuW",
+        "query_sha256": "c27ead191182326ea16bc20087a26c1769ccbbe8807379c3edf6b556633fc36e",
+        "target_concept_id": "E7nX_ux2_hF9"
+      },
+      {
+        "case_key": "hc-pair-08-E7nX_ux2_hF9-076b0078f484ecba450bfb22946f1f32d12365de:704d1786f8164493",
+        "pair_id": "pair-08",
+        "paired_negative_concept_id": "kxKW_LiD_FuW",
+        "query_sha256": "704d1786f816449307c9a56c6cbb9d9e666b5e19a46f2d5f24c28ecf0d33ff8c",
+        "target_concept_id": "E7nX_ux2_hF9"
+      },
+      {
+        "case_key": "hc-pair-08-E7nX_ux2_hF9-0fbeed4d855c5bbc265ff897b296baff4d646995:bfbfd59900b01dea",
+        "pair_id": "pair-08",
+        "paired_negative_concept_id": "kxKW_LiD_FuW",
+        "query_sha256": "bfbfd59900b01dea6c49d8319017c8337158d65aaee7906260a6d18798dc6eba",
+        "target_concept_id": "E7nX_ux2_hF9"
+      },
+      {
+        "case_key": "hc-pair-08-kxKW_LiD_FuW-07017e00161b91a04f758e01b30f6c975e48bbf6:b3dd169203ce4f89",
+        "pair_id": "pair-08",
+        "paired_negative_concept_id": "E7nX_ux2_hF9",
+        "query_sha256": "b3dd169203ce4f8905d2dff800c6e9629df28f1e7f341969487f4149f021cf4d",
+        "target_concept_id": "kxKW_LiD_FuW"
+      },
+      {
+        "case_key": "hc-pair-08-kxKW_LiD_FuW-0bafe303d54a0516c698f5ec9164e54eb1d28d49:83b826bc1fdd148b",
+        "pair_id": "pair-08",
+        "paired_negative_concept_id": "E7nX_ux2_hF9",
+        "query_sha256": "83b826bc1fdd148b5f9d100c811a0bec87036368651699fee496007b01bad4f2",
+        "target_concept_id": "kxKW_LiD_FuW"
+      },
+      {
+        "case_key": "hc-pair-08-kxKW_LiD_FuW-1c8026130017d068e21d673a7e5bfeb5abd04e07:b3dd169203ce4f89",
+        "pair_id": "pair-08",
+        "paired_negative_concept_id": "E7nX_ux2_hF9",
+        "query_sha256": "b3dd169203ce4f8905d2dff800c6e9629df28f1e7f341969487f4149f021cf4d",
+        "target_concept_id": "kxKW_LiD_FuW"
+      },
+      {
+        "case_key": "hc-pair-08-kxKW_LiD_FuW-1e24aaf3524568b9e2eefcda468a7a40bf4b6680:b3dd169203ce4f89",
+        "pair_id": "pair-08",
+        "paired_negative_concept_id": "E7nX_ux2_hF9",
+        "query_sha256": "b3dd169203ce4f8905d2dff800c6e9629df28f1e7f341969487f4149f021cf4d",
+        "target_concept_id": "kxKW_LiD_FuW"
+      },
+      {
+        "case_key": "hc-pair-08-kxKW_LiD_FuW-1ebee0a4313a47357720506a8b3472873140b273:d4fec76b1374fccd",
+        "pair_id": "pair-08",
+        "paired_negative_concept_id": "E7nX_ux2_hF9",
+        "query_sha256": "d4fec76b1374fccd4475a6795ec24aebe92f788016e759c83f0c2358f5bbda7a",
+        "target_concept_id": "kxKW_LiD_FuW"
+      },
+      {
+        "case_key": "hc-pair-09-1Kv4_35e_BX3-0179645f9baed92938a40e78da996c9eb27e9f4e:458127d33de17a58",
+        "pair_id": "pair-09",
+        "paired_negative_concept_id": "4EZJ_3HN_fUK",
+        "query_sha256": "458127d33de17a58ba61c347247376140671d4e0fd91adc8b2f301edbdf5433b",
+        "target_concept_id": "1Kv4_35e_BX3"
+      },
+      {
+        "case_key": "hc-pair-09-1Kv4_35e_BX3-0ae5b506ba7a25556d693a82649f6778fa345530:68d2146801184c5d",
+        "pair_id": "pair-09",
+        "paired_negative_concept_id": "4EZJ_3HN_fUK",
+        "query_sha256": "68d2146801184c5d5fa0dc339141329ca423128dec36145eeaf58829574f5533",
+        "target_concept_id": "1Kv4_35e_BX3"
+      },
+      {
+        "case_key": "hc-pair-09-1Kv4_35e_BX3-18e2360a1c54295edb525bd54a0402703556cbaa:33a8b94f8fea02c2",
+        "pair_id": "pair-09",
+        "paired_negative_concept_id": "4EZJ_3HN_fUK",
+        "query_sha256": "33a8b94f8fea02c21592fc5f42a69061d774789a62eb9886409fc665e1f66f7e",
+        "target_concept_id": "1Kv4_35e_BX3"
+      },
+      {
+        "case_key": "hc-pair-09-1Kv4_35e_BX3-2653c749c58a493512b75a9c628f878bbfd9ae02:68d2146801184c5d",
+        "pair_id": "pair-09",
+        "paired_negative_concept_id": "4EZJ_3HN_fUK",
+        "query_sha256": "68d2146801184c5d5fa0dc339141329ca423128dec36145eeaf58829574f5533",
+        "target_concept_id": "1Kv4_35e_BX3"
+      },
+      {
+        "case_key": "hc-pair-09-1Kv4_35e_BX3-3d1f28005f449134517b076666b4830dd2eed1ab:ed3976934bf4d212",
+        "pair_id": "pair-09",
+        "paired_negative_concept_id": "4EZJ_3HN_fUK",
+        "query_sha256": "ed3976934bf4d2129f9b6ac66e59db02dd36892e4fcf263d1ab002f3c68a7c85",
+        "target_concept_id": "1Kv4_35e_BX3"
+      },
+      {
+        "case_key": "hc-pair-09-4EZJ_3HN_fUK-2747de4f5a4c43cf899730d355afab327b41a387:e7c229379006f5a8",
+        "pair_id": "pair-09",
+        "paired_negative_concept_id": "1Kv4_35e_BX3",
+        "query_sha256": "e7c229379006f5a86caa6efbe4593e8bfe6aa21641ddd3eb83a07280890df1f4",
+        "target_concept_id": "4EZJ_3HN_fUK"
+      },
+      {
+        "case_key": "hc-pair-09-4EZJ_3HN_fUK-63bb3801ad6217303a7a83b225def79044ecec0c:34afcb8c062b5771",
+        "pair_id": "pair-09",
+        "paired_negative_concept_id": "1Kv4_35e_BX3",
+        "query_sha256": "34afcb8c062b57717a530071380afe719457c10a021f6f9afa64c2969a3b507e",
+        "target_concept_id": "4EZJ_3HN_fUK"
+      },
+      {
+        "case_key": "hc-pair-09-4EZJ_3HN_fUK-bf7004464acecfb1d6d258163ecee273d8e92e84:1a450f4fe72c062a",
+        "pair_id": "pair-09",
+        "paired_negative_concept_id": "1Kv4_35e_BX3",
+        "query_sha256": "1a450f4fe72c062a2ee8c5f98c69dcc0829e15823b8464953cbb54f351623477",
+        "target_concept_id": "4EZJ_3HN_fUK"
+      },
+      {
+        "case_key": "hc-pair-09-4EZJ_3HN_fUK-c027c522378222f6c250416170f3a17ba6c1edd2:6dc0b3fb19b0fc3e",
+        "pair_id": "pair-09",
+        "paired_negative_concept_id": "1Kv4_35e_BX3",
+        "query_sha256": "6dc0b3fb19b0fc3e406218454ad0335e3b0fde2b6edc82d29686ce6fcad5ff95",
+        "target_concept_id": "4EZJ_3HN_fUK"
+      },
+      {
+        "case_key": "hc-pair-09-4EZJ_3HN_fUK-c337bee85b226104d6349ca3e16cf67a65d3104f:e7c229379006f5a8",
+        "pair_id": "pair-09",
+        "paired_negative_concept_id": "1Kv4_35e_BX3",
+        "query_sha256": "e7c229379006f5a86caa6efbe4593e8bfe6aa21641ddd3eb83a07280890df1f4",
+        "target_concept_id": "4EZJ_3HN_fUK"
+      },
+      {
+        "case_key": "hc-pair-10-cAYP_wEe_u3D-002adf8d0e1d0fd9645b0fb5611ba1213243fef0:c1bdb3e090284c57",
+        "pair_id": "pair-10",
+        "paired_negative_concept_id": "3MDV_uBQ_6oG",
+        "query_sha256": "c1bdb3e090284c57343b7038108122ec230310b1d6bdb41daf9dd4684c67944d",
+        "target_concept_id": "cAYP_wEe_u3D"
+      },
+      {
+        "case_key": "hc-pair-10-cAYP_wEe_u3D-013a12256dfc7508c57381715332de7753d9cafb:222992eff28d4e02",
+        "pair_id": "pair-10",
+        "paired_negative_concept_id": "3MDV_uBQ_6oG",
+        "query_sha256": "222992eff28d4e0261a037c430c031851d5741ff4b626adf22058bad92dbca62",
+        "target_concept_id": "cAYP_wEe_u3D"
+      },
+      {
+        "case_key": "hc-pair-10-cAYP_wEe_u3D-0272e6b22808c9756fb09f9464846c77adeaf421:bcc450144c69e628",
+        "pair_id": "pair-10",
+        "paired_negative_concept_id": "3MDV_uBQ_6oG",
+        "query_sha256": "bcc450144c69e6286ae17e6c8820a78cfedf2a3cfaa20fd1345306e28f552fec",
+        "target_concept_id": "cAYP_wEe_u3D"
+      },
+      {
+        "case_key": "hc-pair-10-cAYP_wEe_u3D-1412587005eccec61d1bcd50469f3d64e43984e0:b8a4f7914cafa841",
+        "pair_id": "pair-10",
+        "paired_negative_concept_id": "3MDV_uBQ_6oG",
+        "query_sha256": "b8a4f7914cafa841c260b78ade33fd405e55dcc2a395932f5a5718ae20d09b44",
+        "target_concept_id": "cAYP_wEe_u3D"
+      },
+      {
+        "case_key": "hc-pair-10-cAYP_wEe_u3D-2eb35b46b4dd38f2cb8fc7097b8ba0250b718d2c:3c98d3a61e984ba6",
+        "pair_id": "pair-10",
+        "paired_negative_concept_id": "3MDV_uBQ_6oG",
+        "query_sha256": "3c98d3a61e984ba6aa82bc277ec2885c0897bf99a122eaea941762d33f0a5d8a",
+        "target_concept_id": "cAYP_wEe_u3D"
+      },
+      {
+        "case_key": "hc-pair-11-HWPy_9jT_TX2-782cd11a403a967000f006578aa1287485bf3c34:fa32d2ba8d126d9e",
+        "pair_id": "pair-11",
+        "paired_negative_concept_id": "hfq6_Rpw_EKK",
+        "query_sha256": "fa32d2ba8d126d9e02fcb39c0b7f62a34d21d67206e291cc94a563f8007530d2",
+        "target_concept_id": "HWPy_9jT_TX2"
+      },
+      {
+        "case_key": "hc-pair-11-HWPy_9jT_TX2-8899adb08a0beb9d8649b882398885dddd9ab697:8a40874fa66d9765",
+        "pair_id": "pair-11",
+        "paired_negative_concept_id": "hfq6_Rpw_EKK",
+        "query_sha256": "8a40874fa66d97650ab119687d00866c4eb3350d87bf399f40769bb66768f88b",
+        "target_concept_id": "HWPy_9jT_TX2"
+      },
+      {
+        "case_key": "hc-pair-11-HWPy_9jT_TX2-a5e486334152239f138773a4202eb93c1cbd7dfa:14f37ed9ca67cb5b",
+        "pair_id": "pair-11",
+        "paired_negative_concept_id": "hfq6_Rpw_EKK",
+        "query_sha256": "14f37ed9ca67cb5b6ef3e87be98277fde3e3bcba743385f561db87e1946c0456",
+        "target_concept_id": "HWPy_9jT_TX2"
+      },
+      {
+        "case_key": "hc-pair-11-HWPy_9jT_TX2-ab0a1a8f706891ccd469051f253d7a2d8f34608c:88184f7bc390e326",
+        "pair_id": "pair-11",
+        "paired_negative_concept_id": "hfq6_Rpw_EKK",
+        "query_sha256": "88184f7bc390e326d951b69c410da921e0b479e12045cd096c6d8e7fd3d0b862",
+        "target_concept_id": "HWPy_9jT_TX2"
+      },
+      {
+        "case_key": "hc-pair-11-HWPy_9jT_TX2-cfeeffd96d2822f79313249b82cad858ddd8ef46:f53ffdb3012d7312",
+        "pair_id": "pair-11",
+        "paired_negative_concept_id": "hfq6_Rpw_EKK",
+        "query_sha256": "f53ffdb3012d731282ab8467654b36e99e02534a0b8eacb10ec8cb42f790faac",
+        "target_concept_id": "HWPy_9jT_TX2"
+      },
+      {
+        "case_key": "hc-pair-11-hfq6_Rpw_EKK-14724e81502604c9b778d445de1c5ec9e8a0c26d:0af6e96c1a45ddf8",
+        "pair_id": "pair-11",
+        "paired_negative_concept_id": "HWPy_9jT_TX2",
+        "query_sha256": "0af6e96c1a45ddf8393358d57fc54d6c008918bea1f4b375052536d58c59aea1",
+        "target_concept_id": "hfq6_Rpw_EKK"
+      },
+      {
+        "case_key": "hc-pair-11-hfq6_Rpw_EKK-24b9e1c1e978690759e585410017b2fc08ccdccf:eb8447b63752e435",
+        "pair_id": "pair-11",
+        "paired_negative_concept_id": "HWPy_9jT_TX2",
+        "query_sha256": "eb8447b63752e4355b34d0f3f350f036c6a6a0819fa4506bb84f43441294b0a6",
+        "target_concept_id": "hfq6_Rpw_EKK"
+      },
+      {
+        "case_key": "hc-pair-11-hfq6_Rpw_EKK-42f878458b73139365d59eea6935b86ba265b98f:374e2e122d52f030",
+        "pair_id": "pair-11",
+        "paired_negative_concept_id": "HWPy_9jT_TX2",
+        "query_sha256": "374e2e122d52f0303bcc75bc9a6098217abf1c452e2a6d5cce4d2a8e875610a0",
+        "target_concept_id": "hfq6_Rpw_EKK"
+      },
+      {
+        "case_key": "hc-pair-11-hfq6_Rpw_EKK-50f3deeea57e3ea2ae5255a7582023d567a1ec64:cf644b4ca3dd5a55",
+        "pair_id": "pair-11",
+        "paired_negative_concept_id": "HWPy_9jT_TX2",
+        "query_sha256": "cf644b4ca3dd5a55575ae80d322af09aff180c407301995398fcdce6f11cee9f",
+        "target_concept_id": "hfq6_Rpw_EKK"
+      },
+      {
+        "case_key": "hc-pair-11-hfq6_Rpw_EKK-557b5f6a13980f6c34fb9f92b3b60e65d579994a:b3c8f5ab89641c27",
+        "pair_id": "pair-11",
+        "paired_negative_concept_id": "HWPy_9jT_TX2",
+        "query_sha256": "b3c8f5ab89641c2739ff759d473f6ee7e6f45a0520c5a3d832d79e05f9e97487",
+        "target_concept_id": "hfq6_Rpw_EKK"
+      }
+    ],
+    "cases": 79,
+    "fixed_pairs_total": 11,
+    "pairs_with_cases": 10,
+    "sha256": "7560ecce6133eee7531ec133f66122a7ede7279c1eaa36d78f0b72d8dc552b0a"
+  },
+  "status": "complete independent 2022 hard-confusion evidence"
+}

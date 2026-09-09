@@ -290,6 +290,10 @@
       "HWPy_9jT_TX2": "uncertain",
       "hfq6_Rpw_EKK": "uncertain"
     },
+    "hc-pair-11-HWPy_9jT_TX2-ab0a1a8f706891ccd469051f253d7a2d8f34608c:88184f7bc390e326": {
+      "HWPy_9jT_TX2": "keep",
+      "hfq6_Rpw_EKK": "uncertain"
+    },
     "hc-pair-11-HWPy_9jT_TX2-cfeeffd96d2822f79313249b82cad858ddd8ef46:f53ffdb3012d7312": {
       "HWPy_9jT_TX2": "uncertain",
       "hfq6_Rpw_EKK": "uncertain"
@@ -327,13 +331,7 @@
       "uncertain"
     ]
   },
-  "transport_failures": {
-    "hc-pair-11-HWPy_9jT_TX2-ab0a1a8f706891ccd469051f253d7a2d8f34608c:88184f7bc390e326": {
-      "attempts_this_run": 8,
-      "last_error": "single-case response omitted case",
-      "runs_failed": 2
-    }
-  },
+  "transport_failures": {},
   "usage_metadata": [
     {
       "candidatesTokenCount": 968,
@@ -718,6 +716,18 @@
       ],
       "serviceTier": "standard",
       "totalTokenCount": 1022
+    },
+    {
+      "candidatesTokenCount": 79,
+      "promptTokenCount": 898,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 898
+        }
+      ],
+      "serviceTier": "standard",
+      "totalTokenCount": 977
     }
   ]
 }

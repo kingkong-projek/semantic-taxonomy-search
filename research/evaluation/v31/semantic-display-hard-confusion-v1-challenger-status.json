@@ -1,15 +1,13 @@
 {
   "case_set_sha256": "a8cc6fc440e2fa4f03d39d2639c5a1d94021cee8470d9f11281f63bc88688b94",
-  "complete": false,
-  "completed_cases": 78,
-  "decision_gate_evaluable": false,
+  "complete": true,
+  "completed_cases": 79,
+  "decision_gate_evaluable": true,
   "expected_cases": 79,
   "id": "YV-P80-display-semantic-oracle-v0-run-status",
-  "missing_case_keys": [
-    "hc-pair-11-HWPy_9jT_TX2-ab0a1a8f706891ccd469051f253d7a2d8f34608c:88184f7bc390e326"
-  ],
-  "missing_cases": 1,
-  "phase": "challenger-incomplete",
+  "missing_case_keys": [],
+  "missing_cases": 0,
+  "phase": "challenger-complete",
   "protocol": {
     "checkpoint_version": "yv-p80-semantic-oracle-checkpoint-v1",
     "evidence_version": "label-alt3-definition50-canonical-task6x24-v1",
@@ -22,5 +20,5 @@
       "uncertain"
     ]
   },
-  "transport_failure_cases": 1
+  "transport_failure_cases": 0
 }
