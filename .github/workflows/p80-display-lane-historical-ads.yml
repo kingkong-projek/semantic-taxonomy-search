@@ -20,9 +20,11 @@ jobs:
         with:
           python-version: '3.12'
       - name: Compile-check
-        run: python -m py_compile scripts/evaluate_p80_display_lane_historical_ads.py
+        run: |
+          python -m py_compile scripts/evaluate_p80_display_lane_historical_ads.py
+          python -m py_compile scripts/run_p80_display_lane_historical_ads_v2.py
       - name: Validate frozen lane rule on 2025 historical ad language
-        run: python scripts/evaluate_p80_display_lane_historical_ads.py
+        run: python scripts/run_p80_display_lane_historical_ads_v2.py
       - name: Freeze result
         run: |
           set -euo pipefail
