@@ -32,8 +32,9 @@ jobs:
             scripts/replay_p80_display_semantic_oracle_opened.py
       - name: Run prefrozen 2024 semantic sufficiency test
         run: |
-          # First attempt produced zero judgments and hit only the free-tier input-token quota.
-          # Evidence payload is now deterministically compacted; semantic contract/gates are unchanged.
+          # Earlier attempts produced zero parsed judgments: first quota exhaustion,
+          # then an array-vs-object JSON envelope mismatch. The parser now accepts
+          # both envelopes; semantic prompt/model/evidence/verdict/gates are unchanged.
           python scripts/evaluate_p80_display_semantic_oracle.py \
             --batch-size 6 \
             --requests-per-minute 3
