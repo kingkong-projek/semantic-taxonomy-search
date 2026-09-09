@@ -17,7 +17,7 @@ concurrency:
 jobs:
   evaluate:
     runs-on: ubuntu-24.04
-    timeout-minutes: 60
+    timeout-minutes: 120
     env:
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
     steps:
@@ -32,9 +32,8 @@ jobs:
             scripts/replay_p80_display_semantic_oracle_opened.py
       - name: Run prefrozen 2024 semantic sufficiency test
         run: |
-          # Earlier attempts produced zero parsed judgments: first quota exhaustion,
-          # then an array-vs-object JSON envelope mismatch. The parser now accepts
-          # both envelopes; semantic prompt/model/evidence/verdict/gates are unchanged.
+          # Transport is robust to quota windows, array/object JSON envelopes and
+          # incomplete model batches. Semantic prompt/model/evidence/verdict/gates are unchanged.
           python scripts/evaluate_p80_display_semantic_oracle.py \
             --batch-size 6 \
             --requests-per-minute 3
