@@ -3,19 +3,18 @@
 
 Retrieval and ranking remain unchanged. The hypothesis is that many embarrassing visible
 false positives are cross-occupation-family candidates whose merged BM25 document gets
-support from words scattered across several teacher phrases. A candidate is therefore
-kept when either:
+support from words scattered across several teacher phrases. A candidate is kept when:
 
-1. it shares the structured SSYK-2012 code of rank 1, or
+1. it shares the v31 SSYK-2012 level-4 group of rank 1, or
 2. one single source-bound teacher phrase gives sufficiently strong query support.
 
-The threshold/formula is selected only on 2023 historical Platsbanken task snippets with
-zero loss of baseline Hit@5 targets. The selected rule is frozen and evaluated untouched
-on 2024. Opened stress rows are never loaded here.
+The formula/threshold is selected only on 2023 historical Platsbanken task snippets with
+zero loss of baseline Hit@5 targets and is evaluated untouched on 2024. Opened stress
+rows are never loaded here.
 
-Cross-SSYK non-target reduction is only a relevance proxy: another SSYK candidate can
-still be useful to a person. It is deliberately safer than treating every non-target
-candidate as irrelevant.
+Important source detail: occupation-name objects in concepts-and-common-relations do not
+carry ssyk_code_2012 directly. The SSYK map is therefore derived from the separate frozen
+v31 `the-ssyk-hierarchy-with-occupations` hierarchy.
 """
 from __future__ import annotations
 
@@ -41,6 +40,10 @@ from evaluate_p80_display_relevance_calibration import candidate_features
 from evaluate_p80_lexical_ablation import expected_hash, fetch
 from evaluate_pareto_c1 import rank_c1
 
+SSYK_HIERARCHY_URL = (
+    "https://data.jobtechdev.se/taxonomy/version/31/query/"
+    "the-ssyk-hierarchy-with-occupations/the-ssyk-hierarchy-with-occupations.json"
+)
 FORMULAS = (
     "phrase_idf_mass",
     "ratio_phrase_idf_mass",
@@ -49,9 +52,29 @@ FORMULAS = (
 )
 
 
-def ssyk_code(concept: dict[str, Any]) -> str:
-    value = concept.get("ssyk_code_2012")
-    return str(value).strip() if value is not None else ""
+def build_ssyk4_map(payload: dict[str, Any]) -> dict[str, str]:
+    out: dict[str, str] = {}
+
+    def walk(node: dict[str, Any], current: str = "") -> None:
+        ntype = str(node.get("type") or "")
+        code = current
+        if ntype == "ssyk-level-4":
+            code = str(node.get("ssyk_code_2012") or "").strip()
+        if ntype == "occupation-name":
+            cid = str(node.get("id") or "")
+            if cid and code:
+                if cid in out and out[cid] != code:
+                    raise RuntimeError(f"occupation mapped to multiple SSYK4 groups: {cid}")
+                out[cid] = code
+        for child in node.get("narrower") or []:
+            if isinstance(child, dict):
+                walk(child, code)
+
+    roots = payload.get("data", {}).get("concepts") or []
+    for root in roots:
+        if isinstance(root, dict):
+            walk(root)
+    return out
 
 
 def confidence(c: dict[str, Any], formula: str) -> float:
@@ -67,17 +90,16 @@ def confidence(c: dict[str, Any], formula: str) -> float:
     raise ValueError(formula)
 
 
-def annotate_family(candidates: list[dict[str, Any]], by_id: dict[str, dict[str, Any]]) -> None:
+def annotate_family(candidates: list[dict[str, Any]], ssyk4: dict[str, str]) -> None:
     if not candidates:
         return
     top_id = str(candidates[0]["concept_id"])
-    top_code = ssyk_code(by_id[top_id])
+    top_code = ssyk4[top_id]
     for c in candidates:
         cid = str(c["concept_id"])
-        code = ssyk_code(by_id[cid])
+        code = ssyk4[cid]
         c["ssyk_code_2012"] = code
-        # Rank 1 is always retained. Missing taxonomy codes never create accidental groups.
-        c["same_ssyk_as_top1"] = bool(cid == top_id or (top_code and code and code == top_code))
+        c["same_ssyk_as_top1"] = bool(cid == top_id or code == top_code)
 
 
 def retained(c: dict[str, Any], formula: str, threshold: float) -> bool:
@@ -86,7 +108,7 @@ def retained(c: dict[str, Any], formula: str, threshold: float) -> bool:
 
 def summarize(
     rows: list[dict[str, Any]],
-    by_id: dict[str, dict[str, Any]],
+    ssyk4: dict[str, str],
     formula: str,
     threshold: float,
 ) -> dict[str, Any]:
@@ -97,7 +119,7 @@ def summarize(
 
     for row in rows:
         target = str(row["concept_id"])
-        target_code = ssyk_code(by_id[target])
+        target_code = ssyk4[target]
         cs = row["candidates"]
         before += len(cs)
         target_row = next((c for c in cs if str(c["concept_id"]) == target), None)
@@ -117,16 +139,14 @@ def summarize(
             if cid == target:
                 continue
             non_target_before += 1
-            code = ssyk_code(by_id[cid])
-            if target_code and code and code != target_code:
+            if ssyk4[cid] != target_code:
                 cross_before += 1
         for c in kept:
             cid = str(c["concept_id"])
             if cid == target:
                 continue
             non_target_after += 1
-            code = ssyk_code(by_id[cid])
-            if target_code and code and code != target_code:
+            if ssyk4[cid] != target_code:
                 cross_after += 1
 
         if target_row and target_row in kept:
@@ -167,7 +187,7 @@ def summarize(
 
 def choose_zero_loss(
     calibration: list[dict[str, Any]],
-    by_id: dict[str, dict[str, Any]],
+    ssyk4: dict[str, str],
 ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     options: list[dict[str, Any]] = []
     for formula in FORMULAS:
@@ -177,12 +197,10 @@ def choose_zero_loss(
             target_row = next((c for c in row["candidates"] if str(c["concept_id"]) == target), None)
             if target_row and not target_row["same_ssyk_as_top1"]:
                 required.append(confidence(target_row, formula))
-        # If all calibration targets are protected by the top-1 SSYK family, an infinite
-        # threshold would be valid but would not test phrase rescue. Skip that degenerate case.
         if not required:
             continue
         threshold = min(required)
-        metrics = summarize(calibration, by_id, formula, threshold)
+        metrics = summarize(calibration, ssyk4, formula, threshold)
         if metrics["retained_hit5"] != metrics["baseline_hit5"]:
             raise RuntimeError(f"zero-loss selection invariant failed for {formula}")
         options.append({"formula": formula, "threshold": threshold, "calibration": metrics})
@@ -209,7 +227,15 @@ def main() -> int:
     if len(ids) != EXPECTED_UNIVERSE:
         raise RuntimeError("candidate universe drift")
 
-    with_ssyk = sum(bool(ssyk_code(by_id[cid])) for cid in ids)
+    ssyk_wire = fetch(SSYK_HIERARCHY_URL)
+    ssyk_sha = hashlib.sha256(ssyk_wire).hexdigest()
+    ssyk4 = build_ssyk4_map(json.loads(ssyk_wire))
+    missing_ssyk = sorted(set(ids) - set(ssyk4))
+    extra_ssyk = sorted(set(ssyk4) - set(ids))
+    if missing_ssyk or extra_ssyk:
+        raise RuntimeError(
+            f"SSYK hierarchy coverage drift: mapped={len(ssyk4)} missing={len(missing_ssyk)} extra={len(extra_ssyk)}"
+        )
 
     priority = json.loads(Path("research/evaluation/v31/p80-track2-priority-coverage.json").read_text(encoding="utf-8"))
     existing = {str(r["concept_id"]) for r in priority.get("existing_diversified_v0") or []}
@@ -253,13 +279,13 @@ def main() -> int:
         scored = rank_c1(ranker, case["query"], exact, surfaces)
         candidates = candidate_features(ranker, case["query"], scored)
         enrich_features(ranker, case["query"], candidates, phrase_map)
-        annotate_family(candidates, by_id)
+        annotate_family(candidates, ssyk4)
         rows.append({**case, "candidates": candidates})
 
     calibration = [row for row in rows if row["year"] == CAL_YEAR]
     evaluation = [row for row in rows if row["year"] == EVAL_YEAR]
-    selected, frontier = choose_zero_loss(calibration, by_id)
-    evaluation_metrics = summarize(evaluation, by_id, selected["formula"], float(selected["threshold"]))
+    selected, frontier = choose_zero_loss(calibration, ssyk4)
+    evaluation_metrics = summarize(evaluation, ssyk4, selected["formula"], float(selected["threshold"]))
 
     strong = (
         evaluation_metrics["hit5_retention"] >= 0.98
@@ -273,13 +299,14 @@ def main() -> int:
     )
 
     result = {
-        "id": "YV-P80-display-ssyk-phrase-gate-v0",
+        "id": "YV-P80-display-ssyk-phrase-gate-v1",
+        "supersedes": "v0 did not actually contain SSYK features because it looked for ssyk_code_2012 on occupation-name objects; v1 maps through the dedicated v31 SSYK hierarchy",
         "evidence_class": "natural historical Platsbanken task-text proxy; structured target and taxonomy SSYK family, not human relevance judgment",
         "candidate_universe": EXPECTED_UNIVERSE,
-        "occupation_names_with_ssyk_code_2012": with_ssyk,
+        "ssyk_source": {"url": SSYK_HIERARCHY_URL, "sha256": ssyk_sha, "mapped_occupation_names": len(ssyk4)},
         "ranker_changed": False,
         "opened_17_88_loaded": False,
-        "signal": "retain Top-5 candidate when same SSYK-2012 as rank1 OR strong best-single-teacher-phrase support",
+        "signal": "retain Top-5 candidate when same SSYK-2012 level-4 as rank1 OR strong best-single-teacher-phrase support",
         "selection_contract": "2023 zero baseline-Hit@5 target loss; among frozen phrase formulas minimize visible candidates",
         "sample": {
             "calibration_queries": len(calibration),
@@ -299,9 +326,9 @@ def main() -> int:
             "if_strong_or_promising": "freeze unchanged and replay opened stress diagnostically",
             "if_neither": "reject this simple family+phrase display gate; do not threshold-tune it further",
         },
-        "interpretation_boundary": "Different SSYK is a conservative proxy for likely irrelevance, not a human relevance label. Same-SSYK alternatives are intentionally not counted as false suggestions.",
+        "interpretation_boundary": "Different SSYK4 is a conservative proxy for likely irrelevance, not a human relevance label. Same-SSYK alternatives are intentionally not counted as false suggestions.",
     }
-    out = Path("research/evaluation/v31/p80-display-ssyk-phrase-gate-v0.json")
+    out = Path("research/evaluation/v31/p80-display-ssyk-phrase-gate-v1.json")
     out.write_text(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True))
     return 0
