@@ -1,0 +1,3636 @@
+{
+  "candidate": {
+    "candidate_universe_changed": false,
+    "challenger": "same ranker and A593 universe + separately generated lexically distant source-bound phrases on selected concepts",
+    "control": "unchanged A593 canonical source + 8 frozen Gemma phrases, flattened token BM25",
+    "diversified_concepts": 133,
+    "opened_17_88_loaded": false,
+    "ranker_changed": false,
+    "runtime_candidate_universe": 2105,
+    "teacher_expanded_concepts": 593
+  },
+  "control_parity": {
+    "passed": true,
+    "strict17_expected": {
+      "hit_at_5": 10,
+      "mrr": 0.42451,
+      "top1": 5
+    },
+    "targetable40_expected": {
+      "hit_at_5": 26,
+      "top1": 15
+    }
+  },
+  "evidence_warning": "Candidate and language corpus were frozen before this replay. Opened 17/88 is diagnostic, includes a known substring family-rank heuristic, and is not independent production accuracy evidence. Do not tune from these rows.",
+  "lane_boundary": "full 2,105-occupation semantic description lane; ordinary YV exact/canonical lookup remains privileged separately",
+  "opened_delta_vs_control": {
+    "strict17_hit5": 0,
+    "strict17_mrr": -0.006273,
+    "strict17_top1": 0,
+    "targetable40_hit5": -2,
+    "targetable40_top1": 1
+  },
+  "opened_stress_54": {
+    "challenger": {
+      "categories": {
+        "ambiguous": {
+          "cases": 6,
+          "correct_empty": 2,
+          "negative_cases": 5,
+          "target_cases": 1,
+          "top1_family_hit": 0,
+          "top5_family_hit": 0
+        },
+        "colloquial": {
+          "cases": 12,
+          "target_cases": 12,
+          "top1_family_hit": 0,
+          "top5_family_hit": 2
+        },
+        "direct": {
+          "cases": 12,
+          "target_cases": 12,
+          "top1_family_hit": 10,
+          "top5_family_hit": 12
+        },
+        "indirect": {
+          "cases": 8,
+          "target_cases": 8,
+          "top1_family_hit": 1,
+          "top5_family_hit": 3
+        },
+        "noisy": {
+          "cases": 8,
+          "target_cases": 8,
+          "top1_family_hit": 5,
+          "top5_family_hit": 7
+        },
+        "nonsense": {
+          "cases": 5,
+          "correct_empty": 1,
+          "negative_cases": 5
+        },
+        "out_of_scope": {
+          "cases": 3,
+          "correct_empty": 0,
+          "negative_cases": 3
+        }
+      },
+      "rows": [
+        {
+          "category": "direct",
+          "empty": false,
+          "expected": [
+            "sjuksköterska"
+          ],
+          "expected_family_rank": 1,
+          "id": "yv01",
+          "query": "Jag arbetar på sjukhus och tar blodprov, sätter infarter och ger läkemedel till patienter",
+          "top5": [
+            "Ambulanssjuksköterska",
+            "Apotekare",
+            "Receptarie",
+            "Intensivvårdssjuksköterska",
+            "Sjukhusvaktmästare"
+          ]
+        },
+        {
+          "category": "direct",
+          "empty": false,
+          "expected": [
+            "elektriker"
+          ],
+          "expected_family_rank": 1,
+          "id": "yv02",
+          "query": "Jag drar elkabel, kopplar uttag och felsöker elinstallationer i hus",
+          "top5": [
+            "Serviceelektriker, installation",
+            "Installationselektriker",
+            "Växeltelefonist",
+            "Elmontör",
+            "Affärskonsult, IT"
+          ]
+        },
+        {
+          "category": "direct",
+          "empty": false,
+          "expected": [
+            "bagare",
+            "konditor"
+          ],
+          "expected_family_rank": 1,
+          "id": "yv03",
+          "query": "Jag bakar bröd och bullar på nätterna och arbetar med degar och ugnar",
+          "top5": [
+            "Bagare/Konditor",
+            "Pizzabagare",
+            "Ugnsmurare",
+            "Kakelugnsmakare",
+            "Underhållsingenjör metallurgi"
+          ]
+        },
+        {
+          "category": "direct",
+          "empty": false,
+          "expected": [
+            "bussförare"
+          ],
+          "expected_family_rank": 5,
+          "id": "yv04",
+          "query": "Jag kör passagerare enligt tidtabell genom stan och stannar vid hållplatser",
+          "top5": [
+            "Lokförare",
+            "Trafikvärd",
+            "Spårvagnsförare",
+            "Taxiförare",
+            "Bussförare"
+          ]
+        },
+        {
+          "category": "direct",
+          "empty": false,
+          "expected": [
+            "städare"
+          ],
+          "expected_family_rank": 1,
+          "id": "yv05",
+          "query": "Jag dammsuger, moppar golv och städar kontor och toaletter",
+          "top5": [
+            "Städare",
+            "Industristädare",
+            "Betongarbetare, utan yrkesbevis",
+            "Golvläggare, utan yrkesbevis",
+            "Golvläggare"
+          ]
+        },
+        {
+          "category": "direct",
+          "empty": false,
+          "expected": [
+            "journalist",
+            "reporter"
+          ],
+          "expected_family_rank": 1,
+          "id": "yv06",
+          "query": "Jag intervjuar människor, granskar uppgifter och skriver artiklar för en tidning",
+          "top5": [
+            "Journalist",
+            "Forskare, humaniora",
+            "Forskare, IT",
+            "Förlagschef, tidning",
+            "Revisor"
+          ]
+        },
+        {
+          "category": "direct",
+          "empty": false,
+          "expected": [
+            "bibliotekarie",
+            "biblioteksassistent"
+          ],
+          "expected_family_rank": 1,
+          "id": "yv07",
+          "query": "Jag hjälper besökare att hitta och låna böcker och ordnar material i ett bibliotek",
+          "top5": [
+            "Biblioteksassistent",
+            "Bibliotekarie",
+            "Skidliftvärd",
+            "Bokförläggare",
+            "Finansekonom"
+          ]
+        },
+        {
+          "category": "direct",
+          "empty": false,
+          "expected": [
+            "veterinär"
+          ],
+          "expected_family_rank": 1,
+          "id": "yv08",
+          "query": "Jag undersöker sjuka hundar och katter, vaccinerar dem och skriver ut behandling",
+          "top5": [
+            "Veterinär",
+            "Smådjursuppfödare",
+            "Läkare",
+            "Optiker",
+            "Barnsjuksköterska"
+          ]
+        },
+        {
+          "category": "direct",
+          "empty": false,
+          "expected": [
+            "systemutvecklare",
+            "programmerare"
+          ],
+          "expected_family_rank": 2,
+          "id": "yv09",
+          "query": "Jag bygger backendtjänster, skriver kod, felsöker program och gör API:er",
+          "top5": [
+            "Backend-utvecklare",
+            "Systemutvecklare/Programmerare",
+            "Mjukvaruutvecklare",
+            "Applikationsutvecklare",
+            "HR-controller"
+          ]
+        },
+        {
+          "category": "direct",
+          "empty": false,
+          "expected": [
+            "trädgård",
+            "parkarbetare"
+          ],
+          "expected_family_rank": 1,
+          "id": "yv10",
+          "query": "Jag klipper häckar, planterar växter, sköter rabatter och parker",
+          "top5": [
+            "Trädgårdsmästare anläggning",
+            "Växtskötare",
+            "Park- och trädgårdsarbetare",
+            "Frisör",
+            "Väg- och anläggningsarbetare"
+          ]
+        },
+        {
+          "category": "direct",
+          "empty": false,
+          "expected": [
+            "brandman"
+          ],
+          "expected_family_rank": 1,
+          "id": "yv11",
+          "query": "Jag släcker bränder, går in med rökdykarutrustning och hjälper vid trafikolyckor",
+          "top5": [
+            "Brandman",
+            "Forskare, trafiksäkerhet",
+            "Revisorsassistent",
+            "Optikerassistent",
+            "Fysioterapeutstuderande"
+          ]
+        },
+        {
+          "category": "direct",
+          "empty": false,
+          "expected": [
+            "grundlärare",
+            "lärare"
+          ],
+          "expected_family_rank": 1,
+          "id": "yv12",
+          "query": "Jag undervisar barn i lågstadiet i svenska och matematik och planerar lektioner",
+          "top5": [
+            "Musikpedagog/Musiklärare",
+            "Modersmålslärare i grundskolan",
+            "SFI-lärare",
+            "Speciallärare",
+            "Ridlärare"
+          ]
+        },
+        {
+          "category": "colloquial",
+          "empty": false,
+          "expected": [
+            "sjuksköterska",
+            "undersköterska"
+          ],
+          "expected_family_rank": 18,
+          "id": "yv13",
+          "query": "Jag sticker folk i armen, kollar dropp och springer mellan salar hela dagarna",
+          "top5": [
+            "Entrévärd",
+            "Rekryterare/Rekryteringskonsult",
+            "Arbetsförmedlare",
+            "Tolk",
+            "Kategorichef/Kategoriansvarig"
+          ]
+        },
+        {
+          "category": "colloquial",
+          "empty": false,
+          "expected": [
+            "elektriker"
+          ],
+          "expected_family_rank": 8,
+          "id": "yv14",
+          "query": "Jag kryper runt i hus och får lampor och vägguttag att funka",
+          "top5": [
+            "Belysningstekniker: scen, film, TV",
+            "Guide",
+            "Fordonsmontör",
+            "Utesäljare",
+            "Systemanalytiker/Systemutredare"
+          ]
+        },
+        {
+          "category": "colloquial",
+          "empty": false,
+          "expected": [
+            "bagare",
+            "konditor"
+          ],
+          "expected_family_rank": 20,
+          "id": "yv15",
+          "query": "Jag står med deg klockan fyra på morgonen och fyller plåtar innan folk vaknar",
+          "top5": [
+            "Butikssäljare, dagligvaror/Medarbetare, dagligvaror",
+            "Entrévärd",
+            "Grillkock snabbmat",
+            "Bergarbetare, gruva",
+            "Kassapersonal"
+          ]
+        },
+        {
+          "category": "colloquial",
+          "empty": false,
+          "expected": [
+            "bussförare"
+          ],
+          "expected_family_rank": 424,
+          "id": "yv16",
+          "query": "Jag rattar ett stort fordon fullt med folk som ska till jobbet",
+          "top5": [
+            "Maskinmekaniker",
+            "Lastbilsmekaniker",
+            "Arbetsmiljöingenjör",
+            "Bussmekaniker",
+            "Trafiklärare"
+          ]
+        },
+        {
+          "category": "colloquial",
+          "empty": false,
+          "expected": [
+            "städare",
+            "hotellstädare"
+          ],
+          "expected_family_rank": 152,
+          "id": "yv17",
+          "query": "Jag ser till att hotellrum inte ser ut som att någon bott där",
+          "top5": [
+            "Arbetsmiljöingenjör",
+            "Optikerassistent",
+            "Bokförläggare",
+            "Hotellvärd",
+            "Serviceingenjör, elektronik"
+          ]
+        },
+        {
+          "category": "colloquial",
+          "empty": false,
+          "expected": [
+            "journalist",
+            "reporter"
+          ],
+          "expected_family_rank": 201,
+          "id": "yv18",
+          "query": "Jag ringer folk, ställer jobbiga frågor och försöker ta reda på vad som faktiskt hände",
+          "top5": [
+            "Telefonkommunikatör på intresseorganisation",
+            "Tulltjänsteman",
+            "SOS-operatör",
+            "Tolk",
+            "Fotograf"
+          ]
+        },
+        {
+          "category": "colloquial",
+          "empty": false,
+          "expected": [
+            "bibliotekarie",
+            "biblioteksassistent"
+          ],
+          "expected_family_rank": 15,
+          "id": "yv19",
+          "query": "Jag jobbar bland hyllor med böcker och hjälper folk hitta rätt grej att läsa",
+          "top5": [
+            "Arbetsförmedlare",
+            "Researcher, rekrytering",
+            "Jobbcoach/Utbildningscoach",
+            "Bokförläggare",
+            "Studie- och yrkesvägledare/SYV"
+          ]
+        },
+        {
+          "category": "colloquial",
+          "empty": false,
+          "expected": [
+            "veterinär"
+          ],
+          "expected_family_rank": 319,
+          "id": "yv20",
+          "query": "När katten är sjuk är det mig folk kommer till",
+          "top5": [
+            "Arbetsmiljöingenjör",
+            "Ledsagare",
+            "Kontaktledningstekniker",
+            "Tulltjänsteman",
+            "Materialplanerare"
+          ]
+        },
+        {
+          "category": "colloquial",
+          "empty": false,
+          "expected": [
+            "systemutvecklare",
+            "programmerare",
+            "drifttekniker",
+            "it-tekniker"
+          ],
+          "expected_family_rank": 2,
+          "id": "yv21",
+          "query": "Jag sitter mest vid datorn och får andras dåliga kod och servrar att fungera",
+          "top5": [
+            "Backend-utvecklare",
+            "Systemutvecklare/Programmerare",
+            "Konstruktör, tillverkningsindustri",
+            "Pumpman, oljeborrning",
+            "Skyddsvakt"
+          ]
+        },
+        {
+          "category": "colloquial",
+          "empty": false,
+          "expected": [
+            "trädgård",
+            "parkarbetare"
+          ],
+          "expected_family_rank": 91,
+          "id": "yv22",
+          "query": "Jag går runt ute hela dagarna med häcksax, spade och jord under naglarna",
+          "top5": [
+            "Hemförsäljare",
+            "Butikskonsulent",
+            "Fältgeotekniker",
+            "Bergsingenjör",
+            "Budbilsförare"
+          ]
+        },
+        {
+          "category": "colloquial",
+          "empty": false,
+          "expected": [
+            "undersköterska",
+            "vårdbiträde",
+            "hemtjänst"
+          ],
+          "expected_family_rank": 8,
+          "id": "yv23",
+          "query": "Jag tar hand om gamla människor hemma, hjälper dem duscha, äta och komma ihåg medicinen",
+          "top5": [
+            "Mässman, fartyg",
+            "Bussförare",
+            "Barnvakt",
+            "Spårvagnsförare",
+            "Hemvårdare"
+          ]
+        },
+        {
+          "category": "colloquial",
+          "empty": false,
+          "expected": [
+            "butikssäljare",
+            "butiksbiträde"
+          ],
+          "expected_family_rank": 2,
+          "id": "yv24",
+          "query": "Jag står bakom en disk, tar betalt, fyller på varor och hjälper kunder",
+          "top5": [
+            "Kassapersonal",
+            "Butikssäljare, dagligvaror/Medarbetare, dagligvaror",
+            "Restaurangbiträde",
+            "Charkuteriarbetare, butik",
+            "Gatuförsäljare"
+          ]
+        },
+        {
+          "category": "noisy",
+          "empty": false,
+          "expected": [
+            "elektriker"
+          ],
+          "expected_family_rank": 1,
+          "id": "yv25",
+          "query": "drar kablar kopplar uttg felsökr el typ hela dan",
+          "top5": [
+            "Serviceelektriker, installation",
+            "Elmontör",
+            "Teletekniker",
+            "Växeltelefonist",
+            "Elingenjör"
+          ]
+        },
+        {
+          "category": "noisy",
+          "empty": false,
+          "expected": [
+            "bagare",
+            "konditor"
+          ],
+          "expected_family_rank": 1,
+          "id": "yv26",
+          "query": "bakar brö bullar kakor ugn deg jäst",
+          "top5": [
+            "Bagare/Konditor",
+            "Pizzabagare"
+          ]
+        },
+        {
+          "category": "noisy",
+          "empty": false,
+          "expected": [
+            "systemutvecklare",
+            "programmerare"
+          ],
+          "expected_family_rank": 9,
+          "id": "yv27",
+          "query": "kodar backend api databas buggar deploy grejer",
+          "top5": [
+            "Backend-utvecklare",
+            "Databasutvecklare",
+            "Frontend-utvecklare",
+            "Mjukvaruutvecklare",
+            "Civilingenjör, systemutveckling"
+          ]
+        },
+        {
+          "category": "noisy",
+          "empty": false,
+          "expected": [
+            "veterinär",
+            "djurvårdare"
+          ],
+          "expected_family_rank": 4,
+          "id": "yv28",
+          "query": "hund katt vaccin operera djur klinik",
+          "top5": [
+            "Husdjursrådgivare/Husdjurskonsulent",
+            "Djursjukskötare",
+            "Hundförare",
+            "Veterinär",
+            "Djurtransportförare"
+          ]
+        },
+        {
+          "category": "noisy",
+          "empty": false,
+          "expected": [
+            "städare"
+          ],
+          "expected_family_rank": 1,
+          "id": "yv29",
+          "query": "städar skurar moppar toa kontor varje dag",
+          "top5": [
+            "Industristädare",
+            "Städare",
+            "Distributionsförare",
+            "Budbilsförare",
+            "Scripta"
+          ]
+        },
+        {
+          "category": "noisy",
+          "empty": false,
+          "expected": [
+            "journalist",
+            "reporter"
+          ],
+          "expected_family_rank": 1,
+          "id": "yv30",
+          "query": "intervju skriver artikel nyheter redaktion",
+          "top5": [
+            "Journalist",
+            "Webbredaktör",
+            "Nattchef, redaktion",
+            "Videojournalist/Videoreporter",
+            "Featurechef"
+          ]
+        },
+        {
+          "category": "noisy",
+          "empty": false,
+          "expected": [
+            "bussförare"
+          ],
+          "expected_family_rank": 2,
+          "id": "yv31",
+          "query": "kör buss hållplats biljett tidtabell passagerare",
+          "top5": [
+            "Spårvagnsförare",
+            "Bokbussförare",
+            "Bussförare",
+            "Lokförare",
+            "Tunnelbaneförare"
+          ]
+        },
+        {
+          "category": "noisy",
+          "empty": false,
+          "expected": [
+            "hästskötare",
+            "stallchef",
+            "ridlärare"
+          ],
+          "expected_family_rank": 1,
+          "id": "yv32",
+          "query": "hästar mockar rider fodrar stall hela dan",
+          "top5": [
+            "Hästskötare",
+            "Hovslagare",
+            "Ridlärare",
+            "Gitarrtekniker",
+            "Organisationschef"
+          ]
+        },
+        {
+          "category": "indirect",
+          "empty": false,
+          "expected": [
+            "hästskötare",
+            "stallchef",
+            "soldat",
+            "livgardist",
+            "beridare"
+          ],
+          "expected_family_rank": 485,
+          "id": "yv33",
+          "query": "Jag rider runt slottet och hjälper kungen",
+          "top5": [
+            "Utesäljare",
+            "Guide",
+            "Budbilsförare",
+            "Hemförsäljare",
+            "Optikerassistent"
+          ]
+        },
+        {
+          "category": "indirect",
+          "empty": false,
+          "expected": [
+            "elektriker"
+          ],
+          "expected_family_rank": 514,
+          "id": "yv34",
+          "query": "Jag ser till att folk kan tända lampan utan att huset brinner ner",
+          "top5": [
+            "Byggnadskonstruktör",
+            "Ledsagare",
+            "Anläggningsdykare",
+            "Arbetsmiljöingenjör",
+            "Museiassistent"
+          ]
+        },
+        {
+          "category": "indirect",
+          "empty": false,
+          "expected": [
+            "bussförare",
+            "taxiförare",
+            "lokförare",
+            "chaufför"
+          ],
+          "expected_family_rank": 2,
+          "id": "yv35",
+          "query": "Jag får människor från A till B fast de inte kör själva",
+          "top5": [
+            "Ventilationsingenjör",
+            "Bussförare",
+            "Strålskyddstekniker",
+            "Skogstransportförare",
+            "Grundlärare, 4–6"
+          ]
+        },
+        {
+          "category": "indirect",
+          "empty": false,
+          "expected": [
+            "controller",
+            "redovisningsekonom",
+            "ekonom"
+          ],
+          "expected_family_rank": 10,
+          "id": "yv36",
+          "query": "Jag gör så att chefen kan se gröna siffror och röda siffror varje månad",
+          "top5": [
+            "Scripta",
+            "Kostymtekniker/Påklädare",
+            "Statistiker",
+            "Chefssekreterare",
+            "Revisor"
+          ]
+        },
+        {
+          "category": "indirect",
+          "empty": false,
+          "expected": [
+            "fysioterapeut",
+            "sjukgymnast"
+          ],
+          "expected_family_rank": 6,
+          "id": "yv37",
+          "query": "Jag får trasiga människor att kunna gå ordentligt igen efter operationer",
+          "top5": [
+            "Optikerassistent",
+            "Personlig assistent",
+            "Sjukhusvaktmästare",
+            "Isoleringsplåtslagare",
+            "Skadereglerare"
+          ]
+        },
+        {
+          "category": "indirect",
+          "empty": false,
+          "expected": [
+            "nätverkstekniker",
+            "it-tekniker",
+            "drifttekniker",
+            "systemadministratör"
+          ],
+          "expected_family_rank": 52,
+          "id": "yv38",
+          "query": "Jag gör att företagets datorer fortsätter prata med varandra när allt krånglar",
+          "top5": [
+            "IT-samordnare",
+            "Kvalitetschef",
+            "Säkerhetschef",
+            "Redovisningschef",
+            "Logoped"
+          ]
+        },
+        {
+          "category": "indirect",
+          "empty": false,
+          "expected": [
+            "frisör"
+          ],
+          "expected_family_rank": 2,
+          "id": "yv39",
+          "query": "Jag gör folk fina i håret inför helgen",
+          "top5": [
+            "Lackerare",
+            "Frisör",
+            "Kriminalvårdare",
+            "Silversmed",
+            "PTP-psykolog"
+          ]
+        },
+        {
+          "category": "indirect",
+          "empty": false,
+          "expected": [
+            "skorstensfejare",
+            "skorstensfejartekniker"
+          ],
+          "expected_family_rank": 1,
+          "id": "yv40",
+          "query": "Jag får bort det som fastnat i skorstenar så huset inte börjar brinna",
+          "top5": [
+            "Skorstensfejare",
+            "Byggnadskonstruktör",
+            "Fogarbetare, hus och anläggning",
+            "Industrirörmontör",
+            "Murare"
+          ]
+        },
+        {
+          "category": "ambiguous",
+          "empty": true,
+          "expected": [],
+          "expected_family_rank": null,
+          "id": "yv41",
+          "query": "Jag hjälper människor",
+          "top5": []
+        },
+        {
+          "category": "ambiguous",
+          "empty": false,
+          "expected": [],
+          "expected_family_rank": null,
+          "id": "yv42",
+          "query": "Jag jobbar med barn",
+          "top5": [
+            "Barnskötare",
+            "Barnsjuksköterska",
+            "Förskollärare",
+            "Lekterapeut",
+            "Barnvakt"
+          ]
+        },
+        {
+          "category": "ambiguous",
+          "empty": false,
+          "expected": [],
+          "expected_family_rank": null,
+          "id": "yv43",
+          "query": "Jag kör maskiner",
+          "top5": [
+            "Serviceingenjör, maskin",
+            "Produktionsingenjör, maskin",
+            "Automationsingenjör, maskin",
+            "Produktionstekniker, maskin/Produktionstekniker, verkstad",
+            "Maskinmontör industrimaskiner"
+          ]
+        },
+        {
+          "category": "ambiguous",
+          "empty": false,
+          "expected": [],
+          "expected_family_rank": null,
+          "id": "yv44",
+          "query": "Jag jobbar med datorer",
+          "top5": [
+            "Systemutvecklare/Programmerare",
+            "Applikationsutvecklare",
+            "IT-samordnare",
+            "Bussmekaniker",
+            "Skolvaktmästare"
+          ]
+        },
+        {
+          "category": "ambiguous",
+          "empty": true,
+          "expected": [],
+          "expected_family_rank": null,
+          "id": "yv45",
+          "query": "Jag säljer saker",
+          "top5": []
+        },
+        {
+          "category": "ambiguous",
+          "empty": false,
+          "expected": [
+            "djurvårdare",
+            "djurskötare",
+            "veterinär",
+            "hästskötare"
+          ],
+          "expected_family_rank": 11,
+          "id": "yv46",
+          "query": "Jag tar hand om djur",
+          "top5": [
+            "Djursjukskötare",
+            "Spårvagnsförare",
+            "Styckare",
+            "Mässman, fartyg",
+            "Hundskötare"
+          ]
+        },
+        {
+          "category": "nonsense",
+          "empty": false,
+          "expected": [],
+          "expected_family_rank": null,
+          "id": "yv47",
+          "query": "banan raket kung kaffe blå tisdag",
+          "top5": [
+            "Kaféföreståndare"
+          ]
+        },
+        {
+          "category": "nonsense",
+          "empty": false,
+          "expected": [],
+          "expected_family_rank": null,
+          "id": "yv48",
+          "query": "jag gör saker och grejer på jobbet typ",
+          "top5": [
+            "Utesäljare",
+            "Gatuförsäljare",
+            "Packare",
+            "Personalutbildare",
+            "Fritidsledare"
+          ]
+        },
+        {
+          "category": "nonsense",
+          "empty": false,
+          "expected": [],
+          "expected_family_rank": null,
+          "id": "yv49",
+          "query": "potatis internet häst bokföring måne saxofon",
+          "top5": [
+            "Redovisningsassistent",
+            "Revisorsassistent",
+            "Blåsinstrumentmakare",
+            "Webbdesigner",
+            "Ekonomikonsult"
+          ]
+        },
+        {
+          "category": "nonsense",
+          "empty": false,
+          "expected": [],
+          "expected_family_rank": null,
+          "id": "yv50",
+          "query": "och av på ut med till för från",
+          "top5": [
+            "Distributionsförare",
+            "Distributionschef, logistik och transporter",
+            "Bussvärd",
+            "Biluthyrare",
+            "Styckare"
+          ]
+        },
+        {
+          "category": "nonsense",
+          "empty": true,
+          "expected": [],
+          "expected_family_rank": null,
+          "id": "yv51",
+          "query": "asdf qwerty blörp fnatt zzz",
+          "top5": []
+        },
+        {
+          "category": "out_of_scope",
+          "empty": false,
+          "expected": [],
+          "expected_family_rank": null,
+          "id": "yv52",
+          "query": "Jag vill bli rik snabbt utan att jobba",
+          "top5": [
+            "Biträdande jurist",
+            "Undertaksmontör, utan yrkesbevis",
+            "Träarbetare, utan yrkesbevis/Snickare, utan yrkesbevis",
+            "Piercare",
+            "Banarbetare, utan behörighetsbevis"
+          ]
+        },
+        {
+          "category": "out_of_scope",
+          "empty": false,
+          "expected": [],
+          "expected_family_rank": null,
+          "id": "yv53",
+          "query": "Min chef är dum och kaffet är slut",
+          "top5": [
+            "Rabbin",
+            "Arbetsledare, rivning",
+            "Specialistsjuksköterska inom palliativ vård",
+            "Avdelningschef, kommun",
+            "Operativ chef"
+          ]
+        },
+        {
+          "category": "out_of_scope",
+          "empty": false,
+          "expected": [],
+          "expected_family_rank": null,
+          "id": "yv54",
+          "query": "Jag behöver semester och vill inte gå till jobbet",
+          "top5": [
+            "Arbetsmiljöingenjör",
+            "Personlig assistent",
+            "Skogstransportförare",
+            "Mediatextare",
+            "Löneadministratör/Lönekonsult"
+          ]
+        }
+      ]
+    },
+    "challenger_targetable40": {
+      "cases": 40,
+      "top1_family_hit": 16,
+      "top5_family_hit": 24
+    },
+    "changed_rows": [
+      {
+        "category": "direct",
+        "challenger_family_rank": 1,
+        "challenger_top5": [
+          "Bagare/Konditor",
+          "Pizzabagare",
+          "Ugnsmurare",
+          "Kakelugnsmakare",
+          "Underhållsingenjör metallurgi"
+        ],
+        "control_family_rank": 1,
+        "control_top5": [
+          "Bagare/Konditor",
+          "Ugnsmurare",
+          "Kakelugnsmakare",
+          "Underhållsingenjör metallurgi",
+          "Värdetransportör"
+        ],
+        "expected": [
+          "bagare",
+          "konditor"
+        ],
+        "hit5_delta": 0,
+        "id": "yv03",
+        "query": "Jag bakar bröd och bullar på nätterna och arbetar med degar och ugnar",
+        "top1_delta": 0
+      },
+      {
+        "category": "direct",
+        "challenger_family_rank": 1,
+        "challenger_top5": [
+          "Städare",
+          "Industristädare",
+          "Betongarbetare, utan yrkesbevis",
+          "Golvläggare, utan yrkesbevis",
+          "Golvläggare"
+        ],
+        "control_family_rank": 1,
+        "control_top5": [
+          "Städare",
+          "Industristädare",
+          "Golvläggare, utan yrkesbevis",
+          "Golvläggare",
+          "Plattsättare"
+        ],
+        "expected": [
+          "städare"
+        ],
+        "hit5_delta": 0,
+        "id": "yv05",
+        "query": "Jag dammsuger, moppar golv och städar kontor och toaletter",
+        "top1_delta": 0
+      },
+      {
+        "category": "direct",
+        "challenger_family_rank": 1,
+        "challenger_top5": [
+          "Journalist",
+          "Forskare, humaniora",
+          "Forskare, IT",
+          "Förlagschef, tidning",
+          "Revisor"
+        ],
+        "control_family_rank": 1,
+        "control_top5": [
+          "Journalist",
+          "Forskare, humaniora",
+          "Forskare, IT",
+          "Förlagschef, tidning",
+          "Affärsjurist"
+        ],
+        "expected": [
+          "journalist",
+          "reporter"
+        ],
+        "hit5_delta": 0,
+        "id": "yv06",
+        "query": "Jag intervjuar människor, granskar uppgifter och skriver artiklar för en tidning",
+        "top1_delta": 0
+      },
+      {
+        "category": "direct",
+        "challenger_family_rank": 1,
+        "challenger_top5": [
+          "Veterinär",
+          "Smådjursuppfödare",
+          "Läkare",
+          "Optiker",
+          "Barnsjuksköterska"
+        ],
+        "control_family_rank": 1,
+        "control_top5": [
+          "Veterinär",
+          "Smådjursuppfödare",
+          "Läkare",
+          "Barnsjuksköterska",
+          "Djursjukskötare"
+        ],
+        "expected": [
+          "veterinär"
+        ],
+        "hit5_delta": 0,
+        "id": "yv08",
+        "query": "Jag undersöker sjuka hundar och katter, vaccinerar dem och skriver ut behandling",
+        "top1_delta": 0
+      },
+      {
+        "category": "direct",
+        "challenger_family_rank": 1,
+        "challenger_top5": [
+          "Brandman",
+          "Forskare, trafiksäkerhet",
+          "Revisorsassistent",
+          "Optikerassistent",
+          "Fysioterapeutstuderande"
+        ],
+        "control_family_rank": 1,
+        "control_top5": [
+          "Brandman",
+          "Forskare, trafiksäkerhet",
+          "Taltjänsttolk",
+          "Forskarassistent",
+          "Syntolk"
+        ],
+        "expected": [
+          "brandman"
+        ],
+        "hit5_delta": 0,
+        "id": "yv11",
+        "query": "Jag släcker bränder, går in med rökdykarutrustning och hjälper vid trafikolyckor",
+        "top1_delta": 0
+      },
+      {
+        "category": "direct",
+        "challenger_family_rank": 1,
+        "challenger_top5": [
+          "Musikpedagog/Musiklärare",
+          "Modersmålslärare i grundskolan",
+          "SFI-lärare",
+          "Speciallärare",
+          "Ridlärare"
+        ],
+        "control_family_rank": 1,
+        "control_top5": [
+          "Musikpedagog/Musiklärare",
+          "Modersmålslärare i grundskolan",
+          "SFI-lärare",
+          "Ridlärare",
+          "Skidlärare"
+        ],
+        "expected": [
+          "grundlärare",
+          "lärare"
+        ],
+        "hit5_delta": 0,
+        "id": "yv12",
+        "query": "Jag undervisar barn i lågstadiet i svenska och matematik och planerar lektioner",
+        "top1_delta": 0
+      },
+      {
+        "category": "colloquial",
+        "challenger_family_rank": 18,
+        "challenger_top5": [
+          "Entrévärd",
+          "Rekryterare/Rekryteringskonsult",
+          "Arbetsförmedlare",
+          "Tolk",
+          "Kategorichef/Kategoriansvarig"
+        ],
+        "control_family_rank": 14,
+        "control_top5": [
+          "Rekryterare/Rekryteringskonsult",
+          "Tolk",
+          "Entrévärd",
+          "Områdeschef, barnomsorg",
+          "Tulltjänsteman"
+        ],
+        "expected": [
+          "sjuksköterska",
+          "undersköterska"
+        ],
+        "hit5_delta": 0,
+        "id": "yv13",
+        "query": "Jag sticker folk i armen, kollar dropp och springer mellan salar hela dagarna",
+        "top1_delta": 0
+      },
+      {
+        "category": "colloquial",
+        "challenger_family_rank": 8,
+        "challenger_top5": [
+          "Belysningstekniker: scen, film, TV",
+          "Guide",
+          "Fordonsmontör",
+          "Utesäljare",
+          "Systemanalytiker/Systemutredare"
+        ],
+        "control_family_rank": 3,
+        "control_top5": [
+          "Belysningstekniker: scen, film, TV",
+          "Systemanalytiker/Systemutredare",
+          "Filmelektrikerassistent/TV-Elektrikerassistent",
+          "VVS-isolerare",
+          "Fordonsmontör"
+        ],
+        "expected": [
+          "elektriker"
+        ],
+        "hit5_delta": -1,
+        "id": "yv14",
+        "query": "Jag kryper runt i hus och får lampor och vägguttag att funka",
+        "top1_delta": 0
+      },
+      {
+        "category": "colloquial",
+        "challenger_family_rank": 20,
+        "challenger_top5": [
+          "Butikssäljare, dagligvaror/Medarbetare, dagligvaror",
+          "Entrévärd",
+          "Grillkock snabbmat",
+          "Bergarbetare, gruva",
+          "Kassapersonal"
+        ],
+        "control_family_rank": 16,
+        "control_top5": [
+          "Butikssäljare, dagligvaror/Medarbetare, dagligvaror",
+          "Entrévärd",
+          "Bergarbetare, gruva",
+          "Kassapersonal",
+          "Taltjänsttolk"
+        ],
+        "expected": [
+          "bagare",
+          "konditor"
+        ],
+        "hit5_delta": 0,
+        "id": "yv15",
+        "query": "Jag står med deg klockan fyra på morgonen och fyller plåtar innan folk vaknar",
+        "top1_delta": 0
+      },
+      {
+        "category": "colloquial",
+        "challenger_family_rank": 424,
+        "challenger_top5": [
+          "Maskinmekaniker",
+          "Lastbilsmekaniker",
+          "Arbetsmiljöingenjör",
+          "Bussmekaniker",
+          "Trafiklärare"
+        ],
+        "control_family_rank": 350,
+        "control_top5": [
+          "Maskinmekaniker",
+          "Lastbilsmekaniker",
+          "Arbetsmiljöingenjör",
+          "Bussmekaniker",
+          "Fartygsbefäl, utan behörighetsbevis"
+        ],
+        "expected": [
+          "bussförare"
+        ],
+        "hit5_delta": 0,
+        "id": "yv16",
+        "query": "Jag rattar ett stort fordon fullt med folk som ska till jobbet",
+        "top1_delta": 0
+      },
+      {
+        "category": "colloquial",
+        "challenger_family_rank": 152,
+        "challenger_top5": [
+          "Arbetsmiljöingenjör",
+          "Optikerassistent",
+          "Bokförläggare",
+          "Hotellvärd",
+          "Serviceingenjör, elektronik"
+        ],
+        "control_family_rank": 288,
+        "control_top5": [
+          "Arbetsmiljöingenjör",
+          "Ledsagare",
+          "Ventilationsingenjör",
+          "Arkitekt",
+          "Garderobiär"
+        ],
+        "expected": [
+          "städare",
+          "hotellstädare"
+        ],
+        "hit5_delta": 0,
+        "id": "yv17",
+        "query": "Jag ser till att hotellrum inte ser ut som att någon bott där",
+        "top1_delta": 0
+      },
+      {
+        "category": "colloquial",
+        "challenger_family_rank": 201,
+        "challenger_top5": [
+          "Telefonkommunikatör på intresseorganisation",
+          "Tulltjänsteman",
+          "SOS-operatör",
+          "Tolk",
+          "Fotograf"
+        ],
+        "control_family_rank": 166,
+        "control_top5": [
+          "Telefonkommunikatör på intresseorganisation",
+          "Tulltjänsteman",
+          "Tolk",
+          "SOS-operatör",
+          "Produktutvecklingschef"
+        ],
+        "expected": [
+          "journalist",
+          "reporter"
+        ],
+        "hit5_delta": 0,
+        "id": "yv18",
+        "query": "Jag ringer folk, ställer jobbiga frågor och försöker ta reda på vad som faktiskt hände",
+        "top1_delta": 0
+      },
+      {
+        "category": "colloquial",
+        "challenger_family_rank": 15,
+        "challenger_top5": [
+          "Arbetsförmedlare",
+          "Researcher, rekrytering",
+          "Jobbcoach/Utbildningscoach",
+          "Bokförläggare",
+          "Studie- och yrkesvägledare/SYV"
+        ],
+        "control_family_rank": 19,
+        "control_top5": [
+          "Arbetsförmedlare",
+          "Researcher, rekrytering",
+          "Jobbcoach/Utbildningscoach",
+          "Studie- och yrkesvägledare/SYV",
+          "Bokförläggare"
+        ],
+        "expected": [
+          "bibliotekarie",
+          "biblioteksassistent"
+        ],
+        "hit5_delta": 0,
+        "id": "yv19",
+        "query": "Jag jobbar bland hyllor med böcker och hjälper folk hitta rätt grej att läsa",
+        "top1_delta": 0
+      },
+      {
+        "category": "colloquial",
+        "challenger_family_rank": 319,
+        "challenger_top5": [
+          "Arbetsmiljöingenjör",
+          "Ledsagare",
+          "Kontaktledningstekniker",
+          "Tulltjänsteman",
+          "Materialplanerare"
+        ],
+        "control_family_rank": 311,
+        "control_top5": [
+          "Arbetsmiljöingenjör",
+          "Ledsagare",
+          "Kontaktledningstekniker",
+          "Tulltjänsteman",
+          "Golvslipare, trä"
+        ],
+        "expected": [
+          "veterinär"
+        ],
+        "hit5_delta": 0,
+        "id": "yv20",
+        "query": "När katten är sjuk är det mig folk kommer till",
+        "top1_delta": 0
+      },
+      {
+        "category": "colloquial",
+        "challenger_family_rank": 2,
+        "challenger_top5": [
+          "Backend-utvecklare",
+          "Systemutvecklare/Programmerare",
+          "Konstruktör, tillverkningsindustri",
+          "Pumpman, oljeborrning",
+          "Skyddsvakt"
+        ],
+        "control_family_rank": 2,
+        "control_top5": [
+          "Backend-utvecklare",
+          "Systemutvecklare/Programmerare",
+          "Pumpman, oljeborrning",
+          "Polissekreterare",
+          "Bussvärd"
+        ],
+        "expected": [
+          "systemutvecklare",
+          "programmerare",
+          "drifttekniker",
+          "it-tekniker"
+        ],
+        "hit5_delta": 0,
+        "id": "yv21",
+        "query": "Jag sitter mest vid datorn och får andras dåliga kod och servrar att fungera",
+        "top1_delta": 0
+      },
+      {
+        "category": "colloquial",
+        "challenger_family_rank": 91,
+        "challenger_top5": [
+          "Hemförsäljare",
+          "Butikskonsulent",
+          "Fältgeotekniker",
+          "Bergsingenjör",
+          "Budbilsförare"
+        ],
+        "control_family_rank": 71,
+        "control_top5": [
+          "Hemförsäljare",
+          "Butikskonsulent",
+          "Fältgeotekniker",
+          "Bergsingenjör",
+          "Restaurangchef"
+        ],
+        "expected": [
+          "trädgård",
+          "parkarbetare"
+        ],
+        "hit5_delta": 0,
+        "id": "yv22",
+        "query": "Jag går runt ute hela dagarna med häcksax, spade och jord under naglarna",
+        "top1_delta": 0
+      },
+      {
+        "category": "noisy",
+        "challenger_family_rank": 1,
+        "challenger_top5": [
+          "Bagare/Konditor",
+          "Pizzabagare"
+        ],
+        "control_family_rank": 1,
+        "control_top5": [
+          "Bagare/Konditor"
+        ],
+        "expected": [
+          "bagare",
+          "konditor"
+        ],
+        "hit5_delta": 0,
+        "id": "yv26",
+        "query": "bakar brö bullar kakor ugn deg jäst",
+        "top1_delta": 0
+      },
+      {
+        "category": "noisy",
+        "challenger_family_rank": 9,
+        "challenger_top5": [
+          "Backend-utvecklare",
+          "Databasutvecklare",
+          "Frontend-utvecklare",
+          "Mjukvaruutvecklare",
+          "Civilingenjör, systemutveckling"
+        ],
+        "control_family_rank": 6,
+        "control_top5": [
+          "Backend-utvecklare",
+          "Databasutvecklare",
+          "Frontend-utvecklare",
+          "Mjukvaruutvecklare",
+          "Civilingenjör, systemutveckling"
+        ],
+        "expected": [
+          "systemutvecklare",
+          "programmerare"
+        ],
+        "hit5_delta": 0,
+        "id": "yv27",
+        "query": "kodar backend api databas buggar deploy grejer",
+        "top1_delta": 0
+      },
+      {
+        "category": "noisy",
+        "challenger_family_rank": 1,
+        "challenger_top5": [
+          "Industristädare",
+          "Städare",
+          "Distributionsförare",
+          "Budbilsförare",
+          "Scripta"
+        ],
+        "control_family_rank": 2,
+        "control_top5": [
+          "Budbilsförare",
+          "Industristädare",
+          "Distributionsförare",
+          "Scripta",
+          "Mässman, fartyg"
+        ],
+        "expected": [
+          "städare"
+        ],
+        "hit5_delta": 0,
+        "id": "yv29",
+        "query": "städar skurar moppar toa kontor varje dag",
+        "top1_delta": 1
+      },
+      {
+        "category": "indirect",
+        "challenger_family_rank": 485,
+        "challenger_top5": [
+          "Utesäljare",
+          "Guide",
+          "Budbilsförare",
+          "Hemförsäljare",
+          "Optikerassistent"
+        ],
+        "control_family_rank": 416,
+        "control_top5": [
+          "Hemförsäljare",
+          "Utesäljare",
+          "Guide",
+          "Taltjänsttolk",
+          "Vårdbiträde"
+        ],
+        "expected": [
+          "hästskötare",
+          "stallchef",
+          "soldat",
+          "livgardist",
+          "beridare"
+        ],
+        "hit5_delta": 0,
+        "id": "yv33",
+        "query": "Jag rider runt slottet och hjälper kungen",
+        "top1_delta": 0
+      },
+      {
+        "category": "indirect",
+        "challenger_family_rank": 514,
+        "challenger_top5": [
+          "Byggnadskonstruktör",
+          "Ledsagare",
+          "Anläggningsdykare",
+          "Arbetsmiljöingenjör",
+          "Museiassistent"
+        ],
+        "control_family_rank": 439,
+        "control_top5": [
+          "Byggnadskonstruktör",
+          "Ledsagare",
+          "Arbetsmiljöingenjör",
+          "Anläggningsdykare",
+          "Museiassistent"
+        ],
+        "expected": [
+          "elektriker"
+        ],
+        "hit5_delta": 0,
+        "id": "yv34",
+        "query": "Jag ser till att folk kan tända lampan utan att huset brinner ner",
+        "top1_delta": 0
+      },
+      {
+        "category": "indirect",
+        "challenger_family_rank": 10,
+        "challenger_top5": [
+          "Scripta",
+          "Kostymtekniker/Påklädare",
+          "Statistiker",
+          "Chefssekreterare",
+          "Revisor"
+        ],
+        "control_family_rank": 8,
+        "control_top5": [
+          "Scripta",
+          "Statistiker",
+          "Kostymtekniker/Påklädare",
+          "Paralegal",
+          "Lantbrukare växtodling"
+        ],
+        "expected": [
+          "controller",
+          "redovisningsekonom",
+          "ekonom"
+        ],
+        "hit5_delta": 0,
+        "id": "yv36",
+        "query": "Jag gör så att chefen kan se gröna siffror och röda siffror varje månad",
+        "top1_delta": 0
+      },
+      {
+        "category": "indirect",
+        "challenger_family_rank": 6,
+        "challenger_top5": [
+          "Optikerassistent",
+          "Personlig assistent",
+          "Sjukhusvaktmästare",
+          "Isoleringsplåtslagare",
+          "Skadereglerare"
+        ],
+        "control_family_rank": 5,
+        "control_top5": [
+          "Personlig assistent",
+          "Sjukhusvaktmästare",
+          "Isoleringsplåtslagare",
+          "Skadereglerare",
+          "Djurfysioterapeut"
+        ],
+        "expected": [
+          "fysioterapeut",
+          "sjukgymnast"
+        ],
+        "hit5_delta": -1,
+        "id": "yv37",
+        "query": "Jag får trasiga människor att kunna gå ordentligt igen efter operationer",
+        "top1_delta": 0
+      },
+      {
+        "category": "indirect",
+        "challenger_family_rank": 52,
+        "challenger_top5": [
+          "IT-samordnare",
+          "Kvalitetschef",
+          "Säkerhetschef",
+          "Redovisningschef",
+          "Logoped"
+        ],
+        "control_family_rank": 60,
+        "control_top5": [
+          "IT-samordnare",
+          "Kvalitetschef",
+          "Säkerhetschef",
+          "Redovisningschef",
+          "Inköpare"
+        ],
+        "expected": [
+          "nätverkstekniker",
+          "it-tekniker",
+          "drifttekniker",
+          "systemadministratör"
+        ],
+        "hit5_delta": 0,
+        "id": "yv38",
+        "query": "Jag gör att företagets datorer fortsätter prata med varandra när allt krånglar",
+        "top1_delta": 0
+      },
+      {
+        "category": "indirect",
+        "challenger_family_rank": 2,
+        "challenger_top5": [
+          "Lackerare",
+          "Frisör",
+          "Kriminalvårdare",
+          "Silversmed",
+          "PTP-psykolog"
+        ],
+        "control_family_rank": 2,
+        "control_top5": [
+          "Lackerare",
+          "Frisör",
+          "Silversmed",
+          "Tolk",
+          "PTP-psykolog"
+        ],
+        "expected": [
+          "frisör"
+        ],
+        "hit5_delta": 0,
+        "id": "yv39",
+        "query": "Jag gör folk fina i håret inför helgen",
+        "top1_delta": 0
+      },
+      {
+        "category": "indirect",
+        "challenger_family_rank": 1,
+        "challenger_top5": [
+          "Skorstensfejare",
+          "Byggnadskonstruktör",
+          "Fogarbetare, hus och anläggning",
+          "Industrirörmontör",
+          "Murare"
+        ],
+        "control_family_rank": 1,
+        "control_top5": [
+          "Skorstensfejare",
+          "Byggnadskonstruktör",
+          "Industrirörmontör",
+          "Kakelugnsmakare",
+          "Bergarbetare, bygg och anläggning"
+        ],
+        "expected": [
+          "skorstensfejare",
+          "skorstensfejartekniker"
+        ],
+        "hit5_delta": 0,
+        "id": "yv40",
+        "query": "Jag får bort det som fastnat i skorstenar så huset inte börjar brinna",
+        "top1_delta": 0
+      },
+      {
+        "category": "ambiguous",
+        "challenger_family_rank": null,
+        "challenger_top5": [
+          "Barnskötare",
+          "Barnsjuksköterska",
+          "Förskollärare",
+          "Lekterapeut",
+          "Barnvakt"
+        ],
+        "control_family_rank": null,
+        "control_top5": [
+          "Barnskötare",
+          "Barnsjuksköterska",
+          "Lekterapeut",
+          "Barnvakt",
+          "Dagbarnvårdare"
+        ],
+        "expected": [],
+        "hit5_delta": 0,
+        "id": "yv42",
+        "query": "Jag jobbar med barn",
+        "top1_delta": 0
+      },
+      {
+        "category": "ambiguous",
+        "challenger_family_rank": null,
+        "challenger_top5": [
+          "Serviceingenjör, maskin",
+          "Produktionsingenjör, maskin",
+          "Automationsingenjör, maskin",
+          "Produktionstekniker, maskin/Produktionstekniker, verkstad",
+          "Maskinmontör industrimaskiner"
+        ],
+        "control_family_rank": null,
+        "control_top5": [
+          "Serviceingenjör, maskin",
+          "Automationsingenjör, maskin",
+          "Produktionstekniker, maskin/Produktionstekniker, verkstad",
+          "Produktionsingenjör, maskin",
+          "Maskinmontör industrimaskiner"
+        ],
+        "expected": [],
+        "hit5_delta": 0,
+        "id": "yv43",
+        "query": "Jag kör maskiner",
+        "top1_delta": 0
+      },
+      {
+        "category": "ambiguous",
+        "challenger_family_rank": null,
+        "challenger_top5": [
+          "Systemutvecklare/Programmerare",
+          "Applikationsutvecklare",
+          "IT-samordnare",
+          "Bussmekaniker",
+          "Skolvaktmästare"
+        ],
+        "control_family_rank": null,
+        "control_top5": [
+          "Applikationsutvecklare",
+          "IT-samordnare",
+          "Bussmekaniker",
+          "Systemutvecklare/Programmerare",
+          "Skolvaktmästare"
+        ],
+        "expected": [],
+        "hit5_delta": 0,
+        "id": "yv44",
+        "query": "Jag jobbar med datorer",
+        "top1_delta": 0
+      },
+      {
+        "category": "nonsense",
+        "challenger_family_rank": null,
+        "challenger_top5": [
+          "Utesäljare",
+          "Gatuförsäljare",
+          "Packare",
+          "Personalutbildare",
+          "Fritidsledare"
+        ],
+        "control_family_rank": null,
+        "control_top5": [
+          "Gatuförsäljare",
+          "Packare",
+          "Personalutbildare",
+          "Utesäljare",
+          "Fartygsstädare"
+        ],
+        "expected": [],
+        "hit5_delta": 0,
+        "id": "yv48",
+        "query": "jag gör saker och grejer på jobbet typ",
+        "top1_delta": 0
+      },
+      {
+        "category": "nonsense",
+        "challenger_family_rank": null,
+        "challenger_top5": [
+          "Redovisningsassistent",
+          "Revisorsassistent",
+          "Blåsinstrumentmakare",
+          "Webbdesigner",
+          "Ekonomikonsult"
+        ],
+        "control_family_rank": null,
+        "control_top5": [
+          "Redovisningsassistent",
+          "Blåsinstrumentmakare",
+          "Webbdesigner",
+          "Revisorsassistent",
+          "Ekonomikonsult"
+        ],
+        "expected": [],
+        "hit5_delta": 0,
+        "id": "yv49",
+        "query": "potatis internet häst bokföring måne saxofon",
+        "top1_delta": 0
+      },
+      {
+        "category": "out_of_scope",
+        "challenger_family_rank": null,
+        "challenger_top5": [
+          "Biträdande jurist",
+          "Undertaksmontör, utan yrkesbevis",
+          "Träarbetare, utan yrkesbevis/Snickare, utan yrkesbevis",
+          "Piercare",
+          "Banarbetare, utan behörighetsbevis"
+        ],
+        "control_family_rank": null,
+        "control_top5": [
+          "Undertaksmontör, utan yrkesbevis",
+          "Biträdande jurist",
+          "Träarbetare, utan yrkesbevis/Snickare, utan yrkesbevis",
+          "Piercare",
+          "Banarbetare, utan behörighetsbevis"
+        ],
+        "expected": [],
+        "hit5_delta": 0,
+        "id": "yv52",
+        "query": "Jag vill bli rik snabbt utan att jobba",
+        "top1_delta": 0
+      },
+      {
+        "category": "out_of_scope",
+        "challenger_family_rank": null,
+        "challenger_top5": [
+          "Rabbin",
+          "Arbetsledare, rivning",
+          "Specialistsjuksköterska inom palliativ vård",
+          "Avdelningschef, kommun",
+          "Operativ chef"
+        ],
+        "control_family_rank": null,
+        "control_top5": [
+          "Rabbin",
+          "Arbetsledare, rivning",
+          "Specialistsjuksköterska inom palliativ vård",
+          "Avdelningschef, kommun",
+          "Chief Information Officer/CIO/IT-chef"
+        ],
+        "expected": [],
+        "hit5_delta": 0,
+        "id": "yv53",
+        "query": "Min chef är dum och kaffet är slut",
+        "top1_delta": 0
+      },
+      {
+        "category": "out_of_scope",
+        "challenger_family_rank": null,
+        "challenger_top5": [
+          "Arbetsmiljöingenjör",
+          "Personlig assistent",
+          "Skogstransportförare",
+          "Mediatextare",
+          "Löneadministratör/Lönekonsult"
+        ],
+        "control_family_rank": null,
+        "control_top5": [
+          "Arbetsmiljöingenjör",
+          "Personlig assistent",
+          "Skogstransportförare",
+          "Mediatextare",
+          "Piercare"
+        ],
+        "expected": [],
+        "hit5_delta": 0,
+        "id": "yv54",
+        "query": "Jag behöver semester och vill inte gå till jobbet",
+        "top1_delta": 0
+      }
+    ],
+    "control": {
+      "categories": {
+        "ambiguous": {
+          "cases": 6,
+          "correct_empty": 2,
+          "negative_cases": 5,
+          "target_cases": 1,
+          "top1_family_hit": 0,
+          "top5_family_hit": 0
+        },
+        "colloquial": {
+          "cases": 12,
+          "target_cases": 12,
+          "top1_family_hit": 0,
+          "top5_family_hit": 3
+        },
+        "direct": {
+          "cases": 12,
+          "target_cases": 12,
+          "top1_family_hit": 10,
+          "top5_family_hit": 12
+        },
+        "indirect": {
+          "cases": 8,
+          "target_cases": 8,
+          "top1_family_hit": 1,
+          "top5_family_hit": 4
+        },
+        "noisy": {
+          "cases": 8,
+          "target_cases": 8,
+          "top1_family_hit": 4,
+          "top5_family_hit": 7
+        },
+        "nonsense": {
+          "cases": 5,
+          "correct_empty": 1,
+          "negative_cases": 5
+        },
+        "out_of_scope": {
+          "cases": 3,
+          "correct_empty": 0,
+          "negative_cases": 3
+        }
+      },
+      "rows": [
+        {
+          "category": "direct",
+          "empty": false,
+          "expected": [
+            "sjuksköterska"
+          ],
+          "expected_family_rank": 1,
+          "id": "yv01",
+          "query": "Jag arbetar på sjukhus och tar blodprov, sätter infarter och ger läkemedel till patienter",
+          "top5": [
+            "Ambulanssjuksköterska",
+            "Apotekare",
+            "Receptarie",
+            "Intensivvårdssjuksköterska",
+            "Sjukhusvaktmästare"
+          ]
+        },
+        {
+          "category": "direct",
+          "empty": false,
+          "expected": [
+            "elektriker"
+          ],
+          "expected_family_rank": 1,
+          "id": "yv02",
+          "query": "Jag drar elkabel, kopplar uttag och felsöker elinstallationer i hus",
+          "top5": [
+            "Serviceelektriker, installation",
+            "Installationselektriker",
+            "Växeltelefonist",
+            "Elmontör",
+            "Affärskonsult, IT"
+          ]
+        },
+        {
+          "category": "direct",
+          "empty": false,
+          "expected": [
+            "bagare",
+            "konditor"
+          ],
+          "expected_family_rank": 1,
+          "id": "yv03",
+          "query": "Jag bakar bröd och bullar på nätterna och arbetar med degar och ugnar",
+          "top5": [
+            "Bagare/Konditor",
+            "Ugnsmurare",
+            "Kakelugnsmakare",
+            "Underhållsingenjör metallurgi",
+            "Värdetransportör"
+          ]
+        },
+        {
+          "category": "direct",
+          "empty": false,
+          "expected": [
+            "bussförare"
+          ],
+          "expected_family_rank": 5,
+          "id": "yv04",
+          "query": "Jag kör passagerare enligt tidtabell genom stan och stannar vid hållplatser",
+          "top5": [
+            "Lokförare",
+            "Trafikvärd",
+            "Spårvagnsförare",
+            "Taxiförare",
+            "Bussförare"
+          ]
+        },
+        {
+          "category": "direct",
+          "empty": false,
+          "expected": [
+            "städare"
+          ],
+          "expected_family_rank": 1,
+          "id": "yv05",
+          "query": "Jag dammsuger, moppar golv och städar kontor och toaletter",
+          "top5": [
+            "Städare",
+            "Industristädare",
+            "Golvläggare, utan yrkesbevis",
+            "Golvläggare",
+            "Plattsättare"
+          ]
+        },
+        {
+          "category": "direct",
+          "empty": false,
+          "expected": [
+            "journalist",
+            "reporter"
+          ],
+          "expected_family_rank": 1,
+          "id": "yv06",
+          "query": "Jag intervjuar människor, granskar uppgifter och skriver artiklar för en tidning",
+          "top5": [
+            "Journalist",
+            "Forskare, humaniora",
+            "Forskare, IT",
+            "Förlagschef, tidning",
+            "Affärsjurist"
+          ]
+        },
+        {
+          "category": "direct",
+          "empty": false,
+          "expected": [
+            "bibliotekarie",
+            "biblioteksassistent"
+          ],
+          "expected_family_rank": 1,
+          "id": "yv07",
+          "query": "Jag hjälper besökare att hitta och låna böcker och ordnar material i ett bibliotek",
+          "top5": [
+            "Biblioteksassistent",
+            "Bibliotekarie",
+            "Skidliftvärd",
+            "Bokförläggare",
+            "Finansekonom"
+          ]
+        },
+        {
+          "category": "direct",
+          "empty": false,
+          "expected": [
+            "veterinär"
+          ],
+          "expected_family_rank": 1,
+          "id": "yv08",
+          "query": "Jag undersöker sjuka hundar och katter, vaccinerar dem och skriver ut behandling",
+          "top5": [
+            "Veterinär",
+            "Smådjursuppfödare",
+            "Läkare",
+            "Barnsjuksköterska",
+            "Djursjukskötare"
+          ]
+        },
+        {
+          "category": "direct",
+          "empty": false,
+          "expected": [
+            "systemutvecklare",
+            "programmerare"
+          ],
+          "expected_family_rank": 2,
+          "id": "yv09",
+          "query": "Jag bygger backendtjänster, skriver kod, felsöker program och gör API:er",
+          "top5": [
+            "Backend-utvecklare",
+            "Systemutvecklare/Programmerare",
+            "Mjukvaruutvecklare",
+            "Applikationsutvecklare",
+            "HR-controller"
+          ]
+        },
+        {
+          "category": "direct",
+          "empty": false,
+          "expected": [
+            "trädgård",
+            "parkarbetare"
+          ],
+          "expected_family_rank": 1,
+          "id": "yv10",
+          "query": "Jag klipper häckar, planterar växter, sköter rabatter och parker",
+          "top5": [
+            "Trädgårdsmästare anläggning",
+            "Växtskötare",
+            "Park- och trädgårdsarbetare",
+            "Frisör",
+            "Väg- och anläggningsarbetare"
+          ]
+        },
+        {
+          "category": "direct",
+          "empty": false,
+          "expected": [
+            "brandman"
+          ],
+          "expected_family_rank": 1,
+          "id": "yv11",
+          "query": "Jag släcker bränder, går in med rökdykarutrustning och hjälper vid trafikolyckor",
+          "top5": [
+            "Brandman",
+            "Forskare, trafiksäkerhet",
+            "Taltjänsttolk",
+            "Forskarassistent",
+            "Syntolk"
+          ]
+        },
+        {
+          "category": "direct",
+          "empty": false,
+          "expected": [
+            "grundlärare",
+            "lärare"
+          ],
+          "expected_family_rank": 1,
+          "id": "yv12",
+          "query": "Jag undervisar barn i lågstadiet i svenska och matematik och planerar lektioner",
+          "top5": [
+            "Musikpedagog/Musiklärare",
+            "Modersmålslärare i grundskolan",
+            "SFI-lärare",
+            "Ridlärare",
+            "Skidlärare"
+          ]
+        },
+        {
+          "category": "colloquial",
+          "empty": false,
+          "expected": [
+            "sjuksköterska",
+            "undersköterska"
+          ],
+          "expected_family_rank": 14,
+          "id": "yv13",
+          "query": "Jag sticker folk i armen, kollar dropp och springer mellan salar hela dagarna",
+          "top5": [
+            "Rekryterare/Rekryteringskonsult",
+            "Tolk",
+            "Entrévärd",
+            "Områdeschef, barnomsorg",
+            "Tulltjänsteman"
+          ]
+        },
+        {
+          "category": "colloquial",
+          "empty": false,
+          "expected": [
+            "elektriker"
+          ],
+          "expected_family_rank": 3,
+          "id": "yv14",
+          "query": "Jag kryper runt i hus och får lampor och vägguttag att funka",
+          "top5": [
+            "Belysningstekniker: scen, film, TV",
+            "Systemanalytiker/Systemutredare",
+            "Filmelektrikerassistent/TV-Elektrikerassistent",
+            "VVS-isolerare",
+            "Fordonsmontör"
+          ]
+        },
+        {
+          "category": "colloquial",
+          "empty": false,
+          "expected": [
+            "bagare",
+            "konditor"
+          ],
+          "expected_family_rank": 16,
+          "id": "yv15",
+          "query": "Jag står med deg klockan fyra på morgonen och fyller plåtar innan folk vaknar",
+          "top5": [
+            "Butikssäljare, dagligvaror/Medarbetare, dagligvaror",
+            "Entrévärd",
+            "Bergarbetare, gruva",
+            "Kassapersonal",
+            "Taltjänsttolk"
+          ]
+        },
+        {
+          "category": "colloquial",
+          "empty": false,
+          "expected": [
+            "bussförare"
+          ],
+          "expected_family_rank": 350,
+          "id": "yv16",
+          "query": "Jag rattar ett stort fordon fullt med folk som ska till jobbet",
+          "top5": [
+            "Maskinmekaniker",
+            "Lastbilsmekaniker",
+            "Arbetsmiljöingenjör",
+            "Bussmekaniker",
+            "Fartygsbefäl, utan behörighetsbevis"
+          ]
+        },
+        {
+          "category": "colloquial",
+          "empty": false,
+          "expected": [
+            "städare",
+            "hotellstädare"
+          ],
+          "expected_family_rank": 288,
+          "id": "yv17",
+          "query": "Jag ser till att hotellrum inte ser ut som att någon bott där",
+          "top5": [
+            "Arbetsmiljöingenjör",
+            "Ledsagare",
+            "Ventilationsingenjör",
+            "Arkitekt",
+            "Garderobiär"
+          ]
+        },
+        {
+          "category": "colloquial",
+          "empty": false,
+          "expected": [
+            "journalist",
+            "reporter"
+          ],
+          "expected_family_rank": 166,
+          "id": "yv18",
+          "query": "Jag ringer folk, ställer jobbiga frågor och försöker ta reda på vad som faktiskt hände",
+          "top5": [
+            "Telefonkommunikatör på intresseorganisation",
+            "Tulltjänsteman",
+            "Tolk",
+            "SOS-operatör",
+            "Produktutvecklingschef"
+          ]
+        },
+        {
+          "category": "colloquial",
+          "empty": false,
+          "expected": [
+            "bibliotekarie",
+            "biblioteksassistent"
+          ],
+          "expected_family_rank": 19,
+          "id": "yv19",
+          "query": "Jag jobbar bland hyllor med böcker och hjälper folk hitta rätt grej att läsa",
+          "top5": [
+            "Arbetsförmedlare",
+            "Researcher, rekrytering",
+            "Jobbcoach/Utbildningscoach",
+            "Studie- och yrkesvägledare/SYV",
+            "Bokförläggare"
+          ]
+        },
+        {
+          "category": "colloquial",
+          "empty": false,
+          "expected": [
+            "veterinär"
+          ],
+          "expected_family_rank": 311,
+          "id": "yv20",
+          "query": "När katten är sjuk är det mig folk kommer till",
+          "top5": [
+            "Arbetsmiljöingenjör",
+            "Ledsagare",
+            "Kontaktledningstekniker",
+            "Tulltjänsteman",
+            "Golvslipare, trä"
+          ]
+        },
+        {
+          "category": "colloquial",
+          "empty": false,
+          "expected": [
+            "systemutvecklare",
+            "programmerare",
+            "drifttekniker",
+            "it-tekniker"
+          ],
+          "expected_family_rank": 2,
+          "id": "yv21",
+          "query": "Jag sitter mest vid datorn och får andras dåliga kod och servrar att fungera",
+          "top5": [
+            "Backend-utvecklare",
+            "Systemutvecklare/Programmerare",
+            "Pumpman, oljeborrning",
+            "Polissekreterare",
+            "Bussvärd"
+          ]
+        },
+        {
+          "category": "colloquial",
+          "empty": false,
+          "expected": [
+            "trädgård",
+            "parkarbetare"
+          ],
+          "expected_family_rank": 71,
+          "id": "yv22",
+          "query": "Jag går runt ute hela dagarna med häcksax, spade och jord under naglarna",
+          "top5": [
+            "Hemförsäljare",
+            "Butikskonsulent",
+            "Fältgeotekniker",
+            "Bergsingenjör",
+            "Restaurangchef"
+          ]
+        },
+        {
+          "category": "colloquial",
+          "empty": false,
+          "expected": [
+            "undersköterska",
+            "vårdbiträde",
+            "hemtjänst"
+          ],
+          "expected_family_rank": 8,
+          "id": "yv23",
+          "query": "Jag tar hand om gamla människor hemma, hjälper dem duscha, äta och komma ihåg medicinen",
+          "top5": [
+            "Mässman, fartyg",
+            "Bussförare",
+            "Barnvakt",
+            "Spårvagnsförare",
+            "Hemvårdare"
+          ]
+        },
+        {
+          "category": "colloquial",
+          "empty": false,
+          "expected": [
+            "butikssäljare",
+            "butiksbiträde"
+          ],
+          "expected_family_rank": 2,
+          "id": "yv24",
+          "query": "Jag står bakom en disk, tar betalt, fyller på varor och hjälper kunder",
+          "top5": [
+            "Kassapersonal",
+            "Butikssäljare, dagligvaror/Medarbetare, dagligvaror",
+            "Restaurangbiträde",
+            "Charkuteriarbetare, butik",
+            "Gatuförsäljare"
+          ]
+        },
+        {
+          "category": "noisy",
+          "empty": false,
+          "expected": [
+            "elektriker"
+          ],
+          "expected_family_rank": 1,
+          "id": "yv25",
+          "query": "drar kablar kopplar uttg felsökr el typ hela dan",
+          "top5": [
+            "Serviceelektriker, installation",
+            "Elmontör",
+            "Teletekniker",
+            "Växeltelefonist",
+            "Elingenjör"
+          ]
+        },
+        {
+          "category": "noisy",
+          "empty": false,
+          "expected": [
+            "bagare",
+            "konditor"
+          ],
+          "expected_family_rank": 1,
+          "id": "yv26",
+          "query": "bakar brö bullar kakor ugn deg jäst",
+          "top5": [
+            "Bagare/Konditor"
+          ]
+        },
+        {
+          "category": "noisy",
+          "empty": false,
+          "expected": [
+            "systemutvecklare",
+            "programmerare"
+          ],
+          "expected_family_rank": 6,
+          "id": "yv27",
+          "query": "kodar backend api databas buggar deploy grejer",
+          "top5": [
+            "Backend-utvecklare",
+            "Databasutvecklare",
+            "Frontend-utvecklare",
+            "Mjukvaruutvecklare",
+            "Civilingenjör, systemutveckling"
+          ]
+        },
+        {
+          "category": "noisy",
+          "empty": false,
+          "expected": [
+            "veterinär",
+            "djurvårdare"
+          ],
+          "expected_family_rank": 4,
+          "id": "yv28",
+          "query": "hund katt vaccin operera djur klinik",
+          "top5": [
+            "Husdjursrådgivare/Husdjurskonsulent",
+            "Djursjukskötare",
+            "Hundförare",
+            "Veterinär",
+            "Djurtransportförare"
+          ]
+        },
+        {
+          "category": "noisy",
+          "empty": false,
+          "expected": [
+            "städare"
+          ],
+          "expected_family_rank": 2,
+          "id": "yv29",
+          "query": "städar skurar moppar toa kontor varje dag",
+          "top5": [
+            "Budbilsförare",
+            "Industristädare",
+            "Distributionsförare",
+            "Scripta",
+            "Mässman, fartyg"
+          ]
+        },
+        {
+          "category": "noisy",
+          "empty": false,
+          "expected": [
+            "journalist",
+            "reporter"
+          ],
+          "expected_family_rank": 1,
+          "id": "yv30",
+          "query": "intervju skriver artikel nyheter redaktion",
+          "top5": [
+            "Journalist",
+            "Webbredaktör",
+            "Nattchef, redaktion",
+            "Videojournalist/Videoreporter",
+            "Featurechef"
+          ]
+        },
+        {
+          "category": "noisy",
+          "empty": false,
+          "expected": [
+            "bussförare"
+          ],
+          "expected_family_rank": 2,
+          "id": "yv31",
+          "query": "kör buss hållplats biljett tidtabell passagerare",
+          "top5": [
+            "Spårvagnsförare",
+            "Bokbussförare",
+            "Bussförare",
+            "Lokförare",
+            "Tunnelbaneförare"
+          ]
+        },
+        {
+          "category": "noisy",
+          "empty": false,
+          "expected": [
+            "hästskötare",
+            "stallchef",
+            "ridlärare"
+          ],
+          "expected_family_rank": 1,
+          "id": "yv32",
+          "query": "hästar mockar rider fodrar stall hela dan",
+          "top5": [
+            "Hästskötare",
+            "Hovslagare",
+            "Ridlärare",
+            "Gitarrtekniker",
+            "Organisationschef"
+          ]
+        },
+        {
+          "category": "indirect",
+          "empty": false,
+          "expected": [
+            "hästskötare",
+            "stallchef",
+            "soldat",
+            "livgardist",
+            "beridare"
+          ],
+          "expected_family_rank": 416,
+          "id": "yv33",
+          "query": "Jag rider runt slottet och hjälper kungen",
+          "top5": [
+            "Hemförsäljare",
+            "Utesäljare",
+            "Guide",
+            "Taltjänsttolk",
+            "Vårdbiträde"
+          ]
+        },
+        {
+          "category": "indirect",
+          "empty": false,
+          "expected": [
+            "elektriker"
+          ],
+          "expected_family_rank": 439,
+          "id": "yv34",
+          "query": "Jag ser till att folk kan tända lampan utan att huset brinner ner",
+          "top5": [
+            "Byggnadskonstruktör",
+            "Ledsagare",
+            "Arbetsmiljöingenjör",
+            "Anläggningsdykare",
+            "Museiassistent"
+          ]
+        },
+        {
+          "category": "indirect",
+          "empty": false,
+          "expected": [
+            "bussförare",
+            "taxiförare",
+            "lokförare",
+            "chaufför"
+          ],
+          "expected_family_rank": 2,
+          "id": "yv35",
+          "query": "Jag får människor från A till B fast de inte kör själva",
+          "top5": [
+            "Ventilationsingenjör",
+            "Bussförare",
+            "Strålskyddstekniker",
+            "Skogstransportförare",
+            "Grundlärare, 4–6"
+          ]
+        },
+        {
+          "category": "indirect",
+          "empty": false,
+          "expected": [
+            "controller",
+            "redovisningsekonom",
+            "ekonom"
+          ],
+          "expected_family_rank": 8,
+          "id": "yv36",
+          "query": "Jag gör så att chefen kan se gröna siffror och röda siffror varje månad",
+          "top5": [
+            "Scripta",
+            "Statistiker",
+            "Kostymtekniker/Påklädare",
+            "Paralegal",
+            "Lantbrukare växtodling"
+          ]
+        },
+        {
+          "category": "indirect",
+          "empty": false,
+          "expected": [
+            "fysioterapeut",
+            "sjukgymnast"
+          ],
+          "expected_family_rank": 5,
+          "id": "yv37",
+          "query": "Jag får trasiga människor att kunna gå ordentligt igen efter operationer",
+          "top5": [
+            "Personlig assistent",
+            "Sjukhusvaktmästare",
+            "Isoleringsplåtslagare",
+            "Skadereglerare",
+            "Djurfysioterapeut"
+          ]
+        },
+        {
+          "category": "indirect",
+          "empty": false,
+          "expected": [
+            "nätverkstekniker",
+            "it-tekniker",
+            "drifttekniker",
+            "systemadministratör"
+          ],
+          "expected_family_rank": 60,
+          "id": "yv38",
+          "query": "Jag gör att företagets datorer fortsätter prata med varandra när allt krånglar",
+          "top5": [
+            "IT-samordnare",
+            "Kvalitetschef",
+            "Säkerhetschef",
+            "Redovisningschef",
+            "Inköpare"
+          ]
+        },
+        {
+          "category": "indirect",
+          "empty": false,
+          "expected": [
+            "frisör"
+          ],
+          "expected_family_rank": 2,
+          "id": "yv39",
+          "query": "Jag gör folk fina i håret inför helgen",
+          "top5": [
+            "Lackerare",
+            "Frisör",
+            "Silversmed",
+            "Tolk",
+            "PTP-psykolog"
+          ]
+        },
+        {
+          "category": "indirect",
+          "empty": false,
+          "expected": [
+            "skorstensfejare",
+            "skorstensfejartekniker"
+          ],
+          "expected_family_rank": 1,
+          "id": "yv40",
+          "query": "Jag får bort det som fastnat i skorstenar så huset inte börjar brinna",
+          "top5": [
+            "Skorstensfejare",
+            "Byggnadskonstruktör",
+            "Industrirörmontör",
+            "Kakelugnsmakare",
+            "Bergarbetare, bygg och anläggning"
+          ]
+        },
+        {
+          "category": "ambiguous",
+          "empty": true,
+          "expected": [],
+          "expected_family_rank": null,
+          "id": "yv41",
+          "query": "Jag hjälper människor",
+          "top5": []
+        },
+        {
+          "category": "ambiguous",
+          "empty": false,
+          "expected": [],
+          "expected_family_rank": null,
+          "id": "yv42",
+          "query": "Jag jobbar med barn",
+          "top5": [
+            "Barnskötare",
+            "Barnsjuksköterska",
+            "Lekterapeut",
+            "Barnvakt",
+            "Dagbarnvårdare"
+          ]
+        },
+        {
+          "category": "ambiguous",
+          "empty": false,
+          "expected": [],
+          "expected_family_rank": null,
+          "id": "yv43",
+          "query": "Jag kör maskiner",
+          "top5": [
+            "Serviceingenjör, maskin",
+            "Automationsingenjör, maskin",
+            "Produktionstekniker, maskin/Produktionstekniker, verkstad",
+            "Produktionsingenjör, maskin",
+            "Maskinmontör industrimaskiner"
+          ]
+        },
+        {
+          "category": "ambiguous",
+          "empty": false,
+          "expected": [],
+          "expected_family_rank": null,
+          "id": "yv44",
+          "query": "Jag jobbar med datorer",
+          "top5": [
+            "Applikationsutvecklare",
+            "IT-samordnare",
+            "Bussmekaniker",
+            "Systemutvecklare/Programmerare",
+            "Skolvaktmästare"
+          ]
+        },
+        {
+          "category": "ambiguous",
+          "empty": true,
+          "expected": [],
+          "expected_family_rank": null,
+          "id": "yv45",
+          "query": "Jag säljer saker",
+          "top5": []
+        },
+        {
+          "category": "ambiguous",
+          "empty": false,
+          "expected": [
+            "djurvårdare",
+            "djurskötare",
+            "veterinär",
+            "hästskötare"
+          ],
+          "expected_family_rank": 11,
+          "id": "yv46",
+          "query": "Jag tar hand om djur",
+          "top5": [
+            "Djursjukskötare",
+            "Spårvagnsförare",
+            "Styckare",
+            "Mässman, fartyg",
+            "Hundskötare"
+          ]
+        },
+        {
+          "category": "nonsense",
+          "empty": false,
+          "expected": [],
+          "expected_family_rank": null,
+          "id": "yv47",
+          "query": "banan raket kung kaffe blå tisdag",
+          "top5": [
+            "Kaféföreståndare"
+          ]
+        },
+        {
+          "category": "nonsense",
+          "empty": false,
+          "expected": [],
+          "expected_family_rank": null,
+          "id": "yv48",
+          "query": "jag gör saker och grejer på jobbet typ",
+          "top5": [
+            "Gatuförsäljare",
+            "Packare",
+            "Personalutbildare",
+            "Utesäljare",
+            "Fartygsstädare"
+          ]
+        },
+        {
+          "category": "nonsense",
+          "empty": false,
+          "expected": [],
+          "expected_family_rank": null,
+          "id": "yv49",
+          "query": "potatis internet häst bokföring måne saxofon",
+          "top5": [
+            "Redovisningsassistent",
+            "Blåsinstrumentmakare",
+            "Webbdesigner",
+            "Revisorsassistent",
+            "Ekonomikonsult"
+          ]
+        },
+        {
+          "category": "nonsense",
+          "empty": false,
+          "expected": [],
+          "expected_family_rank": null,
+          "id": "yv50",
+          "query": "och av på ut med till för från",
+          "top5": [
+            "Distributionsförare",
+            "Distributionschef, logistik och transporter",
+            "Bussvärd",
+            "Biluthyrare",
+            "Styckare"
+          ]
+        },
+        {
+          "category": "nonsense",
+          "empty": true,
+          "expected": [],
+          "expected_family_rank": null,
+          "id": "yv51",
+          "query": "asdf qwerty blörp fnatt zzz",
+          "top5": []
+        },
+        {
+          "category": "out_of_scope",
+          "empty": false,
+          "expected": [],
+          "expected_family_rank": null,
+          "id": "yv52",
+          "query": "Jag vill bli rik snabbt utan att jobba",
+          "top5": [
+            "Undertaksmontör, utan yrkesbevis",
+            "Biträdande jurist",
+            "Träarbetare, utan yrkesbevis/Snickare, utan yrkesbevis",
+            "Piercare",
+            "Banarbetare, utan behörighetsbevis"
+          ]
+        },
+        {
+          "category": "out_of_scope",
+          "empty": false,
+          "expected": [],
+          "expected_family_rank": null,
+          "id": "yv53",
+          "query": "Min chef är dum och kaffet är slut",
+          "top5": [
+            "Rabbin",
+            "Arbetsledare, rivning",
+            "Specialistsjuksköterska inom palliativ vård",
+            "Avdelningschef, kommun",
+            "Chief Information Officer/CIO/IT-chef"
+          ]
+        },
+        {
+          "category": "out_of_scope",
+          "empty": false,
+          "expected": [],
+          "expected_family_rank": null,
+          "id": "yv54",
+          "query": "Jag behöver semester och vill inte gå till jobbet",
+          "top5": [
+            "Arbetsmiljöingenjör",
+            "Personlig assistent",
+            "Skogstransportförare",
+            "Mediatextare",
+            "Piercare"
+          ]
+        }
+      ]
+    },
+    "control_targetable40": {
+      "cases": 40,
+      "top1_family_hit": 15,
+      "top5_family_hit": 26
+    }
+  },
+  "prefrozen_selection": {
+    "diversified_training": {
+      "gzip9_bytes": 13783,
+      "phrases": 466,
+      "raw_bytes": 37932,
+      "usable_concepts": 133
+    },
+    "hard_confusion_delta": {
+      "hit_at_5_count": 0,
+      "hit_at_5_rate_pp": 0.0,
+      "mrr": 0.036324,
+      "top1_count": 4,
+      "top1_rate_pp": 6.0606
+    },
+    "heldout_delta": {
+      "hit_at_5_count": 26,
+      "hit_at_5_rate_pp": 5.8296,
+      "mrr": 0.071972,
+      "top1_count": 37,
+      "top1_rate_pp": 8.2959
+    },
+    "materiality_gate_passed": true
+  },
+  "schema_version": 2,
+  "status": "one-time opened diagnostic replay of prefrozen A593 language-diversity candidate over full 2,105 YV universe; no tuning",
+  "strict_source_attested_17": {
+    "challenger_all17": {
+      "cases": 17,
+      "hit_at_5": 10,
+      "mrr": 0.418237,
+      "rows": [
+        {
+          "rank": 13,
+          "source_slug": "besiktningstekniker-bilprovning",
+          "target_id": "PrPH_J1d_qua",
+          "target_label": "Besiktningsingenjör, bilprovning",
+          "top5": [
+            "NCaY_h1f_Eni",
+            "9UWD_XwF_4nX",
+            "c8PJ_S6r_Lg2",
+            "aEF1_qeh_5Qe",
+            "xdLw_h9E_dNV"
+          ]
+        },
+        {
+          "rank": 5,
+          "source_slug": "borrtekniker",
+          "target_id": "zgfW_Kmq_yct",
+          "target_label": "Kärnborrare",
+          "top5": [
+            "HiFT_FBP_8YZ",
+            "Ls8r_yKQ_MQ4",
+            "J63w_XYr_isZ",
+            "31Uw_P9P_AgC",
+            "zgfW_Kmq_yct"
+          ]
+        },
+        {
+          "rank": 1,
+          "source_slug": "konstnar",
+          "target_id": "xaLh_X2Y_aAn",
+          "target_label": "Konstnär",
+          "top5": [
+            "xaLh_X2Y_aAn",
+            "FebZ_LFa_Jns",
+            "6Um7_yX6_J7z",
+            "S2QW_12u_Pj1",
+            "kerv_BhD_h6F"
+          ]
+        },
+        {
+          "rank": 1,
+          "source_slug": "landskapsarkitekt-och-landskapsingenjor",
+          "target_id": "SXAF_LMk_j4S",
+          "target_label": "Landskapsarkitekt",
+          "top5": [
+            "SXAF_LMk_j4S",
+            "XMWR_V22_WS1",
+            "GPNi_fJR_B2B",
+            "hcoE_duS_bdQ",
+            "7P58_BVX_1sE"
+          ]
+        },
+        {
+          "rank": 28,
+          "source_slug": "lantbrukare",
+          "target_id": "Zod8_4Ss_9p4",
+          "target_label": "Lantbrukare blandad drift",
+          "top5": [
+            "WZ1a_Pbw_Qb9",
+            "VwvD_G8d_LjR",
+            "M72y_eD6_3HN",
+            "j5hb_nHr_8Q5",
+            "bVXj_j6g_vzn"
+          ]
+        },
+        {
+          "rank": 2,
+          "source_slug": "makeup-artist",
+          "target_id": "MiYT_1JK_fKe",
+          "target_label": "Make-up artist",
+          "top5": [
+            "tuoE_9Nj_fAS",
+            "MiYT_1JK_fKe",
+            "Xoxs_REs_gmK",
+            "o7SJ_LKE_wrS",
+            "YfiC_FN1_dzY"
+          ]
+        },
+        {
+          "rank": 20,
+          "source_slug": "maskinoperator-inom-travaruindustrin",
+          "target_id": "8wmm_Wto_9iG",
+          "target_label": "CNC-operatör trä",
+          "top5": [
+            "LWXj_LgT_xzB",
+            "LRCD_yS5_LYY",
+            "e9pE_Lsw_YLn",
+            "duza_1Cq_zqj",
+            "yJHw_ezK_66B"
+          ]
+        },
+        {
+          "rank": 1,
+          "source_slug": "musiklarare",
+          "target_id": "zrQ9_1z2_kT3",
+          "target_label": "Musikpedagog/Musiklärare",
+          "top5": [
+            "zrQ9_1z2_kT3",
+            "JUu4_wcP_kQG",
+            "2DVG_WgT_925",
+            "7G2k_Lgp_fGW",
+            "VZoJ_4oe_xyR"
+          ]
+        },
+        {
+          "rank": 2,
+          "source_slug": "personbilsmekaniker",
+          "target_id": "paDm_hYD_LFG",
+          "target_label": "Motorcykelmekaniker",
+          "top5": [
+            "ZQWe_EYX_cqa",
+            "paDm_hYD_LFG",
+            "62xd_b2m_Wbo",
+            "BUeN_T5B_77E",
+            "mYcf_TH2_zPj"
+          ]
+        },
+        {
+          "rank": 2,
+          "source_slug": "processoperator-inom-massa-och-pappersindustrin",
+          "target_id": "a6Hu_zpi_ALp",
+          "target_label": "Processoperatör papper",
+          "top5": [
+            "RF7q_DSJ_FbY",
+            "a6Hu_zpi_ALp",
+            "h4wH_7kG_UTN",
+            "4eYC_a1M_xtL",
+            "jQwP_ds3_Toe"
+          ]
+        },
+        {
+          "rank": 1,
+          "source_slug": "regissor",
+          "target_id": "tHsR_3HM_Ab5",
+          "target_label": "Regissör",
+          "top5": [
+            "tHsR_3HM_Ab5",
+            "2546_5Ve_4ep",
+            "5fri_5bN_1Da",
+            "bweF_VXK_Y2T",
+            "JnDA_uam_JKC"
+          ]
+        },
+        {
+          "rank": 5,
+          "source_slug": "resesaljare",
+          "target_id": "ytyd_woW_QVz",
+          "target_label": "Resebyråassistent",
+          "top5": [
+            "HXv5_i9k_t5P",
+            "GnQz_w5A_c8Q",
+            "1zWB_81n_EEV",
+            "xQP2_w9J_jbZ",
+            "ytyd_woW_QVz"
+          ]
+        },
+        {
+          "rank": 36,
+          "source_slug": "utbildningsadministrator",
+          "target_id": "JQ3q_X9q_aTC",
+          "target_label": "Utbildningshandläggare",
+          "top5": [
+            "etkf_dBn_JbW",
+            "mHAm_gqB_wSy",
+            "duza_1Cq_zqj",
+            "GPNi_fJR_B2B",
+            "GujS_MtW_PRH"
+          ]
+        },
+        {
+          "rank": null,
+          "source_slug": "arbetsmiljoinspektor",
+          "target_id": "E6Kf_Y8Q_baT",
+          "target_label": "Arbetsmiljöinspektör",
+          "top5": [
+            "9UWD_XwF_4nX",
+            "ponJ_a1z_dkd",
+            "89uF_Vvx_qcD",
+            "fd4V_Y5T_X8a",
+            "31Uw_P9P_AgC"
+          ]
+        },
+        {
+          "rank": 1,
+          "source_slug": "biomedicinsk-analytiker",
+          "target_id": "Pj8T_bST_f7D",
+          "target_label": "Biomedicinsk analytiker/BMA",
+          "top5": [
+            "Pj8T_bST_f7D",
+            "gmx1_BCX_EEe",
+            "9K3i_XD4_Kyy",
+            "KZsj_HrG_iKS",
+            "SMii_y8Z_VmX"
+          ]
+        },
+        {
+          "rank": null,
+          "source_slug": "larare-i-bild",
+          "target_id": "jUbF_gem_LC8",
+          "target_label": "Bildpedagog",
+          "top5": [
+            "f1zq_tpA_QtN",
+            "dhXy_7Te_Tzb",
+            "86sy_hBf_exW",
+            "wypk_7S7_snv",
+            "Zfgc_BYU_HM2"
+          ]
+        },
+        {
+          "rank": 51,
+          "source_slug": "skorstensfejare",
+          "target_id": "MhSm_oVM_hJP",
+          "target_label": "Skorstensfejartekniker",
+          "top5": [
+            "RxYj_fc9_z7L",
+            "q4Ca_jmG_de7",
+            "YfiC_FN1_dzY",
+            "HtLv_4EJ_o5r",
+            "4HnZ_K23_35y"
+          ]
+        }
+      ],
+      "top1": 5
+    },
+    "challenger_teacher_covered_only": {
+      "cases": 4,
+      "hit_at_5": 2,
+      "mrr": 0.519444,
+      "rows": [
+        {
+          "rank": 20,
+          "source_slug": "maskinoperator-inom-travaruindustrin",
+          "target_id": "8wmm_Wto_9iG",
+          "target_label": "CNC-operatör trä",
+          "top5": [
+            "LWXj_LgT_xzB",
+            "LRCD_yS5_LYY",
+            "e9pE_Lsw_YLn",
+            "duza_1Cq_zqj",
+            "yJHw_ezK_66B"
+          ]
+        },
+        {
+          "rank": 1,
+          "source_slug": "musiklarare",
+          "target_id": "zrQ9_1z2_kT3",
+          "target_label": "Musikpedagog/Musiklärare",
+          "top5": [
+            "zrQ9_1z2_kT3",
+            "JUu4_wcP_kQG",
+            "2DVG_WgT_925",
+            "7G2k_Lgp_fGW",
+            "VZoJ_4oe_xyR"
+          ]
+        },
+        {
+          "rank": 36,
+          "source_slug": "utbildningsadministrator",
+          "target_id": "JQ3q_X9q_aTC",
+          "target_label": "Utbildningshandläggare",
+          "top5": [
+            "etkf_dBn_JbW",
+            "mHAm_gqB_wSy",
+            "duza_1Cq_zqj",
+            "GPNi_fJR_B2B",
+            "GujS_MtW_PRH"
+          ]
+        },
+        {
+          "rank": 1,
+          "source_slug": "biomedicinsk-analytiker",
+          "target_id": "Pj8T_bST_f7D",
+          "target_label": "Biomedicinsk analytiker/BMA",
+          "top5": [
+            "Pj8T_bST_f7D",
+            "gmx1_BCX_EEe",
+            "9K3i_XD4_Kyy",
+            "KZsj_HrG_iKS",
+            "SMii_y8Z_VmX"
+          ]
+        }
+      ],
+      "top1": 2
+    },
+    "changed_rows": [
+      {
+        "challenger_rank": 13,
+        "challenger_top5": [
+          "NCaY_h1f_Eni",
+          "9UWD_XwF_4nX",
+          "c8PJ_S6r_Lg2",
+          "aEF1_qeh_5Qe",
+          "xdLw_h9E_dNV"
+        ],
+        "control_rank": 12,
+        "control_top5": [
+          "NCaY_h1f_Eni",
+          "9UWD_XwF_4nX",
+          "c8PJ_S6r_Lg2",
+          "aEF1_qeh_5Qe",
+          "xdLw_h9E_dNV"
+        ],
+        "hit5_delta": 0,
+        "source_slug": "besiktningstekniker-bilprovning",
+        "target_id": "PrPH_J1d_qua",
+        "target_label": "Besiktningsingenjör, bilprovning",
+        "top1_delta": 0
+      },
+      {
+        "challenger_rank": 5,
+        "challenger_top5": [
+          "HiFT_FBP_8YZ",
+          "Ls8r_yKQ_MQ4",
+          "J63w_XYr_isZ",
+          "31Uw_P9P_AgC",
+          "zgfW_Kmq_yct"
+        ],
+        "control_rank": 4,
+        "control_top5": [
+          "HiFT_FBP_8YZ",
+          "Ls8r_yKQ_MQ4",
+          "J63w_XYr_isZ",
+          "zgfW_Kmq_yct",
+          "ouQJ_4hT_WKV"
+        ],
+        "hit5_delta": 0,
+        "source_slug": "borrtekniker",
+        "target_id": "zgfW_Kmq_yct",
+        "target_label": "Kärnborrare",
+        "top1_delta": 0
+      },
+      {
+        "challenger_rank": 28,
+        "challenger_top5": [
+          "WZ1a_Pbw_Qb9",
+          "VwvD_G8d_LjR",
+          "M72y_eD6_3HN",
+          "j5hb_nHr_8Q5",
+          "bVXj_j6g_vzn"
+        ],
+        "control_rank": 30,
+        "control_top5": [
+          "WZ1a_Pbw_Qb9",
+          "VwvD_G8d_LjR",
+          "M72y_eD6_3HN",
+          "j5hb_nHr_8Q5",
+          "mAg4_DVZ_qaw"
+        ],
+        "hit5_delta": 0,
+        "source_slug": "lantbrukare",
+        "target_id": "Zod8_4Ss_9p4",
+        "target_label": "Lantbrukare blandad drift",
+        "top1_delta": 0
+      },
+      {
+        "challenger_rank": 1,
+        "challenger_top5": [
+          "tHsR_3HM_Ab5",
+          "2546_5Ve_4ep",
+          "5fri_5bN_1Da",
+          "bweF_VXK_Y2T",
+          "JnDA_uam_JKC"
+        ],
+        "control_rank": 1,
+        "control_top5": [
+          "tHsR_3HM_Ab5",
+          "5fri_5bN_1Da",
+          "bweF_VXK_Y2T",
+          "JnDA_uam_JKC",
+          "Ruvs_NBd_crh"
+        ],
+        "hit5_delta": 0,
+        "source_slug": "regissor",
+        "target_id": "tHsR_3HM_Ab5",
+        "target_label": "Regissör",
+        "top1_delta": 0
+      },
+      {
+        "challenger_rank": 5,
+        "challenger_top5": [
+          "HXv5_i9k_t5P",
+          "GnQz_w5A_c8Q",
+          "1zWB_81n_EEV",
+          "xQP2_w9J_jbZ",
+          "ytyd_woW_QVz"
+        ],
+        "control_rank": 4,
+        "control_top5": [
+          "HXv5_i9k_t5P",
+          "GnQz_w5A_c8Q",
+          "1zWB_81n_EEV",
+          "ytyd_woW_QVz",
+          "p17k_znk_osi"
+        ],
+        "hit5_delta": 0,
+        "source_slug": "resesaljare",
+        "target_id": "ytyd_woW_QVz",
+        "target_label": "Resebyråassistent",
+        "top1_delta": 0
+      },
+      {
+        "challenger_rank": 36,
+        "challenger_top5": [
+          "etkf_dBn_JbW",
+          "mHAm_gqB_wSy",
+          "duza_1Cq_zqj",
+          "GPNi_fJR_B2B",
+          "GujS_MtW_PRH"
+        ],
+        "control_rank": 36,
+        "control_top5": [
+          "etkf_dBn_JbW",
+          "mHAm_gqB_wSy",
+          "GujS_MtW_PRH",
+          "duza_1Cq_zqj",
+          "GPNi_fJR_B2B"
+        ],
+        "hit5_delta": 0,
+        "source_slug": "utbildningsadministrator",
+        "target_id": "JQ3q_X9q_aTC",
+        "target_label": "Utbildningshandläggare",
+        "top1_delta": 0
+      },
+      {
+        "challenger_rank": null,
+        "challenger_top5": [
+          "f1zq_tpA_QtN",
+          "dhXy_7Te_Tzb",
+          "86sy_hBf_exW",
+          "wypk_7S7_snv",
+          "Zfgc_BYU_HM2"
+        ],
+        "control_rank": null,
+        "control_top5": [
+          "dhXy_7Te_Tzb",
+          "86sy_hBf_exW",
+          "wypk_7S7_snv",
+          "Zfgc_BYU_HM2",
+          "JUu4_wcP_kQG"
+        ],
+        "hit5_delta": 0,
+        "source_slug": "larare-i-bild",
+        "target_id": "jUbF_gem_LC8",
+        "target_label": "Bildpedagog",
+        "top1_delta": 0
+      },
+      {
+        "challenger_rank": 51,
+        "challenger_top5": [
+          "RxYj_fc9_z7L",
+          "q4Ca_jmG_de7",
+          "YfiC_FN1_dzY",
+          "HtLv_4EJ_o5r",
+          "4HnZ_K23_35y"
+        ],
+        "control_rank": 45,
+        "control_top5": [
+          "RxYj_fc9_z7L",
+          "q4Ca_jmG_de7",
+          "YfiC_FN1_dzY",
+          "HtLv_4EJ_o5r",
+          "4HnZ_K23_35y"
+        ],
+        "hit5_delta": 0,
+        "source_slug": "skorstensfejare",
+        "target_id": "MhSm_oVM_hJP",
+        "target_label": "Skorstensfejartekniker",
+        "top1_delta": 0
+      }
+    ],
+    "control_all17": {
+      "cases": 17,
+      "hit_at_5": 10,
+      "mrr": 0.42451,
+      "rows": [
+        {
+          "rank": 12,
+          "source_slug": "besiktningstekniker-bilprovning",
+          "target_id": "PrPH_J1d_qua",
+          "target_label": "Besiktningsingenjör, bilprovning",
+          "top5": [
+            "NCaY_h1f_Eni",
+            "9UWD_XwF_4nX",
+            "c8PJ_S6r_Lg2",
+            "aEF1_qeh_5Qe",
+            "xdLw_h9E_dNV"
+          ]
+        },
+        {
+          "rank": 4,
+          "source_slug": "borrtekniker",
+          "target_id": "zgfW_Kmq_yct",
+          "target_label": "Kärnborrare",
+          "top5": [
+            "HiFT_FBP_8YZ",
+            "Ls8r_yKQ_MQ4",
+            "J63w_XYr_isZ",
+            "zgfW_Kmq_yct",
+            "ouQJ_4hT_WKV"
+          ]
+        },
+        {
+          "rank": 1,
+          "source_slug": "konstnar",
+          "target_id": "xaLh_X2Y_aAn",
+          "target_label": "Konstnär",
+          "top5": [
+            "xaLh_X2Y_aAn",
+            "FebZ_LFa_Jns",
+            "6Um7_yX6_J7z",
+            "S2QW_12u_Pj1",
+            "kerv_BhD_h6F"
+          ]
+        },
+        {
+          "rank": 1,
+          "source_slug": "landskapsarkitekt-och-landskapsingenjor",
+          "target_id": "SXAF_LMk_j4S",
+          "target_label": "Landskapsarkitekt",
+          "top5": [
+            "SXAF_LMk_j4S",
+            "XMWR_V22_WS1",
+            "GPNi_fJR_B2B",
+            "hcoE_duS_bdQ",
+            "7P58_BVX_1sE"
+          ]
+        },
+        {
+          "rank": 30,
+          "source_slug": "lantbrukare",
+          "target_id": "Zod8_4Ss_9p4",
+          "target_label": "Lantbrukare blandad drift",
+          "top5": [
+            "WZ1a_Pbw_Qb9",
+            "VwvD_G8d_LjR",
+            "M72y_eD6_3HN",
+            "j5hb_nHr_8Q5",
+            "mAg4_DVZ_qaw"
+          ]
+        },
+        {
+          "rank": 2,
+          "source_slug": "makeup-artist",
+          "target_id": "MiYT_1JK_fKe",
+          "target_label": "Make-up artist",
+          "top5": [
+            "tuoE_9Nj_fAS",
+            "MiYT_1JK_fKe",
+            "Xoxs_REs_gmK",
+            "o7SJ_LKE_wrS",
+            "YfiC_FN1_dzY"
+          ]
+        },
+        {
+          "rank": 20,
+          "source_slug": "maskinoperator-inom-travaruindustrin",
+          "target_id": "8wmm_Wto_9iG",
+          "target_label": "CNC-operatör trä",
+          "top5": [
+            "LWXj_LgT_xzB",
+            "LRCD_yS5_LYY",
+            "e9pE_Lsw_YLn",
+            "duza_1Cq_zqj",
+            "yJHw_ezK_66B"
+          ]
+        },
+        {
+          "rank": 1,
+          "source_slug": "musiklarare",
+          "target_id": "zrQ9_1z2_kT3",
+          "target_label": "Musikpedagog/Musiklärare",
+          "top5": [
+            "zrQ9_1z2_kT3",
+            "JUu4_wcP_kQG",
+            "2DVG_WgT_925",
+            "7G2k_Lgp_fGW",
+            "VZoJ_4oe_xyR"
+          ]
+        },
+        {
+          "rank": 2,
+          "source_slug": "personbilsmekaniker",
+          "target_id": "paDm_hYD_LFG",
+          "target_label": "Motorcykelmekaniker",
+          "top5": [
+            "ZQWe_EYX_cqa",
+            "paDm_hYD_LFG",
+            "62xd_b2m_Wbo",
+            "BUeN_T5B_77E",
+            "mYcf_TH2_zPj"
+          ]
+        },
+        {
+          "rank": 2,
+          "source_slug": "processoperator-inom-massa-och-pappersindustrin",
+          "target_id": "a6Hu_zpi_ALp",
+          "target_label": "Processoperatör papper",
+          "top5": [
+            "RF7q_DSJ_FbY",
+            "a6Hu_zpi_ALp",
+            "h4wH_7kG_UTN",
+            "4eYC_a1M_xtL",
+            "jQwP_ds3_Toe"
+          ]
+        },
+        {
+          "rank": 1,
+          "source_slug": "regissor",
+          "target_id": "tHsR_3HM_Ab5",
+          "target_label": "Regissör",
+          "top5": [
+            "tHsR_3HM_Ab5",
+            "5fri_5bN_1Da",
+            "bweF_VXK_Y2T",
+            "JnDA_uam_JKC",
+            "Ruvs_NBd_crh"
+          ]
+        },
+        {
+          "rank": 4,
+          "source_slug": "resesaljare",
+          "target_id": "ytyd_woW_QVz",
+          "target_label": "Resebyråassistent",
+          "top5": [
+            "HXv5_i9k_t5P",
+            "GnQz_w5A_c8Q",
+            "1zWB_81n_EEV",
+            "ytyd_woW_QVz",
+            "p17k_znk_osi"
+          ]
+        },
+        {
+          "rank": 36,
+          "source_slug": "utbildningsadministrator",
+          "target_id": "JQ3q_X9q_aTC",
+          "target_label": "Utbildningshandläggare",
+          "top5": [
+            "etkf_dBn_JbW",
+            "mHAm_gqB_wSy",
+            "GujS_MtW_PRH",
+            "duza_1Cq_zqj",
+            "GPNi_fJR_B2B"
+          ]
+        },
+        {
+          "rank": null,
+          "source_slug": "arbetsmiljoinspektor",
+          "target_id": "E6Kf_Y8Q_baT",
+          "target_label": "Arbetsmiljöinspektör",
+          "top5": [
+            "9UWD_XwF_4nX",
+            "ponJ_a1z_dkd",
+            "89uF_Vvx_qcD",
+            "fd4V_Y5T_X8a",
+            "31Uw_P9P_AgC"
+          ]
+        },
+        {
+          "rank": 1,
+          "source_slug": "biomedicinsk-analytiker",
+          "target_id": "Pj8T_bST_f7D",
+          "target_label": "Biomedicinsk analytiker/BMA",
+          "top5": [
+            "Pj8T_bST_f7D",
+            "gmx1_BCX_EEe",
+            "9K3i_XD4_Kyy",
+            "KZsj_HrG_iKS",
+            "SMii_y8Z_VmX"
+          ]
+        },
+        {
+          "rank": null,
+          "source_slug": "larare-i-bild",
+          "target_id": "jUbF_gem_LC8",
+          "target_label": "Bildpedagog",
+          "top5": [
+            "dhXy_7Te_Tzb",
+            "86sy_hBf_exW",
+            "wypk_7S7_snv",
+            "Zfgc_BYU_HM2",
+            "JUu4_wcP_kQG"
+          ]
+        },
+        {
+          "rank": 45,
+          "source_slug": "skorstensfejare",
+          "target_id": "MhSm_oVM_hJP",
+          "target_label": "Skorstensfejartekniker",
+          "top5": [
+            "RxYj_fc9_z7L",
+            "q4Ca_jmG_de7",
+            "YfiC_FN1_dzY",
+            "HtLv_4EJ_o5r",
+            "4HnZ_K23_35y"
+          ]
+        }
+      ],
+      "top1": 5
+    },
+    "control_teacher_covered_only": {
+      "cases": 4,
+      "hit_at_5": 2,
+      "mrr": 0.519444,
+      "rows": [
+        {
+          "rank": 20,
+          "source_slug": "maskinoperator-inom-travaruindustrin",
+          "target_id": "8wmm_Wto_9iG",
+          "target_label": "CNC-operatör trä",
+          "top5": [
+            "LWXj_LgT_xzB",
+            "LRCD_yS5_LYY",
+            "e9pE_Lsw_YLn",
+            "duza_1Cq_zqj",
+            "yJHw_ezK_66B"
+          ]
+        },
+        {
+          "rank": 1,
+          "source_slug": "musiklarare",
+          "target_id": "zrQ9_1z2_kT3",
+          "target_label": "Musikpedagog/Musiklärare",
+          "top5": [
+            "zrQ9_1z2_kT3",
+            "JUu4_wcP_kQG",
+            "2DVG_WgT_925",
+            "7G2k_Lgp_fGW",
+            "VZoJ_4oe_xyR"
+          ]
+        },
+        {
+          "rank": 36,
+          "source_slug": "utbildningsadministrator",
+          "target_id": "JQ3q_X9q_aTC",
+          "target_label": "Utbildningshandläggare",
+          "top5": [
+            "etkf_dBn_JbW",
+            "mHAm_gqB_wSy",
+            "GujS_MtW_PRH",
+            "duza_1Cq_zqj",
+            "GPNi_fJR_B2B"
+          ]
+        },
+        {
+          "rank": 1,
+          "source_slug": "biomedicinsk-analytiker",
+          "target_id": "Pj8T_bST_f7D",
+          "target_label": "Biomedicinsk analytiker/BMA",
+          "top5": [
+            "Pj8T_bST_f7D",
+            "gmx1_BCX_EEe",
+            "9K3i_XD4_Kyy",
+            "KZsj_HrG_iKS",
+            "SMii_y8Z_VmX"
+          ]
+        }
+      ],
+      "top1": 2
+    }
+  },
+  "supersedes": "research/evaluation/v31/a593-language-diversity-opened-replay.json (invalid 593-only candidate universe)"
+}
