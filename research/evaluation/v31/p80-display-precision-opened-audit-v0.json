@@ -1,0 +1,4662 @@
+{
+  "candidate": "frozen P80 A-family + source-thin rescue; same 2,105 occupation universe",
+  "clarification_cases": {
+    "cases": 9,
+    "full_five": 7,
+    "nonempty": 7
+  },
+  "explicit_abstention": {
+    "cases": 8,
+    "correct_empty": 1,
+    "failed_open": 7,
+    "full_five": 6
+  },
+  "id": "YV-P80-display-precision-opened-audit-v0",
+  "interpretation_boundary": "This replay can confirm fail-open mechanism and show examples. A display-confidence rule must be selected on separate prefrozen calibration evidence, then only replayed here diagnostically.",
+  "mechanism": {
+    "long_query_admission": "rank_c1 admits every occupation with BM25 score > 0; there is no confidence threshold, score-gap requirement, or result-set precision gate",
+    "presentation": "consumer demo takes first five admitted candidates; therefore weak lexical overlap can fill the visible tail"
+  },
+  "overall": {
+    "by_category": {
+      "ambiguous": {
+        "cases": 6,
+        "full_five": 4,
+        "nonempty": 4,
+        "targetable_cases": 1,
+        "top1_family_hit": 0,
+        "top5_family_hit": 0
+      },
+      "colloquial": {
+        "cases": 12,
+        "full_five": 12,
+        "nonempty": 12,
+        "targetable_cases": 12,
+        "top1_family_hit": 0,
+        "top5_family_hit": 4
+      },
+      "direct": {
+        "cases": 12,
+        "full_five": 12,
+        "nonempty": 12,
+        "targetable_cases": 12,
+        "top1_family_hit": 10,
+        "top5_family_hit": 12
+      },
+      "indirect": {
+        "cases": 8,
+        "full_five": 8,
+        "nonempty": 8,
+        "targetable_cases": 8,
+        "top1_family_hit": 1,
+        "top5_family_hit": 5
+      },
+      "noisy": {
+        "cases": 8,
+        "full_five": 7,
+        "nonempty": 8,
+        "targetable_cases": 8,
+        "top1_family_hit": 4,
+        "top5_family_hit": 7
+      },
+      "nonsense": {
+        "cases": 5,
+        "full_five": 3,
+        "nonempty": 4,
+        "targetable_cases": 0,
+        "top1_family_hit": 0,
+        "top5_family_hit": 0
+      },
+      "out_of_scope": {
+        "cases": 3,
+        "full_five": 3,
+        "nonempty": 3,
+        "targetable_cases": 0,
+        "top1_family_hit": 0,
+        "top5_family_hit": 0
+      }
+    },
+    "cases": 54,
+    "full_five": 49,
+    "mean_displayed": 4.593,
+    "nonempty": 51
+  },
+  "rows": [
+    {
+      "category": "direct",
+      "displayed_count": 5,
+      "expected": [
+        "sjuksköterska"
+      ],
+      "expected_family_rank": 1,
+      "id": "yv01",
+      "query": "Jag arbetar på sjukhus och tar blodprov, sätter infarter och ger läkemedel till patienter",
+      "result_count": 1762,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "Uh7q_DpM_rm3",
+          "label": "Intensivvårdssjuksköterska",
+          "rank": 1,
+          "score": 18.248759,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 7,
+          "shared_terms": [
+            "ger",
+            "jag",
+            "läkemedel",
+            "och",
+            "patienter",
+            "på",
+            "sjukhus"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "dAmo_ydH_Fko",
+          "label": "Ambulanssjuksköterska",
+          "rank": 2,
+          "score": 17.852045,
+          "score_ratio_to_top": 0.978261,
+          "shared_term_count": 8,
+          "shared_terms": [
+            "arbetar",
+            "ger",
+            "läkemedel",
+            "och",
+            "patienter",
+            "på",
+            "sjukhus",
+            "till"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "YHfo_Sbx_vzK",
+          "label": "Apotekare",
+          "rank": 3,
+          "score": 16.809578,
+          "score_ratio_to_top": 0.921135,
+          "shared_term_count": 7,
+          "shared_terms": [
+            "arbetar",
+            "läkemedel",
+            "och",
+            "patienter",
+            "på",
+            "sjukhus",
+            "till"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "abS5_M7h_pMr",
+          "label": "Receptarie",
+          "rank": 4,
+          "score": 15.401501,
+          "score_ratio_to_top": 0.843975,
+          "shared_term_count": 6,
+          "shared_terms": [
+            "ger",
+            "läkemedel",
+            "och",
+            "patienter",
+            "på",
+            "till"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "uKf3_A5g_w7X",
+          "label": "Sjukhusvaktmästare",
+          "rank": 5,
+          "score": 14.263401,
+          "score_ratio_to_top": 0.781609,
+          "shared_term_count": 7,
+          "shared_terms": [
+            "arbetar",
+            "ger",
+            "och",
+            "patienter",
+            "på",
+            "sjukhus",
+            "till"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "direct",
+      "displayed_count": 5,
+      "expected": [
+        "elektriker"
+      ],
+      "expected_family_rank": 1,
+      "id": "yv02",
+      "query": "Jag drar elkabel, kopplar uttag och felsöker elinstallationer i hus",
+      "result_count": 1758,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "84Uc_bhA_s47",
+          "label": "Installationselektriker",
+          "rank": 1,
+          "score": 17.523233,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 6,
+          "shared_terms": [
+            "drar",
+            "elinstallationer",
+            "hus",
+            "i",
+            "jag",
+            "och"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "K3iK_iEb_41Y",
+          "label": "Serviceelektriker, installation",
+          "rank": 2,
+          "score": 16.00839,
+          "score_ratio_to_top": 0.913552,
+          "shared_term_count": 6,
+          "shared_terms": [
+            "drar",
+            "elinstallationer",
+            "felsöker",
+            "i",
+            "jag",
+            "och"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "62xd_b2m_Wbo",
+          "label": "Växeltelefonist",
+          "rank": 3,
+          "score": 11.626333,
+          "score_ratio_to_top": 0.663481,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "i",
+            "kopplar",
+            "och"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "AJDU_fpb_ADF",
+          "label": "Elmontör",
+          "rank": 4,
+          "score": 11.131332,
+          "score_ratio_to_top": 0.635233,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "drar",
+            "elinstallationer",
+            "i",
+            "jag",
+            "och"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "TT8h_qKk_1iu",
+          "label": "Affärskonsult, IT",
+          "rank": 5,
+          "score": 10.073009,
+          "score_ratio_to_top": 0.574837,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "i",
+            "jag",
+            "kopplar",
+            "och"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "direct",
+      "displayed_count": 5,
+      "expected": [
+        "bagare",
+        "konditor"
+      ],
+      "expected_family_rank": 1,
+      "id": "yv03",
+      "query": "Jag bakar bröd och bullar på nätterna och arbetar med degar och ugnar",
+      "result_count": 1762,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "XugJ_6hw_wVV",
+          "label": "Bagare/Konditor",
+          "rank": 1,
+          "score": 42.219081,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 10,
+          "shared_terms": [
+            "arbetar",
+            "bakar",
+            "bröd",
+            "bullar",
+            "degar",
+            "jag",
+            "med",
+            "och",
+            "på",
+            "ugnar"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "9YaE_Syg_5ZB",
+          "label": "Pizzabagare",
+          "rank": 2,
+          "score": 9.942072,
+          "score_ratio_to_top": 0.235488,
+          "shared_term_count": 6,
+          "shared_terms": [
+            "arbetar",
+            "bakar",
+            "jag",
+            "med",
+            "och",
+            "på"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "FZrG_W9Q_fE7",
+          "label": "Ugnsmurare",
+          "rank": 3,
+          "score": 9.144542,
+          "score_ratio_to_top": 0.216597,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "arbetar",
+            "med",
+            "och",
+            "på",
+            "ugnar"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "5DcA_EVV_BHZ",
+          "label": "Kakelugnsmakare",
+          "rank": 4,
+          "score": 8.327408,
+          "score_ratio_to_top": 0.197243,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "arbetar",
+            "med",
+            "och",
+            "på",
+            "ugnar"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "Saam_Psu_APf",
+          "label": "Underhållsingenjör metallurgi",
+          "rank": 5,
+          "score": 8.230944,
+          "score_ratio_to_top": 0.194958,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "arbetar",
+            "med",
+            "och",
+            "på",
+            "ugnar"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "direct",
+      "displayed_count": 5,
+      "expected": [
+        "bussförare"
+      ],
+      "expected_family_rank": 5,
+      "id": "yv04",
+      "query": "Jag kör passagerare enligt tidtabell genom stan och stannar vid hållplatser",
+      "result_count": 1752,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "WU2H_o2e_rrm",
+          "label": "Lokförare",
+          "rank": 1,
+          "score": 15.017398,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "genom",
+            "kör",
+            "och",
+            "passagerare",
+            "vid"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "YWfW_snc_CTn",
+          "label": "Trafikvärd",
+          "rank": 2,
+          "score": 13.318224,
+          "score_ratio_to_top": 0.886853,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "hållplatser",
+            "och",
+            "passagerare",
+            "vid"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "GkMH_KEV_QKX",
+          "label": "Spårvagnsförare",
+          "rank": 3,
+          "score": 12.653155,
+          "score_ratio_to_top": 0.842566,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "kör",
+            "och",
+            "passagerare"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "7FqZ_2r8_CEN",
+          "label": "Taxiförare",
+          "rank": 4,
+          "score": 12.516922,
+          "score_ratio_to_top": 0.833495,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "enligt",
+            "kör",
+            "och",
+            "passagerare"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "6zL8_YYP_1eR",
+          "label": "Bussförare",
+          "rank": 5,
+          "score": 11.661198,
+          "score_ratio_to_top": 0.776513,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "kör",
+            "och",
+            "passagerare"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "direct",
+      "displayed_count": 5,
+      "expected": [
+        "städare"
+      ],
+      "expected_family_rank": 1,
+      "id": "yv05",
+      "query": "Jag dammsuger, moppar golv och städar kontor och toaletter",
+      "result_count": 1751,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "KF64_AvU_S4N",
+          "label": "Städare",
+          "rank": 1,
+          "score": 10.06985,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "golv",
+            "kontor",
+            "och"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "2qmv_BHZ_kuo",
+          "label": "Industristädare",
+          "rank": 2,
+          "score": 9.205255,
+          "score_ratio_to_top": 0.91414,
+          "shared_term_count": 2,
+          "shared_terms": [
+            "och",
+            "städar"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "4eaw_x3V_ddY",
+          "label": "Golvläggare, utan yrkesbevis",
+          "rank": 3,
+          "score": 8.368783,
+          "score_ratio_to_top": 0.831073,
+          "shared_term_count": 2,
+          "shared_terms": [
+            "golv",
+            "och"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "Mgiv_Xs7_u2r",
+          "label": "Golvläggare",
+          "rank": 4,
+          "score": 8.302541,
+          "score_ratio_to_top": 0.824495,
+          "shared_term_count": 2,
+          "shared_terms": [
+            "golv",
+            "och"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "Qv4e_brq_Ca5",
+          "label": "Plattsättare",
+          "rank": 5,
+          "score": 7.833061,
+          "score_ratio_to_top": 0.777873,
+          "shared_term_count": 2,
+          "shared_terms": [
+            "golv",
+            "och"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "direct",
+      "displayed_count": 5,
+      "expected": [
+        "journalist",
+        "reporter"
+      ],
+      "expected_family_rank": 1,
+      "id": "yv06",
+      "query": "Jag intervjuar människor, granskar uppgifter och skriver artiklar för en tidning",
+      "result_count": 1761,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "5x47_XP7_zyN",
+          "label": "Journalist",
+          "rank": 1,
+          "score": 23.192872,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 7,
+          "shared_terms": [
+            "artiklar",
+            "en",
+            "för",
+            "granskar",
+            "intervjuar",
+            "och",
+            "skriver"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "4oKL_Mvq_iG6",
+          "label": "Forskare, humaniora",
+          "rank": 2,
+          "score": 14.013261,
+          "score_ratio_to_top": 0.604205,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "artiklar",
+            "en",
+            "och",
+            "skriver"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "J4Rt_8su_TcY",
+          "label": "Forskare, IT",
+          "rank": 3,
+          "score": 12.044826,
+          "score_ratio_to_top": 0.519333,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "artiklar",
+            "för",
+            "och",
+            "skriver"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "M4Ld_18g_XzK",
+          "label": "Förlagschef, tidning",
+          "rank": 4,
+          "score": 11.169273,
+          "score_ratio_to_top": 0.481582,
+          "shared_term_count": 1,
+          "shared_terms": [
+            "tidning"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "rnBV_XXP_Uv2",
+          "label": "Affärsjurist",
+          "rank": 5,
+          "score": 10.679781,
+          "score_ratio_to_top": 0.460477,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "för",
+            "granskar",
+            "och",
+            "skriver"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "direct",
+      "displayed_count": 5,
+      "expected": [
+        "bibliotekarie",
+        "biblioteksassistent"
+      ],
+      "expected_family_rank": 1,
+      "id": "yv07",
+      "query": "Jag hjälper besökare att hitta och låna böcker och ordnar material i ett bibliotek",
+      "result_count": 1764,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "Mx7K_ThX_jz4",
+          "label": "Biblioteksassistent",
+          "rank": 1,
+          "score": 26.349232,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 8,
+          "shared_terms": [
+            "att",
+            "besökare",
+            "bibliotek",
+            "böcker",
+            "i",
+            "låna",
+            "material",
+            "och"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "GujS_MtW_PRH",
+          "label": "Bibliotekarie",
+          "rank": 2,
+          "score": 22.230368,
+          "score_ratio_to_top": 0.843682,
+          "shared_term_count": 8,
+          "shared_terms": [
+            "att",
+            "bibliotek",
+            "böcker",
+            "i",
+            "jag",
+            "material",
+            "och",
+            "ordnar"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "GpE8_Cy4_zL8",
+          "label": "Skidliftvärd",
+          "rank": 3,
+          "score": 14.813467,
+          "score_ratio_to_top": 0.562197,
+          "shared_term_count": 6,
+          "shared_terms": [
+            "att",
+            "besökare",
+            "ett",
+            "hjälper",
+            "i",
+            "och"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "2MYm_KVX_GfS",
+          "label": "Bokförläggare",
+          "rank": 4,
+          "score": 13.347888,
+          "score_ratio_to_top": 0.506576,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "att",
+            "böcker",
+            "ett",
+            "hitta",
+            "och"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "2iBk_N8d_Gm4",
+          "label": "Forskarassistent",
+          "rank": 5,
+          "score": 12.260677,
+          "score_ratio_to_top": 0.465314,
+          "shared_term_count": 6,
+          "shared_terms": [
+            "ett",
+            "hjälper",
+            "i",
+            "jag",
+            "material",
+            "och"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "direct",
+      "displayed_count": 5,
+      "expected": [
+        "veterinär"
+      ],
+      "expected_family_rank": 1,
+      "id": "yv08",
+      "query": "Jag undersöker sjuka hundar och katter, vaccinerar dem och skriver ut behandling",
+      "result_count": 1752,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "GgmE_SvH_mtm",
+          "label": "Veterinär",
+          "rank": 1,
+          "score": 26.130021,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 7,
+          "shared_terms": [
+            "hundar",
+            "katter",
+            "och",
+            "sjuka",
+            "skriver",
+            "undersöker",
+            "ut"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "9K3i_XD4_Kyy",
+          "label": "Läkare",
+          "rank": 2,
+          "score": 15.271045,
+          "score_ratio_to_top": 0.584425,
+          "shared_term_count": 6,
+          "shared_terms": [
+            "behandling",
+            "jag",
+            "och",
+            "skriver",
+            "undersöker",
+            "ut"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "sFXn_bQg_36b",
+          "label": "Smådjursuppfödare",
+          "rank": 3,
+          "score": 14.690291,
+          "score_ratio_to_top": 0.5622,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "hundar",
+            "katter",
+            "och"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "CQBS_ZSZ_ViP",
+          "label": "Barnsjuksköterska",
+          "rank": 4,
+          "score": 14.127051,
+          "score_ratio_to_top": 0.540644,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "jag",
+            "och",
+            "sjuka",
+            "vaccinerar"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "HWPy_9jT_TX2",
+          "label": "Optiker",
+          "rank": 5,
+          "score": 12.754804,
+          "score_ratio_to_top": 0.488128,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "dem",
+            "jag",
+            "och",
+            "skriver",
+            "undersöker"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "direct",
+      "displayed_count": 5,
+      "expected": [
+        "systemutvecklare",
+        "programmerare"
+      ],
+      "expected_family_rank": 2,
+      "id": "yv09",
+      "query": "Jag bygger backendtjänster, skriver kod, felsöker program och gör API:er",
+      "result_count": 1751,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "7wdX_4rv_33z",
+          "label": "Backend-utvecklare",
+          "rank": 1,
+          "score": 32.287914,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 7,
+          "shared_terms": [
+            "api",
+            "bygger",
+            "er",
+            "jag",
+            "kod",
+            "och",
+            "skriver"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "fg7B_yov_smw",
+          "label": "Systemutvecklare/Programmerare",
+          "rank": 2,
+          "score": 24.016531,
+          "score_ratio_to_top": 0.743824,
+          "shared_term_count": 6,
+          "shared_terms": [
+            "bygger",
+            "jag",
+            "kod",
+            "och",
+            "program",
+            "skriver"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "rQds_YGd_quU",
+          "label": "Mjukvaruutvecklare",
+          "rank": 3,
+          "score": 21.641303,
+          "score_ratio_to_top": 0.67026,
+          "shared_term_count": 6,
+          "shared_terms": [
+            "bygger",
+            "felsöker",
+            "jag",
+            "kod",
+            "och",
+            "skriver"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "CZkP_hCz_KM8",
+          "label": "Applikationsutvecklare",
+          "rank": 4,
+          "score": 17.619463,
+          "score_ratio_to_top": 0.545698,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "jag",
+            "kod",
+            "och",
+            "program",
+            "skriver"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "TMQA_DYj_srP",
+          "label": "HR-controller",
+          "rank": 5,
+          "score": 13.815489,
+          "score_ratio_to_top": 0.427884,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "bygger",
+            "er",
+            "gör",
+            "och"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "direct",
+      "displayed_count": 5,
+      "expected": [
+        "trädgård",
+        "parkarbetare"
+      ],
+      "expected_family_rank": 1,
+      "id": "yv10",
+      "query": "Jag klipper häckar, planterar växter, sköter rabatter och parker",
+      "result_count": 1751,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "JZur_dmf_EPY",
+          "label": "Trädgårdsmästare anläggning",
+          "rank": 1,
+          "score": 18.69881,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "häckar",
+            "klipper",
+            "och",
+            "sköter",
+            "växter"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "V1QR_VzZ_vbj",
+          "label": "Växtskötare",
+          "rank": 2,
+          "score": 17.659173,
+          "score_ratio_to_top": 0.944401,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "och",
+            "planterar",
+            "sköter",
+            "växter"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "4Y6u_JPp_jas",
+          "label": "Park- och trädgårdsarbetare",
+          "rank": 3,
+          "score": 16.02091,
+          "score_ratio_to_top": 0.856788,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "klipper",
+            "och",
+            "parker",
+            "sköter"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "tuoE_9Nj_fAS",
+          "label": "Frisör",
+          "rank": 4,
+          "score": 12.270658,
+          "score_ratio_to_top": 0.656227,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "jag",
+            "klipper",
+            "och",
+            "sköter"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "MQHi_q9J_x2d",
+          "label": "Väg- och anläggningsarbetare",
+          "rank": 5,
+          "score": 11.381903,
+          "score_ratio_to_top": 0.608697,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "jag",
+            "och",
+            "parker",
+            "sköter"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "direct",
+      "displayed_count": 5,
+      "expected": [
+        "brandman"
+      ],
+      "expected_family_rank": 1,
+      "id": "yv11",
+      "query": "Jag släcker bränder, går in med rökdykarutrustning och hjälper vid trafikolyckor",
+      "result_count": 1762,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "sgib_x6a_wnW",
+          "label": "Brandman",
+          "rank": 1,
+          "score": 26.069329,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 6,
+          "shared_terms": [
+            "bränder",
+            "med",
+            "och",
+            "släcker",
+            "trafikolyckor",
+            "vid"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "3MDV_uBQ_6oG",
+          "label": "Forskare, trafiksäkerhet",
+          "rank": 2,
+          "score": 11.579901,
+          "score_ratio_to_top": 0.444196,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "in",
+            "med",
+            "och",
+            "trafikolyckor"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "2iBk_N8d_Gm4",
+          "label": "Forskarassistent",
+          "rank": 3,
+          "score": 10.136363,
+          "score_ratio_to_top": 0.388823,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "hjälper",
+            "in",
+            "jag",
+            "med",
+            "och"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "3uEE_35U_U6j",
+          "label": "Grovarbetare, bygg och anläggning",
+          "rank": 4,
+          "score": 9.730141,
+          "score_ratio_to_top": 0.373241,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "hjälper",
+            "jag",
+            "med",
+            "och",
+            "vid"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "Sbzf_iBA_MAS",
+          "label": "Elevassistent",
+          "rank": 5,
+          "score": 9.223529,
+          "score_ratio_to_top": 0.353808,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "hjälper",
+            "jag",
+            "med",
+            "och",
+            "vid"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "direct",
+      "displayed_count": 5,
+      "expected": [
+        "grundlärare",
+        "lärare"
+      ],
+      "expected_family_rank": 1,
+      "id": "yv12",
+      "query": "Jag undervisar barn i lågstadiet i svenska och matematik och planerar lektioner",
+      "result_count": 1759,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "zrQ9_1z2_kT3",
+          "label": "Musikpedagog/Musiklärare",
+          "rank": 1,
+          "score": 23.467667,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 7,
+          "shared_terms": [
+            "barn",
+            "i",
+            "jag",
+            "lektioner",
+            "och",
+            "planerar",
+            "undervisar"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "rgsj_poi_koz",
+          "label": "Modersmålslärare i grundskolan",
+          "rank": 2,
+          "score": 17.604523,
+          "score_ratio_to_top": 0.750161,
+          "shared_term_count": 7,
+          "shared_terms": [
+            "barn",
+            "i",
+            "jag",
+            "och",
+            "planerar",
+            "svenska",
+            "undervisar"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "15e8_KDZ_31Z",
+          "label": "SFI-lärare",
+          "rank": 3,
+          "score": 17.010736,
+          "score_ratio_to_top": 0.724858,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "i",
+            "jag",
+            "och",
+            "svenska",
+            "undervisar"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "H9ej_iRx_9G6",
+          "label": "Ridlärare",
+          "rank": 4,
+          "score": 14.721137,
+          "score_ratio_to_top": 0.627294,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "i",
+            "lektioner",
+            "och",
+            "planerar",
+            "svenska"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "zBWk_kpm_25V",
+          "label": "Skidlärare",
+          "rank": 5,
+          "score": 14.377464,
+          "score_ratio_to_top": 0.61265,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "barn",
+            "i",
+            "och",
+            "svenska",
+            "undervisar"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "colloquial",
+      "displayed_count": 5,
+      "expected": [
+        "sjuksköterska",
+        "undersköterska"
+      ],
+      "expected_family_rank": 21,
+      "id": "yv13",
+      "query": "Jag sticker folk i armen, kollar dropp och springer mellan salar hela dagarna",
+      "result_count": 1760,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "QaQC_ozP_Bme",
+          "label": "Rekryterare/Rekryteringskonsult",
+          "rank": 1,
+          "score": 11.366868,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "folk",
+            "hela",
+            "jag",
+            "och"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "vaEY_R9R_LjB",
+          "label": "Tolk",
+          "rank": 2,
+          "score": 9.433234,
+          "score_ratio_to_top": 0.829889,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "folk",
+            "i",
+            "mellan",
+            "och"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "n2Tp_B8E_gED",
+          "label": "Distriktssköterska",
+          "rank": 3,
+          "score": 8.734599,
+          "score_ratio_to_top": 0.768426,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "folk",
+            "i",
+            "jag",
+            "mellan",
+            "och"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "3wHJ_rrt_WDK",
+          "label": "Entrévärd",
+          "rank": 4,
+          "score": 8.68558,
+          "score_ratio_to_top": 0.764114,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "folk",
+            "i",
+            "kollar",
+            "och"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "93t8_g4b_yeL",
+          "label": "Gravör, ädelmetall",
+          "rank": 5,
+          "score": 8.331353,
+          "score_ratio_to_top": 0.732951,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "i",
+            "och",
+            "sticker"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "colloquial",
+      "displayed_count": 5,
+      "expected": [
+        "elektriker"
+      ],
+      "expected_family_rank": 7,
+      "id": "yv14",
+      "query": "Jag kryper runt i hus och får lampor och vägguttag att funka",
+      "result_count": 1762,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "2KG5_YmC_TRA",
+          "label": "Belysningstekniker: scen, film, TV",
+          "rank": 1,
+          "score": 9.638673,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "att",
+            "lampor",
+            "och"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "7YaM_bPu_c1T",
+          "label": "Systemanalytiker/Systemutredare",
+          "rank": 2,
+          "score": 9.441457,
+          "score_ratio_to_top": 0.979539,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "att",
+            "funka",
+            "i",
+            "och"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "6wcp_7D7_GU7",
+          "label": "Fordonsmontör",
+          "rank": 3,
+          "score": 9.307877,
+          "score_ratio_to_top": 0.96568,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "att",
+            "i",
+            "jag",
+            "lampor",
+            "och"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "kron_xtp_zCz",
+          "label": "Mediasäljare",
+          "rank": 4,
+          "score": 9.106061,
+          "score_ratio_to_top": 0.944742,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "att",
+            "i",
+            "jag",
+            "och",
+            "runt"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "bUP3_Ztw_VC1",
+          "label": "Hemförsäljare",
+          "rank": 5,
+          "score": 9.068841,
+          "score_ratio_to_top": 0.940881,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "att",
+            "i",
+            "jag",
+            "och",
+            "runt"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "colloquial",
+      "displayed_count": 5,
+      "expected": [
+        "bagare",
+        "konditor"
+      ],
+      "expected_family_rank": 3,
+      "id": "yv15",
+      "query": "Jag står med deg klockan fyra på morgonen och fyller plåtar innan folk vaknar",
+      "result_count": 1761,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "pBhS_6fg_727",
+          "label": "Butikssäljare, dagligvaror/Medarbetare, dagligvaror",
+          "rank": 1,
+          "score": 13.310856,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "fyller",
+            "med",
+            "och",
+            "på",
+            "står"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "j8X2_KhG_6ty",
+          "label": "Kassapersonal",
+          "rank": 2,
+          "score": 10.303718,
+          "score_ratio_to_top": 0.774084,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "jag",
+            "och",
+            "på",
+            "står"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "XugJ_6hw_wVV",
+          "label": "Bagare/Konditor",
+          "rank": 3,
+          "score": 9.755114,
+          "score_ratio_to_top": 0.732869,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "deg",
+            "jag",
+            "med",
+            "och",
+            "på"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "3wHJ_rrt_WDK",
+          "label": "Entrévärd",
+          "rank": 4,
+          "score": 9.181801,
+          "score_ratio_to_top": 0.689798,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "folk",
+            "med",
+            "och",
+            "på",
+            "står"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "Ls8r_yKQ_MQ4",
+          "label": "Bergarbetare, gruva",
+          "rank": 5,
+          "score": 9.125117,
+          "score_ratio_to_top": 0.685539,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "fyller",
+            "innan",
+            "med",
+            "och",
+            "på"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "colloquial",
+      "displayed_count": 5,
+      "expected": [
+        "bussförare"
+      ],
+      "expected_family_rank": 427,
+      "id": "yv16",
+      "query": "Jag rattar ett stort fordon fullt med folk som ska till jobbet",
+      "result_count": 1678,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "J63w_XYr_isZ",
+          "label": "Maskinmekaniker",
+          "rank": 1,
+          "score": 15.930897,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 6,
+          "shared_terms": [
+            "ett",
+            "fordon",
+            "med",
+            "ska",
+            "som",
+            "stort"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "o7LP_duC_u9Z",
+          "label": "Lastbilsmekaniker",
+          "rank": 2,
+          "score": 13.322939,
+          "score_ratio_to_top": 0.836296,
+          "shared_term_count": 6,
+          "shared_terms": [
+            "ett",
+            "fordon",
+            "jag",
+            "med",
+            "som",
+            "stort"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "tKCe_Qpx_Thx",
+          "label": "Arbetsmiljöingenjör",
+          "rank": 3,
+          "score": 12.363952,
+          "score_ratio_to_top": 0.776099,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "folk",
+            "jobbet",
+            "med",
+            "som",
+            "till"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "Qq5v_QZ3_EE9",
+          "label": "Bussmekaniker",
+          "rank": 4,
+          "score": 11.831218,
+          "score_ratio_to_top": 0.742659,
+          "shared_term_count": 6,
+          "shared_terms": [
+            "ett",
+            "fordon",
+            "med",
+            "som",
+            "stort",
+            "till"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "5knr_Aw3_sqw",
+          "label": "Fartygsbefäl, utan behörighetsbevis",
+          "rank": 5,
+          "score": 11.326655,
+          "score_ratio_to_top": 0.710987,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "ett",
+            "folk",
+            "med",
+            "som",
+            "stort"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "colloquial",
+      "displayed_count": 5,
+      "expected": [
+        "städare",
+        "hotellstädare"
+      ],
+      "expected_family_rank": 367,
+      "id": "yv17",
+      "query": "Jag ser till att hotellrum inte ser ut som att någon bott där",
+      "result_count": 1668,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "tKCe_Qpx_Thx",
+          "label": "Arbetsmiljöingenjör",
+          "rank": 1,
+          "score": 12.747692,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 6,
+          "shared_terms": [
+            "att",
+            "inte",
+            "någon",
+            "ser",
+            "som",
+            "till"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "SF73_TBz_fhR",
+          "label": "Ledsagare",
+          "rank": 2,
+          "score": 11.906933,
+          "score_ratio_to_top": 0.934046,
+          "shared_term_count": 8,
+          "shared_terms": [
+            "att",
+            "där",
+            "jag",
+            "någon",
+            "ser",
+            "som",
+            "till",
+            "ut"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "uuA6_a4j_BGg",
+          "label": "Ventilationsingenjör",
+          "rank": 3,
+          "score": 11.051789,
+          "score_ratio_to_top": 0.866964,
+          "shared_term_count": 6,
+          "shared_terms": [
+            "att",
+            "där",
+            "inte",
+            "ser",
+            "som",
+            "till"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "YfiC_FN1_dzY",
+          "label": "Garderobiär",
+          "rank": 4,
+          "score": 10.747425,
+          "score_ratio_to_top": 0.843088,
+          "shared_term_count": 6,
+          "shared_terms": [
+            "att",
+            "där",
+            "inte",
+            "som",
+            "till",
+            "ut"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "XMWR_V22_WS1",
+          "label": "Arkitekt",
+          "rank": 5,
+          "score": 10.68426,
+          "score_ratio_to_top": 0.838133,
+          "shared_term_count": 6,
+          "shared_terms": [
+            "att",
+            "där",
+            "ser",
+            "som",
+            "till",
+            "ut"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "colloquial",
+      "displayed_count": 5,
+      "expected": [
+        "journalist",
+        "reporter"
+      ],
+      "expected_family_rank": 212,
+      "id": "yv18",
+      "query": "Jag ringer folk, ställer jobbiga frågor och försöker ta reda på vad som faktiskt hände",
+      "result_count": 1763,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "6FAe_TXj_2vw",
+          "label": "Telefonkommunikatör på intresseorganisation",
+          "rank": 1,
+          "score": 15.221995,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "folk",
+            "och",
+            "på",
+            "ringer",
+            "som"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "3N52_wtb_L2r",
+          "label": "Tulltjänsteman",
+          "rank": 2,
+          "score": 12.621154,
+          "score_ratio_to_top": 0.829139,
+          "shared_term_count": 6,
+          "shared_terms": [
+            "folk",
+            "och",
+            "på",
+            "som",
+            "ta",
+            "vad"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "YpRs_ybt_47a",
+          "label": "Kurator",
+          "rank": 3,
+          "score": 11.428765,
+          "score_ratio_to_top": 0.750806,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "folk",
+            "jag",
+            "och",
+            "reda",
+            "som"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "1WsA_bfK_QUd",
+          "label": "SOS-operatör",
+          "rank": 4,
+          "score": 11.356096,
+          "score_ratio_to_top": 0.746032,
+          "shared_term_count": 6,
+          "shared_terms": [
+            "frågor",
+            "och",
+            "på",
+            "som",
+            "ta",
+            "vad"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "vaEY_R9R_LjB",
+          "label": "Tolk",
+          "rank": 5,
+          "score": 11.332841,
+          "score_ratio_to_top": 0.744504,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "folk",
+            "och",
+            "på",
+            "som",
+            "vad"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "colloquial",
+      "displayed_count": 5,
+      "expected": [
+        "bibliotekarie",
+        "biblioteksassistent"
+      ],
+      "expected_family_rank": 17,
+      "id": "yv19",
+      "query": "Jag jobbar bland hyllor med böcker och hjälper folk hitta rätt grej att läsa",
+      "result_count": 1762,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "ek9W_CmD_y2M",
+          "label": "Butikssäljare, fackhandel",
+          "rank": 1,
+          "score": 20.068517,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 8,
+          "shared_terms": [
+            "att",
+            "hitta",
+            "hjälper",
+            "hyllor",
+            "jag",
+            "jobbar",
+            "och",
+            "rätt"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "XSDj_JZ2_ugu",
+          "label": "Arbetsförmedlare",
+          "rank": 2,
+          "score": 19.288462,
+          "score_ratio_to_top": 0.96113,
+          "shared_term_count": 8,
+          "shared_terms": [
+            "att",
+            "folk",
+            "hitta",
+            "hjälper",
+            "jobbar",
+            "med",
+            "och",
+            "rätt"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "uiqh_Drm_XGr",
+          "label": "Researcher, rekrytering",
+          "rank": 3,
+          "score": 16.625199,
+          "score_ratio_to_top": 0.828422,
+          "shared_term_count": 6,
+          "shared_terms": [
+            "att",
+            "folk",
+            "hitta",
+            "jobbar",
+            "med",
+            "rätt"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "KYPa_Jv8_ZbU",
+          "label": "Studie- och yrkesvägledare/SYV",
+          "rank": 4,
+          "score": 15.727809,
+          "score_ratio_to_top": 0.783706,
+          "shared_term_count": 8,
+          "shared_terms": [
+            "att",
+            "folk",
+            "hitta",
+            "hjälper",
+            "jag",
+            "med",
+            "och",
+            "rätt"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "gPCx_T6e_6P8",
+          "label": "Jobbcoach/Utbildningscoach",
+          "rank": 5,
+          "score": 15.039321,
+          "score_ratio_to_top": 0.749399,
+          "shared_term_count": 7,
+          "shared_terms": [
+            "att",
+            "bland",
+            "folk",
+            "hitta",
+            "hjälper",
+            "med",
+            "och"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "colloquial",
+      "displayed_count": 5,
+      "expected": [
+        "veterinär"
+      ],
+      "expected_family_rank": 318,
+      "id": "yv20",
+      "query": "När katten är sjuk är det mig folk kommer till",
+      "result_count": 1333,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "tKCe_Qpx_Thx",
+          "label": "Arbetsmiljöingenjör",
+          "rank": 1,
+          "score": 13.114397,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "det",
+            "folk",
+            "när",
+            "till",
+            "är"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "E6hM_rR1_nye",
+          "label": "Kontaktledningstekniker",
+          "rank": 2,
+          "score": 9.482963,
+          "score_ratio_to_top": 0.723096,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "det",
+            "när",
+            "till"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "3N52_wtb_L2r",
+          "label": "Tulltjänsteman",
+          "rank": 3,
+          "score": 9.397668,
+          "score_ratio_to_top": 0.716592,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "det",
+            "folk",
+            "kommer",
+            "till"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "UUQD_UFi_9hX",
+          "label": "Golvslipare, trä",
+          "rank": 4,
+          "score": 8.861088,
+          "score_ratio_to_top": 0.675676,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "det",
+            "när",
+            "är"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "SF73_TBz_fhR",
+          "label": "Ledsagare",
+          "rank": 5,
+          "score": 8.299614,
+          "score_ratio_to_top": 0.632863,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "folk",
+            "kommer",
+            "till",
+            "är"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "colloquial",
+      "displayed_count": 5,
+      "expected": [
+        "systemutvecklare",
+        "programmerare",
+        "drifttekniker",
+        "it-tekniker"
+      ],
+      "expected_family_rank": 2,
+      "id": "yv21",
+      "query": "Jag sitter mest vid datorn och får andras dåliga kod och servrar att fungera",
+      "result_count": 1758,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "7wdX_4rv_33z",
+          "label": "Backend-utvecklare",
+          "rank": 1,
+          "score": 13.967319,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "jag",
+            "kod",
+            "och",
+            "servrar"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "fg7B_yov_smw",
+          "label": "Systemutvecklare/Programmerare",
+          "rank": 2,
+          "score": 12.822105,
+          "score_ratio_to_top": 0.918008,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "att",
+            "får",
+            "jag",
+            "kod",
+            "och"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "GaiH_Bzd_mU5",
+          "label": "Elektronikmontör",
+          "rank": 3,
+          "score": 10.7971,
+          "score_ratio_to_top": 0.773026,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "jag",
+            "mest",
+            "och",
+            "sitter"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "rQds_YGd_quU",
+          "label": "Mjukvaruutvecklare",
+          "rank": 4,
+          "score": 10.667151,
+          "score_ratio_to_top": 0.763722,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "att",
+            "jag",
+            "kod",
+            "och"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "44U4_7Fz_GCy",
+          "label": "Konstruktör, tillverkningsindustri",
+          "rank": 5,
+          "score": 10.0268,
+          "score_ratio_to_top": 0.717876,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "att",
+            "jag",
+            "mest",
+            "och",
+            "sitter"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "colloquial",
+      "displayed_count": 5,
+      "expected": [
+        "trädgård",
+        "parkarbetare"
+      ],
+      "expected_family_rank": 85,
+      "id": "yv22",
+      "query": "Jag går runt ute hela dagarna med häcksax, spade och jord under naglarna",
+      "result_count": 1762,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "bUP3_Ztw_VC1",
+          "label": "Hemförsäljare",
+          "rank": 1,
+          "score": 12.835631,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "går",
+            "jag",
+            "och",
+            "runt"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "Zfsr_ZV8_NTA",
+          "label": "Butikskonsulent",
+          "rank": 2,
+          "score": 11.855059,
+          "score_ratio_to_top": 0.923605,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "går",
+            "med",
+            "och",
+            "runt",
+            "ute"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "qKE5_dUi_zg9",
+          "label": "Fältgeotekniker",
+          "rank": 3,
+          "score": 11.606128,
+          "score_ratio_to_top": 0.904212,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "jord",
+            "med",
+            "och",
+            "ute"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "XSBp_5wD_VaU",
+          "label": "Restaurangchef",
+          "rank": 4,
+          "score": 10.648297,
+          "score_ratio_to_top": 0.829589,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "går",
+            "hela",
+            "jag",
+            "med",
+            "och"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "6Jyi_QHU_LKn",
+          "label": "Bergsingenjör",
+          "rank": 5,
+          "score": 10.179433,
+          "score_ratio_to_top": 0.793061,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "jord",
+            "med",
+            "och",
+            "under"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "colloquial",
+      "displayed_count": 5,
+      "expected": [
+        "undersköterska",
+        "vårdbiträde",
+        "hemtjänst"
+      ],
+      "expected_family_rank": 4,
+      "id": "yv23",
+      "query": "Jag tar hand om gamla människor hemma, hjälper dem duscha, äta och komma ihåg medicinen",
+      "result_count": 1750,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "HuYB_gtA_7jL",
+          "label": "Mässman, fartyg",
+          "rank": 1,
+          "score": 15.860208,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "hand",
+            "hjälper",
+            "och",
+            "om",
+            "tar"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "6zL8_YYP_1eR",
+          "label": "Bussförare",
+          "rank": 2,
+          "score": 15.584655,
+          "score_ratio_to_top": 0.982626,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "hand",
+            "människor",
+            "och",
+            "om",
+            "tar"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "d9nv_iUm_Jyg",
+          "label": "Barnvakt",
+          "rank": 3,
+          "score": 13.495756,
+          "score_ratio_to_top": 0.850919,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "hand",
+            "hemma",
+            "och",
+            "om",
+            "tar"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "PQkQ_Dmk_ZF8",
+          "label": "Undersköterska, vård- och specialavdelning och mottagning",
+          "rank": 4,
+          "score": 12.448627,
+          "score_ratio_to_top": 0.784897,
+          "shared_term_count": 6,
+          "shared_terms": [
+            "hjälper",
+            "jag",
+            "människor",
+            "och",
+            "om",
+            "tar"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "GkMH_KEV_QKX",
+          "label": "Spårvagnsförare",
+          "rank": 5,
+          "score": 12.142104,
+          "score_ratio_to_top": 0.76557,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "hand",
+            "och",
+            "om",
+            "tar"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "colloquial",
+      "displayed_count": 5,
+      "expected": [
+        "butikssäljare",
+        "butiksbiträde"
+      ],
+      "expected_family_rank": 2,
+      "id": "yv24",
+      "query": "Jag står bakom en disk, tar betalt, fyller på varor och hjälper kunder",
+      "result_count": 1755,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "j8X2_KhG_6ty",
+          "label": "Kassapersonal",
+          "rank": 1,
+          "score": 22.544696,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 7,
+          "shared_terms": [
+            "betalt",
+            "jag",
+            "kunder",
+            "och",
+            "på",
+            "står",
+            "tar"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "pBhS_6fg_727",
+          "label": "Butikssäljare, dagligvaror/Medarbetare, dagligvaror",
+          "rank": 2,
+          "score": 20.299192,
+          "score_ratio_to_top": 0.900398,
+          "shared_term_count": 6,
+          "shared_terms": [
+            "en",
+            "fyller",
+            "och",
+            "på",
+            "står",
+            "varor"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "yXRQ_Ad9_E8V",
+          "label": "Restaurangbiträde",
+          "rank": 3,
+          "score": 19.285128,
+          "score_ratio_to_top": 0.855418,
+          "shared_term_count": 7,
+          "shared_terms": [
+            "betalt",
+            "disk",
+            "hjälper",
+            "jag",
+            "och",
+            "på",
+            "tar"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "RGNc_B6x_1A8",
+          "label": "Charkuteriarbetare, butik",
+          "rank": 4,
+          "score": 19.097975,
+          "score_ratio_to_top": 0.847116,
+          "shared_term_count": 7,
+          "shared_terms": [
+            "bakom",
+            "disk",
+            "en",
+            "fyller",
+            "och",
+            "på",
+            "varor"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "kxew_SY8_LFZ",
+          "label": "Gatuförsäljare",
+          "rank": 5,
+          "score": 17.094713,
+          "score_ratio_to_top": 0.758259,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "kunder",
+            "och",
+            "på",
+            "står",
+            "varor"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "noisy",
+      "displayed_count": 5,
+      "expected": [
+        "elektriker"
+      ],
+      "expected_family_rank": 1,
+      "id": "yv25",
+      "query": "drar kablar kopplar uttg felsökr el typ hela dan",
+      "result_count": 134,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "K3iK_iEb_41Y",
+          "label": "Serviceelektriker, installation",
+          "rank": 1,
+          "score": 14.062012,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "drar",
+            "el",
+            "kablar"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "84Uc_bhA_s47",
+          "label": "Installationselektriker",
+          "rank": 2,
+          "score": 12.88763,
+          "score_ratio_to_top": 0.916485,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "drar",
+            "el",
+            "kablar"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "AJDU_fpb_ADF",
+          "label": "Elmontör",
+          "rank": 3,
+          "score": 12.420052,
+          "score_ratio_to_top": 0.883234,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "drar",
+            "el",
+            "kablar"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "pahf_9Ek_WVz",
+          "label": "Teletekniker",
+          "rank": 4,
+          "score": 11.891857,
+          "score_ratio_to_top": 0.845673,
+          "shared_term_count": 2,
+          "shared_terms": [
+            "drar",
+            "kablar"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "62xd_b2m_Wbo",
+          "label": "Växeltelefonist",
+          "rank": 5,
+          "score": 10.326347,
+          "score_ratio_to_top": 0.734344,
+          "shared_term_count": 1,
+          "shared_terms": [
+            "kopplar"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "noisy",
+      "displayed_count": 2,
+      "expected": [
+        "bagare",
+        "konditor"
+      ],
+      "expected_family_rank": 1,
+      "id": "yv26",
+      "query": "bakar brö bullar kakor ugn deg jäst",
+      "result_count": 2,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "XugJ_6hw_wVV",
+          "label": "Bagare/Konditor",
+          "rank": 1,
+          "score": 32.320499,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "bakar",
+            "bullar",
+            "deg",
+            "kakor"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "9YaE_Syg_5ZB",
+          "label": "Pizzabagare",
+          "rank": 2,
+          "score": 5.046191,
+          "score_ratio_to_top": 0.15613,
+          "shared_term_count": 1,
+          "shared_terms": [
+            "bakar"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "noisy",
+      "displayed_count": 5,
+      "expected": [
+        "systemutvecklare",
+        "programmerare"
+      ],
+      "expected_family_rank": 8,
+      "id": "yv27",
+      "query": "kodar backend api databas buggar deploy grejer",
+      "result_count": 41,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "7wdX_4rv_33z",
+          "label": "Backend-utvecklare",
+          "rank": 1,
+          "score": 22.297408,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "api",
+            "backend",
+            "kodar"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "rz2m_96d_vyF",
+          "label": "Databasutvecklare",
+          "rank": 2,
+          "score": 13.421205,
+          "score_ratio_to_top": 0.601918,
+          "shared_term_count": 2,
+          "shared_terms": [
+            "databas",
+            "grejer"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "rQds_YGd_quU",
+          "label": "Mjukvaruutvecklare",
+          "rank": 3,
+          "score": 10.060121,
+          "score_ratio_to_top": 0.451179,
+          "shared_term_count": 1,
+          "shared_terms": [
+            "buggar"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "GDHs_eoz_uKx",
+          "label": "Frontend-utvecklare",
+          "rank": 4,
+          "score": 7.540118,
+          "score_ratio_to_top": 0.338161,
+          "shared_term_count": 1,
+          "shared_terms": [
+            "kodar"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "y763_SQh_71J",
+          "label": "Databasadministratör",
+          "rank": 5,
+          "score": 5.667595,
+          "score_ratio_to_top": 0.254182,
+          "shared_term_count": 1,
+          "shared_terms": [
+            "databas"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "noisy",
+      "displayed_count": 5,
+      "expected": [
+        "veterinär",
+        "djurvårdare"
+      ],
+      "expected_family_rank": 4,
+      "id": "yv28",
+      "query": "hund katt vaccin operera djur klinik",
+      "result_count": 24,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "6FK9_Dya_PEL",
+          "label": "Husdjursrådgivare/Husdjurskonsulent",
+          "rank": 1,
+          "score": 16.99792,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 2,
+          "shared_terms": [
+            "hund",
+            "katt"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "8Vew_BX8_97h",
+          "label": "Djursjukskötare",
+          "rank": 2,
+          "score": 15.126613,
+          "score_ratio_to_top": 0.88991,
+          "shared_term_count": 2,
+          "shared_terms": [
+            "djur",
+            "klinik"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "Geiy_N5y_GLi",
+          "label": "Hundförare",
+          "rank": 3,
+          "score": 9.587184,
+          "score_ratio_to_top": 0.564021,
+          "shared_term_count": 1,
+          "shared_terms": [
+            "hund"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "GgmE_SvH_mtm",
+          "label": "Veterinär",
+          "rank": 4,
+          "score": 8.097405,
+          "score_ratio_to_top": 0.476376,
+          "shared_term_count": 1,
+          "shared_terms": [
+            "djur"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "gobw_eRi_v1F",
+          "label": "Djurtransportförare",
+          "rank": 5,
+          "score": 7.924386,
+          "score_ratio_to_top": 0.466197,
+          "shared_term_count": 1,
+          "shared_terms": [
+            "djur"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "noisy",
+      "displayed_count": 5,
+      "expected": [
+        "städare"
+      ],
+      "expected_family_rank": 2,
+      "id": "yv29",
+      "query": "städar skurar moppar toa kontor varje dag",
+      "result_count": 40,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "JEhg_Dmh_mzv",
+          "label": "Distributionsförare",
+          "rank": 1,
+          "score": 11.464263,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "dag",
+            "kontor",
+            "varje"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "2qmv_BHZ_kuo",
+          "label": "Industristädare",
+          "rank": 2,
+          "score": 8.876449,
+          "score_ratio_to_top": 0.774271,
+          "shared_term_count": 1,
+          "shared_terms": [
+            "städar"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "PtiU_6mm_yyL",
+          "label": "Budbilsförare",
+          "rank": 3,
+          "score": 7.848002,
+          "score_ratio_to_top": 0.684562,
+          "shared_term_count": 2,
+          "shared_terms": [
+            "dag",
+            "varje"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "48KV_oBC_Ffd",
+          "label": "Scripta",
+          "rank": 4,
+          "score": 7.636053,
+          "score_ratio_to_top": 0.666074,
+          "shared_term_count": 1,
+          "shared_terms": [
+            "varje"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "HuYB_gtA_7jL",
+          "label": "Mässman, fartyg",
+          "rank": 5,
+          "score": 7.394498,
+          "score_ratio_to_top": 0.645004,
+          "shared_term_count": 1,
+          "shared_terms": [
+            "städar"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "noisy",
+      "displayed_count": 5,
+      "expected": [
+        "journalist",
+        "reporter"
+      ],
+      "expected_family_rank": 1,
+      "id": "yv30",
+      "query": "intervju skriver artikel nyheter redaktion",
+      "result_count": 70,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "5x47_XP7_zyN",
+          "label": "Journalist",
+          "rank": 1,
+          "score": 16.530545,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "nyheter",
+            "redaktion",
+            "skriver"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "b3Jk_Gfs_oo9",
+          "label": "Webbredaktör",
+          "rank": 2,
+          "score": 10.446843,
+          "score_ratio_to_top": 0.631972,
+          "shared_term_count": 2,
+          "shared_terms": [
+            "nyheter",
+            "skriver"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "WYdq_yJR_JnE",
+          "label": "Nattchef, redaktion",
+          "rank": 3,
+          "score": 8.765934,
+          "score_ratio_to_top": 0.530287,
+          "shared_term_count": 1,
+          "shared_terms": [
+            "redaktion"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "7EQu_8Xg_9SD",
+          "label": "Videojournalist/Videoreporter",
+          "rank": 4,
+          "score": 8.61778,
+          "score_ratio_to_top": 0.521325,
+          "shared_term_count": 1,
+          "shared_terms": [
+            "intervju"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "yyM2_7Vy_Fda",
+          "label": "Featurechef",
+          "rank": 5,
+          "score": 6.819014,
+          "score_ratio_to_top": 0.41251,
+          "shared_term_count": 1,
+          "shared_terms": [
+            "redaktion"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "noisy",
+      "displayed_count": 5,
+      "expected": [
+        "bussförare"
+      ],
+      "expected_family_rank": 2,
+      "id": "yv31",
+      "query": "kör buss hållplats biljett tidtabell passagerare",
+      "result_count": 85,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "GkMH_KEV_QKX",
+          "label": "Spårvagnsförare",
+          "rank": 1,
+          "score": 12.33731,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 2,
+          "shared_terms": [
+            "kör",
+            "passagerare"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "JiE6_FnP_qXP",
+          "label": "Bokbussförare",
+          "rank": 2,
+          "score": 11.411968,
+          "score_ratio_to_top": 0.924996,
+          "shared_term_count": 2,
+          "shared_terms": [
+            "buss",
+            "kör"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "6zL8_YYP_1eR",
+          "label": "Bussförare",
+          "rank": 3,
+          "score": 11.328795,
+          "score_ratio_to_top": 0.918255,
+          "shared_term_count": 2,
+          "shared_terms": [
+            "kör",
+            "passagerare"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "WU2H_o2e_rrm",
+          "label": "Lokförare",
+          "rank": 4,
+          "score": 11.267224,
+          "score_ratio_to_top": 0.913264,
+          "shared_term_count": 2,
+          "shared_terms": [
+            "kör",
+            "passagerare"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "Eh9j_7Ud_Diu",
+          "label": "Tunnelbaneförare",
+          "rank": 5,
+          "score": 10.378744,
+          "score_ratio_to_top": 0.841249,
+          "shared_term_count": 2,
+          "shared_terms": [
+            "kör",
+            "passagerare"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "noisy",
+      "displayed_count": 5,
+      "expected": [
+        "hästskötare",
+        "stallchef",
+        "ridlärare"
+      ],
+      "expected_family_rank": 1,
+      "id": "yv32",
+      "query": "hästar mockar rider fodrar stall hela dan",
+      "result_count": 68,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "7MTK_RiL_Vde",
+          "label": "Hästskötare",
+          "rank": 1,
+          "score": 15.103054,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 2,
+          "shared_terms": [
+            "hästar",
+            "stall"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "Tufb_JbW_wS6",
+          "label": "Hovslagare",
+          "rank": 2,
+          "score": 11.374638,
+          "score_ratio_to_top": 0.753135,
+          "shared_term_count": 2,
+          "shared_terms": [
+            "hästar",
+            "stall"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "H9ej_iRx_9G6",
+          "label": "Ridlärare",
+          "rank": 3,
+          "score": 7.292902,
+          "score_ratio_to_top": 0.482876,
+          "shared_term_count": 1,
+          "shared_terms": [
+            "hästar"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "F9MR_v8m_FT3",
+          "label": "Gitarrtekniker",
+          "rank": 4,
+          "score": 6.46719,
+          "score_ratio_to_top": 0.428204,
+          "shared_term_count": 1,
+          "shared_terms": [
+            "stall"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "4REQ_8b1_Nee",
+          "label": "Organisationschef",
+          "rank": 5,
+          "score": 6.318188,
+          "score_ratio_to_top": 0.418338,
+          "shared_term_count": 1,
+          "shared_terms": [
+            "hela"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "indirect",
+      "displayed_count": 5,
+      "expected": [
+        "hästskötare",
+        "stallchef",
+        "soldat",
+        "livgardist",
+        "beridare"
+      ],
+      "expected_family_rank": 497,
+      "id": "yv33",
+      "query": "Jag rider runt slottet och hjälper kungen",
+      "result_count": 1750,
+      "should_abstain": false,
+      "should_clarify": true,
+      "top5": [
+        {
+          "concept_id": "3uEE_35U_U6j",
+          "label": "Grovarbetare, bygg och anläggning",
+          "rank": 1,
+          "score": 9.710043,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "hjälper",
+            "jag",
+            "och",
+            "runt"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "p17k_znk_osi",
+          "label": "Utesäljare",
+          "rank": 2,
+          "score": 8.345735,
+          "score_ratio_to_top": 0.859495,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "jag",
+            "och",
+            "runt"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "kron_xtp_zCz",
+          "label": "Mediasäljare",
+          "rank": 3,
+          "score": 7.829284,
+          "score_ratio_to_top": 0.806308,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "jag",
+            "och",
+            "runt"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "bUP3_Ztw_VC1",
+          "label": "Hemförsäljare",
+          "rank": 4,
+          "score": 7.584739,
+          "score_ratio_to_top": 0.781123,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "jag",
+            "och",
+            "runt"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "4zLr_jP5_peZ",
+          "label": "Vårdbiträde",
+          "rank": 5,
+          "score": 7.11216,
+          "score_ratio_to_top": 0.732454,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "hjälper",
+            "jag",
+            "och"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "indirect",
+      "displayed_count": 5,
+      "expected": [
+        "elektriker"
+      ],
+      "expected_family_rank": 87,
+      "id": "yv34",
+      "query": "Jag ser till att folk kan tända lampan utan att huset brinner ner",
+      "result_count": 1596,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "HAQu_4kR_S5h",
+          "label": "Byggnadskonstruktör",
+          "rank": 1,
+          "score": 13.554971,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "att",
+            "huset",
+            "kan",
+            "ser",
+            "till"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "SF73_TBz_fhR",
+          "label": "Ledsagare",
+          "rank": 2,
+          "score": 10.431503,
+          "score_ratio_to_top": 0.76957,
+          "shared_term_count": 6,
+          "shared_terms": [
+            "att",
+            "folk",
+            "jag",
+            "kan",
+            "ser",
+            "till"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "TgZD_Mvj_nQh",
+          "label": "Anläggningsdykare",
+          "rank": 3,
+          "score": 9.529233,
+          "score_ratio_to_top": 0.703007,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "att",
+            "kan",
+            "ner",
+            "till"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "QaQC_ozP_Bme",
+          "label": "Rekryterare/Rekryteringskonsult",
+          "rank": 4,
+          "score": 9.413646,
+          "score_ratio_to_top": 0.694479,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "att",
+            "folk",
+            "jag",
+            "till"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "tKCe_Qpx_Thx",
+          "label": "Arbetsmiljöingenjör",
+          "rank": 5,
+          "score": 9.296639,
+          "score_ratio_to_top": 0.685847,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "att",
+            "folk",
+            "ser",
+            "till"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "indirect",
+      "displayed_count": 5,
+      "expected": [
+        "bussförare",
+        "taxiförare",
+        "lokförare",
+        "chaufför"
+      ],
+      "expected_family_rank": 2,
+      "id": "yv35",
+      "query": "Jag får människor från A till B fast de inte kör själva",
+      "result_count": 1068,
+      "should_abstain": false,
+      "should_clarify": true,
+      "top5": [
+        {
+          "concept_id": "uuA6_a4j_BGg",
+          "label": "Ventilationsingenjör",
+          "rank": 1,
+          "score": 11.403009,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "de",
+            "inte",
+            "människor",
+            "till"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "6zL8_YYP_1eR",
+          "label": "Bussförare",
+          "rank": 2,
+          "score": 10.404541,
+          "score_ratio_to_top": 0.912438,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "kör",
+            "människor",
+            "till"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "77wX_fg5_rMa",
+          "label": "Strålskyddstekniker",
+          "rank": 3,
+          "score": 10.130671,
+          "score_ratio_to_top": 0.888421,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "a",
+            "b",
+            "till"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "QyBB_mhx_iKS",
+          "label": "Byggnadsingenjör",
+          "rank": 4,
+          "score": 10.004965,
+          "score_ratio_to_top": 0.877397,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "de",
+            "från",
+            "jag",
+            "själva",
+            "till"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "bhk6_aNU_xRe",
+          "label": "Renhållningsförare",
+          "rank": 5,
+          "score": 9.917833,
+          "score_ratio_to_top": 0.869756,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "de",
+            "från",
+            "jag",
+            "kör"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "indirect",
+      "displayed_count": 5,
+      "expected": [
+        "controller",
+        "redovisningsekonom",
+        "ekonom"
+      ],
+      "expected_family_rank": 2,
+      "id": "yv36",
+      "query": "Jag gör så att chefen kan se gröna siffror och röda siffror varje månad",
+      "result_count": 1759,
+      "should_abstain": false,
+      "should_clarify": true,
+      "top5": [
+        {
+          "concept_id": "48KV_oBC_Ffd",
+          "label": "Scripta",
+          "rank": 1,
+          "score": 13.955414,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "att",
+            "och",
+            "se",
+            "så",
+            "varje"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "GrZU_ofe_QAx",
+          "label": "Controller",
+          "rank": 2,
+          "score": 11.782452,
+          "score_ratio_to_top": 0.844293,
+          "shared_term_count": 6,
+          "shared_terms": [
+            "att",
+            "jag",
+            "kan",
+            "och",
+            "se",
+            "siffror"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "8tSq_t1z_MRT",
+          "label": "Business controller",
+          "rank": 3,
+          "score": 11.316556,
+          "score_ratio_to_top": 0.810908,
+          "shared_term_count": 6,
+          "shared_terms": [
+            "att",
+            "gör",
+            "jag",
+            "och",
+            "siffror",
+            "så"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "5bYa_vBF_REN",
+          "label": "Statistiker",
+          "rank": 4,
+          "score": 10.269206,
+          "score_ratio_to_top": 0.735858,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "att",
+            "gör",
+            "och",
+            "siffror"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "49G8_LRE_73K",
+          "label": "Kostymtekniker/Påklädare",
+          "rank": 5,
+          "score": 9.586781,
+          "score_ratio_to_top": 0.686958,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "att",
+            "och",
+            "se",
+            "varje"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "indirect",
+      "displayed_count": 5,
+      "expected": [
+        "fysioterapeut",
+        "sjukgymnast"
+      ],
+      "expected_family_rank": 5,
+      "id": "yv37",
+      "query": "Jag får trasiga människor att kunna gå ordentligt igen efter operationer",
+      "result_count": 1455,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "eU1q_zvL_9Rf",
+          "label": "Personlig assistent",
+          "rank": 1,
+          "score": 11.991663,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "att",
+            "gå",
+            "jag",
+            "kunna",
+            "människor"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "uKf3_A5g_w7X",
+          "label": "Sjukhusvaktmästare",
+          "rank": 2,
+          "score": 10.665516,
+          "score_ratio_to_top": 0.889411,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "att",
+            "människor",
+            "trasiga"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "rAgy_tQu_JC1",
+          "label": "Isoleringsplåtslagare",
+          "rank": 3,
+          "score": 10.333687,
+          "score_ratio_to_top": 0.861739,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "att",
+            "efter",
+            "får",
+            "kunna"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "4HnZ_K23_35y",
+          "label": "Skadereglerare",
+          "rank": 4,
+          "score": 9.796949,
+          "score_ratio_to_top": 0.81698,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "att",
+            "efter",
+            "får",
+            "kunna",
+            "människor"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "qnF9_wC7_zTq",
+          "label": "Djurfysioterapeut",
+          "rank": 5,
+          "score": 8.589059,
+          "score_ratio_to_top": 0.716252,
+          "shared_term_count": 2,
+          "shared_terms": [
+            "efter",
+            "operationer"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "indirect",
+      "displayed_count": 5,
+      "expected": [
+        "nätverkstekniker",
+        "it-tekniker",
+        "drifttekniker",
+        "systemadministratör"
+      ],
+      "expected_family_rank": 55,
+      "id": "yv38",
+      "query": "Jag gör att företagets datorer fortsätter prata med varandra när allt krånglar",
+      "result_count": 1676,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "84Uc_bhA_s47",
+          "label": "Installationselektriker",
+          "rank": 1,
+          "score": 11.751842,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 6,
+          "shared_terms": [
+            "allt",
+            "att",
+            "gör",
+            "jag",
+            "med",
+            "när"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "AQ8y_9XL_Jvv",
+          "label": "IT-samordnare",
+          "rank": 2,
+          "score": 10.016881,
+          "score_ratio_to_top": 0.852367,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "allt",
+            "att",
+            "datorer",
+            "med"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "9YXJ_Rz2_MeV",
+          "label": "Kvalitetschef",
+          "rank": 3,
+          "score": 9.724122,
+          "score_ratio_to_top": 0.827455,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "allt",
+            "att",
+            "företagets",
+            "med"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "gfzz_zS3_TLa",
+          "label": "Säkerhetschef",
+          "rank": 4,
+          "score": 9.415654,
+          "score_ratio_to_top": 0.801207,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "allt",
+            "att",
+            "företagets",
+            "med"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "Ld9h_41y_zvw",
+          "label": "Redovisningschef",
+          "rank": 5,
+          "score": 9.204,
+          "score_ratio_to_top": 0.783196,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "allt",
+            "företagets",
+            "med"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "indirect",
+      "displayed_count": 5,
+      "expected": [
+        "frisör"
+      ],
+      "expected_family_rank": 3,
+      "id": "yv39",
+      "query": "Jag gör folk fina i håret inför helgen",
+      "result_count": 1292,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "v2HV_VNh_D7s",
+          "label": "Lackerare",
+          "rank": 1,
+          "score": 10.907948,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "fina",
+            "gör",
+            "inför"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "QyBB_mhx_iKS",
+          "label": "Byggnadsingenjör",
+          "rank": 2,
+          "score": 9.84838,
+          "score_ratio_to_top": 0.902863,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "gör",
+            "i",
+            "inför",
+            "jag"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "tuoE_9Nj_fAS",
+          "label": "Frisör",
+          "rank": 3,
+          "score": 9.817101,
+          "score_ratio_to_top": 0.899995,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "gör",
+            "håret",
+            "jag"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "KYPa_Jv8_ZbU",
+          "label": "Studie- och yrkesvägledare/SYV",
+          "rank": 4,
+          "score": 8.222394,
+          "score_ratio_to_top": 0.753798,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "folk",
+            "i",
+            "inför",
+            "jag"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "4jr9_Ywm_6J1",
+          "label": "Silversmed",
+          "rank": 5,
+          "score": 8.216547,
+          "score_ratio_to_top": 0.753262,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "fina",
+            "gör",
+            "i"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "indirect",
+      "displayed_count": 5,
+      "expected": [
+        "skorstensfejare",
+        "skorstensfejartekniker"
+      ],
+      "expected_family_rank": 1,
+      "id": "yv40",
+      "query": "Jag får bort det som fastnat i skorstenar så huset inte börjar brinna",
+      "result_count": 1569,
+      "should_abstain": false,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "RxYj_fc9_z7L",
+          "label": "Skorstensfejare",
+          "rank": 1,
+          "score": 13.884101,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "i",
+            "skorstenar",
+            "som",
+            "så"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "HAQu_4kR_S5h",
+          "label": "Byggnadskonstruktör",
+          "rank": 2,
+          "score": 12.534999,
+          "score_ratio_to_top": 0.902831,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "huset",
+            "i",
+            "inte",
+            "som"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "mvnD_QKo_UPh",
+          "label": "Industrirörmontör",
+          "rank": 3,
+          "score": 10.24914,
+          "score_ratio_to_top": 0.738193,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "det",
+            "får",
+            "i",
+            "som",
+            "så"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "5DcA_EVV_BHZ",
+          "label": "Kakelugnsmakare",
+          "rank": 4,
+          "score": 10.194436,
+          "score_ratio_to_top": 0.734253,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "i",
+            "skorstenar",
+            "som"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "2eTw_69k_MEy",
+          "label": "Saneringsarbetare",
+          "rank": 5,
+          "score": 10.060356,
+          "score_ratio_to_top": 0.724595,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "bort",
+            "det",
+            "i",
+            "inte",
+            "som"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "ambiguous",
+      "displayed_count": 0,
+      "expected": [],
+      "expected_family_rank": null,
+      "id": "yv41",
+      "query": "Jag hjälper människor",
+      "result_count": 0,
+      "should_abstain": false,
+      "should_clarify": true,
+      "top5": []
+    },
+    {
+      "category": "ambiguous",
+      "displayed_count": 5,
+      "expected": [],
+      "expected_family_rank": null,
+      "id": "yv42",
+      "query": "Jag jobbar med barn",
+      "result_count": 1435,
+      "should_abstain": false,
+      "should_clarify": true,
+      "top5": [
+        {
+          "concept_id": "rM7G_ge7_XhP",
+          "label": "Barnskötare",
+          "rank": 1,
+          "score": 11.199622,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "barn",
+            "jag",
+            "jobbar",
+            "med"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "zrQ9_1z2_kT3",
+          "label": "Musikpedagog/Musiklärare",
+          "rank": 2,
+          "score": 10.784667,
+          "score_ratio_to_top": 0.962949,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "barn",
+            "jag",
+            "jobbar",
+            "med"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "CQBS_ZSZ_ViP",
+          "label": "Barnsjuksköterska",
+          "rank": 3,
+          "score": 10.327216,
+          "score_ratio_to_top": 0.922104,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "barn",
+            "jag",
+            "jobbar",
+            "med"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "rUcW_z9R_Qsv",
+          "label": "Förskollärare",
+          "rank": 4,
+          "score": 8.605439,
+          "score_ratio_to_top": 0.768369,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "barn",
+            "jag",
+            "jobbar",
+            "med"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "4mUk_ow8_wji",
+          "label": "Lekterapeut",
+          "rank": 5,
+          "score": 8.528082,
+          "score_ratio_to_top": 0.761462,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "barn",
+            "jobbar",
+            "med"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "ambiguous",
+      "displayed_count": 5,
+      "expected": [],
+      "expected_family_rank": null,
+      "id": "yv43",
+      "query": "Jag kör maskiner",
+      "result_count": 13,
+      "should_abstain": false,
+      "should_clarify": true,
+      "top5": [
+        {
+          "concept_id": "XHyR_e9A_sqQ",
+          "label": "Produktionstekniker, maskin/Produktionstekniker, verkstad",
+          "rank": 1,
+          "score": 5006.336918,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 2,
+          "shared_terms": [
+            "jag",
+            "maskiner"
+          ],
+          "signal": "component_surface"
+        },
+        {
+          "concept_id": "rncq_GAq_KMx",
+          "label": "Automationsingenjör, maskin",
+          "rank": 2,
+          "score": 5005.869572,
+          "score_ratio_to_top": 0.999907,
+          "shared_term_count": 2,
+          "shared_terms": [
+            "jag",
+            "maskiner"
+          ],
+          "signal": "component_surface"
+        },
+        {
+          "concept_id": "Rd3G_bFa_zvR",
+          "label": "Civilingenjör, maskin",
+          "rank": 3,
+          "score": 5005.431999,
+          "score_ratio_to_top": 0.999819,
+          "shared_term_count": 2,
+          "shared_terms": [
+            "jag",
+            "maskiner"
+          ],
+          "signal": "component_surface"
+        },
+        {
+          "concept_id": "2NdT_qer_nQk",
+          "label": "Serviceingenjör, maskin",
+          "rank": 4,
+          "score": 5004.687071,
+          "score_ratio_to_top": 0.99967,
+          "shared_term_count": 1,
+          "shared_terms": [
+            "maskiner"
+          ],
+          "signal": "component_surface"
+        },
+        {
+          "concept_id": "iJwC_kdU_cu7",
+          "label": "Produktionsingenjör, maskin",
+          "rank": 5,
+          "score": 5003.737237,
+          "score_ratio_to_top": 0.999481,
+          "shared_term_count": 1,
+          "shared_terms": [
+            "maskiner"
+          ],
+          "signal": "component_surface"
+        }
+      ]
+    },
+    {
+      "category": "ambiguous",
+      "displayed_count": 5,
+      "expected": [],
+      "expected_family_rank": null,
+      "id": "yv44",
+      "query": "Jag jobbar med datorer",
+      "result_count": 1435,
+      "should_abstain": false,
+      "should_clarify": true,
+      "top5": [
+        {
+          "concept_id": "CZkP_hCz_KM8",
+          "label": "Applikationsutvecklare",
+          "rank": 1,
+          "score": 8.680909,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "datorer",
+            "jag",
+            "jobbar",
+            "med"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "fg7B_yov_smw",
+          "label": "Systemutvecklare/Programmerare",
+          "rank": 2,
+          "score": 7.78452,
+          "score_ratio_to_top": 0.89674,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "datorer",
+            "jag",
+            "jobbar",
+            "med"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "AQ8y_9XL_Jvv",
+          "label": "IT-samordnare",
+          "rank": 3,
+          "score": 7.605192,
+          "score_ratio_to_top": 0.876082,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "datorer",
+            "jobbar",
+            "med"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "Qq5v_QZ3_EE9",
+          "label": "Bussmekaniker",
+          "rank": 4,
+          "score": 7.535022,
+          "score_ratio_to_top": 0.867999,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "datorer",
+            "jobbar",
+            "med"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "o7LP_duC_u9Z",
+          "label": "Lastbilsmekaniker",
+          "rank": 5,
+          "score": 7.342983,
+          "score_ratio_to_top": 0.845877,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "datorer",
+            "jag",
+            "jobbar",
+            "med"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "ambiguous",
+      "displayed_count": 0,
+      "expected": [],
+      "expected_family_rank": null,
+      "id": "yv45",
+      "query": "Jag säljer saker",
+      "result_count": 0,
+      "should_abstain": false,
+      "should_clarify": true,
+      "top5": []
+    },
+    {
+      "category": "ambiguous",
+      "displayed_count": 5,
+      "expected": [
+        "djurvårdare",
+        "djurskötare",
+        "veterinär",
+        "hästskötare"
+      ],
+      "expected_family_rank": 11,
+      "id": "yv46",
+      "query": "Jag tar hand om djur",
+      "result_count": 519,
+      "should_abstain": false,
+      "should_clarify": true,
+      "top5": [
+        {
+          "concept_id": "8Vew_BX8_97h",
+          "label": "Djursjukskötare",
+          "rank": 1,
+          "score": 12.607052,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "djur",
+            "om",
+            "tar"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "GkMH_KEV_QKX",
+          "label": "Spårvagnsförare",
+          "rank": 2,
+          "score": 11.826259,
+          "score_ratio_to_top": 0.938067,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "hand",
+            "om",
+            "tar"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "rYYJ_Khq_Mre",
+          "label": "Styckare",
+          "rank": 3,
+          "score": 11.684785,
+          "score_ratio_to_top": 0.926845,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "djur",
+            "hand",
+            "tar"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "HuYB_gtA_7jL",
+          "label": "Mässman, fartyg",
+          "rank": 4,
+          "score": 11.313314,
+          "score_ratio_to_top": 0.89738,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "hand",
+            "om",
+            "tar"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "SRpJ_Wci_3qU",
+          "label": "Hundskötare",
+          "rank": 5,
+          "score": 10.980313,
+          "score_ratio_to_top": 0.870966,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "hand",
+            "om",
+            "tar"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "nonsense",
+      "displayed_count": 1,
+      "expected": [],
+      "expected_family_rank": null,
+      "id": "yv47",
+      "query": "banan raket kung kaffe blå tisdag",
+      "result_count": 1,
+      "should_abstain": true,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "rynG_URT_erJ",
+          "label": "Kaféföreståndare",
+          "rank": 1,
+          "score": 7.77232,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 1,
+          "shared_terms": [
+            "kaffe"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "nonsense",
+      "displayed_count": 5,
+      "expected": [],
+      "expected_family_rank": null,
+      "id": "yv48",
+      "query": "jag gör saker och grejer på jobbet typ",
+      "result_count": 1753,
+      "should_abstain": true,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "p17k_znk_osi",
+          "label": "Utesäljare",
+          "rank": 1,
+          "score": 13.042544,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 6,
+          "shared_terms": [
+            "grejer",
+            "gör",
+            "jag",
+            "och",
+            "på",
+            "saker"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "kxew_SY8_LFZ",
+          "label": "Gatuförsäljare",
+          "rank": 2,
+          "score": 12.064634,
+          "score_ratio_to_top": 0.925022,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "grejer",
+            "och",
+            "på",
+            "saker"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "YDvo_JCY_pDR",
+          "label": "Packare",
+          "rank": 3,
+          "score": 11.263124,
+          "score_ratio_to_top": 0.863568,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "grejer",
+            "och",
+            "på",
+            "saker",
+            "typ"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "LX5L_e6N_4jS",
+          "label": "Personalutbildare",
+          "rank": 4,
+          "score": 10.906303,
+          "score_ratio_to_top": 0.83621,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "jobbet",
+            "och",
+            "på",
+            "saker"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "ZnNn_D2K_pTi",
+          "label": "Fritidsledare",
+          "rank": 5,
+          "score": 9.699349,
+          "score_ratio_to_top": 0.74367,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "grejer",
+            "jag",
+            "och",
+            "på",
+            "saker"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "nonsense",
+      "displayed_count": 5,
+      "expected": [],
+      "expected_family_rank": null,
+      "id": "yv49",
+      "query": "potatis internet häst bokföring måne saxofon",
+      "result_count": 14,
+      "should_abstain": true,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "MZ9T_JuJ_FxU",
+          "label": "Redovisningsassistent",
+          "rank": 1,
+          "score": 8.249283,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 1,
+          "shared_terms": [
+            "bokföring"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "Y9x5_F4p_HYf",
+          "label": "Blåsinstrumentmakare",
+          "rank": 2,
+          "score": 8.035085,
+          "score_ratio_to_top": 0.974034,
+          "shared_term_count": 1,
+          "shared_terms": [
+            "saxofon"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "PTs4_wYQ_zDP",
+          "label": "Webbdesigner",
+          "rank": 3,
+          "score": 7.665818,
+          "score_ratio_to_top": 0.929271,
+          "shared_term_count": 1,
+          "shared_terms": [
+            "internet"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "Bbpr_AMz_nzt",
+          "label": "Revisorsassistent",
+          "rank": 4,
+          "score": 7.145351,
+          "score_ratio_to_top": 0.866178,
+          "shared_term_count": 1,
+          "shared_terms": [
+            "bokföring"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "8N18_sGB_X4M",
+          "label": "Redovisningsekonom",
+          "rank": 5,
+          "score": 6.833492,
+          "score_ratio_to_top": 0.828374,
+          "shared_term_count": 1,
+          "shared_terms": [
+            "bokföring"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "nonsense",
+      "displayed_count": 5,
+      "expected": [],
+      "expected_family_rank": null,
+      "id": "yv50",
+      "query": "och av på ut med till för från",
+      "result_count": 1764,
+      "should_abstain": true,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "JEhg_Dmh_mzv",
+          "label": "Distributionsförare",
+          "rank": 1,
+          "score": 9.787467,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 8,
+          "shared_terms": [
+            "av",
+            "från",
+            "för",
+            "med",
+            "och",
+            "på",
+            "till",
+            "ut"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "5GzE_JXd_gM2",
+          "label": "Distributionschef, logistik och transporter",
+          "rank": 2,
+          "score": 9.723971,
+          "score_ratio_to_top": 0.993512,
+          "shared_term_count": 7,
+          "shared_terms": [
+            "av",
+            "från",
+            "för",
+            "med",
+            "och",
+            "till",
+            "ut"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "o5p1_ZUZ_pab",
+          "label": "Bussvärd",
+          "rank": 3,
+          "score": 9.343229,
+          "score_ratio_to_top": 0.954612,
+          "shared_term_count": 8,
+          "shared_terms": [
+            "av",
+            "från",
+            "för",
+            "med",
+            "och",
+            "på",
+            "till",
+            "ut"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "XPL2_squ_8rj",
+          "label": "Biluthyrare",
+          "rank": 4,
+          "score": 8.553194,
+          "score_ratio_to_top": 0.873892,
+          "shared_term_count": 7,
+          "shared_terms": [
+            "av",
+            "för",
+            "med",
+            "och",
+            "på",
+            "till",
+            "ut"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "rYYJ_Khq_Mre",
+          "label": "Styckare",
+          "rank": 5,
+          "score": 8.54413,
+          "score_ratio_to_top": 0.872966,
+          "shared_term_count": 8,
+          "shared_terms": [
+            "av",
+            "från",
+            "för",
+            "med",
+            "och",
+            "på",
+            "till",
+            "ut"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "nonsense",
+      "displayed_count": 0,
+      "expected": [],
+      "expected_family_rank": null,
+      "id": "yv51",
+      "query": "asdf qwerty blörp fnatt zzz",
+      "result_count": 0,
+      "should_abstain": true,
+      "should_clarify": false,
+      "top5": []
+    },
+    {
+      "category": "out_of_scope",
+      "displayed_count": 5,
+      "expected": [],
+      "expected_family_rank": null,
+      "id": "yv52",
+      "query": "Jag vill bli rik snabbt utan att jobba",
+      "result_count": 1438,
+      "should_abstain": true,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "sEgy_V9K_1AF",
+          "label": "Undertaksmontör, utan yrkesbevis",
+          "rank": 1,
+          "score": 8.811662,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "att",
+            "jobba",
+            "utan"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "3RzT_cHB_vVp",
+          "label": "Biträdande jurist",
+          "rank": 2,
+          "score": 8.626918,
+          "score_ratio_to_top": 0.979034,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "att",
+            "bli",
+            "utan"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "GBys_6Zx_25W",
+          "label": "Piercare",
+          "rank": 3,
+          "score": 7.730051,
+          "score_ratio_to_top": 0.877252,
+          "shared_term_count": 1,
+          "shared_terms": [
+            "vill"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "HdcS_g6a_jPk",
+          "label": "Träarbetare, utan yrkesbevis/Snickare, utan yrkesbevis",
+          "rank": 4,
+          "score": 7.698797,
+          "score_ratio_to_top": 0.873706,
+          "shared_term_count": 2,
+          "shared_terms": [
+            "att",
+            "utan"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "ryWZ_9B8_KME",
+          "label": "Banarbetare, utan behörighetsbevis",
+          "rank": 5,
+          "score": 7.135411,
+          "score_ratio_to_top": 0.809769,
+          "shared_term_count": 2,
+          "shared_terms": [
+            "att",
+            "utan"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "out_of_scope",
+      "displayed_count": 5,
+      "expected": [],
+      "expected_family_rank": null,
+      "id": "yv53",
+      "query": "Min chef är dum och kaffet är slut",
+      "result_count": 1760,
+      "should_abstain": true,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "Xuko_NMb_NL1",
+          "label": "Rabbin",
+          "rank": 1,
+          "score": 9.757864,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "min",
+            "och",
+            "är"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "ZKKT_4bd_Sxs",
+          "label": "Enhetschef, hälso- och sjukvård",
+          "rank": 2,
+          "score": 8.638209,
+          "score_ratio_to_top": 0.885256,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "chef",
+            "min",
+            "och",
+            "är"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "c9pz_dJG_ikv",
+          "label": "Arbetsledare, rivning",
+          "rank": 3,
+          "score": 6.673163,
+          "score_ratio_to_top": 0.683875,
+          "shared_term_count": 2,
+          "shared_terms": [
+            "och",
+            "slut"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "3PX6_gqv_WJW",
+          "label": "Specialistsjuksköterska inom palliativ vård",
+          "rank": 4,
+          "score": 6.253377,
+          "score_ratio_to_top": 0.640855,
+          "shared_term_count": 3,
+          "shared_terms": [
+            "och",
+            "slut",
+            "är"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "Mg5T_Wi4_5my",
+          "label": "Avdelningschef, kommun",
+          "rank": 5,
+          "score": 6.117597,
+          "score_ratio_to_top": 0.62694,
+          "shared_term_count": 2,
+          "shared_terms": [
+            "chef",
+            "och"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    },
+    {
+      "category": "out_of_scope",
+      "displayed_count": 5,
+      "expected": [],
+      "expected_family_rank": null,
+      "id": "yv54",
+      "query": "Jag behöver semester och vill inte gå till jobbet",
+      "result_count": 1753,
+      "should_abstain": true,
+      "should_clarify": false,
+      "top5": [
+        {
+          "concept_id": "tKCe_Qpx_Thx",
+          "label": "Arbetsmiljöingenjör",
+          "rank": 1,
+          "score": 11.104591,
+          "score_ratio_to_top": 1.0,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "inte",
+            "jobbet",
+            "och",
+            "till"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "eU1q_zvL_9Rf",
+          "label": "Personlig assistent",
+          "rank": 2,
+          "score": 11.05004,
+          "score_ratio_to_top": 0.995087,
+          "shared_term_count": 5,
+          "shared_terms": [
+            "gå",
+            "jag",
+            "jobbet",
+            "och",
+            "till"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "6nKy_pXY_CRv",
+          "label": "Skogstransportförare",
+          "rank": 3,
+          "score": 9.522499,
+          "score_ratio_to_top": 0.857528,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "gå",
+            "inte",
+            "och",
+            "till"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "S2QW_12u_Pj1",
+          "label": "Mediatextare",
+          "rank": 4,
+          "score": 8.278304,
+          "score_ratio_to_top": 0.745485,
+          "shared_term_count": 4,
+          "shared_terms": [
+            "gå",
+            "inte",
+            "och",
+            "till"
+          ],
+          "signal": "definition_bm25"
+        },
+        {
+          "concept_id": "GBys_6Zx_25W",
+          "label": "Piercare",
+          "rank": 5,
+          "score": 7.942216,
+          "score_ratio_to_top": 0.715219,
+          "shared_term_count": 2,
+          "shared_terms": [
+            "och",
+            "vill"
+          ],
+          "signal": "definition_bm25"
+        }
+      ]
+    }
+  ],
+  "status": "opened diagnostic only; MUST NOT tune a confidence/display threshold from these rows",
+  "targetable": {
+    "cases": 41,
+    "top1_family_hit": 15,
+    "top5_family_hit": 28
+  },
+  "visible_result_shared_term_count_histogram": {
+    "1": 27,
+    "10": 1,
+    "2": 26,
+    "3": 39,
+    "4": 57,
+    "5": 47,
+    "6": 27,
+    "7": 14,
+    "8": 10
+  }
+}
