@@ -312,6 +312,6 @@ export function createSearchEngine(model) {
     throw new Error('Ogiltig eller inkompatibel sökmodell.');
   }
   if (model.engine === 'KV-G1+T3-plain-v1') return createKvEngine(model);
-  if (model.engine === 'YV-description-full-v0-canonical-router') return createYvEngine(model);
+  if (model.engine === 'YV-description-full-v0-canonical-router' || model.engine === 'YV-A593-Gemma4-26B-sequence-expansion-v0') return createYvEngine(model);
   throw new Error(`Okänd sökmotor: ${String(model.engine || 'saknas')}`);
 }
