@@ -1,0 +1,64 @@
+name: P80 source-thin rescue experiment
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/p80-source-thin-rescue.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: p80-source-thin-rescue-v0
+  cancel-in-progress: false
+
+jobs:
+  generate-evaluate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile-check frozen rescue loop
+        run: |
+          python -m py_compile \
+            scripts/generate_p80_source_thin_rescue.py \
+            scripts/evaluate_p80_source_thin_rescue.py \
+            scripts/generate_a593_language_diversity_falsifier.py \
+            scripts/evaluate_p80_language_diversity.py
+      - name: Generate source-thin rescue training and independent holdout
+        run: |
+          python scripts/generate_p80_source_thin_rescue.py \
+            --batch-size 11 \
+            --requests-per-minute 6
+      - name: Evaluate rescue over full 2105-candidate universe
+        run: python scripts/evaluate_p80_source_thin_rescue.py
+      - name: Freeze rescue corpus and result
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            research/training/v31/p80-source-thin-rescue-training-v0.jsonl \
+            research/evaluation/v31/p80-source-thin-rescue-holdout-v0.jsonl \
+            research/evaluation/v31/p80-source-thin-rescue-generation-v0.json \
+            research/evaluation/v31/p80-source-thin-rescue-result-v0.json
+          git commit -m 'research: freeze P80 source-thin rescue result'
+          git push
+      - name: Upload rescue audit artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p80-source-thin-rescue-v0
+          path: |
+            research/training/v31/p80-source-thin-rescue-training-v0.jsonl
+            research/evaluation/v31/p80-source-thin-rescue-holdout-v0.jsonl
+            research/evaluation/v31/p80-source-thin-rescue-generation-v0.json
+            research/evaluation/v31/p80-source-thin-rescue-result-v0.json
+          if-no-files-found: warn
