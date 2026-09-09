@@ -42,6 +42,29 @@ from evaluate_p80_display_ssyk_phrase_gate import SSYK_HIERARCHY_URL, build_ssyk
 from evaluate_p80_lexical_ablation import as_list, expected_hash, fetch, norm
 from evaluate_pareto_c1 import rank_c1
 
+def _tolerant_extract_json(payload: dict[str, Any]) -> dict[str, Any]:
+    candidates = payload.get("candidates") or []
+    if not candidates:
+        raise RuntimeError("no candidates")
+    parts = candidates[0].get("content", {}).get("parts") or []
+    text = "".join(
+        str(part.get("text") or "")
+        for part in parts
+        if isinstance(part, dict) and not part.get("thought")
+    ).strip()
+    if not text:
+        raise RuntimeError("no response text")
+    value = json.loads(text)
+    if isinstance(value, list):
+        return {"items": value}
+    if isinstance(value, dict):
+        return value
+    raise RuntimeError("response JSON must be object or array")
+
+
+gemma.extract_json = _tolerant_extract_json
+
+
 MODEL = gemma.MODEL
 PROMPT_VERSION = "yv-p80-semantic-display-oracle-v0"
 VERDICTS = {"keep", "uncertain", "drop"}
