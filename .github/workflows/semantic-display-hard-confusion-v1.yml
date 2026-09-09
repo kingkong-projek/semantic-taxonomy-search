@@ -1,4 +1,5 @@
 name: Semantic display hard-confusion v1
+# Execution retry after durable checkpoint recovery; frozen research protocol unchanged.
 
 on:
   push:
