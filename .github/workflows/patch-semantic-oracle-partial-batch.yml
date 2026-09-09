@@ -1,0 +1,44 @@
+name: Patch semantic oracle partial-batch recovery
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/patch-semantic-oracle-partial-batch.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Recover only missing cases from partial batches
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('scripts/evaluate_p80_display_semantic_oracle.py')
+          s=p.read_text(encoding='utf-8')
+          old='''def parse_response(value: dict[str, Any], batch: list[dict[str, Any]]) -> dict[str, dict[str, str]]:\n    expected = {case_key(case): {str(c["concept_id"]) for c in case["candidates"]} for case in batch}\n    items = value.get("items")\n    if not isinstance(items, list):\n        raise RuntimeError("semantic oracle response missing items")\n    out: dict[str, dict[str, str]] = {}\n    for item in items:\n        if not isinstance(item, dict):\n            continue\n        key = str(item.get("case_key") or "")\n        if key not in expected or key in out:\n            continue\n        judgments = item.get("judgments")\n        if not isinstance(judgments, list):\n            continue\n        current: dict[str, str] = {}\n        for judgment in judgments:\n            if not isinstance(judgment, dict):\n                continue\n            cid = str(judgment.get("concept_id") or "")\n            verdict = str(judgment.get("verdict") or "").strip().casefold()\n            if cid in expected[key] and cid not in current and verdict in VERDICTS:\n                current[cid] = verdict\n        if set(current) == expected[key]:\n            out[key] = current\n    if set(out) != set(expected):\n        missing = sorted(set(expected) - set(out))\n        raise RuntimeError(f"semantic oracle response case mismatch: {missing[:5]} count={len(missing)}")\n    return out\n'''
+          new='''def parse_response(value: dict[str, Any], batch: list[dict[str, Any]], *, require_all: bool = True) -> dict[str, dict[str, str]]:\n    expected = {case_key(case): {str(c["concept_id"]) for c in case["candidates"]} for case in batch}\n    items = value.get("items")\n    if not isinstance(items, list):\n        raise RuntimeError("semantic oracle response missing items")\n    out: dict[str, dict[str, str]] = {}\n    for item in items:\n        if not isinstance(item, dict):\n            continue\n        key = str(item.get("case_key") or "")\n        if key not in expected or key in out:\n            continue\n        judgments = item.get("judgments")\n        if not isinstance(judgments, list):\n            continue\n        current: dict[str, str] = {}\n        for judgment in judgments:\n            if not isinstance(judgment, dict):\n                continue\n            cid = str(judgment.get("concept_id") or "")\n            verdict = str(judgment.get("verdict") or "").strip().casefold()\n            if cid in expected[key] and cid not in current and verdict in VERDICTS:\n                current[cid] = verdict\n        if set(current) == expected[key]:\n            out[key] = current\n    if require_all and set(out) != set(expected):\n        missing = sorted(set(expected) - set(out))\n        raise RuntimeError(f"semantic oracle response case mismatch: {missing[:5]} count={len(missing)}")\n    return out\n'''
+          if old not in s:
+              raise SystemExit('parse_response block drift')
+          s=s.replace(old,new,1)
+          old2='''        parsed = None\n        meta = {}\n        batch_prompt = prompt(batch, by_id, phrase_map)\n        for response_attempt in range(5):\n            raw, meta = call_semantic_with_quota_retry(api_key, batch_prompt)\n            last_call = time.monotonic()\n            try:\n                parsed = parse_response(raw, batch)\n                break\n            except RuntimeError as exc:\n                if response_attempt + 1 >= 5:\n                    raise\n                print(f"semantic oracle incomplete batch; retry exact batch ({response_attempt + 1}/5): {exc}", flush=True)\n                time.sleep(5.0)\n        if parsed is None:\n            raise RuntimeError("semantic oracle batch retry exhausted without parsed result")\n        all_judgments.update(parsed)\n        usage.append(meta)\n'''
+          new2='''        pending = list(batch)\n        parsed: dict[str, dict[str, str]] = {}\n        meta = {}\n        for response_attempt in range(5):\n            raw, meta = call_semantic_with_quota_retry(api_key, prompt(pending, by_id, phrase_map))\n            last_call = time.monotonic()\n            partial = parse_response(raw, pending, require_all=False)\n            parsed.update(partial)\n            pending = [case for case in pending if case_key(case) not in parsed]\n            if not pending:\n                break\n            print(f"semantic oracle incomplete batch; retry only {len(pending)} missing case(s) ({response_attempt + 1}/5)", flush=True)\n            time.sleep(5.0)\n        if pending:\n            raise RuntimeError(f"semantic oracle missing-case retry exhausted: {[case_key(c) for c in pending[:5]]} count={len(pending)}")\n        all_judgments.update(parsed)\n        usage.append(meta)\n'''
+          if old2 not in s:
+              raise SystemExit('batch retry block drift')
+          s=s.replace(old2,new2,1)
+          p.write_text(s, encoding='utf-8')
+          PY
+          python -m py_compile scripts/evaluate_p80_display_semantic_oracle.py scripts/replay_p80_display_semantic_oracle_opened.py
+      - name: Commit transport-only recovery
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add scripts/evaluate_p80_display_semantic_oracle.py
+          git commit -m 'research: recover only missing semantic oracle cases'
+          git pull --rebase origin main
+          git push
