@@ -17,6 +17,21 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - name: Inspect historical A593 merge provenance
+        run: |
+          set -euo pipefail
+          echo '=== commits touching workflows and mentioning A593/evaluator ==='
+          git log --all --format='%H %s' -G 'evaluate_gemma_a593|A593|a593' -- .github/workflows || true
+          echo '=== matching historical workflow blobs ==='
+          for c in $(git log --all --format='%H' -G 'evaluate_gemma_a593|A593|a593' -- .github/workflows | head -20); do
+            echo "--- $c $(git show -s --format=%s "$c")"
+            git ls-tree -r --name-only "$c" .github/workflows | while read -r p; do
+              if git show "$c:$p" 2>/dev/null | grep -qiE 'evaluate_gemma_a593|A593|a593'; then
+                echo "### $p"
+                git show "$c:$p" | sed -n '1,240p'
+              fi
+            done
+          done
       - name: Recover exact frozen corpus from Actions artifacts
         env:
           GH_TOKEN: ${{ github.token }}
@@ -34,7 +49,6 @@ jobs:
             mkdir -p "$dir"
             gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts/${id}/zip" > "$zip"
             unzip -q "$zip" -d "$dir"
-            printf '%s\t%s\t%s\n' "$id" "$name" "$run_id" >> /tmp/a593-artifacts/downloaded.tsv
           done < /tmp/a593-artifacts/list.tsv
 
           python - <<'PY'
@@ -42,37 +56,50 @@ jobs:
           from pathlib import Path
 
           expected = os.environ['EXPECTED_SHA']
-          roots = sorted(Path('/tmp/a593-unpacked').glob('*'))
-          files = sorted(p for root in roots for p in root.rglob('*.jsonl'))
-          print('candidate jsonl files:', len(files))
-          for p in files:
-              b = p.read_bytes()
-              print(hashlib.sha256(b).hexdigest(), len(b), p)
-
+          files = sorted(p for root in Path('/tmp/a593-unpacked').glob('*') for p in root.rglob('*.jsonl'))
           found = None
           provenance = []
-          # Prefer an exact archived merged corpus if one exists.
           for p in files:
               b = p.read_bytes()
               if hashlib.sha256(b).hexdigest() == expected:
-                  found = b
-                  provenance = [str(p)]
+                  found, provenance = b, [str(p)]
                   break
 
-          # Historical A593 was A149 + the subsequent batch. Try byte-preserving
-          # concatenations only; never regenerate or reserialize teacher text.
+          # Try raw byte concatenations first.
           if found is None:
               for a, b in itertools.permutations(files, 2):
                   ba, bb = a.read_bytes(), b.read_bytes()
-                  candidates = [
-                      ba + bb,
-                      ba.rstrip(b'\r\n') + b'\n' + bb,
-                      ba.rstrip(b'\r\n') + b'\n' + bb.lstrip(b'\r\n'),
-                  ]
-                  for merged in candidates:
+                  for merged in (ba + bb, ba.rstrip(b'\r\n') + b'\n' + bb, ba.rstrip(b'\r\n') + b'\n' + bb.lstrip(b'\r\n')):
                       if hashlib.sha256(merged).hexdigest() == expected:
-                          found = merged
-                          provenance = [str(a), str(b)]
+                          found, provenance = merged, [str(a), str(b)]
+                          break
+                  if found is not None:
+                      break
+
+          # Try deterministic JSONL serializations of every 593-row pair. This is
+          # reconstruction only: accept nothing unless the frozen byte hash matches.
+          if found is None:
+              parsed = {}
+              for p in files:
+                  try:
+                      parsed[p] = [json.loads(line) for line in p.read_text(encoding='utf-8-sig').splitlines() if line.strip()]
+                  except Exception:
+                      pass
+              for a, b in itertools.permutations(parsed, 2):
+                  rows = parsed[a] + parsed[b]
+                  if len(rows) != 593 or len({str(r.get('concept_id')) for r in rows}) != 593:
+                      continue
+                  variants = []
+                  for sort_keys in (False, True):
+                      for compact in (False, True):
+                          kwargs = {'ensure_ascii': False, 'sort_keys': sort_keys}
+                          if compact:
+                              kwargs['separators'] = (',', ':')
+                          text = '\n'.join(json.dumps(r, **kwargs) for r in rows) + '\n'
+                          variants.append(text.encode('utf-8'))
+                  for merged in variants:
+                      if hashlib.sha256(merged).hexdigest() == expected:
+                          found, provenance = merged, [str(a), str(b)]
                           break
                   if found is not None:
                       break
@@ -80,26 +107,17 @@ jobs:
           if found is None:
               raise SystemExit('Could not reconstruct exact frozen A593 corpus SHA; refusing recovery')
 
-          lines = [line for line in found.splitlines() if line.strip()]
-          rows = [json.loads(line) for line in lines]
-          if len(rows) != 593:
-              raise SystemExit(f'expected 593 rows, got {len(rows)}')
-          ids = [r['concept_id'] for r in rows]
-          if len(set(ids)) != 593:
-              raise SystemExit('concept ids are not unique')
-          phrase_count = 0
-          for r in rows:
-              phrases = r.get('phrases')
-              if not isinstance(phrases, list) or len(phrases) != 8 or not all(isinstance(x, str) and x.strip() for x in phrases):
-                  raise SystemExit(f"invalid eight-phrase row: {r.get('concept_id')}")
-              phrase_count += len(phrases)
-          if phrase_count != 4744:
-              raise SystemExit(f'expected 4744 phrases, got {phrase_count}')
+          rows = [json.loads(line) for line in found.decode('utf-8').splitlines() if line.strip()]
+          if len(rows) != 593 or len({r['concept_id'] for r in rows}) != 593:
+              raise SystemExit('A593 cardinality/identity validation failed')
+          if sum(len(r.get('phrases') or []) for r in rows) != 4744:
+              raise SystemExit('A593 phrase count validation failed')
+          if any(str(r.get('model') or '') != 'gemma-4-26b-a4b-it' for r in rows):
+              raise SystemExit('A593 model validation failed')
 
           out = Path('research/enrichment/v31/gemma4-yv-a593')
           out.mkdir(parents=True, exist_ok=True)
-          corpus = out / 'phrases.jsonl'
-          corpus.write_bytes(found)
+          (out / 'phrases.jsonl').write_bytes(found)
           manifest = {
               'schema': 'gemma4-yv-a593-frozen-corpus-v0',
               'candidate_id': 'YV-A593-Gemma4-26B-sequence-expansion-v0',
@@ -107,13 +125,12 @@ jobs:
               'rows': 593,
               'phrases': 4744,
               'sha256': expected,
-              'recovery': 'byte-exact recovery from non-expired historical GitHub Actions artifacts; no regeneration or reserialization',
+              'recovery': 'exact frozen-byte reconstruction from historical GitHub Actions artifacts; hash-gated; no model regeneration',
               'recovered_from': provenance,
           }
           (out / 'manifest.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
           print(json.dumps(manifest, ensure_ascii=False, indent=2))
           PY
-
           test "$(sha256sum research/enrichment/v31/gemma4-yv-a593/phrases.jsonl | cut -d' ' -f1)" = "$EXPECTED_SHA"
       - name: Freeze recovered corpus and remove one-shot workflow
         run: |
