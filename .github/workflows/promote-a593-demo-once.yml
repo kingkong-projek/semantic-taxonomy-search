@@ -1,0 +1,119 @@
+name: Promote frozen A593 to research demo
+
+on:
+  push:
+    paths:
+      - '.github/workflows/promote-a593-demo-once.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Patch demo compiler, runtime guard and Pages workflow
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          build = Path('scripts/build_yv_demo_asset.py')
+          s = build.read_text(encoding='utf-8')
+          s = s.replace(
+              '"""Compile the frozen full-universe YV description candidate for the browser demo.\n\nThis is packaging, not a new retrieval experiment. The browser asset mirrors the\nfrozen `YV-description-full-v0-canonical-router` candidate exactly:\n- every active v31 occupation-name identity;\n- canonical preferred label + real definition + canonical alternative labels;\n- the frozen short-query surface/component/fuzzy guard and conservative abstention;\n- exact active job-title preferred-label -> typed occupation-name parent routing.\n\nDiagnostic AF ad-language and Relevanta-kompetenser lanes are deliberately excluded:\nthey were not promoted into the frozen candidate. The compiler emits an authoritative\nparity packet so browser CI must reproduce the Python top five exactly. Full ranking\nparity uses the frozen 333 source-truth cases, the 30-case natural holdout and a\nstable route sample; the route table itself is checked exhaustively as structure.\n"""',
+              '"""Compile the frozen A593 YV candidate for the browser research demo.\n\nThis is packaging, not a new retrieval experiment. The semantic lane is the frozen\nA593 architecture-A checkpoint: all 2,105 active occupation identities, canonical\nsource text for every identity, and eight frozen Gemma teacher phrases appended to\n593 identities. Teacher phrases are semantic evidence only and never exact surfaces.\nThe privileged exact canonical/job-title routing lane remains unchanged.\n\nUnpromoted language-diversity and diagnostic fusion lanes are deliberately excluded.\nThe compiler emits an authoritative parity packet so browser CI must reproduce the\nPython top five exactly.\n"""'
+          )
+          s = s.replace(
+              'from evaluate_c2_job_title_router import build_c1_index, relation_parent_ids\n',
+              'from evaluate_c2_job_title_router import relation_parent_ids\nimport evaluate_gemma_a149 as gemma_ranker\n'
+          )
+          s = s.replace(
+              'ENGINE_ID = "YV-description-full-v0-canonical-router"\nEXPECTED_TARGET_COUNT = 2105\n',
+              'ENGINE_ID = "YV-A593-Gemma4-26B-sequence-expansion-v0"\nEXPECTED_TARGET_COUNT = 2105\nEXPECTED_TEACHER_ROWS = 593\nEXPECTED_TEACHER_PHRASES = 4744\nEXPECTED_TEACHER_SHA256 = "7769db2124ef190d74964ddb9f97da1d67137dad9b51e9e534e4e9bd6a24f847"\n'
+          )
+          needle = '    ap.add_argument("--natural-holdout", default="research/benchmark/v31/fresh-natural-holdout/benchmark.jsonl")\n'
+          repl = needle + '    ap.add_argument("--teacher", default="research/enrichment/v31/gemma4-yv-a593/phrases.jsonl")\n'
+          if needle not in s:
+              raise SystemExit('build arg insertion anchor drift')
+          s = s.replace(needle, repl, 1)
+          old = '    ranker, exact_surfaces, surface_tokens = build_c1_index(by_id, ids)\n'
+          new = '''    gemma_ranker.EXPECTED_TEACHER_ROWS = EXPECTED_TEACHER_ROWS\n    gemma_ranker.EXPECTED_TEACHER_PHRASES = EXPECTED_TEACHER_PHRASES\n    teacher, teacher_sha, _ = gemma_ranker.load_teacher(Path(args.teacher), set(ids))\n    if teacher_sha != EXPECTED_TEACHER_SHA256:\n        raise RuntimeError(f"frozen A593 teacher SHA drift: {teacher_sha}")\n    if len(teacher) != EXPECTED_TEACHER_ROWS:\n        raise RuntimeError(f"frozen A593 teacher coverage drift: {len(teacher)}")\n    ranker, exact_surfaces, surface_tokens = gemma_ranker.build_ranker(by_id, ids, teacher)\n'''
+          if old not in s:
+              raise SystemExit('ranker replacement anchor drift')
+          s = s.replace(old, new, 1)
+          old_meta = '            "runtime_dependencies": [],\n            "build_id": str(args.build_id),\n            "retrieval_contract": (\n                "frozen YV full-universe candidate = canonical BM25 over all active occupation-name identities "\n                "+ exact active job-title preferred-label to typed occupation-name parents; diagnostic lanes excluded"\n            ),\n'
+          new_meta = '            "runtime_dependencies": [],\n            "build_id": str(args.build_id),\n            "teacher_expanded_concepts": len(teacher),\n            "teacher_phrases": sum(len(v) for v in teacher.values()),\n            "teacher_jsonl_sha256": teacher_sha,\n            "retrieval_contract": (\n                "frozen teacher-expanded A593 YV BM25 over all active occupation-name identities "\n                "+ exact canonical/job-title routing; teacher phrases are semantic-only exact-non-surfaces; "\n                "unpromoted language-diversity and diagnostic lanes excluded"\n            ),\n'
+          if old_meta not in s:
+              raise SystemExit('metadata replacement anchor drift')
+          s = s.replace(old_meta, new_meta, 1)
+          old_print = '        "runtime_dependencies": [],\n'
+          new_print = '        "teacher_expanded_concepts": len(teacher),\n        "teacher_phrases": sum(len(v) for v in teacher.values()),\n        "teacher_jsonl_sha256": teacher_sha,\n        "runtime_dependencies": [],\n'
+          # Replace only the final print occurrence, not asset metadata (already changed).
+          idx = s.rfind(old_print)
+          if idx < 0:
+              raise SystemExit('print metadata anchor drift')
+          s = s[:idx] + s[idx:].replace(old_print, new_print, 1)
+          build.write_text(s, encoding='utf-8')
+
+          check = Path('scripts/check_yv_demo_runtime.mjs')
+          c = check.read_text(encoding='utf-8')
+          c = c.replace("if (model.engine !== 'YV-description-full-v0-canonical-router') throw new Error('YV frozen engine drift');", "if (model.engine !== 'YV-A593-Gemma4-26B-sequence-expansion-v0') throw new Error('YV frozen A593 engine drift');")
+          c = c.replace("if (!String(model.metadata?.retrieval_contract || '').includes('diagnostic lanes excluded')) {\n  throw new Error('YV runtime must exclude unpromoted diagnostic lanes');\n}", "if (model.metadata?.teacher_expanded_concepts !== 593) throw new Error('YV A593 teacher coverage drift');\nif (model.metadata?.teacher_phrases !== 4744) throw new Error('YV A593 teacher phrase drift');\nif (model.metadata?.teacher_jsonl_sha256 !== '7769db2124ef190d74964ddb9f97da1d67137dad9b51e9e534e4e9bd6a24f847') throw new Error('YV A593 teacher SHA drift');\nif (!String(model.metadata?.retrieval_contract || '').includes('unpromoted language-diversity and diagnostic lanes excluded')) {\n  throw new Error('YV runtime must exclude unpromoted language-diversity/diagnostic lanes');\n}")
+          c = c.replace("  job_title_route_surfaces: routeEntries.length,", "  teacher_expanded_concepts: model.metadata.teacher_expanded_concepts,\n  teacher_phrases: model.metadata.teacher_phrases,\n  job_title_route_surfaces: routeEntries.length,")
+          check.write_text(c, encoding='utf-8')
+
+          wf = Path('.github/workflows/pages-demo.yml')
+          w = wf.read_text(encoding='utf-8')
+          anchor = "      - 'scripts/build_yv_demo_asset.py'\n"
+          w = w.replace(anchor, anchor + "      - 'scripts/evaluate_gemma_a149.py'\n      - 'scripts/evaluate_gemma_a593.py'\n", 1)
+          anchor2 = "      - 'research/enrichment/v31/model-teacher-kv-ranks301-316/**'\n"
+          w = w.replace(anchor2, anchor2 + "      - 'research/enrichment/v31/gemma4-yv-a593/**'\n      - 'research/evaluation/v31/compile-time-semantic-tournament-a593.json'\n", 1)
+          old_step = "      - name: Compile frozen full-universe YV browser asset\n        run: |\n          # Keep the legacy filename as the stable Pages URL; engine metadata is authoritative.\n          python scripts/build_yv_demo_asset.py \\\n            --output demo/assets/yv-c2.json \\\n            --parity-output artifacts/yv-demo-parity-v1.json \\\n            --build-id \"$GITHUB_SHA\"\n"
+          new_step = "      - name: Reproduce frozen A593 checkpoint before packaging\n        run: |\n          python scripts/evaluate_gemma_a593.py \\\n            --teacher research/enrichment/v31/gemma4-yv-a593/phrases.jsonl \\\n            --output artifacts/a593-reproduction.json\n          python - <<'PY'\n          import json\n          from pathlib import Path\n          frozen = json.loads(Path('research/evaluation/v31/compile-time-semantic-tournament-a593.json').read_text())\n          replay = json.loads(Path('artifacts/a593-reproduction.json').read_text())\n          for key in ('candidate','coverage','size','strict_source_attested_17','opened_stress_54','canonical_source_truth_333'):\n              if replay[key] != frozen[key]:\n                  raise SystemExit(f'A593 frozen parity drift in {key}')\n          print('A593 frozen checkpoint reproduced exactly')\n          PY\n      - name: Compile frozen A593 YV browser asset\n        run: |\n          # Keep the legacy filename as the stable Pages URL; engine metadata is authoritative.\n          python scripts/build_yv_demo_asset.py \\\n            --teacher research/enrichment/v31/gemma4-yv-a593/phrases.jsonl \\\n            --output demo/assets/yv-c2.json \\\n            --parity-output artifacts/yv-demo-parity-v1.json \\\n            --build-id \"$GITHUB_SHA\"\n"
+          if old_step not in w:
+              raise SystemExit('Pages YV step anchor drift')
+          w = w.replace(old_step, new_step, 1)
+          wf.write_text(w, encoding='utf-8')
+          PY
+      - name: Validate promotion before commit
+        run: |
+          set -euo pipefail
+          python -m py_compile scripts/build_yv_demo_asset.py scripts/evaluate_gemma_a149.py scripts/evaluate_gemma_a593.py
+          python scripts/evaluate_gemma_a593.py \
+            --teacher research/enrichment/v31/gemma4-yv-a593/phrases.jsonl \
+            --output artifacts/a593-reproduction.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          frozen = json.loads(Path('research/evaluation/v31/compile-time-semantic-tournament-a593.json').read_text())
+          replay = json.loads(Path('artifacts/a593-reproduction.json').read_text())
+          for key in ('candidate','coverage','size','strict_source_attested_17','opened_stress_54','canonical_source_truth_333'):
+              if replay[key] != frozen[key]:
+                  raise SystemExit(f'A593 frozen parity drift in {key}')
+          PY
+          python scripts/build_yv_demo_asset.py \
+            --teacher research/enrichment/v31/gemma4-yv-a593/phrases.jsonl \
+            --output demo/assets/yv-c2.json \
+            --parity-output artifacts/yv-demo-parity-v1.json \
+            --build-id precommit
+          node scripts/check_yv_demo_runtime.mjs demo/assets/yv-c2.json artifacts/yv-demo-parity-v1.json
+          git checkout -- demo/assets/yv-c2.json || true
+          rm -f artifacts/a593-reproduction.json artifacts/yv-demo-parity-v1.json
+      - name: Commit promotion and remove one-shot workflow
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          rm .github/workflows/promote-a593-demo-once.yml
+          git add scripts/build_yv_demo_asset.py scripts/check_yv_demo_runtime.mjs .github/workflows/pages-demo.yml .github/workflows/promote-a593-demo-once.yml
+          git commit -m 'demo: deploy frozen A593 YV ranker'
+          git push
