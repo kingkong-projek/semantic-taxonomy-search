@@ -4,16 +4,18 @@ on:
   push:
     paths:
       - '.github/workflows/fix-a593-demo-engine-once.yml'
+  workflow_dispatch:
 
 permissions:
   contents: write
+  actions: write
 
 jobs:
   fix:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Register A593 on existing YV runtime and retrigger promotion
+      - name: Register A593 on existing YV runtime
         run: |
           python - <<'PY'
           from pathlib import Path
@@ -24,19 +26,16 @@ jobs:
           if old not in s:
               raise SystemExit('YV engine registration anchor drift')
           p.write_text(s.replace(old, new, 1), encoding='utf-8')
-          q = Path('.github/workflows/promote-a593-demo-once.yml')
-          t = q.read_text(encoding='utf-8')
-          marker = '# retrigger: A593 engine id registered\n'
-          if marker not in t:
-              t += '\n' + marker
-          q.write_text(t, encoding='utf-8')
           PY
-      - name: Commit fix and remove one-shot workflow
+      - name: Commit runtime registration
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          rm .github/workflows/fix-a593-demo-engine-once.yml
-          git add demo/search-engine.js .github/workflows/promote-a593-demo-once.yml .github/workflows/fix-a593-demo-engine-once.yml
+          git add demo/search-engine.js
           git commit -m 'demo: register frozen A593 engine id'
           git push
+      - name: Dispatch tested A593 promotion from updated main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run promote-a593-demo-once.yml --ref main
