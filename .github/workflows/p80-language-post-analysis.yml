@@ -1,0 +1,32 @@
+name: P80 language post-analysis
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/p80-language-post-analysis.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  analyze:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Diagnose canonical guard
+        run: |
+          python -m py_compile scripts/analyze_p80_language_canonical_guard.py
+          python scripts/analyze_p80_language_canonical_guard.py
+      - name: Freeze diagnosis
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/evaluation/v31/p80-language-diversity-canonical-guard-diagnosis-v0.json
+          git commit -m 'research: freeze P80 canonical guard diagnosis'
+          git push
