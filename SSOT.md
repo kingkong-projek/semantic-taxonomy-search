@@ -14,9 +14,11 @@ This file is the canonical entrypoint for current project state.
 
 Occupation Track 2 now optimizes and evaluates **P80 first: 159 occupations covering 80% of the frozen historical occurrence proxy**. This is a quality-priority stratum only; all **2,105** active v31 `occupation-name` identities remain eligible retrieval destinations.
 
-Current frozen diversified-language overlap is **41/159 P80 occupations**; this does not authorize generating the same synthetic policy for the remaining 118. Broad synthetic scaling remains paused after the mixed full-universe opened replay. The next decision-bearing loop is fresh independent human/user description evidence sampled primarily from P80 under the existing frozen human-study contract. P90/P95/full-tail optimization is deferred until P80 evidence warrants expansion.
+The bounded P80 language expansion is now complete. The same frozen language-diversity policy was attempted for the **118 P80 occupations** previously missing coverage, with no ranker change and all **2,105** active occupations still competing. Source evidence supported generation for 96/118; 22 source-thin identities were left unmanufactured. The full-universe P80 holdout covers **117 concepts / 426 queries** and improves A593 **Top1 53.99% -> 65.02% (+11.03 pp)** and **Hit@5 77.70% -> 83.57% (+5.87 pp)**; demand-weighted Top1 is also **+11.03 pp**.
 
-Evidence: `docs/findings/p80-track2-priority-2026-09-09.md` and `research/evaluation/v31/p80-track2-priority-coverage.json`.
+The preregistered strict gate is recorded as failed because canonical source-truth Top1 moved `331/333 -> 330/333` with Hit@5 unchanged at `333/333`. Deterministic diagnosis shows only three long `canonical_definition` rows changed: two `rank 1 -> 2`, one `2 -> 1`; **no exact preferred-label case regressed**. Do not retroactively relabel the strict gate as passed, but do advance the P80 challenger to the already-planned **small independent human confirmation**. The deployed YV candidate remains A593 until that human gate clears. P90/P95/full-tail expansion remains deferred.
+
+Evidence: `docs/findings/p80-language-diversity-result-2026-09-09.md`, `research/evaluation/v31/p80-language-diversity-result-v0.json`, and `research/evaluation/v31/p80-language-diversity-canonical-guard-diagnosis-v0.json`.
 
 ## Current amendment — 2026-09-09: A593 language-diversity gate complete
 
