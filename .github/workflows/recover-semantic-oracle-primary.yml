@@ -1,0 +1,68 @@
+name: Recover completed semantic oracle primary artifact
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/recover-semantic-oracle-primary.yml'
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  recover:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download completed primary artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/oracle
+          mkdir -p /tmp/oracle
+          gh run download 34383582884 --repo kingkong-projek/semantic-taxonomy-search --name p80-display-semantic-oracle-v0 --dir /tmp/oracle
+          test -f /tmp/oracle/p80-display-semantic-oracle-v0.json
+          test -f /tmp/oracle/p80-display-semantic-oracle-judgments-v0.jsonl
+      - name: Verify frozen primary before recovery
+        run: |
+          python - <<'PY'
+          import json
+          from collections import Counter
+          from pathlib import Path
+          p=Path('/tmp/oracle/p80-display-semantic-oracle-v0.json')
+          r=json.loads(p.read_text(encoding='utf-8'))
+          assert r['id']=='YV-P80-display-semantic-oracle-v0'
+          assert r.get('complete') is True
+          assert r['decision_gate']['strong_passed'] is True
+          assert r['evaluation']['retained_hit5']==r['evaluation']['baseline_hit5']==167
+          assert r['evaluation']['retained_tail_hits_rank2_5']==r['evaluation']['baseline_tail_hits_rank2_5']==87
+          assert r['evaluation']['safe_cross_ssyk_tail_negative_reduction'] >= 0.60
+          rows=[json.loads(x) for x in Path('/tmp/oracle/p80-display-semantic-oracle-judgments-v0.jsonl').read_text(encoding='utf-8').splitlines() if x.strip()]
+          counts=Counter(x['case_key'] for x in rows)
+          dup={k:v for k,v in counts.items() if v>1}
+          assert len(rows)==674
+          assert len(counts)==672
+          assert sorted(dup.values())==[2,2]
+          # Duplicate rows are byte-equivalent after canonical JSON serialization.
+          for key in dup:
+              same=[x for x in rows if x['case_key']==key]
+              assert same[0]==same[1]
+          print(json.dumps({'rows':len(rows),'unique_case_keys':len(counts),'exact_duplicate_keys':len(dup),'strong_passed':True}, indent=2))
+          PY
+      - name: Recover primary evidence to repository
+        run: |
+          set -euo pipefail
+          cp /tmp/oracle/p80-display-semantic-oracle-v0.json research/evaluation/v31/
+          cp /tmp/oracle/p80-display-semantic-oracle-judgments-v0.jsonl research/evaluation/v31/
+          cp /tmp/oracle/p80-display-semantic-oracle-run-status-v0.json research/evaluation/v31/
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            research/evaluation/v31/p80-display-semantic-oracle-v0.json \
+            research/evaluation/v31/p80-display-semantic-oracle-judgments-v0.jsonl \
+            research/evaluation/v31/p80-display-semantic-oracle-run-status-v0.json
+          git commit -m 'research: recover completed semantic oracle primary result'
+          git pull --rebase origin main
+          git push
