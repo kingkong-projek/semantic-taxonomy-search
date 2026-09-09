@@ -35,9 +35,10 @@ jobs:
           python -m py_compile
           scripts/evaluate_gemma_a149.py
           scripts/evaluate_a593_language_diversity_falsifier.py
+          scripts/run_a593_language_diversity_evaluator_v2.py
       - name: Evaluate fixed A against A plus diversified language
         run: >-
-          python scripts/evaluate_a593_language_diversity_falsifier.py
+          python scripts/run_a593_language_diversity_evaluator_v2.py
           --teacher artifacts/a593/gemma-a593-teacher.jsonl
           --training research/training/v31/a593-language-diversity-training-v0.jsonl
           --holdout research/evaluation/v31/a593-language-diversity-holdout-v0.jsonl
