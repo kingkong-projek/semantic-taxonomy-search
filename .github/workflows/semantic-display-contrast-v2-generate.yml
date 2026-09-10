@@ -1,0 +1,87 @@
+name: Generate semantic display contrast v2
+
+on:
+  push:
+    paths:
+      - 'research/evaluation/v31/semantic-display-hard-confusion-v2-preregistration.json'
+      - 'scripts/generate_semantic_display_contrast_v2.py'
+      - '.github/workflows/semantic-display-contrast-v2-generate.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: semantic-display-contrast-v2-generate
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify frozen generation boundary
+        run: |
+          python -m py_compile scripts/generate_semantic_display_contrast_v2.py
+          python - <<'PY'
+          import json
+          p=json.load(open('research/evaluation/v31/semantic-display-hard-confusion-v2-preregistration.json',encoding='utf-8'))
+          assert p['status']=='frozen before v2 contrast generation and oracle outcomes'
+          assert p['query_evaluation']['year']==2021
+          assert p['contrast_generation']['generator_may_see_any_historical_query_or_ad_text'] is False
+          assert p['opened_data_policy']['opened_17_88_loaded_for_generation_design_or_execution'] is False
+          print('v2 generation boundary verified')
+          PY
+      - name: Generate source-grounded contrast durably
+        run: |
+          python scripts/generate_semantic_display_contrast_v2.py \
+            --requests-per-minute 3 \
+            --attempts-per-pair 6
+      - name: Persist artifact or recovery checkpoint
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for f in \
+            research/evaluation/v31/semantic-display-hard-confusion-v2-contrast-evidence.json \
+            research/evaluation/v31/semantic-display-hard-confusion-v2-contrast-checkpoint.json \
+            research/evaluation/v31/semantic-display-hard-confusion-v2-contrast-status.json; do
+            [ ! -f "$f" ] || git add "$f"
+          done
+          if git diff --cached --quiet; then
+            echo 'No contrast state change.'
+          else
+            git commit -m 'research: persist semantic contrast v2 evidence state'
+            git pull --rebase origin main
+            git push
+          fi
+      - name: Upload recovery artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: semantic-display-contrast-v2
+          path: |
+            research/evaluation/v31/semantic-display-hard-confusion-v2-contrast-evidence.json
+            research/evaluation/v31/semantic-display-hard-confusion-v2-contrast-checkpoint.json
+            research/evaluation/v31/semantic-display-hard-confusion-v2-contrast-status.json
+          if-no-files-found: warn
+      - name: Require complete contrast artifact
+        if: always()
+        run: |
+          python - <<'PY'
+          import json, os
+          p='research/evaluation/v31/semantic-display-hard-confusion-v2-contrast-evidence.json'
+          if not os.path.exists(p):
+              raise SystemExit('contrast generation incomplete; durable checkpoint was persisted')
+          r=json.load(open(p,encoding='utf-8'))
+          print({'pairs':r['pairs'],'bilateral':r['pairs_with_bilateral_contrast'],'coverage_gate':r['coverage_gate_passed']})
+          if not r['coverage_gate_passed']:
+              raise SystemExit('preregistered contrast coverage gate failed; do not evaluate 2021')
+          PY
