@@ -5,6 +5,7 @@ on:
     paths:
       - 'research/evaluation/v31/semantic-display-hard-confusion-v2-preregistration.json'
       - 'scripts/generate_semantic_display_contrast_v2.py'
+      - 'scripts/run_semantic_display_contrast_v2_transport.py'
       - '.github/workflows/semantic-display-contrast-v2-generate.yml'
   workflow_dispatch:
 
@@ -26,21 +27,27 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Verify frozen generation boundary
+      - name: Verify frozen generation boundary and transport adapter
         run: |
-          python -m py_compile scripts/generate_semantic_display_contrast_v2.py
+          python -m py_compile \
+            scripts/generate_semantic_display_contrast_v2.py \
+            scripts/run_semantic_display_contrast_v2_transport.py
           python - <<'PY'
           import json
+          import sys
+          sys.path.insert(0, 'scripts')
+          import run_semantic_display_contrast_v2_transport as transport
+          transport.self_test()
           p=json.load(open('research/evaluation/v31/semantic-display-hard-confusion-v2-preregistration.json',encoding='utf-8'))
           assert p['status']=='frozen before v2 contrast generation and oracle outcomes'
           assert p['query_evaluation']['year']==2021
           assert p['contrast_generation']['generator_may_see_any_historical_query_or_ad_text'] is False
           assert p['opened_data_policy']['opened_17_88_loaded_for_generation_design_or_execution'] is False
-          print('v2 generation boundary verified')
+          print('v2 generation boundary and singleton transport verified')
           PY
       - name: Generate source-grounded contrast durably
         run: |
-          python scripts/generate_semantic_display_contrast_v2.py \
+          python scripts/run_semantic_display_contrast_v2_transport.py \
             --requests-per-minute 3 \
             --attempts-per-pair 6
       - name: Persist artifact or recovery checkpoint
