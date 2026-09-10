@@ -1,14 +1,17 @@
 {
-  "contract": {
-    "expected_pairs": 11,
-    "model": "gemma-4-26b-a4b-it",
-    "pair_population_sha256": "29f0a06496c3736033b59a73e3e7d8431310c0ecac72e09619fa061b94021adb",
-    "prompt_sha256": "02bba57f9d3afec4f65309704e7e97a1258a122c70f05a49ebfa62ed80f2306d",
-    "taxonomy_sha256": "634fd9d848a172747e54e3e487160a912ae6c0fcb8219c50998767c8c9aacbcc",
-    "version": "semantic-display-contrast-v2-checkpoint-v0"
-  },
-  "rows": {
-    "pair-01": {
+  "coverage_gate_minimum": 8,
+  "coverage_gate_passed": true,
+  "historical_query_or_ad_text_loaded": false,
+  "id": "YV-semantic-display-hard-confusion-v2-contrast-evidence",
+  "model": "gemma-4-26b-a4b-it",
+  "negative_fact_policy": "absence from peer source evidence is never encoded as inability/non-applicability",
+  "opened_17_88_loaded": false,
+  "pairs": 11,
+  "pairs_with_bilateral_contrast": 10,
+  "preregistration": "research/evaluation/v31/semantic-display-hard-confusion-v2-preregistration.json",
+  "prompt_sha256": "02bba57f9d3afec4f65309704e7e97a1258a122c70f05a49ebfa62ed80f2306d",
+  "rows": [
+    {
       "a_concept_id": "2546_5Ve_4ep",
       "a_definition_sha256": "5fddf7c5492df0d50f0fd2f9df90debf12f4506ba2f8b0c54c7bfafaab765212",
       "a_spans": [
@@ -23,7 +26,7 @@
       ],
       "pair_id": "pair-01"
     },
-    "pair-02": {
+    {
       "a_concept_id": "31Uw_P9P_AgC",
       "a_definition_sha256": "8d587982b8ab9286e24df40bcc53dd6a02489067838a434bdc9f7c06585f8921",
       "a_spans": [
@@ -38,7 +41,7 @@
       ],
       "pair_id": "pair-02"
     },
-    "pair-03": {
+    {
       "a_concept_id": "te5X_YVU_JaR",
       "a_definition_sha256": "2c171cef89919bde853bb8b9e7ae8e3c7a5a63c15ec05c3253f629f9583b7527",
       "a_spans": [
@@ -51,7 +54,7 @@
       ],
       "pair_id": "pair-03"
     },
-    "pair-04": {
+    {
       "a_concept_id": "1gxo_A2w_5A3",
       "a_definition_sha256": "9b97748acdc01865013c640ff040e218ed7c2bcb3faf7a3bcb096fc8b25426f5",
       "a_spans": [
@@ -64,7 +67,7 @@
       ],
       "pair_id": "pair-04"
     },
-    "pair-05": {
+    {
       "a_concept_id": "3RzT_cHB_vVp",
       "a_definition_sha256": "8254c045a10c9a9a85fc030e0c15959aa296eac965e825da6503400009fa7caa",
       "a_spans": [
@@ -80,7 +83,7 @@
       ],
       "pair_id": "pair-05"
     },
-    "pair-06": {
+    {
       "a_concept_id": "7Kxn_MMG_TuY",
       "a_definition_sha256": "7cac8c800b71889da34f71e408517b9b159f48651c476f09e80ba7c57c61b449",
       "a_spans": [],
@@ -92,7 +95,7 @@
       ],
       "pair_id": "pair-06"
     },
-    "pair-07": {
+    {
       "a_concept_id": "2hTu_y9K_CxY",
       "a_definition_sha256": "5f03544db7b902a3028b2cd0ea113120f18b0635ee62997eaadfe07ab7bfed8e",
       "a_spans": [
@@ -109,7 +112,7 @@
       ],
       "pair_id": "pair-07"
     },
-    "pair-08": {
+    {
       "a_concept_id": "E7nX_ux2_hF9",
       "a_definition_sha256": "94951369421924c56decca8176bcb2721486106c8d7c4b50c46aa7384bc596e7",
       "a_spans": [
@@ -124,7 +127,7 @@
       ],
       "pair_id": "pair-08"
     },
-    "pair-09": {
+    {
       "a_concept_id": "1Kv4_35e_BX3",
       "a_definition_sha256": "ddb537c1e2139ec57a1b22f3e6dd95d61d5564dcec7ea702b7df7e7029303a4c",
       "a_spans": [
@@ -140,7 +143,7 @@
       ],
       "pair_id": "pair-09"
     },
-    "pair-10": {
+    {
       "a_concept_id": "3MDV_uBQ_6oG",
       "a_definition_sha256": "3a72af5675b839858ec1848b6993e6c4d13677fabd56020a70d4755796414c66",
       "a_spans": [
@@ -156,7 +159,7 @@
       ],
       "pair_id": "pair-10"
     },
-    "pair-11": {
+    {
       "a_concept_id": "HWPy_9jT_TX2",
       "a_definition_sha256": "9b23ba5aa7693fce3fcdf7551d13c505f9dac5c59799964f304f49d73e36cecf",
       "a_spans": [
@@ -173,8 +176,10 @@
       ],
       "pair_id": "pair-11"
     }
-  },
-  "transport_failures": {},
+  ],
+  "source": "v31 canonical preferred label, alternative labels and definition; emitted spans validate verbatim against own definition",
+  "status": "complete preregistered source-grounded pairwise contrast artifact",
+  "taxonomy_sha256": "634fd9d848a172747e54e3e487160a912ae6c0fcb8219c50998767c8c9aacbcc",
   "usage_metadata": [
     {
       "candidatesTokenCount": 87,

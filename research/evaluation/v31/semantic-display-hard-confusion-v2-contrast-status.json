@@ -1,6 +1,6 @@
 {
-  "complete": false,
-  "completed_pairs": 0,
+  "complete": true,
+  "completed_pairs": 11,
   "contract": {
     "expected_pairs": 11,
     "model": "gemma-4-26b-a4b-it",
@@ -11,6 +11,6 @@
   },
   "expected_pairs": 11,
   "id": "YV-semantic-display-hard-confusion-v2-contrast-status",
-  "phase": "incomplete",
-  "transport_failure_pairs": 11
+  "phase": "complete",
+  "transport_failure_pairs": 0
 }
