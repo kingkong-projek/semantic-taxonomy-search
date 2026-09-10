@@ -1,0 +1,86 @@
+{
+  "id": "YV-semantic-display-hard-confusion-v2-preregistration",
+  "status": "frozen before v2 contrast generation and oracle outcomes",
+  "date": "2026-09-10",
+  "question": "Can explicit pairwise source-grounded contrast evidence reject plausible adjacent-role hard negatives while preserving the true target, where simply adding more positive task evidence failed?",
+  "prior_evidence_boundary": {
+    "v1_result": "research/evaluation/v31/semantic-display-hard-confusion-v1-result.json",
+    "v1_result_git_blob_sha": "78b63d08529bdcb96fe7f292af57f951e67786d5",
+    "v1_target_non_drop": "79/79",
+    "v1_challenger_hard_negative_drop": "13/79",
+    "v1_control_hard_negative_drop": "16/79",
+    "v1_conclusion": "more positive task evidence is rejected as the mechanism; v2 changes evidence structure to pairwise contrast rather than increasing positive prose"
+  },
+  "opened_data_policy": {
+    "opened_17_88_loaded_for_generation_design_or_execution": false,
+    "yv01_or_yv02_outcomes_allowed_for_generation_or_selection": false,
+    "opened_replay_allowed_only_after_independent_v2_gate": true
+  },
+  "retrieval_boundary": {
+    "retrieval_ranker_changed": false,
+    "production_rank_order_changed": false,
+    "candidate_set_for_hard_confusion_test": "the fixed two concepts in each pre-existing hard-confusion pair",
+    "purpose": "candidate-display relevance mechanism test only"
+  },
+  "hard_confusion_population": {
+    "source_artifact": "research/evaluation/v31/compile-time-semantic-a593-confusion-task-atoms-v0.json",
+    "source_artifact_git_blob_sha": "2a48f4a400a81684e497ae62661bc32d80b88ed5",
+    "pairs": 11,
+    "concepts": 22,
+    "pair_population_may_not_be_changed_after_v2_generation": true
+  },
+  "contrast_generation": {
+    "source": "canonical v31 preferred label, alternative labels and definition for both concepts in a fixed pair",
+    "generator_may_see_both_candidates_in_pair": true,
+    "generator_may_see_occupation_names": true,
+    "generator_may_see_any_historical_query_or_ad_text": false,
+    "generator_may_see_v1_2022_queries_or_judgments": false,
+    "generator_may_see_2023_or_2024_evaluation_queries": false,
+    "generator_may_see_opened_17_88": false,
+    "output_per_candidate": "0-4 verbatim source spans, each <=24 words, selected because it is comparatively useful for distinguishing that candidate from its paired peer",
+    "source_grounding": "every emitted span must validate as a normalized verbatim substring of that candidate's supplied canonical source evidence",
+    "negative_fact_policy": "never infer that the peer cannot perform an activity merely because it is absent from supplied evidence; contrast evidence is positive evidence for its own candidate only",
+    "insufficient_source_policy": "emit an empty list rather than invent a distinction",
+    "artifact_must_be_committed_before_query_evaluation": true
+  },
+  "query_evaluation": {
+    "source": "historical Platsbanken natural task text",
+    "year": 2021,
+    "reason_for_year": "new independent time slice; 2022 was used by v1 and 2023/2024 by earlier display work",
+    "structured_occupation_used_only_as_evaluation_target": true,
+    "headline_used_as_query": false,
+    "target_title_sentences_removed": true,
+    "raw_query_text_committed": false,
+    "max_accepted_ads_per_target_concept": 5,
+    "minimum_total_cases_for_decision": 40,
+    "minimum_pairs_with_at_least_one_case": 8
+  },
+  "oracle_protocol": {
+    "verdicts": ["keep", "uncertain", "drop"],
+    "drop_semantics": "only clearly semantically irrelevant according to supplied evidence",
+    "uncertain_policy": "retained",
+    "teacher_sees_rank": false,
+    "teacher_sees_structured_target": false,
+    "teacher_sees_ssyk": false,
+    "candidate_order": "deterministically shuffled",
+    "control": "common v2 prompt with compact canonical evidence and no pairwise contrast spans",
+    "challenger": "same prompt/evidence plus the precommitted pairwise contrast spans",
+    "contrast_semantics_in_prompt": "contrast spans are positive source-grounded cues selected relative to the peer; their absence from the peer is never proof of impossibility or irrelevance"
+  },
+  "decision_gate": {
+    "sample_valid": "at least 40 cases across at least 8 fixed pairs",
+    "contrast_artifact_coverage": "at least 8 fixed pairs have at least one validated contrast span for each side",
+    "target_safety": "challenger target non-drop retention >=0.98 and no more than one additional target drop versus control",
+    "hard_negative_absolute": "challenger paired hard-negative drop rate >=0.70",
+    "hard_negative_materiality": "challenger paired hard-negative drop rate improves by >=0.20 absolute versus control",
+    "pair_breadth": "at least 60% of evaluated pairs achieve challenger hard-negative drop rate >=0.50",
+    "pass_requires_all": true,
+    "if_pass": "freeze exact contrast artifact and v2 oracle contract; then replay unchanged opened stress only as falsifier",
+    "if_fail": "do not replay opened and do not distill; next reassess whether richer independent source domains or human judgments are required"
+  },
+  "production_boundary": {
+    "runtime_llm_or_provider_api_allowed": false,
+    "student_distillation_allowed_before_independent_and_opened_gates": false,
+    "human_relevance_validation_still_required_for_promotion": true
+  }
+}
