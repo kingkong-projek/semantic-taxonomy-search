@@ -1,0 +1,89 @@
+name: Patch v2 singleton JSON transport
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/patch-v2-singleton-json-transport.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: patch-v2-singleton-json-transport
+  cancel-in-progress: true
+
+jobs:
+  patch:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Normalize singleton object arrays from JSON transport
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          parser = Path('scripts/generate_a593_language_diversity_falsifier.py')
+          text = parser.read_text(encoding='utf-8')
+          old = '''    if not isinstance(value, dict):
+        raise RuntimeError("response JSON must be object")
+    return value
+'''
+          new = '''    # Some Gemini JSON-mode responses serialize the requested single object as
+    # a one-element JSON array. Treat only that wire-shape as transport-equivalent;
+    # broader coercion would hide malformed model output.
+    if isinstance(value, list) and len(value) == 1 and isinstance(value[0], dict):
+        value = value[0]
+    if not isinstance(value, dict):
+        raise RuntimeError(
+            f"response JSON must be object or singleton-object list; got {type(value).__name__}: {text[:240]!r}"
+        )
+    return value
+'''
+          if old not in text:
+              raise SystemExit('expected parser block not found')
+          parser.write_text(text.replace(old, new, 1), encoding='utf-8')
+
+          wf = Path('.github/workflows/semantic-display-contrast-v2-generate.yml')
+          text = wf.read_text(encoding='utf-8')
+          needle = "      - 'scripts/generate_semantic_display_contrast_v2.py'\n"
+          addition = needle + "      - 'scripts/generate_a593_language_diversity_falsifier.py'\n"
+          if "scripts/generate_a593_language_diversity_falsifier.py" not in text:
+              if needle not in text:
+                  raise SystemExit('generator workflow path block not found')
+              text = text.replace(needle, addition, 1)
+          wf.write_text(text, encoding='utf-8')
+          PY
+          python -m py_compile scripts/generate_a593_language_diversity_falsifier.py scripts/generate_semantic_display_contrast_v2.py
+          python - <<'PY'
+          import json
+          import sys
+          sys.path.insert(0, 'scripts')
+          import generate_a593_language_diversity_falsifier as g
+
+          def payload(text):
+              return {'candidates':[{'content':{'parts':[{'text':text}]}}]}
+
+          assert g.extract_json(payload('{"x":1}')) == {'x':1}
+          assert g.extract_json(payload('[{"x":1}]')) == {'x':1}
+          for bad in ('[]', '[{"x":1},{"x":2}]', '[1]', '"x"'):
+              try:
+                  g.extract_json(payload(bad))
+              except RuntimeError:
+                  pass
+              else:
+                  raise AssertionError(f'accepted malformed transport {bad}')
+          print('singleton JSON transport normalization verified')
+          PY
+      - name: Commit transport fix
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add scripts/generate_a593_language_diversity_falsifier.py .github/workflows/semantic-display-contrast-v2-generate.yml
+          git commit -m 'fix: accept singleton-object JSON transport'
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin main && git push && exit 0
+            sleep $((i * 2))
+          done
+          exit 1
