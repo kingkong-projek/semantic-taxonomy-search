@@ -1,0 +1,229 @@
+{
+  "challenger": {
+    "evidence_version": "v0-compact-plus-source-grounded-pair-contrast-v2",
+    "metrics": {
+      "by_pair": {
+        "pair-01": {
+          "cases": 1,
+          "hard_negative_drop_rate": 0.0,
+          "negative_drop": 0,
+          "target_drop": 0,
+          "target_non_drop_rate": 1.0
+        },
+        "pair-02": {
+          "cases": 4,
+          "hard_negative_drop_rate": 0.0,
+          "negative_drop": 0,
+          "target_drop": 0,
+          "target_non_drop_rate": 1.0
+        },
+        "pair-03": {
+          "cases": 10,
+          "hard_negative_drop_rate": 0.1,
+          "negative_drop": 1,
+          "target_drop": 0,
+          "target_non_drop_rate": 1.0
+        },
+        "pair-04": {
+          "cases": 5,
+          "hard_negative_drop_rate": 0.6,
+          "negative_drop": 3,
+          "target_drop": 1,
+          "target_non_drop_rate": 0.8
+        },
+        "pair-05": {
+          "cases": 4,
+          "hard_negative_drop_rate": 0.25,
+          "negative_drop": 1,
+          "target_drop": 0,
+          "target_non_drop_rate": 1.0
+        },
+        "pair-06": {
+          "cases": 10,
+          "hard_negative_drop_rate": 0.6,
+          "negative_drop": 6,
+          "target_drop": 0,
+          "target_non_drop_rate": 1.0
+        },
+        "pair-07": {
+          "cases": 10,
+          "hard_negative_drop_rate": 0.3,
+          "negative_drop": 3,
+          "target_drop": 0,
+          "target_non_drop_rate": 1.0
+        },
+        "pair-08": {
+          "cases": 10,
+          "hard_negative_drop_rate": 0.3,
+          "negative_drop": 3,
+          "target_drop": 2,
+          "target_non_drop_rate": 0.8
+        },
+        "pair-09": {
+          "cases": 10,
+          "hard_negative_drop_rate": 0.6,
+          "negative_drop": 6,
+          "target_drop": 1,
+          "target_non_drop_rate": 0.9
+        },
+        "pair-10": {
+          "cases": 5,
+          "hard_negative_drop_rate": 0.6,
+          "negative_drop": 3,
+          "target_drop": 0,
+          "target_non_drop_rate": 1.0
+        },
+        "pair-11": {
+          "cases": 7,
+          "hard_negative_drop_rate": 0.142857,
+          "negative_drop": 1,
+          "target_drop": 1,
+          "target_non_drop_rate": 0.857143
+        }
+      },
+      "cases": 76,
+      "hard_negative_drop": 27,
+      "hard_negative_drop_rate": 0.355263,
+      "hard_negative_keep": 8,
+      "hard_negative_uncertain": 41,
+      "target_drop": 5,
+      "target_keep": 44,
+      "target_keep_rate": 0.578947,
+      "target_non_drop": 71,
+      "target_non_drop_rate": 0.934211,
+      "target_uncertain": 27
+    }
+  },
+  "contrast_artifact": "research/evaluation/v31/semantic-display-hard-confusion-v2-contrast-evidence.json",
+  "contrast_artifact_sha256": "7faf9dfe8ede2bce935e52b8da6e58d37ad8056f568db49ef44d3df764c6fa9a",
+  "contrast_pairs_with_bilateral_evidence": 10,
+  "control": {
+    "evidence_version": "v0-compact-plus-empty-pair-contrast-v2",
+    "metrics": {
+      "by_pair": {
+        "pair-01": {
+          "cases": 1,
+          "hard_negative_drop_rate": 0.0,
+          "negative_drop": 0,
+          "target_drop": 0,
+          "target_non_drop_rate": 1.0
+        },
+        "pair-02": {
+          "cases": 4,
+          "hard_negative_drop_rate": 0.0,
+          "negative_drop": 0,
+          "target_drop": 0,
+          "target_non_drop_rate": 1.0
+        },
+        "pair-03": {
+          "cases": 10,
+          "hard_negative_drop_rate": 0.0,
+          "negative_drop": 0,
+          "target_drop": 0,
+          "target_non_drop_rate": 1.0
+        },
+        "pair-04": {
+          "cases": 5,
+          "hard_negative_drop_rate": 0.8,
+          "negative_drop": 4,
+          "target_drop": 0,
+          "target_non_drop_rate": 1.0
+        },
+        "pair-05": {
+          "cases": 4,
+          "hard_negative_drop_rate": 0.25,
+          "negative_drop": 1,
+          "target_drop": 0,
+          "target_non_drop_rate": 1.0
+        },
+        "pair-06": {
+          "cases": 10,
+          "hard_negative_drop_rate": 0.2,
+          "negative_drop": 2,
+          "target_drop": 0,
+          "target_non_drop_rate": 1.0
+        },
+        "pair-07": {
+          "cases": 10,
+          "hard_negative_drop_rate": 0.0,
+          "negative_drop": 0,
+          "target_drop": 0,
+          "target_non_drop_rate": 1.0
+        },
+        "pair-08": {
+          "cases": 10,
+          "hard_negative_drop_rate": 0.3,
+          "negative_drop": 3,
+          "target_drop": 1,
+          "target_non_drop_rate": 0.9
+        },
+        "pair-09": {
+          "cases": 10,
+          "hard_negative_drop_rate": 0.7,
+          "negative_drop": 7,
+          "target_drop": 1,
+          "target_non_drop_rate": 0.9
+        },
+        "pair-10": {
+          "cases": 5,
+          "hard_negative_drop_rate": 0.6,
+          "negative_drop": 3,
+          "target_drop": 0,
+          "target_non_drop_rate": 1.0
+        },
+        "pair-11": {
+          "cases": 7,
+          "hard_negative_drop_rate": 0.0,
+          "negative_drop": 0,
+          "target_drop": 0,
+          "target_non_drop_rate": 1.0
+        }
+      },
+      "cases": 76,
+      "hard_negative_drop": 20,
+      "hard_negative_drop_rate": 0.263158,
+      "hard_negative_keep": 10,
+      "hard_negative_uncertain": 46,
+      "target_drop": 2,
+      "target_keep": 49,
+      "target_keep_rate": 0.644737,
+      "target_non_drop": 74,
+      "target_non_drop_rate": 0.973684,
+      "target_uncertain": 25
+    }
+  },
+  "decision_gate": {
+    "contrast_coverage_passed": true,
+    "hard_negative_absolute_passed": false,
+    "hard_negative_materiality_passed": false,
+    "if_fail": "do not replay opened and do not distill; reassess richer independent source domains or human relevance evidence",
+    "if_pass": "freeze exact v2 contrast artifact and oracle contract; only then replay unchanged opened stress as falsifier",
+    "pair_breadth_passed": false,
+    "passed": false,
+    "sample_valid": true,
+    "target_safety_passed": false
+  },
+  "hard_negative_drop_improvement": 0.092105,
+  "id": "YV-semantic-display-hard-confusion-v2-result",
+  "interpretation_boundary": "Historical structured occupation is a proxy target. Pairwise contrast spans are verbatim canonical evidence selected semantically, not human relevance truth. Exact duplicate semantic case keys are counted once.",
+  "model": "gemma-4-26b-a4b-it",
+  "opened_17_88_loaded": false,
+  "pair_breadth": {
+    "evaluated_pairs": 11,
+    "rate": 0.363636,
+    "successful_pairs": 4
+  },
+  "preregistration": "research/evaluation/v31/semantic-display-hard-confusion-v2-preregistration.json",
+  "prompt_sha256": "b61618511b1093c4dbac02fb8a42522644f67a41035e3302c2bc4756a38ba3c5",
+  "prompt_version": "yv-semantic-display-hard-confusion-v2",
+  "query_year": 2021,
+  "raw_query_text_committed": false,
+  "sample": {
+    "cases": 76,
+    "duplicate_case_rows": 1,
+    "pairs_with_cases": 11,
+    "raw_rows": 77,
+    "sha256": "95e38b6ebdc293c4c1ec7babeec4d626d76b84017f0b1c14e86146e9e2d40dd0"
+  },
+  "status": "complete independent 2021 pairwise-contrast evidence"
+}
