@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'research/evaluation/v31/semantic-display-hard-confusion-v2-contrast-evidence.json'
+      - 'scripts/run_semantic_display_hard_confusion_v2_dedup.py'
       - '.github/workflows/semantic-display-hard-confusion-v2.yml'
   workflow_run:
     workflows: ['Generate semantic display contrast v2']
@@ -33,7 +34,9 @@ jobs:
           python-version: '3.12'
       - name: Verify frozen v2 boundary
         run: |
-          python -m py_compile scripts/evaluate_semantic_display_hard_confusion_v2.py
+          python -m py_compile \
+            scripts/evaluate_semantic_display_hard_confusion_v2.py \
+            scripts/run_semantic_display_hard_confusion_v2_dedup.py
           python - <<'PY'
           import json
           p=json.load(open('research/evaluation/v31/semantic-display-hard-confusion-v2-preregistration.json',encoding='utf-8'))
@@ -47,7 +50,7 @@ jobs:
           PY
       - name: Run independent 2021 contrastive test durably
         run: |
-          python scripts/evaluate_semantic_display_hard_confusion_v2.py \
+          python scripts/run_semantic_display_hard_confusion_v2_dedup.py \
             --batch-size 6 \
             --requests-per-minute 3 \
             --single-case-attempts 8
