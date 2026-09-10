@@ -1,0 +1,45 @@
+name: Actions concurrency policy
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/**'
+
+concurrency:
+  group: actions-concurrency-policy-main
+  cancel-in-progress: true
+
+jobs:
+  verify-new-or-changed-workflows:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Require superseding runs to cancel older runs
+        run: |
+          python - <<'PY'
+          import pathlib
+          import subprocess
+
+          changed = subprocess.check_output(
+              ['git', 'diff', '--name-only', 'HEAD^', 'HEAD', '--', '.github/workflows'],
+              text=True,
+          ).splitlines()
+          checked = []
+          failures = []
+          for raw in changed:
+              path = pathlib.Path(raw)
+              if path.suffix not in {'.yml', '.yaml'} or not path.exists():
+                  continue
+              text = path.read_text(encoding='utf-8')
+              checked.append(raw)
+              if 'concurrency:' not in text:
+                  failures.append(f'{raw}: missing concurrency block')
+              if 'cancel-in-progress: true' not in text:
+                  failures.append(f'{raw}: must set cancel-in-progress: true')
+          print({'checked': checked})
+          if failures:
+              raise SystemExit('\n'.join(failures))
+          PY
