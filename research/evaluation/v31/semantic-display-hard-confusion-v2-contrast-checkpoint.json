@@ -1,0 +1,58 @@
+{
+  "contract": {
+    "expected_pairs": 11,
+    "model": "gemma-4-26b-a4b-it",
+    "pair_population_sha256": "29f0a06496c3736033b59a73e3e7d8431310c0ecac72e09619fa061b94021adb",
+    "prompt_sha256": "02bba57f9d3afec4f65309704e7e97a1258a122c70f05a49ebfa62ed80f2306d",
+    "taxonomy_sha256": "634fd9d848a172747e54e3e487160a912ae6c0fcb8219c50998767c8c9aacbcc",
+    "version": "semantic-display-contrast-v2-checkpoint-v0"
+  },
+  "rows": {},
+  "transport_failures": {
+    "pair-01": {
+      "last_error": "RuntimeError: response JSON must be object",
+      "runs_failed": 1
+    },
+    "pair-02": {
+      "last_error": "RuntimeError: response JSON must be object",
+      "runs_failed": 1
+    },
+    "pair-03": {
+      "last_error": "RuntimeError: response JSON must be object",
+      "runs_failed": 1
+    },
+    "pair-04": {
+      "last_error": "RuntimeError: response JSON must be object",
+      "runs_failed": 1
+    },
+    "pair-05": {
+      "last_error": "RuntimeError: response JSON must be object",
+      "runs_failed": 1
+    },
+    "pair-06": {
+      "last_error": "RuntimeError: response JSON must be object",
+      "runs_failed": 1
+    },
+    "pair-07": {
+      "last_error": "RuntimeError: response JSON must be object",
+      "runs_failed": 1
+    },
+    "pair-08": {
+      "last_error": "RuntimeError: response JSON must be object",
+      "runs_failed": 1
+    },
+    "pair-09": {
+      "last_error": "RuntimeError: response JSON must be object",
+      "runs_failed": 1
+    },
+    "pair-10": {
+      "last_error": "RuntimeError: response JSON must be object",
+      "runs_failed": 1
+    },
+    "pair-11": {
+      "last_error": "RuntimeError: response JSON must be object",
+      "runs_failed": 1
+    }
+  },
+  "usage_metadata": []
+}

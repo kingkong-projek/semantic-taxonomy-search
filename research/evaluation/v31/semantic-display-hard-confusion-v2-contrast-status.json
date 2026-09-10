@@ -1,0 +1,16 @@
+{
+  "complete": false,
+  "completed_pairs": 0,
+  "contract": {
+    "expected_pairs": 11,
+    "model": "gemma-4-26b-a4b-it",
+    "pair_population_sha256": "29f0a06496c3736033b59a73e3e7d8431310c0ecac72e09619fa061b94021adb",
+    "prompt_sha256": "02bba57f9d3afec4f65309704e7e97a1258a122c70f05a49ebfa62ed80f2306d",
+    "taxonomy_sha256": "634fd9d848a172747e54e3e487160a912ae6c0fcb8219c50998767c8c9aacbcc",
+    "version": "semantic-display-contrast-v2-checkpoint-v0"
+  },
+  "expected_pairs": 11,
+  "id": "YV-semantic-display-hard-confusion-v2-contrast-status",
+  "phase": "incomplete",
+  "transport_failure_pairs": 11
+}
