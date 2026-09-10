@@ -1,0 +1,24 @@
+{
+  "case_set_sha256": "b5dfb7225c332272536c0f6937b19712e9ffd8b8a83b11a8979fe3325de5f203",
+  "complete": true,
+  "completed_cases": 76,
+  "decision_gate_evaluable": true,
+  "expected_cases": 76,
+  "id": "YV-P80-display-semantic-oracle-v0-run-status",
+  "missing_case_keys": [],
+  "missing_cases": 0,
+  "phase": "control-incomplete",
+  "protocol": {
+    "checkpoint_version": "yv-p80-semantic-oracle-checkpoint-v1",
+    "evidence_version": "v0-compact-plus-empty-pair-contrast-v2",
+    "model": "gemma-4-26b-a4b-it",
+    "prompt_sha256": "b61618511b1093c4dbac02fb8a42522644f67a41035e3302c2bc4756a38ba3c5",
+    "prompt_version": "yv-semantic-display-hard-confusion-v2",
+    "verdicts": [
+      "drop",
+      "keep",
+      "uncertain"
+    ]
+  },
+  "transport_failure_cases": 0
+}
