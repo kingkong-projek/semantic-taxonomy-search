@@ -1,6 +1,19 @@
 # Semantic Taxonomy Search — living research plan
 
 
+**Semantic hard-confusion v1 outcome (2026-09-10) — AUTHORITATIVE.**
+
+<!-- SEMANTIC-HARD-CONFUSION-V1-OUTCOME-2026-09-10 -->
+
+The preregistered independent 2022 hard-confusion v1 is complete and **failed**. The richer positive-task challenger retained **79/79** structured targets, but hard-negative rejection was only **13/79 = 16.46%**, versus **16/79 = 20.25%** for the frozen compact control (**-3.80 pp**). Safety passed; the preregistered >=70% absolute and >=+10 pp materiality gates failed. Opened 17/88 was not loaded and is not eligible for replay after this failure.
+
+**Decision:** do not add still more positive occupation/task prose and do not distill v1. The next single decision-bearing mechanism is **pairwise source-grounded contrast evidence**: positive distinctions attested in each candidate's supplied source evidence, selected by comparing the two plausible roles, without converting absence from the peer's source text into a claim that the peer cannot perform an activity. Freeze generation protocol and evaluation gate before outcomes; use an untouched historical time slice; keep retrieval/order unchanged; no opened replay unless the independent gate passes.
+
+A contrastive mechanism has a higher complexity burden than v0/v1. It must preserve >=98% target non-drop, reject >=70% independently paired hard negatives, materially outperform its compact-evidence control, and show breadth across pairs before it earns opened replay. Human/domain-expert relevance remains required for promotion.
+
+Evidence: `docs/findings/semantic-display-hard-confusion-v1-2026-09-10.md`, `research/evaluation/v31/semantic-display-hard-confusion-v1-preregistration.json`, and `research/evaluation/v31/semantic-display-hard-confusion-v1-result.json`.
+
+
 **Semantic display relevance v0 outcome amendment (2026-09-09) — AUTHORITATIVE.**
 
 <!-- SEMANTIC-DISPLAY-V0-OUTCOME-2026-09-09 -->

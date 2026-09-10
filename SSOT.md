@@ -4,6 +4,17 @@ Updated: 2026-09-09.
 
 This file is the canonical entrypoint for **current execution state**. Historical experiments remain in `docs/findings/` and `research/`; they are evidence, not competing active plans.
 
+
+## Latest amendment — semantic hard-confusion v1 failed
+
+<!-- SEMANTIC-HARD-CONFUSION-V1-OUTCOME-2026-09-10 -->
+
+The preregistered independent 2022 hard-confusion v1 is complete. On 79 cases, richer positive canonical-derived task evidence preserved every structured target (**79/79 non-drop**) but rejected only **13/79 = 16.46%** paired hard negatives, versus **16/79 = 20.25%** for the frozen compact control. Delta: **-3.80 pp**. The target-safety gate passed; the >=70% absolute hard-negative gate and >=+10 pp materiality gate failed. Opened 17/88 was not loaded and must not be replayed for this failed mechanism.
+
+**Superseding execution decision:** adding more positive task description is rejected as the solution to adjacent-role display precision. The next bounded experiment must test **explicit source-grounded contrastive/discriminative evidence between plausible neighboring roles**, frozen before outcomes and evaluated on a new independent time slice. It must not encode negative occupational facts from absence, must not use opened outcomes, and must keep retrieval/rank order unchanged. No student/distillation until that independent contrastive gate and the subsequent unchanged opened falsifier both pass.
+
+Evidence: `docs/findings/semantic-display-hard-confusion-v1-2026-09-10.md` and `research/evaluation/v31/semantic-display-hard-confusion-v1-result.json`.
+
 ## Authority
 
 1. The newest explicit amendments at the top of `docs/research-plan.md` define scope, gates and experiment order.
