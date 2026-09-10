@@ -4,6 +4,10 @@ on:
   push:
     paths:
       - 'research/evaluation/v31/semantic-display-hard-confusion-v2-contrast-evidence.json'
+      - '.github/workflows/semantic-display-hard-confusion-v2.yml'
+  workflow_run:
+    workflows: ['Generate semantic display contrast v2']
+    types: [completed]
   workflow_dispatch:
 
 permissions:
@@ -15,12 +19,15 @@ concurrency:
 
 jobs:
   evaluate:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-24.04
     timeout-minutes: 90
     env:
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
